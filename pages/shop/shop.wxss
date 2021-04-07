@@ -1,0 +1,93 @@
+/* pages/shop/shop.wxss */
+.loaction_wrapper {
+  position: absolute;
+  top: 68px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #F0F2F5;
+  padding: 0 30rpx;
+}
+
+.loaction_wrapper .location_info {
+  margin-top: 20rpx;
+  width: 690rpx;
+  background: #ffffff;
+}
+
+.loaction_wrapper .loaction {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 22rpx;
+}
+
+.loaction_wrapper .location_title {
+  display: flex
+}
+
+.location_info .address {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  padding: 0 7rpx 0 5rpx;
+}
+
+.location_info .shop_num {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+
+.location_info .location_title>image {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  padding-top: 2rpx;
+}
+
+.location_info .store_list {
+  position: relative;
+  display: flex;
+  width: 644rpx;
+  margin: 0 auto;
+  padding: 31rpx 0;
+  border-top: 1px solid #EEEEEE;
+}
+
+.location_info .store_item {
+  padding-left: 20rpx;
+}
+
+.location_info .store_item .store_adr {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.location_info .store_item .detail_address {
+  padding-top: 27rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.location_info .store_item .detail_address>image {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+}
+
+.location_info .store_item .detail_address .detail {
+  padding-left: 15rpx;
+}
+
+.location_info .distance {
+  margin-top: 40rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}

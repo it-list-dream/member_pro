@@ -1,0 +1,29 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/shop/shop",
+          "pathName": "pages/shop/shop",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/leagueClass/leagueClass",
+          "pathName": "pages/leagueClass/leagueClass",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

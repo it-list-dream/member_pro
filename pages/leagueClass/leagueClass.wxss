@@ -1,0 +1,239 @@
+.appointment {
+  width: 100%;
+  background: #F0F2F5;
+  position: absolute;
+  top: 68px;
+  left: 0;
+}
+
+.appointment .appointment_item {
+  padding-top: 20rpx;
+  width: 100%;
+}
+
+/* 教练头像 */
+.coach_info {
+  width: 690rpx;
+  height: 130rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  background: #ffffff;
+}
+
+.coach_info .coach_list {
+  position: relative;
+  padding: 20rpx;
+  display: flex;
+  /* justify-content: space-between; */
+  font-size: 24rpx;
+}
+
+.coach_info .head {
+  display: flex;
+}
+
+.coach_info .head .head_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+
+}
+
+.coach_info .head .head_info image {
+  padding-left: 8rpx;
+}
+
+.coach_info .course_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 100rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.coach_info .switch {
+  position: absolute;
+  top: 48rpx;
+  right: 20rpx;
+}
+
+.coach_info .switch>image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+/*  */
+.course_list {
+  display: flex;
+  padding: 0 30rpx;
+}
+
+.course_list .course:first-child {
+  margin-left: 0;
+}
+
+.course_list .course {
+  margin-left: 20rpx;
+  padding: 9rpx 30rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.course_list .course_active {
+  background: #12D58B;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+/* 日期 */
+.dayList {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 153rpx;
+  background: #FFFFFF;
+}
+
+.dayList .day_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+
+}
+
+.dayList .day {
+  width: 98rpx;
+  height: 113rpx;
+  background: #12D58B;
+  border-radius: 8rpx;
+  margin-top: 20rpx;
+}
+
+.dayList .day>view {
+  box-sizing: border-box;
+  padding-top: 10rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.dayList .day .day_active {
+  color: #333333;
+}
+
+/* 团课详情 */
+.leagueClass {
+  padding: 0 30rpx;
+}
+
+.leagueClass .leagueClass_item {
+  box-sizing: border-box;
+  width: 690rpx;
+  height: 250rpx;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.blog.163.com%2Fphoto%2FIu-r9T4ha8JsX8UwDBq2iA%3D%3D%2F5114118851856165988.jpg&refer=http%3A%2F%2Fimg.blog.163.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1620375735&t=d75918aa1dd8aa17dccbabc10f0c4dc5") no-repeat;
+}
+
+.leagueClass .progress {
+  width: 135rpx;
+  height: 35rpx;
+  background: #7B6F85;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 35rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+
+}
+
+.leagueClass .className {
+  font-size: 40rpx;
+  padding-top: 70rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.leagueClass .class_info {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30rpx;
+}
+
+.leagueClass .class_info .class_time {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.leagueClass .class_info .class_status {
+  width: 117rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background: #12D58B;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  margin: -10rpx 30rpx 0 0;
+}
+
+/* 私教详情 */
+.trainer {
+  padding: 0 30rpx;
+  background: #ffffff;
+}
+
+.trainer .time {
+  display: flex;
+ padding-top: 20rpx;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.trainer .time>view {
+  width: 122rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  background: #FFFFFF;
+  border: 1px solid #cccccc;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+}
+.trainer .oder_wrapper{
+  margin-top:80rpx;
+}
+.trainer .order{
+  width: 690rpx;
+  height: 60rpx;
+  background: #12D58B;
+  border-radius: 30rpx;
+font-size: 32rpx;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FFFFFF;
+text-align: center;
+line-height: 60rpx;
+}

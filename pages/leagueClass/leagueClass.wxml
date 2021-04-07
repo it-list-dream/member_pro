@@ -1,0 +1,110 @@
+<view class="appointment">
+  <view class="appointment_item">
+    <view class="course_list">
+      <view class="course">私教</view>
+      <view class="course course_active">团课</view>
+    </view>
+    <!-- 私教 -->
+    <view class="coach_info" hidden="{{isShow!=1}}">
+      <view class="coach_list">
+        <view class="head">
+          <image src="/static/appointment/headPortrait.png" style="width:88rpx;height:88rpx;"></image>
+          <view class="head_info">
+            <view>
+              <text>六大胖</text>
+              <image src="/static/appointment/man.png" style="width:25rpx;height:25rpx;"></image>
+            </view>
+            <view>时长：60分钟</view>
+          </view>
+        </view>
+        <view class="course_content">
+           <view>如渔常规课（10节）</view>
+           <view>截止：2021-6-13</view>
+        </view>
+        <view class="switch">
+             <image src="/static/appointment/sort.png"></image>
+           </view>
+      </view>
+    </view>
+    <view class="dayList">
+      <view class="day_item">
+        <view class="day">
+          <view>今天</view>
+          <view>4.9</view>
+        </view>
+        <view class="day">
+          <view>周一</view>
+          <view>4.10</view>
+        </view>
+        <view class="day">
+          <view>周二</view>
+          <view>4.11</view>
+        </view>
+        <view class="day">
+          <view>周三</view>
+          <view>4.12</view>
+        </view>
+        <view class="day">
+          <view>周四</view>
+          <view>4.13</view>
+        </view>
+        <view class="selectDate day"></view>
+      </view>
+    </view>
+    <!-- 团课详情 -->
+    <view class="leagueClass">
+      <block>
+        <view class="leagueClass_item" hidden="{{isShow==1}}">
+          <view class="progress">已参加1/3</view>
+          <view class="className">动感单车-六大胖</view>
+          <view class="class_info">
+            <view class="class_time">2021/3/18 18:00-19:00</view>
+            <view class="class_status">已预约</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- 私教详情 -->
+    <view class="trainer">
+        <view class="time">
+            <!-- <view>1</view> -->
+            <!-- <view>2</view>
+            <view>3</view>
+            <view>4</view>
+            <view>5</view>
+            <view>6</view>
+            <view>7</view>
+            <view>8</view>
+            <view>9</view>
+            <view>10</view>
+            <view>11</view>
+            <view>12</view>
+            <view>13</view>
+            <view>14</view>
+            <view>15</view>
+            <view>16</view>
+            <view>17</view>
+            <view>18</view>
+            <view>19</view>
+            <view>20</view>
+            <view>21</view>
+            <view>22</view>
+            <view>23</view>
+            <view>24</view>
+            <view>25</view>
+            <view>26</view>
+            <view>27</view>
+            <view>28</view>
+            <view>29</view>
+            <view>30</view>
+            <view>31</view> -->
+            <block wx:for="{{date_time}}" >
+               <view>{{item}}</view>
+            </block>
+        </view>
+        <view class="oder_wrapper">
+          <view class="order">预约</view>
+        </view>   
+    </view>
+  </view>
+</view>

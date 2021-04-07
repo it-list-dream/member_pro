@@ -1,0 +1,55 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/sport/sport",
+    "pages/integral/integral",
+    "pages/my/my",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/shop/shop",
+    "pages/leagueClass/leagueClass"
+  ],
+  "plugins": {
+
+  },
+  "tabBar": {
+    "position": "bottom",
+    "selectedColor": "#52495B",
+    "color":"#C0BEC9",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-h.png"
+      },
+      {
+        "pagePath": "pages/sport/sport",
+        "text": "运动",
+        "iconPath": "static/tabbar/sport.png",
+        "selectedIconPath": "static/tabbar/sport-h.png"
+      },
+      {
+        "pagePath": "pages/integral/integral",
+        "text": "积分",
+        "iconPath": "static/tabbar/integral.png",
+        "selectedIconPath": "static/tabbar/integral-h.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/tabbar/my.png",
+        "selectedIconPath": "static/tabbar/my-h.png"
+      }
+    ]
+  },
+  "window":{
+    "navigationStyle": "custom",
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

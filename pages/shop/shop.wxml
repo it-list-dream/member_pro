@@ -1,0 +1,28 @@
+<topNavBar my-property='{{aa}}'></topNavBar>
+<view class="loaction_wrapper">
+  <view class="location_info">
+    <view class="loaction">
+      <view class="location_title">
+        <image src="/static/laction.png"></image>
+        <text class="address">上海市</text>
+        <image src="/static/bottom_arrow.png"></image>
+      </view>
+      <view class="shop_num">共两家</view>
+    </view>
+    <!-- 门店 -->
+    <view class="store_list">
+       <image src="/static/room.png" style="width:200rpx;height:170rpx;"></image>
+       <view class="store_item">
+          <view class="store_adr">徐汇店</view>
+          <view class="detail_address">
+            <image src="/static/store.png"></image>
+            <text class="detail">上海市徐汇区永生大厦407室</text>
+          </view>
+          <view class="distance">0.5km</view>
+       </view>
+       <view class="store_check">
+          
+       </view>
+    </view>  
+  </view>
+</view>
