@@ -1,0 +1,59 @@
+
+<view class="coachList">
+  <view class="coachList_card">
+    <view class="coachList_item">
+     <view class="coach_info">
+       <image src="/static/coachList/head.png" style="width:50rpx;height:50rpx;"></image>
+       <text class="coachName">六大胖</text>
+       <image src="/static/coachList/man.png" style="width:20rpx;height:20rpx;"></image>
+     </view>
+     <view class="coach_content">
+       <view class="coach_left">
+         <view class="accruing">累计上课359节</view>
+         <view class="type">修身 | 减脂</view>
+       </view>
+       <view class="coach_right" style="">
+          <image src="/static/coachList/phone.png" style="width:40rpx;height:40rpx;"></image>
+       </view>
+     </view>
+   </view>
+  </view>
+  <!--  -->
+  <view class="coachList_card">
+    <view class="coachList_item">
+     <view class="coach_info">
+       <image src="/static/coachList/head.png" style="width:50rpx;height:50rpx;"></image>
+       <text class="coachName">六大胖</text>
+       <image src="/static/coachList/man.png" style="width:20rpx;height:20rpx;"></image>
+     </view>
+     <view class="coach_content">
+       <view class="coach_left">
+         <view class="accruing">累计上课359节</view>
+         <view class="type">修身 | 减脂</view>
+       </view>
+       <view class="coach_right" style="">
+          <image src="/static/coachList/phone.png" style="width:40rpx;height:40rpx;"></image>
+       </view>
+     </view>
+   </view>
+  </view>
+  <!--  -->
+  <view class="coachList_card">
+    <view class="coachList_item">
+     <view class="coach_info">
+       <image src="/static/coachList/head.png" style="width:50rpx;height:50rpx;"></image>
+       <text class="coachName">六大胖</text>
+       <image src="/static/coachList/man.png" style="width:20rpx;height:20rpx;"></image>
+     </view>
+     <view class="coach_content">
+       <view class="coach_left">
+         <view class="accruing">累计上课359节</view>
+         <view class="type">修身 | 减脂</view>
+       </view>
+       <view class="coach_right" style="">
+          <image src="/static/coachList/phone.png" style="width:40rpx;height:40rpx;"></image>
+       </view>
+     </view>
+   </view>
+  </view>
+</view>

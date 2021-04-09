@@ -1,0 +1,62 @@
+/* pages/coachList/coachList.wxss */
+.coachList {
+  margin-top: 60px;
+  background-color: #F0F2F5;
+  height: calc(100vh - 60px);
+}
+.coachList_card {
+  margin: 0 auto;
+  margin-bottom: 22rpx;
+  width: 690rpx;
+  height: 240rpx;
+  background: #52495B;
+  border-radius: 10rpx;
+}
+.coachList .coachList_item {
+  padding: 20rpx;
+}
+
+.coachList .coach_info {
+  display: flex;
+  align-items: center;
+}
+.coachList .coach_info .coachName{
+   padding: 0 12rpx;
+}
+.coachList .coach_info image {
+  vertical-align: middle;
+}
+.coach_content{
+  margin-top: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.coach_left .accruing{
+
+font-size: 36rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+padding-bottom: 18rpx;
+}
+.coach_left .type{
+font-size: 22rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+}
+.coach_right {
+  width: 70rpx;
+  height: 70rpx;
+  background-color: #12D58B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.coach_right>image {
+  width: 40rpx;
+  height: 40rpx;
+}

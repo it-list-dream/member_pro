@@ -70,7 +70,12 @@ Page({
   },
   goLeagueLecture(){
     wx.navigateTo({
-      url: '/pages/leagueClass/leagueClass',
+      url: '/pages/appointment/appointment',
+    })
+  },
+  allCoach(){
+    wx.navigateTo({
+      url: '/pages/coachList/coachList',
     })
   },
   /**

@@ -1,0 +1,69 @@
+<view class="coachDetail">
+  <view class="coach_bg"></view>
+  <view class="detail_list">
+    <view class="coach_info">
+      <view class="coach_left">
+        <view class="head_list">
+          <image src="/static/head.png" class="coach_head"></image>
+        </view>
+
+        <view class="coach_man">
+          <view>
+            <text class="coach_name">六大胖</text>
+            <image src="/static/man.png" style="width:20rpx;height:20rpx;"></image>
+          </view>
+          <view class="pro">
+            <text>修身 | 减肥</text>
+            <text class="course_num">累计上课359节</text>
+          </view>
+        </view>
+      </view>
+      <view class="coach_right">
+        <image src="/static/phone.png" style="width:30rpx;height:30rpx;"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 教练介绍 -->
+  <view class="coach_introduce">
+    <view class="coach_in">教练介绍</view>
+    <view class="introduce_text">健身教练，分为团体操课程教练和私人教练，组织健身者做计划中的健身运动或健身操。健身教练是指在健身俱乐部中指导会员进行训练的工作</view>
+  </view>
+  <!-- 课程推荐 -->
+  <view class="class_introduce">
+    <view>推荐课程</view>
+  </view>
+  <!--  -->
+  <view class="coach_subject">
+    <view class="coach_pic">
+      <!-- <image></image> -->
+      <view class="subject">
+        <view>拉伸课</view>
+        <view>
+          <text class="price">￥</text>
+          <text class="num">300/节</text>
+        </view>
+      </view>
+    </view>
+    <view class="coach_pic">
+      <!-- <image></image> -->
+      <view class="subject">
+        <view>拉伸课</view>
+        <view>
+          <text class="price">￥</text>
+          <text class="num">300/节</text>
+        </view>
+      </view>
+    </view>
+    <view class="coach_pic">
+      <!-- <image></image> -->
+      <view class="subject">
+        <view>拉伸课</view>
+        <view>
+          <text class="price">￥</text>
+          <text class="num">300/节</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

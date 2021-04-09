@@ -1,0 +1,30 @@
+<view class="container">
+    <view class="head_list">
+      <image src="/static/coach03.png" class="head_pic"></image>
+    </view>
+    <!--  -->
+    <view class="course_num">
+        <view class="course_item">
+          <image src="/static/money.png"></image>
+          <view class="number">
+           <text> 300</text>
+           <text>节</text>
+          </view>
+        </view>
+    </view>
+    <!-- 课程名 -->
+    <view class="course_name">
+       <text space="ensp">课程名：拉伸课</text>
+    </view>
+    <!-- 时长 -->
+    <view class="duration">
+      <text space="ensp">时长：60分钟</text>
+    </view>
+    <!-- 介绍 -->
+    <view class="introduce">
+     <view class="introduce_title">介绍：</view>
+     <view>
+      如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。
+     </view>
+    </view>
+</view>  

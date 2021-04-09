@@ -12,11 +12,20 @@
 <!-- 二维码 -->
 <view class="head_wrapper">
   <view class="wrapper_item">
-    <image class="head_pic" src="../../static/home_pic/ship.png" bindtap="toShop"></image>
+    <view class="header_list"  bindtap="toShop">
+      <image class="head_pic" src="../../static/home_pic/ship.png"></image>
+    </view>
+ 
     <text class="line"></text>
-    <image class="head_pic" src="../../static/home_pic/QRcode.png"></image>
+    <view  class="header_list">
+      <image class="head_pic" src="../../static/home_pic/QRcode.png"></image>
+    </view>
+   
     <text class="line"></text>
-    <image class="head_pic" src="../../static/home_pic/scan.png"></image>
+    <view  class="header_list">
+      <image class="head_pic" src="../../static/home_pic/scan.png"></image>
+    </view>
+   
   </view>
 </view>
 <!-- 内容 -->
@@ -63,7 +72,7 @@
     <view class="star_coach">
       <text>明星教练</text>
     </view>
-    <view class="all_t">
+    <view class="all_t" bindtap="allCoach">
       <text>全部</text>
       <image src="/static/home_pic/arrow.png"></image>
     </view>

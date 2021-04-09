@@ -1,0 +1,65 @@
+<!--pages/selectCourse/selectCourse.wxml-->
+<view class="selectCourse">
+  <view class="course_list">
+    <view class="course_item">
+      <view class="top">
+        <view>
+          <image src="/static/head.png" style="width:52rpx;height:52rpx;"></image>
+        </view>
+        <view class="course-info">
+          <view>
+            <text class="courseName">六大胖</text>
+            <image src="/static/man.png" style="width:20rpx;height:20rpx; vertical-align: middle;"></image>
+          </view>
+          <view>时长: 60分钟</view>
+        </view>
+      </view>
+      <view class="bottom">
+        <view class="course_number">如渔常规课（10节）</view>
+        <view class="expirationDate">截止2021-6-13</view>
+      </view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="course_list">
+    <view class="course_item">
+      <view class="top">
+        <view>
+          <image src="/static/head.png" style="width:52rpx;height:52rpx;"></image>
+        </view>
+        <view class="course-info">
+          <view>
+            <text class="courseName">六大胖</text>
+            <image src="/static/man.png" style="width:20rpx;height:20rpx;"></image>
+          </view>
+          <view>时长: 60分钟</view>
+        </view>
+      </view>
+      <view class="bottom">
+        <view class="course_number">如渔常规课（10节）</view>
+        <view class="expirationDate">截止2021-6-13</view>
+      </view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="course_list">
+    <view class="course_item">
+      <view class="top">
+        <view>
+          <image src="/static/head.png" style="width:52rpx;height:52rpx;"></image>
+        </view>
+        <view class="course-info">
+          <view>
+            <text class="courseName">六大胖</text>
+            <image src="/static/man.png" style="width:20rpx;height:20rpx;"></image>
+          </view>
+          <view>时长: 60分钟</view>
+        </view>
+      </view>
+      <view class="bottom">
+        <view class="course_number">如渔常规课（10节）</view>
+        <view class="expirationDate">截止2021-6-13</view>
+      </view>
+    </view>
+  </view>
+</view>

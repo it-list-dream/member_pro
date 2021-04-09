@@ -1,0 +1,40 @@
+.coach_subject {
+  padding: 0 31rpx;
+}
+
+.coach_pic {
+  margin-bottom: 24rpx;
+  box-sizing: border-box;
+  width: 690rpx;
+  height: 240rpx;
+  background: #52495B;
+  border-radius: 10rpx;
+  padding: 158rpx 0 0 20rpx;
+}
+
+.subject {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 262rpx;
+  height: 63rpx;
+  background: #12D58B;
+  border-radius: 10rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  padding: 0 20rpx;
+}
+
+.price {
+  font-size: 24rpx;
+}
+
+.num {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #FEFEFE;
+}

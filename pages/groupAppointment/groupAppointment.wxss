@@ -1,0 +1,210 @@
+.group_container {
+  background-color: #F0F2F5;
+  margin-top: 60px;
+  position: relative;
+  height: calc(100vh - 60px);
+}
+
+.group_container .group_pic {
+  position: relative;
+  width: 750rpx;
+  height: 296rpx;
+}
+
+.group_container .group_pic .join_num {
+  position: absolute;
+  right: 28rpx;
+  bottom: 20rpx;
+  width: 140rpx;
+  height: 50rpx;
+  z-index: 20;
+  background: #7B6F85;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.coach_img {
+  width: 750rpx;
+  height: 296rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.coach_img>image {
+  width: 100%;
+  height: 100%;
+}
+
+.course_date .left {
+  display: flex;
+  align-items: center;
+}
+
+.course_date .left image {
+  vertical-align: middle;
+}
+
+.course_date {
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  border: 1px solid #eeeeee;
+}
+
+.course_date .coachName {
+  padding: 0 9rpx 0 20rpx;
+  font-size: 48rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+
+
+.course_date .right {
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.6;
+}
+
+.course_date .right view:first-child {
+  margin-bottom: 20rpx;
+}
+
+.course_name {
+  padding: 28rpx 0 28rpx 32rpx;
+  background: #FFFFFF;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  border: 1px solid #eeeeee;
+}
+
+.course_time {
+  padding: 31rpx 0 31rpx 63rpx;
+  background: #FFFFFF;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  border: 1px solid #eeeeee;
+}
+
+.course_introduce {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  display: flex;
+  padding: 30rpx 31rpx 30rpx 63rpx;
+  background: #FFFFFF;
+}
+
+.course_introduce .introduce {
+  white-space: nowrap;
+}
+
+.order_list {
+  padding: 20rpx 30rpx;
+  background: #FFFFFF;
+  margin-top: 21rpx;
+}
+
+.order {
+  width: 690rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #12D58B;
+  border-radius: 30rpx;
+  color: #FFFFFF;
+  margin: 0 auto;
+}
+
+/* 支付方式 */
+.pay_course {
+  width: 750rpx;
+  /* height: 182rpx; */
+  background-color: #FFFFFF;
+  margin-top: 28rpx;
+}
+
+.pay_course .pay_list {
+  padding: 0 34rpx;
+}
+
+.pay_course .pay_list .pay {
+  display: flex;
+  padding: 28rpx 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.pay_course .pay_title {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.pay_course .WeChatPay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 22rpx;
+
+  width: 201rpx;
+  height: 40rpx;
+  border: 1px solid #cccccc;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+
+}
+
+.pay_course .WeChatPay image {
+  width: 36rpx;
+  height: 36rpx;
+  padding-left: 28rpx;
+  vertical-align: middle;
+}
+.pay_course .pay_total{
+  display: flex;
+  justify-content: space-between;
+  padding: 28rpx 0;
+  font-size: 36rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: #333333;
+}
+.pay_course .pay_total .pay_number{
+  display: flex;
+}
+.pay_course .pay_total .pay_number .price{
+  color: red;
+}
+
+.pay_order .order_title{
+  width: 170rpx;
+height: 50rpx;
+line-height: 50rpx;
+text-align: center;
+color: #ffffff;
+font-size: 26rpx;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FFFFFF;
+background: #12D58B;
+border-radius: 25rpx;
+}

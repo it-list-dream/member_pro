@@ -1,6 +1,7 @@
 <topNavBar my-property='{{aa}}'></topNavBar>
 <view class="loaction_wrapper">
   <view class="location_info">
+    <!-- 定位 -->
     <view class="loaction">
       <view class="location_title">
         <image src="/static/laction.png"></image>
@@ -20,8 +21,16 @@
           </view>
           <view class="distance">0.5km</view>
        </view>
-       <view class="store_check">
-          
+    </view>  
+    <view class="store_list">
+       <image src="/static/room.png" style="width:200rpx;height:170rpx;"></image>
+       <view class="store_item">
+          <view class="store_adr">徐汇店</view>
+          <view class="detail_address">
+            <image src="/static/store.png"></image>
+            <text class="detail">上海市徐汇区永生大厦407室</text>
+          </view>
+          <view class="distance">0.5km</view>
        </view>
     </view>  
   </view>

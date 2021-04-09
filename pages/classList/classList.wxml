@@ -1,0 +1,6 @@
+<view class="cla_list">
+  <block wx:for="list">
+    <course-list></course-list>
+  </block>
+</view>
+

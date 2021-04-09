@@ -20,11 +20,15 @@
 .head_wrapper .wrapper_item {
   height: 100%;
   display: flex;
-  /* justify-content: center; */
   justify-content: space-evenly;
   align-items: center;
 }
-
+.header_list{
+  height: 100%;
+  padding:0 15rpx;
+  display: flex;
+  align-items: center;
+}
 .head_wrapper .line {
   width: 1rpx;
   height: 24rpx;

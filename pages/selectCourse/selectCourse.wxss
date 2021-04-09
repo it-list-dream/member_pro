@@ -1,0 +1,50 @@
+/* pages/selectCourse/selectCourse.wxss */
+.selectCourse{
+  background-color: #F0F2F5;
+  margin-top: 60px;
+}
+.selectCourse .course_list{
+    width: 690rpx;
+    height: 240rpx;
+    margin: 0 auto;
+    background-color: paleturquoise;
+    border-radius: 8rpx;
+    margin-bottom: 20rpx;
+}
+.selectCourse .course_item{
+    padding: 20rpx;
+    /* display: flex; */
+   
+}
+.selectCourse .top{
+display: flex;
+}
+.selectCourse .course-info {
+font-size: 22rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+padding-left: 10rpx;
+}
+.selectCourse .course-info .courseName{
+   padding-right: 14rpx;
+
+}
+.selectCourse .bottom{
+  /* display: flex;
+  flex-direction: column; */
+  margin-top: 50rpx;
+}
+.selectCourse .course_number{
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.selectCourse  .expirationDate{
+  padding-top: 18rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}

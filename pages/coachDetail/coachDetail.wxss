@@ -1,0 +1,139 @@
+.coachDetail {
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+  background: #f0f2f5;
+}
+
+.coach_bg {
+  width: 750rpx;
+  height: 296rpx;
+  background: url("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=71648067,1130772742&fm=26&gp=0.jpg") no-repeat;
+}
+
+.coach_info {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9rpx 31rpx 20rpx 31rpx;
+  background: #ffffff;
+}
+
+.head_list {
+  position: absolute;
+  top: -28rpx;
+  left: 31rpx;
+}
+
+.coach_man {
+  padding-left: 120rpx;
+}
+
+.coach_name {
+
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  padding-right: 12rpx;
+}
+
+.pro {
+  padding-top: 8rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.8;
+}
+
+.course_num {
+  padding-left: 20rpx;
+}
+
+.coach_head {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.coach_left {
+  display: flex;
+}
+
+.coach_right {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #12D58B;
+  border-radius: 50%;
+}
+
+/* 较量介绍 */
+.coach_introduce {
+  margin-top: 1px;
+  background: #ffffff;
+  padding: 20rpx 31rpx;
+}
+
+.coach_in {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #010101;
+  padding-bottom: 20rpx;
+}
+
+.introduce_text {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #000000;
+}
+
+.class_introduce {
+  padding: 20rpx 0 20rpx 31rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #010101;
+}
+
+.coach_subject {
+  padding:0 31rpx;
+}
+
+.coach_pic {
+  margin-bottom: 24rpx;
+  box-sizing: border-box;
+  width: 690rpx;
+  height: 240rpx;
+  background: #52495B;
+  border-radius: 10rpx;
+  padding: 158rpx 0 0 20rpx;
+}
+
+.subject {
+  display: flex;
+  justify-content: space-between;
+align-items: center;
+  width: 262rpx;
+  height: 63rpx;
+  background: #12D58B;
+  border-radius: 10rpx;
+font-size: 36rpx;
+line-height: 36rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+padding:0 20rpx;
+}
+.price{
+  font-size: 24rpx;
+}
+.num{
+  font-size: 28rpx;
+font-family: PingFang SC;
+font-weight: 800;
+color: #FEFEFE;
+}

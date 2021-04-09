@@ -1,22 +1,21 @@
 .appointment {
-  width: 100%;
   background: #F0F2F5;
-  position: absolute;
-  top: 68px;
-  left: 0;
+  margin-top: 68px;
+  height: calc(100vh - 68px);
 }
 
 .appointment .appointment_item {
-  padding-top: 20rpx;
   width: 100%;
 }
-
+.appointment_detail{
+  background-color: #52495B;
+  padding-bottom: 30rpx;
+}
 /* 教练头像 */
 .coach_info {
   width: 690rpx;
   height: 130rpx;
   margin: 0 auto;
-  margin-top: 20rpx;
   background: #ffffff;
 }
 
@@ -24,7 +23,6 @@
   position: relative;
   padding: 20rpx;
   display: flex;
-  /* justify-content: space-between; */
   font-size: 24rpx;
 }
 
@@ -60,6 +58,7 @@
 }
 
 .coach_info .switch {
+ 
   position: absolute;
   top: 48rpx;
   right: 20rpx;
@@ -73,7 +72,7 @@
 /*  */
 .course_list {
   display: flex;
-  padding: 0 30rpx;
+  padding: 20rpx 30rpx;
 }
 
 .course_list .course:first-child {
@@ -101,37 +100,62 @@
 
 /* 日期 */
 .dayList {
-  margin-top: 20rpx;
+  /* margin-top: 20rpx; */
+  position: relative;
+  padding-top: 20rpx;
   width: 100%;
   height: 153rpx;
   background: #FFFFFF;
 }
-
+.dayList .selectDate{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .dayList .day_item {
   display: flex;
   justify-content: space-between;
   padding: 0 30rpx;
-
 }
 
 .dayList .day {
   width: 98rpx;
   height: 113rpx;
-  background: #12D58B;
+  /* background: #12D58B; */
   border-radius: 8rpx;
   margin-top: 20rpx;
+  border: 2rpx solid #cccccc;
 }
 
-.dayList .day>view {
+.dayList .day {
   box-sizing: border-box;
   padding-top: 10rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
-  color: #FFFFFF;
+  /* color: #FFFFFF; */
   text-align: center;
 }
-
+/* 日历 */
+.calendar_list{
+  position: absolute;
+  width: 100%;
+  height: 295rpx;
+  border-top: 1px solid #eeeeee;
+  margin-top: 30rpx;
+}
+.calendar {
+  background-color:rgb(255, 255, 255);  
+}
+.calendar-header{
+font-size: large;
+color: #59518d;
+}
+.calendar-board{
+color: #c7cbe2;
+ font-weight: bold;
+}
+/*  */
 .dayList .day .day_active {
   color: #333333;
 }
@@ -207,12 +231,15 @@
 
 .trainer .time {
   display: flex;
- padding-top: 20rpx;
+  padding-top: 20rpx;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-around; */
+  /* align-content: space-around; */
+  padding-bottom: 66rpx;
+
 }
 
-.trainer .time>view {
+.trainer .time .clock {
   width: 122rpx;
   height: 48rpx;
   line-height: 48rpx;
@@ -221,19 +248,22 @@
   border: 1px solid #cccccc;
   border-radius: 8rpx;
   margin-bottom: 20rpx;
+  margin-right: 12rpx;
 }
-.trainer .oder_wrapper{
-  margin-top:80rpx;
+
+ .oder_wrapper {
+  margin-top: 80rpx;
 }
-.trainer .order{
+ .order {
   width: 690rpx;
   height: 60rpx;
+  margin: 0 auto;
   background: #12D58B;
   border-radius: 30rpx;
-font-size: 32rpx;
-font-family: PingFang SC;
-font-weight: bold;
-color: #FFFFFF;
-text-align: center;
-line-height: 60rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 60rpx;
 }

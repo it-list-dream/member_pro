@@ -4,13 +4,21 @@
     "pages/sport/sport",
     "pages/integral/integral",
     "pages/my/my",
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/shop/shop",
-    "pages/leagueClass/leagueClass"
+    "pages/appointment/appointment",
+    "pages/coachList/coachList",
+    "pages/selectCourse/selectCourse",
+    "pages/groupAppointment/groupAppointment",
+    "pages/chooseSeat/chooseSeat",
+    "pages/coachDetail/coachDetail",
+    "pages/classList/classList",
+    "pages/personalTrainer/personalTrainer"
   ],
   "plugins": {
-
+    "calendar": {
+      "version": "1.1.3",
+      "provider": "wx92c68dae5a8bb046"
+    }
   },
   "tabBar": {
     "position": "bottom",
