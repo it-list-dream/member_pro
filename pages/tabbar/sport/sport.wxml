@@ -1,0 +1,4 @@
+<!--pages/sport/sport.wxml-->
+<view style="margin-top:62px;">
+  <navigator open-type="navigate" url="/pages/movementData/movementData">运动数据</navigator>
+</view>

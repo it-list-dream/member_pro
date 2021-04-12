@@ -1,0 +1,88 @@
+.card{
+  height: 100vh;
+  background: #d9dbe0;
+}
+.vipImg {
+  width: 750rpx;
+  height: 296rpx;
+  vertical-align: middle;
+}
+.vipMoney {
+  width: 100%;
+  background-color: #F0F2F5;
+}
+.vipMoney .vipStr {
+  box-sizing: border-box;
+  height: 90rpx;
+  padding-left: 28rpx;
+  vertical-align: middle;
+  border-bottom: 1rpx solid #EEEEEE;
+  background-color:#ffffff ;
+}
+.monImg {
+  width: 36rpx;
+  height: 36rpx;
+  /* margin: 30rpx 0rpx 0rpx 25rpx;  */
+  vertical-align: middle;
+}
+.fon-size {
+  font-size: 48rox;
+  line-height: 90rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+ .type{
+   margin: 25rpx 10rpx 0rpx 25rpx;
+   display: inline-block;
+   font-size: 28rpx;
+   font-weight: 600;
+}
+.introduce {
+  padding-left: 50rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.vipMoney .vipStr:nth-child(6) {
+  height: 200rpx;
+  background-color: beige;
+}
+.payment {
+  height: 213rpx;
+  /* background-color: cadetblue; */
+  margin-top: 130rpx;
+}
+.membership {
+  height: 100rpx;
+  /* background-color: chartreuse; */
+}
+.purchase {
+  height: 50rpx;
+  font-size: 24rpx;
+  color: #ffff;
+  text-align: center;
+  line-height: 50rpx;
+  background-color: #52495B;
+}
+.total {
+  /* height: 80rpx; */
+  display: flex;
+  justify-content: space-around;
+  background-color: #F0F2F5;
+}
+.purcl-tye {
+  width: 94rpx;
+  height: 40rpx;
+  font-size: 26rpx;
+  border-radius: 5rpx;
+  display: inline-block;
+  text-align: center;
+  line-height: 40rpx;
+  background-color: #12D58B;
+}
+.buy_list{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}

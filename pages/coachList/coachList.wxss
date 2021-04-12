@@ -1,8 +1,7 @@
-/* pages/coachList/coachList.wxss */
+
 .coachList {
-  margin-top: 60px;
   background-color: #F0F2F5;
-  height: calc(100vh - 60px);
+  padding-top: 20rpx;
 }
 .coachList_card {
   margin: 0 auto;

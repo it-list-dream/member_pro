@@ -1,13 +1,10 @@
 .coachDetail {
-  margin-top: 60px;
-  height: calc(100vh - 60px);
   background: #f0f2f5;
 }
 
 .coach_bg {
   width: 750rpx;
   height: 296rpx;
-  background: url("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=71648067,1130772742&fm=26&gp=0.jpg") no-repeat;
 }
 
 .coach_info {

@@ -1,7 +1,6 @@
 /* pages/selectCourse/selectCourse.wxss */
 .selectCourse{
   background-color: #F0F2F5;
-  margin-top: 60px;
 }
 .selectCourse .course_list{
     width: 690rpx;

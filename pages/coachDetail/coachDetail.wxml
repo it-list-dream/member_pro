@@ -1,5 +1,8 @@
+<nav-bar page-name="教练详情"></nav-bar>
 <view class="coachDetail">
-  <view class="coach_bg"></view>
+  <view class="coach_bg">
+    <image src="/static/coach02.png" style="width:100%;height:100%;"></image>
+  </view>
   <view class="detail_list">
     <view class="coach_info">
       <view class="coach_left">
@@ -34,7 +37,7 @@
   </view>
   <!--  -->
   <view class="coach_subject">
-    <view class="coach_pic">
+    <view class="coach_pic" bindtap="rec_course">
       <!-- <image></image> -->
       <view class="subject">
         <view>拉伸课</view>

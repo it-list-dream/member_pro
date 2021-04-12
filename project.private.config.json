@@ -77,6 +77,24 @@
           "pathName": "pages/personalTrainer/personalTrainer",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/activeDetail/activeDetail",
+          "pathName": "pages/activeDetail/activeDetail",
+          "query": "",
+          "scene": null
         }
       ]
     }

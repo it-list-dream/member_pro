@@ -1,7 +1,5 @@
 .appointment {
   background: #F0F2F5;
-  margin-top: 68px;
-  height: calc(100vh - 68px);
 }
 
 .appointment .appointment_item {

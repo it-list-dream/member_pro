@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerlist:['../../static/home_pic/banner01.png','../../static/home_pic/banner01.png','../../static/home_pic/banner01.png','../../static/home_pic/banner01.png','../../static/home_pic/banner01.png'],
+    bannerlist:['/static/home_pic/banner01.png','/static/home_pic/banner01.png','/static/home_pic/banner01.png','/static/home_pic/banner01.png','/static/home_pic/banner01.png'],
     coachList:[
       {
         coachName:'张三',
@@ -26,21 +26,21 @@ Page({
     ],
     recomentList:[
       {
-        r_pic:'../../static/home_pic/coach2.png',
+        r_pic:'/static/home_pic/coach2.png',
         course:'拉伸课',
         number:21
       },
       {
-        r_pic:'../../static/home_pic/coach2.png',
+        r_pic:'/static/home_pic/coach2.png',
         course:'拉伸课',
         number:21
       },
       {
-        r_pic:'../../static/home_pic/coach3.png',
+        r_pic:'/static/home_pic/coach3.png',
         course:'拉伸课',
         number:21
       }, {
-        r_pic:'../../static/home_pic/coach3.png',
+        r_pic:'/static/home_pic/coach3.png',
         course:'拉伸课',
         number:21
       }
@@ -51,11 +51,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData)
     this.setData({
-      menuTop: app.globalData.menuTop,
-      menuHeight: app.globalData.menuHeight,
-      ewmTop: app.globalData.menuTop + (app.globalData.menuHeight - 20) / 2,
+      navHeight : app.globalData.navHeight,
+      navTop : app.globalData.navTop,
+      windowHeight : app.globalData.windowHeight
     })
+  },
+  recomment(){
+     wx.navigateTo({
+       url: '/pages/classList/classList',
+     })
   },
   callPhone(e){
    // console.log(e.target.dataset.phone)
@@ -78,6 +84,14 @@ Page({
       url: '/pages/coachList/coachList',
     })
   },
+  toActive(){
+    wx.navigateTo({
+      url: '/pages/activeList/activeList',
+    })
+  },
+  code()  {
+   
+  } ,                                                                                                                                                                                                                                            
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

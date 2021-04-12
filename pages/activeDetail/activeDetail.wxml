@@ -1,0 +1,43 @@
+<nav-bar page-name="活动卡详情"></nav-bar>
+<view class="card">
+	<view class="conter">
+		<image class="vipImg" src="/static/vip.png"></image>
+	</view>
+	<view class="vipMoney">
+		<view class="vipStr">
+			<image class="monImg" src="/static/money.png"></image>
+			<text class="fon-size">1800</text>
+		</view>
+		<view class="vipStr vipType">
+			<text class="type">卡类型:</text>
+			<text class="get-type"> 一年卡</text>
+		</view>
+		<view class="vipStr vipType">
+			<text class="type">有效期:</text>
+			<text class="get-type">有效期：1年。次数：30次（时效卡及次数卡二选一）</text>
+		</view>
+		<view class="vipStr vipType vipl">
+			<text class="type">支持门店:</text>
+			<text class="get-type"> 如渔科技店、体验店、会员店、全通店</text>
+		</view>
+		<view class="vipStr vipType">
+			<text class="type">有效期:</text>
+			<text class="get-type">09:00-14:00或周一、周三、周五</text>
+		</view>
+		<view class="vipStr">
+			<text class="introduce">介绍:</text>
+			<text class="get-type"> 如果运动的过程是快乐的，那么减肥成功就是必 然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。
+  </text>
+		</view>
+	</view>
+	<view class="payment">
+		<view class="membership"></view>
+		<view class="buy_list">
+			<view class="purchase">20人已购买</view>
+			<view class="total">
+				<text>合计：1800元</text>
+				<text class="purcl-tye">购买</text>
+			</view>
+		</view>
+	</view>
+</view>

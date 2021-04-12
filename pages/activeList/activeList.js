@@ -1,4 +1,4 @@
-// pages/coachList/coachList.js
+// pages/activeList/activeList.js
 const app = getApp()
 Page({
 
@@ -19,10 +19,10 @@ Page({
       windowHeight : app.globalData.windowHeight
     })
   },
-  coachList(){
-    wx.navigateTo({
-      url: '/pages/coachDetail/coachDetail',
-    })
+  detail(){
+     wx.navigateTo({
+       url: '/pages/activeDetail/activeDetail',
+     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

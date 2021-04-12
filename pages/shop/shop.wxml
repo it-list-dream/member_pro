@@ -1,5 +1,6 @@
-<topNavBar my-property='{{aa}}'></topNavBar>
-<view class="loaction_wrapper">
+
+<nav-bar page-name="我的店铺"></nav-bar>
+<view class="loaction_wrapper" style="height:{{windowHeight}}px">
   <view class="location_info">
     <!-- 定位 -->
     <view class="loaction">

@@ -1,28 +1,36 @@
-.container{
-  margin-top: 68px;
-  height: calc(100vh - 68px);
-  background:#f0f2f5;
+.container {
+  /* margin-top: 68px;
+  height: calc(100vh - 68px); */
+  background: #f0f2f5;
 }
-.head_list{
+
+.head_list {
   width: 750rpx;
   height: 296rpx;
 }
-.head_pic{
+
+.head_pic {
   width: 100%;
   height: 100%;
 }
-.course_num{
+
+.course_num {
   background: #ffffff;
   padding: 38rpx 26rpx 19rpx 26rpx;
 }
-.course_num image{
-  width:34rpx;height:34rpx; visibility: middle;
+
+.course_num image {
+  width: 34rpx;
+  height: 34rpx;
+  visibility: middle;
 }
-.course_item{
+
+.course_item {
   display: flex;
   align-items: center;
 }
-.number{
+
+.number {
   margin-left: 6rpx;
   display: flex;
   align-items: center;
@@ -30,35 +38,212 @@
   font-weight: bold;
   color: #FD595E;
 }
-.number text:first-child{
+
+.number text:first-child {
   font-size: 48rpx;
 }
-.number text:nth-child(2){
+
+.number text:nth-child(2) {
   font-size: 30rpx;
 }
-.course_name{
+
+.course_name {
   margin-top: 1px;
   background: #ffffff;
   padding: 30rpx 32rpx;
   font-size: 30rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
-.duration{
+
+.duration {
   border-top: 1px solid #eeeeee;
   background: #ffffff;
   padding: 30rpx 64rpx;
   font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* 介绍 */
+.introduce {
+  display: flex;
+  padding: 30rpx 63rpx;
+  background: #ffffff;
+}
+
+.introduce_title {
+  white-space: nowrap;
+}
+
+.co_list {
+  box-sizing: border-box;
+  margin-top: 28rpx;
+  width: 100%;
+  height: 286rpx;
+  background: #ffffff;
+  /* padding: 28rpx 0 0 32rpx; */
+  padding: 28rpx 0;
+
+  /* margin-right: 32rpx; */
+}
+
+.co_title {
+  padding: 0 0 34rpx 32rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.coach_swiper {
+  box-sizing: border-box;
+  margin: 0 30rpx;
+}
+
+.coach_swiper swiper {
+  height: 198rpx;
+}
+
+.coach_swiper swiper-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .coach_item{
+  width: 200rpx;
+  height: 200rpx;
+} */
+.payment {
+  margin-top: 28rpx;
+  width: 100%;
+  height: 178rpx;
+  background-color: #ffffff;
+  margin-bottom: 130rpx;
+}
+
+.pay_method {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 89rpx;
+  text-align: center;
+  line-height: 89rpx;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.pay_box {
+  margin-left: 22rpx;
+  width: 186rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border: 1px solid #333333;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+
+}
+
+.pay_box image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.buy_count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 32rpx;
+}
+
+.count_box {
+  display: flex;
+}
+
+.by {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.count {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: #F0F2F5;
+  margin-right: 1px;
+  /* border-radius: 6px 0px 0px 6px; */
+}
+
+.num {
+  margin-right: 1px;
+  height: 40rpx;
+  background: #F0F2F5;
+}
+
+.count:last-child {
+  margin-right: 0;
+}
+
+/* bottom */
+.fixedbottom {
+  position: fixed;
+  width: 100%;
+  height: 130rpx;
+  left: 0;
+  bottom: 0;
+  background: white;
+}
+
+.fixedbottom>view:first-child {
+  padding: 8rpx 0;
+  text-align: center;
+  background: #52495B;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+
+}
+
+.footer_pay {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32rpx;
+  margin-top:20rpx ;
+}
+.footer_pay>view:first-child{
+  font-size: 36rpx;
 font-family: PingFang SC;
 font-weight: 500;
 color: #333333;
 }
-/* 介绍 */
-.introduce{
-  display: flex;
-  padding: 30rpx 63rpx;
+.footer_pay text{
+  color: #FD575C;
 }
-.introduce_title{
-  white-space : nowrap;
+
+.buy {
+  width: 94rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #12D58B;
+  border-radius: 25rpx;
 }

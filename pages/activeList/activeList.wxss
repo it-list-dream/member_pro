@@ -1,0 +1,16 @@
+.active_list{
+  background: #F0F2F5;
+}
+.vip_card{
+  padding: 20rpx 30rpx;
+}
+.vip_card image{
+  width: 690rpx;
+  height: 295rpx;
+  vertical-align: middle;
+}
+.card_title{
+  box-sizing: border-box;
+  padding-top: 12rpx;
+    
+}

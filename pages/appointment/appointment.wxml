@@ -1,9 +1,15 @@
+<nav-bar page-name="预约"></nav-bar>
 <view class="appointment">
   <view class="appointment_item">
     <view class="appointment_detail">
       <view class="course_list">
-        <view class="course">私教</view>
-        <view class="course course_active">团课</view>
+        <block wx:for="{{courseList}}">
+          <view class="course  {{selectClass==index?'course_active':''}}" bindtap="switchClass" data-index="{{index}}">
+            {{item}}</view>
+        </block>
+        <view></view>
+        <!-- <view class="course {{selectClass ==0 ?'course_active':''}}">私教</view>
+        <view class="course {{selectClass ==1 ?'course_active':''}}">团课</view> -->
       </view>
       <!-- 私教 -->
       <view class="coach_info" hidden="{{isShow!=1}}">
@@ -51,16 +57,16 @@
           <view class="week">周四</view>
           <view class="date">4.13</view>
         </view>
-        <view class="selectDate day"  bindtap="showCalendar">
+        <view class="selectDate day" bindtap="showCalendar">
           <image src="/static/appointment/calendar.png" style="width:48rpx;height:48rpx;"></image>
         </view>
       </view>
       <!-- 日历 -->
       <view class="calendar_list" wx:if="{{date}}">
         <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board"
-        days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
+          days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
       </view>
-     
+
     </view>
     <!-- 团课详情 -->
     <view class="leagueClass">
@@ -74,17 +80,29 @@
           </view>
         </view>
       </block>
+      <block>
+        <view class="leagueClass_item" hidden="{{isShow==1}}">
+          <view class="progress">已参加1/3</view>
+          <view class="className">动感单车-六大胖</view>
+          <view class="class_info">
+            <view class="class_time">2021/3/18 18:00-19:00</view>
+            <view class="class_status">预约</view>
+          </view>
+        </view>
+      </block>
     </view>
     <!-- 私教详情 -->
-    <view class="trainer">
-      <view class="time">
-        <block wx:for="{{date_time}}">
-          <view class="clock">{{item}}</view>
-        </block>
+    <view  hidden="{{isShow!=1}}">
+      <view class="trainer">
+        <view class="time">
+          <block wx:for="{{date_time}}">
+            <view class="clock">{{item}}</view>
+          </block>
+        </view>
       </view>
-    </view>
-    <view class="oder_wrapper">
-      <view class="order">预约</view>
+      <view class="oder_wrapper">
+        <view class="order" bindtap="order">预约</view>
+      </view>
     </view>
   </view>
 </view>

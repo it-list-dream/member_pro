@@ -1,30 +1,80 @@
+<nav-bar page-name="私教课详情"></nav-bar>
 <view class="container">
-    <view class="head_list">
-      <image src="/static/coach03.png" class="head_pic"></image>
+  <view class="head_list">
+    <image src="/static/coach03.png" class="head_pic"></image>
+  </view>
+  <!--  -->
+  <view class="course_num">
+    <view class="course_item">
+      <image src="/static/money.png"></image>
+      <view class="number">
+        <text> 300</text>
+        <text>节</text>
+      </view>
     </view>
-    <!--  -->
-    <view class="course_num">
-        <view class="course_item">
-          <image src="/static/money.png"></image>
-          <view class="number">
-           <text> 300</text>
-           <text>节</text>
-          </view>
-        </view>
-    </view>
-    <!-- 课程名 -->
-    <view class="course_name">
-       <text space="ensp">课程名：拉伸课</text>
-    </view>
-    <!-- 时长 -->
-    <view class="duration">
-      <text space="ensp">时长：60分钟</text>
-    </view>
-    <!-- 介绍 -->
-    <view class="introduce">
-     <view class="introduce_title">介绍：</view>
-     <view>
+  </view>
+  <!-- 课程名 -->
+  <view class="course_name">
+    <text space="ensp">课程名：拉伸课</text>
+  </view>
+  <!-- 时长 -->
+  <view class="duration">
+    <text space="ensp">时长：60分钟</text>
+  </view>
+  <!-- 介绍 -->
+  <view class="introduce">
+    <view class="introduce_title">介绍：</view>
+    <view>
       如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。
-     </view>
     </view>
-</view>  
+  </view>
+  <!-- 选择教练 -->
+  <view class="co_list">
+    <view class="co_title">选择教练</view>
+    <view class="coach_swiper">
+      <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="1000"
+        display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
+        next-margin="{{coachList.length==1?'480rpx':(coachList.length==2?'280rpx':'120rpx')}}">
+        <block wx:for="coachList">
+          <swiper-item>
+            <view class="coach_img">
+              <image src="/static/head.png" style="width:108rpx;height:108rpx;"></image>
+            </view>
+            <view class="coach_info">老杨</view>
+          </swiper-item>
+        </block>
+
+      </swiper>
+    </view>
+
+  </view>
+  <!-- 支付方式 -->
+  <view class="payment">
+    <view class="pay_method">
+      <text style="padding-left:32rpx;">支付方式</text>
+      <view class="pay_box">
+        <text>微信支付</text>
+        <image src="/static/bottom_arrow.png"></image>
+      </view>
+    </view>
+    <view class="buy_count">
+      <view class="by">购买节数</view>
+      <view class="count_box">
+        <view class="count plus" bindtap="countNum" data-index="0">-</view>
+        <view class="num">{{number}}</view>
+        <view class="count add" bindtap="countNum" data-index="1">+</view>
+      </view>
+    </view>
+
+  </view>
+  <!-- bottom -->
+  <view class="fixedbottom">
+    <view>200人已购</view>
+    <view class="footer_pay">
+      <view>合计
+        <text>   ￥200</text>
+      </view>
+      <view bindtap="paysuccess" class="buy">购买</view>
+    </view>
+  </view>
+</view>

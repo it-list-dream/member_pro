@@ -1,20 +1,24 @@
-// pages/groupAppointment/groupAppointment.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isFree:false,
-    select:false,
-    payment:['微信支付','储值支付']
+    isFree: false,
+    select: false,
+    payment: ['微信支付', '储值支付']
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
+    })
   },
 
   /**

@@ -5,7 +5,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    coachList: [{
+        id: 1,
+        name: '张大胖',
+        img: "/static/head.png"
+      },
+      {
+        id: 2,
+        name: '张耳畔',
+        img: "/static/head.png"
+      },
+      {
+        id: 3,
+        name: '张三胖',
+        img: "/static/head.png"
+      }, {
+        id: 4,
+        name: '张四胖',
+        img: "/static/head.png"
+      },
+      {
+        id: 5,
+        name: '张王i胖',
+        img: "/static/head.png"
+      }
+    ],
+    number: 1
   },
 
   /**
@@ -14,7 +39,22 @@ Page({
   onLoad: function (options) {
 
   },
-
+  countNum(e) {
+    console.log(e.target.dataset.index)
+    if (e.target.dataset.index == 1) {
+      this.data.number++;
+    } else {
+      if (this.data.number < 1) {
+        this.data.number = 1;
+      } else {
+        this.data.number--;
+      }
+      
+    }
+    this.setData({
+      number:this.data.number
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

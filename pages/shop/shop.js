@@ -6,19 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    aa: {
-      "bg_color":"white",
-      "color": "#000",
-      "flag": 0,
-      "name": "门店切换"
-    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     
+    this.setData({
+      navHeight : app.globalData.navHeight,
+      navTop : app.globalData.navTop,
+      windowHeight : app.globalData.windowHeight
+    })
   },
 
   /**

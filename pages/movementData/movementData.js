@@ -1,5 +1,4 @@
-// pages/coachList/coachList.js
-const app = getApp()
+// pages/movementData/movementData.js
 Page({
 
   /**
@@ -13,17 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      navHeight : app.globalData.navHeight,
-      navTop : app.globalData.navTop,
-      windowHeight : app.globalData.windowHeight
-    })
+
   },
-  coachList(){
-    wx.navigateTo({
-      url: '/pages/coachDetail/coachDetail',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

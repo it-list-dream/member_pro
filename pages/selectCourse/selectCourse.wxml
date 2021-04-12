@@ -1,4 +1,4 @@
-<!--pages/selectCourse/selectCourse.wxml-->
+<nav-bar page-name="选择课程"></nav-bar>
 <view class="selectCourse">
   <view class="course_list">
     <view class="course_item">

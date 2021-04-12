@@ -1,6 +1,6 @@
 const util = require('../../utils/util.js')
+const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -24,7 +24,10 @@ Page({
     date: false,
     SearchDate:null,
     today:null,
-    choose_num:0
+    choose_num:0,
+    //0 代表的私教课 1 表示的是团课
+    selectClass:0,
+    courseList:['私教','团课']   
   },
   
   /**
@@ -35,8 +38,32 @@ Page({
      this.setData({
         today:today
      })
+     this.setData({
+      navHeight : app.globalData.navHeight,
+      navTop : app.globalData.navTop,
+      windowHeight : app.globalData.windowHeight
+    })
   },
-
+  switchClass(e){
+    // for(var i = 0;i<this.data.courseList.length;i++){
+    //    if(e.target.dataset.index == i){
+    //      //私教
+    //     this.data.courseList[i].selectClass = 0;
+    //    }else{
+    //      //团课
+    //     this.data.courseList[i].selectClass = 1;
+    //    }
+    // }
+    this.data.selectClass = e.target.dataset.index;
+    this.setData({
+      selectClass:this.data.selectClass
+    })
+  },
+  order(){
+     wx.navigateTo({
+       url: '/pages/selectCourse/selectCourse',
+     })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
