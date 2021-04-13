@@ -1,0 +1,242 @@
+.sportData {
+  width: 100%;
+  height: 100vh;
+  background-color: #F0F2F5;
+}
+
+.banner {
+  position: relative;
+}
+
+.banner image {
+  width: 100%;
+  height: 546rpx;
+  vertical-align: bottom;
+}
+
+.banner .sport_info {
+  position: absolute;
+  left: 28rpx;
+  bottom: 76rpx;
+  z-index: 99;
+  width: 688rpx;
+  height: 112rpx;
+  /* background-color: pink; */
+}
+
+.sport {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.sport_item {
+  display: flex;
+  width: 228rpx;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sport_num {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.sport_num>text {
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.info {
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.line {
+  width: 2rpx;
+  height: 48rpx;
+  background: #EEEEEE;
+}
+
+/*  */
+.other_info {
+  position: relative;
+  width: 100%;
+}
+
+.other {
+  padding: 10rpx 0;
+  position: absolute;
+  width: 688rpx;
+  height: 100%;
+  height: 112rpx;
+  top: -45rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 20rpx 0 rgba(82, 73, 91, 0.06);
+  border-radius: 8rpx;
+}
+
+.other_item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.course {
+  display: flex;
+  width: 228rpx;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.course text {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.date {
+  width: 100%;
+  /* height: 600px; */
+  background: #F0F2F5;
+  padding-top: 112rpx;
+}
+
+.date image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.year {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  /* padding-bottom: 18rpx; */
+  text-align: center;
+}
+
+.year image {
+  width: 36rpx;
+  height: 36rpx;
+  margin: -4rpx 0 0 10rpx;
+  vertical-align: middle;
+}
+.list{
+  margin: 0 32rpx;
+}
+.week_day {
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #AEEAD6;
+}
+
+.week_day view {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.week_day .active::after {
+  position: absolute;
+  bottom: 0;
+  left: 144rpx;
+  content: '';
+  width: 52rpx;
+  height: 4rpx;
+  background: #12D58B;
+  border-radius: 2rpx;
+}
+
+.dateDetail {
+  padding-top: 26rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dateDetail>.line {
+  width: 68rpx;
+  height: 2px;
+  background: #2C2C2C;
+  margin: 0 12rpx;
+}
+
+.charts_list {
+  width: 687rpx;
+  height: 310rpx;
+  margin: 0 auto;
+  margin-top: 18rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
+}
+
+/*  */
+.bottom_content {
+  margin-top: 25rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32rpx;
+  /* justify-items: center; */
+}
+
+.sp_title {
+  box-sizing: border-box;
+  padding: 12rpx 0;
+  width: 216rpx;
+  height: 110rpx;
+  text-align: center;
+  background: linear-gradient(270deg, #84D4BB 0%, #6FCAAB 100%);
+  box-shadow: 0 6rpx 20rpx 0 rgba(0, 255, 170, 0.06);
+  border-radius: 8rpx;
+}
+.sp_title view:first-child{
+  font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FFFFFF;
+}
+.sp_title view:nth-child(2){
+  margin-top: 12rpx;
+  font-size: 36rpx;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FFFFFF;
+}
+.sp_title text{
+  font-size: 20rpx;
+}
+.sp1{
+  background: linear-gradient(270deg, #92B1E8 0%, #7B98D0 100%);
+  box-shadow: 0 6rpx 20rpx 0 rgba(255, 0, 9, 0.06);
+}
+.sp2{
+  background: linear-gradient(270deg, #E9CF8B 0%, #DBBA77 100%);
+  box-shadow: 0 6rpx 20rpx 0 rgba(255, 141, 0, 0.06);
+}

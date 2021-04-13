@@ -1,4 +1,82 @@
 <!--pages/sport/sport.wxml-->
-<view style="margin-top:62px;">
+<!-- <view style="margin-top:62px;">
   <navigator open-type="navigate" url="/pages/movementData/movementData">运动数据</navigator>
+</view> -->
+<nav-bar page-name="运动" showNav="{{false}}"></nav-bar>
+<view class="sport">
+  <view class="header">
+    <image src="/static/sport/bg.png" style="width:100%;height:250rpx;"></image>
+  </view>
+
+  <!-- 运动日历 -->
+  <view class="all">
+    <view class="sport_device">
+    <view class="device_wrapper">
+      <view class="sport_tip">
+        <view class="sport_day">
+          <view>运动天数</view>
+          <view>20 <text class="test">天</text></view>
+          <view class="btn go_run">去运动</view>
+        </view>
+        <view>
+          <image src="/static/sport/run.png" style="width:130rpx;height:130rpx;"></image>
+        </view>
+      </view>
+      <view class="sport_tip fitness">
+        <view class="sport_day">
+          <view>体适能</view>
+          <view>95 <text class="test">分</text></view>
+          <view class="btn to_dete">去检测</view>
+        </view>
+        <view>
+          <image src="/static/sport/side.png" style="width:130rpx;height:130rpx;"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+    <!-- nav -->
+    <view class="nav">
+      <view class="run_title nav-title">运动日历</view>
+      <view>
+        <text class="nav-name">我的课程</text>
+        <image class="nav-img" src="/static/sport/right_arrow.png" style=""></image>
+      </view>
+    </view>
+    <!--  -->
+    <view class="sp_calendar">
+       <view class="calendar_wrapper">
+         
+       </view>
+       <view>
+
+       </view>
+    </view>
+    <!-- 自律积分 -->
+    <view class="nav">
+      <view class="run_title nav-title">自律积分</view>
+      <view>
+        <text class="nav-name">全部奖励</text>
+        <image class="nav-img" src="/static/sport/right_arrow.png" style=""></image>
+      </view>
+    </view>
+    <!--  -->
+    <view class="inte_list">
+      <block wx:for="{{integral_list}}" wx:key="{{item.id}}">
+        <view class="inte_item" >
+         <view>
+           <image src="{{item.img}}" ></image>
+         </view>
+         <view>{{item.cardType}}</view>
+         <view class="inte_num">{{item.inteNumber}} <text>积分</text></view>
+       </view>
+      </block>
+       <!-- <view class="inte_item">
+         <view>
+           <image src="/static/sport/jifen01.png" ></image>
+         </view>
+         <view>一周卡</view>
+         <view>1000 <text>积分</text></view>
+       </view> -->
+    </view>
+  </view>
 </view>

@@ -1,4 +1,103 @@
 <nav-bar page-name="运动数据"></nav-bar>
 <view class="sportData">
-    
+  <view class="banner">
+    <image src="/static/sport_bg.png"></image>
+    <view class="sport_info">
+      <view class="sport">
+        <view class="sport_item">
+          <view class="sport_num">
+            20
+            <text>天</text>
+          </view>
+          <view class="info">到店天数</view>
+        </view>
+        <view class="line"></view>
+        <!--  -->
+        <view class="sport_item">
+          <view class="sport_num">
+            1200
+            <text class="info">分钟</text>
+          </view>
+          <view class="info">运动时长</view>
+        </view>
+        <view class="line"></view>
+        <!--  -->
+        <view class="sport_item">
+          <view class="sport_num">
+            300
+            <text>Kcal</text>
+          </view>
+          <view class="info">消耗</view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+  <view class="other_info">
+    <view class="other">
+      <view class="other_item">
+        <view class="course">
+          <text>20节课</text>
+          <text>团课</text>
+        </view>
+        <view class="line"></view>
+        <view class="course">
+          <text>20节课</text>
+          <text>团课</text>
+        </view>
+        <view class="line"></view>
+        <view class="course">
+          <text>20节课</text>
+          <text>团课</text>
+        </view>
+      </view>
+    </view>
+    <!-- 日期 -->
+    <view class="date">
+      <view class="year">
+        <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" fields="year"
+          bindchange="bindYearChange">
+          <!-- <text>2021年</text> -->
+          <text>{{date || 2021}}年</text>
+          <image src="/static/bottom_arrow.png" bindtap=""></image>
+        </picker>
+      </view>
+      <!--  -->
+      <view class="list">
+        <view class="week_day">
+          <!-- <view class="active">周</view>
+          <view>月</view> -->
+          <block wx:for="{{date_info}}">
+            <view class="{{index == isSelected ? 'active':''}}" bindtap="changeDate" data-index="{{index}}">{{item}}
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <view class="dateDetail">
+        <view>2021/03/08</view>
+        <view class="line"></view>
+        <view>2021/04/08</view>
+      </view>
+      <!--echarts  -->
+      <view class="charts_list">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+      </view>
+      <!--  -->
+      <view class="bottom_content">
+        <view class="sp_title">
+          <view>月运动天数</view>
+          <view>20<text>天</text></view>
+        </view>
+        <view class="sp_title sp1">
+          <view>月运动时长</view>
+          <view>150<text>分钟</text></view>
+        </view>
+        <view class="sp_title sp2">
+          <view>月消耗</view>
+          <view>500<text>Kcal</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

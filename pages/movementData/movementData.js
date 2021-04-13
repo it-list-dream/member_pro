@@ -1,11 +1,47 @@
-// pages/movementData/movementData.js
+import * as echarts from '../../components/ec-canvas/echarts.min';
+
+let chart = null;
+
+function initChart(canvas, width, height, dpr) {
+  chart = echarts.init(canvas, null, {
+    width: width,
+    height: height,
+    devicePixelRatio: dpr // new
+  });
+  canvas.setChart(chart);
+  var option = {
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      data: [120, {
+        value: 200,
+        itemStyle: {
+          color: '#a90000'
+        }
+      }, 150, 80, 70, 110, 130],
+      type: 'bar'
+    }]
+  };
+  chart.setOption(option);
+  return chart;
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    date_info: ['周', '月'],
+    isSelected: 0,
+    date: '2018',
+    ec: {
+      onInit: initChart
+    }
   },
 
   /**
@@ -14,7 +50,18 @@ Page({
   onLoad: function (options) {
 
   },
-
+  changeDate(e) {
+    this.isSelected = e.target.dataset.index;
+    this.setData({
+      isSelected: this.isSelected
+    })
+  },
+  bindYearChange(e) {
+    console.log(e.detail.value);
+    this.setData({
+      date: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

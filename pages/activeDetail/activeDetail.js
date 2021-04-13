@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    membership:['张三','李四','王五','小李子'],
+    m_index:0
   },
 
   /**
@@ -14,7 +15,12 @@ Page({
   onLoad: function (options) {
 
   },
-
+  bindPickerChange(e){
+    console.log(e)
+    this.setData({
+      m_index: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

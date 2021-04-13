@@ -95,6 +95,12 @@
           "pathName": "pages/activeDetail/activeDetail",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
         }
       ]
     }

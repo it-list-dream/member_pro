@@ -1,1 +1,163 @@
 /* pages/sport/sport.wxss */
+.sport_device {
+  width: 100%;
+  height: 172rpx;
+}
+
+.device_wrapper {
+  /* padding: 0 30rpx; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.sport_tip {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18rpx;
+  width: 330rpx;
+  height: 172rpx;
+  background: linear-gradient(-30deg, #93B3EA, #87A7E0);
+  border-radius: 8rpx;
+}
+
+.fitness {
+  background: linear-gradient(-30deg, #9997D8, #877FD3);
+}
+
+.btn {
+  margin-top: 4rpx;
+  width: 104rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+}
+
+.go_run {
+  color: #90B0E7;
+}
+
+.to_dete {
+  color: #9997D8;
+}
+
+.sport_day view:first-child {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.sport_day view:nth-child(2) {
+  /* margin: 20rpx 0; */
+  font-size: 48rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.test {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+/*  */
+.all {
+  padding: 0 30rpx;
+  background: #F0F2F5;
+}
+
+.nav {
+  padding: 22rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: pink; */
+}
+
+.nav-title {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+.nav-name {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  margin-right: 10rpx;
+}
+
+.nav-img {
+  width: 8rpx;
+  height: 14rpx;
+}
+
+.sp_calendar {
+  width: 690rpx;
+  height: 398rpx;
+  background: green;
+  border-radius: 10rpx;
+}
+.calendar_wrapper{
+  
+}
+/*  */
+.inte_list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: #FFFFFF;
+  border-radius: 10px;
+  /* 
+  width: 690px;
+height: 582px;
+  */
+}
+
+.inte_item {
+  margin: 20rpx 0;
+  width: 204rpx;
+  height: 262rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
+  border-radius: 8rpx;
+}
+
+.inte_item view:nth-child(2) {
+  padding-left: 20rpx;
+  margin: 8rpx 0;
+}
+
+.inte_num {
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+
+}
+
+.inte_num>text {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.inte_list image {
+  width: 204rpx;
+  height: 154rpx;
+  vertical-align: bottom;
+}
