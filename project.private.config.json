@@ -101,6 +101,18 @@
           "pathName": "pages/tabbar/sport/sport",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -10,30 +10,30 @@
 
   <!-- 运动日历 -->
   <view class="all">
-    <view class="sport_device">
-    <view class="device_wrapper">
-      <view class="sport_tip">
-        <view class="sport_day">
-          <view>运动天数</view>
-          <view>20 <text class="test">天</text></view>
-          <view class="btn go_run">去运动</view>
+    <view class="sport_device" bindtap="runing">
+      <view class="device_wrapper">
+        <view class="sport_tip">
+          <view class="sport_day">
+            <view>运动天数</view>
+            <view>20 <text class="test">天</text></view>
+            <view class="btn go_run">去运动</view>
+          </view>
+          <view>
+            <image src="/static/sport/run.png" style="width:130rpx;height:130rpx;"></image>
+          </view>
         </view>
-        <view>
-          <image src="/static/sport/run.png" style="width:130rpx;height:130rpx;"></image>
-        </view>
-      </view>
-      <view class="sport_tip fitness">
-        <view class="sport_day">
-          <view>体适能</view>
-          <view>95 <text class="test">分</text></view>
-          <view class="btn to_dete">去检测</view>
-        </view>
-        <view>
-          <image src="/static/sport/side.png" style="width:130rpx;height:130rpx;"></image>
+        <view class="sport_tip fitness">
+          <view class="sport_day">
+            <view>体适能</view>
+            <view>95 <text class="test">分</text></view>
+            <view class="btn to_dete">去检测</view>
+          </view>
+          <view>
+            <image src="/static/sport/side.png" style="width:130rpx;height:130rpx;"></image>
+          </view>
         </view>
       </view>
     </view>
-  </view>
     <!-- nav -->
     <view class="nav">
       <view class="run_title nav-title">运动日历</view>
@@ -44,12 +44,85 @@
     </view>
     <!--  -->
     <view class="sp_calendar">
-       <view class="calendar_wrapper">
-         
-       </view>
-       <view>
+      <!-- 日历 -->
+      <view class="calendar_wrapper">
+        <ul class="calendar_item">
+          <block wx:for="{{weekday}}" wx:key="index">
+            <li>
+              <view catchtap="changeDate" data-num="{{index}}"
+                style="{{changebg==index?'font-weight:500;color: #333333;':''}}"> 周一</view>
+              <view class="{{changebg==index?'change_active':''}}">{{item}}</view>
+            </li>
+          </block>
+        </ul>
+      </view>
+      <!-- 课程 -->
+      <view class="con" hidden="{{!isShow}}">
+        <view class="calendar_tool">
+          <view class="per_course_left">
+            <view class="per_title">私</view>
+            <view class="per_item">
+              <view>
+                <image src="/static/sport/course_detail.png" class="icon"></image>
+                <text>常规课</text>
+              </view>
+              <view>
+                <image src="/static/sport/my.png" class="icon"></image>
+                <text>刘教练</text>
+              </view>
+            </view>
+          </view>
+          <!--  -->
+          <view class="per_course_right">
+            <view>
+              <image src="/static/sport/calendar.png" class="icon"></image>
+              <text>15:00-16:00</text>
+            </view>
+            <view>
+              <image src="/static/sport/time.png" class="icon"></image>
+              <text>60分钟</text>
+            </view>
+          </view>
 
-       </view>
+
+        </view>
+        <view class="calendar_tool">
+          <view class="per_course_left">
+            <view class="per_title">团</view>
+            <view class="per_item">
+              <view>
+                <image src="/static/sport/course_detail.png" class="icon"></image>
+                <text>动感单车</text>
+              </view>
+              <view>
+                <image src="/static/sport/my.png" class="icon"></image>
+                <text>陈教练</text>
+              </view>
+            </view>
+          </view>
+          <!--  -->
+          <view class="per_course_right">
+            <view>
+              <image src="/static/sport/calendar.png" class="icon"></image>
+              <text>15:00-16:00</text>
+            </view>
+            <view>
+              <image src="/static/sport/time.png" class="icon"></image>
+              <text>60分钟</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--  -->
+      <view hidden="{{isShow}}" class="no_appointment">
+        <view>
+          <view class="app_tip">每一次运动，都值得被认真记录</view>
+          <view class="appointment_btn" catchtap="appointment">
+            <image src="/static/plus.png"></image>
+            约课
+          </view>
+        </view>
+      </view>
     </view>
     <!-- 自律积分 -->
     <view class="nav">
@@ -59,24 +132,36 @@
         <image class="nav-img" src="/static/sport/right_arrow.png" style=""></image>
       </view>
     </view>
-    <!--  -->
+    <!-- 积分奖励 -->
     <view class="inte_list">
       <block wx:for="{{integral_list}}" wx:key="{{item.id}}">
-        <view class="inte_item" >
-         <view>
-           <image src="{{item.img}}" ></image>
-         </view>
-         <view>{{item.cardType}}</view>
-         <view class="inte_num">{{item.inteNumber}} <text>积分</text></view>
-       </view>
+        <view class="inte_item">
+          <view>
+            <image src="{{item.img}}"></image>
+          </view>
+          <view>{{item.cardType}}</view>
+          <view class="inte_num">{{item.inteNumber}} <text>积分</text></view>
+        </view>
       </block>
-       <!-- <view class="inte_item">
-         <view>
-           <image src="/static/sport/jifen01.png" ></image>
-         </view>
-         <view>一周卡</view>
-         <view>1000 <text>积分</text></view>
-       </view> -->
+    </view>
+    <!-- 蒙层 -->
+    <view class="mask" catchtouchmove='true' wx:if="{{chooseCourse}}">
+      <view class="modalDlg" wx:if="{{chooseCourse}}">
+        <view class="modalDlg_item">
+          <view class="mask_title">
+            <text>预约的课程类型</text>
+            <image src="/static/close.png" bindtap="close"></image>
+          </view>
+          <view class="sa_course">
+            <text>团体课</text>
+            <image src="/static/next.png"></image>
+          </view>
+          <view class="sa_course">
+            <text>私人教练</text>
+            <image src="/static/next.png"></image>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
 </view>

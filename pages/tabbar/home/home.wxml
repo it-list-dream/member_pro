@@ -17,7 +17,7 @@
     </view>
  
     <text class="line"></text>
-    <view  class="header_list" >
+    <view  class="header_list" bindtap="memberCode">
       <image class="head_pic" src="/static/home_pic/QRcode.png"></image>
     </view>
    

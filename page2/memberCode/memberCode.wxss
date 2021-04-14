@@ -1,0 +1,151 @@
+.all {
+  width: 100%;
+  height: calc(100vh - 60px);
+  background-color: #F0F2F5;
+  overflow: hidden;
+}
+
+.member_list {
+  position: relative;
+  width: 620rpx;
+  height: 842rpx;
+  margin: 0 auto;
+  margin-top: 78rpx;
+  background: #FFFFFF;
+  box-shadow: 0 0 20rpx 0 rgba(82, 73, 91, 0.03);
+  border-radius: 4rpx;
+}
+
+.member_header {
+  position: absolute;
+  width: 120rpx;
+  height: 120rpx;
+  top: -48rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8rpx solid rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+}
+
+.content {
+  padding-top: 121rpx;
+  text-align: center;
+}
+
+.member_name {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.member_card {
+  margin-top: 38rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+
+.member_date {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #12D58B;
+  margin-top: 36rpx;
+}
+
+.member_code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 380rpx;
+  height: 320rpx;
+  /* background-color:pink; */
+  border-bottom: 3rpx solid #333333;
+
+}
+
+.year_card {
+  margin-top: 38rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.count {
+  margin-top: 38rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+
+/*  */
+/* .mask {
+  position: fixed;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+} */
+
+.model {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(43, 44, 44, 0.7);
+  top: 8%;
+  left: 0;
+  z-index: 1000;
+}
+
+.modelcon {
+  width: 100%;
+  background: white;
+  padding-bottom: 20rpx;
+
+}
+
+.close {
+  height: 100%;
+  width: 100%;
+}
+
+.modelcon .cardinfo {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+.store{
+  font-size: 28rpx;
+  color: rgba(0, 0, 0,  0.6);
+}
+.cardinfo text {
+  padding-left: 20rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.mask_item {
+  padding: 0 30rpx;
+  display: flex;
+  height: 70rpx;
+  align-items: center;
+  /* background-color: pink; */
+  justify-content: space-between;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.mask_item:first-child {
+  border-top: 1px solid #eeeeee;
+}

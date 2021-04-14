@@ -106,12 +106,167 @@
 .sp_calendar {
   width: 690rpx;
   height: 398rpx;
-  background: green;
+  background: #FFFEFF;
   border-radius: 10rpx;
 }
-.calendar_wrapper{
-  
+
+/* 日历 */
+.calendar_wrapper {
+  height: 100rpx;
+  /* background-color: pink; */
 }
+
+.calendar_item {
+  display: flex;
+  height: 100%;
+}
+
+.calendar_item li {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.calendar_item li view {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #999999;
+}
+
+.change_active {
+  width: 34rpx;
+  height: 34rpx;
+  left: 34rpx;
+  text-align: center;
+  background: #12D58B;
+  border-radius: 50%;
+  font-size: 18rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFEFF !important;
+}
+
+/*  */
+.calendar_tool {
+  position: relative;
+  display: flex;
+  height: 120rpx;
+  padding: 0 20rpx;
+  justify-content: space-between;
+}
+
+.calendar_tool:nth-child(1)::after {
+  position: absolute;
+  z-index: 99;
+  content: '';
+  top: 136rpx;
+  left: 20rpx;
+  width: 650rpx;
+  height: 1px;
+  background: #E5E5E5;
+}
+
+.calendar_tool:last-child {
+  margin-top: 40rpx;
+}
+
+.calendar_tool text {
+  padding-left: 10rpx;
+}
+
+.per_course {
+  display: flex;
+}
+
+.per_title {
+  width: 97rpx;
+  height: 105rpx;
+  background: #52495B;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 105rpx;
+  font-size: 60rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #FFFEFF;
+}
+
+.per_item {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 18rpx;
+}
+
+.calendar_tool .icon {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+}
+
+.per_course_left {
+  display: flex;
+  align-items: center;
+}
+
+.per_course_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+
+}
+
+/*  */
+
+.no_appointment,
+.con {
+  height: calc(100% - 100rpx);
+  overflow: hidden;
+  /* background-color: yellowgreen; */
+}
+
+.app_tip {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #999999;
+}
+
+.no_appointment>view {
+  height: 158rpx;
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.no_appointment image {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+}
+
+.appointment_btn {
+  width: 214rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  background: #12D58B;
+  border-radius: 26rpx;
+}
+
 /*  */
 .inte_list {
   display: flex;
@@ -160,4 +315,63 @@ height: 582px;
   width: 204rpx;
   height: 154rpx;
   vertical-align: bottom;
+}
+
+/* 蒙层 */
+.mask {
+  position: fixed;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  /* background: #000000;
+  opacity: 0.6; */
+  background: rgba(0, 0, 0, .6);
+}
+
+.modalDlg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 230rpx;
+  z-index: 100;
+  background: #FFFFFF;
+  border-radius: 8rpx 8rpx 0 0;
+}
+.modalDlg_item{
+  padding: 0 30rpx;
+}
+.mask_title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+  padding-top: 30rpx;
+}
+.mask_title image{
+  width: 24rpx;
+  height: 24rpx;
+}
+.sa_course{
+  box-sizing: border-box;
+  display: flex;
+  height: 68rpx;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 12rpx;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.sa_course text{
+  font-size: 28rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: #333333;
+}
+.sa_course image{
+  width: 36rpx;
+  height: 36rpx;
 }

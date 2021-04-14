@@ -5,23 +5,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dayStyle: [
-      { month: 'current', day: new Date().getDate(), color: 'white', background: '#AAD4F5' }, 
-      { month: 'current', day: new Date().getDate(), color: 'white', background: '#AAD4F5' }
-    ],
+    inte_list:['fd','dfsfs','dsf'],
+    integral_list: [{
+      id: 1,
+      cardType: '一周卡',
+      inteNumber: 1000,
+      img: '/static/sport/jifen01.png'
+    },
+    {
+      id: 2,
+      cardType: '体验课',
+      inteNumber: 500,
+      img: '/static/sport/jifen02.png'
+    },
+    {
+      id: 3,
+      cardType: '拳击手套',
+      inteNumber: 3500,
+      img: '/static/sport/jifen03.png'
+    },
+    {
+      id: 4,
+      cardType: '蛋白粉',
+      inteNumber: 2000,
+      img: '/static/sport/jifen04.png'
+    },
+    {
+      id: 5,
+      cardType: '游泳衣',
+      inteNumber: 4500,
+      img: '/static/sport/jifen05.png'
+    },
+    {
+      id: 6,
+      cardType: '游泳眼镜',
+      inteNumber: 4500,
+      img: '/static/sport/jifen06.png'
+    }
+  ],
   },
-  //给点击的日期设置一个背景颜色
-  dayClick: function (event) {
-    let clickDay = event.detail.day;
-    let changeDay = `dayStyle[1].day`;
-    let changeBg = `dayStyle[1].background`;
-    this.setData({
-      [changeDay]: clickDay,
-      [changeBg]: "#84e7d0"
-    })
-    
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */

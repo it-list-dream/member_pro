@@ -1,1 +1,59 @@
+<nav-bar page-name="积分" showNav="{{false}}"></nav-bar>
+<view class="bg">
+  <image src="/static/bg_head.png"></image>
+</view>
+<view class="integral_list">
+  <view class="inte_title1">
+    <view class="inte_item1">
+      <view>行为积分</view>
+      <view>300000<text class="char">分</text></view>
+    </view>
+    <view class="line"></view>
+    <view class="inte_item1">
+      <view>VIP积分</view>
+      <view>20000<text class="char">分</text></view>
+    </view>
+    <view class="line"></view>
+    <view class="bill">积分账单</view>
+    <view class="line"></view>
+    <view class="inte_con">
+      <image src="/static/choose.png" style="width:40rpx;height:40rpx;"></image>
+    </view>
+  </view>
+  <!--  -->
+  <view class="spend_img">
+    <image src="/static/cost.png"></image>
+  </view>
+  <view class="nav">
+    <view class="nav-title">自律奖励</view>
+  </view>
+  <!--  自律奖励-->
+  <view class="self_aword">
+    <block wx:for="{{inte_list}}">
+      <view class="self_item">
+        <view>
+          <image src="/static/sport/jifen01.png"></image>
+        </view>
+        <view class="card_type">一周卡</view>
+        <view class="card_count">1000<text class="char">分</text></view>
+      </view>
+    </block>
 
+  </view>
+  <!--  -->
+  <view class="nav">
+    <view class="nav-title">VIP奖励</view>
+  </view>
+  <!--  -->
+  <view class="inte_list">
+    <block wx:for="{{integral_list}}" wx:key="{{item.id}}">
+      <view class="inte_item">
+        <view>
+          <image src="{{item.img}}"></image>
+        </view>
+        <view>{{item.cardType}}</view>
+        <view class="inte_num">{{item.inteNumber}} <text>积分</text></view>
+      </view>
+    </block>
+  </view>
+</view>

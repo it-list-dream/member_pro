@@ -1,0 +1,41 @@
+<nav-bar page-name='会员码'></nav-bar>
+<view class='all'>
+  <view class="member_list">
+    <view class="member_header">
+      <open-data type="userAvatarUrl" class="myimg"></open-data>
+    </view>
+    <!--  -->
+    <view class="content">
+      <view class="member_name">如渔科技</view>
+      <view class="member_card">卡号：80268</view>
+      <view class="member_date">2023-6-22到期(812天）</view>
+      <view class="member_code">
+        <image src="/static/QRcode.png" style="width:246rpx;height:246rpx"></image>
+      </view>
+      <view class="year_card">三年卡</view>
+      <view class="count">使用次数：6次</view>
+    </view>
+  </view>
+  <!-- 蒙层 -->
+  <!-- <view class="mask">
+     <view class="maskMol">
+      <scroll-view>
+         
+      </scroll-view>
+     </view>
+  </view> -->
+  <cover-view class='model' wx:if='{{showchoose}}'>
+		<cover-view class='modelcon'>
+			<block wx:for="{{ card_list}}" wx:key="index">
+				<cover-view class="mask_item">
+          <cover-view class='cardinfo'  bindtap='chosecard'>
+            {{item.card_name}}
+            <text style="{{item.code ==0?'color:#12D58B;':(item.code ==1?'color:#FD4E54;':'')}}">({{item.card_state}})</text>
+          </cover-view>
+          <cover-view class="store">{{item.card_store}}</cover-view>
+				</cover-view>
+			</block>
+		</cover-view>
+		<cover-view class='close' bindtap='close'></cover-view>
+	</cover-view>
+</view>
