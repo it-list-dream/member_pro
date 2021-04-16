@@ -1,2 +1,91 @@
-<!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<nav-bar page-name="我的"></nav-bar>
+<view class="my_bg">
+  <image src="/static/my/my-bg.png"></image>
+</view>
+<view class="my_container">
+  <view class="my_banner">
+    <view class="my_info" catchtap="edit">
+      <image class="head" src="/static/my/h.png"></image>
+      <view class="per_info">
+        <view class="member_info">
+          如渔会员<image src="/static/my/woman.png"></image>
+        </view>
+        <view class="phone">
+          138****3688
+        </view>
+      </view>
+    </view>
+    <!-- 详情 -->
+    <view class="my_course">
+      <view class="cItem">
+        <view class="num">2</view>
+        <view class="vipCard">会员卡</view>
+      </view>
+      <view class="cItem">
+        <view>20</view>
+        <view>私教课</view>
+      </view>
+      <view class="cItem">
+        <view>
+          <image src="/static/my/message.png" alt="" style="width:36rpx;height:36rpx;"></image>
+        </view>
+        <view>消息</view>
+      </view>
+    </view>
+  </view>
+  <!-- nav -->
+  <view class="nav">
+    <text class="nav-title">储值金额</text>
+  </view>
+  <!--  -->
+  <view class="stored active">
+    <view class="leftStored avtive_item">
+      <view class="inte_con">
+        <text>充值金额</text>
+        <text>2000</text>元
+      </view>
+    </view>
+    <view class="rightStored avtive_item">
+      <view class="inte_con">
+        <text>赠送金额</text>
+        <text>2000</text>元
+      </view>
+    </view>
+  </view>
+  <!-- nav -->
+  <view class="nav1">
+    <text class="nav-title">积分</text>
+  </view>
+  <!--  -->
+  <view class="inte active">
+    <view class="leftInte avtive_item">
+      <view class="inte_con">
+        <text>VIP积分</text>
+        <text>2000</text>元
+      </view>
+    </view>
+    <view class="rightInte avtive_item">
+      <view class="inte_con">
+        <text>行为积分</text>
+        <text>2000</text>元
+      </view>
+    </view>
+  </view>
+  <!-- nav -->
+  <view class="nav2">
+    <text class="nav-title">更多服务</text>
+  </view>
+  <!-- 更多服务 -->
+  <view class="more">
+    <view class="moreService">
+      <block wx:for="{{serviceList}}" wx:key="index">
+        <view class="service" bindtap="lookRecord" data-index="{{index}}">
+          <view>
+            <image src="{{item.img}}" data-index="{{index}}"></image>
+          </view>
+          <text data-index="{{index}}">{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,90 @@
+/* page2/editProfile/editProfile.wxss */
+.edit_list {
+  height: 100vh;
+  background-color: #f0f2f5;
+  padding: 0 30rpx;
+}
+
+.edit_item {
+  padding-top: 20rpx;
+  font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: #333333;
+}
+
+.my_info {
+  overflow: hidden;
+  width: 690rpx;
+  height: 597rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
+}
+
+.my_info>view:first-child {
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.userinfo-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  vertical-align: bottom;
+}
+
+.info_item {
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.info_item>view:last-child>image {
+  width: 30rpx;
+  height: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+
+.pro_bottom {
+  margin-top: 46rpx;
+}
+
+.pick {
+  display: flex;
+}
+
+.pick image {
+  width: 30rpx;
+  height: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.info_item .phoneNumber{
+  text-align: right;
+}
+.btn-list{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 57rpx;
+}
+.exitBtn{
+  margin: 0 auto;
+  width: 690rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #12D58B;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  text-align: center;
+font-family: PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+}

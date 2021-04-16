@@ -1,0 +1,159 @@
+.order_container {
+  height: 100vh;
+  background-color: #F0F2F5;
+  padding: 0 30rpx;
+}
+
+.order_head {
+  display: flex;
+  height: 88rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order_title {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  /* height: 30rpx; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.active_lice {
+  margin-top: 6rpx;
+  width: 20rpx;
+  height: 4rpx;
+  background: #52495B;
+  border-radius: 2rpx;
+}
+
+/* 内容 */
+.main_order {
+  box-sizing: border-box;
+  width: 690rpx;
+  height: 330rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  padding: 30rpx 30rpx 0 30rpx;
+}
+
+.order_status {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order_status>view {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.order_status>view:last-child {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #12D58B;
+}
+
+.order_id {
+  margin-top: 15rpx;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.6;
+}
+
+.order_img {
+  margin: 15rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.vip_pic {
+  width: 230rpx;
+  height: 142rpx;
+  vertical-align: bottom;
+}
+
+.order_img>view:first-child {
+  display: flex;
+}
+
+.yearCard {
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.right_box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.right_box>view>image {
+  width: 25rpx;
+  height: 25rpx;
+  /* vertical-align: middle; */
+}
+
+.right_box>view:first-child {
+  margin-top: -24rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.right_box>view:nth-child(2) {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.6;
+}
+
+.right_box>view:last-child {
+  margin-top: 70rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+/*  */
+.cre_time {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.cre_time>view:first-child {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+.cre_time>view:first-child text {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #F4C08D;
+}
+
+.date {
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.6;
+}

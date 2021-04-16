@@ -113,6 +113,48 @@
           "pathName": "pages/tabbar/integral/integral",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/historyAppointment/historyAppointment",
+          "pathName": "page2/historyAppointment/historyAppointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/order/order",
+          "pathName": "page2/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/address/address",
+          "pathName": "page2/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/addAdress/addAdress",
+          "pathName": "page2/addAdress/addAdress",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/editProfile/editProfile",
+          "pathName": "page2/editProfile/editProfile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
         }
       ]
     }

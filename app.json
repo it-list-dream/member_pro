@@ -20,7 +20,13 @@
     {
       "root": "page2",
       "pages": [
-        "memberCode/memberCode"
+        "memberCode/memberCode",
+        "historyAppointment/historyAppointment",
+        "order/order",
+        "address/address",
+        "addAdress/addAdress",
+        "login/login",
+        "editProfile/editProfile"
       ]
     }],
   "plugins": {

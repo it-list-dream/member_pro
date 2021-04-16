@@ -1,0 +1,16 @@
+/* page2/login/login.wxss */
+.login-layout{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  text-align: center;
+}
+.avatar{
+  margin-top: 130rpx;
+  text-align: center;
+}
+.avatar image{
+  width: 188rpx;
+  height: 188rpx;
+  vertical-align: bottom;
+}

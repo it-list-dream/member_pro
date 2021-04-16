@@ -1,0 +1,158 @@
+.history_app {
+  height: calc(100vh);
+  background-color: #f0f2f5;
+  padding: 0 30rpx;
+}
+
+.history_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  color: #333333;
+  /* background-color: yellow; */
+}
+
+.his_wrapper {
+  position: relative;
+  height: 28rpx;
+}
+
+.his_active {
+  font-weight: bold;
+}
+
+.line_active {
+  margin: 10rpx 28rpx 0 28rpx;
+  width: 20rpx;
+  height: 4rpx;
+  background: #52495B;
+  border-radius: 2rpx;
+}
+
+/* .his_active::after {
+  position: absolute;
+  content: '';
+  bottom: 16rpx;
+  left: 36rpx;
+  width: 20rpx;
+  height: 4rpx;
+  background: #52495B;
+  border-radius: 2rpx;
+} */
+.app_list {
+  /* height: auto; */
+}
+
+.app_item {
+  box-sizing: border-box;
+  padding: 30rpx 30rpx 0 30rpx;
+  margin-bottom: 30rpx;
+  width: 690rpx;
+  height: 378rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+}
+
+.app_title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.app_title .status {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #12D58B;
+}
+
+.app_content {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.con_left {
+  display: flex;
+
+}
+
+.app_w {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  margin-left: 31rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.app_w view {
+  margin-bottom: 12rpx;
+}
+
+.con_right {
+  width: 66rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #52495B;
+  border-radius: 50%;
+}
+
+/*  */
+.contact,
+.score_item {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10rpx;
+
+}
+
+.btn {
+  width: 120rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  border-radius: 20rpx;
+}
+
+.contact_item {
+  background: #12D58B;
+  color: #FFFFFF;
+  margin-right: 20rpx;
+}
+
+.cancel {
+  border: 1px solid #333333;
+}
+
+/*  */
+.score_item {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #F4C08D;
+}
+
+.score_item .score {
+  margin-right: 10rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}

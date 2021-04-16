@@ -91,7 +91,7 @@
 .nav {
   height: 84rpx;
   line-height: 84rpx;
-  background-color: gray;
+  /* background-color: gray; */
 }
 
 .nav-title {
