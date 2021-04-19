@@ -1,0 +1,126 @@
+.stored_list {
+  position: relative;
+  width: 100%;
+  height: 274rpx;
+  background: #F0F2F5;
+}
+
+.stored_img {
+  position: absolute;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 554rpx;
+  height: 254rpx;
+  background: #52495B;
+  border-radius: 10rpx;
+}
+
+.stored_img view:first-child {
+  margin-top: 30rpx;
+}
+
+.stored_img view {
+  margin-top: 36rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.recharge text {
+  color: #FFF4C08D !important;
+}
+
+.give text {
+  color: green;
+}
+
+.stored_tab {
+  display: flex;
+  height: 64rpx;
+}
+
+.stored_con {
+  padding: 20rpx;
+  box-sizing: border-box;
+  height: 906rpx;
+
+}
+
+.tab {
+  position: relative;
+  flex: 1;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+  text-align: center;
+  line-height: 64rpx;
+}
+
+.active::after {
+  position: absolute;
+  bottom: 0;
+  left: 106rpx;
+  content: '';
+  width: 20rpx;
+  height: 4rpx;
+  background: #52495B;
+  border-radius: 2rpx;
+}
+
+.storedWrapper {
+  display: flex;
+  height: 100rpx;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.stored_item {
+  width: 100%;
+  padding-top: 30rpx;
+
+}
+.stored_scroll{
+  width: 100%;
+  /* background-color: pink; */
+  max-height: 60vh;
+}
+.stored_all {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+ 
+}
+
+.stored_all view:first-child {
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.stored_all view:last-child {
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.6;
+}
+
+.inte {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+
+}
+swiper{
+  height: 60vh;
+}
+swiper-item{
+  height: 60vh;
+}

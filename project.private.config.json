@@ -155,6 +155,54 @@
           "pathName": "page2/login/login",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "page2/myCourse/myCourse",
+          "pathName": "page2/myCourse/myCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myStored/myStored",
+          "pathName": "page2/myStored/myStored",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myStored/myStored",
+          "pathName": "page2/myStored/myStored",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/inform/inform",
+          "pathName": "page2/inform/inform",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/activeDetail/activeDetail",
+          "pathName": "pages/activeDetail/activeDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/activeList/activeList",
+          "pathName": "pages/activeList/activeList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
         }
       ]
     }

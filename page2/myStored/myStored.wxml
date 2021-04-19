@@ -1,0 +1,46 @@
+<nav-bar page-name="我的储值"></nav-bar>
+<view class="stored_container">
+  <view class="stored_list">
+    <view class="stored_img">
+      <view>可用储值</view>
+      <view class="recharge">支付充值：<text>2000</text></view>
+      <view class="give">赠送充值：<text>10000</text> </view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="stored_con">
+    <view class="stored_tab">
+      <block wx:for="{{storedTab}}" wx:key="index">
+        <view class="tab {{tabIndex == index?'active':''}}" catchtap="tabStored" data-idx="{{index}}">{{item}}</view>
+      </block>
+    </view>
+    <!--  -->
+
+    <!-- <view class="stored_item" hidden="{{!tabIndex==1}}">
+       充值
+    </view> -->
+    <swiper current="{{tabIndex}}" duration="300" bindchange="swiperTab" touchmove="{{false}}">
+      <swiper-item>
+        <view class="stored_item">
+          <scroll-view scroll-y class="stored_scroll">
+            <block wx:for="{{20}}">
+              <view class="storedWrapper">
+                <view class="stored_all">
+                  <view>支付充值</view>
+                  <view>2021-03-15</view>
+                </view>
+                <view style="color: #12D58B;" class="inte">+10</view>
+              </view>
+            </block>
+          </scroll-view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view>第二屏</view>
+      </swiper-item>
+      <swiper-item>
+        <view>第三屏</view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

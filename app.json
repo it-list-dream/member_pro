@@ -14,7 +14,8 @@
     "pages/classList/classList",
     "pages/personalTrainer/personalTrainer",
     "pages/movementData/movementData",
-    "pages/activeDetail/activeDetail"
+    "pages/activeDetail/activeDetail",
+    "pages/activeList/activeList"
   ],
   "subpackages": [
     {
@@ -26,7 +27,13 @@
         "address/address",
         "addAdress/addAdress",
         "login/login",
-        "editProfile/editProfile"
+        "editProfile/editProfile",
+        "myCourse/myCourse",
+        "myStored/myStored",
+        "inform/inform",
+        "myIntegral/myIntegral",
+        "integralMall/integralMall",
+        "suceess/suceess"
       ]
     }],
   "plugins": {

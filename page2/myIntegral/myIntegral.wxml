@@ -1,0 +1,14 @@
+<nav-bar page-name="我的积分"></nav-bar>
+<view class="myInteCon">
+  <!--  -->
+     <view class="useInte">
+          <view class="inte_item" style="background-image:url('/static/inte_bg.png')">
+              <view class="title">
+                <text>可用积分</text>
+                <view class="rules">积分规则</view>
+              </view>
+              <view class="behavior"></view>
+              <view class="vip"></view>
+          </view>
+     </view>   
+</view>

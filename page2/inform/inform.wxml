@@ -1,0 +1,39 @@
+<nav-bar page-name="通知"></nav-bar>
+<view class="inform_container">
+  <view class="inform_title">
+    <block wx:for="{{inform_tabs}}" :key="index">
+      <view class="inform_tab {{tabs_index==index?'active':''}}" catchtap="informTab" data-index="{{index}}">{{item}}
+      </view>
+    </block>
+  </view>
+  <!--  -->
+  <view class="infrom_con" hidden="{{!tabs_index==0}}">
+    <scroll-view scroll-y class="infrom_scroll">
+      <block wx:for="{{20}}">
+        <view class="infom_item">
+          <view class="versions">
+            <text> 2.0版本正式上线！</text>
+            <text>3-26 19:00</text>
+          </view>
+          <view>积分商城、运动数据全面开通、方便各位使用。</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="infrom_con" hidden="{{!tabs_index==1}}">
+     <scroll-view scroll-y class="infrom_scroll">    
+      <block wx:for="{{20}}">
+       <view class="course_info">
+           <view>
+             <text class="couseName">拉伸课</text>
+             <text class="time">15:00-16:00</text>
+           </view>
+           <view>
+            <text class="coach">教练：六大胖</text>
+             <text class="duration">时长：60分钟</text>
+           </view>
+       </view>
+       </block>
+     </scroll-view>
+  </view>
+</view>

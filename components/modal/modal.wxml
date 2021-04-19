@@ -1,0 +1,11 @@
+<view class='mask' wx:if='{{show}}' bindtap='clickMask'>
+ <view class='modal-content' style='height:{{height}}'>
+  <scroll-view scroll-y class='main-content'>
+   <slot></slot>
+  </scroll-view>
+  <view class='modal-btn-wrapper'>
+   <view class='cancel-btn' bindtap='cancel'>拒绝</view>
+   <view class='confirm-btn' bindtap='confirm'>允许</view>
+  </view>
+ </view>
+</view>

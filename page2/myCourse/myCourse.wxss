@@ -1,0 +1,88 @@
+.course_container {
+  padding: 20rpx 30rpx 0 30rpx;
+  background-color: #F0F2F5;
+}
+
+.course_list {
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  width: 690rpx;
+  height: 240rpx;
+  background-size: 100% 100%;
+
+}
+
+.courseTop {
+  display: flex;
+  align-items: center;
+
+}
+
+.courseTop>view:first-child image {
+  width: 51rpx;
+  height: 51rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.coa_detail {
+  margin-left: 12rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.coa_detail view,
+.coa_detail text {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.coa_detail image {
+  width: 20rpx;
+  height: 20rpx;
+  vertical-align: middle;
+}
+
+.courseBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 68rpx;
+}
+
+.courseBottom view:first-child {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.course_num {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.exp_date {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.appoinmentBtn {
+  width: 110rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #12D58B;
+  border-radius: 8rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}

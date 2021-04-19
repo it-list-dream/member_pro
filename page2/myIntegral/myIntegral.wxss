@@ -1,0 +1,43 @@
+/* .myInteCon{
+
+} */
+.useInte {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 274rpx;
+  background: #F0F2F5;
+  overflow: hidden;
+}
+
+.inte_item {
+  margin: 0 auto;
+  margin-top: 20rpx;
+  width: 554rpx;
+  height: 254rpx;
+  background-size: 100% 100%;
+}
+
+/*  */
+.title {
+  padding-top: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+}
+
+.rules {
+  float: right;
+  width: 124rpx;
+  margin-top: 4rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 18rpx;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FFFFFF;
+
+  background: #7B6F85;
+  border-radius: 15rpx 0 0 15rpx;
+}
