@@ -1,6 +1,6 @@
 .all {
   width: 100%;
-  height: calc(100vh - 60px);
+  /* height: calc(100vh - 60px); */
   background-color: #F0F2F5;
   overflow: hidden;
 }

@@ -33,6 +33,7 @@ Component({
   },
   lifetimes: {
     attached: function () {
+      console.log(App);
       this.setData({
         navHeight: App.globalData.navHeight,
         navTop: App.globalData.navTop
@@ -58,4 +59,3 @@ Component({
     },
   }
 })
-

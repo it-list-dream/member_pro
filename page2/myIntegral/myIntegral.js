@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    options_tab:['全部','赚积分','花积分'],
+    tab:0
   },
 
   /**
@@ -14,7 +15,13 @@ Page({
   onLoad: function (options) {
 
   },
-
+  optionsTab:function(e){
+      console.log(e.target);
+      var index = e.target.dataset.index;
+      this.setData({
+        tab:index
+      })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

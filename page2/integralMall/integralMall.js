@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    cardType: 1,
+    entityType: 1,
+    type: 3,
+    courseNum: 1,
+    takeMethods: ['门店自取', '快递上门（到付）'],
+    take_index: -1
   },
 
   /**
@@ -14,7 +19,33 @@ Page({
   onLoad: function (options) {
 
   },
+  calculate: function (e) {
+    var operator = e.target.dataset.operator;
+    var total = this.data.courseNum;
+    if (operator == '+') {
+      total++;
+    } else if (operator == '-') {
+      if (total > 1) {
+        total--;
+      }
+    }
+    this.setData({
+      courseNum: total
+    })
+  },
+  takeWay: function (e) {
+    console.log(e.target.dataset);
+    var idx = e.target.dataset.index;
+    this.setData({
+      take_index: idx
+    })
+    if (idx == 1) {
+      wx.navigateTo({
+        url: '/page2/address/address',
+      })
+    }
 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,0 +1,80 @@
+/* page2/myVIPCard/myVIPCard.wxss */
+.vipCard {
+  width: 100%;
+  background: #F0F2F5;
+  padding: 0 30rpx;
+  overflow: hidden;
+}
+
+.card_list {
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  width: 690rpx;
+  height: 439rpx;
+  background-color: #ffffff;
+  border-radius: 8rpx;
+}
+
+.card_list:first-child {
+  margin-top: 20rpx;
+}
+
+
+.card_list image {
+  width: 648rpx;
+  height: 252rpx;
+}
+
+.card_status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.year {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.status {
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.use_day {
+  margin: 5rpx 0;
+  font-family: PingFang SC;
+  color: #333333;
+  font-size: 26rpx;
+}
+
+.use_day text {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.searchResult {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchResult>view:first-child {
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.7;
+}
+
+.searchResult>view:last-child {
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}

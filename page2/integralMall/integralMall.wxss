@@ -1,1 +1,385 @@
-/* page2/integralMall/integralMall.wxss */
+.coverstionBox {
+  height: 100vh;
+  background-color: #F0F2F5;
+}
+
+.scorecard {
+  width: 100%;
+  background-color: #F0F2F5;
+}
+
+swiper {
+  width: 100%;
+  height: 296rpx;
+}
+
+.scorec-img {
+  width: 100%;
+  vertical-align: middle;
+  height: 296rpx;
+}
+
+.conternt {
+  margin-bottom: 131rpx;
+  width: 100%;
+  height: 362rpx;
+  background-color: #ffffff;
+}
+
+.w-h {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0 32rpx;
+}
+
+.w-h:nth-child(n+2) {
+  border-top: 1px solid #EEEEEE;
+}
+
+.integral {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.vip_inte {
+  margin-right: 8rpx;
+  display: block;
+  width: 51rpx;
+  height: 51rpx;
+  line-height: 51rpx;
+  text-align: center;
+  background: #F4C08D;
+  border-radius: 50%;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.minute {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  width: 51rpx;
+  height: 51rpx;
+  margin-right: 10rpx;
+  text-align: center;
+  line-height: 51rpx;
+  border-radius: 50%;
+  background-color: #B6B9BE;
+}
+
+.credits {
+  margin-right: 4rpx;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.minute-type {
+  width: 206rpx;
+  height: 28rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 600;
+  color: #010101;
+}
+
+.dura {
+  width: 376rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+  margin-left: 33rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.infinity {
+  width: 100%;
+  height: 131rpx;
+  position: fixed;
+  bottom: 0rpx;
+  background-color: #FFFFFF;
+}
+
+.conversion {
+  width: 100%;
+  height: 40rpx;
+  text-align: center;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #52495B;
+}
+
+.total_list {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.total_list>view:first-child {
+  font-family: PingFang SC;
+  font-weight: 500;
+  font-size: 36rpx;
+}
+
+.total {
+  color: #333333;
+}
+
+.inte_count {
+  color: #FD585D;
+}
+
+.conBtn {
+  width: 94rpx;
+  height: 50rpx;
+  margin-top: 22rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #12D58B;
+  border-radius: 25rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+/* 实物 */
+.real_detail {
+  width: 100%;
+  height: 581rpx;
+  background: #ffffff;
+}
+
+.real_item {
+  box-sizing: border-box;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1px solid #EEEEEE;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.real_item text {
+  text-align-last: justify;
+  text-align: justify;
+}
+
+.real_inte {
+  display: flex;
+  align-items: center;
+  padding-left: 32rpx;
+}
+
+.real_course {
+  padding-left: 32rpx;
+}
+
+.real_duration {
+  padding-left: 64rpx;
+}
+
+.real_date {
+  padding-left: 32rpx;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.introduction {
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  height: 220rpx;
+  /* background: green; */
+  padding: 24rpx 0;
+}
+
+.intro_title {
+  padding-left: 64rpx;
+  white-space: nowrap;
+}
+
+.intro_content {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 45rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+/* 选择教练 */
+.chooseCoach {
+
+  width: 100%;
+  height: 286rpx;
+  overflow: hidden;
+  background: #FFFFFF;
+  /* background: pink; */
+}
+
+.coach {
+  padding: 28rpx 0 28rpx 32rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.coach_swiper {
+  box-sizing: border-box;
+  margin: 0 30rpx;
+}
+
+.coach_swiper swiper {
+  height: 198rpx;
+}
+
+.coach_swiper swiper-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coach_img image {
+  width: 108rpx;
+  height: 108rpx;
+}
+
+.pitch {
+  margin-top: 20rpx;
+  padding: 0 32rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 131rpx;
+  height: 90rpx;
+  background-color: #ffffff;
+}
+
+.pitch view:first-child {
+  font-size: 36rpx;
+  line-height: 90rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+
+}
+
+.buy_count {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+.buy_count .symbol {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background: #F0F2F5;
+  border-radius: 6rpx 0px 0px 6rpx;
+}
+
+.buy_count text:nth-child(2) {
+  margin: 0 1px;
+  height: 40rpx;
+  padding: 0 10rpx;
+  background: #F0F2F5;
+  border-radius: 6rpx 0px 0px 6rpx;
+}
+
+/*  */
+.available_item {
+  width: 100%;
+  height: 452rpx;
+  /* background: pink; */
+  background-color: #ffffff;
+}
+
+.available_inte {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee;
+  height: 91rpx;
+}
+
+.inte {
+  padding-left: 32rpx;
+}
+
+.product {
+  padding-left: 64rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #010101;
+}
+
+/* 快递方式 */
+.exp_way {
+  margin-bottom: 131rpx;
+  margin-top: 30rpx;
+  width: 100%;
+  height: 180rpx;
+  /* background: #FFFFFF; */
+}
+
+.exp_item:first-child {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.exp_item { 
+  box-sizing: border-box;
+  padding-left: 32rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  display: flex;
+  background: #FFFFFF;
+}
+
+.way {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+}
+
+.way>view {
+  padding-left: 40rpx;
+}
+
+.kong {
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  border: 1px solid #52495B;
+  border-radius: 50%;
+}
+
+.dispatching {
+  padding-left: 30rpx;
+}
+.dispatching>text{
+  padding-left: 30rpx;
+}

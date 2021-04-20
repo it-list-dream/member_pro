@@ -61,18 +61,10 @@ App({
   globalData: {
     isIphoneX: false, 
     userInfo: null,
-    menuTop: wx.getMenuButtonBoundingClientRect().top,
-    menuHeight: wx.getMenuButtonBoundingClientRect().height,
+    // menuTop: wx.getMenuButtonBoundingClientRect().top,
+    // menuHeight: wx.getMenuButtonBoundingClientRect().height,
   },
   onShow: function() {
-    let that = this;
-    wx.getSystemInfo({
-      success: function(res) {
-        let h = 750 * res.windowHeight / res.windowWidth
-        if (res.model == 'iPhone X') {
-          that.globalData.isIphoneX = true;
-        }
-      }
-    })
+    
   },
 })

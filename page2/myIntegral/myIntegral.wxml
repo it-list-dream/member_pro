@@ -1,14 +1,72 @@
 <nav-bar page-name="我的积分"></nav-bar>
 <view class="myInteCon">
   <!--  -->
-     <view class="useInte">
-          <view class="inte_item" style="background-image:url('/static/inte_bg.png')">
-              <view class="title">
-                <text>可用积分</text>
-                <view class="rules">积分规则</view>
-              </view>
-              <view class="behavior"></view>
-              <view class="vip"></view>
+  <view class="useInte">
+    <view class="inte_item" style="background-image:url('/static/inte_bg.png')">
+      <view class="title">
+        <text>可用积分</text>
+        <view class="rules">积分规则</view>
+      </view>
+      <view class="inte_detail">
+        <view>行为积分：2000</view>
+        <view class="inte_bot">
+          <view>
+            VIP积分：<text class="fen">10000</text>
           </view>
-     </view>   
+
+          <view class="immediate">立即使用</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="container">
+    <view class="con_title">
+      <!-- <view>全部</view>
+      <view>赚积分</view>
+      <view>花积分</view> -->
+      <block wx:for="{{options_tab}}" wx:key="index">
+        <view catchtap="optionsTab" data-index="{{index}}" class="{{tab == index ?'active':''}}">{{item}}</view>
+      </block>
+      <view class="chooseBox">
+        <view class="chooseInte">
+          <text>行为积分</text>
+          <image src="/static/bottom_arrow.png"></image>
+        </view>
+        <view class="selectBox">
+          <view>全部</view>
+          <view>行为积分</view>
+          <view>消费积分</view>
+        </view>
+      </view>
+    </view>
+    <!--  内容-->
+    <view class="record">
+      <view class="record_item">
+        <view class="left_record">
+          <view>进场签到</view>
+          <view>2021-03-15</view>
+        </view>
+        <view class="right_record">+5000</view>
+      </view>
+      <view class="record_item">
+        <view class="left_record">
+          <view>进场签到</view>
+          <view>2021-03-15</view>
+        </view>
+        <view class="right_record">+5000</view>
+      </view>
+      <view class="record_item">
+        <view class="left_record">
+          <view>进场签到</view>
+          <view>2021-03-15</view>
+        </view>
+        <view class="right_record">+5000</view>
+      </view>
+    </view>
+    <!--  -->
+    <view>
+
+    </view>
+  </view>
 </view>

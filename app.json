@@ -33,7 +33,9 @@
         "inform/inform",
         "myIntegral/myIntegral",
         "integralMall/integralMall",
-        "suceess/suceess"
+        "suceess/suceess",
+        "myVIPCard/myVIPCard",
+        "entrance/entrance"
       ]
     }],
   "plugins": {

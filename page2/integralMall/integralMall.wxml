@@ -1,2 +1,180 @@
-<!--page2/integralMall/integralMall.wxml-->
-<text>page2/integralMall/integralMall.wxml</text>
+<nav-bar page-name="积分兑换"></nav-bar>
+<view class="coverstionBox">
+  <!-- 周卡 -->
+  <view class="scorecard" wx:if="{{type==1}}">
+    <view class="card_banner">
+      <swiper duration="300" circular="{{true}}">
+        <block wx:for="{{5}}">
+          <swiper-item>
+            <image class="scorec-img" src="/static/vipimg.png"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="conternt">
+      <view class="w-h integral">
+        <text class="minute" wx:if="{{cardType==0}}">分</text>
+        <text class="vip_inte" wx:else>VIP</text>
+        <text class="credits">1000</text>
+        积分
+      </view>
+      <view class="w-h weeksCard">
+        <text class="minute-type">卡类型</text>：
+        <text class="weeks-card">一周卡</text>
+      </view>
+      <view class="w-h duration">
+        <text class="dura">时长:</text>
+        <text> 7天 (次数卡“次”计算)</text>
+      </view>
+      <view class="w-h introduce">
+        <text class="dura">介绍:</text>
+        <text> 7天 自动在现有卡上加入时间</text>
+      </view>
+    </view>
+    <view class="infinity">
+      <view class="conversion">20人已经兑换</view>
+      <view class="total_list">
+        <view>
+          <text class="total">合计：</text>
+          <text class="inte_count">500积分</text>
+        </view>
+        <view class="conBtn">兑换</view>
+      </view>
+    </view>
+  </view>
+  <!-- 体验课 -->
+  <view class="real_box" wx:elif="{{type==2}}">
+    <view class="card_banner">
+      <swiper duration="300" circular="{{true}}">
+        <block wx:for="{{5}}">
+          <swiper-item>
+            <image class="scorec-img" src="/static/conversion2.png"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!--  -->
+    <view class="real_detail">
+      <view class="real_item real_inte">
+        <text class="minute" wx:if="{{cardType==0}}">分</text>
+        <text class="vip_inte" wx:else>VIP</text>
+        <text class="credits">500</text>
+        积分
+      </view>
+      <view class="real_item real_course">
+        <text class="bold">课程名：</text>体验课
+      </view>
+      <view class="real_item real_duration">
+        <text>时长：60分钟</text>
+      </view>
+      <view class="real_item real_date">
+        <text class="bold">有效期：</text>2021/3/15-2021/3/17
+      </view>
+      <view class="introduction">
+        <view class="intro_title">介绍：</view>
+        <view class="intro_content">如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇</view>
+      </view>
+    </view>
+    <!-- 选择教练 -->
+    <view class="chooseCoach">
+      <view class="coach">选择教练</view>
+      <view class="coach_swiper">
+        <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="1000"
+          display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
+          next-margin="{{coachList.length==1?'480rpx':(coachList.length==2?'280rpx':'120rpx')}}">
+          <block wx:for="coachList">
+            <swiper-item>
+              <view class="coach_img">
+                <image src="/static/head.png" class="active"></image>
+              </view>
+              <view class="coach_info">老杨</view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <!-- 兑换节数 -->
+    <view class="pitch">
+      <view>兑换节数</view>
+      <view class="buy_count">
+        <text class="symbol" bindtap="calculate" data-operator="-">-</text>
+        <text>{{courseNum}}</text>
+        <text class="symbol" bindtap="calculate" data-operator="+">+</text>
+      </view>
+    </view>
+    <!-- 计算价格 -->
+    <view class="infinity">
+      <view class="conversion">20人已经兑换</view>
+      <view class="total_list">
+        <view>
+          <text class="total">合计：</text>
+          <text class="inte_count">500积分</text>
+        </view>
+        <view class="conBtn">兑换</view>
+      </view>
+    </view>
+  </view>
+  <!-- 实物 -->
+  <view class="available_list" wx:elif="{{type==3}}">
+    <view class="card_banner">
+      <swiper duration="300" circular="{{true}}">
+        <block wx:for="{{5}}">
+          <swiper-item>
+            <image class="scorec-img" src="/static/conversion1.png"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!--  -->
+    <view class="available_item">
+      <view class="available_inte inte">
+        <text class="minute" wx:if="{{cardType==0}}">分</text>
+        <text class="vip_inte" wx:else>VIP</text>
+        <text class="credits">500</text>
+        积分
+      </view>
+      <!--  -->
+      <view class="available_inte product">
+        <text class="bold">产品：</text> 拳击手套
+      </view>
+      <!--  -->
+      <view class="introduction">
+        <view class="bold intro_title">介绍：</view>
+        <view class="intro_content">拳击手套是根据国际业余拳联的规定，拳击运动员在参加拳击运动比赛时一定要戴的一种经过填充的手套。目的是保护拳手的手腕和手指关节。</view>
+      </view>
+    </view>
+    <!-- 快递方式 -->
+    <view class="exp_way">
+      <view class="exp_item">
+        兑换方式：
+        <view class="way">
+          <block wx:for="{{takeMethods}}">
+            <view>
+              <view class="kong" catchtap="takeWay" style="background-color:{{take_index == index?'#52495B':''}}"
+                data-index="{{index}}"></view>
+              <!-- 门店自取 -->
+              {{item}}
+            </view>
+          </block>
+          <!-- <view>
+            <view class="kong" catchtap="takeWay"></view>
+            快递上门（到付）
+          </view> -->
+        </view>
+      </view>
+      <view class="exp_item dispatching" wx:if="{{take_index==1}}">
+        <text class="bold">配送至：</text>上海市杨浦区江浦路1112弄
+      </view>
+    </view>
+    <view class="infinity">
+      <view class="conversion">20人已经兑换</view>
+      <view class="total_list">
+        <view>
+          <text class="total">合计：</text>
+          <text class="inte_count">500积分</text>
+        </view>
+        <view class="conBtn">兑换</view>
+      </view>
+    </view>
+  </view>
+</view>

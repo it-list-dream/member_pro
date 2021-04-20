@@ -1,0 +1,23 @@
+<nav-bar page-name="我的会员卡"></nav-bar>
+<view class="vipCard" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}}px)">
+  <block wx:for="{{cardList}}" wx:key="index">
+    <view class="card_list">
+      <image src="/static/vipimg.png"></image>
+      <view class="card_status">
+        <view class="year">{{item.name}}</view>
+        <view class="status">状态：{{item.status==1?'使用中':'未激活'}}</view>
+      </view>
+      <view wx:if="{{item.status==1}}">
+        <view class="use_day">
+          <text>80</text> 天可用
+        </view>
+        <view class="searchResult">
+          <view>2021-6-18 14:30:00 到期</view>
+          <view catchtap="lookReword">查看入场记录</view>
+        </view>
+      </view>
+
+    </view>
+  </block>
+
+</view>

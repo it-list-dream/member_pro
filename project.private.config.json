@@ -203,6 +203,23 @@
           "pathName": "page2/myIntegral/myIntegral",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "page2/integralMall/integralMall",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myVIPCard/myVIPCard",
+          "pathName": "page2/myVIPCard/myVIPCard",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/entrance/entrance",
+          "pathName": "page2/entrance/entrance",
+          "scene": null
         }
       ]
     }
