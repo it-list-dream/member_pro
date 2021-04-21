@@ -1,4 +1,5 @@
 // pages/my/my.js
+const app = getApp();
 Page({
 
   /**
@@ -35,14 +36,21 @@ Page({
         name: '收货地址',
         img: '/static/my/location.png'
       }
-    ]
+    ],
+    bg: '/static/sport/bg.png',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.tranfromImage();
+    // console.log(app.globalData)
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
+    })
+    //this.tranfromImage()
   },
   tranfromImage(e) {
     wx.chooseImage({
@@ -75,18 +83,63 @@ Page({
       case 1:
         path = '/page2/order/order'
         break;
-        case 5:
-          path = '/page2/address/address'
-          break
+      case 2:
+        path = '/pages/tabbar/integral/integral'
+        break;
+      case 3:
+        path = "/pages/movementData/movementData"
+        break;
+      case 5:
+        path = '/page2/address/address'
+        break
     }
+    console.log(path)
+    if (path.trim()) {
+      if (index == 2) {
+        wx.switchTab({
+          url: path,
+        })
+      } else {
+        wx.navigateTo({
+          url: path,
+        })
+      }
+
+    }
+  },
+  edit: function () {
     wx.navigateTo({
-      url: path,
+      url: '/page2/editProfile/editProfile',
     })
   },
-  edit(){
-     wx.navigateTo({
-       url: '/page2/editProfile/editProfile',
-     })
+  vipCard: function () {
+    //判断
+    wx.navigateTo({
+      url: '/page2/myVIPCard/myVIPCard',
+    })
+  },
+  perCourse: function () {
+    //判断
+    wx.navigateTo({
+      url: '/page2/myCourse/myCourse',
+    })
+  },
+  message: function () {
+    //判断
+    wx.navigateTo({
+      url: '/page2/inform/inform',
+    })
+  },
+  storedMoney: function () {
+    //判断
+    wx.navigateTo({
+      url: '/page2/myStored/myStored',
+    })
+  },
+  inteAwrad: function () {
+    wx.navigateTo({
+      url: '/page2/myIntegral/myIntegral',
+    })
   },
   /**
    * 生命周期函数--监听页面显示

@@ -1,4 +1,5 @@
 // page2/login/login.js
+var app = getApp()
 Page({
 
   /**
@@ -6,17 +7,22 @@ Page({
    */
   data: {
     showModal: false,
-    hasUserInfo:false
+    hasUserInfo: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  let hasUserInfo = wx.getStorageSync('hasUserInfo');
-  this.setData({
-    hasUserInfo:hasUserInfo
-  })
+    let hasUserInfo = wx.getStorageSync('hasUserInfo');
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
+    })
+    this.setData({
+      hasUserInfo: hasUserInfo
+    })
   },
   // onCancel(){
   //   wx.navigateBack({
@@ -53,7 +59,7 @@ Page({
         that.setData({
           userInfo: res.userInfo,
           showModal: true,
-          hasUserInfo:true
+          hasUserInfo: true
         })
         wx.setStorageSync('hasUserInfo', true)
       }
@@ -61,36 +67,37 @@ Page({
   },
   //通过绑定手机号登录
   getPhoneNumber: function (e) {
-   // var ivObj = e.detail.iv
-   // var telObj = e.detail.encryptedData
+    // var ivObj = e.detail.iv
+    // var telObj = e.detail.encryptedData
     var codeObj = "";
     var that = this;
     //------执行Login---------
     wx.login({
-     success: res => {
-      console.log('code转换', res.code);
-      
- 　　　　　　//用code传给服务器调换session_key
-      // wx.request({
-      //  url: 'https://你的接口文件路径', //接口地址
-      //  data: {
-      //   appid: "你的小程序APPID",
-      //   secret: "你的小程序appsecret",
-      //   code: res.code,
-      //   encryptedData: telObj,
-      //   iv: ivObj
-      //  },
-      //  success: function (res) {
-      //   phoneObj = res.data.phoneNumber;
-      //   console.log("手机号=", phoneObj)
-      //   wx.setStorage({  //存储数据并准备发送给下一页使用
-      //    key: "phoneObj",
-      //    data: res.data.phoneNumber,
-      //   })
-      //  }
-       }   });
-   
-      //-----------------是否授权，授权通过进入主页面，授权拒绝则停留在登陆界面
+      success: res => {
+        console.log('code转换', res.code);
+
+        //用code传给服务器调换session_key
+        // wx.request({
+        //  url: 'https://你的接口文件路径', //接口地址
+        //  data: {
+        //   appid: "你的小程序APPID",
+        //   secret: "你的小程序appsecret",
+        //   code: res.code,
+        //   encryptedData: telObj,
+        //   iv: ivObj
+        //  },
+        //  success: function (res) {
+        //   phoneObj = res.data.phoneNumber;
+        //   console.log("手机号=", phoneObj)
+        //   wx.setStorage({  //存储数据并准备发送给下一页使用
+        //    key: "phoneObj",
+        //    data: res.data.phoneNumber,
+        //   })
+        //  }
+      }
+    });
+
+    //-----------------是否授权，授权通过进入主页面，授权拒绝则停留在登陆界面
     //   if (e.detail.errMsg == 'getPhoneNumber:user deny') { //用户点击拒绝
     //    wx.navigateTo({
     //     url: '../index/index',
@@ -102,7 +109,7 @@ Page({
     //   }
     //  }
     // });
- },
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

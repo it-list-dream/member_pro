@@ -1,12 +1,11 @@
 <view class="coach_subject">
-    <view class="coach_pic">
-      <!-- <image></image> -->
-      <view class="subject">
-        <view>拉伸课</view>
-        <view>
-          <text class="price">￥</text>
-          <text class="num">300/节</text>
-        </view>
+  <view class="coach_pic" style="background-image:url('/static/coach02.png')">
+    <view class="subject">
+      <view>拉伸课</view>
+      <view>
+        <text class="price">￥</text>
+        <text class="num">300/节</text>
       </view>
     </view>
   </view>
+</view>

@@ -1,10 +1,10 @@
 <view class='nav-wrap' style='height: {{navHeight}}px;'>
   <view class="navbar" style='height:{{navHeight}}px;background-color:{{bgColor}}'>
-    <view wx:if="{{showNav}}" class="navbar-action-wrap navbar-action-group" style='top:{{navTop}}px;background-color:rgba(255,255,255,.6)' bindtap="_navBack">
+    <view wx:if="{{showNav}}" class="navbar-action-wrap" style='top:{{navTop}}px;' bindtap="_navBack">
       <view class="icon">
-        <image src="/static/arrow.png" class="icon-arrow"></image>
+        <image src="{{icon?'/static/white_arrow.png':'/static/arrow.png'}}" class="icon-arrow"></image>
       </view>
     </view>
-    <view class='navbar-title' style='top:{{navTop}}px'>{{pageName}}</view>
+    <view class='navbar-title' style='top:{{navTop}}px;color:{{titleColor}}'>{{pageName}}</view>
   </view>
 </view>

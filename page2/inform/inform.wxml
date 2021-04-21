@@ -1,5 +1,5 @@
 <nav-bar page-name="通知"></nav-bar>
-<view class="inform_container">
+<view class="inform_container" style="margin-top:{{navHeight}}px">
   <view class="inform_title">
     <block wx:for="{{inform_tabs}}" :key="index">
       <view class="inform_tab {{tabs_index==index?'active':''}}" catchtap="informTab" data-index="{{index}}">{{item}}

@@ -1,15 +1,23 @@
-/* pages/home/home.wxss */
-/* .home_banner {
+.banner {
+  position: relative;
+}
+
+swiper {
+  height: 477rpx;
+}
+
+swiper-item {
+  height: 477rpx;
+}
+
+.banner image {
   width: 100%;
-} */
-.swiper {
-  width: 100%;
+  height: 477rpx;
 }
 
 .head_wrapper {
   position: absolute;
-  top: 55rpx;
-  left: 30rpx;
+  left: 30px;
   width: 233rpx;
   height: 60rpx;
   background: #B5BDC1;
@@ -23,12 +31,14 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.header_list{
+
+.header_list {
   height: 100%;
-  padding:0 15rpx;
+  padding: 0 15rpx;
   display: flex;
   align-items: center;
 }
+
 .head_wrapper .line {
   width: 1rpx;
   height: 24rpx;
@@ -43,6 +53,8 @@
 /* 内容 */
 .home_content {
   position: relative;
+  height: auto;
+  background-color: #F0F2F5;
 }
 
 .store_pic {
@@ -59,11 +71,13 @@
 .store_wrapper {
   display: flex;
   flex-direction: column;
+  height: 120rpx;
   padding-left: 183rpx;
+  background-color: #ffffff;
 }
 
 .store_wrapper .store_title {
-  padding-top: 21rpx;
+  margin-top: 21rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -71,7 +85,7 @@
 }
 
 .store_wrapper .store_bottom {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   display: flex;
 }
 
@@ -85,9 +99,11 @@
   font-weight: 500;
   color: #12D58B;
 }
-.store_wrapper .do_business .time{
+
+.store_wrapper .do_business .time {
   padding-left: 9rpx;
 }
+
 .store_wrapper .information {
   display: flex;
   padding-left: 111rpx;
@@ -114,6 +130,7 @@
   font-weight: 500;
   color: #12D58B;
 }
+
 .store_wrapper .phone {
   width: 23rpx;
   height: 23rpx;
@@ -123,16 +140,18 @@
 .classList {
   display: flex;
   padding: 0 31rpx;
+  height: 180rpx;
+  background-color: #FFFFFF;
   justify-content: space-between;
   margin-top: 57rpx;
 }
 
 .classList .classList_item {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 20rpx;
 }
 
 .classList .classList_item text {
@@ -177,38 +196,50 @@
 
 /* 明星教练 */
 .coach {
+  padding: 0 30rpx;
   background-color: #F0F2F5;
 }
 
 .coach .coach_content {
-  /* display: flex;
-  justify-content: space-between; */
+  box-sizing: border-box;
   width: 690rpx;
-  margin: 0 auto;
   height: 375rpx;
+  border-radius: 8rpx;
+  background: red;
 }
 
 .coach .coach_list {
+  box-sizing: border-box;
+  height: 100%;
   padding: 20rpx;
   display: flex;
   justify-content: space-between;
-  height: 335rpx;
-  border-radius: 8rpx;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 .coach .content_item {
   width: 203rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
+  border-radius: 8rpx;
+}
+
+.content_item>image {
+  width: 203rpx;
+  height: 147rpx;
+  vertical-align: bottom;
+}
+
+.coach_info>view {
+  margin-top: 15rpx;
 }
 
 .coach .coach_info {
-  padding: 0 21rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  margin-top: 20rpx;
   margin-top: 10rpx;
   font-size: 22rpx;
-}
-
-.coach .coach_info>view {
-  margin-bottom: 14rpx;
 }
 
 .coach .coach_info image {
@@ -221,7 +252,7 @@
   display: flex;
   width: 134rpx;
   height: 31rpx;
-  background: #FDD043;
+  background: #FEF1C6;
   border-radius: 4px;
   font-size: 20rpx;
   font-family: PingFang SC;
@@ -235,11 +266,12 @@
   color: #FFFFFF;
   font-weight: bold;
   background: linear-gradient(0deg, #FDD043, #FD8043);
-  border-radius: 4px 1px 0px 4px;
+  border-radius: 4rpx 1px 0 4rpx;
 }
 
 .coach .recommend .recommend_text {
   font-weight: 500;
+  line-height: 31rpx;
   color: #FD8643;
   padding-left: 14rpx;
 }

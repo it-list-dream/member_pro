@@ -30,6 +30,8 @@ function initChart(canvas, width, height, dpr) {
   chart.setOption(option);
   return chart;
 }
+const app = getApp()
+const util = require('../../utils/util.js')
 Page({
 
   /**
@@ -41,14 +43,22 @@ Page({
     date: '2018',
     ec: {
       onInit: initChart
-    }
+    },
+    endTime:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var nowDate = util.formatTime(new Date());
+    console.log(nowDate)
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight,
+      endTime:nowDate
+    })
   },
   changeDate(e) {
     this.isSelected = e.target.dataset.index;

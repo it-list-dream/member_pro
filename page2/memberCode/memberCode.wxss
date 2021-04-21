@@ -1,8 +1,8 @@
-.all {
+.all1 {
   width: 100%;
-  /* height: calc(100vh - 60px); */
+  height: calc(100vh - 60px);
   background-color: #F0F2F5;
-  overflow: hidden;
+
 }
 
 .member_list {
@@ -10,7 +10,6 @@
   width: 620rpx;
   height: 842rpx;
   margin: 0 auto;
-  margin-top: 78rpx;
   background: #FFFFFF;
   box-shadow: 0 0 20rpx 0 rgba(82, 73, 91, 0.03);
   border-radius: 4rpx;

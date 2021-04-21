@@ -1,5 +1,5 @@
 <nav-bar page-name="编辑资料"></nav-bar>
-<view class="edit_list">
+<view class="edit_list" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}}px )">
   <view class="edit_item">
     <view class="my_info">
       <view>

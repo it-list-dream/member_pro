@@ -1,6 +1,16 @@
-<nav-bar page-name="我的"></nav-bar>
-<view class="my_bg">
-  <image src="/static/my/my-bg.png"></image>
+<view class="myTip" style="background-image:url({{bg}})">
+  <view class="navbar" style='height:{{navHeight}}px;'>
+    <view class="tip" style="margin-top:{{navTop}}px">
+      <view class="tipItem">
+        <image src="/static/home_pic/QRcode.png"></image>
+      </view>
+      <view class="line"></view>
+      <view class="tipItem">
+        <image src="/static/home_pic/scan.png"></image>
+      </view>
+    </view>
+    <view class='navbar-title' style='top:{{navTop}}px;'>我的</view>
+  </view>
 </view>
 <view class="my_container">
   <view class="my_banner">
@@ -17,15 +27,15 @@
     </view>
     <!-- 详情 -->
     <view class="my_course">
-      <view class="cItem">
+      <view class="cItem" catchtap="vipCard">
         <view class="num">2</view>
         <view class="vipCard">会员卡</view>
       </view>
-      <view class="cItem">
+      <view class="cItem" catchtap="perCourse">
         <view>20</view>
         <view>私教课</view>
       </view>
-      <view class="cItem">
+      <view class="cItem" catchtap="message">
         <view>
           <image src="/static/my/message.png" alt="" style="width:36rpx;height:36rpx;"></image>
         </view>
@@ -34,7 +44,7 @@
     </view>
   </view>
   <!-- nav -->
-  <view class="nav">
+  <view class="nav" bindtap="storedMoney">
     <text class="nav-title">储值金额</text>
   </view>
   <!--  -->
@@ -53,7 +63,7 @@
     </view>
   </view>
   <!-- nav -->
-  <view class="nav1">
+  <view class="nav1" bindtap="inteAwrad">
     <text class="nav-title">积分</text>
   </view>
   <!--  -->
@@ -79,7 +89,7 @@
   <view class="more">
     <view class="moreService">
       <block wx:for="{{serviceList}}" wx:key="index">
-        <view class="service" bindtap="lookRecord" data-index="{{index}}">
+        <view class="service" catchtap="lookRecord" data-index="{{index}}">
           <view>
             <image src="{{item.img}}" data-index="{{index}}"></image>
           </view>

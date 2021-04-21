@@ -1,7 +1,6 @@
 .container {
-  /* margin-top: 68px;
-  height: calc(100vh - 68px); */
   background: #f0f2f5;
+  height: auto;
 }
 
 .head_list {
@@ -15,25 +14,22 @@
 }
 
 .course_num {
+  height: 91rpx;
+  line-height: 90rpx;
   background: #ffffff;
-  padding: 38rpx 26rpx 19rpx 26rpx;
+  padding-left: 26rpx;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .course_num image {
+  margin-top: -16rpx;
   width: 34rpx;
   height: 34rpx;
-  visibility: middle;
-}
-
-.course_item {
-  display: flex;
-  align-items: center;
+  vertical-align: middle;
 }
 
 .number {
-  margin-left: 6rpx;
-  display: flex;
-  align-items: center;
+  display: inline-block;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FD595E;
@@ -48,34 +44,57 @@
 }
 
 .course_name {
-  margin-top: 1px;
+  padding-left: 32rpx;
   background: #ffffff;
-  padding: 30rpx 32rpx;
+  height: 90rpx;
+  line-height: 91rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .duration {
-  border-top: 1px solid #eeeeee;
+  height: 90rpx;
+  line-height: 90rpx;
   background: #ffffff;
-  padding: 30rpx 64rpx;
+  padding-left: 64rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
+  border-bottom: 1px solid #eeeeee;
 }
 
 /* 介绍 */
 .introduce {
+  height: 223rpx;
   display: flex;
-  padding: 30rpx 63rpx;
+  padding: 28rpx 31rpx;
   background: #ffffff;
 }
 
 .introduce_title {
+  padding-left: 32rpx;
   white-space: nowrap;
+}
+
+.introduce>view:last-child {
+  text-align-last: justify;
+  text-align: justify;
+  text-justify: distribute-all-lines;
+  width: 562rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 45rpx;
 }
 
 .co_list {
@@ -189,13 +208,14 @@
 }
 
 .num {
-  margin-right: 1px;
+  box-sizing: border-box;
+  padding:0 15rpx;
   height: 40rpx;
+  line-height: 40rpx;
   background: #F0F2F5;
 }
-
 .count:last-child {
-  margin-right: 0;
+  margin-left: 1px;
 }
 
 /* bottom */
@@ -223,15 +243,17 @@
   display: flex;
   justify-content: space-between;
   padding: 0 32rpx;
-  margin-top:20rpx ;
+  margin-top: 20rpx;
 }
-.footer_pay>view:first-child{
+
+.footer_pay>view:first-child {
   font-size: 36rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
-.footer_pay text{
+
+.footer_pay text {
   color: #FD575C;
 }
 

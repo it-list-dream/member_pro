@@ -19,9 +19,13 @@ Component({
       type: String,
       value: '#fff'
     },
-    iconColor:{
-      type: String,
-      value: '#000'
+    titleColor:{
+      type:String,
+      value:"#000000"
+    },
+    icon:{
+      type: Boolean,
+      value: false
     }
   },
 

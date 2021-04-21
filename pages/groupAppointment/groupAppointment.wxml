@@ -1,6 +1,6 @@
 
 <nav-bar page-name="团课预约" class="topNav"></nav-bar>
-<view class="group_container" >
+<view class="group_container" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}}px)">
   <view class="group_pic">
     <view class="join_num">已参加1/30</view>
   </view>

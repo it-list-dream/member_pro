@@ -1,5 +1,6 @@
 .coach_subject {
   padding: 0 31rpx;
+  overflow: hidden;
 }
 
 .coach_pic {
@@ -7,11 +8,10 @@
   box-sizing: border-box;
   width: 690rpx;
   height: 240rpx;
-  background: #52495B;
+  background-size: 100% 100%;
   border-radius: 10rpx;
   padding: 158rpx 0 0 20rpx;
 }
-
 .subject {
   display: flex;
   justify-content: space-between;

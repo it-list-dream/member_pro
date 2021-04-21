@@ -1,141 +1,195 @@
-.card{
+.card {
   height: 100vh;
-  background: #d9dbe0;
+  background: #F0F2F5;
 }
+
 .vipImg {
   width: 100%;
   height: 296rpx;
   vertical-align: middle;
 }
+
 .vipMoney {
   width: 100%;
 }
-.price{
+
+.price {
   padding-left: 28rpx;
 }
-.vipMoney .vipStr {
-  box-sizing: border-box;
-  height: 90rpx;
-  border-bottom: 1rpx solid #EEEEEE;
-  background-color:#ffffff;
-}
-.eff_date{
-  padding: 32rpx 0;
-  background-color: #ffffff;
-  padding-left: 30rpx;
-  border-bottom:1px solid #EEEEEE;
-}
-.vipType{
-  line-height: 90rpx;
-  padding-left: 30rpx;
-}
+
 .monImg {
+  margin-top: -16rpx;
   width: 36rpx;
   height: 36rpx;
   vertical-align: middle;
 }
+
 .fon-size {
-  font-size: 48rox;
-  line-height: 90rpx;
+  font-size: 48rpx;
   font-family: PingFang SC;
   font-weight: 400;
   color: #333333;
 }
- .type{
-   display: inline-block;
-   font-size: 30rpx;
-   font-weight: 600;
+
+.vipMoney .vipStr {
+  box-sizing: border-box;
+  height: 91rpx;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+  background-color: #ffffff;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333
 }
 
-.time_qun{
-  padding: 32rpx;
-  background-color:#ffffff ;
+.eff_date {
+  overflow: hidden;
+  padding-left: 32rpx;
+  display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #ffffff;
   border-bottom: 1px solid #EEEEEE;
 }
-.vipMoney .vipl{
-  padding: 32rpx;
-  background-color:#ffffff;
+
+.eff {
+  white-space: nowrap;
+}
+
+.type {
+  padding-left: 32rpx;
+}
+
+.support {
+  overflow: hidden;
+  padding-left: 32rpx;
+  display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #ffff;
   border-bottom: 1px solid #EEEEEE;
 }
-.introduce_box{
-  text-indent: 26rpx;
-  padding:32rpx;
-  background-color:#ffffff;
+
+.support>text:first-child {
+  white-space: nowrap;
+}
+
+.time_qun {
+  overflow: hidden;
+  background-color: #ffffff;
   border-bottom: 1px solid #EEEEEE;
 }
-.introduce {
-  font-size: 28rpx;
-  font-weight: 600;
+
+.quantum {
+  padding-left: 32rpx;
+  height: 90rpx;
+  line-height: 90rpx;
 }
+
 /*  */
-.choose{
+.introduce_box {
+  box-sizing: border-box;
+  padding: 32rpx;
+  height: 228rpx;
+  text-indent: 26rpx;
+  background-color: #ffffff;
+}
+.charText{
+  padding-left: 16rpx;
+}
+.introduce text {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 45rpx;
+}
+
+/*  */
+.choose {
   box-sizing: border-box;
   padding: 0 30rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 90rpx;
-   margin-bottom: 126rpx;
-   background-color: #ffffff;
+  background-color: #ffffff;
 }
-.choose_item{
+
+.choose_item {
   display: flex;
   font-size: 30rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 
 }
-.choose_item>text{
-     margin-right: 20rpx;
+
+.choose_item>text {
+  margin-right: 20rpx;
 }
-.pick_name{
+
+.pick_name {
   text-align: center;
   width: 150rpx;
   height: 40rpx;
   line-height: 40rpx;
   border: 1px solid #333333;
   font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
-.pay{
+
+.pay {
   width: 186rpx;
-height: 40rpx;
-border: 1px solid #333333;
-line-height: 40rpx;
-text-align: center;
-font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  height: 40rpx;
+  border: 1px solid #333333;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
-picker{
+
+picker {
   height: 40rpx;
 }
-.choose image{
+
+.choose image {
   margin-left: 12rpx;
   width: 30rpx;
   height: 30rpx;
   vertical-align: middle;
 }
+
 /*  */
-.buy_list{
+.buy_list {
   position: fixed;
   width: 100%;
-  height: 126rpx;
+  height: 214rpx;
   bottom: 0;
   left: 0;
+  background-color: #ffffff;
 }
+
 .purchase {
   height: 50rpx;
   font-size: 24rpx;
   color: #ffff;
   text-align: center;
   line-height: 50rpx;
-  background-color: #52495B;
+  background: #52495B;
 }
+
 .total {
   display: flex;
   height: 86rpx;
@@ -143,26 +197,28 @@ picker{
   padding: 0 32rpx;
   justify-content: space-between;
   align-items: center;
-  background-color: #F0F2F5;
 }
-.total_item{
+
+.total_item {
   font-size: 36rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
-.course_price{
+
+.course_price {
   color: #FD575C;
 }
+
 .purcl-tye {
-width: 94rpx;
-height: 35rpx;
-line-height: 35rpx;
-text-align: center;
-background: #12D58B;
-font-size: 26rpx;
-font-family: PingFang SC;
-font-weight: bold;
-color: #FFFFFF;
-border-radius: 8rpx;
+  width: 94rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  text-align: center;
+  background: #12D58B;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-radius: 8rpx;
 }

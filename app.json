@@ -35,7 +35,8 @@
         "integralMall/integralMall",
         "suceess/suceess",
         "myVIPCard/myVIPCard",
-        "entrance/entrance"
+        "entrance/entrance",
+        "rules/rules"
       ]
     }],
   "plugins": {

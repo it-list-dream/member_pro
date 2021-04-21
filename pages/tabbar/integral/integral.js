@@ -1,10 +1,12 @@
 // pages/integral/integral.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    bg:'/static/sport/bg.png',
     inte_list:['fd','dfsfs','dsf'],
     integral_list: [{
       id: 1,
@@ -48,8 +50,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      var aa = "data:image/png;base646,"+wx.getFileSystemManager().readFileSync('/static/left_arrow.png','base64');
-      console.log(aa);
+      // console.log(app.globalData)
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
+    })
   },
 
   /**

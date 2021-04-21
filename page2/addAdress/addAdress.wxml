@@ -1,5 +1,5 @@
 <nav-bar page-name="新增收货地址"></nav-bar>
-<view class="redact-address">
+<view class="redact-address" style="margin-top:{{navHeight}}px">
   <view class="possess-layout">
     <view class="add_address">
       <view class="add_item">

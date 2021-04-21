@@ -1,6 +1,5 @@
 /* page2/editProfile/editProfile.wxss */
 .edit_list {
-  height: 100vh;
   background-color: #f0f2f5;
   padding: 0 30rpx;
 }

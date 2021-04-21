@@ -1,6 +1,6 @@
 <wxs src="./date.wxs" module="util" />
 <nav-bar page-name="历史预约"></nav-bar>
-<view class="history_app">
+<view class="history_app" style="margin-top:{{navHeight}}px">
   <view class="history_header">
     <block wx:for="{{historyList}}" wx:key="index">
       <view class="his_wrapper">

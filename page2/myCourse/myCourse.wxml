@@ -1,6 +1,6 @@
 <nav-bar page-name="我的课程"></nav-bar>
-<view class="course_container">
-  <block wx:for="{{5}}">
+<view class="course_container" style="margin-top:{{navHeight}}px">
+  <block wx:for="{{3}}">
     <view class="course_list" style="background-image:url('/static/course1.png')">
       <view class="courseTop">
         <view>
@@ -19,11 +19,10 @@
           <text class="course_num">如渔常规课（10节）</text>
           <text class="exp_date">截止2021-6-13</text>
         </view>
-        <view class="appoinmentBtn">
+        <view class="appoinmentBtn" catchtap="personalAppointment">
           预约
         </view>
       </view>
     </view>
   </block>
-
 </view>

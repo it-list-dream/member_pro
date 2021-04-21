@@ -1,5 +1,5 @@
 <nav-bar page-name="收货地址"></nav-bar>
-<view class="address_list">
+<view class="address_list" style="margin-top:{{navHeight}}px">
   <scroll-view class="scroll-address" scroll-y="true">
     <block wx:for="{{30}}">
       <view class="address_detail">

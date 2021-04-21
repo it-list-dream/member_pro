@@ -1,5 +1,4 @@
 .coverstionBox {
-  height: 100vh;
   background-color: #F0F2F5;
 }
 
@@ -68,7 +67,7 @@ swiper {
   width: 51rpx;
   height: 51rpx;
   margin-right: 10rpx;
-  text-align: center;
+  text-align: center !important;
   line-height: 51rpx;
   border-radius: 50%;
   background-color: #B6B9BE;
@@ -172,10 +171,10 @@ swiper {
   color: #333333;
 }
 
-.real_item text {
+/* .real_item text {
   text-align-last: justify;
   text-align: justify;
-}
+} */
 
 .real_inte {
   display: flex;

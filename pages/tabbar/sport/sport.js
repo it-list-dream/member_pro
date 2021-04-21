@@ -1,6 +1,6 @@
 // pages/sport/sport.js
+const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -45,14 +45,20 @@ Page({
     weekday: ['21', '22', '23', '24', '25', '26', '27'],
     changebg: 1,
     isShow: false,
-    chooseCourse:false
+    chooseCourse: false,
+    bg: '/static/sport/bg.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // console.log(app.globalData)
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
+    })
   },
   changeDate(e) {
     // console.log(e.target)
@@ -62,24 +68,43 @@ Page({
       changebg: changebg
     })
   },
-  runing() {
+  runing: function () {
     wx.navigateTo({
       url: '/pages/movementData/movementData',
     })
   },
-  appointment(){
+  fitness: function () {
+
+  },
+  appointment: function () {
     console.log('约课')
     this.setData({
-    chooseCourse:true
+      chooseCourse: true
     })
-// wx.navigateTo({
-//   url: 'url',
-// })
+    // wx.navigateTo({
+    //   url: 'url',
+    // })
   },
-  close(){
+  close() {
     this.setData({
-      chooseCourse:false
-      })
+      chooseCourse: false
+    })
+  },
+  groupCourse: function () {
+    wx.navigateTo({
+      url: '/pages/appointment/appointment',
+    })
+    this.setData({
+      chooseCourse: false
+    })
+  },
+  personalCourse: function () {
+    wx.navigateTo({
+      url: '/pages/appointment/appointment',
+    })
+    this.setData({
+      chooseCourse: false
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

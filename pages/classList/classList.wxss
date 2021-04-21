@@ -1,3 +1,5 @@
 .cla_list {
-  background:#f0f2f5 ;
+  height: auto;
+  padding-top: 20rpx;
+  background: #f0f2f5;
 }

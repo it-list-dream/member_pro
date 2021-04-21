@@ -2,7 +2,7 @@ var getWeekdDay = function (value) {
   var date = getDate(value);
   var weekDay = date.getDay();
   var week = '';
-  console.log(weekDay);
+  //console.log(weekDay);
   switch (weekDay) {
     case 0:
       week =  "星期日";

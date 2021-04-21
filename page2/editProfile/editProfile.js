@@ -25,7 +25,10 @@ Page({
   onLoad: function (options) {
     let date = util.formatTime(new Date());
     this.setData({
-      endTime: date
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight,
+      endTime:date
     })
   },
   changeSex(e) {

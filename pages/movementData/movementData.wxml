@@ -1,5 +1,5 @@
 <nav-bar page-name="运动数据"></nav-bar>
-<view class="sportData">
+<view class="sportData" style="margin-top:{{navHeight}}px">
   <view class="banner">
     <image src="/static/sport_bg.png"></image>
     <view class="sport_info">
@@ -55,7 +55,7 @@
     <!-- 日期 -->
     <view class="date">
       <view class="year">
-        <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" fields="year"
+        <picker mode="date" value="{{date}}" start="2015-09-01" end="{{endTime}}" fields="year"
           bindchange="bindYearChange">
           <!-- <text>2021年</text> -->
           <text>{{date || 2021}}年</text>

@@ -1,5 +1,6 @@
 //引入城市JSON数据文件
 var tcity = require("../../utils/citys-select.js")
+var app = getApp()
 Page({
 
   /**
@@ -20,6 +21,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
+    })
     this.initCityData()
   },
   bindinputblur: function (e) {

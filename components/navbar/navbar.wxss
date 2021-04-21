@@ -41,6 +41,7 @@
 }
 
 .navbar-action-wrap {
+  overflow: hidden;
   display: -webkit-flex;
   display: flex;
   -webkit-box-align: center;
@@ -55,11 +56,6 @@
   padding-bottom: 4px;
 }
 
-.navbar-action-group {
-  /* border: 1px solid #f0f0f0;
-  border-radius: 20px; */
-  overflow: hidden;
-}
 
 .navbar-action_item {
   padding: 3px 0;

@@ -1,5 +1,6 @@
 
 .coachList {
+  height: auto;
   background-color: #F0F2F5;
   padding-top: 20rpx;
 }

@@ -1,5 +1,5 @@
-<nav-bar page-name="登录"></nav-bar>
-<view class="login-layout" style="background-image: url('/static/avtor (2).png');">
+<nav-bar page-name="登录"  titleColor="#FFFFFF" icon="{{true}}" style="position: fixed;top:0;left:0;z-index:9999999;" bgColor="transparent"></nav-bar>
+<view class="login-layout">
   <view class="avatar">
     <image src="/static/avtor (1).png"></image>
   </view>

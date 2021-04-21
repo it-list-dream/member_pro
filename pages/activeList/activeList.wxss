@@ -1,5 +1,6 @@
 .active_list{
   background: #F0F2F5;
+  height: auto;
 }
 .vip_card{
   padding: 20rpx 30rpx;

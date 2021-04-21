@@ -1,38 +1,31 @@
-
-<nav-bar page-name="我的店铺"></nav-bar>
-<view class="loaction_wrapper" style="height:{{windowHeight}}px">
-  <view class="location_info">
-    <!-- 定位 -->
-    <view class="loaction">
-      <view class="location_title">
-        <image src="/static/laction.png"></image>
-        <text class="address">上海市</text>
-        <image src="/static/bottom_arrow.png"></image>
+<nav-bar page-name="健身店铺"></nav-bar>
+<view class="loaction_wrapper" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}})px">
+  <scroll-view scroll-y style="height:calc(100vh - {{navHeight}})px - 20rpx">
+    <view class="location_info">
+      <!-- 定位 -->
+      <view class="loaction">
+        <view class="location_title">
+          <image src="/static/laction.png"></image>
+          <text class="address">上海市</text>
+          <image src="/static/bottom_arrow.png"></image>
+        </view>
+        <view class="shop_num">共两家</view>
       </view>
-      <view class="shop_num">共两家</view>
+      <!-- 门店 -->
+      <block wx:for="{{4}}">
+        <view class="store_list">
+          <image src="/static/room.png" style="width:200rpx;height:170rpx;"></image>
+          <view class="store_item">
+            <view class="store_adr">徐汇店</view>
+            <view class="detail_address">
+              <image src="/static/store.png"></image>
+              <text class="detail">上海市徐汇区永生大厦407室</text>
+            </view>
+            <view class="distance">0.5km</view>
+          </view>
+        </view>
+      </block>
     </view>
-    <!-- 门店 -->
-    <view class="store_list">
-       <image src="/static/room.png" style="width:200rpx;height:170rpx;"></image>
-       <view class="store_item">
-          <view class="store_adr">徐汇店</view>
-          <view class="detail_address">
-            <image src="/static/store.png"></image>
-            <text class="detail">上海市徐汇区永生大厦407室</text>
-          </view>
-          <view class="distance">0.5km</view>
-       </view>
-    </view>  
-    <view class="store_list">
-       <image src="/static/room.png" style="width:200rpx;height:170rpx;"></image>
-       <view class="store_item">
-          <view class="store_adr">徐汇店</view>
-          <view class="detail_address">
-            <image src="/static/store.png"></image>
-            <text class="detail">上海市徐汇区永生大厦407室</text>
-          </view>
-          <view class="distance">0.5km</view>
-       </view>
-    </view>  
-  </view>
+  </scroll-view>
+
 </view>

@@ -1,6 +1,7 @@
 .course_container {
   padding: 20rpx 30rpx 0 30rpx;
   background-color: #F0F2F5;
+  height: auto;
 }
 
 .course_list {
@@ -10,9 +11,7 @@
   width: 690rpx;
   height: 240rpx;
   background-size: 100% 100%;
-
 }
-
 .courseTop {
   display: flex;
   align-items: center;

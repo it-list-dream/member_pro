@@ -91,9 +91,9 @@ Page({
 
   },
   memberCode() {
-wx.navigateTo({
-  url: '/page2/memberCode/memberCode',
-})
+    wx.navigateTo({
+      url: '/page2/memberCode/memberCode',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

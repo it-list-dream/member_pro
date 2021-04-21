@@ -1,65 +1,26 @@
 <nav-bar page-name="选择课程"></nav-bar>
-<view class="selectCourse">
-  <view class="course_list">
-    <view class="course_item">
-      <view class="top">
-        <view>
-          <image src="/static/head.png" style="width:52rpx;height:52rpx;"></image>
-        </view>
-        <view class="course-info">
+<view class="selectCourse" style="margin-top:{{navHeight}}px">
+  <block wx:for="{{3}}">
+    <view class="course_list" style="background-image:url('/static/selectCourse.png')">
+      <view class="course_item">
+        <view class="top">
           <view>
-            <text class="courseName">六大胖</text>
-            <image src="/static/man.png" style="width:20rpx;height:20rpx; vertical-align: middle;"></image>
+            <image src="/static/head.png" style="width:52rpx;height:52rpx;"></image>
           </view>
-          <view>时长: 60分钟</view>
+          <view class="course-info">
+            <view>
+              <text class="courseName">六大胖</text>
+              <image src="/static/man.png" style="width:20rpx;height:20rpx; vertical-align: middle;"></image>
+            </view>
+            <view>时长: 60分钟</view>
+          </view>
         </view>
-      </view>
-      <view class="bottom">
-        <view class="course_number">如渔常规课（10节）</view>
-        <view class="expirationDate">截止2021-6-13</view>
+        <view class="bottom">
+          <view class="course_number">如渔常规课（10节）</view>
+          <view class="expirationDate">截止2021-6-13</view>
+        </view>
       </view>
     </view>
-  </view>
-  <!--  -->
-  <view class="course_list">
-    <view class="course_item">
-      <view class="top">
-        <view>
-          <image src="/static/head.png" style="width:52rpx;height:52rpx;"></image>
-        </view>
-        <view class="course-info">
-          <view>
-            <text class="courseName">六大胖</text>
-            <image src="/static/man.png" style="width:20rpx;height:20rpx;"></image>
-          </view>
-          <view>时长: 60分钟</view>
-        </view>
-      </view>
-      <view class="bottom">
-        <view class="course_number">如渔常规课（10节）</view>
-        <view class="expirationDate">截止2021-6-13</view>
-      </view>
-    </view>
-  </view>
-  <!--  -->
-  <view class="course_list">
-    <view class="course_item">
-      <view class="top">
-        <view>
-          <image src="/static/head.png" style="width:52rpx;height:52rpx;"></image>
-        </view>
-        <view class="course-info">
-          <view>
-            <text class="courseName">六大胖</text>
-            <image src="/static/man.png" style="width:20rpx;height:20rpx;"></image>
-          </view>
-          <view>时长: 60分钟</view>
-        </view>
-      </view>
-      <view class="bottom">
-        <view class="course_number">如渔常规课（10节）</view>
-        <view class="expirationDate">截止2021-6-13</view>
-      </view>
-    </view>
-  </view>
+  </block>
+
 </view>

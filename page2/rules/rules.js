@@ -1,3 +1,4 @@
+// page2/rules/rules.js
 const app = getApp()
 Page({
 
@@ -5,8 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-        storedTab:['全部','充值','消费'],
-        tabIndex:0
+
   },
 
   /**
@@ -19,19 +19,7 @@ Page({
       windowHeight: app.globalData.windowHeight
     })
   },
-  tabStored(e){
-          console.log(e.target.dataset)
-      let idx = e.target.dataset.idx;
-      this.setData({
-        tabIndex:idx
-      })
-  },
-  swiperTab:function(e){
-    let current = e.detail.current;
-    this.setData({
-      tabIndex:current
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

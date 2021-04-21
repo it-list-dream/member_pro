@@ -1,5 +1,5 @@
 <nav-bar page-name="预约"></nav-bar>
-<view class="appointment">
+<view class="appointment" style="margin-top:{{navHeight}}px">
   <view class="appointment_item">
     <view class="appointment_detail">
       <view class="course_list">
@@ -28,9 +28,9 @@
             <view>如渔常规课（10节）</view>
             <view>截止：2021-6-13</view>
           </view>
-          <view class="switch">
+          <navigator url="/pages/selectCourse/selectCourse" class="switch" hover-class="none">
             <image src="/static/appointment/sort.png"></image>
-          </view>
+          </navigator>
         </view>
       </view>
     </view>

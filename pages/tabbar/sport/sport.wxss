@@ -1,11 +1,84 @@
 /* pages/sport/sport.wxss */
+.sprotTip {
+  width: 100%;
+  height: 250rpx;
+}
+/*  */
+.navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.navbar-title {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  box-sizing: border-box;
+  padding:0 115px;
+  line-height: 32px;
+  text-align: center;
+  z-index: 10;
+  font-size: 18px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.tip {
+  margin-left: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 160rpx;
+  height: 60rpx;
+  background:#B4B3BB;
+  border-radius: 30rpx;
+}
+.tipItem{
+  text-align: center;
+  width: 70rpx;
+  line-height: 70rpx;
+  height: 100%;
+}
+.line{
+  width: 1px;
+height: 24rpx;
+background: #DDDDDD;
+}
+.tip image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+
+
+/*  */
+.all {
+  position: relative;
+  padding: 0 30rpx;
+  height: 100vh;
+  background: #F0F2F5;
+}
+/*  */
 .sport_device {
+  position: absolute;
+  top: -100rpx;
+  left: 0;
   width: 100%;
   height: 172rpx;
 }
 
 .device_wrapper {
-  /* padding: 0 30rpx; */
+  padding: 0 30rpx;
   display: flex;
   justify-content: space-between;
 }
@@ -68,13 +141,10 @@
   font-weight: 500;
   color: #FFFFFF;
 }
-
 /*  */
-.all {
-  padding: 0 30rpx;
-  background: #F0F2F5;
+.all .running{
+  padding-top:100rpx;
 }
-
 .nav {
   padding: 22rpx 0;
   display: flex;
@@ -267,21 +337,24 @@
   border-radius: 26rpx;
 }
 
-/*  */
+/* 自律积分 */
 .inte_list {
+  box-sizing: border-box;
+  padding:20rpx;
   display: flex;
   justify-content: space-around;
+  align-items: flex-end;
   flex-wrap: wrap;
-  background: #FFFFFF;
-  border-radius: 10px;
-  /* 
-  width: 690px;
-height: 582px;
-  */
+  width: 690rpx;
+  height: 582rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+  align-content:space-between;
+  margin-bottom: 20rpx;
 }
 
 .inte_item {
-  margin: 20rpx 0;
+  box-sizing: border-box;
   width: 204rpx;
   height: 262rpx;
   background: #FFFFFF;
@@ -301,7 +374,6 @@ height: 582px;
   font-family: PingFang SC;
   font-weight: bold;
   color: #333333;
-
 }
 
 .inte_num>text {
@@ -340,9 +412,11 @@ height: 582px;
   background: #FFFFFF;
   border-radius: 8rpx 8rpx 0 0;
 }
-.modalDlg_item{
+
+.modalDlg_item {
   padding: 0 30rpx;
 }
+
 .mask_title {
   display: flex;
   justify-content: space-between;
@@ -352,26 +426,30 @@ height: 582px;
   color: #333333;
   padding-top: 30rpx;
 }
-.mask_title image{
+
+.mask_title image {
   width: 24rpx;
   height: 24rpx;
 }
-.sa_course{
+
+.sa_course {
   box-sizing: border-box;
   display: flex;
   height: 68rpx;
   justify-content: space-between;
   align-items: flex-end;
   padding-bottom: 12rpx;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.sa_course text{
+
+.sa_course text {
   font-size: 28rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
-.sa_course image{
+
+.sa_course image {
   width: 36rpx;
   height: 36rpx;
 }

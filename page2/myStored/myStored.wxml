@@ -1,5 +1,5 @@
 <nav-bar page-name="我的储值"></nav-bar>
-<view class="stored_container">
+<view class="stored_container" style="margin-top:{{navHeight}}px">
   <view class="stored_list">
     <view class="stored_img">
       <view>可用储值</view>

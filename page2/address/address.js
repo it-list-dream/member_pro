@@ -1,30 +1,36 @@
 // page2/address/address.js
+var app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     defValue:false,
+    defValue: false,
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-  radioChange(){
-   let default_value = this.data.defValue;
     this.setData({
-      defValue:!default_value
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
     })
   },
-  add_address(){
+  radioChange() {
+    let default_value = this.data.defValue;
+    this.setData({
+      defValue: !default_value
+    })
+  },
+  add_address() {
     wx.navigateTo({
       url: '/page2/addAdress/addAdress',
     })
   },
-  edit(){
+  edit() {
     wx.navigateTo({
       url: '/page2/addAdress/addAdress',
     })

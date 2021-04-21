@@ -1,18 +1,23 @@
-<!--pages/sport/sport.wxml-->
-<!-- <view style="margin-top:62px;">
-  <navigator open-type="navigate" url="/pages/movementData/movementData">运动数据</navigator>
-</view> -->
-<nav-bar page-name="运动" showNav="{{false}}"></nav-bar>
-<view class="sport">
-  <view class="header">
-    <image src="/static/sport/bg.png" style="width:100%;height:250rpx;"></image>
+<!-- <nav-bar page-name="运动" showNav="{{false}}"></nav-bar> -->
+  <view class="sprotTip" style="background-image:url({{bg}})">
+    <view class="navbar" style='height:{{navHeight}}px;'>
+      <view class="tip" style="margin-top:{{navTop}}px">
+        <view class="tipItem">
+          <image src="/static/home_pic/QRcode.png"></image>
+        </view>
+        <view class="line"></view>
+        <view  class="tipItem">
+          <image src="/static/home_pic/scan.png"></image>
+        </view>
+      </view>
+      <view class='navbar-title' style='top:{{navTop}}px'>运动</view>
+    </view>
   </view>
-
   <!-- 运动日历 -->
   <view class="all">
-    <view class="sport_device" bindtap="runing">
+    <view class="sport_device" >
       <view class="device_wrapper">
-        <view class="sport_tip">
+        <view class="sport_tip" bindtap="runing">
           <view class="sport_day">
             <view>运动天数</view>
             <view>20 <text class="test">天</text></view>
@@ -22,7 +27,7 @@
             <image src="/static/sport/run.png" style="width:130rpx;height:130rpx;"></image>
           </view>
         </view>
-        <view class="sport_tip fitness">
+        <view class="sport_tip fitness" bindtap="fitness">
           <view class="sport_day">
             <view>体适能</view>
             <view>95 <text class="test">分</text></view>
@@ -35,12 +40,12 @@
       </view>
     </view>
     <!-- nav -->
-    <view class="nav">
+    <view class="nav running">
       <view class="run_title nav-title">运动日历</view>
-      <view>
+      <navigator url="/page2/myCourse/myCourse" style="display:block;" hover-class="none">
         <text class="nav-name">我的课程</text>
-        <image class="nav-img" src="/static/sport/right_arrow.png" style=""></image>
-      </view>
+        <image class="nav-img" src="/static/sport/right_arrow.png"></image>
+      </navigator>
     </view>
     <!--  -->
     <view class="sp_calendar">
@@ -127,10 +132,10 @@
     <!-- 自律积分 -->
     <view class="nav">
       <view class="run_title nav-title">自律积分</view>
-      <view>
+      <navigator url="/pages/tabbar/integral/integral" style="display:block;" hover-class="none" open-type="switchTab">
         <text class="nav-name">全部奖励</text>
         <image class="nav-img" src="/static/sport/right_arrow.png" style=""></image>
-      </view>
+      </navigator >
     </view>
     <!-- 积分奖励 -->
     <view class="inte_list">
@@ -152,11 +157,11 @@
             <text>预约的课程类型</text>
             <image src="/static/close.png" bindtap="close"></image>
           </view>
-          <view class="sa_course">
+          <view class="sa_course" catchtap="groupCourse">
             <text>团体课</text>
             <image src="/static/next.png"></image>
           </view>
-          <view class="sa_course">
+          <view class="sa_course" catchtap="personalCourse">
             <text>私人教练</text>
             <image src="/static/next.png"></image>
           </view>
@@ -164,4 +169,3 @@
       </view>
     </view>
   </view>
-</view>

@@ -1,5 +1,5 @@
 <nav-bar page-name="我的会员卡"></nav-bar>
-<view class="vipCard" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}}px)">
+<view class="vipCard" style="margin-top:{{navHeight}}px">
   <block wx:for="{{cardList}}" wx:key="index">
     <view class="card_list">
       <image src="/static/vipimg.png"></image>
@@ -16,7 +16,6 @@
           <view catchtap="lookReword">查看入场记录</view>
         </view>
       </view>
-
     </view>
   </block>
 

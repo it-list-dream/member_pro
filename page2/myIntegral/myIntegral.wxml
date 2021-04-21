@@ -1,11 +1,11 @@
 <nav-bar page-name="我的积分"></nav-bar>
-<view class="myInteCon">
+<view class="myInteCon" style="margin-top:{{navHeight}}px">
   <!--  -->
   <view class="useInte">
     <view class="inte_item" style="background-image:url('/static/inte_bg.png')">
       <view class="title">
         <text>可用积分</text>
-        <view class="rules">积分规则</view>
+        <navigator url="/page2/rules/rules"  class="rules" hover-class="none">积分规则</navigator>
       </view>
       <view class="inte_detail">
         <view>行为积分：2000</view>
@@ -14,7 +14,7 @@
             VIP积分：<text class="fen">10000</text>
           </view>
 
-          <view class="immediate">立即使用</view>
+          <navigator class="immediate" open-type="navigateBack">立即使用</navigator>
         </view>
       </view>
     </view>

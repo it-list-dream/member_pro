@@ -1,0 +1,60 @@
+.content {
+  background-color: #F0F2F5;
+  overflow:hidden ;
+}
+.shopping{
+  height: 1239rpx;
+  margin-top: 20rpx;
+  overflow:hidden ;
+  background-color: #FFFFFF;
+}
+.product {
+  width: 247rpx;
+  margin: 20rpx 0rpx 0rpx 30rpx;
+  font-size: 26rpx;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 8rpx;
+  background-color: #52495B;
+}
+.product-text {
+  display: block;
+  height: 58rpx;
+  width: 675rpx;
+  font-size: 22rpx;
+  color: #333333;
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+}
+.type {
+  width: 317rpx; 
+}
+.tyop {
+  margin-bottom: 0rpx;
+  height: 130rpx;
+  width: 551rpx;
+}
+.houqi {
+  width: 217rpx;
+}
+.spty{
+  height: 130rpx;
+}
+.str{
+  height: 131rpx;
+}
+.hry {
+  height: 130rpx;
+}
+.tixi {
+  width: 158rpx;
+}
+.consumer {
+  margin-top: 4rpx;
+  display: inline-block;
+  font-weight: 600;
+}
+.xinwei {
+  display: inline-block;
+  font-weight: 600;
+}

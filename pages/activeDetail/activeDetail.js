@@ -1,21 +1,25 @@
-// pages/activeDetail/activeDetail.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    membership:['张三','李四','王五','小李子'],
-    m_index:0
+    membership: ['张三', '李四', '王五', '小李子'],
+    m_index: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
+    })
   },
-  bindPickerChange(e){
+  bindPickerChange(e) {
     console.log(e)
     this.setData({
       m_index: e.detail.value

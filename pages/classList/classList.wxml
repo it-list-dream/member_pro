@@ -1,7 +1,8 @@
 <nav-bar page-name="课程列表" ></nav-bar>
-<view class="cla_list">
-  <block wx:for="list">
+<view class="cla_list" style="margin-top:{{navHeight}}px">
+  <block wx:for="{{5}}">
     <course-list bindtap="getclass"></course-list>
   </block>
 </view>
+
 

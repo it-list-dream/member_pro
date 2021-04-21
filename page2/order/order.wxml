@@ -1,5 +1,5 @@
 <nav-bar page-name="我的订单"></nav-bar>
-<view class="order_container">
+<view class="order_container" style="margin-top:{{navHeight}}px">
   <view class="order_head">
     <block wx:for="{{orderTitle}}" wx:key="index">
       <view class="order_title" bindtap="choose" data-index="{{index}}">

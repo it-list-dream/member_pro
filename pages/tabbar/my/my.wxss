@@ -1,19 +1,75 @@
 /* pages/my/my.wxss */
-.my_bg image {
+.myTip {
   width: 100%;
-  height: 290rpx;
-  vertical-align: bottom;
+  height: 280rpx;
+}
+/*  */
+.navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
+.navbar-title {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  box-sizing: border-box;
+  padding:0 115px;
+  line-height: 32px;
+  text-align: center;
+  z-index: 10;
+  font-size: 18px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.tip {
+  margin-left: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 160rpx;
+  height: 60rpx;
+  background: #B4B3BB;
+  border-radius: 30rpx;
+}
+
+.tipItem {
+  text-align: center;
+  width: 70rpx;
+  line-height: 70rpx;
+  height: 100%;
+}
+
+.line {
+  width: 1px;
+  height: 24rpx;
+  background: #DDDDDD;
+}
+
+.tip image {
+  width: 36rpx;
+  height: 36rpx;
+}
+/*  */
 .my_container {
   position: relative;
   background-color: #f0f2f5;
-  height: calc(100vh - 60px);
 }
 
 .my_banner {
   position: absolute;
-  top: -120rpx;
+  top:-120rpx;
   left: 50%;
   transform: translateX(-50%);
   width: 690rpx;

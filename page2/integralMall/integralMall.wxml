@@ -1,5 +1,5 @@
 <nav-bar page-name="积分兑换"></nav-bar>
-<view class="coverstionBox">
+<view class="coverstionBox" style="margin-top:{{navHeight}}px;height:{{navHeight}}px">
   <!-- 周卡 -->
   <view class="scorecard" wx:if="{{type==1}}">
     <view class="card_banner">
@@ -56,7 +56,7 @@
     <!--  -->
     <view class="real_detail">
       <view class="real_item real_inte">
-        <text class="minute" wx:if="{{cardType==0}}">分</text>
+        <text class="minute" wx:if="{{cardType==0}}" style="text-align: center;">分</text>
         <text class="vip_inte" wx:else>VIP</text>
         <text class="credits">500</text>
         积分

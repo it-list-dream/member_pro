@@ -1,15 +1,9 @@
 <nav-bar page-name="活动卡详情"></nav-bar>
-<view class="active_list" style="height:{{windowHeight}}rpx">
-  <view class="vip_card" bindtap="detail">
-    <image src="/static/vip.png"></image>
-    <view class="card_title">一年卡</view>
-  </view>
-  <view class="vip_card">
-    <image src="/static/vip.png"></image>
-    <view class="card_title">一年卡</view>
-  </view>
-  <view class="vip_card">
-    <image src="/static/vip.png"></image>
-    <view class="card_title">一年卡</view>
-  </view>
+<view class="active_list" style="margin-top:{{navHeight}}px">
+  <block wx:for="{{4}}">
+    <view class="vip_card" bindtap="detail">
+      <image src="/static/vip.png"></image>
+      <view class="card_title">一年卡</view>
+    </view>
+  </block>
 </view>

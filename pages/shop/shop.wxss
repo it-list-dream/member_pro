@@ -1,17 +1,14 @@
 /* pages/shop/shop.wxss */
 .loaction_wrapper {
-  background: #F0F2F5;
-  padding: 0 30rpx;
-  overflow: hidden;
+   background: #F0F2F5;
+   padding: 20rpx 30rpx 0 30rpx;
+   /* height: auto; */
 }
 
 .loaction_wrapper .location_info {
-  margin-top: 20rpx;
   width: 690rpx;
   background: #ffffff;
   border-radius: 8rpx;
-  padding-top: 1px;
-  margin-top: 19rpx;
 }
 
 .loaction_wrapper .loaction {

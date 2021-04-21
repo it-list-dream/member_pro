@@ -219,6 +219,180 @@
         {
           "name": "page2/entrance/entrance",
           "pathName": "page2/entrance/entrance",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/coachDetail/coachDetail",
+          "pathName": "pages/coachDetail/coachDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personalTrainer/personalTrainer",
+          "pathName": "pages/personalTrainer/personalTrainer",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/classList/classList",
+          "pathName": "pages/classList/classList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/activeList/activeList",
+          "pathName": "pages/activeList/activeList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/activeDetail/activeDetail",
+          "pathName": "pages/activeDetail/activeDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myCourse/myCourse",
+          "pathName": "page2/myCourse/myCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/shop/shop",
+          "pathName": "pages/shop/shop",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/historyAppointment/historyAppointment",
+          "pathName": "page2/historyAppointment/historyAppointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/addAdress/addAdress",
+          "pathName": "page2/addAdress/addAdress",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/groupAppointment/groupAppointment",
+          "pathName": "pages/groupAppointment/groupAppointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/selectCourse/selectCourse",
+          "pathName": "pages/selectCourse/selectCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/selectCourse/selectCourse",
+          "pathName": "pages/selectCourse/selectCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/integralMall/integralMall",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
           "scene": null
         }
       ]

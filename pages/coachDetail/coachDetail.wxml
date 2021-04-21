@@ -1,7 +1,7 @@
 <nav-bar page-name="教练详情"></nav-bar>
-<view class="coachDetail">
+<view class="coachDetail" style="margin-top:{{navHeight}}px">
   <view class="coach_bg">
-    <image src="/static/coach02.png" style="width:100%;height:100%;"></image>
+    <image src="/static/coach02.png"></image>
   </view>
   <view class="detail_list">
     <view class="coach_info">
@@ -37,36 +37,16 @@
   </view>
   <!--  -->
   <view class="coach_subject">
-    <view class="coach_pic" bindtap="rec_course">
-      <!-- <image></image> -->
-      <view class="subject">
-        <view>拉伸课</view>
-        <view>
-          <text class="price">￥</text>
-          <text class="num">300/节</text>
+    <block wx:for="{{4}}">
+      <view class="coach_pic" bindtap="rec_course" style="background-image:url('/static/coach03.png')">
+        <view class="subject">
+          <view>拉伸课</view>
+          <view>
+            <text class="price">￥</text>
+            <text class="num">300/节</text>
+          </view>
         </view>
       </view>
-    </view>
-    <view class="coach_pic">
-      <!-- <image></image> -->
-      <view class="subject">
-        <view>拉伸课</view>
-        <view>
-          <text class="price">￥</text>
-          <text class="num">300/节</text>
-        </view>
-      </view>
-    </view>
-    <view class="coach_pic">
-      <!-- <image></image> -->
-      <view class="subject">
-        <view>拉伸课</view>
-        <view>
-          <text class="price">￥</text>
-          <text class="num">300/节</text>
-        </view>
-      </view>
-    </view>
+    </block>
   </view>
-
 </view>
