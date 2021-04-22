@@ -1,12 +1,8 @@
-/* .myInteCon{
-
-} */
 .useInte {
   margin-top: 20rpx;
-  width: 100%;
+  width: auto;
   height: 274rpx;
   background: #F0F2F5;
-  overflow: hidden;
 }
 
 .inte_item {
@@ -55,7 +51,6 @@
   margin-top: 28rpx;
   width: 100%;
   height: 156rpx;
-  /* background-color: yellow; */
 }
 
 .inte_detail>view:first-child {
@@ -76,10 +71,6 @@
   color: #F4C08D;
 }
 
-/* view {
-  width: 124px;
-  height: 35rpx;
-} */
 .immediate {
   width: 124rpx;
   height: 35rpx;
@@ -104,83 +95,50 @@
   padding: 0 30rpx;
 }
 
-.con_title {
-  display: flex;
-  height: 80rpx;
-  line-height: 80rpx;
-  text-align: center;
+/*  */
+.inte_tabs {
+  position: relative;
+  width: 100%;
+  height: 100rpx;
   font-size: 32rpx;
   font-family: PingFang SC;
   color: #333333;
+  /* background: purple; */
 }
 
-.con_title>view:last-child {
-  line-height: 0;
+.tabs_item {
+  float: left;
+  width: 25%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
 }
 
-
-.con_title>view {
+.tabs_item:nth-child(-n+3) {
   position: relative;
-  flex: 1;
 }
-.con_title>view:last-child {
-  flex: 0;
-}
-.active{
-  font-weight: bold;
-}
+
 .active::after {
   position: absolute;
+  bottom: 12rpx;
+  left: 50%;
+  transform: translateX(-50%);
   content: '';
   width: 20rpx;
   height: 4rpx;
   background: #52495B;
   border-radius: 2rpx;
-  bottom: 10rpx;
-  left: 76rpx;
+
 }
 
-
-.chooseBox {
+.tabs_item:last-child {
   position: relative;
-  width: 164rpx;
-  background-color: pink;
+  line-height: 0;
 }
 
-.chooseInte {
-  position: relative;
-  width: 164rpx;
-  height: 40rpx;
-  margin-top: 20rpx;
-  text-align: center;
-  border: 1px solid #333333;
-}
-
-.chooseInte text {
-  line-height: 40rpx;
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: 400;
-  color: #333333;
-}
-
-.chooseInte image {
-  width: 30rpx;
-  height: 30rpx;
-  vertical-align: middle;
-}
-
-.selectBox {
-  position: absolute;
-  width: 168rpx;
-  top: 70rpx;
-  left: 0;
-  height: 120rpx;
-  background: #F0F2F5;
-}
-
+/*  */
 .record {
-  margin-top: 30rpx;
+  margin-top: 10rpx;
 }
 
 .record_item {
@@ -188,10 +146,8 @@
   justify-content: space-between;
   align-items: center;
   height: 98rpx;
-  /* background: pink; */
   border-bottom: 1px solid #eeeeee;
 }
-
 
 .left_record {
   height: 100%;

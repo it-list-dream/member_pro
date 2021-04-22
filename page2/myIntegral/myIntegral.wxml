@@ -1,11 +1,11 @@
 <nav-bar page-name="我的积分"></nav-bar>
-<view class="myInteCon" style="margin-top:{{navHeight}}px">
-  <!--  -->
+<view class="myInteCon" style="margin-top:{{navHeight}}px;">
+  <!--  积分-->
   <view class="useInte">
     <view class="inte_item" style="background-image:url('/static/inte_bg.png')">
       <view class="title">
         <text>可用积分</text>
-        <navigator url="/page2/rules/rules"  class="rules" hover-class="none">积分规则</navigator>
+        <navigator url="/page2/rules/rules" class="rules" hover-class="none">积分规则</navigator>
       </view>
       <view class="inte_detail">
         <view>行为积分：2000</view>
@@ -21,52 +21,50 @@
   </view>
   <!--  -->
   <view class="container">
-    <view class="con_title">
-      <!-- <view>全部</view>
-      <view>赚积分</view>
-      <view>花积分</view> -->
+    <view class="inte_tabs">
       <block wx:for="{{options_tab}}" wx:key="index">
-        <view catchtap="optionsTab" data-index="{{index}}" class="{{tab == index ?'active':''}}">{{item}}</view>
+        <view catchtap="optionsTab" data-index="{{index}}" class="tabs_item {{tab == index ?'active':''}}">{{item}}
+        </view>
       </block>
-      <view class="chooseBox">
-        <view class="chooseInte">
-          <text>行为积分</text>
-          <image src="/static/bottom_arrow.png"></image>
-        </view>
-        <view class="selectBox">
-          <view>全部</view>
-          <view>行为积分</view>
-          <view>消费积分</view>
-        </view>
+      <view class="tabs_item">
+        <select prop-array='{{selectArray}}' top="10" bind:myget='getDate'></select>
       </view>
     </view>
     <!--  内容-->
-    <view class="record">
-      <view class="record_item">
-        <view class="left_record">
-          <view>进场签到</view>
-          <view>2021-03-15</view>
+    <view class="record"  wx:if="{{tab==0}}">
+      <block wx:for="{{all}}" wx:key="id">
+        <view class="record_item">
+          <view class="left_record">
+            <view>{{item.name}}</view>
+            <view>{{item.date}}</view>
+          </view>
+          <view class="right_record">{{item.num}}</view>
         </view>
-        <view class="right_record">+5000</view>
-      </view>
-      <view class="record_item">
-        <view class="left_record">
-          <view>进场签到</view>
-          <view>2021-03-15</view>
-        </view>
-        <view class="right_record">+5000</view>
-      </view>
-      <view class="record_item">
-        <view class="left_record">
-          <view>进场签到</view>
-          <view>2021-03-15</view>
-        </view>
-        <view class="right_record">+5000</view>
-      </view>
+      </block>
     </view>
-    <!--  -->
-    <view>
-
+       <!-- 赚积分 -->
+    <view class="record" wx:elif="{{tab==1}}">
+      <block wx:for="{{profitable}}" wx:key="id">
+        <view class="record_item">
+          <view class="left_record">
+            <view>{{item.name}}</view>
+            <view>{{item.date}}</view>
+          </view>
+          <view class="right_record">{{item.num}}</view>
+        </view>
+      </block>
+    </view>
+    <!-- 花积分 -->
+    <view class="record" wx:elif="{{tab==2}}">
+      <block wx:for="{{takeIntegral}}" wx:key="id">
+        <view class="record_item">
+          <view class="left_record">
+            <view>{{item.name}}</view>
+            <view>{{item.date}}</view>
+          </view>
+          <view class="right_record">{{item.num}}</view>
+        </view>
+      </block>
     </view>
   </view>
 </view>

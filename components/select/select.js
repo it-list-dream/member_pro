@@ -1,72 +1,51 @@
 Component({
+  /**
+   * 组件的属性列表
+   */
+  options: {
+    addGlobalClass: true,
+  },
   properties: {
-    options: {
+    propArray: {
       type: Array,
-      value: []
     },
-    defaultOption: {
-      type: Object,
-      value: {
-        id: '000',
-        name: '全部城市'
-      }
-    },
-  
-    width:{
-      type:Number,
-      value:168
+    top:{
+      type:String,
+      value:0
     }
   },
+  /**
+   * 组件的初始数据
+   */
   data: {
-    result: [],
-    isShow: false,
-    current: {}
+    selectShow: false, //初始option不显示
+    nowText: "请选择", //初始内容
   },
+  /**
+   * 组件的方法列表
+   */
   methods: {
-    optionTap(e) {
-      let dataset = e.target.dataset
+    //option的显示与否
+    selectToggle: function () {
+      var nowShow = this.data.selectShow; //获取当前option显示的状态
       this.setData({
-        current: dataset,
-        isShow: false
-      });
-
-      // 调用父组件方法，并传参
-      this.triggerEvent("change", {
-        ...dataset
+        selectShow: !nowShow
       })
     },
-    openClose() {
+    //设置内容
+    setText: function (e) {
+      var nowData = this.properties.propArray; //当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
+      var nowIdx = e.target.dataset.index; //当前点击的索引
+      var nowText = nowData[nowIdx].text; //当前点击的内容
       this.setData({
-        isShow: !this.data.isShow
+        selectShow: false,
+        nowText: nowText,
       })
-    },
-
-    // 此方法供父组件调用
-    close() {
-      this.setData({
-        isShow: false
-      })
-    }
-  },
-  lifetimes: {
-    attached() {
-      // 属性名称转换, 如果不是 { id: '', name:'' } 格式，则转为 { id: '', name:'' } 格式
-      let result = []
-      if (this.data.key !== 'id' || this.data.text !== 'name') {
-        for (let item of this.data.options) {
-          let {
-            [this.data.key]: id, [this.data.text]: name
-          } = item
-          result.push({
-            id,
-            name
-          })
-        }
+      var nowDate = {
+        id: nowIdx,
+        text: nowText
       }
-      this.setData({
-        current: Object.assign({}, this.data.defaultOption),
-        result: result
-      })
+      this.triggerEvent('myget', nowDate)
     }
   }
 })

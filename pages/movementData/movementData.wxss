@@ -187,7 +187,7 @@
   margin: 0 12rpx;
 }
 
-.charts_list {
+.echarts_container{
   width: 687rpx;
   height: 310rpx;
   margin: 0 auto;

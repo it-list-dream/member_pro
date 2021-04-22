@@ -1,39 +1,117 @@
-.all1 {
+/* navbar */
+.nav-wrap {
+  position: fixed;
   width: 100%;
-  height: calc(100vh - 60px);
-  background-color: #F0F2F5;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
 
+.navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #ffffff;
+}
+
+.icon .icon-arrow {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.navbar-title {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 115px;
+  padding-right: 115px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.navbar-action-wrap {
+  overflow: hidden;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  position: absolute;
+  left: 10px;
+  z-index: 11;
+  line-height: 1;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+
+.navbar-action_item {
+  padding: 3px 0;
+  color: #333;
+}
+
+.navbar-action-group .navbar-action_item {
+  border-right: 1px solid #f0f0f0;
+  padding: 3px 14px;
+}
+
+.navbar-action-group .last {
+  border-right: none;
+}
+
+.arrow {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+}
+
+/*  */
+.all {
+  position: relative;
+  background-color: #F0F2F5;
+  box-sizing: border-box;
+  padding-top: 78rpx;
+}
+
+.header {
+  position: absolute;
+  top: 22rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header image {
+  width: 114rpx;
+  height: 114rpx;
 }
 
 .member_list {
-  position: relative;
+  text-align: center;
+  overflow: hidden;
+  margin: 0 auto;
   width: 620rpx;
   height: 842rpx;
-  margin: 0 auto;
   background: #FFFFFF;
   box-shadow: 0 0 20rpx 0 rgba(82, 73, 91, 0.03);
-  border-radius: 4rpx;
+  border-radius: 3rpx;
 }
 
-.member_header {
-  position: absolute;
-  width: 120rpx;
-  height: 120rpx;
-  top: -48rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 8rpx solid rgba(255, 255, 255, 1);
-  border-radius: 50%;
-  display: block;
-  overflow: hidden;
-}
-
-.content {
-  padding-top: 121rpx;
-  text-align: center;
-}
-
-.member_name {
+.member_store {
+  margin-top: 138rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -47,43 +125,45 @@
   font-weight: 400;
   color: #333333;
 }
-
-.member_date {
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: 400;
-  color: #12D58B;
+.eff_date{
   margin-top: 36rpx;
+  font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: 400;
+color: #12D58B;
 }
-
-.member_code {
+.member_item{
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  width: 380rpx;
-  height: 320rpx;
-  /* background-color:pink; */
-  border-bottom: 3rpx solid #333333;
-
+  align-items: center;
+  width: 100%;
 }
-
-.year_card {
+.member_code{
+  padding: 22rpx 0;
+  width: 380rpx;
+  height: 326rpx;
+  border-bottom: 3rpx solid #333333;
+  /* background-color: #12D58B; */
+}
+.canvas{
+  width: 300rpx;
+  height: 300rpx;
+  margin-left: 36rpx;
+}
+.year_card{
   margin-top: 38rpx;
   font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+font-family: PingFang SC;
+font-weight: 500;
+color: #333333;
 }
-
-.count {
-  margin-top: 38rpx;
+.use_count{
+  margin-top: 20rpx;
   font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: 400;
-  color: #333333;
+font-family: PingFang SC;
+font-weight: 400;
+color: #333333;
 }
-
 /*  */
 /* .mask {
   position: fixed;
@@ -118,15 +198,18 @@
 }
 
 .modelcon .cardinfo {
+  display: flex;
   font-size: 28rpx;
   font-family: PingFangSC-Medium;
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
 }
-.store{
+
+.store {
   font-size: 28rpx;
-  color: rgba(0, 0, 0,  0.6);
+  color: rgba(0, 0, 0, 0.6);
 }
+
 .cardinfo text {
   padding-left: 20rpx;
   font-size: 28rpx;
@@ -140,7 +223,6 @@
   display: flex;
   height: 70rpx;
   align-items: center;
-  /* background-color: pink; */
   justify-content: space-between;
   border-bottom: 1px solid #eeeeee;
 }

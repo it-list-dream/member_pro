@@ -7,7 +7,7 @@
           <view class="course  {{selectClass==index?'course_active':''}}" bindtap="switchClass" data-index="{{index}}">
             {{item}}</view>
         </block>
-        <view></view>
+        <!-- <view></view> -->
         <!-- <view class="course {{selectClass ==0 ?'course_active':''}}">私教</view>
         <view class="course {{selectClass ==1 ?'course_active':''}}">团课</view> -->
       </view>
@@ -15,7 +15,7 @@
       <view class="coach_info" hidden="{{isShow!=1}}">
         <view class="coach_list">
           <view class="head">
-            <image src="/static/appointment/headPortrait.png" style="width:88rpx;height:88rpx;"></image>
+            <image src="/static/appointment/headPortrait.png"></image>
             <view class="head_info">
               <view>
                 <text>六大胖</text>
@@ -34,31 +34,14 @@
         </view>
       </view>
     </view>
-
     <view class="dayList">
       <view class="day_item">
-        <view class="day">
-          <view class="week">今天</view>
-          <view class="date">4.9</view>
-        </view>
-        <view class="day">
-          <view class="week">周一</view>
-          <view class="date">4.10</view>
-        </view>
-        <view class="day">
-          <view class="week">周二</view>
-          <view class="date">4.11</view>
-        </view>
-        <view class="day">
-          <view class="week">周三</view>
-          <view class="date">4.12</view>
-        </view>
-        <view class="day">
-          <view class="week">周四</view>
-          <view class="date">4.13</view>
+        <view wx:for="{{weekList}}" wx:key="*this" class="day {{choosesDay == index?'ch_active':''}}" catchtap="chooseDate" data-index="{{index}}" data-date="{{item}}"> 
+          <view class="week" data-index="{{index}}" data-date="{{item}}">今天</view>
+          <view class="date" data-index="{{index}}" data-date="{{item}}">{{item}}</view>
         </view>
         <view class="selectDate day" bindtap="showCalendar">
-          <image src="/static/appointment/calendar.png" style="width:48rpx;height:48rpx;"></image>
+          <image src="/static/appointment/calendar.png"></image>
         </view>
       </view>
       <!-- 日历 -->

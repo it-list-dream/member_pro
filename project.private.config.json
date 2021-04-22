@@ -393,6 +393,48 @@
         {
           "name": "page2/myIntegral/myIntegral",
           "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
           "scene": null
         }
       ]

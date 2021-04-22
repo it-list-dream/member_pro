@@ -50,7 +50,7 @@ Component({
   methods: {
     //回退
     _navBack: function () {
-      console.log(111)
+     // console.log(111)
       wx.navigateBack({
         delta: 1
       })      

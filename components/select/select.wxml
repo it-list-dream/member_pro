@@ -1,17 +1,9 @@
-<view class="select-box" style="width:{{width}}rpx">
-  <view class="select-current" catchtap="openClose">
-    <text class="current-name">{{current.name}}</text>
-  </view>
-  <view class="option-list" wx:if="{{isShow}}" catchtap="optionTap" >
-    <text class="option" 
-      data-id="{{defaultOption.id}}"
-      data-name="{{defaultOption.name}}">{{defaultOption.name}}
-    </text>
-    <text class="option"
-      wx:for="{{result}}"
-      wx:key="{{item.id}}"
-      data-id="{{item.id}}"
-      data-name="{{item.name}}">{{item.name}}
-    </text>
-  </view>
+<view class='com-selectBox' style="margin-top:{{top}}rpx;">
+    <view class='com-sContent' bindtap='selectToggle'>
+        <view class='com-sTxt'>{{nowText}}</view>
+        <image src='/static/bottom_arrow.png'  class='com-sImg'></image>
+    </view>
+    <view class='com-sList' wx:if="{{selectShow}}">
+        <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='' class='com-sItem' bindtap='setText'>{{item.text}}</view>
+    </view>
 </view>

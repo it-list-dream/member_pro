@@ -5,10 +5,12 @@
 .appointment .appointment_item {
   width: 100%;
 }
-.appointment_detail{
+
+.appointment_detail {
   background-color: #52495B;
   padding-bottom: 30rpx;
 }
+
 /* 教练头像 */
 .coach_info {
   width: 690rpx;
@@ -26,6 +28,11 @@
 
 .coach_info .head {
   display: flex;
+}
+
+.head>image {
+  width: 88rpx;
+  height: 88rpx;
 }
 
 .coach_info .head .head_info {
@@ -56,7 +63,7 @@
 }
 
 .coach_info .switch {
- 
+
   position: absolute;
   top: 48rpx;
   right: 20rpx;
@@ -98,61 +105,73 @@
 
 /* 日期 */
 .dayList {
-  /* margin-top: 20rpx; */
   position: relative;
   padding-top: 20rpx;
   width: 100%;
   height: 153rpx;
   background: #FFFFFF;
 }
-.dayList .selectDate{
+
+.dayList .selectDate {
   display: flex;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
+
+.selectDate image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.ch_active {
+  background: #12D58B;
+  color: #ffffff;
+}
+
 .dayList .day_item {
   display: flex;
+  height: 100%;
   justify-content: space-between;
+  align-items: center;
   padding: 0 30rpx;
 }
 
 .dayList .day {
+  padding-top: 16rpx;
   width: 98rpx;
   height: 113rpx;
-  /* background: #12D58B; */
   border-radius: 8rpx;
-  margin-top: 20rpx;
   border: 2rpx solid #cccccc;
-}
-
-.dayList .day {
   box-sizing: border-box;
-  padding-top: 10rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
-  /* color: #FFFFFF; */
   text-align: center;
 }
+
 /* 日历 */
-.calendar_list{
-  position: absolute;
+.calendar_list {
   width: 100%;
   height: 295rpx;
   border-top: 1px solid #eeeeee;
-  margin-top: 30rpx;
+  margin-top: 10rpx;
 }
+
 .calendar {
-  background-color:rgb(255, 255, 255);  
+  background-color: rgb(255, 255, 255);
 }
-.calendar-header{
-font-size: large;
-color: #59518d;
+
+.calendar-header {
+  font-size: large;
+  color: #59518d;
 }
-.calendar-board{
-color: #c7cbe2;
- font-weight: bold;
+
+.calendar-board {
+  color: #c7cbe2;
+  font-weight: bold;
 }
+
 /*  */
 .dayList .day .day_active {
   color: #333333;
@@ -249,10 +268,11 @@ color: #c7cbe2;
   margin-right: 12rpx;
 }
 
- .oder_wrapper {
+.oder_wrapper {
   margin-top: 80rpx;
 }
- .order {
+
+.order {
   width: 690rpx;
   height: 60rpx;
   margin: 0 auto;

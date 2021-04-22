@@ -58,6 +58,7 @@ const formatTime = date => {
 
   return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
 }
+
 exports = {
   toWeekDay,
   getNextDate,

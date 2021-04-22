@@ -1,61 +1,56 @@
-/* components/select/select.wxss */
-.select-box {
-  position: relative;
-  width: 100%;
-  font-size: 30rpx;
+.com-selectBox{
+  width: 168rpx;
 }
-
-.select-current {
+.com-sContent{
   position: relative;
-  width: 100%;
-  padding: 0 10rpx;
-  line-height: 70rpx;
-  border: 1rpx solid #ddd;
-  border-radius: 6rpx;
-  box-sizing: border-box;
+  height: 50rpx;
+  line-height: 50rpx;
+  border: 1px solid #e2e2e2;
+  background: white;
+  font-size: 28rpx;
 }
-
-.select-current::after {
+.com-sImg{
   position: absolute;
-  display: block;
-  right: 16rpx;
-  top: 30rpx;
-  content: '';
-  width: 0;
-  height: 0;
-  border: 10rpx solid transparent;
-  border-top: 10rpx solid #999;
+  top: 50%;
+  right: 10rpx;
+  width: 28rpx;
+  height: 28rpx;
+  transform: translateY(-50%);
 }
-
-.current-name {
-  display: block;
-  width: 85%;
-  height: 100%;
-  word-wrap: normal;
+.com-sTxt{
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding:0 40rpx 0 12rpx;
+  font-size: 28rpx;
 }
-
-.option-list {
+.com-sList{
+  background: white;
+  width: inherit;
   position: absolute;
-  left: 0;
-  top: 76rpx;
-  width: 100%;
-  padding: 12rpx 20rpx 10rpx 20rpx;
-  border-radius: 6rpx;
+  border: 1px solid #e2e2e2;
+  border-top: none;
   box-sizing: border-box;
-  z-index: 99;
-  box-shadow: 0rpx 0rpx 1rpx 1rpx rgba(0, 0, 0, 0.2) inset;
-  background-color: #fff;
+  z-index: 3;
+  max-height: 160rpx;
+  overflow: auto;
 }
-
-.option {
-  display: block;
-  width: 100%;
-  line-height: 70rpx;
-  border-bottom: 1rpx solid #eee;
+.com-sItem{
+  box-sizing: border-box;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-top: 1px solid #e2e2e2;
+  padding: 0 20rpx;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28rpx;
+  
 }
-
-.option:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+/* .com-sItem:hover{
+  background: #F0F2F5;
+} */
+.com-sItem:first-child{
+  border-top: none;
 }

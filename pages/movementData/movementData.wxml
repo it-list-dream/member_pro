@@ -80,8 +80,8 @@
         <view>2021/04/08</view>
       </view>
       <!--echarts  -->
-      <view class="charts_list">
-        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+      <view class="echarts_container">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
       </view>
       <!--  -->
       <view class="bottom_content">
