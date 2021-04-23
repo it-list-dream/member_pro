@@ -1,5 +1,6 @@
 // pages/sport/sport.js
 const app = getApp();
+const util = require('../../../utils/util.js')
 Page({
   /**
    * 页面的初始数据
@@ -42,7 +43,8 @@ Page({
         img: '/static/sport/jifen06.png'
       }
     ],
-    weekday: ['21', '22', '23', '24', '25', '26', '27'],
+    //weekday: ['21', '22', '23', '24', '25', '26', '27'],
+    weekList:[],
     changebg: 1,
     isShow: false,
     chooseCourse: false,
@@ -54,6 +56,7 @@ Page({
    */
   onLoad: function (options) {
     // console.log(app.globalData)
+    this.getWeekList();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -62,8 +65,8 @@ Page({
   },
   changeDate(e) {
     // console.log(e.target)
-    console.log(e.target.dataset.num)
-    let changebg = e.target.dataset.num
+    console.log(e.currentTarget.dataset.num)
+    let changebg = e.currentTarget.dataset.num
     this.setData({
       changebg: changebg
     })
@@ -74,16 +77,14 @@ Page({
     })
   },
   fitness: function () {
-
+    wx.navigateTo({
+      url: '/page2/smartDevice/smartDevice',
+    })
   },
   appointment: function () {
-    console.log('约课')
     this.setData({
       chooseCourse: true
     })
-    // wx.navigateTo({
-    //   url: 'url',
-    // })
   },
   close() {
     this.setData({
@@ -92,7 +93,7 @@ Page({
   },
   groupCourse: function () {
     wx.navigateTo({
-      url: '/pages/appointment/appointment',
+      url: '/pages/appointment/appointment?course=1',
     })
     this.setData({
       chooseCourse: false
@@ -100,11 +101,33 @@ Page({
   },
   personalCourse: function () {
     wx.navigateTo({
-      url: '/pages/appointment/appointment',
+      url: '/pages/appointment/appointment?course=0',
     })
     this.setData({
       chooseCourse: false
     })
+  },
+  getWeekList: function (t) {
+    let dayList;
+    if(t){
+      dayList = util.days(t);
+    }else{
+       dayList = util.days();
+    }
+    // for (let i = 0; i < dayList.length; i++) {
+    //   var month = dayList[i].substr(0, 2);
+    //   if (Number(month) < 10) {
+    //     dayList[i] = dayList[i].substr(1, dayList.length - 1)
+    //   }
+    //   dayList[i] = dayList[i].replace(/[\u4e00-\u9fa5]+/g, function ($) {
+    //     return $ == '月' ? '.' : ''
+    //   })
+    // }
+    this.setData({
+      weekList: dayList.slice(0, 7),
+      year:new Date().getFullYear()
+    })
+    //console.log(dayList)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

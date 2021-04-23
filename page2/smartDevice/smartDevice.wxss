@@ -1,0 +1,93 @@
+/* page2/smartDevice/smartDevice.wxss */
+.device_all {
+  background-color: #F0F2F5;
+  height: auto;
+}
+
+.date_screen {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 80rpx;
+  background: #52495B;
+  border-radius: 1px;
+}
+.picker{
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #FFFFFF;
+}
+.date_screen>view {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.date_screen .line {
+  width: 70rpx;
+  height: 2px;
+  background: #FFFFFF;
+}
+
+.date_screen image {
+  margin-left: 12rpx;
+  width: 22rpx;
+  height: 22rpx;
+  vertical-align: middle;
+}
+
+.detection_list {
+  padding-top: 16rpx;
+  width: 100%;
+  height: auto;
+}
+
+.detection_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 690rpx;
+  height: 120rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.physical{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.physical text:first-child{
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #12D58B;
+}
+.physical text:last-child{
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #52495B;
+}
+.deTip {
+  text-align: center;
+  line-height: 70rpx;
+  width: 70rpx;
+  height: 70rpx;
+  background: #52495B;
+  border-radius: 8rpx;
+}
+
+.deTip image {
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: middle;
+}

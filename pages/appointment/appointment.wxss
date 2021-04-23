@@ -186,9 +186,9 @@
   box-sizing: border-box;
   width: 690rpx;
   height: 250rpx;
+  margin-top: 20rpx;
   padding-left: 20rpx;
-  padding-top: 20rpx;
-  background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.blog.163.com%2Fphoto%2FIu-r9T4ha8JsX8UwDBq2iA%3D%3D%2F5114118851856165988.jpg&refer=http%3A%2F%2Fimg.blog.163.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1620375735&t=d75918aa1dd8aa17dccbabc10f0c4dc5") no-repeat;
+  background-size:100% 100%;
 }
 
 .leagueClass .progress {

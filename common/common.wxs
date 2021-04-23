@@ -1,0 +1,44 @@
+var getWeekdDay = function (value, time) {
+  //今天
+  var today = getDate();
+  //日期
+  var date = getDate(time.slice(0, 4) + '.' + value);
+  //星期
+  var weekDay = date.getDay();
+  //今天时间
+  var time = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  //当前时间
+  var time1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+  console.log(time,time1 )
+  switch (weekDay) {
+    case 0:
+      week = "周日";
+      break;
+    case 1:
+      week = "周一";
+      break;
+    case 2:
+      week = "周二";
+      break;
+    case 3:
+      week = "周三";
+      break;
+    case 4:
+      week = "周四";
+      break;
+    case 5:
+      week = "周五";
+      break;
+    case 6:
+      week = "周六";
+      break;
+  }
+  if (time == time1) {
+    week = '今天'
+  }
+  return week
+}
+
+module.exports = {
+  getWeekdDay: getWeekdDay
+}

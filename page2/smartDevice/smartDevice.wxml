@@ -1,0 +1,46 @@
+<nav-bar page-name="人体成分仪"></nav-bar>
+<view class="device_all" style="margin-top:{{navHeight}}px">
+  <view class="date_screen">
+    <view>
+      <picker mode="date" value="{{firstDate}}" start="2015-09-01" end="{{endDate}}" bindchange="bindDateChange"
+      fields="year"  fields="month"
+        class="picker">
+        {{firstDate}}
+        <image src="/static/white_bottom.png"></image>
+      </picker>     
+    </view>
+    <view class="line"></view>
+    <view>
+      <picker mode="date" value="{{lastDat}}" start="2015-09-01" end="{{endDate}}" bindchange="bindDateChange1"
+      fields="year"  fields="month"
+        class="picker">
+        {{lastDate}}
+        <image src="/static/white_bottom.png"></image>
+      </picker>
+    </view>
+  </view>
+  <view class="detection_list">
+    <block wx:for="{{4}}">
+      <view class="detection_item" bindtap="testBody">
+        <view class="deTip">
+          <image src="/static/detection.png"></image>
+        </view>
+        <view class="physical">
+          <text>09-03</text>
+          <text>检测时间</text>
+        </view>
+        <view class="physical">
+          <text>39</text>
+          <text>身体年龄</text>
+        </view>
+        <view class="physical">
+          <text>69</text>
+          <text>健康评分</text>
+        </view>
+        <view>
+          <image src="/static/exceed.png" style="width:32rpx;height:32rpx;"></image>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

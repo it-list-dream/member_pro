@@ -36,7 +36,9 @@
         "suceess/suceess",
         "myVIPCard/myVIPCard",
         "entrance/entrance",
-        "rules/rules"
+        "rules/rules",
+        "smartDevice/smartDevice",
+        "deviceDetail/deviceDetail"
       ]
     }],
   "plugins": {

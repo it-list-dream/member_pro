@@ -1,0 +1,157 @@
+<nav-bar page-name="人体成分仪"></nav-bar>
+<view class="bodyInfo" style="margin-top:{{navHeight}}px">
+  <view class="baseinfo">
+    <view class="base_item">
+      <image src="/static/people.png"></image>
+      <view>2020-09-03</view>
+    </view>
+    <view class="physical_info">
+      <view class="physical_item">
+        <text>身体年龄</text>
+        <view>39 <text style="font-size:18rpx;">岁</text></view>
+      </view>
+      <view class="line"></view>
+      <view class="physical_item">
+        <text>健康评分</text>
+        <view>60 <text style="font-size:18rpx;">分</text></view>
+      </view>
+      <view class="line"></view>
+      <view class="physical_item">
+        <text>提醒判定</text>
+        <text>肥胖型</text>
+      </view>
+    </view>
+  </view>
+  <!-- 警示指标 -->
+  <view class="norm-list">
+    <view class="norm_title">
+      <view>警示指标</view>
+      <view>
+        <image src="/static/big_arrow.png" catchtap="hidenNorm"></image>
+      </view>
+    </view>
+    <view class="norm_content" wx:if="{{normShow}}">
+      <block wx:for="{{3}}">
+        <view class="norm_item">
+          <view class="weight">体重</view>
+          <view class="body_status">
+            <text>偏低</text>
+            <text>正常</text>
+            <text>偏高</text>
+          </view>
+          <view class="norm_all">
+            <view class="norm_progress">
+              <progress percent="20" stroke-width="3" border-radius="10"
+                activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
+                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+                stroke-width="10" />
+            </view>
+            <view>90.50kg</view>
+          </view>
+          <view class="body_data">
+            <view>13.97</view>
+            <view>69.07</view>
+          </view>
+          <view class="need">
+            <view>需 -15.50kg</view>
+            <view>偏高</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 身体成分分析 -->
+  <view class="body_analyze">
+    <view class="analyze norm_title">
+      <view>省体成分分析</view>
+      <view>
+        <image src="/static/big_arrow.png" catchtap=""></image>
+      </view>
+    </view>
+    <view class="analyze_content">
+      <block wx:for="{{5}}">
+        <view class="norm_item">
+          <view class="weight">体重</view>
+          <view class="body_status">
+            <text>偏低</text>
+            <text>正常</text>
+            <text>偏高</text>
+          </view>
+          <view class="norm_all">
+            <view class="norm_progress">
+              <progress percent="20" stroke-width="3" border-radius="10"
+                activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
+                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+                stroke-width="10" />
+            </view>
+            <view>90.50kg</view>
+          </view>
+          <view class="body_data">
+            <view>13.97</view>
+            <view>69.07</view>
+          </view>
+          <view class="need">
+            <view>需 -15.50kg</view>
+            <view>偏高</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 肥胖分析 -->
+  <!--  -->
+  <view class="segment_box">
+    <view class="segment_title">
+      <text>节段肌肉</text>
+      <text>节段脂肪</text>
+    </view>
+    <view class="bodybgList">
+      <view class="bodyLeft bg" style="background-image:url('/static/body.png')">
+        <view>
+          <view>左上肢 4.24kg</view>
+          <view>偏高</view>
+        </view>
+        <view>
+          <view>右上肢 4.24kg</view>
+          <view>偏高</view>
+        </view>
+        <view>躯干</view>
+        <view>
+          <view>右下肢 4.24kg</view>
+          <view>正常</view>
+        </view>
+        <view>
+          <view>右下肢 4.24kg</view>
+          <view>正常</view>
+        </view>
+        <view>
+          <view>躯干</view>
+          <view>31.23kg 正常</view>
+        </view>
+      </view>
+      <view class="bodyRight bg" style="background-image:url('/static/body.png')">
+        <view>
+          <view>左上肢 4.24kg</view>
+          <view>偏高</view>
+        </view>
+        <view>
+          <view>右上肢 4.24kg</view>
+          <view>偏高</view>
+        </view>
+        <view>躯干</view>
+        <view>
+          <view>右下肢 4.24kg</view>
+          <view>正常</view>
+        </view>
+        <view>
+          <view>右下肢 4.24kg</view>
+          <view>正常</view>
+        </view>
+        <view>
+          <view>躯干</view>
+          <view>31.23kg 正常</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

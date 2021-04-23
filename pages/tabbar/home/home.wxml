@@ -49,11 +49,11 @@
   <!-- 课程列表 -->
   <!--  -->
   <view class="classList">
-    <navigator class="classList_item" url="/pages/appointment/appointment" hover-class="none">
+    <navigator class="classList_item" url="/pages/appointment/appointment?course=1" hover-class="none">
       <image src="/static/home_pic/tuanke.png" class="class_pic"></image>
       <text>团课</text>
     </navigator>
-    <navigator class="classList_item" url="/pages/appointment/appointment" hover-class="none">
+    <navigator class="classList_item" url="/pages/appointment/appointment?course=0" hover-class="none">
       <image src="/static/home_pic/sijiao.png" class="class_pic"></image>
       <text>私教</text>
     </navigator>

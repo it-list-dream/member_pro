@@ -6,8 +6,7 @@ Page({
    */
   data: {
     //0 表示私教 1 表示团课
-    isShow: 1,
-    chose: false,
+    showcourse: 1,
     date_time: [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
     dayStyle: [{
         month: 'current',
@@ -22,6 +21,7 @@ Page({
         background: '#AAD4F5'
       }
     ],
+    //日期的显示和隐藏
     date: false,
     SearchDate: null,
     today: null,
@@ -30,6 +30,7 @@ Page({
     selectClass: 0,
     courseList: ['私教', '团课'],
     weekList: [],
+    //选择星期
     choosesDay: 0
   },
 
@@ -41,7 +42,9 @@ Page({
     today = today.slice(0, 10).replace(/\//g,'-')
     this.setData({
       today: today,
-      SearchDate: today
+      SearchDate: today,
+      selectClass:Number(options.course),
+      showcourse:Number(options.course),
     })
     this.setData({
       navHeight: app.globalData.navHeight,
@@ -51,9 +54,10 @@ Page({
     this.getWeekList();
   },
   switchClass(e) {
-    this.data.selectClass = e.target.dataset.index;
+    this.data.selectClass = e.currentTarget.dataset.index;
     this.setData({
-      selectClass: this.data.selectClass
+      selectClass: this.data.selectClass,
+      showcourse:this.data.selectClass
     })
   },
   order() {
@@ -63,7 +67,6 @@ Page({
   },
   getWeekList: function (t) {
     let dayList;
-   // console.log(t)
     if(t){
       dayList = util.days(t);
     }else{
@@ -88,11 +91,11 @@ Page({
     this.setData({
       weekList: dayList.slice(0, 5)
     })
-    console.log(dayList)
+    //console.log(dayList)
   },
   chooseDate: function (e) {
-    var dayIndex = e.target.dataset.index;
-    var da = e.target.dataset.date.replace('.', '-')
+    var dayIndex = e.currentTarget.dataset.index;
+    var da = e.currentTarget.dataset.date.replace('.', '-')
     da = Number(da.split('-')[0])>10?da:'0'+da
     var sdate = this.data.SearchDate;
     var year = new Date(sdate).getFullYear();

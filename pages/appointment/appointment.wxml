@@ -1,3 +1,4 @@
+<wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="预约"></nav-bar>
 <view class="appointment" style="margin-top:{{navHeight}}px">
   <view class="appointment_item">
@@ -7,12 +8,9 @@
           <view class="course  {{selectClass==index?'course_active':''}}" bindtap="switchClass" data-index="{{index}}">
             {{item}}</view>
         </block>
-        <!-- <view></view> -->
-        <!-- <view class="course {{selectClass ==0 ?'course_active':''}}">私教</view>
-        <view class="course {{selectClass ==1 ?'course_active':''}}">团课</view> -->
       </view>
       <!-- 私教 -->
-      <view class="coach_info" hidden="{{isShow!=1}}">
+      <view class="coach_info" wx:if="{{showcourse==0}}">
         <view class="coach_list">
           <view class="head">
             <image src="/static/appointment/headPortrait.png"></image>
@@ -34,11 +32,13 @@
         </view>
       </view>
     </view>
+    <!-- 日期 -->
     <view class="dayList">
       <view class="day_item">
-        <view wx:for="{{weekList}}" wx:key="*this" class="day {{choosesDay == index?'ch_active':''}}" catchtap="chooseDate" data-index="{{index}}" data-date="{{item}}"> 
-          <view class="week" data-index="{{index}}" data-date="{{item}}">今天</view>
-          <view class="date" data-index="{{index}}" data-date="{{item}}">{{item}}</view>
+        <view wx:for="{{weekList}}" wx:key="*this" class="day {{choosesDay == index?'ch_active':''}}"
+          catchtap="chooseDate" data-index="{{index}}" data-date="{{item}}">
+          <view class="week">{{tools.getWeekdDay(item,SearchDate)}}</view>
+          <view class="date">{{item}}</view>
         </view>
         <view class="selectDate day" bindtap="showCalendar">
           <image src="/static/appointment/calendar.png"></image>
@@ -49,12 +49,11 @@
         <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board"
           days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
       </view>
-
     </view>
     <!-- 团课详情 -->
-    <view class="leagueClass">
-      <block>
-        <view class="leagueClass_item" hidden="{{isShow==1}}">
+    <view class="leagueClass" wx:if="{{showcourse==1}}">
+      <block wx:for="{{5}}">
+        <view class="leagueClass_item" style="background-image:url('/static/course1.png')">
           <view class="progress">已参加1/3</view>
           <view class="className">动感单车-六大胖</view>
           <view class="class_info">
@@ -63,19 +62,9 @@
           </view>
         </view>
       </block>
-      <block>
-        <view class="leagueClass_item" hidden="{{isShow==1}}">
-          <view class="progress">已参加1/3</view>
-          <view class="className">动感单车-六大胖</view>
-          <view class="class_info">
-            <view class="class_time">2021/3/18 18:00-19:00</view>
-            <view class="class_status">预约</view>
-          </view>
-        </view>
-      </block>
     </view>
     <!-- 私教详情 -->
-    <view  hidden="{{isShow!=1}}">
+   <view  wx:if="{{showcourse==0}}"> 
       <view class="trainer">
         <view class="time">
           <block wx:for="{{date_time}}">

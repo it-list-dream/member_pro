@@ -1,4 +1,5 @@
 <!-- <nav-bar page-name="运动" showNav="{{false}}"></nav-bar> -->
+<wxs src="../../../common/common.wxs" module="tools" />
   <view class="sprotTip" style="background-image:url({{bg}})">
     <view class="navbar" style='height:{{navHeight}}px;'>
       <view class="tip" style="margin-top:{{navTop}}px">
@@ -52,10 +53,11 @@
       <!-- 日历 -->
       <view class="calendar_wrapper">
         <ul class="calendar_item">
-          <block wx:for="{{weekday}}" wx:key="index">
-            <li>
-              <view catchtap="changeDate" data-num="{{index}}"
-                style="{{changebg==index?'font-weight:500;color: #333333;':''}}"> 周一</view>
+          <block wx:for="{{ weekList}}" wx:key="index">
+            <li catchtap="changeDate" data-num="{{index}}">
+              <view 
+                style="{{changebg==index?'font-weight:500;color: #333333;':''}}"></view>
+                <!-- getWeekdDay -->
               <view class="{{changebg==index?'change_active':''}}">{{item}}</view>
             </li>
           </block>
