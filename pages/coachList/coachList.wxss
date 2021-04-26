@@ -1,9 +1,14 @@
+/* page {
+  height: 100%;
+  background: green;
+} */
 
 .coachList {
   height: auto;
-  background-color: #F0F2F5;
+  /* height: calc(100% -68px); */
   padding-top: 20rpx;
 }
+
 .coachList_card {
   margin: 0 auto;
   margin-bottom: 22rpx;
@@ -12,6 +17,7 @@
   background: #52495B;
   border-radius: 10rpx;
 }
+
 .coachList .coachList_item {
   padding: 20rpx;
 }
@@ -20,32 +26,38 @@
   display: flex;
   align-items: center;
 }
-.coachList .coach_info .coachName{
-   padding: 0 12rpx;
+
+.coachList .coach_info .coachName {
+  padding: 0 12rpx;
 }
+
 .coachList .coach_info image {
   vertical-align: middle;
 }
-.coach_content{
+
+.coach_content {
   margin-top: 50rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.coach_left .accruing{
 
-font-size: 36rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #FFFFFF;
-padding-bottom: 18rpx;
+.coach_left .accruing {
+
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  padding-bottom: 18rpx;
 }
-.coach_left .type{
-font-size: 22rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #FFFFFF;
+
+.coach_left .type {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
 }
+
 .coach_right {
   width: 70rpx;
   height: 70rpx;

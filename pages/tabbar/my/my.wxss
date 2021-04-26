@@ -3,6 +3,7 @@
   width: 100%;
   height: 280rpx;
 }
+
 /*  */
 .navbar {
   position: relative;
@@ -20,7 +21,7 @@
   width: 100%;
   height: 32px;
   box-sizing: border-box;
-  padding:0 115px;
+  padding: 0 115px;
   line-height: 32px;
   text-align: center;
   z-index: 10;
@@ -61,6 +62,7 @@
   width: 36rpx;
   height: 36rpx;
 }
+
 /*  */
 .my_container {
   position: relative;
@@ -69,7 +71,7 @@
 
 .my_banner {
   position: absolute;
-  top:-120rpx;
+  top: -120rpx;
   left: 50%;
   transform: translateX(-50%);
   width: 690rpx;
@@ -84,7 +86,8 @@
   display: flex;
 }
 
-.per_info {
+/* 登录 */
+.succ_info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -107,15 +110,58 @@
 .head {
   width: 88rpx;
   height: 88rpx;
+  border-radius: 50%;
 }
 
 .phone {
-  width: 128rpx;
-  height: 26rpx;
-  line-height: 26rpx;
+  width: 140rpx;
+  height: 35rpx;
+  line-height: 35rpx;
   text-align: center;
   border: 1px solid #333333;
   border-radius: 14rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* 未登录 */
+.unLogin,
+.bindPhone {
+  margin-left: 25rpx;
+}
+
+.no_title {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.loginAndRes {
+  margin-top: 10rpx;
+  width: 120rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border: 1px solid #333333;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* 未绑定手机号码 */
+.bindPhoneBtn {
+  margin-top: 12rpx;
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border: 1px solid #333333;
+  border-radius: 20rpx;
   font-size: 18rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -125,7 +171,7 @@
 .my_course {
   display: flex;
   align-items: center;
-  margin-top: 32rpx;
+  margin-top: 18rpx;
   height: 88rpx;
   /* background-color: pink; */
   text-align: center;
@@ -251,9 +297,10 @@
 }
 
 /* 更多服务 */
-.more{
+.more {
   padding: 30rpx;
 }
+
 .moreService {
   box-sizing: border-box;
   display: flex;
@@ -265,7 +312,8 @@
   box-shadow: 0 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
   border-radius: 8rpx;
 }
-.service{
+
+.service {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -274,13 +322,15 @@
   height: 100rpx;
   /* background-color: pink; */
 }
+
 .service image {
   width: 40rpx;
   height: 40rpx;
 }
-.service text{
+
+.service text {
   font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #666666;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #666666;
 }

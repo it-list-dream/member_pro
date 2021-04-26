@@ -86,7 +86,6 @@
 .norm-list {
   margin-top: 30rpx;
   width: 690rpx;
-  /* height: 513rpx; */
   background: #FFFFFF;
   border-radius: 8rpx;
 }
@@ -117,15 +116,15 @@
 }
 
 .norm_content {
-  padding: 0 30rpx;
-  height: 454rpx;
+  padding: 0 30rpx 30rpx 30rpx;
+  box-sizing: border-box;
 }
 
 .norm_item {
   padding: 14rpx 0 10rpx 0;
   box-sizing: border-box;
-  height: 144rpx;
-  /* background: purple; */
+  height: 164rpx;
+
   border-bottom: 1px solid #D4D4D4;
 }
 
@@ -139,7 +138,10 @@
 .body_status {
   display: flex;
   justify-content: space-evenly;
-  font-size: 18rpx;
+  font-size: 21rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #666666;
 }
 
 .norm_all {
@@ -159,39 +161,38 @@
 .norm_progress {
   width: 480rpx;
 }
-
-progress {
-  height: 15rpx;
+.body_data>view {
+  position: relative;
 }
-
+.body_data>view:first-child{
+  margin-left: 150rpx;
+}
+.body_data>view:last-child{
+  margin-right: 150rpx;
+}
+.body_data>view::after {
+  content: '';
+  position: absolute;
+  bottom: 34rpx;
+  left: 22rpx;
+  width: 12rpx;
+  height: 12rpx;
+  background:white;
+  border-radius: 50%;
+}
 .body_data {
   position: relative;
   display: flex;
   justify-content: space-evenly;
-  font-size: 14rpx;
+  font-size: 21rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #666666;
 }
-
-.body_data>view {
-  margin-left: 10rpx;
-}
-
-.body_data>view::after {
-  content: '';
-  position: absolute;
-  bottom: 26rpx;
-  width: 6rpx;
-  height: 6rpx;
-  /* background:; */
-  border-radius: 50%;
-}
-
 .need {
   display: flex;
   justify-content: space-between;
-  font-size: 18rpx;
+  font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #52495B;
@@ -199,38 +200,44 @@ progress {
 
 .need>view:last-child {
   width: 50rpx;
-  height: 22rpx;
-  line-height: 22rpx;
+  height: 26rpx;
+  line-height: 26rpx;
   text-align: center;
   background: #62CAB6;
-  border-radius: 11rpx;
+  border-radius: 14rpx;
   font-size: 14rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
 }
 
-/*  */
+/* 身体成分分析 */
 .body_analyze {
   margin-top: 30rpx;
   box-sizing: border-box;
-}
-
-.body_analyze {
   width: 690rpx;
   background: #FFFFFF;
   border-radius: 8rpx;
 }
-
-.analyze_content {
-  padding: 0 30rpx;
-  height: 775rpx;
+.analyze_content{
+  width: 100%;
+  padding: 0 30rpx 54rpx 30rpx;
+  box-sizing: border-box;
 }
-
-.segment_box {
+/* 肥胖分析 */
+.fat_analyze{ 
+  margin-top: 30rpx;
+  box-sizing: border-box;
   width: 690rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
 }
-
+.fat_content{
+  width: 100%;
+  padding: 0 30rpx 20rpx 30rpx;
+  box-sizing: border-box;
+}
+/* 肌肉 */
 .segment_title {
   display: flex;
   padding: 30rpx 0 30rpx 0;
@@ -252,6 +259,7 @@ progress {
   padding-bottom: 56rpx;
 }
 
+/* 身体图表显示 */
 .bg {
   position: relative;
   background-size: 100% 100%;
@@ -262,43 +270,51 @@ progress {
   font-weight: 500;
   color: #FFFFFF;
 }
-.bg>view>view:last-child{
+
+.bg>view>view:last-child {
   margin-top: 8rpx;
 }
+
 .bg>view:first-child {
   position: absolute;
   top: 22rpx;
   left: 16rpx;
 }
-.bg>view:nth-child(2){
+
+.bg>view:nth-child(2) {
   text-align: right;
   position: absolute;
   top: 22rpx;
   right: 16rpx;
 }
-.bg>view:nth-child(3){
+
+.bg>view:nth-child(3) {
   position: absolute;
   top: 114rpx;
   left: 143rpx;
   color: #333333;
 }
-.bg>view:nth-child(4){
+
+.bg>view:nth-child(4) {
   position: absolute;
   left: 16rpx;
   bottom: 69rpx;
 }
-.bg>view:nth-child(5){
+
+.bg>view:nth-child(5) {
   position: absolute;
   text-align: right;
   right: 16rpx;
   bottom: 77rpx;
 }
-.bg>view:nth-child(6){
+
+.bg>view:nth-child(6) {
   text-align: center;
   position: absolute;
   left: 115rpx;
   bottom: 20rpx;
 }
+
 /* 进度条 */
 .wx-progress-inner-bar {
   border-radius: 8rpx !important;

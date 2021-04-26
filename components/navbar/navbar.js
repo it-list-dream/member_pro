@@ -1,5 +1,5 @@
 // components/navbar/navbar.js
-const App = getApp();
+const app = getApp();
 
 Component({
   options: {
@@ -10,20 +10,20 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    pageName:String,
+    pageName: String,
     showNav: {
       type: Boolean,
       value: true
     },
-    bgColor:{
+    bgColor: {
       type: String,
       value: '#fff'
     },
-    titleColor:{
-      type:String,
-      value:"#000000"
+    titleColor: {
+      type: String,
+      value: "#000000"
     },
-    icon:{
+    icon: {
       type: Boolean,
       value: false
     }
@@ -33,16 +33,21 @@ Component({
    * 组件的初始数据
    */
   data: {
-   
+
   },
   lifetimes: {
     attached: function () {
-      console.log(App);
+      // console.log(App);
       this.setData({
-        navHeight: App.globalData.navHeight,
-        navTop: App.globalData.navTop
+        share: app.globalData.share
       })
-     }
+     
+      this.setData({
+        navHeight: app.globalData.navHeight,
+        navTop: app.globalData.navTop
+      })
+      console.log(app)
+    }
   },
   /**
    * 组件的方法列表
@@ -50,10 +55,10 @@ Component({
   methods: {
     //回退
     _navBack: function () {
-     // console.log(111)
+      // console.log(111)
       wx.navigateBack({
         delta: 1
-      })      
+      })
     },
     //回主页
     _toIndex: function () {

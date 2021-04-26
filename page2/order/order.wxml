@@ -32,7 +32,9 @@
  <text>行为积分{{item.money}}</text>
           </view> -->
           <view>
-            <image src="/static/order/error.png"></image>
+            <!-- <image src="/static/order/close.png"></image> -->
+            <!--  -->
+            <text style="font-size:24rpx;">×</text>
             <text>{{item.buy_course}}</text>
           </view>
           <view>

@@ -2,7 +2,8 @@
 <nav-bar page-name="预约"></nav-bar>
 <view class="appointment" style="margin-top:{{navHeight}}px">
   <view class="appointment_item">
-    <view class="appointment_detail">
+    <view class="appointment_detail"
+      style=" {{showcourse==0?'background:#52495B;':'background:#F0F2F5;padding-bottom:0'}}">
       <view class="course_list">
         <block wx:for="{{courseList}}">
           <view class="course  {{selectClass==index?'course_active':''}}" bindtap="switchClass" data-index="{{index}}">
@@ -52,7 +53,7 @@
     </view>
     <!-- 团课详情 -->
     <view class="leagueClass" wx:if="{{showcourse==1}}">
-      <block wx:for="{{5}}">
+      <block wx:for="{{2}}">
         <view class="leagueClass_item" style="background-image:url('/static/course1.png')">
           <view class="progress">已参加1/3</view>
           <view class="className">动感单车-六大胖</view>
@@ -62,15 +63,27 @@
           </view>
         </view>
       </block>
+      <!-- <view class="unclass">
+          <image src="/static/unclass.png"></image>
+          <view>今天没课，放飞自我</view>
+      </view> -->
     </view>
     <!-- 私教详情 -->
-   <view  wx:if="{{showcourse==0}}"> 
+    <view wx:if="{{showcourse==0}}">
       <view class="trainer">
-        <view class="time">
+        <!-- <view class="time">
           <block wx:for="{{date_time}}">
             <view class="clock">{{item}}</view>
           </block>
-        </view>
+        </view> -->
+        <ul class="time">
+          <block wx:for="{{datatime}}" wx:key="index">
+            <li class="clock" catchtap="hanleDate" data-id="{{index+1}}">
+              <view  class="{{item.type == 0?'mycol':''}}" style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}" data-s="{{item.starttime}}" data-e="{{item.endtime}}">
+                {{item.starttime}}</view>
+            </li>
+          </block>
+        </ul>
       </view>
       <view class="oder_wrapper">
         <view class="order" bindtap="order">预约</view>

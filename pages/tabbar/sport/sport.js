@@ -114,15 +114,11 @@ Page({
     }else{
        dayList = util.days();
     }
-    // for (let i = 0; i < dayList.length; i++) {
-    //   var month = dayList[i].substr(0, 2);
-    //   if (Number(month) < 10) {
-    //     dayList[i] = dayList[i].substr(1, dayList.length - 1)
-    //   }
-    //   dayList[i] = dayList[i].replace(/[\u4e00-\u9fa5]+/g, function ($) {
-    //     return $ == '月' ? '.' : ''
-    //   })
-    // }
+    for (let i = 0; i < dayList.length; i++) {
+      dayList[i] = dayList[i].replace(/[\u4e00-\u9fa5]+/g, function ($) {
+        return $ == '月' ? '.' : ''
+      })
+    }
     this.setData({
       weekList: dayList.slice(0, 7),
       year:new Date().getFullYear()

@@ -34,7 +34,7 @@
         display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
         next-margin="{{coachList.length==1?'480rpx':(coachList.length==2?'280rpx':'120rpx')}}">
         <block wx:for="coachList">
-          <swiper-item>
+          <swiper-item bindtap="chooseCoach" data-index = "{{index}}">
             <view class="coach_img">
               <image src="/static/head.png" style="width:108rpx;height:108rpx;"></image>
             </view>

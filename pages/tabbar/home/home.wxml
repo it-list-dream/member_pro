@@ -23,6 +23,7 @@
         <image class="head_pic" src="/static/home_pic/scan.png"></image>
       </view>
     </view>
+    <!-- <view class="title">无锡美洲健身</view> -->
   </view>
 </view>
 

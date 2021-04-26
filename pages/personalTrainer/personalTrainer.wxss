@@ -169,6 +169,7 @@
 }
 
 .pay_box image {
+  margin-left: 14rpx;
   width: 30rpx;
   height: 30rpx;
   vertical-align: middle;

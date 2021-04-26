@@ -14,12 +14,12 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      navHeight : app.globalData.navHeight,
-      navTop : app.globalData.navTop,
-      windowHeight : app.globalData.windowHeight
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
     })
   },
-  coachList(){
+  coachList() {
     wx.navigateTo({
       url: '/pages/coachDetail/coachDetail',
     })

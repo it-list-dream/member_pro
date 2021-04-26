@@ -471,6 +471,151 @@
         {
           "name": "pages/tabbar/sport/sport",
           "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/deviceDetail/deviceDetail",
+          "pathName": "page2/deviceDetail/deviceDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/suceess/suceess",
+          "pathName": "page2/suceess/suceess",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/coachList/coachList",
+          "pathName": "pages/coachList/coachList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=2",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/smartDevice/smartDevice",
+          "pathName": "page2/smartDevice/smartDevice",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personalTrainer/personalTrainer",
+          "pathName": "pages/personalTrainer/personalTrainer",
+          "query": "",
           "scene": null
         }
       ]

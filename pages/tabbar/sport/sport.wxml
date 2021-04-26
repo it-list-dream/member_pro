@@ -56,9 +56,9 @@
           <block wx:for="{{ weekList}}" wx:key="index">
             <li catchtap="changeDate" data-num="{{index}}">
               <view 
-                style="{{changebg==index?'font-weight:500;color: #333333;':''}}"></view>
+                style="{{changebg==index?'font-weight:500;color: #333333;':''}}">{{tools.getWeekdDay(item,year)}}</view>
                 <!-- getWeekdDay -->
-              <view class="{{changebg==index?'change_active':''}}">{{item}}</view>
+              <view class="{{changebg==index?'change_active':''}}">{{tools.getFirstStr(item)}}</view>
             </li>
           </block>
         </ul>

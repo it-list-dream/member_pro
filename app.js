@@ -1,6 +1,12 @@
 
 App({
-  onLaunch: function() {
+  onLaunch: function(options) {
+     // 判断是否由分享进入小程序
+     if (options.scene == 1007 || options.scene == 1008) {
+      this.globalData.share = true
+    } else {
+      this.globalData.share = false
+    };
     var that = this
     // 版本更新
     const updateManager = wx.getUpdateManager()
@@ -16,7 +22,7 @@ App({
             updateManager.applyUpdate()
             wx.clearStorage()
             wx.reLaunch({
-              url: "/logs/login/login",
+              url: "/page2/login/login",
             })
           }
         }
@@ -44,7 +50,6 @@ App({
        let menuButtonObject = wx.getMenuButtonBoundingClientRect();
        wx.getSystemInfo({
          success: res => {
-   
            //导航高度
            let statusBarHeight = res.statusBarHeight,
              navTop = menuButtonObject.top,
@@ -61,8 +66,7 @@ App({
   globalData: {
     isIphoneX: false, 
     userInfo: null,
-    // menuTop: wx.getMenuButtonBoundingClientRect().top,
-    // menuHeight: wx.getMenuButtonBoundingClientRect().height,
+    share:false
   },
   onShow: function() {
     

@@ -1,7 +1,7 @@
 <view class='nav-wrap' style='height: {{navHeight}}px;'>
   <view class="navbar" style='height:{{navHeight}}px;background-color:{{bgColor}}'>
     <view wx:if="{{showNav}}" class="navbar-action-wrap" style='top:{{navTop}}px;' bindtap="_navBack">
-      <view class="icon">
+      <view class="icon"  wx:if='{{!share}}'>
         <image src="{{icon?'/static/white_arrow.png':'/static/arrow.png'}}" class="icon-arrow"></image>
       </view>
     </view>

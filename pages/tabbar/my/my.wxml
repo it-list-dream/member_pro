@@ -14,9 +14,23 @@
 </view>
 <view class="my_container">
   <view class="my_banner">
-    <view class="my_info" catchtap="edit">
-      <image class="head" src="/static/my/h.png"></image>
-      <view class="per_info">
+    <view class="my_info">
+      <image class="head"
+        src="{{info?info.avatarUrl:'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'}}"
+        bindtap="edit">
+      </image>
+      <!-- 未登录状态 -->
+      <view class="unLogin" wx:if="{{loginStatus == 0}}">
+        <view class="no_title">游客</view>
+        <navigator url="/page2/login/login" class="loginAndRes" bindtap="login" hover-class="none">登录/注册</navigator>
+      </view>
+      <!-- 未绑定手机号码 -->
+      <view class="bindPhone" wx:elif="{{loginStatus == 1}}">
+        <view class="no_title">{{info.nickName}}</view>
+        <navigator url="/page2/login/login" class="bindPhoneBtn" hover-class="none">点击绑定手机号</navigator>
+      </view>
+      <!--登录状态  -->
+      <view class="succ_info" wx:elif="{{loginStatus == 2}}">
         <view class="member_info">
           如渔会员<image src="/static/my/woman.png"></image>
         </view>
@@ -91,9 +105,9 @@
       <block wx:for="{{serviceList}}" wx:key="index">
         <view class="service" catchtap="lookRecord" data-index="{{index}}">
           <view>
-            <image src="{{item.img}}" data-index="{{index}}"></image>
+            <image src="{{item.img}}"></image>
           </view>
-          <text data-index="{{index}}">{{item.name}}</text>
+          <text>{{item.name}}</text>
         </view>
       </block>
     </view>

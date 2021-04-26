@@ -21,7 +21,7 @@ Page({
   },
   personalAppointment:function(){
      wx.navigateTo({
-       url: '/pages/appointment/appointment',
+       url: '/pages/appointment/appointment?course=1',
      })
   },
   /**

@@ -40,19 +40,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    QRCode = new QRCode('canvas', {
+    let qrcode = new QRCode('canvas', {
       text: "code=0000000000000",
       width: 150,
       height: 150,
       colorDark: "#000000",
       colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.L
+      correctLevel: QRCode.CorrectLevel.H,
     });
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       windowHeight: app.globalData.windowHeight,
-      userInfo:app.globalData.userInfo
+      userInfo: app.globalData.userInfo
     })
   },
   close() {
@@ -60,15 +60,15 @@ Page({
       showchoose: false
     })
   },
-  _navBack(){
+  _navBack() {
     wx.navigateBack({
       delta: 1
     })
   },
-  chooseCard:function(){
-     this.setData({
-      showchoose:!this.data.showchoose
-     })
+  chooseCard: function () {
+    this.setData({
+      showchoose: !this.data.showchoose
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -88,7 +88,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    // qrcode.clear(); // 清除代码.clear();
   },
 
   /**

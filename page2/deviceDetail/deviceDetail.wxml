@@ -63,12 +63,12 @@
   <!-- 身体成分分析 -->
   <view class="body_analyze">
     <view class="analyze norm_title">
-      <view>省体成分分析</view>
+      <view>身体成分分析</view>
       <view>
-        <image src="/static/big_arrow.png" catchtap=""></image>
+        <image src="/static/big_arrow.png" catchtap="hidenBody"></image>
       </view>
     </view>
-    <view class="analyze_content">
+    <view class="analyze_content" wx:if="{{bodyShow}}">
       <block wx:for="{{5}}">
         <view class="norm_item">
           <view class="weight">体重</view>
@@ -99,7 +99,44 @@
     </view>
   </view>
   <!-- 肥胖分析 -->
-  <!--  -->
+  <view class="fat_analyze">
+    <view class="analyze norm_title">
+      <view>肥胖分析</view>
+      <view>
+        <image src="/static/big_arrow.png" catchtap="hidenFat"></image>
+      </view>
+    </view>
+    <view class="fat_content" wx:if="{{fatShow}}">
+      <block wx:for="{{5}}">
+        <view class="norm_item">
+          <view class="weight">体重</view>
+          <view class="body_status">
+            <text>偏低</text>
+            <text>正常</text>
+            <text>偏高</text>
+          </view>
+          <view class="norm_all">
+            <view class="norm_progress">
+              <progress percent="20" stroke-width="3" border-radius="10"
+                activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
+                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+                stroke-width="10" />
+            </view>
+            <view>90.50kg</view>
+          </view>
+          <view class="body_data">
+            <view>13.97</view>
+            <view>69.07</view>
+          </view>
+          <view class="need">
+            <view>需 -15.50kg</view>
+            <view>偏高</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!--  身体数据分析-->
   <view class="segment_box">
     <view class="segment_title">
       <text>节段肌肉</text>

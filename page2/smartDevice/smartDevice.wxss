@@ -1,9 +1,10 @@
 /* page2/smartDevice/smartDevice.wxss */
-.device_all {
+/* page{
   background-color: #F0F2F5;
+} */
+.device_all {
   height: auto;
 }
-
 .date_screen {
   display: flex;
   justify-content: space-around;

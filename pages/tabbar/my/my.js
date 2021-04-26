@@ -38,6 +38,10 @@ Page({
       }
     ],
     bg: '/static/sport/bg.png',
+    //0表示既未绑定手机号码又未获取用户信息
+    //1百世授权了用户信息，但未绑定手机号码
+    //2 完成了登录流程
+    loginStatus: 0,
   },
 
   /**
@@ -54,7 +58,6 @@ Page({
   },
   tranfromImage(e) {
     wx.chooseImage({
-      //  count: parseInt(e.currentTarget.dataset.num),
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
@@ -68,11 +71,20 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    var status = wx.getStorageSync('hasUserInfo');
+    var info = wx.getStorageSync('userInfo');
+    console.log(status)
+    if (status) {
+      this.setData({
+        loginStatus:1,
+        info:JSON.parse(info)
+      })
+    }
 
   },
   lookRecord(e) {
-    console.log(e.target.dataset.index)
-    let index = e.target.dataset.index
+    console.log(e.currentTarget.dataset.index)
+    let index = e.currentTarget.dataset.index
     console.log(index);
     //return;
     let path = '';
@@ -88,6 +100,9 @@ Page({
         break;
       case 3:
         path = "/pages/movementData/movementData"
+        break;
+      case 4:
+        path = '/page2/smartDevice/smartDevice'
         break;
       case 5:
         path = '/page2/address/address'

@@ -43,12 +43,12 @@
         <view class="line"></view>
         <view class="course">
           <text>20节课</text>
-          <text>团课</text>
+          <text>私教</text>
         </view>
         <view class="line"></view>
         <view class="course">
-          <text>20节课</text>
-          <text>团课</text>
+          <text>100公里</text>
+          <text>跑步机</text>
         </view>
       </view>
     </view>

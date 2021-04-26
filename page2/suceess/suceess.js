@@ -1,18 +1,23 @@
 // page2/suceess/suceess.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    isShow:4
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
+    })
   },
 
   /**
@@ -61,6 +66,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+     //console.log(11111)
+     return {
+      title: '弹出分享时显示的分享标题',
+      desc: '分享页面的内容',
+      path: '/page/user?id=123' // 路径，传递参数到指定页面。
+  }
   }
 })

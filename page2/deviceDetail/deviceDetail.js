@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    normShow:false
+    normShow:true,
+    bodyShow:true,
+    fatShow:true
   },
 
   /**
@@ -23,6 +25,17 @@ Page({
       normShow:!this.data.normShow
     })
   },
+ hidenBody:function(){
+  this.setData({
+    bodyShow:!this.data.bodyShow
+  })
+ },
+ hidenFat:function(){
+  this.setData({
+    fatShow:!this.data.fatShow
+  })
+},
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

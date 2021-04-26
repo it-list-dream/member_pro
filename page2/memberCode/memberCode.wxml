@@ -32,8 +32,8 @@
   <cover-view class='model' wx:if='{{showchoose}}'>
     <cover-view class='modelcon'>
       <block wx:for="{{ card_list}}" wx:key="index">
-        <cover-view class="mask_item">
-          <cover-view class='cardinfo' bindtap='chosecard'>
+        <cover-view class="mask_item"  bindtap='chooseCard'>
+          <cover-view class='cardinfo'>
             {{item.card_name}}
             <cover-view
               style="{{item.code ==0?'color:#12D58B;':(item.code ==1?'color:#FD4E54;':'')}} margin-left:20rpx;">({{item.card_state}})</cover-view>

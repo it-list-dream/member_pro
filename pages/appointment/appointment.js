@@ -7,7 +7,6 @@ Page({
   data: {
     //0 表示私教 1 表示团课
     showcourse: 1,
-    date_time: [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
     dayStyle: [{
         month: 'current',
         day: new Date().getDate(),
@@ -25,13 +24,14 @@ Page({
     date: false,
     SearchDate: null,
     today: null,
-    choose_num: 0,
+    num: null,
     //0 代表的私教课 1 表示的是团课
     selectClass: 0,
     courseList: ['私教', '团课'],
     weekList: [],
     //选择星期
-    choosesDay: 0
+    choosesDay: 0,
+    datatime: []
   },
 
   /**
@@ -39,12 +39,13 @@ Page({
    */
   onLoad: function (options) {
     let today = util.formatTime(new Date());
-    today = today.slice(0, 10).replace(/\//g,'-')
+    today = today.slice(0, 10).replace(/\//g, '-')
     this.setData({
       today: today,
       SearchDate: today,
-      selectClass:Number(options.course),
-      showcourse:Number(options.course),
+      datatime:util.createEveryday(),
+      selectClass: Number(options.course),
+      showcourse: Number(options.course),
     })
     this.setData({
       navHeight: app.globalData.navHeight,
@@ -52,12 +53,13 @@ Page({
       windowHeight: app.globalData.windowHeight
     })
     this.getWeekList();
+    this.getMyCurrentTime();
   },
   switchClass(e) {
     this.data.selectClass = e.currentTarget.dataset.index;
     this.setData({
       selectClass: this.data.selectClass,
-      showcourse:this.data.selectClass
+      showcourse: this.data.selectClass
     })
   },
   order() {
@@ -67,10 +69,10 @@ Page({
   },
   getWeekList: function (t) {
     let dayList;
-    if(t){
+    if (t) {
       dayList = util.days(t);
-    }else{
-       dayList = util.days();
+    } else {
+      dayList = util.days();
     }
     //  let newDate =  dayList.map(item =>{
     //    var month = item.substr(0,2);
@@ -96,13 +98,51 @@ Page({
   chooseDate: function (e) {
     var dayIndex = e.currentTarget.dataset.index;
     var da = e.currentTarget.dataset.date.replace('.', '-')
-    da = Number(da.split('-')[0])>10?da:'0'+da
+    da = Number(da.split('-')[0]) > 10 ? da : '0' + da
     var sdate = this.data.SearchDate;
     var year = new Date(sdate).getFullYear();
     this.setData({
       choosesDay: dayIndex,
       SearchDate: year + '-' + da
     })
+  },
+  hanleDate: function (e) {
+    console.log(e.currentTarget.dataset.id);
+    this.setData({
+      num: e.currentTarget.dataset.id
+    })
+  },
+  // 判断哪些时间已过期
+  getMyCurrentTime:function(){
+      var cTime = this.data.datatime;
+      var d = new Date();
+      //获取当前时间
+      var passTime = util.formatTime(d);
+      console.log(passTime)
+      for(var i = 0;i<cTime.length;i++){
+      // console.log( cTime[i].starttime.split(':'))
+      //   var cHour = cTime[i].starttime.split(':')[0];
+      //   var cMin =cTime[i].starttime.split(':')[1];
+      //   console.log(Number(d.getHours()),Number(cHour))
+      //  if(Number(d.getHours()) = Number(cHour) && cMin >= d.getMinutes()){    
+      //     break;
+      //  }else{
+      //   cTime[i].type = 0;
+      //  }
+      //cTime[i].starttime = this.data.SearchDate + ' ' +  cTime[i].starttime;
+      cTime[i].type = 0;
+        //  if(Date.parse(passTime) > new Date(cTime[i].starttime ).getTime() ){
+        //   cTime[i].type = 1;
+        //     //  break;
+        //  }else{
+        //   cTime[i].type = 0;
+        //  }
+       
+      }
+      console.log(cTime)
+     this.setData({
+      datatime: cTime
+     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -144,10 +184,10 @@ Page({
         date: false,
         SearchDate: clickYear + '-' + clickMonth + "-" + clickDay
       })
-       that.getWeekList(that.data.SearchDate);
-       that.setData({
-        choosesDay:0
-       })
+      that.getWeekList(that.data.SearchDate);
+      that.setData({
+        choosesDay: 0
+      })
     } else {
       wx.showToast({
         title: '预约时间已过',

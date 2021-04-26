@@ -93,6 +93,7 @@
 /* 内容区 */
 .container {
   padding: 0 30rpx;
+  background: #ffff;
 }
 
 /*  */

@@ -24,11 +24,11 @@ Page({
       hasUserInfo: hasUserInfo
     })
   },
-  // onCancel(){
-  //   wx.navigateBack({
-  //     delta: 1,
-  //   })
-  // },
+  onCancel() {
+    wx.navigateBack({
+      delta: 1,
+    })
+  },
   modalCancel() {
     console.log('取消')
   },
@@ -56,12 +56,20 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
+        console.log(res.userInfo)
         that.setData({
           userInfo: res.userInfo,
           showModal: true,
           hasUserInfo: true
         })
         wx.setStorageSync('hasUserInfo', true)
+        wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
+      },
+      fail: function () {
+        console.log('用户拒绝获取头像信息');
+        wx.navigateBack({
+          delta: 1,
+        })
       }
     })
   },

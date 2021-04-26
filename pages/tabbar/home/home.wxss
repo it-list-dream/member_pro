@@ -1,7 +1,7 @@
+
 .banner {
   position: relative;
 }
-
 swiper {
   height: 477rpx;
 }
@@ -24,7 +24,9 @@ swiper-item {
   opacity: 0.7;
   border-radius: 30rpx;
 }
-
+/* .title{
+  display:inline-block;
+} */
 .head_wrapper .wrapper_item {
   height: 100%;
   display: flex;
