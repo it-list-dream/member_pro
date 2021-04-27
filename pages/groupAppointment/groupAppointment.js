@@ -5,9 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isFree: false,
-    select: false,
-    payment: ['微信支付', '储值支付']
+    //是否免费
+    isFree: true,
+    payment: ['微信支付', '储值支付'],
+    //选座
+    chooseSeat:false,
+    //选择座位的号码
+    num:0
   },
 
   /**
@@ -20,7 +24,16 @@ Page({
       windowHeight: app.globalData.windowHeight
     })
   },
-
+  handleSeat:function(){
+     this.setData({
+       chooseSeat:true
+     })
+  },
+  close:function(){
+    this.setData({
+      chooseSeat:false
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

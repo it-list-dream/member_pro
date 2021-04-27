@@ -9,7 +9,8 @@ Page({
     serviceList: [{
         id: 1,
         name: '预约日程',
-        img: '/static/my/app_info.png'
+        img: '/static/my/app_info.png',
+        unreadyNum:1
       },
       {
         id: 2,
@@ -37,7 +38,7 @@ Page({
         img: '/static/my/location.png'
       }
     ],
-    bg: '/static/sport/bg.png',
+  //  bg: '/static/h_bg.png',
     //0表示既未绑定手机号码又未获取用户信息
     //1百世授权了用户信息，但未绑定手机号码
     //2 完成了登录流程
@@ -48,13 +49,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(app.globalData)
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       windowHeight: app.globalData.windowHeight
     })
-    //this.tranfromImage()
+   // this.tranfromImage()
+
   },
   tranfromImage(e) {
     wx.chooseImage({
@@ -71,22 +72,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var status = wx.getStorageSync('hasUserInfo');
-    var info = wx.getStorageSync('userInfo');
-    console.log(status)
-    if (status) {
-      this.setData({
-        loginStatus:1,
-        info:JSON.parse(info)
-      })
-    }
 
   },
   lookRecord(e) {
     console.log(e.currentTarget.dataset.index)
     let index = e.currentTarget.dataset.index
-    console.log(index);
-    //return;
     let path = '';
     switch (index) {
       case 0:
@@ -160,7 +150,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var status = wx.getStorageSync('hasUserInfo');
+    var info = wx.getStorageSync('userInfo');
+    console.log(status)
+    if (status) {
+      this.setData({
+        loginStatus: 1,
+        info: JSON.parse(info)
+      })
+    }
   },
 
   /**

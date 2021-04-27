@@ -1,6 +1,5 @@
 /* page2/inform/inform.wxss */
 .inform_container {
-  height: 100vh;
   background: #F0F2F5;
   padding: 20rpx 30rpx 0 30rpx;
 }

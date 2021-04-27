@@ -2,7 +2,7 @@
 <view class="bodyInfo" style="margin-top:{{navHeight}}px">
   <view class="baseinfo">
     <view class="base_item">
-      <image src="/static/people.png"></image>
+      <image src="{{userInfo?userInfo.avatarUrl:'./images/people.png'}}"></image>
       <view>2020-09-03</view>
     </view>
     <view class="physical_info">
@@ -143,7 +143,7 @@
       <text>节段脂肪</text>
     </view>
     <view class="bodybgList">
-      <view class="bodyLeft bg" style="background-image:url('/static/body.png')">
+      <view class="bodyLeft bg">
         <view>
           <view>左上肢 4.24kg</view>
           <view>偏高</view>
@@ -166,7 +166,7 @@
           <view>31.23kg 正常</view>
         </view>
       </view>
-      <view class="bodyRight bg" style="background-image:url('/static/body.png')">
+      <view class="bodyRight bg">
         <view>
           <view>左上肢 4.24kg</view>
           <view>偏高</view>

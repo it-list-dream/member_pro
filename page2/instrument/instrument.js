@@ -1,3 +1,4 @@
+// page2/instrument/instrument.js
 var app = getApp()
 Page({
 
@@ -5,9 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    normShow:true,
-    bodyShow:true,
-    fatShow:true
+
   },
 
   /**
@@ -17,41 +16,22 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight
     })
   },
-  hidenNorm:function(){
-    console.log(1111)
-    this.setData({
-      normShow:!this.data.normShow
-    })
-  },
- hidenBody:function(){
-  this.setData({
-    bodyShow:!this.data.bodyShow
-  })
- },
- hidenFat:function(){
-  this.setData({
-    fatShow:!this.data.fatShow
-  })
-},
- 
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    if(wx.getStorageSync('userInfo')){
-      this.setData({
-        userInfo:JSON.parse(wx.getStorageSync('userInfo'))
-      })
-    }
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
- 
+
   },
 
   /**

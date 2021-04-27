@@ -1,5 +1,5 @@
 //引入城市JSON数据文件
-var tcity = require("../../utils/citys-select.js")
+var tcity = require("./citys-select.js")
 var app = getApp()
 Page({
 

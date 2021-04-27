@@ -1,0 +1,37 @@
+.instrument_list {
+  overflow: hidden;
+}
+
+.instument_item {
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  width: 690rpx;
+  height: 180rpx;
+  background: linear-gradient(-90deg, #96B4EB, #779BD3);
+  border-radius: 8rpx;
+}
+
+.instuTitle {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.instu_img image {
+  width: 118rpx;
+  height: 118rpx;
+}
+/* bracelet */
+.bracelet{
+  background: linear-gradient(-90deg, #999AD1, #8983D0) !important;
+}
+/* treadmill  */
+.treadmill {
+  background: linear-gradient(-90deg, #75D8B8, #76C7AB) !important;
+}

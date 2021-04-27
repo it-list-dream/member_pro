@@ -56,6 +56,7 @@ Page({
     this.getMyCurrentTime();
   },
   switchClass(e) {
+    //判断
     this.data.selectClass = e.currentTarget.dataset.index;
     this.setData({
       selectClass: this.data.selectClass,

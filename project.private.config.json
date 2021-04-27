@@ -617,6 +617,84 @@
           "pathName": "pages/personalTrainer/personalTrainer",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/instrument/instrument",
+          "pathName": "page2/instrument/instrument",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/address/address",
+          "pathName": "page2/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/address/address",
+          "pathName": "page2/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/instrument/instrument",
+          "pathName": "page2/instrument/instrument",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/integralMall/integralMall",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/selectCourse/selectCourse",
+          "pathName": "pages/selectCourse/selectCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/groupAppointment/groupAppointment",
+          "pathName": "pages/groupAppointment/groupAppointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/deviceDetail/deviceDetail",
+          "pathName": "page2/deviceDetail/deviceDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "",
+          "scene": null
         }
       ]
     }

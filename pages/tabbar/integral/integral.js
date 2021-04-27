@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bg:'/static/sport/bg.png',
+    bg: '/static/h_bg.png',
     inte_list:['fd','dfsfs','dsf'],
     integral_list: [{
       id: 1,

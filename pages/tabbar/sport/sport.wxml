@@ -1,6 +1,6 @@
 <!-- <nav-bar page-name="运动" showNav="{{false}}"></nav-bar> -->
 <wxs src="../../../common/common.wxs" module="tools" />
-  <view class="sprotTip" style="background-image:url({{bg}})">
+  <view class="sprotTip">
     <view class="navbar" style='height:{{navHeight}}px;'>
       <view class="tip" style="margin-top:{{navTop}}px">
         <view class="tipItem">
@@ -41,9 +41,9 @@
       </view>
     </view>
     <!-- nav -->
-    <view class="nav running">
+    <view class="nav run">
       <view class="run_title nav-title">运动日历</view>
-      <navigator url="/page2/myCourse/myCourse" style="display:block;" hover-class="none">
+      <navigator url="/page2/myCourse/myCourse" hover-class="none">
         <text class="nav-name">我的课程</text>
         <image class="nav-img" src="/static/sport/right_arrow.png"></image>
       </navigator>

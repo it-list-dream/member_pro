@@ -113,10 +113,14 @@
   white-space: nowrap;
 }
 
+/* 免费的团课 */
 .order_list {
-  padding: 20rpx 30rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
   background: #FFFFFF;
-  margin-top: 21rpx;
 }
 
 .order {
@@ -128,14 +132,17 @@
   border-radius: 30rpx;
   color: #FFFFFF;
   margin: 0 auto;
+  margin-top: 20rpx;
 }
 
 /* 支付方式 */
 .pay_course {
-  width: 750rpx;
-  /* height: 182rpx; */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 212rpx;
   background-color: #FFFFFF;
-  margin-top: 28rpx;
 }
 
 .pay_course .pay_list {
@@ -177,32 +184,97 @@
   padding-left: 28rpx;
   vertical-align: middle;
 }
-.pay_course .pay_total{
+
+.pay_course .pay_total {
   display: flex;
   justify-content: space-between;
   padding: 28rpx 0;
   font-size: 36rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
-.pay_course .pay_total .pay_number{
+
+.pay_course .pay_total .pay_number {
   display: flex;
 }
-.pay_course .pay_total .pay_number .price{
+
+.pay_course .pay_total .pay_number .price {
   color: red;
 }
 
-.pay_order .order_title{
+.pay_order .order_title {
   width: 170rpx;
-height: 50rpx;
-line-height: 50rpx;
-text-align: center;
-color: #ffffff;
-font-size: 26rpx;
-font-family: PingFang SC;
-font-weight: bold;
-color: #FFFFFF;
-background: #12D58B;
-border-radius: 25rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: #ffffff;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #12D58B;
+  border-radius: 25rpx;
+}
+
+/* 选座 */
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.mask-item {
+  position: absolute;
+  background-color: #ffffff;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  padding-bottom: 30rpx;
+
+}
+
+.seatTitle {
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.seatAll {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30rpx 0;
+}
+
+.seatAll li {
+  flex-basis: 10%;
+}
+
+.seat {
+  margin: 0 auto;
+  width: 38rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  text-align: center;
+  border: 1px solid #999999;
+  border-radius: 6rpx;
+  margin-bottom: 20rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #999999;
+}
+li:nth-child(8) .seat{
+  background: #12D58B;
+  color: white;
+  border: 0;
 }

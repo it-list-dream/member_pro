@@ -1,0 +1,21 @@
+<nav-bar page-name="智能设备"></nav-bar>
+<view class="instrument_list" style="margin-top:{{navHeight}}px">
+  <navigator url="/page2/smartDevice/smartDevice" class="instument_item" hover-class="none">
+    <view class="instuTitle">人体成分分析仪</view>
+    <view class="instu_img">
+      <image src="./images/analysisMeter.png"></image>
+    </view>
+  </navigator>
+  <view class="instument_item bracelet">
+    <view class="instuTitle">心率穿戴设备</view>
+    <view class="instu_img">
+      <image src="./images/bracelet.png"></image>
+    </view>
+  </view>
+  <view class="instument_item treadmill ">
+    <view class="instuTitle">智能跑步机</view>
+    <view class="instu_img">
+      <image src="./images/treadmill.png"></image>
+    </view>
+  </view>
+</view>

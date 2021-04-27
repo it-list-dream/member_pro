@@ -38,7 +38,8 @@
         "entrance/entrance",
         "rules/rules",
         "smartDevice/smartDevice",
-        "deviceDetail/deviceDetail"
+        "deviceDetail/deviceDetail",
+        "instrument/instrument"
       ]
     }],
   "plugins": {

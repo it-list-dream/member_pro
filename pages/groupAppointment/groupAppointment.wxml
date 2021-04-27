@@ -1,6 +1,6 @@
-
 <nav-bar page-name="团课预约" class="topNav"></nav-bar>
-<view class="group_container" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}}px)">
+<!-- 内容 -->
+<view class="group_container" style="margin-top:{{navHeight}}px;margin-bottom:{{isFree?'100rpx':'212rpx'}}">
   <view class="group_pic">
     <view class="join_num">已参加1/30</view>
   </view>
@@ -27,28 +27,44 @@
       如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇
     </view>
   </view>
+  <!-- 免费的团课 -->
   <view class="order_list" wx:if="{{isFree}}">
-    <view class="order">预约</view>
+    <view class="order" bindtap="handleSeat">预约</view>
   </view>
-  <view  wx:else class="pay_course"> 
+  <!-- 收费的团课 -->
+  <view wx:else class="pay_course">
     <view class="pay_list">
       <view class="pay">
         <view class="pay_title">支付方式</view>
         <view class="WeChatPay">
-         <text>微信支付</text>
-         <image src="/static/bottom_arrow.png" ></image>
+          <text>微信支付</text>
+          <image src="/static/bottom_arrow.png"></image>
         </view>
       </view>
       <view class="pay_total">
-            <view class="pay_number">
-              <text>合计：</text>
-              <view class="price">20.00元</view>
-            </view>
-            <view class="pay_order">
-              <view class="order_title">预约</view>
-            </view>
+        <view class="pay_number">
+          <text>合计：</text>
+          <view class="price">20.00元</view>
+        </view>
+        <view class="pay_order">
+          <view class="order_title">预约</view>
+        </view>
       </view>
     </view>
-     
+  </view>
+  <!-- 选座 -->
+  <view class="mask" wx:if="{{chooseSeat}}" bindtap="close">
+    <view class="mask-item">
+      <view style="padding: 0 30rpx;">
+        <view class="seatTitle">选择座位</view>
+         <ul class="seatAll">
+           <block wx:for="{{20}}">
+             <li>
+               <view class="seat" catchtap="close">{{index+1}}</view>
+             </li>
+           </block>
+         </ul>
+      </view>
+    </view>
   </view>
 </view>

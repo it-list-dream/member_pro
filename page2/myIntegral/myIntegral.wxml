@@ -2,7 +2,7 @@
 <view class="myInteCon" style="margin-top:{{navHeight}}px;">
   <!--  积分-->
   <view class="useInte">
-    <view class="inte_item" style="background-image:url('/static/inte_bg.png')">
+    <view class="inte_item" style="background-image:url('./images/inte_bg.png')">
       <view class="title">
         <text>可用积分</text>
         <navigator url="/page2/rules/rules" class="rules" hover-class="none">积分规则</navigator>

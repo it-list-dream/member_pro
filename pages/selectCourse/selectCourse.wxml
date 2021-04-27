@@ -1,7 +1,7 @@
 <nav-bar page-name="选择课程"></nav-bar>
 <view class="selectCourse" style="margin-top:{{navHeight}}px">
   <block wx:for="{{3}}">
-    <view class="course_list" style="background-image:url('/static/selectCourse.png')">
+    <view class="course_list" style="background-image:url({{cardImg}})">
       <view class="course_item">
         <view class="top">
           <view>

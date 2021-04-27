@@ -48,7 +48,7 @@ Page({
     changebg: 1,
     isShow: false,
     chooseCourse: false,
-    bg: '/static/sport/bg.png'
+    bg: '/static/h_bg.png'
   },
 
   /**
@@ -78,7 +78,7 @@ Page({
   },
   fitness: function () {
     wx.navigateTo({
-      url: '/page2/smartDevice/smartDevice',
+      url: '/page2/instrument/instrument',
     })
   },
   appointment: function () {

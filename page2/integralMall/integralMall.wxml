@@ -48,7 +48,7 @@
       <swiper duration="300" circular="{{true}}">
         <block wx:for="{{5}}">
           <swiper-item>
-            <image class="scorec-img" src="/static/conversion2.png"></image>
+            <image class="scorec-img" src="./images/conversion2.png"></image>
           </swiper-item>
         </block>
       </swiper>
@@ -120,7 +120,7 @@
       <swiper duration="300" circular="{{true}}">
         <block wx:for="{{5}}">
           <swiper-item>
-            <image class="scorec-img" src="/static/conversion1.png"></image>
+            <image class="scorec-img" src="./images/conversion1.png"></image>
           </swiper-item>
         </block>
       </swiper>

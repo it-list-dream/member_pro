@@ -2,6 +2,5 @@
   "usingComponents": {
     "nav-bar":"/components/navbar/navbar",
     "modal":"/components/modal/modal"
-  },
-  "editor.maxTokenizationLineLength":20000
+  }
 }

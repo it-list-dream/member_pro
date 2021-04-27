@@ -30,7 +30,12 @@ Page({
     })
   },
   modalCancel() {
-    console.log('取消')
+    console.log('取消');
+    wx.showToast({
+      title: '拒绝授权',
+      icon: 'none',
+      duration: 2000
+    })
   },
   modalConfirm() {
     console.log('确定')

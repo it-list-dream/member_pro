@@ -1,7 +1,7 @@
 <nav-bar page-name="运动数据"></nav-bar>
 <view class="sportData" style="margin-top:{{navHeight}}px">
   <view class="banner">
-    <image src="/static/sport_bg.png"></image>
+    <image src="/static/sportDevice.png"></image>
     <view class="sport_info">
       <view class="sport">
         <view class="sport_item">

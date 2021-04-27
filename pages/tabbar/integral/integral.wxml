@@ -1,4 +1,5 @@
-<view class="inteTip" style="background-image:url({{bg}})">
+<!-- 背景 -->
+<view class="inteTip">
   <view class="navbar" style='height:{{navHeight}}px;'>
     <view class="tip" style="margin-top:{{navTop}}px">
       <view class="tipItem">

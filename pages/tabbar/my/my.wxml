@@ -1,18 +1,20 @@
-<view class="myTip" style="background-image:url({{bg}})">
-  <view class="navbar" style='height:{{navHeight}}px;'>
-    <view class="tip" style="margin-top:{{navTop}}px">
-      <view class="tipItem">
-        <image src="/static/home_pic/QRcode.png"></image>
-      </view>
-      <view class="line"></view>
-      <view class="tipItem">
-        <image src="/static/home_pic/scan.png"></image>
-      </view>
-    </view>
-    <view class='navbar-title' style='top:{{navTop}}px;'>我的</view>
-  </view>
-</view>
 <view class="my_container">
+  <!-- 头部信息 -->
+  <view class="myTip">
+    <view class="navbar" style='height:{{navHeight}}px;'>
+      <view class="tip" style="margin-top:{{navTop}}px">
+        <view class="tipItem">
+          <image src="/static/home_pic/QRcode.png"></image>
+        </view>
+        <view class="line"></view>
+        <view class="tipItem">
+          <image src="/static/home_pic/scan.png"></image>
+        </view>
+      </view>
+      <view class='navbar-title' style='top:{{navTop}}px;'>我的</view>
+    </view>
+  </view>
+  <!--个人信息 -->
   <view class="my_banner">
     <view class="my_info">
       <image class="head"
@@ -54,6 +56,7 @@
           <image src="/static/my/message.png" alt="" style="width:36rpx;height:36rpx;"></image>
         </view>
         <view>消息</view>
+        <view class="dot dotMessage">10</view>
       </view>
     </view>
   </view>
@@ -108,6 +111,7 @@
             <image src="{{item.img}}"></image>
           </view>
           <text>{{item.name}}</text>
+          <view class="dot" wx:if="{{item.unreadyNum && item.unreadyNum>0}}">{{item.unreadyNum}}</view>
         </view>
       </block>
     </view>

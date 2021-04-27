@@ -1,38 +1,40 @@
 <wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="预约"></nav-bar>
 <view class="appointment" style="margin-top:{{navHeight}}px">
-  <view class="appointment_item">
-    <view class="appointment_detail"
-      style=" {{showcourse==0?'background:#52495B;':'background:#F0F2F5;padding-bottom:0'}}">
-      <view class="course_list">
-        <block wx:for="{{courseList}}">
-          <view class="course  {{selectClass==index?'course_active':''}}" bindtap="switchClass" data-index="{{index}}">
-            {{item}}</view>
-        </block>
-      </view>
-      <!-- 私教 -->
-      <view class="coach_info" wx:if="{{showcourse==0}}">
-        <view class="coach_list">
-          <view class="head">
-            <image src="/static/appointment/headPortrait.png"></image>
-            <view class="head_info">
-              <view>
-                <text>六大胖</text>
-                <image src="/static/appointment/man.png" style="width:25rpx;height:25rpx;"></image>
-              </view>
-              <view>时长：60分钟</view>
+  <!-- 头部 -->
+  <view class="appointment_detail"
+    style=" {{showcourse==0?'background:#52495B;':'background:#F0F2F5;padding-bottom:0;'}}">
+    <view class="course_list">
+      <block wx:for="{{courseList}}">
+        <view class="course  {{selectClass==index?'course_active':''}}" bindtap="switchClass" data-index="{{index}}">
+          {{item}}</view>
+      </block>
+    </view>
+    <!-- 私教 -->
+    <view class="coach_info" wx:if="{{showcourse==0}}">
+      <view class="coach_list">
+        <view class="head">
+          <image src="/static/appointment/headPortrait.png"></image>
+          <view class="head_info">
+            <view>
+              <text>六大胖</text>
+              <image src="/static/appointment/man.png" style="width:25rpx;height:25rpx;"></image>
             </view>
+            <view>时长：60分钟</view>
           </view>
-          <view class="course_content">
-            <view>如渔常规课（10节）</view>
-            <view>截止：2021-6-13</view>
-          </view>
-          <navigator url="/pages/selectCourse/selectCourse" class="switch" hover-class="none">
-            <image src="/static/appointment/sort.png"></image>
-          </navigator>
         </view>
+        <view class="course_content">
+          <view>如渔常规课（10节）</view>
+          <view>截止：2021-6-13</view>
+        </view>
+        <navigator url="/pages/selectCourse/selectCourse" class="switch" hover-class="none">
+          <image src="/static/appointment/sort.png"></image>
+        </navigator>
       </view>
     </view>
+  </view>
+  <!-- 团课和私教 -->
+  <view class="appointment_item">
     <!-- 日期 -->
     <view class="dayList">
       <view class="day_item">
@@ -54,14 +56,14 @@
     <!-- 团课详情 -->
     <view class="leagueClass" wx:if="{{showcourse==1}}">
       <block wx:for="{{2}}">
-        <view class="leagueClass_item" style="background-image:url('/static/course1.png')">
+        <navigator url="/pages/groupAppointment/groupAppointment" class="leagueClass_item" style="background-image:url('/static/course1.png');" hover-class="none">
           <view class="progress">已参加1/3</view>
           <view class="className">动感单车-六大胖</view>
           <view class="class_info">
             <view class="class_time">2021/3/18 18:00-19:00</view>
             <view class="class_status">已预约</view>
           </view>
-        </view>
+        </navigator>
       </block>
       <!-- <view class="unclass">
           <image src="/static/unclass.png"></image>
@@ -79,7 +81,9 @@
         <ul class="time">
           <block wx:for="{{datatime}}" wx:key="index">
             <li class="clock" catchtap="hanleDate" data-id="{{index+1}}">
-              <view  class="{{item.type == 0?'mycol':''}}" style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}" data-s="{{item.starttime}}" data-e="{{item.endtime}}">
+              <view class="{{item.type == 0?'mycol':''}}"
+                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}"
+                data-s="{{item.starttime}}" data-e="{{item.endtime}}">
                 {{item.starttime}}</view>
             </li>
           </block>

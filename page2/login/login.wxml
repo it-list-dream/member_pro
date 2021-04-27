@@ -1,7 +1,7 @@
 <nav-bar page-name="登录"  titleColor="#FFFFFF" icon="{{true}}" style="position: fixed;top:0;left:0;z-index:9999999;" bgColor="transparent"></nav-bar>
 <view class="login-layout">
   <view class="avatar">
-    <image src="/static/avtor (1).png"></image>
+    <image src="/static/avtor.png"></image>
   </view>
   <view class="personal_info">
     <view class="sto_title">无锡美洲健身</view>
