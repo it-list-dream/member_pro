@@ -7,7 +7,7 @@ Component({
   },
   properties: {
     propArray: {
-      type: Array,
+      type:Array,
     },
     top:{
       type:String,
@@ -24,6 +24,9 @@ Component({
   /**
    * 组件的方法列表
    */
+  attached: function () {
+      console.log(this.properties.propArray)
+   }, 
   methods: {
     //option的显示与否
     selectToggle: function () {
@@ -35,8 +38,11 @@ Component({
     //设置内容
     setText: function (e) {
       var nowData = this.properties.propArray; //当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
+      console.log(nowData)
       var nowIdx = e.target.dataset.index; //当前点击的索引
+      console.log(nowIdx)
       var nowText = nowData[nowIdx].text; //当前点击的内容
+      console.log(nowText)
       this.setData({
         selectShow: false,
         nowText: nowText,

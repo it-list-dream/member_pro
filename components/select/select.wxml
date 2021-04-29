@@ -4,6 +4,6 @@
         <image src='/static/bottom_arrow.png'  class='com-sImg'></image>
     </view>
     <view class='com-sList' wx:if="{{selectShow}}">
-        <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='' class='com-sItem' bindtap='setText'>{{item.text}}</view>
+        <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='text' class='com-sItem' catchtap='setText'>{{item.text}}</view>
     </view>
 </view>

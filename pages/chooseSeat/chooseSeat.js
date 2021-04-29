@@ -1,4 +1,5 @@
 // pages/chooseSeat/chooseSeat.js
+const api = require('../../utils/request')
 Page({
 
   /**
@@ -12,7 +13,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //发送请求获取数据
+    // var user = {
+    //   username: 'zhangsan',
+    //   pwd: '123456'
+    // }
+    // api.request({
+    //   url:'/login',
+    //   method: 'POST',
+    //   data: {
+    //     ...user
+    //   }
+    // }).then(res => {
+    //   console.log(res)
+    // })
   },
 
   /**

@@ -70,18 +70,13 @@ Page({
   },
   getWeekList: function (t) {
     let dayList;
+  //  console.log(t)
     if (t) {
       dayList = util.days(t);
     } else {
       dayList = util.days();
-    }
-    //  let newDate =  dayList.map(item =>{
-    //    var month = item.substr(0,2);
-    //   if(Number(month)<10){
-    //      item.substr(0,1)
-    //   }
-    //   return  item.replace('月','.')
-    //  }) 
+    } 
+    console.log(dayList)
     for (let i = 0; i < dayList.length; i++) {
       var month = dayList[i].substr(0, 2);
       if (Number(month) < 10) {
@@ -163,7 +158,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+      this.setData({
+        date:false
+      })
   },
   //给点击的日期设置一个背景颜色
   dayClick: function (event) {
@@ -183,9 +180,9 @@ Page({
         [changeDay]: clickDay,
         [changeBg]: "#84e7d0",
         date: false,
-        SearchDate: clickYear + '-' + clickMonth + "-" + clickDay
+        SearchDate:chose_time
       })
-      that.getWeekList(that.data.SearchDate);
+      that.getWeekList(chose_time);
       that.setData({
         choosesDay: 0
       })

@@ -1,5 +1,5 @@
 var getWeekdDay = function (value, t) {
-  //console.log(value)
+  console.log(value,t)
   t = t.toString();
   //今天
   var today = getDate();

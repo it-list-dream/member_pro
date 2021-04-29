@@ -73,3 +73,9 @@ font-family: PingFang SC;
 font-weight: 500;
 color: #FFFFFF;
 }
+/*radio未选中时样式 */
+radio .wx-radio-input{
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  }

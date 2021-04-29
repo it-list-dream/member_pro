@@ -24,14 +24,14 @@
       <view class="add_item">
         <text>详细地址</text>
         <input type="text" placeholder="请填写详细地址、不少于5个字" 
-        value="{{address}}" data-type="address" 
+        value="{{newAddress.detailAdd}}" data-type="address" 
         bindblur="bindinputblur"
         placeholder-class="phcolor"></input>
       </view>
       <!--  -->
       <view class="setting">
         <label class="radio">
-          <radio value="{{is_setting}}" value="r1" bindtap="changeSetting" checked="{{is_setting}}"/>设为默认地址
+          <radio value="{{defaultAddress}}" bindtap="changeSetting" checked="{{defaultAddress}}"/>设为默认地址
         </label>
       </view>
     </view>

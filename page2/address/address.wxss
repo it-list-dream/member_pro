@@ -57,7 +57,10 @@
   font-weight: 400;
   color: #333333;
 }
-
+.bottom_address>view:first-child{
+  display: flex;
+  align-items: center;
+}
 /*  */
 .addBtn_list {
   position: fixed;
@@ -97,3 +100,9 @@
 .no-address>view{
   margin-top: 35rpx;
 }
+/*radio未选中时样式 */
+radio .wx-radio-input{
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  }

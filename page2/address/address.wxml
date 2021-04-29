@@ -1,19 +1,19 @@
 <nav-bar page-name="收货地址"></nav-bar>
 <view class="address_list" style="margin-top:{{navHeight}}px" >
   <scroll-view class="scroll-address" scroll-y="true">
-    <block wx:for="{{2}}">
+    <block wx:for="{{addressList}}" wx:key="id">
       <view class="address_detail">
         <view class="top_address">
           <view class="add_info">
-            <text>刘胖子</text>
-            <text>15025447890</text>
+            <text>{{item.name}}</text>
+            <text>{{item.phoneNmuber}}</text>
           </view>
-          <view class="detail">上海市徐汇区永升大厦4楼407室</view>
+          <view class="detail">{{item.address}}</view>
         </view>
         <!--  -->
         <view class="bottom_address">
-          <view>
-            <radio class="radio" value="r1" checked="{{defValue}}" />
+          <view catchtap="isDefault" data-id="{{index}}">
+            <radio  value="{{item.defaultAddress}}" checked="{{item.defaultAddress}}" />
             默认地址
           </view>
           <view bindtap="edit">编辑</view>

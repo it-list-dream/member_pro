@@ -2,6 +2,7 @@ import * as echarts from '../../components/ec-canvas/echarts.min';
 
 let chart = null;
 
+
 function initChart(canvas, width, height, dpr) {
   chart = echarts.init(canvas, null, {
     width: width,
@@ -11,16 +12,16 @@ function initChart(canvas, width, height, dpr) {
   //console.log(width, height, dpr)
   canvas.setChart(chart);
   var option = {
-    triggerEvent: true,
+    //triggerEvent: true,
     tooltip: {
       trigger: 'axis',
-     // triggerOn: 'click',
-      // axisPointer: { // 坐标轴指示器，坐标轴触发有效
-      //   type: 'shadow',
-      //   shadowStyle: {
-      //     color: '#12D58B',
-      //   },
-      // },
+      triggerOn: 'click',
+      axisPointer: { // 坐标轴指示器，坐标轴触发有效
+        type: 'none',
+        shadowStyle: {
+          color: '#12D58B',
+        },
+      },
     },
     grid: {
       left: '2%',
@@ -33,10 +34,8 @@ function initChart(canvas, width, height, dpr) {
       type: 'category',
       data: ['03.08', '03.09', '03.10', '03.11', '03.12', '03.13', '03.14'],
       axisTick: {
-        alignWithLabel: true
-      },
-      axisTick: {
-        show: false
+        alignWithLabel: true,
+        show:false
       },
       axisLine: {
         lineStyle: {
@@ -52,8 +51,8 @@ function initChart(canvas, width, height, dpr) {
       splitLine: {
         show: false
       },
-      axisLabel:{
-        show:false
+      axisLabel: {
+        show: false
       }
     }],
     series: [{
@@ -61,15 +60,8 @@ function initChart(canvas, width, height, dpr) {
       type: 'bar',
       legendHoverLink: true,
       barWidth: '50%',
-      data: [100, 152, 200, 334, 390, 330, 220,120],
+      data: [100, 152, 200, 334, 390, 330, 220, 120],
       itemStyle: {
-      //   color: function (params){
-      //     //通过判断选中的名字改变柱子的颜色样式,
-      //      if(checkName === params.name){
-      //          return "#12D58B";  //点击后的颜色
-      //      }else {
-      //          return "#AEEAD6";  //默认颜色
-      //      }}
         normal: {
           label: {
             show: true, //开启显示
@@ -77,14 +69,14 @@ function initChart(canvas, width, height, dpr) {
             color: '#AEEAD6'
           },
           color: '#AEEAD6',
-          emphasis:{
-            color:'#12D58B'
+          emphasis: {
+            color: 'red'
           }
         },
         formatter: '{b0}: {c0}<br />{b1}: {c1}',
-       },
+      },
     }]
-  }
+  };
   chart.setOption(option);
   return chart;
 }

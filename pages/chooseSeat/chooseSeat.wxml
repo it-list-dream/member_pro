@@ -20,6 +20,7 @@
       <view class="box3"></view>
     </view>
     <!-- 座位 -->
+    <body-item></body-item>
     <!-- <view class="seat">
       <view class="seat_trumpet">
         <view>1</view>

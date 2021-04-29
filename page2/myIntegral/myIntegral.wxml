@@ -2,7 +2,7 @@
 <view class="myInteCon" style="margin-top:{{navHeight}}px;">
   <!--  积分-->
   <view class="useInte">
-    <view class="inte_item" style="background-image:url('./images/inte_bg.png')">
+    <view class="inte_item">
       <view class="title">
         <text>可用积分</text>
         <navigator url="/page2/rules/rules" class="rules" hover-class="none">积分规则</navigator>
@@ -30,7 +30,7 @@
         <select prop-array='{{selectArray}}' top="10" bind:myget='getDate'></select>
       </view>
     </view>
-    <!--  内容-->
+    <!--  全部-->
     <view class="record"  wx:if="{{tab==0}}">
       <block wx:for="{{all}}" wx:key="id">
         <view class="record_item">

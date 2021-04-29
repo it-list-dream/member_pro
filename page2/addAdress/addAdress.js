@@ -7,14 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    concatPerson: "", //联系人
-    phone: "", //手机号
+    concatPerson: "张三", //联系人
+    phone: "15111458975", //手机号
     address: "", //详细地址
     multiCityArray: ['', '', ''], //picker  multiSelector 城市数据
     multiIndex: [0, 0, 0], //picker  multiSelector 当前选中的第几项
     cityData: [],
     visible: true,
-    is_setting: false
+    defaultAddress: false,
   },
 
   /**
@@ -109,23 +109,12 @@ Page({
     let province = this.data.multiCityArray[0][this.data.multiIndex[0]]
     let city = this.data.multiCityArray[1][this.data.multiIndex[1]]
     let district = this.data.multiCityArray[2][this.data.multiIndex[2]]
-    // console.log("province", province)
-    // console.log("city", city)
-    // console.log("district", district)
-    //处理省份、城市、区县
-    // let provinceObject = this.data.cityData[this.data.multiIndex[0]]
-    // let cityObject = this.data.cityData[this.data.multiIndex[0]].sub[this.data.multiIndex[1]]
-    // let districtObject = this.data.cityData[this.data.multiIndex[0]].sub[this.data.multiIndex[1]].sub[this.data.multiIndex[2]]
-    // console.log("provinceObject", provinceObject)
-    // console.log("cityObject", cityObject)
-    // console.log("districtObject", districtObject)
+    console.log(province,city,district)
 
   },
-  changeSetting(){
-    //console.log(11);
-    let setting = this.data.is_setting
+  changeSetting() {
     this.setData({
-      is_setting:!setting
+      defaultAddress: !this.data.defaultAddress
     })
   },
   /**

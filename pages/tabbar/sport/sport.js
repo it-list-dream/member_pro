@@ -44,8 +44,8 @@ Page({
       }
     ],
     //weekday: ['21', '22', '23', '24', '25', '26', '27'],
-    weekList:[],
-    changebg: 1,
+    weekList: [],
+    changebg: 0,
     isShow: false,
     chooseCourse: false,
     bg: '/static/h_bg.png'
@@ -107,21 +107,31 @@ Page({
       chooseCourse: false
     })
   },
-  getWeekList: function (t) {
-    let dayList;
-    if(t){
-      dayList = util.days(t);
-    }else{
-       dayList = util.days();
-    }
-    for (let i = 0; i < dayList.length; i++) {
-      dayList[i] = dayList[i].replace(/[\u4e00-\u9fa5]+/g, function ($) {
-        return $ == '月' ? '.' : ''
-      })
+  getWeekList: function () {
+    let dayList = [];
+    // if(t){
+    //   dayList = util.days(t);
+    // }else{
+    //    dayList = util.days();
+    // }
+    // for (let i = 0; i < dayList.length; i++) {
+    //   dayList[i] = dayList[i].replace(/[\u4e00-\u9fa5]+/g, function ($) {
+    //     return $ == '月' ? '.' : ''
+    //   })
+    // }
+    //获取当前时间
+    let startDate = new Date();
+    let endDate = new Date();
+    endDate.setDate(startDate.getDate() + 6);
+    while ((endDate.getTime() - startDate.getTime()) >= 0) {
+      let month = (startDate.getMonth() + 1).toString().length === 1 ? "0" + (startDate.getMonth() + 1).toString() : (startDate.getMonth() + 1);
+      let day = startDate.getDate().toString().length === 1 ? "0" + startDate.getDate() : startDate.getDate();
+      dayList.push(month + "-" + day);
+      startDate.setDate(startDate.getDate() + 1);
     }
     this.setData({
-      weekList: dayList.slice(0, 7),
-      year:new Date().getFullYear()
+      weekList: dayList,
+      year: new Date().getFullYear()
     })
     //console.log(dayList)
   },

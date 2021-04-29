@@ -59,7 +59,7 @@
           bindchange="bindYearChange">
           <!-- <text>2021年</text> -->
           <text>{{date || 2021}}年</text>
-          <image src="/static/bottom_arrow.png" bindtap=""></image>
+          <image src="/static/bottom_arrow.png"></image>
         </picker>
       </view>
       <!--  -->

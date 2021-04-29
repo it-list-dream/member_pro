@@ -57,3 +57,18 @@
   height: 100%;
   overflow-y: hidden;
 }
+
+/* 按钮的样式 */
+.allow {
+  line-height: 100rpx;
+  background-color: transparent !important;
+  border-radius: 0rpx !important;
+  padding: 0rpx !important;
+  margin: 0rpx !important;
+  display: inline-block !important;
+  color: #fff !important;
+}
+.allow::after {
+  /*button的边框样式是通过::after方式实现的*/
+  border: none !important;
+}

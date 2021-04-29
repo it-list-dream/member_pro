@@ -695,6 +695,72 @@
           "pathName": "page2/myIntegral/myIntegral",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "page2/address/address",
+          "pathName": "page2/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/addAdress/addAdress",
+          "pathName": "page2/addAdress/addAdress",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chooseSeat/chooseSeat",
+          "pathName": "pages/chooseSeat/chooseSeat",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/chooseSeat/chooseSeat",
+          "pathName": "pages/chooseSeat/chooseSeat",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "course=0",
+          "scene": null
         }
       ]
     }
