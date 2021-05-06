@@ -1,7 +1,7 @@
 <nav-bar page-name="教练列表"></nav-bar>
 <view class="coachList" style="margin-top:{{navHeight}}px;">
   <block wx:for="{{3}}">
-    <view class="coachList_card" bindtap="coachList" style="background-image:url('/static/coach03.png')">
+    <view class="coachList_card" bindtap="coachList" style="background-image:url('/static/selectCourse.png')">
       <view class="coachList_item">
         <view class="coach_info">
           <image src="/static/coachList/head.png" style="width:50rpx;height:50rpx;"></image>
@@ -20,5 +20,4 @@
       </view>
     </view>
   </block>
-
 </view>

@@ -1,3 +1,4 @@
+<wxs src="./handleDate.wxs" module="tools" />
 <view class='nav-wrap' style='height: {{navHeight}}px;'>
   <view class="navbar" style='height:{{navHeight}}px;'>
     <view class="navbar-action-wrap" style='top:{{navTop}}px;' bindtap="_navBack">
@@ -6,39 +7,39 @@
       </view>
     </view>
     <view class='navbar-title' style='top:{{navTop}}px;'>
-      会员码
+      会员码({{cardCount}}张)
       <image src="/static/bottom_arrow.png" class="arrow" catchtap="chooseCard"></image>
     </view>
   </view>
 </view>
 <view class="all" style="margin-top:{{navHeight}}px;height: calc(100vh - {{navHeight}}px);">
   <view class="header">
-    <image src="/static/avtor.png"></image>
+    <image src="{{user?user.avatarUrl:'/static/avtor.png '}}"></image>
   </view>
   <view class="member_list">
-    <view class="member_store">如渔科技</view>
-    <view class="member_card">卡号：80268</view>
-    <view class="eff_date">2023-6-22到期(812天）</view>
+    <view class="member_store">{{useCard.GB_Name}}</view>
+    <view class="member_card">卡号：{{useCard.UI_No}}</view>
+    <view class="eff_date">{{useCard.UI_LastDate}}到期({{useCard.SC_Days}}天)</view>
     <view class="member_item">
       <view class="member_code">
         <canvas class='canvas' canvas-id='canvas'></canvas>
       </view>
     </view>
 
-    <view class="year_card">三年卡</view>
-    <view class="use_count">使用次数：6次</view>
+    <view class="year_card">{{useCard.SC_Type}}年卡</view>
+    <view class="use_count">使用次数：{{useCard.CheckinTimes}}次</view>
   </view>
   <!-- 遮罩层 -->
-  <cover-view class='model' wx:if='{{showchoose}}'>
+  <cover-view class='model' wx:if='{{showchoose}}' style="top:{{navHeight}}px">
     <cover-view class='modelcon'>
       <block wx:for="{{ card_list}}" wx:key="index">
         <cover-view class="mask_item"  bindtap='chooseCard'>
           <cover-view class='cardinfo'>
-            {{item.card_name}}
+            {{item.SC_Name}}
             <cover-view
-              style="{{item.code ==0?'color:#12D58B;':(item.code ==1?'color:#FD4E54;':'')}} margin-left:20rpx;">({{item.card_state}})</cover-view>
+              style="{{item.UI_FirstDate?'color:#12D58B;':'color:#FD4E54;'}} margin-left:20rpx;">({{item.UI_FirstDate?'已激活':'未激活'}})</cover-view>
           </cover-view>
-          <cover-view class="store">{{item.card_store}}</cover-view>
+          <cover-view class="store">{{item.GB_Name}}</cover-view>
         </cover-view>
       </block>
     </cover-view>

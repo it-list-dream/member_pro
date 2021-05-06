@@ -46,7 +46,6 @@ Component({
         navHeight: app.globalData.navHeight,
         navTop: app.globalData.navTop
       })
-      console.log(app)
     }
   },
   /**

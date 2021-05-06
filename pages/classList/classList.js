@@ -1,27 +1,44 @@
 // pages/classList/classList.js
 const app = getApp()
+var api = require('../../utils/request.js')
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    classList:[]
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCoachClassList();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
     })
   },
   getclass() {
-    //  console.log(2332323);
     wx.navigateTo({
       url: '/pages/personalTrainer/personalTrainer',
     })
+  },
+  getCoachClassList:function(){
+    var that = this;
+     api.request({
+       url:"/CoachClassList",
+       data:{
+        user_token:wx.getStorageSync('token'),
+        GB_ID:app.globalData.GB_ID
+       }
+     }).then(res=>{
+       console.log(res);
+       that.setData({
+         classList:res.data.data
+       })
+     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -29,7 +46,7 @@ Page({
   onReady: function () {
 
   },
-
+   
   /**
    * 生命周期函数--监听页面显示
    */

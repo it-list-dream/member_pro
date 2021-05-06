@@ -761,6 +761,47 @@
           "pathName": "page2/login/login",
           "query": "course=0",
           "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/classList/classList",
+          "pathName": "pages/classList/classList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/shop/shop",
+          "pathName": "pages/shop/shop",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/coachList/coachList",
+          "pathName": "pages/coachList/coachList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/coachList/coachList",
+          "pathName": "pages/coachList/coachList",
+          "scene": null
         }
       ]
     }

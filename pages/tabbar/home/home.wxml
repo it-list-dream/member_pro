@@ -23,7 +23,6 @@
         <image class="head_pic" src="/static/home_pic/scan.png"></image>
       </view>
     </view>
-    <!-- <view class="title">无锡美洲健身</view> -->
   </view>
 </view>
 
@@ -33,17 +32,17 @@
     <image src="/static/home_pic/ship_head.png"></image>
   </view>
   <view class="store_wrapper">
-    <view class="store_title">美洲西水东店</view>
+    <view class="store_title">{{GymName}}</view>
     <view class="store_bottom">
       <view class="do_business">
         <text>营业中</text>
         <text class="time">6:00-22:00</text>
       </view>
-      <view class="information" bindtap="callPhone">
+      <view class="information" bindtap="callPhone" data-phone = "{{store.GB_Tel}}">
         <view class="phone_wrapper">
           <image src="/static/home_pic/phone1.png" class="phone"></image>
         </view>
-        <view class="phone_info">0510-82851333</view>
+        <view class="phone_info">{{store.GB_Tel}}</view>
       </view>
     </view>
   </view>
@@ -84,14 +83,14 @@
           <block wx:for="{{coachList}}" wx:key="index">
             <!-- <swiper-item> -->
               <view class="content_item">
-                <image src="/static/home_pic/coach1.png"></image>
+                <image src="{{item.AI_Face}}"></image>
                 <view class="coach_info">
                   <view>
-                    {{item.coachName}}
-                    <image src="/static/home_pic/phone.png"></image>
+                    {{item.AI_Name}}
+                    <image src="/static/home_pic/phone.png" catchtap="phone" data-phone="{{item.AI_Tel}}"></image>
                   </view>
-                  <view>累计上课{{item.coachClass}}节</view>
-                  <view>{{item.coachFun}}</view>
+                  <view>累计上课{{item.CS_Num}}节</view>
+                  <view>{{item.AI_GoodAt}}</view>
                   <view class="recommend">
                     <view class="recommend_title">
                       荐
@@ -107,8 +106,6 @@
     </view>
   </view>
 
-
-
   <!-- 推荐课程 -->
   <view class="coach_list">
     <view class="star_coach">
@@ -122,14 +119,15 @@
   <view class="recommend_content">
     <view class="recommend_list">
       <view class="recommend_item">
-        <block wx:for="{{recomentList}}">
+        <block wx:for="{{recomentList}}" wx:key="CP_ID">
           <view>
-            <image src="{{item.r_pic}}" class="recommend_pic"></image>
-            <view class="course">拉伸课</view>
+            <image src="{{item.CP_Logo?item.CP_Logo:'/static/home_pic/coach2.png'}}" class="recommend_pic"></image>
+            <view class="course">{{item.CP_Name}}</view>
             <view class="course_detail">
+              <!-- 进场次数 -->
               <text>￥</text>
-              <text class="course_num">200/节</text>
-              <text class="buy">257人已购买</text>
+              <text class="course_num">{{item.OnlinePrice}}/节</text>
+              <text class="buy">{{item.SaleCount}}人已购买</text>
             </view>
           </view>
         </block>
@@ -148,24 +146,13 @@
   </view>
   <view class="active_card">
     <view class="active">
-      <view class="active_list">
-        <image src="/static/home_pic/vip_card.png" class="card"></image>
+      <view class="active_list" wx:for="{{activityCard}}" wx:key="SC_ID">
+        <image src="{{item.SC_Logo?item.SC_Logo:'/static/home_pic/vip_card.png'}}" class="card"></image>
         <view class="active_content">
-          <view class="card">一年卡</view>
+          <view class="card">{{item.SC_Name}}</view>
           <view class="card_price">
             <text>￥</text>
-            <text>1900</text>
-          </view>
-          <view class="join">立即加入</view>
-        </view>
-      </view>
-      <view class="active_list">
-        <image src="/static/home_pic/vip_card.png" class="card"></image>
-        <view class="active_content">
-          <view class="card">一年卡</view>
-          <view class="card_price">
-            <text>￥</text>
-            <text>1900</text>
+            <text>{{item.OnlinePrice}}</text>
           </view>
           <view class="join">立即加入</view>
         </view>

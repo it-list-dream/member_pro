@@ -1,4 +1,4 @@
-// pages/coachList/coachList.js
+// pages/hello/hello.js
 const app = getApp()
 var api = require('../../utils/request.js')
 Page({
@@ -7,36 +7,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-     
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      navHeight: app.globalData.navHeight,
-      navTop: app.globalData.navTop,
-    })
-    this.getCoachList()
+    this.getStoreInfo(options)
   },
-  coachList() {
-    wx.navigateTo({
-      url: '/pages/coachDetail/coachDetail',
-    })
-  },
-  getCoachList:function(){
-      api.request({
-        url:"/CoachStyleList",
-        data:{
-          user_token:wx.getStorageSync('token'),
-          GB_ID:wx.getStorageSync('GB_ID')
-        }
-      }).then(res=>{
-        console.log(res)
+  //获取门店信息
+  getStoreInfo: function (d) {
+    api.request({
+      url: "/GetUrlBySign",
+      data: {
+        sign: d.sign || 'ruyu'
+      }
+    }).then(res => {
+      // console.log(res)
+      var t = wx.getStorageSync('token')
+      if (!t) {
+        wx.setStorageSync('token', res.data.user_token)
+        //保存门店名字
+        wx.setStorageSync('GymName', res.data.GymName)
+      }
+      wx.switchTab({
+        url: '/pages/tabbar/home/home',
       })
+    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

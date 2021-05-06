@@ -2,7 +2,6 @@
 var api = require('../../utils/request')
 var app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -10,12 +9,10 @@ Page({
     showModal: false,
     hasUserInfo: false
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     let hasUserInfo = wx.getStorageSync('hasUserInfo');
     this.setData({
       navHeight: app.globalData.navHeight,
@@ -55,27 +52,8 @@ Page({
         })
         wx.setStorageSync('hasUserInfo', true)
         wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-        //登录
-        wx.login({
-          success: function (res) {
-            let code = res.code
-            console.log(code)
-            api.request({
-              url: "/WxUserLogin",
-              method: "POST",
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              data: {
-                user_token: wx.getStorageSync('token'),
-                code: code
-              }
-            }).then(res => {
-              console.log(res)
-              wx.setStorageSync('token', res.data.user_token)
-            })
-          }
-        })
+        //登录状态
+        wx.setStorageSync('loginStatus', 1)     
       },
       fail: function () {
         console.log('用户拒绝获取头像信息');
@@ -87,42 +65,53 @@ Page({
   },
   //通过绑定手机号登录
   getPhoneNumber: function (e) {
-    api.request({
-      url: "/userPhoneBind",
-      method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        user_token: wx.getStorageSync('token'),
-        encryptedDataStr: e.detail.encryptedData,
-        iv: e.detail.iv,
-      }
-    }).then(res => {
-      console.log(res)
-      wx.setStorageSync('token', res.data.user_token)
-    })
-  },
-  getStoreInfo: function () {
-    api.request({
-      url: "/GetUrlBySign",
-      method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        sign: "ruyu"
-      }
-    }).then(res => {
-      console.log(res)
-      wx.setStorageSync('token', res.data.user_token)
-    })
+    console.log(e)
+    if (e.detail.errMsg =='getPhoneNumber:ok') {
+       //登录
+       wx.login({
+        success: function (res) {
+          let code = res.code
+          api.request({
+            url: "/WxUserLogin",
+            data: {
+              user_token: wx.getStorageSync('token'),
+              code: code
+            }
+          }).then(res => {
+            console.log(res.data.user_token)
+            api.request({
+              url: "/userPhoneBind",
+              data: {
+                user_token: res.data.user_token,
+                encryptedDataStr: e.detail.encryptedData,
+                iv: e.detail.iv,
+              }
+            }).then(res => {
+             console.log(res)
+             wx.setStorageSync('token', res.data.user_token);
+             wx.setStorageSync('loginStatus', 2)
+             // 保存手机号码
+             wx.setStorageSync('phone', res.data.phone)
+             // 返回上一个页面
+              wx.navigateBack({
+                delta: 1,
+              })
+            })
+          })
+        }
+      })
+    } else {
+      //返回上一个页面
+      wx.navigateBack({
+        delta: 1,
+      })
+    }
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getStoreInfo();
   },
 
   /**

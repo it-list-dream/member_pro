@@ -1,37 +1,15 @@
 // var server = require("../../utils/server.js")
 var QRCode = require('../../utils/weapp-qrcode.js')
 const app = getApp()
+const api = require('../../utils/request.js');
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    card_list: [{
-        card_name: '一年卡',
-        card_state: '使用中',
-        card_store: '如鱼科技',
-        code: 0
-      },
-      {
-        card_name: '二年卡',
-        card_state: '未激活',
-        card_store: '体验店',
-        code: 1
-      },
-      {
-        card_name: '三年卡',
-        card_state: '已激活',
-        card_store: '全店通',
-        code: 2
-      }, {
-        card_name: '三年卡',
-        card_state: '已激活',
-        card_store: '全店通',
-        code: 2
-      }
-    ],
+    card_list: [],
     showchoose: false,
+    useCard: null,
     // 存储定时器
     setInter: '',
   },
@@ -40,26 +18,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let qrcode = new QRCode('canvas', {
-      text: "code=0000000000000",
-      width: 150,
-      height: 150,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H,
-    });
+    //获取卡信息
+    this.getAllCard();   
+    var u =null;
+   if(wx.getStorageSync('userInfo')) {
+      u = JSON.parse(wx.getStorageSync('userInfo'))
+   }
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight,
-      userInfo: app.globalData.userInfo
+      user: u
     })
   },
+
   close() {
     this.setData({
       showchoose: false
     })
   },
+  //返回
   _navBack() {
     wx.navigateBack({
       delta: 1
@@ -76,19 +53,57 @@ Page({
   onReady: function () {
 
   },
-
+  getAllCard: function () {
+    var that = this
+    api.request({
+      url: "/MyAllVIPCard",
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        user_token: app.globalData.token1
+      }
+    }).then(res => {
+      console.log(res)
+      this.setData({
+        cardCount: res.data.cardCount,
+        card_list: res.data.data,
+        useCard: res.data.data[0]
+      })
+      that.getQRCode();
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
 
   },
-
+  //二维码
+  getQRCode: function () {
+     api.request({
+       url:'/GenerateQRCode',
+       data:{
+        user_token:wx.getStorageSync('token'),
+        UI_ID:this.data.useCard.UI_ID
+       }
+     }).then(res=>{
+      // console.log(res)
+       new QRCode('canvas', {
+        text: res.data.data[0].QRCode,
+        width: 160,
+        height: 160,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+     })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    // qrcode.clear(); // 清除代码.clear();
   },
 
   /**

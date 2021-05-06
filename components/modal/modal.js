@@ -1,7 +1,6 @@
 // components/modal/modal.js
 var api = require('../../utils/request.js')
 Component({
-
   /**
    * 组件的属性列表
    */
@@ -41,30 +40,55 @@ Component({
       this.setData({
         show: false
       })
+      wx.navigateBack({
+        delta: 1,
+      })
       this.triggerEvent('cancel')
     },
     getPhoneNumber(e) {
       this.setData({
         show: false
       })
-      // console.log(" encryptedData:" + e.detail.encryptedData)
-      // console.log("iv: " + e.detail.iv)
-      // console.log("token",wx.getStorageSync('token'))
-      api.request({
-        url: "/userPhoneBind",
-        method: "POST",
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        data: {
-          user_token: wx.getStorageSync('token'),
-          encryptedDataStr: e.detail.encryptedData,
-          iv: e.detail.iv,
-        }
-      }).then(res => {
-        console.log(res)
-        wx.setStorageSync('token', res.data.user_token)
-      })
+      if (e.detail.errMsg == 'getPhoneNumber:ok') {
+        //登录
+        wx.login({
+          success: function (res) {
+            let code = res.code
+            api.request({
+              url: "/WxUserLogin",
+              data: {
+                user_token: wx.getStorageSync('token'),
+                code: code
+              }
+            }).then(res => {
+              console.log(res.data.user_token)
+              api.request({
+                url: "/userPhoneBind",
+                data: {
+                  user_token: res.data.user_token,
+                  encryptedDataStr: e.detail.encryptedData,
+                  iv: e.detail.iv,
+                }
+              }).then(res => {
+                console.log(res)
+                wx.setStorageSync('token', res.data.user_token);
+                wx.setStorageSync('loginStatus', 2)
+                // 保存手机号码
+                wx.setStorageSync('phone', res.data.phone)
+                // 返回上一个页面
+                wx.navigateBack({
+                  delta: 1,
+                })
+              })
+            })
+          }
+        })
+      } else {
+        //返回上一个页面
+        wx.navigateBack({
+          delta: 1,
+        })
+      }
       this.triggerEvent('confirm')
     }
   }

@@ -36,9 +36,7 @@
         <view class="member_info">
           如渔会员<image src="/static/my/woman.png"></image>
         </view>
-        <view class="phone">
-          138****3688
-        </view>
+        <view class="phone">{{phone}}</view>
       </view>
     </view>
     <!-- 详情 -->

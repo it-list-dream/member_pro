@@ -6,8 +6,11 @@ Component({
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
   },
-  externalClasses: ['inner-class'],
-  properties: {
+  properties: { 
+    course:{
+      type:Object,
+      value:{}
+    }
   },
 
   /**
@@ -21,6 +24,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    //  handle:function(){
+    //    console.log(this)
+    //  }
   }
 })

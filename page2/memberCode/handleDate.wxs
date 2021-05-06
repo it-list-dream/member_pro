@@ -1,0 +1,9 @@
+function daysBetween(sDate2) {
+  var time1 = getDate().getTime();
+  var time2 = getDate(sDate2).getTime()
+  var nDays = Math.abs(parseInt((time2 - time1) / 1000 / 3600 / 24));
+  return nDays;
+};
+module.exports = {
+  daysBetween: daysBetween
+}

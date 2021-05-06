@@ -40,7 +40,7 @@ Page({
     ],
   //  bg: '/static/h_bg.png',
     //0表示既未绑定手机号码又未获取用户信息
-    //1百世授权了用户信息，但未绑定手机号码
+    //1表示授权了用户信息，但未绑定手机号码
     //2 完成了登录流程
     loginStatus: 0,
   },
@@ -98,7 +98,7 @@ Page({
         path = '/page2/address/address'
         break
     }
-    console.log(path)
+    //console.log(path)
     if (path.trim()) {
       if (index == 2) {
         wx.switchTab({
@@ -150,13 +150,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var status = wx.getStorageSync('hasUserInfo');
-    var info = wx.getStorageSync('userInfo');
+    //用户状态
+    var status = wx.getStorageSync('loginStatus') || 0;
     console.log(status)
-    if (status) {
+    //获取用户信息
+    var info = wx.getStorageSync('userInfo');
+    //获取用户的手机号码
+    var phone = wx.getStorageSync('phone')|| '';
+    console.log(status)
+    if (status == 1 || status ==2) {
       this.setData({
-        loginStatus: 1,
-        info: JSON.parse(info)
+        loginStatus: status,
+        info:JSON.parse(info),
+        phone:phone
+      })
+    }else{
+      this.setData({
+        loginStatus: status
       })
     }
   },
