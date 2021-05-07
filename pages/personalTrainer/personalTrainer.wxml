@@ -1,3 +1,4 @@
+<wxs src="../../common/common.wxs" module="tools"></wxs>
 <nav-bar page-name="私教课详情"></nav-bar>
 <view class="container" style="margin-top:{{navHeight}}px">
   <view class="head_list">
@@ -7,17 +8,17 @@
   <view class="course_num">
       <image src="/static/money.png"></image>
       <view class="number">
-        <text> 300</text>
+        <text>{{tools.toFixed(personal.OnlinePrice)}}</text>
         <text>节</text>
       </view>
   </view>
   <!-- 课程名 -->
   <view class="course_name">
-    <text space="ensp">课程名：拉伸课</text>
+    <text space="ensp">课程名：{{personal.CP_Name}}</text>
   </view>
   <!-- 时长 -->
   <view class="duration">
-    <text space="ensp">时长：60分钟</text>
+    <text space="ensp">时长：{{personal.ClassTime}}分钟</text>
   </view>
   <!-- 介绍 -->
   <view class="introduce">
@@ -33,15 +34,14 @@
       <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="1000"
         display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
         next-margin="{{coachList.length==1?'480rpx':(coachList.length==2?'280rpx':'120rpx')}}">
-        <block wx:for="coachList">
+        <block wx:for="{{coachList}}" wx:key="index">
           <swiper-item bindtap="chooseCoach" data-index = "{{index}}">
             <view class="coach_img">
-              <image src="/static/head.png" style="width:108rpx;height:108rpx;"></image>
+              <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}" class="{{chooseNum==index?'active':''}}" ></image>
             </view>
-            <view class="coach_info">老杨</view>
+            <view class="coach_info">{{item.AI_Name}}</view>
           </swiper-item>
         </block>
-
       </swiper>
     </view>
 
@@ -67,10 +67,10 @@
   </view>
   <!-- bottom -->
   <view class="fixedbottom">
-    <view>200人已购</view>
+    <view>{{personal.SaleCount}}人已购</view>
     <view class="footer_pay">
       <view>合计
-        <text>   ￥200</text>
+        <text>  ￥{{personal.OnlinePrice}}</text>
       </view>
       <view bindtap="paysuccess" class="buy">购买</view>
     </view>

@@ -1,11 +1,11 @@
 <nav-bar page-name="入场记录"></nav-bar>
 <view class="entrance" style="margin-top:{{navHeight}}px">
-  <scroll-view scroll-y class="entrance_scroll">
+  <view class="entrance_scroll">
     <block wx:for="{{entrancdList}}" wx:key="index">
-      <view class="entrance_item" style="color:{{item.entrystatus==0?'#FD575C':'#12D58B'}}">
-        <view>{{item.entrydate}}</view>
-        <view>{{item.entrystatus==0?'离场':'进场'}}</view>
+      <view class="entrance_item" style="color:{{(item.CheckIn && item.CheckOut)?'#FD575C':'#12D58B'}}">
+        <view>{{(item.CheckIn && item.CheckOut) ? item.CheckOut:item.CheckIn}}</view>
+        <view>{{(item.CheckIn && item.CheckOut)?'离场':'进场'}}</view>
       </view>
     </block>
-  </scroll-view>
+  </view>
 </view>

@@ -1,5 +1,6 @@
 const util = require('../../utils/util.js')
 const app = getApp()
+let api = require('../../utils/request.js')
 Page({
   /**
    * 页面的初始数据
@@ -31,13 +32,19 @@ Page({
     weekList: [],
     //选择星期
     choosesDay: 0,
-    datatime: []
+    datatime: [],
+    currentCoach:null,
+    //分页属性
+    pageSize:5,
+    currPage:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //console.log(options)
+    this.getMyCoachClassList();
     let today = util.formatTime(new Date());
     today = today.slice(0, 10).replace(/\//g, '-')
     this.setData({
@@ -50,7 +57,6 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
     })
     this.getWeekList();
     this.getMyCurrentTime();
@@ -139,6 +145,24 @@ Page({
      this.setData({
       datatime: cTime
      })
+  },
+  getMyCoachClassList:function(){
+    var that = this;
+    api.request({
+      url: "/MyCoachClassList",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        UI_ID: wx.getStorageSync('UI_ID'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage
+      }
+    }).then(res => {
+      console.log(res.data.data);
+      that.setData({
+        currentCoach:res.data.data[0]
+      })
+      
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

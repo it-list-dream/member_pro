@@ -24,6 +24,18 @@
   display: flex;
 }
 
+.pic1 {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+}
+
+.pic2 {
+  width: 20rpx;
+  height: 20rpx;
+  vertical-align: middle;
+}
+
 .selectCourse .course-info {
   font-size: 22rpx;
   font-family: PingFang SC;

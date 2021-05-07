@@ -133,10 +133,17 @@
   align-items: center;
 }
 
-/* .coach_item{
-  width: 200rpx;
-  height: 200rpx;
-} */
+.coach_img image {
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 50%;
+}
+
+.active {
+  box-sizing: border-box;
+  border: 4px solid #12D58B;
+}
+
 .payment {
   margin-top: 28rpx;
   width: 100%;
@@ -210,11 +217,12 @@
 
 .num {
   box-sizing: border-box;
-  padding:0 15rpx;
+  padding: 0 15rpx;
   height: 40rpx;
   line-height: 40rpx;
   background: #F0F2F5;
 }
+
 .count:last-child {
   margin-left: 1px;
 }

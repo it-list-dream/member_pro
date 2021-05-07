@@ -12,56 +12,100 @@
   </view>
   <!--  -->
   <view class="app_list">
-    <block wx:for="{{history_con}}" wx:key="index">
-      <view class="app_item">
-        <view class="app_title">
-          <view>
-            {{item.date}} <text>{{util.getWeekdDay(item.date)}}</text>
-          </view>
-         <view class="status">{{item.status == 1?'已完成':''}}</view>
-        </view>
-        <view class="app_content">
-          <view class="con_left">
-            <image src="./images/histroy.png" style="width:233rpx;height:200rpx;"></image>
-            <view class="app_w">
-              <view>{{item.courseNmae}}</view>
-              <view>教练：{{item.coach}}</view>
-              <view>时间：{{item.time}}</view>
-              <view wx:if="{{item.isLeague}}">地点：{{item.address}}</view>
-              <view wx:if="{{item.isLeague}}">座位：{{item.seat}}</view>
+    <!--已预约  -->
+    <view wx:if="{{chooseId==0}}">
+      <block wx:for="{{alreadyHistory}}" wx:key="index">
+        <view class="app_item">
+          <view class="app_title">
+            <view>
+              {{item.DateStart}} <text>{{item.weekdays}}</text>
             </view>
+            <view class="status">已预约</view>
           </view>
-          <view class="con_right" wx:if="{{item.isLeague}}">团</view>
-        </view>
-        <!--  -->
-        <view class="contact" wx:if="{{item.status==0 }}">
-          <view class="btn contact_item" wx:if="{{!item.isLeague}}">联系电话</view>
-          <view class="btn cancel">取消</view>
-        </view>
-        <view class="score_item" wx:else>
-            <text class="score">自律积分</text>+10 
-        </view>
-      </view>
-    </block>
-    <!-- <view class="app_item">
-        <view class="app_title">2021-3-18（星期四）</view>
-        <view class="app_content">
-          <view class="con_left">
-            <image src="./images/histroy.png" style="width:233rpx;height:200rpx;"></image>
-            <view class="app_w">
-              <view>动感单车</view>
-              <view>教练：六小胖</view>
-              <view>时间：18:00-19:00</view>
-              <view>地点：动感单车</view>
-              <view>座位：2</view>
+          <view class="app_content">
+            <view class="con_left">
+              <image src="{{item.ClassLogo?item.ClassLogo:'./images/histroy.png'}}" style="width:233rpx;height:200rpx;">
+              </image>
+              <view class="app_w">
+                <view>{{item.CTO_Name}}</view>
+                <view>教练：{{item.CoachName}}</view>
+                <view>时间：{{item.ClassTime}}</view>
+                <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Addres}}</view>
+                <view wx:if="{{item.ClassType==1}}">座位：{{item.PickNum}}</view>
+              </view>
             </view>
+            <view class="con_right" wx:if="{{item.ClassType==1}}">团</view>
           </view>
-          <view class="con_right">团</view>
+          <!--  -->
+          <view class="contact" wx:if="{{item.ClassType==2}}">
+            <view class="btn contact_item">联系电话</view>
+            <view class="btn cancel">取消</view>
+          </view>
+          <view class="contact" wx:if="{{item.ClassType==1}}">
+            <view class="btn cancel">取消</view>
+          </view>
+          <!-- <view class="score_item" wx:else>
+            <text class="score">自律积分</text>+10
+          </view> -->
         </view>
-        <view class="contact">
-          <view class="btn contact_item">联系电话</view>
-          <view class="btn cancel">取消</view>
+      </block>
+    </view>
+    <!--未完成  -->
+    <view wx:elif="{{chooseId==1}}">
+      <block wx:for="{{unfinishedHistory}}" wx:key="index">
+        <view class="app_item">
+          <view class="app_title">
+            <view>
+              {{item.DateStart}} <text>{{item.weekdays}}</text>
+            </view>
+            <view class="status">未完成</view>
+          </view>
+          <view class="app_content">
+            <view class="con_left">
+              <image src="{{item.ClassLogo?item.ClassLogo:'./images/histroy.png'}}" style="width:233rpx;height:200rpx;">
+              </image>
+              <view class="app_w">
+                <view>{{item.CTO_Name}}</view>
+                <view>教练：{{item.CoachName}}</view>
+                <view>时间：{{item.ClassTime}}</view>
+                <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Addres}}</view>
+                <view wx:if="{{item.ClassType==1}}">座位：{{item.PickNum}}</view>
+              </view>
+            </view>
+            <view class="con_right" wx:if="{{item.ClassType==1}}">团</view>
+          </view>
         </view>
-      </view> -->
+      </block>
+    </view>
+    <!-- 已完成 -->
+    <view wx:elif="{{chooseId==2}}">
+      <block wx:for="{{completedHistory}}" wx:key="index">
+        <view class="app_item">
+          <view class="app_title">
+            <view>
+              {{item.DateStart}} <text>{{item.weekdays}}</text>
+            </view>
+            <view class="status">已完成</view>
+          </view>
+          <view class="app_content">
+            <view class="con_left">
+              <image src="{{item.ClassLogo?item.ClassLogo:'./images/histroy.png'}}" style="width:233rpx;height:200rpx;">
+              </image>
+              <view class="app_w">
+                <view>{{item.CTO_Name}}</view>
+                <view>教练：{{item.CoachName}}</view>
+                <view>时间：{{item.ClassTime}}</view>
+                <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Addres}}</view>
+                <view wx:if="{{item.ClassType==1}}">座位：{{item.PickNum}}</view>
+              </view>
+            </view>
+            <view class="con_right" wx:if="{{item.ClassType==1}}">团</view>
+          </view>
+          <view class="score_item" wx:if="{{item.Score}}">
+            <text class="score">自律积分</text>+{{item.Score}}
+          </view>
+        </view>
+      </block>
+    </view>
   </view>
 </view>

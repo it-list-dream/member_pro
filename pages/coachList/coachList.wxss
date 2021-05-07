@@ -1,4 +1,3 @@
-
 .coachList {
   padding-top: 20rpx;
 }
@@ -19,6 +18,17 @@
 .coachList .coach_info {
   display: flex;
   align-items: center;
+}
+
+.coach_info>image:first-child {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.coach_info>image:last-child {
+  width: 20rpx;
+  height: 20rpx;
 }
 
 .coachList .coach_info .coachName {

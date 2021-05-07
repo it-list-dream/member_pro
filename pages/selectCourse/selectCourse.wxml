@@ -1,23 +1,24 @@
 <nav-bar page-name="选择课程"></nav-bar>
 <view class="selectCourse" style="margin-top:{{navHeight}}px">
-  <block wx:for="{{3}}">
+  <block wx:for="{{coachClassList}}" wx:key="index">
+    <!-- <block wx:for="{{5}}" wx:key="index">  -->
     <view class="course_list" style="background-image:url({{cardImg}})">
-      <view class="course_item">
+      <view class="course_item" catchtap="orderCourse" data-coach="{{item}}">
         <view class="top">
           <view>
-            <image src="/static/head.png" style="width:52rpx;height:52rpx;"></image>
+            <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}" class="pic1"></image>
           </view>
           <view class="course-info">
             <view>
-              <text class="courseName">六大胖</text>
-              <image src="/static/man.png" style="width:20rpx;height:20rpx; vertical-align: middle;"></image>
+              <text class="courseName">{{item.AI_Name}}</text>
+              <image src="{{item.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}" class="pic2"></image>
             </view>
-            <view>时长: 60分钟</view>
+            <view>时长: {{item.CP_Time}}分钟</view>
           </view>
         </view>
         <view class="bottom">
-          <view class="course_number">如渔常规课（10节）</view>
-          <view class="expirationDate">截止2021-6-13</view>
+          <view class="course_number">{{item.CP_Name}}（{{item.CO_Have}}节）</view>
+          <view class="expirationDate">截止{{item.CO_ActiveEnd}}</view>
         </view>
       </view>
     </view>

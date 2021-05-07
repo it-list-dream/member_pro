@@ -6,15 +6,15 @@
   <view class="vipMoney">
     <view class="vipStr price">
       <image class="monImg" src="/static/money.png"></image>
-      <text class="fon-size">1800</text>
+      <text class="fon-size">{{cardDetail.OnlinePrice}}</text>
     </view>
     <view class="vipStr">
       <text class="type">卡类型:</text>
-      <text class="charText">一年卡</text>
+      <text class="charText">{{cardDetail.SC_Name}}</text>
     </view>
     <view class="eff_date">
       <text class="eff">有效期:</text>
-      <text class="charText">1年。次数30次时效卡及次数卡二选一）</text>
+      <text class="charText">{{cardDetail.SC_TimeArea==0?cardDetail.Expdate:cardDetail.SC_TimeArea}}</text>
     </view>
     <view class="support">
       <text>支持门店:</text>

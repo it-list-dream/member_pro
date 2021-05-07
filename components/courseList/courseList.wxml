@@ -1,9 +1,9 @@
 <wxs module="tools" src="./courseList.wxs"></wxs>
-<view class="coach_subject">
+<view class="coach_subject" catchtap="handleDetail">
   <view class="coach_pic">
     <!-- 蒙层 -->
     <view class="mask">
-      <image src="/static/coach02.png"></image>
+      <image src="/static/coach02.png" class="bg"></image>
     </view>
     <view class="subject">
       <view>{{course.CP_Name}}</view>

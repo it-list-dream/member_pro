@@ -19,11 +19,11 @@ Page({
    */
   onLoad: function (options) {
     //获取卡信息
-    this.getAllCard();   
-    var u =null;
-   if(wx.getStorageSync('userInfo')) {
+    this.getAllCard();
+    var u = null;
+    if (wx.getStorageSync('userInfo')) {
       u = JSON.parse(wx.getStorageSync('userInfo'))
-   }
+    }
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -42,10 +42,21 @@ Page({
       delta: 1
     })
   },
-  chooseCard: function () {
+  showModel: function () {
     this.setData({
       showchoose: !this.data.showchoose
     })
+  },
+  chooseCard:function(e){
+   // console.log(e.currentTarget.dataset.choose)
+   let card = e.currentTarget.dataset.choose
+    this.setData({
+      useCard:card,
+      showchoose:false
+    })
+    //console.log('换卡')
+    wx.setStorageSync('UI_ID', card.UI_ID)
+    that.getQRCode();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -66,12 +77,20 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      this.setData({
-        cardCount: res.data.cardCount,
-        card_list: res.data.data,
-        useCard: res.data.data[0]
-      })
-      that.getQRCode();
+      //如果没卡就不显示任何数据
+      if (res.data.cardCount > 0) {
+        //如果没切换卡默认选中第一张卡
+        if(!that.data.useCard){
+          this.setData({
+            cardCount: res.data.cardCount,
+            card_list: res.data.data,
+            useCard:res.data.data[0]
+          })
+          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
+        }
+        that.getQRCode();
+      }
+
     })
   },
   /**
@@ -82,15 +101,15 @@ Page({
   },
   //二维码
   getQRCode: function () {
-     api.request({
-       url:'/GenerateQRCode',
-       data:{
-        user_token:wx.getStorageSync('token'),
-        UI_ID:this.data.useCard.UI_ID
-       }
-     }).then(res=>{
+    api.request({
+      url: '/GenerateQRCode',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        UI_ID: this.data.useCard.UI_ID
+      }
+    }).then(res => {
       // console.log(res)
-       new QRCode('canvas', {
+      new QRCode('canvas', {
         text: res.data.data[0].QRCode,
         width: 160,
         height: 160,
@@ -98,14 +117,12 @@ Page({
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H,
       });
-     })
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  },
-
+  onHide: function () {},
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -117,20 +134,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad();
+    wx.stopPullDownRefresh()
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

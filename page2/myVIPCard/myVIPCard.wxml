@@ -4,15 +4,15 @@
     <view class="card_list">
       <image src="/static/vipimg.png"></image>
       <view class="card_status">
-        <view class="year">{{item.name}}</view>
-        <view class="status">状态：{{item.status==1?'使用中':'未激活'}}</view>
+        <view class="year">{{item.GB_Name}}</view>
+        <view class="status">状态：{{item.UI_FirstData?'使用中':'未激活'}}</view>
       </view>
-      <view wx:if="{{item.status==1}}">
+      <view wx:if="{{item.UI_FirstDate}}">
         <view class="use_day">
-          <text>80</text> 天可用
+          <text>{{item.RemainingTime}}</text> 天可用
         </view>
         <view class="searchResult">
-          <view>2021-6-18 14:30:00 到期</view>
+          <view>{{item.UI_LastDate}} 到期</view>
           <view catchtap="lookReword">查看入场记录</view>
         </view>
       </view>

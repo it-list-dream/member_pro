@@ -8,18 +8,20 @@
     </view>
     <view class='navbar-title' style='top:{{navTop}}px;'>
       会员码({{cardCount}}张)
-      <image src="/static/bottom_arrow.png" class="arrow" catchtap="chooseCard"></image>
+      <image src="/static/bottom_arrow.png" class="arrow" catchtap="showModel"></image>
     </view>
   </view>
 </view>
-<view class="all" style="margin-top:{{navHeight}}px;height: calc(100vh - {{navHeight}}px);">
+<view class="all" style="margin-top:{{navHeight}}px;">
   <view class="header">
     <image src="{{user?user.avatarUrl:'/static/avtor.png '}}"></image>
   </view>
   <view class="member_list">
     <view class="member_store">{{useCard.GB_Name}}</view>
     <view class="member_card">卡号：{{useCard.UI_No}}</view>
-    <view class="eff_date">{{useCard.UI_LastDate}}到期({{useCard.SC_Days}}天)</view>
+    <!-- <view class="eff_date">{{useCard.UI_LastDate}}到期({{useCard.SC_Days}}天)</view> -->
+    <view class='eff_date' wx:if='{{cardata.SC_Type==1}}'>{{useCard.UI_LastDate}}到期({{useCard.RemainingTime}}天)</view>
+    <view class='eff_date' wx:else>{{useCard.UI_LastDate}}到期(剩余{{useCard.num}}次)</view>
     <view class="member_item">
       <view class="member_code">
         <canvas class='canvas' canvas-id='canvas'></canvas>
@@ -27,17 +29,17 @@
     </view>
 
     <view class="year_card">{{useCard.SC_Type}}年卡</view>
-    <view class="use_count">使用次数：{{useCard.CheckinTimes}}次</view>
+    <view class="use_count"> 运动次数：{{useCard.CheckinTimes}}次</view>
   </view>
   <!-- 遮罩层 -->
   <cover-view class='model' wx:if='{{showchoose}}' style="top:{{navHeight}}px">
     <cover-view class='modelcon'>
       <block wx:for="{{ card_list}}" wx:key="index">
-        <cover-view class="mask_item"  bindtap='chooseCard'>
+        <cover-view class="mask_item" bindtap='chooseCard' data-choose="{{item}}">
           <cover-view class='cardinfo'>
             {{item.SC_Name}}
-            <cover-view
-              style="{{item.UI_FirstDate?'color:#12D58B;':'color:#FD4E54;'}} margin-left:20rpx;">({{item.UI_FirstDate?'已激活':'未激活'}})</cover-view>
+            <cover-view style="{{item.UI_FirstDate?'color:#12D58B;':'color:#FD4E54;'}} margin-left:20rpx;">
+              ({{item.UI_FirstDate?'已激活':'未激活'}})</cover-view>
           </cover-view>
           <cover-view class="store">{{item.GB_Name}}</cover-view>
         </cover-view>

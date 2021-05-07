@@ -83,7 +83,7 @@
           <block wx:for="{{coachList}}" wx:key="index">
             <!-- <swiper-item> -->
               <view class="content_item">
-                <image src="{{item.AI_Face}}"></image>
+                <image src="{{item.AI_Face?item.AI_Face:'/static/coach01.png'}}"></image>
                 <view class="coach_info">
                   <view>
                     {{item.AI_Name}}

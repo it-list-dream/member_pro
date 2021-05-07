@@ -7,10 +7,12 @@
   width: 750rpx;
   height: 296rpx;
 }
-.coach_bg image{
+
+.coach_bg image {
   width: 100%;
   height: 100%;
 }
+
 .coach_info {
   position: relative;
   display: flex;
@@ -55,6 +57,7 @@
 .coach_head {
   width: 90rpx;
   height: 90rpx;
+  border-radius: 50%;
 }
 
 .coach_left {
@@ -82,7 +85,7 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: #010101;
-  padding-bottom: 20rpx;
+  padding-bottom: 10rpx;
 }
 
 .introduce_text {
@@ -100,10 +103,10 @@
   color: #010101;
 }
 
-.coach_subject {
-  padding:0 31rpx;
-}
-
+/* .coach_subject {
+  padding: 0 31rpx;
+} */
+/* 
 .coach_pic {
   margin-bottom: 24rpx;
   box-sizing: border-box;
@@ -117,24 +120,26 @@
 .subject {
   display: flex;
   justify-content: space-between;
-align-items: center;
-  width: 262rpx;
+  align-items: center;
+  width: 323rpx;
   height: 63rpx;
   background: #12D58B;
   border-radius: 10rpx;
-font-size: 36rpx;
-line-height: 36rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #FFFFFF;
-padding:0 20rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  padding: 0 10rpx;
 }
-.price{
+
+.price {
   font-size: 24rpx;
 }
-.num{
+
+.num {
   font-size: 28rpx;
-font-family: PingFang SC;
-font-weight: 800;
-color: #FEFEFE;
-}
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #FEFEFE;
+} */

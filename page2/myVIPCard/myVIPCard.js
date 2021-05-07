@@ -1,35 +1,13 @@
 // page2/myVIPCard/myVIPCard.js
 const app = getApp()
+var api = require('../../utils/request.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     cardList:[
-       {
-         id:1,
-         name:'一年卡',
-         status:1,//1表示使用中
-         remainingTime:80,
-         data:'2021-6-18 14:30:00'
-      },
-      {
-        id:2,
-        name:'两年卡',
-        status:0,//1表示使用中
-     },
-     {
-      id:2,
-      name:'两年卡',
-      status:0,//1表示使用中
-   },
-   {
-    id:2,
-    name:'两年卡',
-    status:0,//1表示使用中
- }
-     ]
+     cardList:[]
   },
 
   /**
@@ -37,10 +15,10 @@ Page({
    */
   onLoad: function (options) {
     //console.log(app.globalData)
+    this.getMyAllCard();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
     })
     //this.getScrollHeight();
   },
@@ -49,17 +27,20 @@ Page({
        url: '/page2/entrance/entrance',
      })
   },
-  // getScrollHeight: function() {
-  //   wx.createSelectorQuery().select('.vipCard').boundingClientRect((rect) => {
-  //     this.setData({
-  //       scrollHeight: rect.height
-  //     })
-  //     console.log(this.data.scrollHeight)
-  //   }).exec()
-  // },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+  getMyAllCard:function(){
+    var that = this;
+    api.request({
+      url:"/MyAllVIPCard",
+      data:{
+        user_token:wx.getStorageSync('token')
+      }
+    }).then(res=>{
+      console.log(res)
+      that.setData({
+        cardList:res.data.data
+      })
+    })
+  },
   onReady: function () {
 
   },

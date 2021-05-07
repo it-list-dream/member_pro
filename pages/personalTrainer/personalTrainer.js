@@ -1,46 +1,31 @@
 const app = getApp()
+var api = require('../../utils/request.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    coachList: [{
-        id: 1,
-        name: '张大胖',
-        img: "/static/head.png"
-      },
-      {
-        id: 2,
-        name: '张耳畔',
-        img: "/static/head.png"
-      },
-      {
-        id: 3,
-        name: '张三胖',
-        img: "/static/head.png"
-      }, {
-        id: 4,
-        name: '张四胖',
-        img: "/static/head.png"
-      },
-      {
-        id: 5,
-        name: '张王i胖',
-        img: "/static/head.png"
-      }
-    ],
-    number: 1
+    coachList: [],
+    number: 1,
+    personal:null,
+    chooseNum:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  //  console.log(JSON.parse(options.course1))
+    this.getCoachStyleList()
+    if(options.course1){
+      this.setData({
+        personal:JSON.parse(options.course1)
+      })
+    }
     this.setData({
       navHeight: app.globalData.navHeight,
-      navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
+      navTop: app.globalData.navTop
     })
   },
   countNum(e) {
@@ -48,15 +33,29 @@ Page({
     if (e.target.dataset.index == 1) {
       this.data.number++;
     } else {
-      if (this.data.number < 1) {
+      if (this.data.number <= 1) {
         this.data.number = 1;
       } else {
         this.data.number--;
       }
-      
     }
     this.setData({
       number:this.data.number
+    })
+  },
+  getCoachStyleList:function(){
+    var that = this
+    api.request({
+      url:"/CoachStyleList",
+      data:{
+        user_token:wx.getStorageSync('token'),
+        GB_ID:wx.getStorageSync('GB_ID')
+      }
+    }).then(res=>{
+      console.log(res)
+      that.setData({
+        coachList:res.data.data
+      })
     })
   },
   /**
@@ -66,9 +65,9 @@ Page({
 
   },
   chooseCoach:function(e){
-      // this.setData({
-
-      // })
+      this.setData({
+        chooseNum:e.currentTarget.dataset.index
+      })
   },
   /**
    * 生命周期函数--监听页面显示

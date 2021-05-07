@@ -36,6 +36,7 @@ page{
 .head>image {
   width: 88rpx;
   height: 88rpx;
+  border-radius: 50%;
 }
 
 .coach_info .head .head_info {

@@ -801,6 +801,78 @@
         {
           "name": "pages/coachList/coachList",
           "pathName": "pages/coachList/coachList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/coachList/coachList",
+          "pathName": "pages/coachList/coachList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/coachList/coachList",
+          "pathName": "pages/coachList/coachList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/activeList/activeList",
+          "pathName": "pages/activeList/activeList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/selectCourse/selectCourse",
+          "pathName": "pages/selectCourse/selectCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/selectCourse/selectCourse",
+          "pathName": "pages/selectCourse/selectCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/selectCourse/selectCourse",
+          "pathName": "pages/selectCourse/selectCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/historyAppointment/historyAppointment",
+          "pathName": "page2/historyAppointment/historyAppointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myVIPCard/myVIPCard",
+          "pathName": "page2/myVIPCard/myVIPCard",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/entrance/entrance",
+          "pathName": "page2/entrance/entrance",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myCourse/myCourse",
+          "pathName": "page2/myCourse/myCourse",
           "scene": null
         }
       ]

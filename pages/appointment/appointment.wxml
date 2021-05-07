@@ -14,18 +14,18 @@
     <view class="coach_info" wx:if="{{showcourse==0}}">
       <view class="coach_list">
         <view class="head">
-          <image src="/static/appointment/headPortrait.png"></image>
+          <image src="{{currentCoach.AI_Face?currentCoach.AI_Face:'/static/appointment/headPortrait.png'}}"></image>
           <view class="head_info">
             <view>
-              <text>六大胖</text>
-              <image src="/static/appointment/man.png" style="width:25rpx;height:25rpx;"></image>
+              <text>{{currentCoach.AI_Name}}</text>
+              <image src="{{currentCoach.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}" style="width:25rpx;height:25rpx;"></image>
             </view>
-            <view>时长：60分钟</view>
+            <view>时长：{{currentCoach.CP_Time}}分钟</view>
           </view>
         </view>
         <view class="course_content">
-          <view>如渔常规课（10节）</view>
-          <view>截止：2021-6-13</view>
+          <view>{{currentCoach.CP_Name}}（{{currentCoach.CO_Have}}节）</view>
+          <view>截止：{{currentCoach.CO_ActiveEnd}}</view>
         </view>
         <navigator url="/pages/selectCourse/selectCourse" class="switch" hover-class="none">
           <image src="/static/appointment/sort.png"></image>

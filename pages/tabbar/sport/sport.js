@@ -109,16 +109,6 @@ Page({
   },
   getWeekList: function () {
     let dayList = [];
-    // if(t){
-    //   dayList = util.days(t);
-    // }else{
-    //    dayList = util.days();
-    // }
-    // for (let i = 0; i < dayList.length; i++) {
-    //   dayList[i] = dayList[i].replace(/[\u4e00-\u9fa5]+/g, function ($) {
-    //     return $ == '月' ? '.' : ''
-    //   })
-    // }
     //获取当前时间
     let startDate = new Date();
     let endDate = new Date();
