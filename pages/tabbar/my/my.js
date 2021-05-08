@@ -1,5 +1,6 @@
 // pages/my/my.js
 const app = getApp();
+var api = require('../../../utils/request.js')
 Page({
 
   /**
@@ -38,21 +39,22 @@ Page({
         img: '/static/my/location.png'
       }
     ],
-  //  bg: '/static/h_bg.png',
     //0表示既未绑定手机号码又未获取用户信息
     //1表示授权了用户信息，但未绑定手机号码
     //2 完成了登录流程
     loginStatus: 0,
+    myVipCardCount:0,
+    myCoachCount:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getMyAllCrad()
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
     })
    // this.tranfromImage()
 
@@ -170,7 +172,36 @@ Page({
       })
     }
   },
-
+  getMyAllCrad:function(){
+    var that = this;
+    api.request({
+      url:"/MyAllVIPCard",
+      data:{
+        user_token:wx.getStorageSync('token')
+      }
+    }).then(res=>{
+    //  res.data.data
+      console.log(res)
+      that.setData({
+        myVipCardCount:res.data.cardCount
+      })
+    })
+  },
+  getAllPersonalCourse:function(){
+    var that = this;
+    api.request({
+      url:"/MyCoachClassList",
+      data:{
+        user_token:wx.getStorageSync('token'),
+      }
+    }).then(res=>{
+    //  res.data.data
+      console.log(res)
+      that.setData({
+        myVipCardCount:res.data.cardCount
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

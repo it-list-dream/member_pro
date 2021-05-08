@@ -1,5 +1,5 @@
 var getWeekdDay = function (value, t) {
-  console.log(value,t)
+  //console.log(value,t)
   t = t.toString();
   //今天
   var today = getDate();
@@ -48,8 +48,25 @@ var getFirstStr = function (value) {
 var toFixed = function (value) {
   return Math.floor(value)
  }
+ 
+ // 判断时间是不是在一个区间内
+ var timeIsinarea =   function isTimes(enddate) {
+  console.log(enddate)
+  var startdate = getDate().getTime();
+  var enddate = getDate(enddate).getTime();
+  if(!enddate){
+    return true
+  }
+  //console.log(getDate(),getDate(enddate))
+  if (enddate>=startdate || getDate()==getDate(enddate)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 module.exports = {
   getWeekdDay: getWeekdDay,
   getFirstStr: getFirstStr,
-  toFixed:toFixed
+  toFixed:toFixed,
+  timeIsinarea:timeIsinarea
 }

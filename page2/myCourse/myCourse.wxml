@@ -1,27 +1,25 @@
 <nav-bar page-name="我的课程"></nav-bar>
 <view class="course_container" style="margin-top:{{navHeight}}px">
-  <block wx:for="{{3}}">
+  <block wx:for="{{myCoachList}}" wx:key="index">
     <view class="course_list" style="background-image:url('/static/course1.png')">
       <view class="courseTop">
         <view>
-          <image src="/static/head.png"></image>
+          <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}"></image>
         </view>
         <view class="coa_detail">
           <view>
-            六大胖
+            {{item.AI_Name}}
             <image src="/static/woman.png"></image>
           </view>
-          <text>时长：60分钟</text>
+          <text>时长：{{item.CP_Time}}分钟</text>
         </view>
       </view>
       <view class="courseBottom">
         <view>
-          <text class="course_num">如渔常规课（10节）</text>
-          <text class="exp_date">截止2021-6-13</text>
+          <text class="course_num">{{item.CP_Name}}（{{item.CO_Have}}节）</text>
+          <text class="exp_date">截止{{item.CO_ActiveEnd}}</text>
         </view>
-        <view class="appoinmentBtn" catchtap="personalAppointment">
-          预约
-        </view>
+        <view class="appoinmentBtn" catchtap="personalAppointment">预约</view>
       </view>
     </view>
   </block>

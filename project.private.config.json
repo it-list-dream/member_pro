@@ -873,6 +873,49 @@
         {
           "name": "page2/myCourse/myCourse",
           "pathName": "page2/myCourse/myCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myCourse/myCourse",
+          "pathName": "page2/myCourse/myCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/groupAppointment/groupAppointment",
+          "pathName": "pages/groupAppointment/groupAppointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
           "scene": null
         }
       ]

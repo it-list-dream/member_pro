@@ -69,7 +69,7 @@ Page({
   },
   orderCourse: function (e) {
     var pages = getCurrentPages(); //当前页面
-    console.log(pages)
+    console.log(e)
     var prevPage = pages[pages.length - 2]; //上一页面
     prevPage.setData({
       currentCoach: e.currentTarget.dataset.coach

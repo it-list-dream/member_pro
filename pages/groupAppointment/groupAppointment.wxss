@@ -49,6 +49,18 @@
   vertical-align: middle;
 }
 
+.course_date .left image:first-child {
+  width: 53rpx;
+  height: 53rpx;
+  border-radius: 50%;
+}
+
+.course_date .left image:last-child {
+  width: 40rpx;
+  height: 40rpx;
+ 
+}
+
 .course_date {
   padding: 20rpx;
   display: flex;
@@ -68,6 +80,11 @@
 
 
 .course_date .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 60rpx;
   font-size: 20rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -75,9 +92,9 @@
   opacity: 0.6;
 }
 
-.course_date .right view:first-child {
+/* .course_date .right view:first-child {
   margin-bottom: 20rpx;
-}
+} */
 
 .course_name {
   padding: 28rpx 0 28rpx 32rpx;
@@ -273,8 +290,9 @@
   font-weight: 500;
   color: #999999;
 }
-li:nth-child(8) .seat{
+
+/* li:nth-child(8) .seat {
   background: #12D58B;
   color: white;
   border: 0;
-}
+} */

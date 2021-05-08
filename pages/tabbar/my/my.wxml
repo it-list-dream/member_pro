@@ -42,7 +42,7 @@
     <!-- 详情 -->
     <view class="my_course">
       <view class="cItem" catchtap="vipCard">
-        <view class="num">2</view>
+        <view class="num">{{myVipCardCount}}</view>
         <view class="vipCard">会员卡</view>
       </view>
       <view class="cItem" catchtap="perCourse">

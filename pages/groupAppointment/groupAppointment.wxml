@@ -1,8 +1,8 @@
 <nav-bar page-name="团课预约" class="topNav"></nav-bar>
 <!-- 内容 -->
-<view class="group_container" style="margin-top:{{navHeight}}px;margin-bottom:{{isFree?'100rpx':'212rpx'}}">
+<view class="group_container" style="margin-top:{{navHeight}}px;margin-bottom:{{tclass.CTO_Price>0?'100rpx':'212rpx'}}">
   <view class="group_pic">
-    <view class="join_num">已参加1/30</view>
+    <view class="join_num">已参加  {{tclass.CTO_PeopleAttend+'/'+tclass.CTO_PeopleFull}}</view>
   </view>
   <view class="coach_img">
     <image src="/static/coach01.png"></image>
@@ -10,25 +10,26 @@
   <!-- 课程开始时间 -->
   <view class="course_date">
     <view class="left">
-      <image src="/static/head.png" style="width:53rpx;height:53rpx;" alt=""></image>
-      <text class="coachName">六大胖</text>
-      <image src="/static/man.png" style="width:40rpx;height:40rpx;"></image>
+      <image src="{{tclass.AI_Face?tclass.AI_Face:'/static/head.png'}}" alt=""></image>
+      <text class="coachName">{{tclass.AI_Name}}</text>
+      <image src="{{tclass.AI_Sex == '男' ? '/static/man.png':'/static/woman.png'}}" ></image>
     </view>
-    <view class="right">
-      <view>报名开始：2021/3/18 10:00</view>
-      <view>截止日期：2021/3/18 12:00</view>
+    <view class="right" style="{{!tclass.CTO_SignUpStart?'justify-content: center;':''}}">
+      <view wx:if="{{tclass.CTO_SignUpStart}}">报名开始：{{tclass.CTO_SignUpStart}}</view>
+      <view>截止日期：{{tclass.CTO_SignUpEndDate}}</view>
     </view>
   </view>
-  <view class="course_name">课程名：动感单车</view>
-  <view class="course_time">时间： 2021/3/18 18:00-19:00</view>
+  <view class="course_name">课程名：{{tclass.CTO_Name}}</view>
+  <view class="course_time">时间：{{tclass.CTO_DateStart+'-'+tclass.CTO_DateEnd}}</view>
   <view class="course_introduce">
     <view class="introduce">介绍：</view>
     <view class="introduce_detail">
-      如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇
+      <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇 -->
+      {{tclass.CTO_Content}}
     </view>
   </view>
   <!-- 免费的团课 -->
-  <view class="order_list" wx:if="{{isFree}}">
+  <view class="order_list" wx:if="{{tclass.CTO_Price == 0}}">
     <view class="order" bindtap="handleSeat">预约</view>
   </view>
   <!-- 收费的团课 -->
@@ -58,7 +59,7 @@
       <view style="padding: 0 30rpx;">
         <view class="seatTitle">选择座位</view>
          <ul class="seatAll">
-           <block wx:for="{{20}}">
+           <block wx:for="{{seatList}}" wx:key="index">
              <li>
                <view class="seat" catchtap="close">{{index+1}}</view>
              </li>

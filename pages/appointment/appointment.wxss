@@ -160,9 +160,9 @@ page{
 /* 日历 */
 .calendar_list {
   width: 100%;
-  height: 295rpx;
+  box-sizing: border-box;
   border-top: 1px solid #eeeeee;
-  margin-top: 10rpx;
+
 }
 
 .calendar {
@@ -191,6 +191,7 @@ page{
 }
 
 .leagueClass .leagueClass_item {
+ overflow: hidden;
   box-sizing: border-box;
   width: 690rpx;
   height: 250rpx;
@@ -200,6 +201,7 @@ page{
 }
 
 .leagueClass .progress {
+ margin-top: 28rpx;
   width: 135rpx;
   height: 35rpx;
   background: #7B6F85;
@@ -224,7 +226,7 @@ page{
 .leagueClass .class_info {
   display: flex;
   justify-content: space-between;
-  padding-top: 30rpx;
+  padding-top: 22rpx;
 }
 
 .leagueClass .class_info .class_time {
@@ -304,7 +306,7 @@ color: #52495B;
 }
 
 .oder_wrapper {
-  margin-top: 80rpx;
+  margin-top: 100rpx;
 }
 
 .order {

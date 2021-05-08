@@ -115,7 +115,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('触底反应')
+  //  console.log('触底反应')
     var that = this;
     var pageSize = that.data.currPage + 1; //获取当前页数并+1
     that.setData({

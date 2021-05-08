@@ -36,16 +36,29 @@ const getNextDate  =  function getNextDate(date, day) {
   return m + "-" + d;
 };
 // 判断时间是不是在一个区间内
- const timeIsinarea =   function isTimes(newdate, startdate, enddate) {
-  var newdate = new Date(newdate);
-  var startdate = new Date(startdate);
-  var enddate = new Date(enddate);
-  var a = newdate.getTime() - startdate.getTime();
-  var b = newdate.getTime() - enddate.getTime();
-  if (a < 0 || b > 0) {
-    return false;
-  } else {
+//  const timeIsinarea =   function isTimes(newdate, startdate, enddate) {
+//   var newdate = new Date(newdate);
+//   var startdate = new Date(startdate);
+//   var enddate = new Date(enddate);
+//   var a = newdate.getTime() - startdate.getTime();
+//   var b = newdate.getTime() - enddate.getTime();
+//   if (a < 0 || b > 0) {
+//     return false;
+//   } else {
+//     return true;
+//   }
+// }
+const timeIsinarea =   function isTimes(enddate) {
+  var startdate = new Date().getTime();
+  var enddate = new Date(enddate).getTime();
+  if(!enddate){
+    return true
+  }
+  console.log(enddate)
+  if (enddate>=startdate) {
     return true;
+  } else {
+    return false;
   }
 }
 const formatTime = date => {

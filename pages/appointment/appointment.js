@@ -33,24 +33,22 @@ Page({
     //选择星期
     choosesDay: 0,
     datatime: [],
-    currentCoach:null,
+    currentCoach: null,
     //分页属性
-    pageSize:5,
-    currPage:1
+    pageSize: 5,
+    currPage: 1,
+    togetherClass:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //console.log(options)
-    this.getMyCoachClassList();
     let today = util.formatTime(new Date());
     today = today.slice(0, 10).replace(/\//g, '-')
     this.setData({
       today: today,
       SearchDate: today,
-      datatime:util.createEveryday(),
       selectClass: Number(options.course),
       showcourse: Number(options.course),
     })
@@ -63,25 +61,24 @@ Page({
   },
   switchClass(e) {
     //判断
-    this.data.selectClass = e.currentTarget.dataset.index;
+   let classes = e.currentTarget.dataset.index;
+    if(classes ==1){
+     this.getCardTogether();
+    }
     this.setData({
-      selectClass: this.data.selectClass,
-      showcourse: this.data.selectClass
+      selectClass:classes,
+      showcourse: classes
     })
-  },
-  order() {
-    wx.navigateTo({
-      url: '/pages/selectCourse/selectCourse',
-    })
+
   },
   getWeekList: function (t) {
     let dayList;
-  //  console.log(t)
+    //  console.log(t)
     if (t) {
       dayList = util.days(t);
     } else {
       dayList = util.days();
-    } 
+    }
     console.log(dayList)
     for (let i = 0; i < dayList.length; i++) {
       var month = dayList[i].substr(0, 2);
@@ -98,6 +95,7 @@ Page({
     //console.log(dayList)
   },
   chooseDate: function (e) {
+    var that = this
     var dayIndex = e.currentTarget.dataset.index;
     var da = e.currentTarget.dataset.date.replace('.', '-')
     da = Number(da.split('-')[0]) > 10 ? da : '0' + da
@@ -105,48 +103,66 @@ Page({
     var year = new Date(sdate).getFullYear();
     this.setData({
       choosesDay: dayIndex,
-      SearchDate: year + '-' + da
+      SearchDate: year + '-' + da,
+      num:null
+    })
+    //所选的是团课还是私教课
+    if(that.data.selectClass == 0){
+      this.getPrivateAppointment();
+    }else{
+      console.log(1)
+      this.getCardTogether()
+    }
+   
+  },
+  //判断是否可以预约
+  showch: function () {
+    wx.showToast({
+      icon: "none",
+      title: '不可预约',
     })
   },
-  hanleDate: function (e) {
-    console.log(e.currentTarget.dataset.id);
+  showch1: function (e) {
+    console.log(e.currentTarget.dataset.num);
     this.setData({
-      num: e.currentTarget.dataset.id
+      num: e.currentTarget.dataset.num,
+      starttime: e.currentTarget.dataset.s,
+      endtime: e.currentTarget.dataset.e
     })
+
   },
   // 判断哪些时间已过期
-  getMyCurrentTime:function(){
-      var cTime = this.data.datatime;
-      var d = new Date();
-      //获取当前时间
-      var passTime = util.formatTime(d);
-      console.log(passTime)
-      for(var i = 0;i<cTime.length;i++){
-      // console.log( cTime[i].starttime.split(':'))
-      //   var cHour = cTime[i].starttime.split(':')[0];
-      //   var cMin =cTime[i].starttime.split(':')[1];
-      //   console.log(Number(d.getHours()),Number(cHour))
-      //  if(Number(d.getHours()) = Number(cHour) && cMin >= d.getMinutes()){    
-      //     break;
-      //  }else{
-      //   cTime[i].type = 0;
-      //  }
-      //cTime[i].starttime = this.data.SearchDate + ' ' +  cTime[i].starttime;
-      cTime[i].type = 0;
-        //  if(Date.parse(passTime) > new Date(cTime[i].starttime ).getTime() ){
-        //   cTime[i].type = 1;
-        //     //  break;
-        //  }else{
-        //   cTime[i].type = 0;
-        //  }
-       
+  getMyCurrentTime: function () {
+    var dataTime = this.data.datatime;
+    for (var i = 0; i < dataTime.length; i++) {
+      if (dataTime[i].StateMsg === '已预约') {
+        dataTime[i].type = 1;
+      } else if (dataTime[i].StateMsg === '可预约') {
+        dataTime[i].type = 2;
+      } else {
+        //不可预约
+        dataTime[i].type = 0;
       }
-      console.log(cTime)
-     this.setData({
-      datatime: cTime
-     })
+    }
+    console.log(dataTime)
+    this.setData({
+      datatime: dataTime
+    })
   },
-  getMyCoachClassList:function(){
+  //预约
+  succssful: function () {
+    var that = this
+    if (!this.data.num) {
+      wx.showToast({
+        title: '请选择时间',
+        icon: 'none'
+      })
+    } else {
+      that.getMyCoachReserveCoachClass();
+    }
+  },
+  //教练列表
+  getMyCoachClassList: function () {
     var that = this;
     api.request({
       url: "/MyCoachClassList",
@@ -157,11 +173,13 @@ Page({
         pageIndex: that.data.currPage
       }
     }).then(res => {
-      console.log(res.data.data);
-      that.setData({
-        currentCoach:res.data.data[0]
-      })
-      
+      // console.log(res.data.data);
+      if (!that.data.currentCoach) {
+        that.setData({
+          currentCoach: res.data.data[0]
+        })
+      }
+      that.getPrivateAppointment();
     })
   },
   /**
@@ -175,16 +193,127 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //教练列表
+    this.getMyCoachClassList();
+    //团课
+    this.getCardTogether();
+  },
+  //私教预约时间列表
+  getPrivateAppointment() {
+    var that = this
+    api.request({
+      url: "/MyCoachPrivateClassReservationList",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        SearchDate: that.data.SearchDate,
+        FK_AL_TeachCoach_ID: that.data.currentCoach.FK_AL_TeachCoach_ID
+      }
+    }).then(res => {
+      console.log(res)
+      that.setData({
+        datatime: res.data.data
+      })
+      that.getMyCurrentTime();
+    })
+  },
+  //预约私教课
+  getMyCoachReserveCoachClass: function () {
+    var that = this;
+    let stime = that.data.starttime.split(':');
+    let endTime = null;
+    var hour, min;
+    if (Number(stime[1]) + Number(that.data.currentCoach.CP_Time) >= 60) {
+      hour = Number(stime[0]) + parseInt((Number(that.data.currentCoach.CP_Time)+ Number(stime[1]) )/ 60);
+      min = Number(stime[1]) + Number(that.data.currentCoach.CP_Time) - parseInt((Number(that.data.currentCoach.CP_Time)+Number(stime[1])) / 60) * 60;
+      endTime = hour + ':' + (min == 0 ? min + '0' : min);
+    } else {
+      hour = Number(stime[0]);
+      min = Number(stime[1]) + Number(that.data.currentCoach.CP_Time)
+      endTime = hour + ':' + (min == 0 ? min + '0' : min);
+    }
+    console.log(endTime)
+    that.setData({
+      endtime:endTime
+    })
+    // 上传预约时间
+    //return
+    let yuyueList = that.data.datatime;
+    if (Number(that.data.currentCoach.CP_Time) > 30 && Number(that.data.currentCoach.CP_Time) <= 60 && that.data.num < yuyueList.length) {
+      console.log('小于60分钟')
+      if(yuyueList[that.data.num].type != 2){
+        wx.showToast({
+          title: '不可预约'
+        })
+        return
+      }
+    } else if (Number(that.data.currentCoach.CP_Time) > 60 && Number(that.data.currentCoach.CP_Time) <= 90 && that.data.num+1 < yuyueList.length) {
+      console.log('大于60分钟')
+      if (yuyueList[that.data.num + 1].type != 2) {
+        wx.showToast({
+          title: '不可预约'
+        })
+        return
+      }
+    }
+    //
+    var that = this;
+    var reserveJson = {
+      CO_ID: that.data.currentCoach.CO_ID,
+      UI_ID: wx.getStorageSync('UI_ID') || 0,
+      FK_GB_ID: wx.getStorageSync('GB_ID'),
+      CP_ID: that.data.currentCoach.CP_ID,
+      CoachID: that.data.currentCoach.FK_AL_TeachCoach_ID,
+      StartTime: that.data.SearchDate + ' ' + that.data.starttime,
+      EndTime: that.data.SearchDate + ' ' + that.data.endtime
+    }
+    wx.showModal({
+      title: '',
+      content: '确认预约该课程吗',
+      success(res) {
+        if (res.confirm) {
+          api.request({
+            url: "/MyCoachReserveCoachClass",
+            data: {
+              user_token: wx.getStorageSync('token'),
+              reserveJson: JSON.stringify(reserveJson)
+            }
+          }).then(res => {
+            console.log(res)
+            if (res.data.code == 1) {
+              that.getPrivateAppointment();
+              wx.showToast({
+                icon: "none",
+                title: '预约成功',
+              })
+              that.setData({
+                num:null,
+                starttime:null,
+                endtime:null
+              })
+            } else {
+              wx.showToast({
+                icon: "none",
+                title: res.data.msg + ",暂时不能约课",
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
 
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-      this.setData({
-        date:false
-      })
+    this.setData({
+      date: false,
+      num:null,
+      starttime:null,
+      endtime:null
+    })
   },
   //给点击的日期设置一个背景颜色
   dayClick: function (event) {
@@ -204,11 +333,19 @@ Page({
         [changeDay]: clickDay,
         [changeBg]: "#84e7d0",
         date: false,
-        SearchDate:chose_time
+        SearchDate: chose_time
       })
       that.getWeekList(chose_time);
+      //刷新预约时间列表
+      if(this.data.selectClass==0){
+        that.getPrivateAppointment();
+      }else{
+        that.getCardTogether()
+      }
+     
       that.setData({
-        choosesDay: 0
+        choosesDay: 0,
+        num:null
       })
     } else {
       wx.showToast({
@@ -225,20 +362,34 @@ Page({
       date: true
     })
   },
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  //团课预约
+  getCardTogether:function(){
+    var that = this
+     api.request({
+       url:"/CardTogether",
+       data:{
+        user_token:wx.getStorageSync('token'),
+        SearchDate:that.data.SearchDate,
+        UI_ID:wx.getStorageSync('UI_ID') ||0,
+        GB_ID:wx.getStorageSync('GB_ID')
+       }
+     }).then(res=>{
+      console.log(res)
+       that.setData({
+        togetherClass:res.data.data
+       })
+     })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  //预约团课
+  orderTogther:function(e){
+    let tcalss = e.currentTarget.dataset.togther
+     console.log(tcalss)
+     if(Number(tcalss.IsAppointment)==0){
+       wx.navigateTo({
+         url: '/pages/groupAppointment/groupAppointment?tclass='+JSON.stringify(tcalss),
+       })
+     }
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */
@@ -246,10 +397,4 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

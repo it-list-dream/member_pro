@@ -24,7 +24,7 @@
           </view>
         </view>
         <view class="course_content">
-          <view>{{currentCoach.CP_Name}}（{{currentCoach.CO_Have}}节）</view>
+          <view>{{currentCoach.CP_Name}}（{{currentCoach.CO_Have-currentCoach.CS_Num}}/{{currentCoach.CO_Have}}节）</view>
           <view>截止：{{currentCoach.CO_ActiveEnd}}</view>
         </view>
         <navigator url="/pages/selectCourse/selectCourse" class="switch" hover-class="none">
@@ -55,42 +55,36 @@
     </view>
     <!-- 团课详情 -->
     <view class="leagueClass" wx:if="{{showcourse==1}}">
-      <block wx:for="{{2}}">
-        <navigator url="/pages/groupAppointment/groupAppointment" class="leagueClass_item" style="background-image:url('/static/course1.png');" hover-class="none">
-          <view class="progress">已参加1/3</view>
-          <view class="className">动感单车-六大胖</view>
+      <block wx:for="{{togetherClass}}" wx:key="i"  wx:for-index='i'>
+        <view class="leagueClass_item" style="background-image:url('/static/course1.png');">
+          <view class="progress">已参加{{item.CTO_PeopleAttend+'/'+item.CTO_PeopleFull}}</view>
+          <view class="className">{{item.CTO_Name +' - '+item.AI_Name}}</view>
           <view class="class_info">
-            <view class="class_time">2021/3/18 18:00-19:00</view>
-            <view class="class_status">已预约</view>
+            <view class="class_time">{{item.CTO_DateStart+'-'+item.CTO_DateEnd}}</view>
+            <view class="class_status" style="background:{{tools.timeIsinarea(item.CTO_SignUpStart)?'#12D58B':'#7B6F85'}}" bindtap="orderTogther" data-togther="{{item}}">{{item.IsAppointment==0?'预约':'已预约'}}</view>
           </view>
-        </navigator>
+        </view>
       </block>
-      <!-- <view class="unclass">
+      <view class="unclass" wx:if="{{togetherClass.length==0}}">
           <image src="/static/unclass.png"></image>
           <view>今天没课，放飞自我</view>
-      </view> -->
+      </view>
     </view>
     <!-- 私教详情 -->
     <view wx:if="{{showcourse==0}}">
       <view class="trainer">
-        <!-- <view class="time">
-          <block wx:for="{{date_time}}">
-            <view class="clock">{{item}}</view>
-          </block>
-        </view> -->
         <ul class="time">
           <block wx:for="{{datatime}}" wx:key="index">
-            <li class="clock" catchtap="hanleDate" data-id="{{index+1}}">
-              <view class="{{item.type == 0?'mycol':''}}"
-                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}"
-                data-s="{{item.starttime}}" data-e="{{item.endtime}}">
-                {{item.starttime}}</view>
+            <li class="clock">
+              <view class="{{item.type !==2?'mycol':''}} "
+                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}" data-s="{{item.StartTime}}" data-e="{{item.EndTime}}" catchtap="show{{item.type !==2 ? 'ch':'ch1'}}" data-num="{{index+1}}">
+                {{item.StartTime}}</view>
             </li>
           </block>
         </ul>
       </view>
       <view class="oder_wrapper">
-        <view class="order" bindtap="order">预约</view>
+        <view class="order" bindtap="succssful">预约</view>
       </view>
     </view>
   </view>
