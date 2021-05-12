@@ -8,10 +8,10 @@
         <navigator url="/page2/rules/rules" class="rules" hover-class="none">积分规则</navigator>
       </view>
       <view class="inte_detail">
-        <view>行为积分：2000</view>
+        <view>行为积分：{{actionIntegral}}</view>
         <view class="inte_bot">
           <view>
-            VIP积分：<text class="fen">10000</text>
+            VIP积分：<text class="fen">{{vipIntegral}}</text>
           </view>
 
           <navigator class="immediate" open-type="navigateBack">立即使用</navigator>
@@ -31,38 +31,47 @@
       </view>
     </view>
     <!--  全部-->
-    <view class="record"  wx:if="{{tab==0}}">
-      <block wx:for="{{all}}" wx:key="id">
-        <view class="record_item">
-          <view class="left_record">
-            <view>{{item.name}}</view>
-            <view>{{item.date}}</view>
+    <view class="record" wx:if="{{tab==0}}">
+      <scroll-view scroll-y class="inte_scroll" style="height:calc(100vh - {{navHeight}}px - 384rpx )"
+        lower-threshold="0" bindscrolltolower="loadMore">
+        <block wx:for="{{all}}" wx:key="ROWID">
+          <view class="record_item">
+            <view class="left_record">
+              <view>{{item.PayMoneyTypeName}}</view>
+              <view>{{item.Createdate}}</view>
+            </view>
+            <view class="right_record" style="color:{{item.ScoreType==1?'#F4C08D':'#B6B9BE'}}">
+              {{item.Score>0?'+':''}}{{item.Score}}</view>
           </view>
-          <view class="right_record">{{item.num}}</view>
-        </view>
-      </block>
+        </block>
+      </scroll-view>
     </view>
-       <!-- 赚积分 -->
+    <!-- 赚积分 -->
     <view class="record" wx:elif="{{tab==1}}">
-      <block wx:for="{{profitable}}" wx:key="id">
-        <view class="record_item">
-          <view class="left_record">
-            <view>{{item.name}}</view>
-            <view>{{item.date}}</view>
+      <scroll-view scroll-y class="inte_scroll" style="height:calc(100vh - {{navHeight}}px - 384rpx )"
+        lower-threshold="0" bindscrolltolower="loadMore">
+        <block wx:for="{{profitable}}" wx:key="ROWID">
+          <view class="record_item">
+            <view class="left_record">
+              <view>{{item.PayMoneyTypeName}}</view>
+              <view>{{item.Createdate}}</view>
+            </view>
+            <view class="right_record" style="color:{{item.ScoreType==1?'#F4C08D':'#B6B9BE'}}">
+              {{item.Score>0?'+':''}}{{item.Score}}</view>
           </view>
-          <view class="right_record">{{item.num}}</view>
-        </view>
-      </block>
+        </block>
+      </scroll-view>
     </view>
     <!-- 花积分 -->
     <view class="record" wx:elif="{{tab==2}}">
-      <block wx:for="{{takeIntegral}}" wx:key="id">
+      <block wx:for="{{takeIntegral}}" wx:key="ROWID">
         <view class="record_item">
           <view class="left_record">
-            <view>{{item.name}}</view>
-            <view>{{item.date}}</view>
+            <view>{{item.PayMoneyTypeName}}</view>
+            <view>{{item.Createdate}}</view>
           </view>
-          <view class="right_record">{{item.num}}</view>
+          <view class="right_record" style="color:{{item.ScoreType==1?'#F4C08D':'#B6B9BE'}}">
+            {{item.Score>0?'+':''}}{{item.Score}}</view>
         </view>
       </block>
     </view>

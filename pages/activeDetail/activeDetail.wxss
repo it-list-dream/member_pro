@@ -1,5 +1,4 @@
 .card {
-  height: 100vh;
   background: #F0F2F5;
 }
 
@@ -30,7 +29,9 @@
   font-weight: 400;
   color: #333333;
 }
-
+.titleTip{
+  margin-left: 28rpx;
+}
 .vipMoney .vipStr {
   box-sizing: border-box;
   height: 91rpx;
@@ -89,16 +90,15 @@
 
 /*  */
 .introduce_box {
+  display: flex;
   box-sizing: border-box;
   padding: 32rpx;
-  height: 228rpx;
-  text-indent: 26rpx;
   background-color: #ffffff;
 }
-.charText{
-  padding-left: 16rpx;
-}
-.introduce text {
+
+
+.introduceTip {
+  text-indent: 1em;
   display: -webkit-box;
   word-break: break-all;
   text-overflow: ellipsis;
@@ -109,9 +109,7 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
-  line-height: 45rpx;
 }
-
 /*  */
 .choose {
   box-sizing: border-box;
@@ -138,7 +136,8 @@
 
 .pick_name {
   text-align: center;
-  width: 150rpx;
+  overflow: hidden;
+  width: 202rpx;
   height: 40rpx;
   line-height: 40rpx;
   border: 1px solid #333333;

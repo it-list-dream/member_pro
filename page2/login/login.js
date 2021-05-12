@@ -17,7 +17,6 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
     })
     this.setData({
       hasUserInfo: hasUserInfo
@@ -29,15 +28,14 @@ Page({
     })
   },
   modalCancel() {
-    console.log('取消');
     wx.showToast({
       title: '拒绝授权',
       icon: 'none',
       duration: 2000
     })
-  },
-  modalConfirm() {
-    console.log('确定')
+    wx.navigateBack({
+      delta: 1,
+    })
   },
   getUserProfile(e) {
     var that = this;
@@ -45,15 +43,15 @@ Page({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
         console.log(res.userInfo)
+        wx.setStorageSync('hasUserInfo', true)
+        wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
+        //登录状态
+        wx.setStorageSync('loginStatus', 1)
         that.setData({
           userInfo: res.userInfo,
           showModal: true,
           hasUserInfo: true
         })
-        wx.setStorageSync('hasUserInfo', true)
-        wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-        //登录状态
-        wx.setStorageSync('loginStatus', 1)     
       },
       fail: function () {
         console.log('用户拒绝获取头像信息');
@@ -65,10 +63,10 @@ Page({
   },
   //通过绑定手机号登录
   getPhoneNumber: function (e) {
-    console.log(e)
-    if (e.detail.errMsg =='getPhoneNumber:ok') {
-       //登录
-       wx.login({
+    var that = this
+    if (e.detail.errMsg == 'getPhoneNumber:ok') {
+      //登录
+      wx.login({
         success: function (res) {
           let code = res.code
           api.request({
@@ -78,7 +76,7 @@ Page({
               code: code
             }
           }).then(res => {
-            console.log(res.data.user_token)
+            wx.setStorageSync('userOpenid', res.data.openid)
             api.request({
               url: "/userPhoneBind",
               data: {
@@ -87,15 +85,22 @@ Page({
                 iv: e.detail.iv,
               }
             }).then(res => {
-             console.log(res)
-             wx.setStorageSync('token', res.data.user_token);
-             wx.setStorageSync('loginStatus', 2)
-             // 保存手机号码
-             wx.setStorageSync('phone', res.data.phone)
-             // 返回上一个页面
-              wx.navigateBack({
-                delta: 1,
-              })
+              //保存token 
+              if (res.data.code == 1) {
+                wx.setStorageSync('token', res.data.user_token);
+                that.getMyAllCrad();
+                wx.setStorageSync('loginStatus', 2);
+                // 保存手机号码
+                wx.setStorageSync('phone', res.data.phone);
+                //返回上一个页面
+                wx.navigateBack({
+                  delta: 1,
+                })
+              } else {
+                wx.navigateBack({
+                  delta: 1,
+                })
+              }
             })
           })
         }
@@ -111,48 +116,39 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function () {},
+  //获取已有的会员信息
+  getMyAllCrad: function () {
+    var that = this;
+    api.request({
+      url: "/MyAllVIPCard",
+      data: {
+        user_token: wx.getStorageSync('token')
+      }
+    }).then(res => {
+      if (res.data.data.length > 0) {
+        wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
+      } else {
+        wx.setStorageSync('UI_ID', 0);
+      }
+    })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

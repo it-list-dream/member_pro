@@ -1,4 +1,5 @@
 var app = getApp()
+var api = require('../../utils/request.js')
 Page({
 
   /**
@@ -8,107 +9,32 @@ Page({
     options_tab: ['全部', '赚积分', '花积分'],
     tab: 0,
     selectArray: [{
-        id: 1,
+        id: 0,
         text: "全部"
+      },
+      {
+        id: 1,
+        text: "消费积分"
       },
       {
         id: 2,
         text: "行为积分"
-      },
-      {
-        id: 3,
-        text: "消费积分"
       }
     ],
-    all: [
-      { 
-        id:1,
-        name:'进场签到',
-        date:'2021-4-21 12:00',
-        num:'+5000'
-      },{
-        id:2,
-        name:'生日积分',
-        date:'2021-4-1 11:00',
-        num:'+2000'
-      },{ 
-        id:1,
-        name:'进场签到',
-        date:'2021-4-21 12:00',
-        num:'+5000'
-      },{
-        id:2,
-        name:'生日积分',
-        date:'2021-4-1 11:00',
-        num:'+2000'
-      },
-      { 
-        id:1,
-        name:'进场签到',
-        date:'2021-4-21 12:00',
-        num:'+5000'
-      },{
-        id:2,
-        name:'生日积分',
-        date:'2021-4-1 11:00',
-        num:'+2000'
-      },
-      { 
-        id:1,
-        name:'进场签到',
-        date:'2021-4-21 12:00',
-        num:'+5000'
-      },{
-        id:2,
-        name:'生日积分',
-        date:'2021-4-1 11:00',
-        num:'+2000'
-      },
-      { 
-        id:1,
-        name:'进场签到',
-        date:'2021-4-21 12:00',
-        num:'+5000'
-      },{
-        id:2,
-        name:'生日积分',
-        date:'2021-4-1 11:00',
-        num:'+2000'
-      },
-      { 
-        id:1,
-        name:'进场签到',
-        date:'2021-4-21 12:00',
-        num:'+5000'
-      },{
-        id:2,
-        name:'生日积分',
-        date:'2021-4-1 11:00',
-        num:'+2000'
-      }
-    ],
-    profitable: [ {
-      id:3,
-      name:'签到',
-      date:'2021-1-21 12:00',
-      num:'+5000'
-    },{
-      id:4,
-      name:'生日积分',
-      date:'2021-4-1 11:00',
-      num:'+2000'
-    }],
-    takeIntegral: [ {
-      id:11,
-      name:'进场签到',
-      date:'2021-4-21 12:00',
-      num:'-5000'
-    },{
-      id:12,
-      name:'生日积分',
-      date:'2021-4-1 11:00',
-      num:'-2000'
-    }]
+    all: [],
+    profitable: [],
+    takeIntegral: [],
+    //分页
+    currPage: 1,
+    pageSize: 9,
+    //总页数
+    total: 0,
+    //积分类型 0全部1消费积分2运动积分
+    scoreType: 0,
+    //积分消费 与取得  0全部 1获得2扣除
+    useType: 0,
+    vipIntegral:0,
+    actionIntegral:0
   },
 
   /**
@@ -118,18 +44,46 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
+      vipIntegral: options.vipIntegral,
+      actionIntegral: options.actionIntegral
     })
+    this.getScoreDetailed()
+    // console.log(options)
   },
   optionsTab: function (e) {
-    console.log(e.target);
-    var index = e.target.dataset.index;
+    var that = this
+    console.log(e);
+
+    var index = e.currentTarget.dataset.index;
+    //0全部 1获得2扣除
+    if (index == 1) {
+      that.setData({
+        useType: 1,
+        currPage: 1
+      })
+      that.getScoreDetailed()
+    } else if (index == 2) {
+      that.setData({
+        useType: 2,
+        currPage: 1
+      })
+      that.getScoreDetailed()
+    } else {
+      that.setData({
+        useType: 0
+      })
+    }
     this.setData({
       tab: index
     })
   },
   getDate: function (e) {
-    console.log(e)
+    var that = this
+    let id = e.detail.id
+    that.setData({
+      scoreType: id
+    })
+    that.getScoreDetailed2();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -137,14 +91,112 @@ Page({
   onReady: function () {
 
   },
-
+  getScoreDetailed: function () {
+    var that = this
+    if (that.data.currPage > that.data.total && that.data.currPage > 0 && that.data.total > 0) {
+      that.setData({
+        currPage: that.data.total
+      })
+    } else {
+      api.request({
+        url: "/ScoreDetailed",
+        data: {
+          user_token: wx.getStorageSync('token'),
+          pageSize: that.data.pageSize,
+          pageIndex: that.data.currPage,
+          scoreType: that.data.scoreType,
+          useType: that.data.useType
+        }
+      }).then(res => {
+        if (that.data.tab == 0) {
+          if (res.data.code == '1') {
+            var t = Math.ceil(res.data.recordCount / that.data.pageSize);
+            let newArr1 = [...that.data.all, ...res.data.data];
+            var n = that.unique(newArr1)
+            that.setData({
+              all: n,
+              total: t
+            })
+          }
+        } else if (that.data.tab == 1) {
+          if (res.data.code == '1') {
+            var t = Math.ceil(res.data.recordCount / that.data.pageSize);
+            let newArr1 = [...that.data.all, ...res.data.data];
+            var n = that.unique(newArr1)
+            that.setData({
+              profitable: n,
+              total: t
+            })
+          }
+        } else if (that.data.tab == 2) {
+          if (res.data.code == '1') {
+            var t = Math.ceil(res.data.recordCount / that.data.pageSize);
+            let newArr1 = [...that.data.all, ...res.data.data];
+            var n = that.unique(newArr1)
+            that.setData({
+              takeIntegral: n,
+              total: t
+            })
+          }
+        }
+      })
+    }
+  },
+  getScoreDetailed2: function () {
+    var that = this
+    that.setData({
+      currPage: 1
+    })
+    api.request({
+      url: "/ScoreDetailed",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage,
+        scoreType: that.data.scoreType,
+        useType: that.data.useType
+      }
+    }).then(res => {
+      if (that.data.tab == 0) {
+        console.log(that.data.urrPage)
+        that.setData({
+          all: res.data.data
+        })
+      } else if (that.data.tab == 1) {
+        this.setData({
+          profitable: res.data.data
+        })
+      } else if (that.data.tab == 2) {
+        this.setData({
+          takeIntegral: res.data.data
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
 
   },
-
+  loadMore: function () {
+    console.log('触底了');
+    var that = this;
+    var pageSize = that.data.currPage + 1; //获取当前页数并+1
+    that.setData({
+      currPage: pageSize, //更新当前页数
+    })
+    that.getScoreDetailed(); //重新调用请求获取下一页数据
+  },
+  //数组对象去重
+  unique: function (arr) {
+    var obj = {};
+    arr = arr.reduce(function (item, next) {
+      obj[next.ROWID] ? '' : obj[next.ROWID] = true && item.push(next);
+      return item;
+    }, []);
+    return arr
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -160,23 +212,9 @@ Page({
   },
 
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -47,16 +47,15 @@
     </view>
   </view>
   <!-- 课程列表 -->
-  <!--  -->
   <view class="classList">
     <navigator class="classList_item" url="/pages/appointment/appointment?course=1" hover-class="none">
       <image src="/static/home_pic/tuanke.png" class="class_pic"></image>
       <text>团课</text>
     </navigator>
-    <navigator class="classList_item" url="/pages/appointment/appointment?course=0" hover-class="none">
+    <view class="classList_item" bindtap="goLeagueLecture">
       <image src="/static/home_pic/sijiao.png" class="class_pic"></image>
       <text>私教</text>
-    </navigator>
+    </view>
     <navigator class="classList_item" open-type="switchTab" url="/pages/tabbar/integral/integral" hover-class="none">
       <image src="/static/home_pic/gift.png" class="class_pic"></image>
       <text>积分商城</text>
@@ -82,12 +81,12 @@
         <!-- <swiper> -->
           <block wx:for="{{coachList}}" wx:key="index">
             <!-- <swiper-item> -->
-              <view class="content_item">
+              <view class="content_item" bindtap="lookCoachDetail" data-coach="{{item}}">
                 <image src="{{item.AI_Face?item.AI_Face:'/static/coach01.png'}}"></image>
                 <view class="coach_info">
                   <view>
                     {{item.AI_Name}}
-                    <image src="/static/home_pic/phone.png" catchtap="phone" data-phone="{{item.AI_Tel}}"></image>
+                    <image src="/static/home_pic/phone.png" catchtap="callPhone" data-phone="{{item.AI_Tel}}"></image>
                   </view>
                   <view>累计上课{{item.CS_Num}}节</view>
                   <view>{{item.AI_GoodAt}}</view>
@@ -120,11 +119,10 @@
     <view class="recommend_list">
       <view class="recommend_item">
         <block wx:for="{{recomentList}}" wx:key="CP_ID">
-          <view>
+          <view bindtap="lookSuggClass" data-sclass="{{item}}">
             <image src="{{item.CP_Logo?item.CP_Logo:'/static/home_pic/coach2.png'}}" class="recommend_pic"></image>
             <view class="course">{{item.CP_Name}}</view>
             <view class="course_detail">
-              <!-- 进场次数 -->
               <text>￥</text>
               <text class="course_num">{{item.OnlinePrice}}/节</text>
               <text class="buy">{{item.SaleCount}}人已购买</text>
@@ -146,7 +144,7 @@
   </view>
   <view class="active_card">
     <view class="active">
-      <view class="active_list" wx:for="{{activityCard}}" wx:key="SC_ID">
+      <view class="active_list" wx:for="{{activityCard}}" wx:key="SC_ID" bindtap="suggestCard" data-card="{{item}}">
         <image src="{{item.SC_Logo?item.SC_Logo:'/static/home_pic/vip_card.png'}}" class="card"></image>
         <view class="active_content">
           <view class="card">{{item.SC_Name}}</view>
@@ -158,6 +156,5 @@
         </view>
       </view>
     </view>
-
   </view>
 </view>

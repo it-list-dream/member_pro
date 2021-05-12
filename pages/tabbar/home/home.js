@@ -24,21 +24,22 @@ Page({
       navTop: app.globalData.navTop,
       GymName: wx.getStorageSync('GymName')
     })
-  },
-  recomment() {
-    wx.navigateTo({
-      url: '/pages/classList/classList',
-    })
+
   },
   callPhone(e) {
-    console.log()
-    if (e.currentTarget.dataset.phone) {
+    console.log(e.currentTarget.dataset.phone)
+    let phoneNumber = e.currentTarget.dataset.phone
+    if (phoneNumber) {
       wx.makePhoneCall({
-        phoneNumber: e.currentTarget.dataset.phone //仅为示例，并非真实的电话号码
+        phoneNumber: phoneNumber
       }).catch((e) => {
         console.log(e) //用catch(e)来捕获错误{makePhoneCall:fail cancel}
       })
-
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '该教练没有预留手机号码',
+      })
     }
   },
   toShop() {
@@ -46,9 +47,23 @@ Page({
       url: '/pages/shop/shop',
     })
   },
+  //私教预约
   goLeagueLecture() {
+    //判断用户是否登录
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      wx.navigateTo({
+        url: '/pages/appointment/appointment?course=0',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
+  },
+  recomment() {
     wx.navigateTo({
-      url: '/pages/appointment/appointment',
+      url: '/pages/classList/classList',
     })
   },
   allCoach() {
@@ -61,28 +76,34 @@ Page({
       url: '/pages/activeList/activeList',
     })
   },
-  phone: function (e) {
-    console.log(e.currentTarget.dataset.phone)
-    let phoneNumber = e.currentTarget.dataset.phone
-    if (phoneNumber) {
-      wx.makePhoneCall({
-        phoneNumber: phoneNumber
-      }).catch((e) => {
-        console.log(e) //用catch(e)来捕获错误{makePhoneCall:fail cancel}
+  memberCode() {
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      //会员卡存在
+      wx.navigateTo({
+        url: '/page2/memberCode/memberCode',
       })
-
     } else {
-      wx.showToast({
-        icon:'none',
-        title: '该教练没有预留手机号码',
+      wx.navigateTo({
+        url: '/page2/login/login',
       })
     }
-  },
-  memberCode() {
     wx.navigateTo({
       url: '/page2/memberCode/memberCode',
     })
   },
+  // //获取私教课
+  // getMyCoachClassList: function () {
+  //   var that = this
+  //   api.request({
+  //     user_token: wx.getStorageSync('token'),
+  //     pageSize: 8,
+  //     pageIndex: 1,
+  //     UI_ID: wx.getStorageSync('UI_ID')
+  //   }).then(res => {
+  //     console.log(res)
+  //   })
+  // },
   //定位
   Rad: function (d) { //根据经纬度判断距离
     return d * Math.PI / 180.0;
@@ -116,7 +137,6 @@ Page({
         store: that.data.storeList[0]
       })
     }
-
   },
   //获取门店信息
   getGymList() {
@@ -133,12 +153,12 @@ Page({
       if (!app.globalData.store) {
         that.getDistance();
         console.log('计算距离');
-        wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)       
-      }else{
+        wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)
+      } else {
         that.setData({
-          store:app.globalData.store
+          store: app.globalData.store
         })
-        wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)   
+        wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)
       }
       //教练风采
       this.getCoachStyleList()
@@ -206,7 +226,6 @@ Page({
         activityCard: res.data.data.slice(0, 2)
       })
       console.log(res)
-
     })
   },
   //定位
@@ -240,42 +259,46 @@ Page({
   onShow: function () {
     //获取门店信息
     this.getGymList()
-
-
   },
-
+  //查看教练详情
+  lookCoachDetail: function (e) {
+    // console.log(e.currentTarget.dataset.coach);
+    let coach = JSON.stringify(e.currentTarget.dataset.coach)
+    wx.navigateTo({
+      url: '/pages/coachDetail/coachDetail?coach=' + coach,
+    })
+  },
+  //课程详情
+  lookSuggClass: function (e) {
+    let sclass = JSON.stringify(e.currentTarget.dataset.sclass)
+    wx.navigateTo({
+      url: '/pages/personalTrainer/personalTrainer?course1=' + sclass,
+    })
+  },
+  //查看会员卡列表
+  suggestCard: function (e) {
+    console.log(e.currentTarget.dataset.card)
+    let card = JSON.stringify(e.currentTarget.dataset.card);
+    wx.navigateTo({
+      url: '/pages/activeDetail/activeDetail?card=' + card,
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

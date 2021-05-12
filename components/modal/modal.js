@@ -40,15 +40,11 @@ Component({
       this.setData({
         show: false
       })
-      wx.navigateBack({
-        delta: 1,
-      })
       this.triggerEvent('cancel')
     },
-    getPhoneNumber(e) {
-      this.setData({
-        show: false
-      })
+    //通过绑定手机号登录
+    getPhoneNumber: function (e) {
+      var that = this
       if (e.detail.errMsg == 'getPhoneNumber:ok') {
         //登录
         wx.login({
@@ -61,7 +57,7 @@ Component({
                 code: code
               }
             }).then(res => {
-              console.log(res.data.user_token)
+              wx.setStorageSync('userOpenid', res.data.openid)
               api.request({
                 url: "/userPhoneBind",
                 data: {
@@ -70,15 +66,22 @@ Component({
                   iv: e.detail.iv,
                 }
               }).then(res => {
-                console.log(res)
-                wx.setStorageSync('token', res.data.user_token);
-                wx.setStorageSync('loginStatus', 2)
-                // 保存手机号码
-                wx.setStorageSync('phone', res.data.phone)
-                // 返回上一个页面
-                wx.navigateBack({
-                  delta: 1,
-                })
+                //保存token 
+                if (res.data.code == 1) {
+                  wx.setStorageSync('token', res.data.user_token);
+                  that.getMyAllCrad();
+                  wx.setStorageSync('loginStatus', 2);
+                  // 保存手机号码
+                  wx.setStorageSync('phone', res.data.phone);
+                  //返回上一个页面
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                } else {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                }
               })
             })
           }
@@ -89,7 +92,23 @@ Component({
           delta: 1,
         })
       }
-      this.triggerEvent('confirm')
-    }
+
+    },
+    //获取已有的会员信息
+    getMyAllCrad: function () {
+      var that = this;
+      api.request({
+        url: "/MyAllVIPCard",
+        data: {
+          user_token: wx.getStorageSync('token')
+        }
+      }).then(res => {
+        if (res.data.data.length > 0) {
+          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
+        } else {
+          wx.setStorageSync('UI_ID', 0);
+        }
+      })
+    },
   }
 })

@@ -10,7 +10,9 @@ Page({
     myCoachList: [],
     //分页
     pageSize: 5,
-    currPage: 1
+    currPage: 1,
+    //锁
+    flag: false
   },
 
   /**
@@ -25,7 +27,7 @@ Page({
   },
   personalAppointment: function () {
     wx.navigateTo({
-      url: '/pages/appointment/appointment?course=1',
+      url: '/pages/appointment/appointment?course=0',
     })
   },
   /**
@@ -36,20 +38,29 @@ Page({
   },
   getMyCoachClassList: function () {
     var that = this
-    api.request({
-      url: '/MyCoachClassList',
-      data: {
-        user_token: wx.getStorageSync('token'),
-        pageSize: that.data.pageSize,
-        pageIndex: that.data.currPage,
-        UI_ID: wx.getStorageSync('UI_ID')
-      }
-    }).then(res => {
-      console.log(res)
-      that.setData({
-        myCoachList: [...that.data.myCoachList, ...res.data.data]
+    if (!that.data.flag) {
+      api.request({
+        url: '/MyCoachClassList',
+        data: {
+          user_token: wx.getStorageSync('token'),
+          pageSize: that.data.pageSize,
+          pageIndex: that.data.currPage,
+          UI_ID: wx.getStorageSync('UI_ID')
+        }
+      }).then(res => {
+        console.log(res)
+        if(res.data.data.length==0){
+           that.setData({
+            flag:true
+           })
+           return
+        }
+        that.setData({
+          myCoachList: [...that.data.myCoachList, ...res.data.data]
+        })
       })
-    })
+    }
+
   },
   /**
    * 生命周期函数--监听页面显示

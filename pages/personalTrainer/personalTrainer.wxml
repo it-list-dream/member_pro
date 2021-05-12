@@ -2,7 +2,7 @@
 <nav-bar page-name="私教课详情"></nav-bar>
 <view class="container" style="margin-top:{{navHeight}}px">
   <view class="head_list">
-    <image src="/static/coach03.png" class="head_pic"></image>
+    <image src="{{personal.CP_Logo?personal.CP_Logo:'/static/coach03.png'}}" class="head_pic"></image>
   </view>
   <!--  -->
   <view class="course_num">
@@ -24,7 +24,8 @@
   <view class="introduce">
     <view class="introduce_title">介绍：</view>
     <view>
-      如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。
+      <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。 -->
+     {{personal.CP_Content1?personal.CP_Content1:personal.CP_Content}}
     </view>
   </view>
   <!-- 选择教练 -->
@@ -58,19 +59,18 @@
     <view class="buy_count">
       <view class="by">购买节数</view>
       <view class="count_box">
-        <view class="count plus" bindtap="countNum" data-index="0">-</view>
-        <view class="num">{{number}}</view>
-        <view class="count add" bindtap="countNum" data-index="1">+</view>
+        <view class="count plus" bindtap="reduce">-</view>
+        <view class="num">{{payNum}}</view>
+        <view class="count add" bindtap="addnum">+</view>
       </view>
     </view>
-
   </view>
   <!-- bottom -->
   <view class="fixedbottom">
     <view>{{personal.SaleCount}}人已购</view>
     <view class="footer_pay">
       <view>合计
-        <text>  ￥{{personal.OnlinePrice}}</text>
+        <text>  ￥{{payNum * personal.OnlinePrice}}</text>
       </view>
       <view bindtap="paysuccess" class="buy">购买</view>
     </view>

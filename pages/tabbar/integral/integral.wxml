@@ -18,15 +18,15 @@
   <view class="inte_title1">
     <view class="inte_item1">
       <view>行为积分</view>
-      <view>300000<text class="char">分</text></view>
+      <view>{{actionIntegral}}<text class="char">分</text></view>
     </view>
     <view class="line"></view>
     <view class="inte_item1">
       <view>VIP积分</view>
-      <view>20000<text class="char">分</text></view>
+      <view>{{vipIntegral}}<text class="char">分</text></view>
     </view>
     <view class="line"></view>
-    <navigator class="bill" url="/page2/myIntegral/myIntegral" hover-class="none">积分账单</navigator>
+    <view class="bill" bindtap="pointsBill">积分账单</view>
     <view class="line"></view>
     <view class="inte_con">
       <image src="/static/choose.png" style="width:40rpx;height:40rpx;"></image>

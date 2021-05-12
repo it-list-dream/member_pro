@@ -3,8 +3,23 @@
   background-color: #F0F2F5;
   height: auto;
 }
-
+.course_container .list{
+  position: relative;
+}
+.bg1{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 690rpx;
+  height: 240rpx;
+}
+.bg1 image{
+  width: 100%;
+  height: 100%;
+}
 .course_list {
+  position: relative;
+  z-index: 99;
   margin-bottom: 20rpx;
   box-sizing: border-box;
   padding: 20rpx;

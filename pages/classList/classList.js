@@ -20,18 +20,18 @@ Page({
       navTop: app.globalData.navTop,
     })
   },
-  getclass() {
-    wx.navigateTo({
-      url: '/pages/personalTrainer/personalTrainer',
-    })
-  },
+  // getclass() {
+  //   wx.navigateTo({
+  //     url: '/pages/personalTrainer/personalTrainer',
+  //   })
+  // },
   getCoachClassList:function(){
     var that = this;
      api.request({
        url:"/CoachClassList",
        data:{
         user_token:wx.getStorageSync('token'),
-        GB_ID:app.globalData.GB_ID
+        GB_ID:wx.getStorageSync('GB_ID')
        }
      }).then(res=>{
        console.log(res);

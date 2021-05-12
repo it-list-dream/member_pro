@@ -1,12 +1,15 @@
 <nav-bar page-name="教练列表"></nav-bar>
 <view class="coachList" style="margin-top:{{navHeight}}px;">
   <block wx:for="{{coachList}}" wx:key="index">
-    <view class="coachList_card" bindtap="getCoach"  
-    style="background-image:url('/static/selectCourse.png')"
-    data-coach="{{item}}">
+    <view class="coachList_card" bindtap="getCoach" data-coach="{{item}}">
+      <!--    style="background-image:url('/static/selectCourse.png')" -->
+      <!-- 背景 -->
+      <view class="bg_con">
+        <image src="/static/selectCourse.png"></image>
+      </view>
       <view class="coachList_item">
         <view class="coach_info">
-          <image src="{{item.AI_Face}}"></image>
+          <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}"></image>
           <text class="coachName">{{item.AI_Name}}</text>
           <image src="{{item.AI_Sex ==='男'?'/static/man.png':'/static/woman.png'}}"></image>
         </view>

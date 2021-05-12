@@ -31,22 +31,21 @@
                 <view>教练：{{item.CoachName}}</view>
                 <view>时间：{{item.ClassTime}}</view>
                 <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Addres}}</view>
-                <view wx:if="{{item.ClassType==1}}">座位：{{item.PickNum}}</view>
+                <view wx:if="{{item.ClassType==1 && item.PickNum>0}}">座位：{{item.PickNum}}</view>
               </view>
             </view>
             <view class="con_right" wx:if="{{item.ClassType==1}}">团</view>
           </view>
           <!--  -->
-          <view class="contact" wx:if="{{item.ClassType==2}}">
-            <view class="btn contact_item">联系电话</view>
-            <view class="btn cancel">取消</view>
-          </view>
           <view class="contact" wx:if="{{item.ClassType==1}}">
-            <view class="btn cancel">取消</view>
+          <!-- 团课取消 -->
+            <view class="btn cancel" catchtap="cancelClass" data-id="{{item.ClassID}}">取消</view>
           </view>
-          <!-- <view class="score_item" wx:else>
-            <text class="score">自律积分</text>+10
-          </view> -->
+          <!--  -->
+          <view class="contact" wx:elif="{{item.ClassType==2}}">
+            <view class="btn contact_item" bindtap="call" data-phone="{{item.AI_Tel}}">联系电话</view>
+            <view class="btn cancel" bindtap="cancelPerClass" data-id="{{item.ClassID}}">取消</view>
+          </view>
         </view>
       </block>
     </view>

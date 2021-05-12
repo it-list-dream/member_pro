@@ -12,7 +12,6 @@ Component({
       value:{}
     }
   },
-
   /**
    * 组件的初始数据
    */
@@ -25,7 +24,6 @@ Component({
    */
   methods: {
     handleDetail:function(){
-    //  console.log()
       let course1 = JSON.stringify(this.properties.course) 
       wx.navigateTo({
         url: '/pages/personalTrainer/personalTrainer?course1='+course1,

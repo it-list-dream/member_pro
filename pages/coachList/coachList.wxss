@@ -3,15 +3,30 @@
 }
 
 .coachList_card {
+  position: relative;
   margin: 0 auto;
   margin-bottom: 22rpx;
   width: 690rpx;
   height: 240rpx;
-  background: #52495B;
   border-radius: 10rpx;
 }
 
+.bg_con {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bg_con image {
+  width: 100%;
+  height: 100%;
+}
+
 .coachList .coachList_item {
+  position: relative;
+  z-index: 99;
   padding: 20rpx;
 }
 

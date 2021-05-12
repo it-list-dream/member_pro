@@ -8,6 +8,7 @@ Component({
   properties: {
     propArray: {
       type:Array,
+      value:[]
     },
     top:{
       type:String,

@@ -12,7 +12,7 @@ Page({
     //选座
     chooseSeat: false,
     //选择座位的号码
-    num: 0,
+    num: -1,
     seatList: []
   },
 
@@ -65,9 +65,10 @@ Page({
 
   },
   close: function () {
-    // this.setData({
-    //   chooseSeat: false
-    // })
+    this.setData({
+      chooseSeat: false,
+      num:null
+    })
   },
   //选座
   getCardTogetherIsPickNum: function () {
@@ -84,6 +85,45 @@ Page({
         seatList: res.data.data
       })
     })
+  },
+  judgeSeatExist1:function(){
+     wx.showToast({
+       icon:"none",
+       title: '该座位已被占用',
+     })
+  },
+  judgeSeatExist2:function(e){
+    this.setData({
+      num:e.currentTarget.dataset.index
+    })
+  },
+  onconfirm:function(){
+    var that = this
+     api.request({
+       url:"/CardTogetherAppointment",
+        data: {
+          user_token: wx.getStorageSync('token'),
+          UI_ID: wx.getStorageSync('UI_ID'),
+          CTO_ID: that.data.tclass.CTO_ID,
+          //座位号
+          PickNum: that.data.num
+        }
+     }).then(res=>{
+       console.log(res)
+       that.setData({
+         num:null
+       })
+       if (res.data.code == 1) {
+        wx.navigateTo({
+          url: '/page2/suceess/suceess',
+        })
+      } else {
+        wx.showToast({
+          icon: "none",
+          title: res.data.msg,
+        })
+      }
+     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

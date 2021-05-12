@@ -67,9 +67,9 @@ App({
     isIphoneX: false, 
     userInfo: null,
     share:false,
-    GB_ID:88,
+    GB_ID:0,
+    //门店信息
     store:null,
-    token1:'AacZ4cBOgDvYt7obOHUJDF/nN6av3kx7GPkz+8fOv0xEMkE9n8D4THxEx2bqEMs6rEzlxW5U8fyMydDj93RTTtb5FYwb7Ipb41ptbYB8E6/+BRct4v3RXC2MNCb9YtS0yd77SLS5E8FOhEI/qiiE2Aos4/UqBYFolrBdJSQG2dqexPY/tYgmC2es6xMyffZk1Db1/FJtF7fytBf2A5QBMIObGXbboV78jNSUzw1T+X1qsNEx0kjysynvH2atBk1TrbxOgR54YKZtRa26LaSCP73vtVEVSe0j5OtN/fYn2fw='
   },
   onShow: function() {
     

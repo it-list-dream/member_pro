@@ -1,9 +1,10 @@
 /* .appointment {
   background: #F0F2F5;
 } */
-page{
+page {
   background: #F0F2F5;
 }
+
 .appointment .appointment_item {
   width: 100%;
 }
@@ -191,7 +192,8 @@ page{
 }
 
 .leagueClass .leagueClass_item {
- overflow: hidden;
+  position: relative;
+  overflow: hidden;
   box-sizing: border-box;
   width: 690rpx;
   height: 250rpx;
@@ -200,8 +202,24 @@ page{
   background-size: 100% 100%;
 }
 
+.bg2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bg2 image {
+  width: 100%;
+  height: 100%;
+}
+.p1{
+  position: relative;
+  z-index: 99;
+}
 .leagueClass .progress {
- margin-top: 28rpx;
+  margin-top: 28rpx;
   width: 135rpx;
   height: 35rpx;
   background: #7B6F85;
@@ -259,17 +277,20 @@ page{
   height: 45vh;
   background-color: #F0F2F5;
 }
-.unclass >image{
+
+.unclass>image {
   width: 120rpx;
   height: 120rpx;
 }
-.unclass>view{
+
+.unclass>view {
   margin-top: 34rpx;
   font-size: 32rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #52495B;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #52495B;
 }
+
 /* 私教详情 */
 .trainer {
   box-sizing: border-box;

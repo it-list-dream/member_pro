@@ -2,7 +2,6 @@
 const app = getApp();
 var api = require('../../../utils/request.js')
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -11,7 +10,7 @@ Page({
         id: 1,
         name: '预约日程',
         img: '/static/my/app_info.png',
-        unreadyNum:1
+        unreadyNum: 1
       },
       {
         id: 2,
@@ -43,32 +42,28 @@ Page({
     //1表示授权了用户信息，但未绑定手机号码
     //2 完成了登录流程
     loginStatus: 0,
-    myVipCardCount:0,
-    myCoachCount:0
+    //会员卡数量
+    myVipCardCount: 0,
+    //私教课数量
+    myCoachCount: 0,
+    //充值金额
+    rechargeMoney: 0,
+    giveMoney: 0,
+    //vip积分
+    vipIntegral: 0,
+    //行为积分
+    actionIntegral: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMyAllCrad()
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
     })
-   // this.tranfromImage()
-
-  },
-  tranfromImage(e) {
-    wx.chooseImage({
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
-        console.log('data:image/jpg;base64,' + wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], "base64"))
-      }
-    })
+    // this.tranfromImage()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -111,13 +106,15 @@ Page({
           url: path,
         })
       }
-
     }
   },
   edit: function () {
-    wx.navigateTo({
-      url: '/page2/editProfile/editProfile',
-    })
+    let phone = wx.getStorageSync('phone');
+    if (phone && phone !== '') {
+      wx.navigateTo({
+        url: '/page2/editProfile/editProfile',
+      })
+    }
   },
   vipCard: function () {
     //判断
@@ -140,12 +137,12 @@ Page({
   storedMoney: function () {
     //判断
     wx.navigateTo({
-      url: '/page2/myStored/myStored',
+      url: '/page2/myStored/myStored?reMoney=' + this.data.rechargeMoney + '&giveMoney=' + this.data.giveMoney,
     })
   },
   inteAwrad: function () {
     wx.navigateTo({
-      url: '/page2/myIntegral/myIntegral',
+      url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral,
     })
   },
   /**
@@ -153,53 +150,104 @@ Page({
    */
   onShow: function () {
     //用户状态
+    this.getUserStatus();
+    //
+    //会员卡数量
+    this.getMyAllCrad()
+    //私教课数量
+    this.getPersonalCount()
+    //储值
+    this.getMyUserMoney()
+    //积分
+    this.getScoreTotalByPhone();
+  },
+  getUserStatus: function () {
+    //用户状态
     var status = wx.getStorageSync('loginStatus') || 0;
     console.log(status)
     //获取用户信息
     var info = wx.getStorageSync('userInfo');
     //获取用户的手机号码
-    var phone = wx.getStorageSync('phone')|| '';
-    console.log(status)
-    if (status == 1 || status ==2) {
+    var phone = wx.getStorageSync('phone') || '';
+    if (status == 1 || status == 2) {
       this.setData({
         loginStatus: status,
-        info:JSON.parse(info),
-        phone:phone
+        info: JSON.parse(info),
+        phone: phone
       })
-    }else{
+    } else {
       this.setData({
         loginStatus: status
       })
     }
   },
-  getMyAllCrad:function(){
+  //会员卡的数量
+  getMyAllCrad: function () {
     var that = this;
     api.request({
-      url:"/MyAllVIPCard",
-      data:{
-        user_token:wx.getStorageSync('token')
+      url: "/MyAllVIPCard",
+      data: {
+        user_token: wx.getStorageSync('token')
       }
-    }).then(res=>{
-    //  res.data.data
+    }).then(res => {
       console.log(res)
       that.setData({
-        myVipCardCount:res.data.cardCount
+        myVipCardCount: res.data.cardCount
       })
     })
   },
-  getAllPersonalCourse:function(){
-    var that = this;
+  //私教课数量
+  getPersonalCount: function () {
+    var that = this
     api.request({
-      url:"/MyCoachClassList",
-      data:{
-        user_token:wx.getStorageSync('token'),
+      url: "/MyCoachClassList",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: 10,
+        pageIndex: 1,
+        UI_ID: wx.getStorageSync('UI_ID') || 0
       }
-    }).then(res=>{
-    //  res.data.data
+    }).then(res => {
       console.log(res)
       that.setData({
-        myVipCardCount:res.data.cardCount
+        myCoachCount: res.data.coachCount
       })
+    })
+  },
+  //我的储值金额
+  getMyUserMoney: function () {
+    var that = this
+    api.request({
+      url: "/MyUserMoney",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        UI_ID: wx.getStorageSync('UI_ID') || 0
+      }
+    }).then(res => {
+      console.log(res)
+      if (res.data.code == 1) {
+        that.setData({
+          rechargeMoney: res.data.data[0].UI_Money,
+          giveMoney: res.data.data[0].UI_SendMoney
+        })
+      }
+    })
+  },
+  //我的积分
+  getScoreTotalByPhone: function () {
+    var that = this;
+    api.request({
+      url: "/ScoreTotalByPhone",
+      data: {
+        user_token: wx.getStorageSync('token')
+      }
+    }).then(res => {
+      if (res.data.code == '1') {
+        that.setData({
+          vipIntegral: res.data.data[0].UI_Score,
+          actionIntegral: res.data.data[0].UI_ActionScore
+        })
+      }
     })
   },
   /**
@@ -215,25 +263,4 @@ Page({
   onUnload: function () {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

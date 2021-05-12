@@ -73,11 +73,12 @@
           </block>
         </view>
       </view>
-
       <view class="dateDetail">
+        <image src="/static/left_arrow.png" class="arrow1"></image>
         <view>2021/03/08</view>
         <view class="line"></view>
         <view>2021/04/08</view>
+        <image src="/static/next.png" class="arrow1"></image>
       </view>
       <!--echarts  -->
       <view class="echarts_container">

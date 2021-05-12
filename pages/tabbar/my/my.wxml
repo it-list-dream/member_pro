@@ -34,7 +34,7 @@
       <!--登录状态  -->
       <view class="succ_info" wx:elif="{{loginStatus == 2}}">
         <view class="member_info">
-          如渔会员<image src="/static/my/woman.png"></image>
+          如渔会员<image src="{{info.gender == 2?'/static/my/woman.png':'/static/man.png'}}" style="margin-left:15rpx;"></image>
         </view>
         <view class="phone">{{phone}}</view>
       </view>
@@ -46,7 +46,7 @@
         <view class="vipCard">会员卡</view>
       </view>
       <view class="cItem" catchtap="perCourse">
-        <view>20</view>
+        <view>{{myCoachCount}}</view>
         <view>私教课</view>
       </view>
       <view class="cItem" catchtap="message">
@@ -54,7 +54,7 @@
           <image src="/static/my/message.png" alt="" style="width:36rpx;height:36rpx;"></image>
         </view>
         <view>消息</view>
-        <view class="dot dotMessage">10</view>
+        <!-- <view class="dot dotMessage">10</view> -->
       </view>
     </view>
   </view>
@@ -66,14 +66,16 @@
   <view class="stored active">
     <view class="leftStored avtive_item">
       <view class="inte_con">
-        <text>充值金额</text>
-        <text>2000</text>元
+        <view>充值金额</view>
+        <text>{{rechargeMoney}}</text>   
+        元
       </view>
     </view>
     <view class="rightStored avtive_item">
       <view class="inte_con">
-        <text>赠送金额</text>
-        <text>2000</text>元
+        <view>赠送金额</view>
+        <text>{{giveMoney}}</text>  
+        元
       </view>
     </view>
   </view>
@@ -85,14 +87,14 @@
   <view class="inte active">
     <view class="leftInte avtive_item">
       <view class="inte_con">
-        <text>VIP积分</text>
-        <text>2000</text>元
+        <view>VIP积分</view>
+        <text>{{vipIntegral}}</text>分
       </view>
     </view>
     <view class="rightInte avtive_item">
       <view class="inte_con">
-        <text>行为积分</text>
-        <text>2000</text>元
+        <view>行为积分</view>
+        <text>{{actionIntegral}}</text>分
       </view>
     </view>
   </view>
@@ -109,7 +111,7 @@
             <image src="{{item.img}}"></image>
           </view>
           <text>{{item.name}}</text>
-          <view class="dot" wx:if="{{item.unreadyNum && item.unreadyNum>0}}">{{item.unreadyNum}}</view>
+          <!-- <view class="dot" wx:if="{{item.unreadyNum && item.unreadyNum>0}}">{{item.unreadyNum}}</view> -->
         </view>
       </block>
     </view>

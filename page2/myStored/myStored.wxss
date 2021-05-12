@@ -81,13 +81,10 @@
 
 .stored_item {
   width: 100%;
-  padding-top: 30rpx;
-
+  padding-top: 30rpx; 
 }
 .stored_scroll{
   width: 100%;
-  /* background-color: pink; */
-  max-height: 60vh;
 }
 .stored_all {
   display: flex;
@@ -117,10 +114,4 @@
   font-family: PingFang SC;
   font-weight: 500;
 
-}
-swiper{
-  height: 60vh;
-}
-swiper-item{
-  height: 60vh;
 }

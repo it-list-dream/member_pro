@@ -3,8 +3,8 @@
   <view class="stored_list">
     <view class="stored_img">
       <view>可用储值</view>
-      <view class="recharge">支付充值：<text>2000</text></view>
-      <view class="give">赠送充值：<text>10000</text> </view>
+      <view class="recharge">支付充值：<text>{{reMoney}}</text></view>
+      <view class="give">赠送充值：<text>{{giveMoney}}</text> </view>
     </view>
   </view>
   <!--  -->
@@ -14,33 +14,51 @@
         <view class="tab {{tabIndex == index?'active':''}}" catchtap="tabStored" data-idx="{{index}}">{{item}}</view>
       </block>
     </view>
-    <!--  -->
-
     <!-- <view class="stored_item" hidden="{{!tabIndex==1}}">
        充值
     </view> -->
-    <swiper current="{{tabIndex}}" duration="300" bindchange="swiperTab" touchmove="{{false}}">
-      <swiper-item>
-        <view class="stored_item">
-          <scroll-view scroll-y class="stored_scroll">
-            <block wx:for="{{20}}">
-              <view class="storedWrapper">
-                <view class="stored_all">
-                  <view>支付充值</view>
-                  <view>2021-03-15</view>
-                </view>
-                <view style="color: #12D58B;" class="inte">+10</view>
-              </view>
-            </block>
-          </scroll-view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view>第二屏</view>
-      </swiper-item>
-      <swiper-item>
-        <view>第三屏</view>
-      </swiper-item>
-    </swiper>
+    <!-- 全部 -->
+    <view class="stored_item" wx:if="{{tabIndex==0}}">
+      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 388rpx )" lower-threshold="0" bindscrolltolower="loadMore">
+        <block wx:for="{{userMoney}}" wx:key="index">
+          <view class="storedWrapper">
+            <view class="stored_all">
+              <view>{{item.MoneyType}}充值</view>
+              <view>{{item.Createdate}}</view>
+            </view>
+            <view style="color:{{item.MoneyType=='消费'?'#F4C08D':(item.MoneyType=='充值'?'#e0001b':'#12D58B')}}" class="inte">{{item.MoneyType=='消费'?'':'+'}}{{item.UP_MoneyShould}}</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <!-- 充值 -->
+    <view class="stored_item" wx:elif="{{tabIndex==1}}">
+      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 388rpx )" lower-threshold="0" bindscrolltolower="loadMore">
+        <block wx:for="{{rechangeMoney}}" wx:key="i" wx:for-index="i">
+          <view class="storedWrapper">
+            <view class="stored_all">
+              <view>{{item.MoneyType}}充值</view>
+              <view>{{item.Createdate}}</view>
+            </view>
+            <view style="color:#12D58B" class="inte">+{{item.UP_MoneyShould}}</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+
+    <!-- 消费 -->
+    <view class="stored_item" wx:elif="{{tabIndex==2}}">
+      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 388rpx )" lower-threshold="0" bindscrolltolower="loadMore">
+        <block wx:for="{{consumeMoney}}" wx:key="j" wx:for-index="j">
+          <view class="storedWrapper">
+            <view class="stored_all">
+              <view>{{item.MoneyType}}充值</view>
+              <view>{{item.Createdate}}</view>
+            </view>
+            <view style="color:#F4C08D" class="inte">{{item.UP_MoneyShould}}</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
   </view>
 </view>

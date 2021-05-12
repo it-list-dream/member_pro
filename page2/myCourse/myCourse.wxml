@@ -1,25 +1,31 @@
 <nav-bar page-name="我的课程"></nav-bar>
 <view class="course_container" style="margin-top:{{navHeight}}px">
   <block wx:for="{{myCoachList}}" wx:key="index">
-    <view class="course_list" style="background-image:url('/static/course1.png')">
-      <view class="courseTop">
-        <view>
-          <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}"></image>
-        </view>
-        <view class="coa_detail">
-          <view>
-            {{item.AI_Name}}
-            <image src="/static/woman.png"></image>
-          </view>
-          <text>时长：{{item.CP_Time}}分钟</text>
-        </view>
+    <view class="list">
+      <!-- background-image:url('/static/course1.png') -->
+      <view class="bg1">
+        <image src="/static/course1.png"></image>
       </view>
-      <view class="courseBottom">
-        <view>
-          <text class="course_num">{{item.CP_Name}}（{{item.CO_Have}}节）</text>
-          <text class="exp_date">截止{{item.CO_ActiveEnd}}</text>
+      <view class="course_list">
+        <view class="courseTop">
+          <view>
+            <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}"></image>
+          </view>
+          <view class="coa_detail">
+            <view>
+              {{item.AI_Name}}
+              <image src="/static/woman.png"></image>
+            </view>
+            <text>时长：{{item.CP_Time}}分钟</text>
+          </view>
         </view>
-        <view class="appoinmentBtn" catchtap="personalAppointment">预约</view>
+        <view class="courseBottom">
+          <view>
+            <text class="course_num">{{item.CP_Name}}（{{item.CO_Have}}节）</text>
+            <text class="exp_date">截止{{item.CO_ActiveEnd}}</text>
+          </view>
+          <view class="appoinmentBtn" catchtap="personalAppointment">预约</view>
+        </view>
       </view>
     </view>
   </block>

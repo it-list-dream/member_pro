@@ -2,7 +2,6 @@ import * as echarts from '../../components/ec-canvas/echarts.min';
 
 let chart = null;
 
-
 function initChart(canvas, width, height, dpr) {
   chart = echarts.init(canvas, null, {
     width: width,
@@ -12,14 +11,17 @@ function initChart(canvas, width, height, dpr) {
   //console.log(width, height, dpr)
   canvas.setChart(chart);
   var option = {
-    //triggerEvent: true,
+    clickable: true,
+    triggerEvent: true,
     tooltip: {
+      show: true,
+      showContent: false,
       trigger: 'axis',
       triggerOn: 'click',
       axisPointer: { // 坐标轴指示器，坐标轴触发有效
-        type: 'none',
+        type: 'shadow',
         shadowStyle: {
-          color: '#12D58B',
+          opacity: 0
         },
       },
     },
@@ -35,7 +37,7 @@ function initChart(canvas, width, height, dpr) {
       data: ['03.08', '03.09', '03.10', '03.11', '03.12', '03.13', '03.14'],
       axisTick: {
         alignWithLabel: true,
-        show:false
+        show: false
       },
       axisLine: {
         lineStyle: {
@@ -58,23 +60,32 @@ function initChart(canvas, width, height, dpr) {
     series: [{
       name: '分钟',
       type: 'bar',
-      legendHoverLink: true,
       barWidth: '50%',
       data: [100, 152, 200, 334, 390, 330, 220, 120],
       itemStyle: {
         normal: {
-          label: {
-            show: true, //开启显示
-            position: 'top', //在上方显示
-            color: '#AEEAD6'
-          },
+          // label: {
+          //   show: true, //开启显示
+          //   position: 'top', //在上方显示
+          //   color: '#AEEAD6'
+          // },
           color: '#AEEAD6',
-          emphasis: {
-            color: 'red'
-          }
         },
-        formatter: '{b0}: {c0}<br />{b1}: {c1}',
+
       },
+      emphasis: { // 鼠标经过时：
+        color: '#FFD117',
+        // borderColor: 'rgba(251,251,251,1)',   
+        label: {
+          show: true,
+          position: 'top',
+          padding: [5, 15, 5, 15],
+          borderWidth: 0,
+          // borderRadius: 4,
+          // backgroundColor: '#AEEAD6',
+          color: "#AEEAD6"
+        },
+      }
     }]
   };
   chart.setOption(option);

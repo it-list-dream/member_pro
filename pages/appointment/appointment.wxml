@@ -1,12 +1,12 @@
-<wxs src="../../common/common.wxs" module="tools" />
+
 <nav-bar page-name="预约"></nav-bar>
 <view class="appointment" style="margin-top:{{navHeight}}px">
   <!-- 头部 -->
   <view class="appointment_detail"
     style=" {{showcourse==0?'background:#52495B;':'background:#F0F2F5;padding-bottom:0;'}}">
     <view class="course_list">
-      <block wx:for="{{courseList}}">
-        <view class="course  {{selectClass==index?'course_active':''}}" bindtap="switchClass" data-index="{{index}}">
+      <block wx:for="{{courseList}}" wx:for-index="index1" wx:key="index1">
+        <view class="course  {{selectClass==index1?'course_active':''}}" bindtap="switchClass" data-index="{{index1}}">
           {{item}}</view>
       </block>
     </view>
@@ -18,7 +18,8 @@
           <view class="head_info">
             <view>
               <text>{{currentCoach.AI_Name}}</text>
-              <image src="{{currentCoach.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}" style="width:25rpx;height:25rpx;"></image>
+              <image src="{{currentCoach.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}"
+                style="width:25rpx;height:25rpx;"></image>
             </view>
             <view>时长：{{currentCoach.CP_Time}}分钟</view>
           </view>
@@ -38,10 +39,10 @@
     <!-- 日期 -->
     <view class="dayList">
       <view class="day_item">
-        <view wx:for="{{weekList}}" wx:key="*this" class="day {{choosesDay == index?'ch_active':''}}"
-          catchtap="chooseDate" data-index="{{index}}" data-date="{{item}}">
-          <view class="week">{{tools.getWeekdDay(item,SearchDate)}}</view>
-          <view class="date">{{item}}</view>
+        <view wx:for="{{weekList}}" wx:key="index2" wx:for-index="index2" class="day {{choosesDay == index2?'ch_active':''}}"
+          catchtap="chooseDate" data-index="{{index2}}" data-date="{{item.month+'.'+item.day}}">
+          <view class="week">{{item.week}}</view>
+          <view class="date">{{item.month+'.'+item.day}}</view>
         </view>
         <view class="selectDate day" bindtap="showCalendar">
           <image src="/static/appointment/calendar.png"></image>
@@ -55,19 +56,26 @@
     </view>
     <!-- 团课详情 -->
     <view class="leagueClass" wx:if="{{showcourse==1}}">
-      <block wx:for="{{togetherClass}}" wx:key="i"  wx:for-index='i'>
-        <view class="leagueClass_item" style="background-image:url('/static/course1.png');">
-          <view class="progress">已参加{{item.CTO_PeopleAttend+'/'+item.CTO_PeopleFull}}</view>
-          <view class="className">{{item.CTO_Name +' - '+item.AI_Name}}</view>
-          <view class="class_info">
-            <view class="class_time">{{item.CTO_DateStart+'-'+item.CTO_DateEnd}}</view>
-            <view class="class_status" style="background:{{tools.timeIsinarea(item.CTO_SignUpStart)?'#12D58B':'#7B6F85'}}" bindtap="orderTogther" data-togther="{{item}}">{{item.IsAppointment==0?'预约':'已预约'}}</view>
+      <block wx:for="{{togetherClass}}" wx:key="CTO_ID">
+        <view class="leagueClass_item">
+          <view class="bg2">
+            <image src="/static/course1.png"></image>
+          </view>
+          <view class="p1">
+            <view class="progress">已参加{{item.CTO_PeopleAttend+'/'+item.CTO_PeopleFull}}</view>
+            <view class="className">{{item.CTO_Name +' - '+item.AI_Name}}</view>
+            <view class="class_info">
+              <view class="class_time">{{item.CTO_DateStart+'-'+item.CTO_DateEnd}}</view>
+              <view class="class_status"
+                style="background:{{tools.timeIsinarea(item.CTO_SignUpStart)?'#12D58B':'#7B6F85'}}"
+                bindtap="orderTogther" data-togther="{{item}}">{{item.IsAppointment==0?'预约':'已预约'}}</view>
+            </view>
           </view>
         </view>
       </block>
       <view class="unclass" wx:if="{{togetherClass.length==0}}">
-          <image src="/static/unclass.png"></image>
-          <view>今天没课，放飞自我</view>
+        <image src="/static/unclass.png"></image>
+        <view>今天没课，放飞自我</view>
       </view>
     </view>
     <!-- 私教详情 -->
@@ -77,7 +85,9 @@
           <block wx:for="{{datatime}}" wx:key="index">
             <li class="clock">
               <view class="{{item.type !==2?'mycol':''}} "
-                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}" data-s="{{item.StartTime}}" data-e="{{item.EndTime}}" catchtap="show{{item.type !==2 ? 'ch':'ch1'}}" data-num="{{index+1}}">
+                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}"
+                data-s="{{item.StartTime}}" data-e="{{item.EndTime}}" catchtap="show{{item.type !==2 ? 'ch':'ch1'}}"
+                data-num="{{index+1}}">
                 {{item.StartTime}}</view>
             </li>
           </block>

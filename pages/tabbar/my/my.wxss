@@ -285,11 +285,14 @@
   color: #FFFFFF;
 }
 
-.avtive_item .inte_con text:first-child {
+.avtive_item .inte_con view {
+  height: 100%;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FFFFFF;
+  overflow-wrap: break-word;
+  display: inline-block;
 }
 
 .avtive_item .inte_con text:last-child {
@@ -348,7 +351,7 @@
 
 /* 消息提醒 */
 .dot {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   right: 46rpx;
   width: 34rpx;
@@ -361,5 +364,5 @@
   color: #FFFFFF;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }

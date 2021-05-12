@@ -290,9 +290,16 @@
   font-weight: 500;
   color: #999999;
 }
-
-/* li:nth-child(8) .seat {
+.confirm-btn{
+  margin: 20rpx auto;
+  width: 200rpx;
+  height: 40rpx;
+  line-height:40rpx;
+  text-align: center;
+  border-radius: 12rpx;
   background: #12D58B;
-  color: white;
-  border: 0;
-} */
+  color: #ffffff;
+}
+.col{
+  background: #eeeeee;
+}

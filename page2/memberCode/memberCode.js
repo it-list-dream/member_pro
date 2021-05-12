@@ -47,12 +47,13 @@ Page({
       showchoose: !this.data.showchoose
     })
   },
-  chooseCard:function(e){
-   // console.log(e.currentTarget.dataset.choose)
-   let card = e.currentTarget.dataset.choose
+  chooseCard: function (e) {
+    var that = this
+    // console.log(e.currentTarget.dataset.choose)
+    let card = e.currentTarget.dataset.choose
     this.setData({
-      useCard:card,
-      showchoose:false
+      useCard: card,
+      showchoose: false
     })
     //console.log('换卡')
     wx.setStorageSync('UI_ID', card.UI_ID)
@@ -73,18 +74,18 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        user_token: app.globalData.token1
+        user_token: wx.getStorageSync('token')
       }
     }).then(res => {
       console.log(res)
       //如果没卡就不显示任何数据
       if (res.data.cardCount > 0) {
         //如果没切换卡默认选中第一张卡
-        if(!that.data.useCard){
+        if (!that.data.useCard) {
           this.setData({
             cardCount: res.data.cardCount,
             card_list: res.data.data,
-            useCard:res.data.data[0]
+            useCard: res.data.data[0]
           })
           wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
         }
@@ -108,15 +109,17 @@ Page({
         UI_ID: this.data.useCard.UI_ID
       }
     }).then(res => {
-      // console.log(res)
-      new QRCode('canvas', {
-        text: res.data.data[0].QRCode,
-        width: 160,
-        height: 160,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H,
-      });
+     // console.log(res)
+      if (res.data.code == '1') {
+        new QRCode('canvas', {
+          text: res.data.data[0].QRCode,
+          width: 160,
+          height: 160,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+      }
     })
   },
   /**

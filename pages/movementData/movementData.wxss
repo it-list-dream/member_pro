@@ -20,7 +20,6 @@
   z-index: 99;
   width: 688rpx;
   height: 112rpx;
-  /* background-color: pink; */
 }
 
 .sport {
@@ -113,12 +112,10 @@
   background: #F0F2F5;
   padding-top: 112rpx;
 }
-
 .date image {
   width: 36rpx;
   height: 36rpx;
 }
-
 .year {
   font-size: 36rpx;
   font-family: PingFang SC;
@@ -159,7 +156,7 @@
 
 .week_day .active::after {
   position: absolute;
-  bottom: 0;
+  bottom:-4rpx;
   left: 144rpx;
   content: '';
   width: 52rpx;
@@ -177,8 +174,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: auto;
 }
-
+.dateDetail .arrow1{
+  width: 32rpx;
+  height: 32rpx;
+}
+.dateDetail .arrow1:first-child{
+   margin-right: 15rpx;
+}
+.dateDetail .arrow1:last-child{
+  margin-left: 15rpx;
+}
 .dateDetail>.line {
   width: 68rpx;
   height: 2px;

@@ -2,7 +2,7 @@
 <!-- 内容 -->
 <view class="group_container" style="margin-top:{{navHeight}}px;margin-bottom:{{tclass.CTO_Price>0?'100rpx':'212rpx'}}">
   <view class="group_pic">
-    <view class="join_num">已参加  {{tclass.CTO_PeopleAttend+'/'+tclass.CTO_PeopleFull}}</view>
+    <view class="join_num">已参加 {{tclass.CTO_PeopleAttend+'/'+tclass.CTO_PeopleFull}}</view>
   </view>
   <view class="coach_img">
     <image src="/static/coach01.png"></image>
@@ -12,7 +12,7 @@
     <view class="left">
       <image src="{{tclass.AI_Face?tclass.AI_Face:'/static/head.png'}}" alt=""></image>
       <text class="coachName">{{tclass.AI_Name}}</text>
-      <image src="{{tclass.AI_Sex == '男' ? '/static/man.png':'/static/woman.png'}}" ></image>
+      <image src="{{tclass.AI_Sex == '男' ? '/static/man.png':'/static/woman.png'}}"></image>
     </view>
     <view class="right" style="{{!tclass.CTO_SignUpStart?'justify-content: center;':''}}">
       <view wx:if="{{tclass.CTO_SignUpStart}}">报名开始：{{tclass.CTO_SignUpStart}}</view>
@@ -58,13 +58,18 @@
     <view class="mask-item">
       <view style="padding: 0 30rpx;">
         <view class="seatTitle">选择座位</view>
-         <ul class="seatAll">
-           <block wx:for="{{seatList}}" wx:key="index">
-             <li>
-               <view class="seat" catchtap="close">{{index+1}}</view>
-             </li>
-           </block>
-         </ul>
+        <ul class="seatAll">
+          <block wx:for="{{seatList}}" wx:key="index">
+            <li>
+              <view class="seat {{item.IsUse==1?'col':''}}" catchtap="judgeSeatExist{{item.IsUse==1?'1':'2'}}"
+              data-index="{{index+1}}"
+                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}">
+                {{index+1}}</view>
+            </li>
+          </block>
+        </ul>
+        <!-- 确定 -->
+        <view class="confirm-btn" bindtap="onconfirm">确定</view>
       </view>
     </view>
   </view>

@@ -19,9 +19,11 @@
   <view class="member_list">
     <view class="member_store">{{useCard.GB_Name}}</view>
     <view class="member_card">卡号：{{useCard.UI_No}}</view>
-    <!-- <view class="eff_date">{{useCard.UI_LastDate}}到期({{useCard.SC_Days}}天)</view> -->
-    <view class='eff_date' wx:if='{{cardata.SC_Type==1}}'>{{useCard.UI_LastDate}}到期({{useCard.RemainingTime}}天)</view>
-    <view class='eff_date' wx:else>{{useCard.UI_LastDate}}到期(剩余{{useCard.num}}次)</view>
+    <view wx:if="{{useCard.UI_FirstDate}}">
+      <view class='eff_date' wx:if='{{useCard.SC_Type==1}}'>{{useCard.UI_LastDate}}到期({{useCard.RemainingTime}}天)</view>
+      <view class='eff_date' wx:elif="{{useCard.SC_Type==2}}">{{useCard.UI_LastDate}}到期(剩余{{useCard.UI_Times}}次)</view>
+    </view>
+    <view wx:else class="notActive">此卡未激活</view>
     <view class="member_item">
       <view class="member_code">
         <canvas class='canvas' canvas-id='canvas'></canvas>
@@ -43,6 +45,7 @@
           </cover-view>
           <cover-view class="store">{{item.GB_Name}}</cover-view>
         </cover-view>
+        <cover-view class="line"></cover-view>
       </block>
     </cover-view>
     <cover-view class='close' bindtap='close'></cover-view>
