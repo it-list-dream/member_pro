@@ -1,8 +1,7 @@
-
 App({
-  onLaunch: function(options) {
-     // 判断是否由分享进入小程序
-     if (options.scene == 1007 || options.scene == 1008) {
+  onLaunch: function (options) {
+    // 判断是否由分享进入小程序
+    if (options.scene == 1007 || options.scene == 1008) {
       this.globalData.share = true
     } else {
       this.globalData.share = false
@@ -46,32 +45,36 @@ App({
         }
       }
     });
-       //获取胶囊的位置
-       let menuButtonObject = wx.getMenuButtonBoundingClientRect();
-       wx.getSystemInfo({
-         success: res => {
-           //导航高度
-           let statusBarHeight = res.statusBarHeight,
-             navTop = menuButtonObject.top,
-             navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;
-           this.globalData.navHeight = navHeight;
-           this.globalData.navTop = navTop;
-           this.globalData.windowHeight = res.windowHeight;
-         },
-         fail(err) {
-           console.log(err);
-         }
-       });
+    //获取胶囊的位置
+    let menuButtonObject = wx.getMenuButtonBoundingClientRect();
+    const systemInfo = wx.getSystemInfoSync();
+    this.globalData.menuRight = systemInfo.screenWidth - menuButtonObject.right;
+    //console.log(systemInfo.screenWidth - menuButtonObject.right)
+    wx.getSystemInfo({
+      success: res => {
+        //导航高度
+        let statusBarHeight = res.statusBarHeight,
+          navTop = menuButtonObject.top,
+          navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;
+        this.globalData.navHeight = navHeight;
+        this.globalData.navTop = navTop;
+        this.globalData.windowHeight = res.windowHeight;
+      },
+      fail(err) {
+        console.log(err);
+      }
+    });
   },
   globalData: {
-    isIphoneX: false, 
+    isIphoneX: false,
     userInfo: null,
-    share:false,
-    GB_ID:0,
+    share: false,
+    GB_ID: 0,
     //门店信息
-    store:null,
+    store: null,
+    menuRight: 0,
   },
-  onShow: function() {
-    
+  onShow: function () {
+
   },
 })

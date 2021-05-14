@@ -1,25 +1,34 @@
 // page2/suceess/suceess.js
 var app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    isShow:4
+    isShow: 1,
+    coach: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    if (options.coach) {
+      this.setData({
+        coach: JSON.parse(options.coach)
+      })
+    }
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
     })
   },
-
+  backHome: function () {
+    wx.reLaunch({
+      url: '/pages/tabbar/home/home',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -66,11 +75,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-     //console.log(11111)
-     return {
+    console.log('分享')
+    return {
       title: '弹出分享时显示的分享标题',
       desc: '分享页面的内容',
-      path: '/page/user?id=123' // 路径，传递参数到指定页面。
-  }
+      path: '/pages/coachDetail?coach=' + this.data.coach // 路径，传递参数到指定页面。
+    }
   }
 })

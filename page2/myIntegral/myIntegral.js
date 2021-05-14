@@ -26,7 +26,7 @@ Page({
     takeIntegral: [],
     //分页
     currPage: 1,
-    pageSize: 9,
+    pageSize: 16,
     //总页数
     total: 0,
     //积分类型 0全部1消费积分2运动积分
@@ -158,7 +158,7 @@ Page({
       }
     }).then(res => {
       if (that.data.tab == 0) {
-        console.log(that.data.urrPage)
+        console.log(that.data.currPage)
         that.setData({
           all: res.data.data
         })

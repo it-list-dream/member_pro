@@ -9,7 +9,7 @@ Page({
     historyList: ['已预约', '未完成', '已完成'],
     chooseId: 0,
     //分页的属性
-    pageSize: 3,
+    pageSize: 10,
     //当前页数
     currPage: 1,
     //1完成2进行中3未完成

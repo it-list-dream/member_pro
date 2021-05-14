@@ -108,8 +108,10 @@ Page({
       })
     } else {
       wx.showToast({
+        icon:'none',
         title: '您还未登录或您还没有买卡',
       })
+      
     }
   },
   getpaydata(order, businessNo, money) {

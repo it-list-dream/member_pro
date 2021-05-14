@@ -1,4 +1,4 @@
-
+<wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="预约"></nav-bar>
 <view class="appointment" style="margin-top:{{navHeight}}px">
   <!-- 头部 -->
@@ -65,7 +65,7 @@
             <view class="progress">已参加{{item.CTO_PeopleAttend+'/'+item.CTO_PeopleFull}}</view>
             <view class="className">{{item.CTO_Name +' - '+item.AI_Name}}</view>
             <view class="class_info">
-              <view class="class_time">{{item.CTO_DateStart+'-'+item.CTO_DateEnd}}</view>
+              <view class="class_time">{{item.CTO_DateStart}}-{{tools.sub(item.CTO_DateEnd,item.CTO_DateEnd.length-8)}}</view>
               <view class="class_status"
                 style="background:{{tools.timeIsinarea(item.CTO_SignUpStart)?'#12D58B':'#7B6F85'}}"
                 bindtap="orderTogther" data-togther="{{item}}">{{item.IsAppointment==0?'预约':'已预约'}}</view>

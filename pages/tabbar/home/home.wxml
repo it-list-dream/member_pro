@@ -9,7 +9,7 @@
     </block>
   </swiper>
   <!-- 二维码 -->
-  <view class="head_wrapper" style="top:{{navTop}}px;">
+  <view class="head_wrapper" style="top:{{navTop}}px;left:{{menuRight}}px">
     <view class="wrapper_item">
       <view class="header_list" bindtap="toShop">
         <image class="head_pic" src="/static/home_pic/ship.png"></image>

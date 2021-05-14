@@ -42,31 +42,44 @@ var getWeekdDay = function (value, t) {
 }
 var getFirstStr = function (value) {
   //console.log(value)
-  var cur_day = value.slice(value.length-2,value.length)
-  return Number(cur_day,cur_day)
+  var cur_day = value.slice(value.length - 2, value.length)
+  return Number(cur_day, cur_day)
 }
 var toFixed = function (value) {
   return Math.floor(value)
- }
- 
- // 判断时间是不是在一个区间内
- var timeIsinarea =   function isTimes(enddate) {
+}
+
+// 判断时间是不是在一个区间内
+var timeIsinarea = function isTimes(enddate) {
   console.log(enddate)
   var startdate = getDate().getTime();
   var enddate = getDate(enddate).getTime();
-  if(!enddate){
+  if (!enddate) {
     return true
   }
-  //console.log(getDate(),getDate(enddate))
-  if (enddate>=startdate || getDate()==getDate(enddate)) {
+  if (enddate >= startdate || getDate() == getDate(enddate)) {
     return true;
   } else {
     return false;
   }
 }
+var sub = function (val, start, end) {
+  console.log(val, start, end)
+  if (val == undefined || val == '' || val == null) {
+    return;
+  }
+  if (val.length > end && end) {
+    return val.substring(start, end);
+  } else if (!end || end == '') {
+    return val.substring(start)
+  } else {
+    return val
+  }
+}
 module.exports = {
   getWeekdDay: getWeekdDay,
   getFirstStr: getFirstStr,
-  toFixed:toFixed,
-  timeIsinarea:timeIsinarea
+  toFixed: toFixed,
+  timeIsinarea: timeIsinarea,
+  sub: sub
 }

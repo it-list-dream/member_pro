@@ -2,7 +2,7 @@
 <wxs src="../../../common/common.wxs" module="tools" />
   <view class="sprotTip">
     <view class="navbar" style='height:{{navHeight}}px;'>
-      <view class="tip" style="margin-top:{{navTop}}px">
+      <view class="tip" style="margin-top:{{navTop}}px;margin-left:{{menuRight}}px">
         <view class="tipItem">
           <image src="/static/home_pic/QRcode.png"></image>
         </view>
@@ -64,64 +64,41 @@
         </ul>
       </view>
       <!-- 课程 -->
-      <view class="con" hidden="{{!isShow}}">
-        <view class="calendar_tool">
+      <view class="con" wx:if="{{motionList.length>0}}" >
+        <view class="calendar_tool" wx:for="{{motionList}}" wx:key="{{index}}">
           <view class="per_course_left">
-            <view class="per_title">私</view>
+            <view class="per_title" wx:if="{{item.ClassType ==1}}">团</view>
+            <view class="per_title" wx:if="{{item.ClassType ==2}}">私</view>   
             <view class="per_item">
               <view>
                 <image src="/static/sport/course_detail.png" class="icon"></image>
-                <text>常规课</text>
+                <text>{{item.CTO_Name}}</text>
               </view>
               <view>
                 <image src="/static/sport/my.png" class="icon"></image>
-                <text>刘教练</text>
+                <text>{{item.CoachName}}</text>
               </view>
             </view>
           </view>
-          <!--  -->
+          <!-- right -->
           <view class="per_course_right">
             <view>
               <image src="/static/sport/calendar.png" class="icon"></image>
-              <text>15:00-16:00</text>
+              <text>{{item.ClassTime}}</text>
             </view>
-            <view>
+            <view wx:if="{{item.ClassType ==2}}">
               <image src="/static/sport/time.png" class="icon"></image>
-              <text>60分钟</text>
+              <text>{{item.CP_Time}}</text>
             </view>
-          </view>
-
-
-        </view>
-        <view class="calendar_tool">
-          <view class="per_course_left">
-            <view class="per_title">团</view>
-            <view class="per_item">
-              <view>
-                <image src="/static/sport/course_detail.png" class="icon"></image>
-                <text>动感单车</text>
-              </view>
-              <view>
-                <image src="/static/sport/my.png" class="icon"></image>
-                <text>陈教练</text>
-              </view>
-            </view>
-          </view>
-          <!--  -->
-          <view class="per_course_right">
-            <view>
-              <image src="/static/sport/calendar.png" class="icon"></image>
-              <text>15:00-16:00</text>
-            </view>
-            <view>
-              <image src="/static/sport/time.png" class="icon"></image>
-              <text>60分钟</text>
+            <view wx:if="{{item.ClassType ==1}}">
+              <image src="/static/sport/location.png" class="icon"></image>
+              <text>{{item.CTO_Address}}</text>
             </view>
           </view>
         </view>
       </view>
       <!--  -->
-      <view hidden="{{isShow}}" class="no_appointment">
+      <view  class="no_appointment" wx:else>
         <view>
           <view class="app_tip">每一次运动，都值得被认真记录</view>
           <view class="appointment_btn" catchtap="appointment">
@@ -141,18 +118,18 @@
     </view>
     <!-- 积分奖励 -->
     <view class="inte_list">
-      <block wx:for="{{integral_list}}" wx:key="{{item.id}}">
+      <block wx:for="{{integral_list}}" wx:key="index1" wx:for-index="index1" >
         <view class="inte_item">
           <view>
-            <image src="{{item.img}}"></image>
+            <image src="{{item.SE_Logo}}"></image>
           </view>
-          <view>{{item.cardType}}</view>
-          <view class="inte_num">{{item.inteNumber}} <text>积分</text></view>
+          <view>{{item.SE_Name}}</view>
+          <view class="inte_num">{{item.ActScore}} <text>积分</text></view>
         </view>
       </block>
     </view>
     <!-- 蒙层 -->
-    <view class="mask" catchtouchmove='true' wx:if="{{chooseCourse}}">
+    <view class="mask" catchtouchmove='true' hidden="{{!chooseCourse}}">
       <view class="modalDlg" wx:if="{{chooseCourse}}">
         <view class="modalDlg_item">
           <view class="mask_title">

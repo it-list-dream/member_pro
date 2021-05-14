@@ -1,3 +1,4 @@
+<wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="团课预约" class="topNav"></nav-bar>
 <!-- 内容 -->
 <view class="group_container" style="margin-top:{{navHeight}}px;margin-bottom:{{tclass.CTO_Price>0?'100rpx':'212rpx'}}">
@@ -20,7 +21,7 @@
     </view>
   </view>
   <view class="course_name">课程名：{{tclass.CTO_Name}}</view>
-  <view class="course_time">时间：{{tclass.CTO_DateStart+'-'+tclass.CTO_DateEnd}}</view>
+  <view class="course_time">时间：{{tclass.CTO_DateStart}}-{{tools.sub(tclass.CTO_DateEnd,tclass.CTO_DateEnd.length-8)}}</view>
   <view class="course_introduce">
     <view class="introduce">介绍：</view>
     <view class="introduce_detail">

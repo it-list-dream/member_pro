@@ -9,7 +9,7 @@ Page({
     storedTab: ['全部', '充值', '消费'],
     tabIndex: 0,
     currPage: 1,
-    pageSize: 10,
+    pageSize: 16,
     type: 0,
     //所有
     userMoney: [],

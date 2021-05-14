@@ -6,7 +6,7 @@
     <icon type="success" size="50"></icon>
     <view class="sucessTip">预约成功</view>
     <view class="sucessBtn">
-       <button class="cancel btn" plain hover-class="none">完成</button>
+       <button class="cancel btn" plain hover-class="none" bindtap="backHome">完成</button>
        <button class="complete btn" open-type="share" hover-class="none">叫上朋友一起练吧</button>
     </view>
   </view>
@@ -49,7 +49,7 @@
     </view>
     <view class="buyBtn">
        <button class="btn"  hover-class="none" plain>完成</button>
-       <button class="btn in" open-type="share" hover-class="none">叫上朋友一起练吧</button>
+       <button class="btn in" open-type="share" hover-class="none" >叫上朋友一起练吧</button>
     </view>
   </view>
 </view>

@@ -1,67 +1,34 @@
 // pages/sport/sport.js
 const app = getApp();
 const util = require('../../../utils/util.js')
+const api = require('../../../utils/request.js')
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    integral_list: [{
-        id: 1,
-        cardType: '一周卡',
-        inteNumber: 1000,
-        img: '/static/sport/jifen01.png'
-      },
-      {
-        id: 2,
-        cardType: '体验课',
-        inteNumber: 500,
-        img: '/static/sport/jifen02.png'
-      },
-      {
-        id: 3,
-        cardType: '拳击手套',
-        inteNumber: 3500,
-        img: '/static/sport/jifen03.png'
-      },
-      {
-        id: 4,
-        cardType: '蛋白粉',
-        inteNumber: 2000,
-        img: '/static/sport/jifen04.png'
-      },
-      {
-        id: 5,
-        cardType: '游泳衣',
-        inteNumber: 4500,
-        img: '/static/sport/jifen05.png'
-      },
-      {
-        id: 6,
-        cardType: '游泳眼镜',
-        inteNumber: 4500,
-        img: '/static/sport/jifen06.png'
-      }
-    ],
-    //weekday: ['21', '22', '23', '24', '25', '26', '27'],
+    integral_list: [],
     weekList: [],
     changebg: 0,
-    isShow: false,
     chooseCourse: false,
-    bg: '/static/h_bg.png'
+    motionList: []
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     // console.log(app.globalData)
     this.getWeekList();
+    //sport
+    this.getMotionCalendar()
+    //
+    this.getScoreRewardActList()
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
+      menuRight:app.globalData.menuRight
     })
+    console.log(app.globalData.menuRight)
   },
   changeDate(e) {
     // console.log(e.target)
@@ -70,6 +37,7 @@ Page({
     this.setData({
       changebg: changebg
     })
+    this.getMotionCalendar()
   },
   runing: function () {
     wx.navigateTo({
@@ -124,6 +92,44 @@ Page({
       year: new Date().getFullYear()
     })
     //console.log(dayList)
+  },
+  //运动日历
+  getMotionCalendar: function () {
+    var that = this
+    api.request({
+      url: "/MotionCalendar",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: wx.getStorageSync('GB_ID'),
+        searchData: that.data.year + '-' + that.data.weekList[that.data.changebg],
+        UI_ID: wx.getStorageSync('UI_ID') || 0
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        that.setData({
+          motionList: res.data.data
+        })
+      }
+    })
+  },
+  //行为积分
+  getScoreRewardActList: function () {
+    var that = this
+    api.request({
+      url: "/ScoreRewardActList",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        score: 0,
+        GB_ID: wx.getStorageSync('GB_ID')
+      }
+    }).then(res => {
+      //console.log(res)
+      if (res.data.code == 1) {
+        that.setData({
+          integral_list:res.data.data.slice(0,3)
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

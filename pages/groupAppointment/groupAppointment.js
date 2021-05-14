@@ -13,7 +13,9 @@ Page({
     chooseSeat: false,
     //选择座位的号码
     num: -1,
-    seatList: []
+    seatList: [],
+    //是否预约
+    isAppoinment:true
   },
 
   /**
@@ -28,46 +30,63 @@ Page({
     })
   },
   handleSeat: function () {
-    //that.data.tclass.IsPickNumChk == 0
     var that = this
     //需要选座
     if (that.data.tclass.IsPickNumChk == 1) {
       this.setData({
         chooseSeat: true
       })
-      that.getCardTogetherIsPickNum();
-    } else {
-      api.request({
-        url: "/CardTogetherAppointment",
-        data: {
-          user_token: wx.getStorageSync('token'),
-          UI_ID: wx.getStorageSync('UI_ID'),
-          CTO_ID: that.data.tclass.CTO_ID,
-          //座位号
-          PickNum: 0
+      wx.showModal({
+        title: '',
+        content: '确定预约该课程',
+        success(res) {
+          if (res.confirm) {
+            that.getCardTogetherIsPickNum();
+          }
         }
-      }).then(res => {
-        console.log(res)
-        if (res.data.code == 1) {
-          wx.navigateTo({
-            url: '/page2/suceess/suceess',
-          })
-        } else {
-          wx.showToast({
-            icon: "none",
-            title: res.data.msg,
-          })
+      })
+
+    } else {
+      wx.showModal({
+        title: '',
+        content: '确定预约该课程',
+        success(res) {
+          if (res.confirm) {
+            api.request({
+              url: "/CardTogetherAppointment",
+              data: {
+                user_token: wx.getStorageSync('token'),
+                UI_ID: wx.getStorageSync('UI_ID'),
+                CTO_ID: that.data.tclass.CTO_ID,
+                //座位号
+                PickNum: 0
+              }
+            }).then(res => {
+              if (res.data.code == 1) {
+                wx.navigateTo({
+                  url: '/page2/suceess/suceess',
+                })
+              } else {
+                wx.showToast({
+                  icon: "none",
+                  title: res.data.msg,
+                })
+              }
+            })
+          }
         }
       })
     }
-
-
+  },
+  //条件
+  appoinmentChoose:function(){
 
   },
+  //关闭选座
   close: function () {
     this.setData({
       chooseSeat: false,
-      num:null
+      num: null
     })
   },
   //选座
@@ -86,34 +105,34 @@ Page({
       })
     })
   },
-  judgeSeatExist1:function(){
-     wx.showToast({
-       icon:"none",
-       title: '该座位已被占用',
-     })
-  },
-  judgeSeatExist2:function(e){
-    this.setData({
-      num:e.currentTarget.dataset.index
+  judgeSeatExist1: function () {
+    wx.showToast({
+      icon: "none",
+      title: '该座位已被占用',
     })
   },
-  onconfirm:function(){
+  judgeSeatExist2: function (e) {
+    this.setData({
+      num: e.currentTarget.dataset.index
+    })
+  },
+  onconfirm: function () {
     var that = this
-     api.request({
-       url:"/CardTogetherAppointment",
-        data: {
-          user_token: wx.getStorageSync('token'),
-          UI_ID: wx.getStorageSync('UI_ID'),
-          CTO_ID: that.data.tclass.CTO_ID,
-          //座位号
-          PickNum: that.data.num
-        }
-     }).then(res=>{
-       console.log(res)
-       that.setData({
-         num:null
-       })
-       if (res.data.code == 1) {
+    api.request({
+      url: "/CardTogetherAppointment",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        UI_ID: wx.getStorageSync('UI_ID'),
+        CTO_ID: that.data.tclass.CTO_ID,
+        //座位号
+        PickNum: that.data.num
+      }
+    }).then(res => {
+      console.log(res)
+      that.setData({
+        num: null
+      })
+      if (res.data.code == 1) {
         wx.navigateTo({
           url: '/page2/suceess/suceess',
         })
@@ -123,7 +142,7 @@ Page({
           title: res.data.msg,
         })
       }
-     })
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -62,6 +62,7 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
+      menuRight:app.globalData.menuRight
     })
     // this.tranfromImage()
   },
@@ -114,19 +115,43 @@ Page({
       wx.navigateTo({
         url: '/page2/editProfile/editProfile',
       })
+    } else {
+      wx.showToast({
+        icon: "none",
+        title: '你还未登录，请先登录！',
+      })
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/page2/login/login',
+        })
+      }, 1500)
     }
   },
   vipCard: function () {
-    //判断
-    wx.navigateTo({
-      url: '/page2/myVIPCard/myVIPCard',
-    })
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      //判断
+      wx.navigateTo({
+        url: '/page2/myVIPCard/myVIPCard',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
   },
   perCourse: function () {
-    //判断
-    wx.navigateTo({
-      url: '/page2/myCourse/myCourse',
-    })
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      //判断
+      wx.navigateTo({
+        url: '/page2/myCourse/myCourse',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
   },
   message: function () {
     //判断
@@ -135,10 +160,18 @@ Page({
     })
   },
   storedMoney: function () {
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      wx.navigateTo({
+        url: '/page2/myStored/myStored?reMoney=' + this.data.rechargeMoney + '&giveMoney=' + this.data.giveMoney,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
     //判断
-    wx.navigateTo({
-      url: '/page2/myStored/myStored?reMoney=' + this.data.rechargeMoney + '&giveMoney=' + this.data.giveMoney,
-    })
+
   },
   inteAwrad: function () {
     wx.navigateTo({

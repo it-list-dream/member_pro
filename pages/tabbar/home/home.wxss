@@ -17,16 +17,13 @@ swiper-item {
 
 .head_wrapper {
   position: absolute;
-  left: 30px;
   width: 233rpx;
   height: 60rpx;
   background: #B5BDC1;
   opacity: 0.7;
   border-radius: 30rpx;
 }
-/* .title{
-  display:inline-block;
-} */
+
 .head_wrapper .wrapper_item {
   height: 100%;
   display: flex;
@@ -141,11 +138,12 @@ swiper-item {
 /* 课程列表 */
 .classList {
   display: flex;
-  padding: 0 31rpx;
+  margin-top: 20rpx;
+  /* padding: 0 31rpx; */
   height: 180rpx;
   background-color: #FFFFFF;
   justify-content: space-between;
-  margin-top: 57rpx;
+
 }
 
 .classList .classList_item {
@@ -171,7 +169,7 @@ swiper-item {
 
 /* 活动 */
 .coach_list {
-  padding: 29rpx 31rpx;
+  padding: 24rpx 31rpx;
   display: flex;
   justify-content: space-between;
   font-family: PingFang SC;

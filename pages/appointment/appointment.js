@@ -60,8 +60,7 @@ Page({
     this.getWeekList();
     //教练列表
     this.getMyCoachClassList();
-    //团课
-    this.getCardTogether();
+
     //this.getMyCurrentTime();
   },
   //切换
@@ -95,7 +94,7 @@ Page({
       dayList.push({
         'day': myDate.getDate(),
         'month': myDate.getMonth() + 1,
-        'week':util.toWeekDay(myDate.getDay()),
+        'week': util.toWeekDay(myDate.getDay()),
         'year': myDate.getFullYear()
       });
     }
@@ -131,7 +130,6 @@ Page({
     } else {
       this.getCardTogether()
     }
-
   },
   //判断是否可以预约
   showch: function () {
@@ -216,7 +214,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    //团课
+    this.getCardTogether();
   },
   //私教预约时间列表
   getPrivateAppointment() {
@@ -299,18 +298,26 @@ Page({
             console.log(res)
             if (res.data.code == 1) {
               that.getPrivateAppointment();
-              wx.showToast({
-                icon: "none",
-                title: '预约成功',
-              })
+              // wx.showToast({
+              //   icon: "none",
+              //   title: '预约成功',
+              // })
               var cs_num = "currentCoach.CS_Num";
-              var num = that.data.currentCoach.CS_Num++
+              var num = that.data.currentCoach.CS_Num++;
+              console.log(num)
               that.setData({
                 num: null,
                 starttime: null,
                 endtime: null,
                 [cs_num]: num
               })
+              let coach1 = JSON.stringify(that.data.currentCoach)
+              setTimeout(function (){
+                wx.navigateTo({
+                  url: '/page2/suceess/suceess?coach=' + coach1,
+                })
+              }, 1000);
+
             } else {
               wx.showToast({
                 icon: "none",
@@ -318,8 +325,6 @@ Page({
               })
             }
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }
     })
@@ -405,9 +410,18 @@ Page({
   orderTogther: function (e) {
     let tcalss = e.currentTarget.dataset.togther
     console.log(tcalss)
-    if (Number(tcalss.IsAppointment) == 0) {
+    //判断是否登录
+    //是否购买会员卡
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      if (Number(tcalss.IsAppointment) == 0) {
+        wx.navigateTo({
+          url: '/pages/groupAppointment/groupAppointment?tclass=' + JSON.stringify(tcalss),
+        })
+      }
+    } else {
       wx.navigateTo({
-        url: '/pages/groupAppointment/groupAppointment?tclass=' + JSON.stringify(tcalss),
+        url: '/page2/login/login',
       })
     }
   },
