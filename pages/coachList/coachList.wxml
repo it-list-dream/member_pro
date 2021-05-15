@@ -1,8 +1,8 @@
+<wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="教练列表"></nav-bar>
 <view class="coachList" style="margin-top:{{navHeight}}px;">
   <block wx:for="{{coachList}}" wx:key="index">
     <view class="coachList_card" bindtap="getCoach" data-coach="{{item}}">
-      <!--    style="background-image:url('/static/selectCourse.png')" -->
       <!-- 背景 -->
       <view class="bg_con">
         <image src="/static/selectCourse.png"></image>
@@ -16,7 +16,7 @@
         <view class="coach_content">
           <view class="coach_left">
             <view class="accruing">累计上课{{item.CS_Num}}节</view>
-            <view class="type">{{item.AI_GoodAt}}</view>
+            <view class="type">{{tools.replaceChar(item.AI_GoodAt)}}</view>
           </view>
           <view class="coach_right">
             <image src="/static/coachList/phone.png" catchtap="call" data-phone="{{item.AI_Tel}}"></image>

@@ -7,22 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerlist: ['/static/home_pic/banner01.png', '/static/home_pic/banner01.png', '/static/home_pic/banner01.png', '/static/home_pic/banner01.png', '/static/home_pic/banner01.png'],
+    bannerList: [],
     coachList: [],
     recomentList: [],
     activityCard: [],
     store: null,
+    GymLogo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getSearchGymQR();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       GymName: wx.getStorageSync('GymName'),
-      menuRight:app.globalData.menuRight
+      menuRight: app.globalData.menuRight
     })
 
   },
@@ -166,6 +168,8 @@ Page({
       this.getSuggestCoachClass()
       //活动卡推荐
       this.getSuggestActivityCard();
+      //轮播图
+      this.getBannerList()
     })
   },
   //明星教练
@@ -186,6 +190,24 @@ Page({
       } else {
         that.setData({
           coachList: res.data.data
+        })
+      }
+    })
+  },
+  //轮播图
+  getBannerList: function () {
+    var that = this
+    api.request({
+      url: "/BannerList",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: wx.getStorageSync('GB_ID')
+      }
+    }).then(res => {
+      console.log(res)
+      if (res.data.code == 1) {
+        that.setData({
+          bannerList: res.data.data
         })
       }
     })
@@ -245,6 +267,22 @@ Page({
     return function (a, b) {
       return Number(a[prop]) - Number(b[prop])
     }
+  },
+  //
+  getSearchGymQR: function () {
+    var that = this
+    api.request({
+      url: "/SearchGymQR",
+      data: {
+        user_token: wx.getStorageSync('token')
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        that.setData({
+          GymLogo: res.data.data[0].GymLogo
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

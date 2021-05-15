@@ -2,9 +2,9 @@
 <view class="banner">
   <swiper class="swiper" autoplay="true" circular="true" indicator-color="rgba(251,251,251,0.6)"
     indicator-active-color="rgba(251,251,251,1)" interval="2000">
-    <block wx:for="{{bannerlist}}" wx:key="index">
+    <block wx:for="{{bannerList}}" wx:key="index">
       <swiper-item>
-        <image src="{{item}}"></image>
+        <image src="{{item.ImageUrl}}" lazy-load></image>
       </swiper-item>
     </block>
   </swiper>
@@ -25,11 +25,10 @@
     </view>
   </view>
 </view>
-
 <!-- 内容 -->
 <view class="home_content">
   <view class="store_pic">
-    <image src="/static/home_pic/ship_head.png"></image>
+    <image src="{{GymLogo?GymLogo:'/static/home_pic/ship_head.png'}}"></image>
   </view>
   <view class="store_wrapper">
     <view class="store_title">{{GymName}}</view>
@@ -38,7 +37,7 @@
         <text>营业中</text>
         <text class="time">6:00-22:00</text>
       </view>
-      <view class="information" bindtap="callPhone" data-phone = "{{store.GB_Tel}}">
+      <view class="information" bindtap="callPhone" data-phone="{{store.GB_Tel}}">
         <view class="phone_wrapper">
           <image src="/static/home_pic/phone1.png" class="phone"></image>
         </view>
@@ -72,39 +71,32 @@
     </view>
     <view class="all_t" bindtap="allCoach">
       <text>全部</text>
-      <image src="/static/home_pic/arrow.png"></image>
-    </view>
-  </view>
-  <view class="coach">
-    <view class="coach_content">
-      <view class="coach_list">
-        <!-- <swiper> -->
-          <block wx:for="{{coachList}}" wx:key="index">
-            <!-- <swiper-item> -->
-              <view class="content_item" bindtap="lookCoachDetail" data-coach="{{item}}">
-                <image src="{{item.AI_Face?item.AI_Face:'/static/coach01.png'}}"></image>
-                <view class="coach_info">
-                  <view>
-                    {{item.AI_Name}}
-                    <image src="/static/home_pic/phone.png" catchtap="callPhone" data-phone="{{item.AI_Tel}}"></image>
-                  </view>
-                  <view>累计上课{{item.CS_Num}}节</view>
-                  <view>{{item.AI_GoodAt}}</view>
-                  <view class="recommend">
-                    <view class="recommend_title">
-                      荐
-                    </view>
-                    <view class="recommend_text">店长推荐</view>
-                  </view>
-                </view>
-              </view>
-            <!-- </swiper-item> -->
-          </block>
-        <!-- </swiper> -->
-      </view>
+      <image src="/static/next.png"></image>
     </view>
   </view>
 
+  <!-- 明星教练 -->
+  <view class="starCoachList">
+    <view class="star_item">
+      <view class="coach_wrapper" wx:for="{{coachList}}" wx:key="index" bindtap="lookCoachDetail" data-coach="{{item}}">
+        <view class="top_star">
+          <image src="{{item.AI_Face?item.AI_Face:'/static/coach01.png'}}" class="top_star_img"></image>
+        </view>
+        <view class="bottom_star">
+          <view class="star_title coachInfo1">
+            <text>{{item.AI_Name}}</text>
+            <image src="/static/phonenumber.png" catchtap="callPhone" data-phone="{{item.AI_Tel}}"></image>
+          </view>
+          <view class="star_title countNum">累计上课{{item.CS_Num}}节</view>
+          <!-- <view class="star_title starTip">{{item.AI_GoodAt}}</view> -->
+          <view class="star_title">
+            <view class="recomTitle">荐</view>
+            <view class="str_comment">店长推荐</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
   <!-- 推荐课程 -->
   <view class="coach_list">
     <view class="star_coach">
@@ -112,24 +104,22 @@
     </view>
     <view class="all_t" bindtap="recomment">
       <text>全部</text>
-      <image src="/static/home_pic/arrow.png"></image>
+      <image src="/static/next.png"></image>
     </view>
   </view>
   <view class="recommend_content">
     <view class="recommend_list">
-      <view class="recommend_item">
-        <block wx:for="{{recomentList}}" wx:key="CP_ID">
-          <view bindtap="lookSuggClass" data-sclass="{{item}}">
-            <image src="{{item.CP_Logo?item.CP_Logo:'/static/home_pic/coach2.png'}}" class="recommend_pic"></image>
-            <view class="course">{{item.CP_Name}}</view>
-            <view class="course_detail">
-              <text>￥</text>
-              <text class="course_num">{{item.OnlinePrice}}/节</text>
-              <text class="buy">{{item.SaleCount}}人已购买</text>
-            </view>
+      <block wx:for="{{recomentList}}" wx:key="CP_ID">
+        <view class="recommend_item" bindtap="lookSuggClass" data-sclass="{{item}}">
+          <image src="{{item.CP_Logo?item.CP_Logo:'/static/home_pic/coach2.png'}}" class="recommend_pic"></image>
+          <view class="course">{{item.CP_Name}}</view>
+          <view class="course_detail">
+            <text>￥</text>
+            <text class="course_num">{{item.OnlinePrice}}/节</text>
+            <text class="buy">{{item.SaleCount}}人已购买</text>
           </view>
-        </block>
-      </view>
+        </view>
+      </block>
     </view>
   </view>
   <!-- 活动卡推荐 -->
@@ -139,10 +129,11 @@
     </view>
     <view class="all_t" bindtap="toActive">
       <text>全部</text>
-      <image src="/static/home_pic/arrow.png"></image>
+      <image src="/static/next.png"></image>
     </view>
   </view>
-  <view class="active_card">
+  <!-- 活动卡推荐 -->
+  <view class="vipCard">
     <view class="active">
       <view class="active_list" wx:for="{{activityCard}}" wx:key="SC_ID" bindtap="suggestCard" data-card="{{item}}">
         <image src="{{item.SC_Logo?item.SC_Logo:'/static/home_pic/vip_card.png'}}" class="card"></image>

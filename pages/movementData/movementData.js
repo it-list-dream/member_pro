@@ -1,5 +1,5 @@
 import * as echarts from '../../components/ec-canvas/echarts.min';
-
+var api = require('../../utils/request.js')
 let chart = null;
 
 function initChart(canvas, width, height, dpr) {
@@ -105,7 +105,8 @@ Page({
     ec: {
       onInit: initChart
     },
-    endTime: ''
+    endTime: '',
+    sportDesc:null
   },
 
   /**
@@ -117,9 +118,9 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight,
       endTime: nowDate
     })
+    this.getClassCountByuserId()
   },
   changeDate(e) {
     this.isSelected = e.target.dataset.index;
@@ -131,6 +132,25 @@ Page({
     console.log(e.detail.value);
     this.setData({
       date: e.detail.value
+    })
+  },
+  //运动天数
+  getClassCountByuserId:function(){
+    var that = this
+    api.request({
+      url:'/ClassCountByuserId',
+      data:{
+        user_token:wx.getStorageSync('token'),
+        GB_ID:wx.getStorageSync('GB_ID'),
+        UI_ID:wx.getStorageSync('UI_ID')
+      }
+    }).then(res=>{
+      console.log(res)
+      if(res.data.code == 1){
+         that.setData({
+          sportDesc:res.data.data
+         })
+      }
     })
   },
   /**

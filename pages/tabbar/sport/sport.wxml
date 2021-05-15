@@ -2,7 +2,7 @@
 <wxs src="../../../common/common.wxs" module="tools" />
   <view class="sprotTip">
     <view class="navbar" style='height:{{navHeight}}px;'>
-      <view class="tip" style="margin-top:{{navTop}}px;margin-left:{{menuRight}}px">
+      <view class="tip" style="top:{{navTop}}px;left:{{menuRight}}px">
         <view class="tipItem">
           <image src="/static/home_pic/QRcode.png"></image>
         </view>

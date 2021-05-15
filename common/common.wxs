@@ -76,10 +76,14 @@ var sub = function (val, start, end) {
     return val
   }
 }
+function replaceChar(str){
+   return str.replace(getRegExp(',','g'),'  |  ');
+}
 module.exports = {
   getWeekdDay: getWeekdDay,
   getFirstStr: getFirstStr,
   toFixed: toFixed,
   timeIsinarea: timeIsinarea,
-  sub: sub
+  sub: sub,
+  replaceChar:replaceChar
 }

@@ -4,39 +4,41 @@
   <view class="scorecard" wx:if="{{type==1}}">
     <view class="card_banner">
       <swiper duration="300" circular="{{true}}">
-        <block wx:for="{{5}}">
+        <block wx:for="{{reward.imgList}}" wx:key="index">
           <swiper-item>
-            <image class="scorec-img" src="/static/vipimg.png"></image>
+            <image class="scorec-img" src="{{item.SI_Logo}}"></image>
           </swiper-item>
         </block>
       </swiper>
     </view>
     <view class="conternt">
       <view class="w-h integral">
-        <text class="minute" wx:if="{{cardType==0}}">分</text>
+        <text class="minute" wx:if="{{inteType==1}}">分</text>
         <text class="vip_inte" wx:else>VIP</text>
-        <text class="credits">1000</text>
+        <text class="credits">{{reward.ActScore}}</text>
         积分
       </view>
       <view class="w-h weeksCard">
         <text class="minute-type">卡类型</text>：
-        <text class="weeks-card">一周卡</text>
+        <text class="weeks-card">{{reward.SE_Name}}</text>
       </view>
       <view class="w-h duration">
         <text class="dura">时长:</text>
-        <text> 7天 (次数卡“次”计算)</text>
+        <text> {{reward.SE_Days}}</text>
       </view>
       <view class="w-h introduce">
         <text class="dura">介绍:</text>
-        <text> 7天 自动在现有卡上加入时间</text>
+        <text>
+           <!-- 7天 自动在现有卡上加入时间 -->{{reword.Remarks}}
+        </text>
       </view>
     </view>
     <view class="infinity">
-      <view class="conversion">20人已经兑换</view>
+      <view class="conversion">{{reward.CashCount?reward.CashCount:0}}人已经兑换</view>
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">500积分</text>
+          <text class="inte_count">{{reward.ActScore}}积分</text>
         </view>
         <view class="conBtn">兑换</view>
       </view>
@@ -46,33 +48,32 @@
   <view class="real_box" wx:elif="{{type==2}}">
     <view class="card_banner">
       <swiper duration="300" circular="{{true}}">
-        <block wx:for="{{5}}">
+        <block wx:for="{{reward.imgList}}" wx:for-index="index1" wx:key="index1">
           <swiper-item>
-            <image class="scorec-img" src="./images/conversion2.png"></image>
+            <image class="scorec-img" src="{{item.si_url}}"></image>
           </swiper-item>
         </block>
       </swiper>
     </view>
-    <!--  -->
     <view class="real_detail">
       <view class="real_item real_inte">
-        <text class="minute" wx:if="{{cardType==0}}" style="text-align: center;">分</text>
+        <text class="minute" wx:if="{{inteType==1}}" style="text-align: center;">分</text>
         <text class="vip_inte" wx:else>VIP</text>
-        <text class="credits">500</text>
+        <text class="credits">{{reward.ActScore}}</text>
         积分
       </view>
       <view class="real_item real_course">
-        <text class="bold">课程名：</text>体验课
+        <text class="bold">课程名：</text>{{reward.SE_Name}}
       </view>
       <view class="real_item real_duration">
         <text>时长：60分钟</text>
       </view>
       <view class="real_item real_date">
-        <text class="bold">有效期：</text>2021/3/15-2021/3/17
+        <text class="bold">有效期：</text>{{reward.SE_Days}}天
       </view>
       <view class="introduction">
         <view class="intro_title">介绍：</view>
-        <view class="intro_content">如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇</view>
+        <view class="intro_content">{{reward.Remarks}}</view>
       </view>
     </view>
     <!-- 选择教练 -->
@@ -82,12 +83,12 @@
         <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="1000"
           display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
           next-margin="{{coachList.length==1?'480rpx':(coachList.length==2?'280rpx':'120rpx')}}">
-          <block wx:for="coachList">
-            <swiper-item>
+          <block wx:for="{{coachList}}" wx:key="index">
+            <swiper-item bindtap="coach_choose" data-index="{{index}}">
               <view class="coach_img">
-                <image src="/static/head.png" class="active"></image>
+                <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}" class="{{chooseCoach == index ? 'active':''}}"></image>
               </view>
-              <view class="coach_info">老杨</view>
+              <view class="coach_info">{{item.AI_Name}}</view>
             </swiper-item>
           </block>
         </swiper>
@@ -104,11 +105,11 @@
     </view>
     <!-- 计算价格 -->
     <view class="infinity">
-      <view class="conversion">20人已经兑换</view>
+      <view class="conversion">{{reward.CashCount}}人已经兑换</view>
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">500积分</text>
+          <text class="inte_count">{{reward.ActScore}}积分</text>
         </view>
         <view class="conBtn">兑换</view>
       </view>
@@ -118,9 +119,9 @@
   <view class="available_list" wx:elif="{{type==3}}">
     <view class="card_banner">
       <swiper duration="300" circular="{{true}}">
-        <block wx:for="{{5}}">
+        <block wx:for="{{reward.imgList}}">
           <swiper-item>
-            <image class="scorec-img" src="./images/conversion1.png"></image>
+            <image class="scorec-img" src="{{item.si_url}}"></image>
           </swiper-item>
         </block>
       </swiper>
@@ -128,19 +129,19 @@
     <!--  -->
     <view class="available_item">
       <view class="available_inte inte">
-        <text class="minute" wx:if="{{cardType==0}}">分</text>
+        <text class="minute" wx:if="{{inteType==1}}">分</text>
         <text class="vip_inte" wx:else>VIP</text>
-        <text class="credits">500</text>
+        <text class="credits">{{reward.ActScore}}</text>
         积分
       </view>
       <!--  -->
       <view class="available_inte product">
-        <text class="bold">产品：</text> 拳击手套
+        <text class="bold">产品：</text>{{reward.SE_Name}}
       </view>
       <!--  -->
       <view class="introduction">
         <view class="bold intro_title">介绍：</view>
-        <view class="intro_content">拳击手套是根据国际业余拳联的规定，拳击运动员在参加拳击运动比赛时一定要戴的一种经过填充的手套。目的是保护拳手的手腕和手指关节。</view>
+        <view class="intro_content">{{reward.Remarks}}</view>
       </view>
     </view>
     <!-- 快递方式 -->
@@ -152,7 +153,6 @@
             <view>
               <view class="kong" catchtap="takeWay" style="background-color:{{take_index == index?'#52495B':''}}"
                 data-index="{{index}}"></view>
-              <!-- 门店自取 -->
               {{item}}
             </view>
           </block>
@@ -167,11 +167,11 @@
       </view>
     </view>
     <view class="infinity">
-      <view class="conversion">20人已经兑换</view>
+      <view class="conversion">{{reward.CashCount}}人已经兑换</view>
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">500积分</text>
+          <text class="inte_count">{{reward.ActScore}}积分</text>
         </view>
         <view class="conBtn">兑换</view>
       </view>

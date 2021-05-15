@@ -7,7 +7,8 @@
   margin: 0 auto;
   margin-bottom: 22rpx;
   width: 690rpx;
-  height: 240rpx;
+  height: 260rpx;
+  box-sizing: border-box;
   border-radius: 10rpx;
 }
 
@@ -26,6 +27,8 @@
 
 .coachList .coachList_item {
   position: relative;
+  box-sizing: border-box;
+  height: 260rpx;
   z-index: 99;
   padding: 20rpx;
 }
@@ -36,18 +39,19 @@
 }
 
 .coach_info>image:first-child {
-  width: 50rpx;
-  height: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
   border-radius: 50%;
 }
 
 .coach_info>image:last-child {
-  width: 20rpx;
-  height: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .coachList .coach_info .coachName {
   padding: 0 12rpx;
+  color: #FFFFFF;
 }
 
 .coachList .coach_info image {
@@ -55,14 +59,13 @@
 }
 
 .coach_content {
-  margin-top: 50rpx;
+  margin-top: 30rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .coach_left .accruing {
-
   font-size: 36rpx;
   font-family: PingFang SC;
   font-weight: 500;

@@ -17,7 +17,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(app.globalData)
+    let phoneNumber = wx.getStorageSync('phone');
+    
+    if(!phoneNumber && phoneNumber==''){
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
+
     this.getWeekList();
     //sport
     this.getMotionCalendar()

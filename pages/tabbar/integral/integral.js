@@ -22,7 +22,9 @@ Page({
     // choose: -1,
     selfReword: [],
     VIPReword: [],
-    typeValue: ''
+    typeValue: '',
+    //lun
+    inteBannerList: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -33,14 +35,15 @@ Page({
     this.getScoreRewardPayList()
     //行为积分
     this.getScoreRewardActList()
+    //轮播图
+    this.getScoreBannerList()
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      menuRight:app.globalData.menuRight
+      menuRight: app.globalData.menuRight
     })
   },
   getValue: function (e) {
-    // console.log(e,1)
     this.setData({
       typeValue: e.detail.value
     })
@@ -90,6 +93,7 @@ Page({
     return;
   },
   onreset: function () {
+    let inteList = this.data.inteTypeList;
     //清空
     for (var j = 0; j < inteList.length; j++) {
       inteList[j].checked = false
@@ -97,6 +101,7 @@ Page({
     this.setData({
       isScreen: false,
       typeValue: '',
+      inteTypeList: inteList
     })
   },
   onconfrim: function () {
@@ -111,19 +116,22 @@ Page({
     if (!scores && !scores.trim()) {
       scores = 0;
     }
-    if (newList.includes('VIP奖励')) {
+    if (newList.includes('VIP奖励') && newList.length == 1) {
+      console.log(1)
       this.getScoreRewardPayList(scores)
       let selfReword = [];
       this.setData({
         selfReword: selfReword
       })
-    } else if (newList.includes('自律奖励')) {
+    } else if (newList.includes('自律奖励') && newList.length == 1) {
+      console.log(2)
       this.getScoreRewardActList(scores);
       let VIPReword = []
       this.setData({
         VIPReword: VIPReword
       })
     } else if (newList.includes('自律奖励') && newList.includes('VIP奖励')) {
+      console.log(3)
       this.getScoreRewardPayList(scores)
       this.getScoreRewardActList(scores)
     } else {
@@ -159,7 +167,6 @@ Page({
       that.setData({
         VIPReword: res.data.data
       })
-      //console.log(res)
     })
   },
   //行为积分
@@ -207,6 +214,22 @@ Page({
       inteTypeList: list
     })
   },
+  getScoreBannerList: function () {
+    var that = this
+    api.request({
+      url: "/ScoreBannerList",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: wx.getStorageSync('GB_ID')
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        that.setData({
+          inteBannerList: res.data.data
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -219,6 +242,23 @@ Page({
       isScreen: false
     })
   },
+  //自律奖励
+  selfRewordInte: function (e) {
+    console.log(e)
+    let se_id = e.currentTarget.dataset.id;
+    let price_type = e.currentTarget.dataset.prizetype
+    wx.navigateTo({
+      url: '/page2/integralMall/integralMall?se_id=' + se_id + '&price_type=' + price_type + '&type=1',
+    })
+  },
+  VIPRewards: function (e) {
+    console.log(e)
+    let se_id = e.currentTarget.dataset.id;
+    let price_type = e.currentTarget.dataset.prizetype;
+    wx.navigateTo({
+      url: '/page2/integralMall/integralMall?se_id=' + se_id + '&price_type=' + price_type + '&type=2',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -227,7 +267,6 @@ Page({
       isScreen: false
     })
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
