@@ -76,19 +76,22 @@
 /* 较量介绍 */
 .coach_introduce {
   margin-top: 1px;
+  box-sizing: border-box;
+  height: 252rpx;
   background: #ffffff;
-  padding: 20rpx 31rpx;
+  padding: 20rpx 30rpx;
 }
 
 .coach_in {
+  padding-bottom: 6rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #010101;
-  padding-bottom: 10rpx;
 }
 
 .introduce_text {
+  line-height: 45rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 400;
@@ -96,50 +99,9 @@
 }
 
 .class_introduce {
-  padding: 20rpx 0 20rpx 31rpx;
+  padding: 40rpx 30rpx 20rpx 30rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #010101;
 }
-
-/* .coach_subject {
-  padding: 0 31rpx;
-} */
-/* 
-.coach_pic {
-  margin-bottom: 24rpx;
-  box-sizing: border-box;
-  width: 690rpx;
-  height: 240rpx;
-  background-size: 100% 100%;
-  border-radius: 10rpx;
-  padding: 158rpx 0 0 20rpx;
-}
-
-.subject {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 323rpx;
-  height: 63rpx;
-  background: #12D58B;
-  border-radius: 10rpx;
-  font-size: 36rpx;
-  line-height: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-  padding: 0 10rpx;
-}
-
-.price {
-  font-size: 24rpx;
-}
-
-.num {
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: 800;
-  color: #FEFEFE;
-} */

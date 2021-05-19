@@ -1,11 +1,9 @@
+<wxs src="../../common/common.wxs" module="tools"></wxs>
 <nav-bar page-name="我的课程"></nav-bar>
 <view class="course_container" style="margin-top:{{navHeight}}px">
   <block wx:for="{{myCoachList}}" wx:key="index">
     <view class="list">
-      <!-- background-image:url('/static/course1.png') -->
-      <view class="bg1">
-        <image src="/static/course1.png"></image>
-      </view>
+      <image class="course_bg1" src="/static/mycard.png"></image>
       <view class="course_list">
         <view class="courseTop">
           <view>
@@ -14,6 +12,7 @@
           <view class="coa_detail">
             <view>
               {{item.AI_Name}}
+              <!-- tools.replaceChar1 -->
               <image src="/static/woman.png"></image>
             </view>
             <text>时长：{{item.CP_Time}}分钟</text>
@@ -21,7 +20,7 @@
         </view>
         <view class="courseBottom">
           <view>
-            <text class="course_num">{{item.CP_Name}}（{{item.CO_Have}}节）</text>
+            <text class="course_num">{{tools.replaceChar1(item.CP_Name,'。','')}}（{{item.CO_Have}}节）</text>
             <text class="exp_date">截止{{item.CO_ActiveEnd}}</text>
           </view>
           <view class="appoinmentBtn" catchtap="personalAppointment">预约</view>
@@ -29,4 +28,11 @@
       </view>
     </view>
   </block>
+
+  <view class="none" wx:if="{{myCoachList.length==0}}">
+    <view class="none_list">
+      <image src="/static/none.png" style="width:200rpx;height:200rpx;"></image>
+      <view>暂无内容</view>
+    </view>
+  </view>
 </view>

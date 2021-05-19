@@ -23,7 +23,8 @@
   <view class="container">
     <view class="inte_tabs">
       <block wx:for="{{options_tab}}" wx:key="index">
-        <view catchtap="optionsTab" data-index="{{index}}" class="tabs_item {{tab == index ?'active':''}}">{{item}}
+        <view catchtap="optionsTab" data-index="{{index}}" class="tabs_item {{tab == index ?'active':''}}">
+          <text>{{item}}</text>
         </view>
       </block>
       <view class="tabs_item">

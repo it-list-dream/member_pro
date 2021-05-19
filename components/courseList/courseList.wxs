@@ -1,6 +1,0 @@
-var toFixed = function (value) {
-  return Math.floor(value)
- }
- module.exports = {
-   toFixed :toFixed
- }

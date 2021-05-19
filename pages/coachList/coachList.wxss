@@ -12,7 +12,7 @@
   border-radius: 10rpx;
 }
 
-.bg_con {
+/* .bg_con {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,14 +23,24 @@
 .bg_con image {
   width: 100%;
   height: 100%;
-}
+} */
 
 .coachList .coachList_item {
   position: relative;
   box-sizing: border-box;
-  height: 260rpx;
-  z-index: 99;
   padding: 20rpx;
+  width: 100%;
+  height: 260rpx;
+  background:  #52495B;
+  border-radius: 10rpx;
+  
+}
+.coach_bg{
+  position: absolute;
+  top: 20rpx;
+  right: 74rpx;
+  width: 207rpx;
+  height: 200rpx;
 }
 
 .coachList .coach_info {

@@ -52,7 +52,7 @@ Page({
     //vip积分
     vipIntegral: 0,
     //行为积分
-    actionIntegral: 0
+    actionIntegral: 0,
   },
 
   /**
@@ -73,8 +73,16 @@ Page({
 
   },
   lookRecord(e) {
-    console.log(e.currentTarget.dataset.index)
+    //console.log(e.currentTarget.dataset.index)
+    let phoneNumber = wx.getStorageSync('phone')
+    
     let index = e.currentTarget.dataset.index
+    if(!phoneNumber && phoneNumber == '' && index!==2){
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+      return
+   }
     let path = '';
     switch (index) {
       case 0:
@@ -120,11 +128,11 @@ Page({
         icon: "none",
         title: '你还未登录，请先登录！',
       })
-      setTimeout(function () {
-        wx.navigateTo({
-          url: '/page2/login/login',
-        })
-      }, 1500)
+      // setTimeout(function () {
+      //   wx.navigateTo({
+      //     url: '/page2/login/login',
+      //   })
+      // }, 1500)
     }
   },
   vipCard: function () {
@@ -182,6 +190,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log(111)
     //用户状态
     this.getUserStatus();
     //
@@ -199,18 +208,20 @@ Page({
     var status = wx.getStorageSync('loginStatus') || 0;
     console.log(status)
     //获取用户信息
-    var info = wx.getStorageSync('userInfo');
+    var info = wx.getStorageSync('userInfo') || '';
     //获取用户的手机号码
-    var phone = wx.getStorageSync('phone') || '';
+     var phone = wx.getStorageSync('phone') || '';
     if (status == 1 || status == 2) {
       this.setData({
         loginStatus: status,
         info: JSON.parse(info),
-        phone: phone
+        phone:phone
       })
     } else {
       this.setData({
-        loginStatus: status
+        loginStatus: status,
+        info:null,
+        phone:''
       })
     }
   },
@@ -224,9 +235,16 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      that.setData({
-        myVipCardCount: res.data.cardCount
-      })
+      if(res.data.code ==1){
+        that.setData({
+          myVipCardCount: res.data.cardCount
+        })
+      }else{
+        that.setData({
+          myVipCardCount: 0
+        })
+      }
+    
     })
   },
   //私教课数量
@@ -242,9 +260,15 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      that.setData({
-        myCoachCount: res.data.coachCount
-      })
+      if(res.data.code ==1){
+        that.setData({
+          myCoachCount: res.data.coachCount
+        })
+      }else{
+        that.setData({
+          myCoachCount: 0
+        })
+      }
     })
   },
   //我的储值金额
@@ -263,6 +287,11 @@ Page({
           rechargeMoney: res.data.data[0].UI_Money,
           giveMoney: res.data.data[0].UI_SendMoney
         })
+      }else{
+        that.setData({
+          rechargeMoney: 0,
+          giveMoney: 0
+        })
       }
     })
   },
@@ -275,11 +304,36 @@ Page({
         user_token: wx.getStorageSync('token')
       }
     }).then(res => {
-      if (res.data.code == '1') {
+      if (res.data.code == 1) {
         that.setData({
           vipIntegral: res.data.data[0].UI_Score,
           actionIntegral: res.data.data[0].UI_ActionScore
         })
+      }else{
+        that.setData({
+          vipIntegral: 0,
+          actionIntegral: 0
+        })
+      }
+    })
+  },
+  memberCode() {
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      //会员卡存在
+      wx.navigateTo({
+        url: '/page2/memberCode/memberCode',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
+  },
+  code: function () {
+    wx.scanCode({
+      success(res) {
+        console.log(res)
       }
     })
   },

@@ -21,7 +21,8 @@ function initChart(canvas, width, height, dpr) {
       axisPointer: { // 坐标轴指示器，坐标轴触发有效
         type: 'shadow',
         shadowStyle: {
-          opacity: 0
+          opacity: 0,
+          color:'red'
         },
       },
     },
@@ -37,15 +38,19 @@ function initChart(canvas, width, height, dpr) {
       data: ['03.08', '03.09', '03.10', '03.11', '03.12', '03.13', '03.14'],
       axisTick: {
         alignWithLabel: true,
-        show: false
+        show: false,
+        inside:false,
       },
       axisLine: {
         lineStyle: {
           type: 'solid',
-          color: '#52495B', //左边线的颜色
-          width: '2' //坐标线的宽度
+          color: '#03c986', //左边线的颜色
+          width: '1' //坐标线的宽度
         }
       },
+      axisLabel:{
+        color:"#333333"
+      }
     }],
     yAxis: [{
       show: false,
@@ -69,7 +74,7 @@ function initChart(canvas, width, height, dpr) {
           //   position: 'top', //在上方显示
           //   color: '#AEEAD6'
           // },
-          color: '#AEEAD6',
+          color: '#B7F2DC',
         },
 
       },
@@ -83,10 +88,13 @@ function initChart(canvas, width, height, dpr) {
           borderWidth: 0,
           // borderRadius: 4,
           // backgroundColor: '#AEEAD6',
-          color: "#AEEAD6"
+          color: "#333333",
+          fontSize:14,
+          fontFamily:'PingFang SC',
+          // backgroundColor:'#12D58B'
         },
       }
-    }]
+    }],
   };
   chart.setOption(option);
   return chart;
@@ -152,6 +160,11 @@ Page({
          })
       }
     })
+  },
+  _navBack:function(){
+     wx.navigateBack({
+       delta: 1,
+     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,6 +1,8 @@
 .container {
   background: #f0f2f5;
-  height: auto;
+  height: 100%;
+  padding-bottom: 300rpx;
+
 }
 
 .head_list {
@@ -81,20 +83,21 @@
 }
 
 .introduce>view:last-child {
-  text-align-last: justify;
-  text-align: justify;
-  text-justify: distribute-all-lines;
+  /* text-align-last: justify; */
+  /* text-align: justify; */
+  /* text-justify: distribute-all-lines; */
   width: 562rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 400;
   color: #333333;
   line-height: 45rpx;
+  /* 多行溢出打点 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .co_list {
@@ -103,14 +106,11 @@
   width: 100%;
   height: 286rpx;
   background: #ffffff;
-  /* padding: 28rpx 0 0 32rpx; */
   padding: 28rpx 0;
-
-  /* margin-right: 32rpx; */
 }
 
 .co_title {
-  padding: 0 0 34rpx 32rpx;
+  padding: 0 32rpx 34rpx 32rpx;
   font-size: 36rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -119,15 +119,13 @@
 
 .coach_swiper {
   box-sizing: border-box;
-  margin: 0 30rpx;
 }
 
-.coach_swiper swiper {
-  height: 198rpx;
+swiper {
+  height: 188rpx;
 }
 
 .coach_swiper swiper-item {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,7 +139,7 @@
 
 .active {
   box-sizing: border-box;
-  border: 4px solid #12D58B;
+  border: 2px solid #12D58B;
 }
 
 .payment {
@@ -149,7 +147,7 @@
   width: 100%;
   height: 178rpx;
   background-color: #ffffff;
-  margin-bottom: 130rpx;
+  /* margin-bottom: 300rpx; */
 }
 
 .pay_method {
@@ -198,6 +196,25 @@
   display: flex;
 }
 
+.count_box>view {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #F0F2F5;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  font-size: 50rpx;
+  border-radius: 8rpx 0px 0px 8rpx;
+}
+.count_box>view:nth-child(2){
+  padding:0 10rpx;
+  font-size: 40rpx !important;
+  border-radius: 0 !important;
+  text-align: center;
+}
+
 .by {
   font-size: 36rpx;
   font-family: PingFang SC;
@@ -206,20 +223,19 @@
 }
 
 .count {
-  width: 40rpx;
-  height: 40rpx;
-  line-height: 40rpx;
+  width: 50rpx;
+  height: 100%;
+
+  line-height: 50rpx;
   text-align: center;
   background: #F0F2F5;
   margin-right: 1px;
-  /* border-radius: 6px 0px 0px 6px; */
 }
 
 .num {
   box-sizing: border-box;
   padding: 0 15rpx;
-  height: 40rpx;
-  line-height: 40rpx;
+  height: 50rpx;
   background: #F0F2F5;
 }
 
@@ -231,28 +247,29 @@
 .fixedbottom {
   position: fixed;
   width: 100%;
-  height: 130rpx;
+  height: 200rpx;
   left: 0;
   bottom: 0;
   background: white;
 }
 
 .fixedbottom>view:first-child {
-  padding: 8rpx 0;
+  padding: 18rpx 0;
   text-align: center;
   background: #52495B;
-  font-size: 24rpx;
+  font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
-
 }
 
 .footer_pay {
   display: flex;
+  height: 132rpx;
+  /* background: orange; */
   justify-content: space-between;
+  align-items: center;
   padding: 0 32rpx;
-  margin-top: 20rpx;
 }
 
 .footer_pay>view:first-child {
@@ -267,11 +284,11 @@
 }
 
 .buy {
-  width: 94rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  width: 170rpx;
+  height: 65rpx;
+  line-height: 65rpx;
   text-align: center;
-  font-size: 26rpx;
+  font-size: 32rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FFFFFF;

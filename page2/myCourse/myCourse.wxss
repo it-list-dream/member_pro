@@ -6,7 +6,7 @@
 .course_container .list{
   position: relative;
 }
-.bg1{
+/* .bg1{
   position: absolute;
   top: 0;
   left: 0;
@@ -16,17 +16,27 @@
 .bg1 image{
   width: 100%;
   height: 100%;
-}
+} */
 .course_list {
   position: relative;
-  z-index: 99;
   margin-bottom: 20rpx;
   box-sizing: border-box;
-  padding: 20rpx;
+  padding: 20rpx 20rpx 20rpx 30rpx;
   width: 690rpx;
-  height: 240rpx;
-  background-size: 100% 100%;
+  height: 260rpx;
+  background: rgb(82, 73, 91);
+  border-radius: 10rpx;
 }
+
+.course_bg1{
+  position: absolute;
+  z-index: 99;
+  top: 28rpx;
+  right: 51rpx;
+   width: 174rpx;
+   height: 174rpx;
+}
+
 .courseTop {
   display: flex;
   align-items: center;
@@ -34,8 +44,8 @@
 }
 
 .courseTop>view:first-child image {
-  width: 51rpx;
-  height: 51rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
   vertical-align: middle;
 }
@@ -49,15 +59,15 @@
 
 .coa_detail view,
 .coa_detail text {
-  font-size: 22rpx;
+  font-size: 28rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
 }
 
 .coa_detail image {
-  width: 20rpx;
-  height: 20rpx;
+  width: 32rpx;
+  height: 32rpx;
   vertical-align: middle;
 }
 
@@ -65,16 +75,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 68rpx;
+  margin-top: 56rpx;
 }
 
 .courseBottom view:first-child {
   display: flex;
   flex-direction: column;
-
+  justify-content: space-between;
 }
 
 .course_num {
+  margin-top: -10rpx;
+  padding-bottom: 14rpx;
   font-size: 36rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -89,6 +101,8 @@
 }
 
 .appoinmentBtn {
+  position: relative;
+  z-index:120;
   width: 110rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -99,4 +113,12 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
+}
+
+.none{
+  display: flex;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

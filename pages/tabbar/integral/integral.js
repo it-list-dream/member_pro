@@ -30,13 +30,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getScoreTotalByPhone()
-    //消费积分
-    this.getScoreRewardPayList()
-    //行为积分
-    this.getScoreRewardActList()
-    //轮播图
-    this.getScoreBannerList()
+    // console.log(app.globalData)
+
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -58,11 +53,13 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      if (res.data.code == '1') {
+      if (res.data.code == 1) {
         that.setData({
           vipIntegral: res.data.data[0].UI_Score,
           actionIntegral: res.data.data[0].UI_ActionScore
         })
+        app.globalData.UI_Score = res.data.data[0].UI_Score;
+        app.globalData.UI_ActionScore = res.data.data[0].UI_ActionScore
       }
     })
   },
@@ -99,7 +96,7 @@ Page({
       inteList[j].checked = false
     }
     this.setData({
-      isScreen: false,
+     // isScreen: false,
       typeValue: '',
       inteTypeList: inteList
     })
@@ -234,7 +231,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      vipIntegral: app.globalData.UI_Score,
+      actionIntegral: app.globalData.UI_ActionScore
+    })
+    this.getScoreTotalByPhone()
+    //消费积分
+    this.getScoreRewardPayList()
+    //行为积分
+    this.getScoreRewardActList()
+    //轮播图
+    this.getScoreBannerList()
   },
   //关闭
   close: function () {
@@ -257,6 +264,27 @@ Page({
     let price_type = e.currentTarget.dataset.prizetype;
     wx.navigateTo({
       url: '/page2/integralMall/integralMall?se_id=' + se_id + '&price_type=' + price_type + '&type=2',
+    })
+  },
+  memberCode() {
+    let phone = wx.getStorageSync('phone')
+    console.log(111)
+    if (phone && phone !== '') {
+      //会员卡存在
+      wx.navigateTo({
+        url: '/page2/memberCode/memberCode',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
+  },
+  code: function () {
+    wx.scanCode({
+      success(res) {
+        console.log(res)
+      }
     })
   },
   /**

@@ -1,6 +1,17 @@
-<nav-bar page-name="运动数据"></nav-bar>
-<view class="sportData" style="margin-top:{{navHeight}}px">
+<view class="sportData">
   <view class="banner">
+    <view class="custom-nav" style="height:{{navHeight}}px;">
+      <view style="top:{{navTop}}px">
+        <view bindtap="_navBack">
+          <image class="icon-arrow" src="../../components/navbar/images/white-arrow.png"></image>
+        </view>
+        <view class="navbar_title">运动数据</view>
+      </view>
+    </view>
+    <view class="sport_title1">
+      <view> {{sportDesc.CheckInNum}} <text>天</text></view>
+      <view>累计运动天数</view>
+    </view>
     <image src="/static/sportDevice.png"></image>
     <view class="sport_info">
       <view class="sport">
@@ -37,12 +48,12 @@
     <view class="other">
       <view class="other_item">
         <view class="course">
-          <text>{{sportDesc.GroupNum}}节课</text>
+          <text>{{sportDesc.GroupNum}}节</text>
           <text>团课</text>
         </view>
         <view class="line"></view>
         <view class="course">
-          <text>{{sportDesc.CoachNum}}节课</text>
+          <text>{{sportDesc.CoachNum}}节</text>
           <text>私教</text>
         </view>
         <view class="line"></view>

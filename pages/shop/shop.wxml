@@ -1,6 +1,5 @@
-<nav-bar page-name="健身店铺"></nav-bar>
+<nav-bar page-name="我的门店"></nav-bar>
 <view class="loaction_wrapper" style="margin-top:{{navHeight}}px">
-  <scroll-view scroll-y style="height:calc(100vh - {{navHeight}})px - 20rpx">
     <view class="location_info">
       <!-- 定位 -->
       <view class="loaction">
@@ -23,8 +22,10 @@
             </view>
             <view class="distance">{{item.distance?item.distance +'km':''}}</view>
           </view>
+          <view class="nearStore" wx:if="{{item.IsMyGym == 1}}">我的门店</view>
         </view>
+     
       </block>
     </view>
-  </scroll-view>
+
 </view>

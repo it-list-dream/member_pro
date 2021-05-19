@@ -20,7 +20,7 @@ page {
   height: 130rpx;
   margin: 0 auto;
   background: #ffffff;
-  /* margin-bottom: 30rpx;  */
+  border-radius: 10rpx;
 }
 
 .coach_info .coach_list {
@@ -28,6 +28,7 @@ page {
   padding: 20rpx;
   display: flex;
   font-size: 24rpx;
+
 }
 
 .coach_info .head {
@@ -121,6 +122,8 @@ page {
   height: 100%;
   justify-content: center;
   align-items: center;
+  background: #F0F2F5;
+  border: none !important;
 }
 
 .selectDate image {
@@ -131,6 +134,7 @@ page {
 .ch_active {
   background: #12D58B;
   color: #ffffff;
+  border: none !important;
 }
 
 .dayList .day_item {
@@ -146,7 +150,7 @@ page {
   width: 98rpx;
   height: 113rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #cccccc;
+  border: 2rpx solid rgba(51, 51, 51, 0.1);
   box-sizing: border-box;
   font-size: 30rpx;
   font-family: PingFang SC;
@@ -155,11 +159,16 @@ page {
 }
 
 .week {
-  color: #cccccc;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 0.4);
 }
 
 /* 日历 */
 .calendar_list {
+  position: relative;
+  z-index: 9999;
   width: 100%;
   box-sizing: border-box;
   border-top: 1px solid #eeeeee;
@@ -197,8 +206,8 @@ page {
   box-sizing: border-box;
   width: 690rpx;
   height: 250rpx;
-  margin-top: 20rpx;
-  padding-left: 20rpx;
+  margin-top: 30rpx;
+  padding-left: 30rpx;
   background-size: 100% 100%;
 }
 
@@ -214,19 +223,21 @@ page {
   width: 100%;
   height: 100%;
 }
-.p1{
+
+.p1 {
   position: relative;
   z-index: 99;
 }
+
 .leagueClass .progress {
   margin-top: 28rpx;
-  width: 135rpx;
-  height: 35rpx;
+  width: 160rpx;
+  height: 60rpx;
+  border-radius: 8px;
   background: #7B6F85;
-  border-radius: 8rpx;
   text-align: center;
-  line-height: 35rpx;
-  font-size: 22rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FFFFFF;
@@ -235,7 +246,7 @@ page {
 
 .leagueClass .className {
   font-size: 40rpx;
-  padding-top: 70rpx;
+  margin-top: 40rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
@@ -244,28 +255,28 @@ page {
 .leagueClass .class_info {
   display: flex;
   justify-content: space-between;
-  padding-top: 22rpx;
+  margin-top: 22rpx;
 }
 
 .leagueClass .class_info .class_time {
-  font-size: 22rpx;
+  font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
 }
 
 .leagueClass .class_info .class_status {
-  width: 117rpx;
-  height: 40rpx;
-  line-height: 40rpx;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   background: #12D58B;
-  border-radius: 20rpx;
-  font-size: 22rpx;
+  border-radius: 30rpx;
+  font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: bold;
+  font-weight:500;
   color: #FFFFFF;
   text-align: center;
-  margin: -10rpx 30rpx 0 0;
+  margin: -38rpx 30rpx 0 0;
 }
 
 .unclass {
@@ -326,25 +337,65 @@ page {
   font-weight: 500;
 }
 
-.oder_wrapper {
+/* .oder_wrapper {
   margin-top: 100rpx;
+} */
+.oder_wrapper{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 50rpx;
 }
-
-.order {
+.oder_wrapper .order {
   width: 690rpx;
-  height: 60rpx;
+  height: 70rpx;
   margin: 0 auto;
   background: #12D58B;
   border-radius: 30rpx;
-  font-size: 32rpx;
+  font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: bold;
   color: #FFFFFF;
   text-align: center;
-  line-height: 60rpx;
+  line-height: 70rpx;
 }
 
 /*  */
 .mycol {
   background-color: #E5E5E5 !important;
+}
+
+.no_personalClass {
+  margin-top: 60rpx;
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no_personalClass image {
+  width: 140rpx;
+  height: 120rpx;
+}
+
+.immediately {
+  width: 260rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 0;
+  margin-top: 70rpx !important;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  background: #12D58B !important;
+  background-color: #F8F8F8;
+  border-radius: 8rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+button::after {
+  border: none;
 }

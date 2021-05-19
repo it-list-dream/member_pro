@@ -23,7 +23,7 @@
   <!-- 介绍 -->
   <view class="introduce">
     <view class="introduce_title">介绍：</view>
-    <view>
+    <view style="">
       <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。 -->
      {{personal.CP_Content1?personal.CP_Content1:personal.CP_Content}}
     </view>
@@ -34,7 +34,7 @@
     <view class="coach_swiper">
       <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="1000"
         display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
-        next-margin="{{coachList.length==1?'480rpx':(coachList.length==2?'280rpx':'120rpx')}}">
+        next-margin="{{coachList.length==1?'640rpx':(coachList.length==2?'360rpx':'220rpx')}}" previous-margin="0">
         <block wx:for="{{coachList}}" wx:key="index">
           <swiper-item bindtap="chooseCoach" data-index = "{{index}}">
             <view class="coach_img">

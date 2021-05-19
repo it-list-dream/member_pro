@@ -3,11 +3,8 @@
 <view class="coachList" style="margin-top:{{navHeight}}px;">
   <block wx:for="{{coachList}}" wx:key="index">
     <view class="coachList_card" bindtap="getCoach" data-coach="{{item}}">
-      <!-- 背景 -->
-      <view class="bg_con">
-        <image src="/static/selectCourse.png"></image>
-      </view>
       <view class="coachList_item">
+        <image src="/static/sport_list.png" class="coach_bg"></image>
         <view class="coach_info">
           <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}"></image>
           <text class="coachName">{{item.AI_Name}}</text>
@@ -19,7 +16,7 @@
             <view class="type">{{tools.replaceChar(item.AI_GoodAt)}}</view>
           </view>
           <view class="coach_right">
-            <image src="/static/coachList/phone.png" catchtap="call" data-phone="{{item.AI_Tel}}"></image>
+            <image src="/static/phone4.png" catchtap="call" data-phone="{{item.AI_Tel}}"></image>
           </view>
         </view>
       </view>

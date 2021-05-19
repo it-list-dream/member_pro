@@ -110,8 +110,51 @@ const days = (d) => {
   }
   return time
 }
-const toWeekDay = (weekDay)=> { // 传入数据  讲一周的某一天返回成中文状态下的字符
-  switch (weekDay) {
+const toWeek = (date)=> { // 传入数据  讲一周的某一天返回成中文状态下的字符
+  var today = new Date();
+  var currTime = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  var nextDay = new Date(date)
+  var nextTime = nextDay.getFullYear() + '-' + (nextDay.getMonth() + 1) + '-' + nextDay.getDate();
+  if(currTime == nextTime){
+    return '今日'
+  }
+  switch (date.getDay()) {
+    case 1:
+      return '一';
+      break;
+    case 2:
+      return '二';
+      break;
+    case 3:
+      return '三';
+      break;
+    case 4:
+      return '四';
+      break;
+    case 5:
+      return '五';
+      break;
+    case 6:
+      return '六';
+      break;
+    case 0:
+      return '日';
+      break;
+    default:
+      break;
+  }
+}
+
+function toWeekDay(date) { // 传入数据  讲一周的某一天返回成中文状态下的字符
+  console.log(date)
+  var today = new Date();
+  var currTime = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  var nextDay = new Date(date)
+  var nextTime = nextDay.getFullYear() + '-' + (nextDay.getMonth() + 1) + '-' + nextDay.getDate();
+  if(currTime == nextTime){
+    return '今天'
+  }
+  switch (date.getDay()) {
     case 1:
       return '周一';
       break;
@@ -142,5 +185,6 @@ const toWeekDay = (weekDay)=> { // 传入数据  讲一周的某一天返回成�
 module.exports = {
   formatTime:formatTime,
   days,
+  toWeek:toWeek,
   toWeekDay:toWeekDay
 }

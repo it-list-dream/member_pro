@@ -1047,6 +1047,295 @@
         {
           "name": "pages/movementData/movementData",
           "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/shop/shop",
+          "pathName": "pages/shop/shop",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/coachDetail/coachDetail",
+          "pathName": "pages/coachDetail/coachDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "地址",
+          "pathName": "page2/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/order/order",
+          "pathName": "page2/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personalTrainer/personalTrainer",
+          "pathName": "pages/personalTrainer/personalTrainer",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "积分兑换",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "type=1&se_id=9&price_type=1",
+          "scene": null
+        },
+        {
+          "name": "page2/integralMall/integralMall",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "type=1&se_id=4&price_type=2",
+          "scene": null
+        },
+        {
+          "name": "page2/integralMall/integralMall",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "type=1&se_id=3&price_type=1",
+          "scene": null
+        },
+        {
+          "name": "page2/integralMall/integralMall",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "type=1&se_id=3&price_type=2",
+          "scene": null
+        },
+        {
+          "name": "page2/integralMall/integralMall",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "type=1&se_id=4&price_type=3",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "type=1&se_id=4&price_type=3",
+          "scene": null
+        },
+        {
+          "name": "pages/shop/shop",
+          "pathName": "pages/shop/shop",
+          "query": "type=1&se_id=4&price_type=3",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/editProfile/editProfile",
+          "pathName": "page2/editProfile/editProfile",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/rules/rules",
+          "pathName": "page2/rules/rules",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/integralMall/integralMall",
+          "pathName": "page2/integralMall/integralMall",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/selectCourse/selectCourse",
+          "pathName": "pages/selectCourse/selectCourse",
+          "query": "course=1",
           "scene": null
         }
       ]

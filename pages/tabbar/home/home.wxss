@@ -16,7 +16,10 @@ swiper image {
   position: fixed;
   width: 233rpx;
   height: 60rpx;
-  background: rgba(0, 0, 0, 0.4);
+  /* background: rgba(0, 0, 0, 0.4); */
+  background: rgba(203, 187, 181,0.6);
+  /* background: #F0F2F5;
+  opacity: 0.6; */
   border-radius: 30rpx;
   z-index: 100;
 }
@@ -137,7 +140,7 @@ swiper image {
 .classList {
   display: flex;
   margin-top: 20rpx;
-  height: 180rpx;
+  height: 190rpx;
   background-color: #FFFFFF;
 }
 
@@ -153,7 +156,8 @@ swiper image {
 }
 
 .classList .classList_item text {
-  font-size: 24rpx;
+  /* margin-top: 10rpx; */
+  font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 400;
   color: #333333;
@@ -236,6 +240,7 @@ swiper image {
 .top_star_img {
   width: 100%;
   height: 100%;
+  border-radius: 8rpx 8rpx 0  0 !important;
 }
 
 .bottom_star {
@@ -250,6 +255,7 @@ swiper image {
 }
 
 .coachInfo1 {
+  display: flex;
   padding-top: 6rpx;
 }
 
@@ -260,11 +266,16 @@ swiper image {
   color: #333333;
 }
 
+/* .coachInfo1>view:last-child{
+  display: flex;
+  justify-content: flex-end;
+} */
+ /* margin-top: 11rpx; */
 .star_title image {
-  margin-top: 11rpx;
-  float: right;
-  width: 28rpx;
-  height: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: auto;
+  margin-top: 4rpx;
 }
 
 .countNum {
@@ -287,14 +298,15 @@ swiper image {
   height: 32rpx;
   line-height: 32rpx;
   text-align: center;
-  background: #FDD043;
-  border-radius: 4rpx;
+  /* background: #FDD043; */
+  background: rgba(253, 208, 67,0.3);
+  border-radius: 6rpx;
 }
 
 .recomTitle {
   width: 33rpx;
   height: 32rpx;
-  background: linear-gradient(0deg, #FDD043, #FD8043);
+  background: linear-gradient(0deg, #FD8043, #FDD043);
   border-radius: 4rpx 1px 0px 4rpx;
   font-size: 20rpx;
   font-family: PingFang SC;
@@ -309,88 +321,9 @@ swiper image {
   font-weight: 500;
   color: #FD8643;
 }
-
-/* .coach {
-  padding: 0 30rpx;
-  background-color: #F0F2F5;
-} */
-/* .coach .coach_content {
-  padding: 0 30rpx;
-  box-sizing: border-box;
-  width: 690rpx;
-  height: 375rpx;
-  border-radius: 8rpx;
-  background: red;
-}
-
-.coach .coach_list {
-  box-sizing: border-box;
-  height: 100%;
-  padding: 20rpx;
-  display: flex;
-  justify-content: space-between;
-  background: #ffffff;
-}
-
-.coach .content_item {
-  width: 203rpx;
-  background: #FFFFFF;
-  box-shadow: 0px 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
+.deg_img{
   border-radius: 8rpx;
 }
-
-.content_item>image {
-  width: 203rpx;
-  height: 147rpx;
-  vertical-align: bottom;
-}
-
-.coach_info>view {
-  margin-top: 15rpx;
-}
-
-.coach .coach_info {
-  box-sizing: border-box;
-  padding: 0 20rpx;
-  margin-top: 20rpx;
-  margin-top: 10rpx;
-  font-size: 22rpx;
-}
-
-.coach .coach_info image {
-  float: right;
-  width: 20rpx;
-  height: 20rpx;
-}
-
-.coach .recommend {
-  display: flex;
-  width: 134rpx;
-  height: 31rpx;
-  background: #FEF1C6;
-  border-radius: 4px;
-  font-size: 20rpx;
-  font-family: PingFang SC;
-}
-
-.coach .recommend .recommend_title {
-  width: 33rpx;
-  height: 31rpx;
-  line-height: 31rpx;
-  text-align: center;
-  color: #FFFFFF;
-  font-weight: bold;
-  background: linear-gradient(0deg, #FDD043, #FD8043);
-  border-radius: 4rpx 1px 0 4rpx;
-}
-
-.coach .recommend .recommend_text {
-  font-weight: 500;
-  line-height: 31rpx;
-  color: #FD8643;
-  padding-left: 14rpx;
-} */
-
 /*推荐课程  */
 .recommend_content {
   padding: 0 31rpx;
@@ -401,6 +334,7 @@ swiper image {
   display: flex;
   padding: 20rpx;
   width: 690rpx;
+  height: 378rpx;
   justify-content: space-between;
   flex-wrap: wrap;
   background: #FFFFFF;
@@ -424,6 +358,8 @@ swiper image {
 }
 
 .course_detail {
+  display: flex;
+  align-items: center;
   font-family: PingFang SC;
   padding-top: 14rpx;
   /* box-sizing: border-box; */

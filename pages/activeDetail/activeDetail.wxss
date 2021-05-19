@@ -1,5 +1,6 @@
 .card {
   background: #F0F2F5;
+  padding-bottom: 300rpx;
 }
 
 .vipImg {
@@ -10,6 +11,8 @@
 
 .vipMoney {
   width: 100%;
+  height: auto;
+  /* margin-bottom: 300rpx; */
 }
 
 .price {
@@ -29,9 +32,11 @@
   font-weight: 400;
   color: #333333;
 }
-.titleTip{
+
+.titleTip {
   margin-left: 28rpx;
 }
+
 .vipMoney .vipStr {
   box-sizing: border-box;
   height: 91rpx;
@@ -110,6 +115,7 @@
   font-weight: 500;
   color: #333333;
 }
+
 /*  */
 .choose {
   box-sizing: border-box;
@@ -174,25 +180,27 @@ picker {
 .buy_list {
   position: fixed;
   width: 100%;
-  height: 214rpx;
+  height: 300rpx;
   bottom: 0;
   left: 0;
   background-color: #ffffff;
 }
 
 .purchase {
-  height: 50rpx;
-  font-size: 24rpx;
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
   color: #ffff;
   text-align: center;
-  line-height: 50rpx;
   background: #52495B;
 }
 
 .total {
+  box-sizing: border-box;
   display: flex;
-  height: 86rpx;
-  line-height: 86rpx;
+  height: 140rpx;
+  line-height: 140rpx;
   padding: 0 32rpx;
   justify-content: space-between;
   align-items: center;
@@ -210,14 +218,14 @@ picker {
 }
 
 .purcl-tye {
-  width: 94rpx;
-  height: 35rpx;
-  line-height: 35rpx;
-  text-align: center;
+  width: 160rpx;
+  height: 60rpx;
   background: #12D58B;
-  font-size: 26rpx;
+  border-radius: 30rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 34rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FFFFFF;
-  border-radius: 8rpx;
 }

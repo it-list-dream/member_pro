@@ -1,5 +1,6 @@
+<wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="积分兑换"></nav-bar>
-<view class="coverstionBox" style="margin-top:{{navHeight}}px;height:{{navHeight}}px">
+<view class="coverstionBox" style="margin-top:{{navHeight}}px;">
   <!-- 周卡 -->
   <view class="scorecard" wx:if="{{type==1}}">
     <view class="card_banner">
@@ -11,12 +12,12 @@
         </block>
       </swiper>
     </view>
+    <!-- 内容 -->
     <view class="conternt">
       <view class="w-h integral">
         <text class="minute" wx:if="{{inteType==1}}">分</text>
         <text class="vip_inte" wx:else>VIP</text>
-        <text class="credits">{{reward.ActScore}}</text>
-        积分
+        <text class="credits">{{reward.ActScore}}</text>积分
       </view>
       <view class="w-h weeksCard">
         <text class="minute-type">卡类型</text>：
@@ -24,15 +25,14 @@
       </view>
       <view class="w-h duration">
         <text class="dura">时长:</text>
-        <text> {{reward.SE_Days}}</text>
+        <text> {{reward.CP_Time}}</text>
       </view>
-      <view class="w-h introduce">
+      <view class="introduce">
         <text class="dura">介绍:</text>
-        <text>
-           <!-- 7天 自动在现有卡上加入时间 -->{{reword.Remarks}}
-        </text>
+        <text>{{reward.Remarks}}</text>
       </view>
     </view>
+    <!-- 兑换 -->
     <view class="infinity">
       <view class="conversion">{{reward.CashCount?reward.CashCount:0}}人已经兑换</view>
       <view class="total_list">
@@ -40,7 +40,7 @@
           <text class="total">合计：</text>
           <text class="inte_count">{{reward.ActScore}}积分</text>
         </view>
-        <view class="conBtn">兑换</view>
+        <view class="conBtn" bindtap="exchange">兑换</view>
       </view>
     </view>
   </view>
@@ -63,13 +63,13 @@
         积分
       </view>
       <view class="real_item real_course">
-        <text class="bold">课程名：</text>{{reward.SE_Name}}
+        <text>课程名：</text>{{tools.replaceChar1(reward.SE_Name,'。',' ') }}
       </view>
       <view class="real_item real_duration">
-        <text>时长：60分钟</text>
+        <text>时长：{{reward.CP_Time}}分钟</text>
       </view>
       <view class="real_item real_date">
-        <text class="bold">有效期：</text>{{reward.SE_Days}}天
+        <text>有效期：</text>{{reward.SE_Days}}天
       </view>
       <view class="introduction">
         <view class="intro_title">介绍：</view>
@@ -82,7 +82,7 @@
       <view class="coach_swiper">
         <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="1000"
           display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
-          next-margin="{{coachList.length==1?'480rpx':(coachList.length==2?'280rpx':'120rpx')}}">
+          next-margin="{{coachList.length==1?'640rpx':(coachList.length==2?'3600rpx':'220rpx')}}" previous-margin="0">
           <block wx:for="{{coachList}}" wx:key="index">
             <swiper-item bindtap="coach_choose" data-index="{{index}}">
               <view class="coach_img">
@@ -103,15 +103,15 @@
         <text class="symbol" bindtap="calculate" data-operator="+">+</text>
       </view>
     </view>
-    <!-- 计算价格 -->
+    <!-- 兑换计算 -->
     <view class="infinity">
       <view class="conversion">{{reward.CashCount}}人已经兑换</view>
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">{{reward.ActScore}}积分</text>
+          <text class="inte_count">{{reward.ActScore * courseNum}}积分</text>
         </view>
-        <view class="conBtn">兑换</view>
+        <view class="conBtn" bindtap="exchange1">兑换</view>
       </view>
     </view>
   </view>
@@ -119,7 +119,7 @@
   <view class="available_list" wx:elif="{{type==3}}">
     <view class="card_banner">
       <swiper duration="300" circular="{{true}}">
-        <block wx:for="{{reward.imgList}}">
+        <block wx:for="{{reward.imgList}}" wx:key="index">
           <swiper-item>
             <image class="scorec-img" src="{{item.si_url}}"></image>
           </swiper-item>
@@ -136,11 +136,11 @@
       </view>
       <!--  -->
       <view class="available_inte product">
-        <text class="bold">产品：</text>{{reward.SE_Name}}
+        <text>产品：</text>{{reward.SE_Name}}
       </view>
       <!--  -->
       <view class="introduction">
-        <view class="bold intro_title">介绍：</view>
+        <view class="intro_title">介绍：</view>
         <view class="intro_content">{{reward.Remarks}}</view>
       </view>
     </view>
@@ -149,10 +149,10 @@
       <view class="exp_item">
         兑换方式：
         <view class="way">
-          <block wx:for="{{takeMethods}}">
+          <block wx:for="{{takeMethods}}" wx:for-index="index1" wx:key="index1">
             <view>
-              <view class="kong" catchtap="takeWay" style="background-color:{{take_index == index?'#52495B':''}}"
-                data-index="{{index}}"></view>
+              <view class="kong" catchtap="takeWay" style="background-color:{{take_index == index1?'#52495B':''}}"
+                data-index="{{index1}}"></view>
               {{item}}
             </view>
           </block>
@@ -163,7 +163,7 @@
         </view>
       </view>
       <view class="exp_item dispatching" wx:if="{{take_index==1}}">
-        <text class="bold">配送至：</text>上海市杨浦区江浦路1112弄
+        <text>配送至：</text>{{address}}
       </view>
     </view>
     <view class="infinity">
@@ -173,7 +173,7 @@
           <text class="total">合计：</text>
           <text class="inte_count">{{reward.ActScore}}积分</text>
         </view>
-        <view class="conBtn">兑换</view>
+        <view class="conBtn" bindtap="exchange2">兑换</view>
       </view>
     </view>
   </view>

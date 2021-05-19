@@ -1,6 +1,5 @@
 .order_container {
   height: 100vh;
-  background-color: #F0F2F5;
   padding: 0 30rpx;
 }
 
@@ -102,7 +101,6 @@
 .right_box>view>image {
   width: 25rpx;
   height: 25rpx;
-  /* vertical-align: middle; */
 }
 
 .right_box>view:first-child {
@@ -152,6 +150,19 @@
 
 .date {
   font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.6;
+}
+
+.storeName {
+  color: #333333 !important;
+}
+
+.ctime {
+  text-align: right;
+  font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;

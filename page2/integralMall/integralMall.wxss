@@ -1,10 +1,11 @@
 .coverstionBox {
-  background-color: #F0F2F5;
+  width: 100vw;
 }
 
 .scorecard {
   width: 100%;
-  background-color: #F0F2F5;
+  height: auto;
+  padding-bottom: 130rpx;
 }
 
 swiper {
@@ -19,21 +20,22 @@ swiper {
 }
 
 .conternt {
-  margin-bottom: 131rpx;
+  /* margin-bottom: 200rpx; */
   width: 100%;
   height: 362rpx;
   background-color: #ffffff;
 }
 
 .w-h {
+  box-sizing: border-box;
   width: 100%;
   height: 90rpx;
   line-height: 90rpx;
   padding: 0 32rpx;
 }
 
-.w-h:nth-child(n+2) {
-  border-top: 1px solid #EEEEEE;
+.w-h:nth-child(n+3) {
+  /* border-top: 1px solid #EEEEEE; */
 }
 
 .integral {
@@ -47,9 +49,9 @@ swiper {
 .vip_inte {
   margin-right: 8rpx;
   display: block;
-  width: 51rpx;
-  height: 51rpx;
-  line-height: 51rpx;
+  width: 52rpx;
+  height: 52rpx;
+  line-height: 52rpx;
   text-align: center;
   background: #F4C08D;
   border-radius: 50%;
@@ -64,11 +66,11 @@ swiper {
   font-weight: 800;
   font-size: 32rpx;
   font-family: PingFang SC;
-  width: 51rpx;
-  height: 51rpx;
+  width: 52rpx;
+  height: 52rpx;
   margin-right: 10rpx;
-  text-align: center !important;
-  line-height: 51rpx;
+  line-height: 52rpx;
+  text-align: center;
   border-radius: 50%;
   background-color: #B6B9BE;
 }
@@ -84,8 +86,8 @@ swiper {
   height: 28rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
-  font-weight: 600;
-  color: #010101;
+  font-weight: 500;
+  color: #333333;
 }
 
 .dura {
@@ -99,17 +101,44 @@ swiper {
   color: #333333;
 }
 
-.infinity {
+.introduce {
+  box-sizing: border-box;
   width: 100%;
-  height: 131rpx;
+  background: #ffffff;
+  height: auto;
+  padding: 20rpx 30rpx;
+}
+
+.introduce>text:last-child {
+  line-height: 50rpx;
+}
+
+.w-h {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.introduce>view {
+  height: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* <!-- 兑换 --> */
+.infinity {
   position: fixed;
   bottom: 0rpx;
+  left: 0;
+  width: 100%;
+  height: 200rpx;
   background-color: #FFFFFF;
 }
 
 .conversion {
   width: 100%;
-  height: 40rpx;
+  height: 70rpx;
+  line-height: 70rpx;
   text-align: center;
   font-family: PingFang SC;
   font-weight: 500;
@@ -117,12 +146,16 @@ swiper {
   background-color: #52495B;
 }
 
+.real_box {
+  padding-bottom: 220rpx;
+}
+
 .total_list {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 130rpx;
   padding: 0 30rpx;
-  height: 90rpx;
-  line-height: 90rpx;
 }
 
 .total_list>view:first-child {
@@ -140,14 +173,13 @@ swiper {
 }
 
 .conBtn {
-  width: 94rpx;
-  height: 50rpx;
-  margin-top: 22rpx;
-  line-height: 50rpx;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   text-align: center;
   background: #12D58B;
-  border-radius: 25rpx;
-  font-size: 26rpx;
+  border-radius: 30rpx;
+  font-size: 34rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FFFFFF;
@@ -188,6 +220,7 @@ swiper {
 
 .real_duration {
   padding-left: 64rpx;
+  /* border: 1px solid #eeeeee; */
 }
 
 .real_date {
@@ -245,11 +278,11 @@ swiper {
 
 .coach_swiper {
   box-sizing: border-box;
-  margin: 0 30rpx;
+  /* margin: 0 30rpx; */
 }
 
 .coach_swiper swiper {
-  height: 198rpx;
+  height: 188rpx;
 }
 
 .coach_swiper swiper-item {
@@ -266,17 +299,17 @@ swiper {
   box-sizing: border-box;
 }
 
-.active{
+.active {
   border: 2px solid #12D58B;
 }
+
 /*  */
 .pitch {
-  margin-top: 20rpx;
-  padding: 0 32rpx;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 131rpx;
   height: 90rpx;
+  margin: 20rpx 0 0 0;
+  padding: 0 32rpx;
   background-color: #ffffff;
 }
 
@@ -291,28 +324,46 @@ swiper {
 
 .buy_count {
   display: flex;
+  font-size: 38rpx;
+  font-family: PingFang SC;
   height: 100%;
   align-items: center;
   text-align: center;
 }
 
+.buy_count>text:nth-child(2) {
+  padding: 0 16rpx;
+  font-family: PingFang SC;
+}
+
 .buy_count .symbol {
-  width: 40rpx;
-  height: 40rpx;
-  line-height: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   background: #F0F2F5;
-  border-radius: 6rpx 0px 0px 6rpx;
+  border-radius: 8rpx 0px 0px 8rpx;
+  font-size: 50rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
 }
 
 .buy_count text:nth-child(2) {
   margin: 0 1px;
-  height: 40rpx;
-  padding: 0 10rpx;
+  width: auto;
+  height: 60rpx;
+  padding: 0 20rpx;
+  font-size: 40rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
   background: #F0F2F5;
   border-radius: 6rpx 0px 0px 6rpx;
 }
 
 /*  */
+.available_list {
+  padding-bottom: 130rpx;
+}
+
 .available_item {
   width: 100%;
   height: 452rpx;
@@ -342,7 +393,7 @@ swiper {
 
 /* 快递方式 */
 .exp_way {
-  margin-bottom: 131rpx;
+  /* margin-bottom: 200rpx; */
   margin-top: 30rpx;
   width: 100%;
   height: 180rpx;
@@ -353,9 +404,9 @@ swiper {
   border-bottom: 1px solid #eeeeee;
 }
 
-.exp_item { 
+.exp_item {
   box-sizing: border-box;
-  padding-left: 32rpx;
+  padding-left: 30rpx;
   height: 90rpx;
   line-height: 90rpx;
   display: flex;
@@ -365,25 +416,27 @@ swiper {
 .way {
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex: 1;
 }
 
-.way>view {
+/* .way>view {
   padding-left: 40rpx;
-}
+} */
 
 .kong {
   display: inline-block;
-  width: 20rpx;
-  height: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
   border: 1px solid #52495B;
   border-radius: 50%;
+  vertical-align: middle;
 }
 
 .dispatching {
   padding-left: 30rpx;
 }
-.dispatching>text{
+
+.dispatching>text {
   padding-left: 30rpx;
 }

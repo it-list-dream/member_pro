@@ -21,6 +21,7 @@ Component({
   data: {
     selectShow: false, //初始option不显示
     nowText: "请选择", //初始内容
+    chooseBg:null
   },
   /**
    * 组件的方法列表
@@ -47,12 +48,13 @@ Component({
       this.setData({
         selectShow: false,
         nowText: nowText,
+        chooseBg:nowIdx
       })
       var nowDate = {
         id: nowIdx,
         text: nowText
       }
       this.triggerEvent('myget', nowDate)
-    }
+    },
   }
 })

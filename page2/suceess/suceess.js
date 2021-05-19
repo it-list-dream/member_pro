@@ -6,7 +6,9 @@ Page({
    */
   data: {
     isShow: 1,
-    coach: null
+    coach: null,
+    //花费的积分
+    costInte: 0
   },
 
   /**
@@ -17,6 +19,12 @@ Page({
     if (options.coach) {
       this.setData({
         coach: JSON.parse(options.coach)
+      })
+    }
+    if (options.isShow) {
+      this.setData({
+        isShow: options.isShow,
+        costInte:options.costPoints
       })
     }
     this.setData({

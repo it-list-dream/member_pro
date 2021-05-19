@@ -1,4 +1,6 @@
 .sportData {
+  position: relative;
+  z-index: 0;
   width: 100%;
   background-color: #F0F2F5;
 }
@@ -7,7 +9,68 @@
   position: relative;
 }
 
-.banner image {
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.custom-nav>view {
+  position: relative;
+  display: flex;
+  align-items: center;
+  left: 0;
+}
+
+.navbar_title {
+  height: 100%;
+  padding:0 115px;
+  font-size: 18px;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFEFE;
+}
+
+.icon-arrow {
+  width: 32px;
+  height: 32px;
+}
+
+.sport_title1 {
+  position: absolute;
+  top: 180rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 30rpx;
+  height: 120rpx;
+  /* background: green; */
+  text-align: center;
+}
+
+.sport_title1>view:first-child {
+  font-size: 60rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #12D58B;
+}
+
+.sport_title1>view:last-child {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.sport_title1>view:first-child>text {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.banner>image {
   width: 100%;
   height: 546rpx;
   vertical-align: bottom;
@@ -68,6 +131,7 @@
 .other_info {
   position: relative;
   width: 100%;
+  padding-bottom: 30rpx;
 }
 
 .other {
@@ -99,8 +163,12 @@
   justify-content: space-around;
 }
 
+.course text:first-child {
+  font-size: 26rpx !important;
+}
+
 .course text {
-  font-size: 28rpx;
+  font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
@@ -112,10 +180,12 @@
   background: #F0F2F5;
   padding-top: 112rpx;
 }
+
 .date image {
   width: 36rpx;
   height: 36rpx;
 }
+
 .year {
   font-size: 36rpx;
   font-family: PingFang SC;
@@ -131,15 +201,17 @@
   margin: -4rpx 0 0 10rpx;
   vertical-align: middle;
 }
-.list{
+
+.list {
   margin: 0 32rpx;
 }
+
 .week_day {
   height: 90rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid #AEEAD6;
+  border-bottom: 2rpx solid #AEEAD6;
 }
 
 .week_day view {
@@ -156,7 +228,7 @@
 
 .week_day .active::after {
   position: absolute;
-  bottom:-4rpx;
+  bottom: -2rpx;
   left: 144rpx;
   content: '';
   width: 52rpx;
@@ -176,16 +248,20 @@
   align-items: center;
   height: auto;
 }
-.dateDetail .arrow1{
+
+.dateDetail .arrow1 {
   width: 32rpx;
   height: 32rpx;
 }
-.dateDetail .arrow1:first-child{
-   margin-right: 15rpx;
+
+.dateDetail .arrow1:first-child {
+  margin-right: 15rpx;
 }
-.dateDetail .arrow1:last-child{
+
+.dateDetail .arrow1:last-child {
   margin-left: 15rpx;
 }
+
 .dateDetail>.line {
   width: 68rpx;
   height: 2px;
@@ -193,7 +269,7 @@
   margin: 0 12rpx;
 }
 
-.echarts_container{
+.echarts_container {
   width: 687rpx;
   height: 310rpx;
   margin: 0 auto;
@@ -204,7 +280,7 @@
 
 /*  */
 .bottom_content {
-  margin-top: 25rpx;
+  margin-top: 40rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -222,27 +298,32 @@
   box-shadow: 0 6rpx 20rpx 0 rgba(0, 255, 170, 0.06);
   border-radius: 8rpx;
 }
-.sp_title view:first-child{
+
+.sp_title view:first-child {
   font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: bold;
-color: #FFFFFF;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
 }
-.sp_title view:nth-child(2){
+
+.sp_title view:nth-child(2) {
   margin-top: 12rpx;
   font-size: 36rpx;
-font-family: PingFang SC;
-font-weight: bold;
-color: #FFFFFF;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FFFFFF;
 }
-.sp_title text{
+
+.sp_title text {
   font-size: 20rpx;
 }
-.sp1{
+
+.sp1 {
   background: linear-gradient(270deg, #92B1E8 0%, #7B98D0 100%);
   box-shadow: 0 6rpx 20rpx 0 rgba(255, 0, 9, 0.06);
 }
-.sp2{
+
+.sp2 {
   background: linear-gradient(270deg, #E9CF8B 0%, #DBBA77 100%);
   box-shadow: 0 6rpx 20rpx 0 rgba(255, 141, 0, 0.06);
 }

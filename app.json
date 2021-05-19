@@ -10,7 +10,6 @@
     "pages/coachList/coachList",
     "pages/selectCourse/selectCourse",
     "pages/groupAppointment/groupAppointment",
-    "pages/chooseSeat/chooseSeat",
     "pages/coachDetail/coachDetail",
     "pages/classList/classList",
     "pages/personalTrainer/personalTrainer",

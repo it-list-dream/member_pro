@@ -1,22 +1,24 @@
 // page2/editProfile/editProfile.js
 const app = getApp()
-let util = require('../../utils/util.js')
-Page({
 
+var util = require('../../utils/util.js')
+
+var api = require('../../utils/request.js')
+Page({
   /**
    * 页面的初始数据
    */
   data: {
     userInfo: '',
     sex: ['男', '女'],
-    heightList:[],
+    heightList: [],
     phone: '15111428921',
     sexId: null,
     birthday: null,
     endTime: null,
-    heightId:null,
-    weightId:null,
-    weightList:[]
+    heightId: null,
+    weightId: null,
+    weightList: []
   },
 
   /**
@@ -27,8 +29,8 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight,
-      endTime:date
+      endTime: date,
+      GB_ID:wx.getStorageSync('GB_ID')
     })
   },
   changeSex(e) {
@@ -48,43 +50,81 @@ Page({
       birthday: e.detail.value
     })
   },
-  changeHeight(e){
+  changeHeight(e) {
     this.setData({
       heightId: e.detail.value
     })
   },
-  changeWeight(e){
+  changeWeight(e) {
     this.setData({
       weightId: e.detail.value
     })
   },
-  getHeight(){
+  getHeight() {
     let height = this.data.heightList;
-    for(let i = 120;i<=230;i++){
-    //  console.log(i)
-         height.push(i)
+    for (let i = 120; i <= 230; i++) {
+      //  console.log(i)
+      height.push(i)
     }
     this.setData({
-      heightList:height
+      heightList: height
     })
   },
-  getWeight(){
+  getWeight() {
     let weight = this.data.weightList;
-     for(let i = 30;i<=160;i++){
-        weight.push(i);
-        weight.push(i+0.5);
-     }
-     this.setData({
-        weightList:weight
-     })
+    for (let i = 30; i <= 160; i++) {
+      weight.push(i);
+      weight.push(i + 0.5);
+    }
+    this.setData({
+      weightList: weight
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    let userInfo = wx.getStorageSync('userInfo');
+    this.setData({
+      userInfo: JSON.parse(userInfo)
+    })
   },
+  exit: function () {
+    var that = this
+    wx.showModal({
+      title: '',
+      content: '确定是否要退出？',
+      success(res) {
+        if (res.confirm) {
+          wx.clearStorageSync();
+          api.request({
+            url: "/GetUrlBySign",
+            data: {
+              sign: 'ruyu'
+            }
+          }).then(res => {
+            // console.log(res)
+        
+            if (res.data.code == 1) {
+              var t = wx.getStorageSync('token')
+              if (!t) {
+                wx.setStorageSync('token', res.data.user_token)
+                //保存门店名字
+                wx.setStorageSync('GymName', res.data.GymName);
+                wx.setStorageSync('GB_ID',that.data.GB_ID)
+                wx.navigateBack({
+                  delta: 1,
+                })
+              }
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
 
+  },
   /**
    * 生命周期函数--监听页面显示
    */

@@ -4,7 +4,7 @@
     indicator-active-color="rgba(251,251,251,1)" interval="2000">
     <block wx:for="{{bannerList}}" wx:key="index">
       <swiper-item>
-        <image src="{{item.ImageUrl}}" lazy-load></image>
+        <image src="{{item.ImageUrl? item.ImageUrl:item}}" lazy-load></image>
       </swiper-item>
     </block>
   </swiper>
@@ -31,7 +31,7 @@
     <image src="{{GymLogo?GymLogo:'/static/home_pic/ship_head.png'}}"></image>
   </view>
   <view class="store_wrapper">
-    <view class="store_title">{{GymName}}</view>
+    <view class="store_title">{{store.GB_Name}}</view>
     <view class="store_bottom">
       <view class="do_business">
         <text>营业中</text>
@@ -39,7 +39,7 @@
       </view>
       <view class="information" bindtap="callPhone" data-phone="{{store.GB_Tel}}">
         <view class="phone_wrapper">
-          <image src="/static/home_pic/phone1.png" class="phone"></image>
+          <image src="/static/phone4.png" class="phone"></image>
         </view>
         <view class="phone_info">{{store.GB_Tel}}</view>
       </view>
@@ -80,14 +80,14 @@
     <view class="star_item">
       <view class="coach_wrapper" wx:for="{{coachList}}" wx:key="index" bindtap="lookCoachDetail" data-coach="{{item}}">
         <view class="top_star">
-          <image src="{{item.AI_Face?item.AI_Face:'/static/coach01.png'}}" class="top_star_img"></image>
+          <image src="{{item.AI_Face?item.AI_Face:'/static/coach01.png'}}" class="top_star_img deg_img"></image>
         </view>
         <view class="bottom_star">
           <view class="star_title coachInfo1">
             <text>{{item.AI_Name}}</text>
-            <image src="/static/phonenumber.png" catchtap="callPhone" data-phone="{{item.AI_Tel}}"></image>
+              <image src="/static/phonenumber.png" catchtap="callPhone" data-phone="{{item.AI_Tel}}"></image>  
           </view>
-          <view class="star_title countNum">累计上课{{item.CS_Num}}节</view>
+          <view class="star_title countNum">累计上课<text style="color:#333333;">{{item.CS_Num}}</text>节</view>
           <!-- <view class="star_title starTip">{{item.AI_GoodAt}}</view> -->
           <view class="star_title">
             <view class="recomTitle">荐</view>
@@ -111,11 +111,15 @@
     <view class="recommend_list">
       <block wx:for="{{recomentList}}" wx:key="CP_ID">
         <view class="recommend_item" bindtap="lookSuggClass" data-sclass="{{item}}">
-          <image src="{{item.CP_Logo?item.CP_Logo:'/static/home_pic/coach2.png'}}" class="recommend_pic"></image>
+          <image src="{{item.CP_Logo?item.CP_Logo:'/static/home_pic/coach2.png'}}" class="recommend_pic deg_img"></image>
           <view class="course">{{item.CP_Name}}</view>
           <view class="course_detail">
             <text>￥</text>
-            <text class="course_num">{{item.OnlinePrice}}/节</text>
+            <view class="course_num">
+              {{item.OnlinePrice}}
+               <text style="fon-style:oblique;">/</text>
+               <text class="font-weight: 500;color: #FD4E54;">节</text>
+            </view>
             <text class="buy">{{item.SaleCount}}人已购买</text>
           </view>
         </view>

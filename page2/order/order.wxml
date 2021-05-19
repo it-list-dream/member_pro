@@ -9,92 +9,73 @@
     </block>
   </view>
   <!-- 主要部分 -->
-  <block wx:for="{{orderList}}">
-    <view class="main_order">
+  <view class="order_list" wx:if="{{chooseId == 0}}">
+    <block wx:for="{{orderList}}" wx:key="index">
+      <view class="main_order">
+        <view class="order_status">
+          <view>{{item.storeName}}</view>
+          <!--  -->
+          <view>{{item.state==1?'已支付':'未支付'}}</view>
+        </view>
+        <view class="order_id">订单编号：{{item.order_id}}</view>
+        <view class="order_img">
+          <view>
+            <image src="/static/order/vip.png" class="vip_pic"></image>
+            <text class="yearCard">{{item.card_year}}</text>
+          </view>
+          <view class="right_box">
+            <view>
+              ￥<text>{{item.money}}</text>
+            </view>
 
-      <view class="order_status">
-        <view>{{item.storeName}}</view>
+            <view>
+              <text style="font-size:24rpx;">×</text>
+              <text>{{item.buy_course}}</text>
+            </view>
+            <view>
+              合计:
+              ￥<text>3000</text>
+            </view>
+          </view>
+        </view>
         <!--  -->
-        <view>{{item.state==1?'已支付':'未支付'}}</view>
-      </view>
-      <view class="order_id">订单编号：{{item.order_id}}</view>
-      <view class="order_img">
-        <view>
-          <image src="/static/order/vip.png" class="vip_pic"></image>
-          <text class="yearCard">{{item.card_year}}</text>
-        </view>
-        <view class="right_box">
+        <view class="cre_time">
           <view>
-            <image src="/static/order/money.png"></image>
-            <text>{{item.money}}</text>
+            VIP积分
+            <text class="inte_num">+1800</text>
           </view>
-          <!-- <view>
- <text>行为积分{{item.money}}</text>
-          </view> -->
-          <view>
-            <!-- <image src="/static/order/close.png"></image> -->
-            <!--  -->
-            <text style="font-size:24rpx;">×</text>
-            <text>{{item.buy_course}}</text>
+          <view class="date">
+            2021-3-25 14:28:00
           </view>
-          <view>
-            合计:
-            <!--  -->
-            <image src="/static/order/money.png"></image>
-            <text>3000</text>
-          </view>
-        </view>
-      </view>
-      <!--  -->
-      <view class="cre_time">
-        <view>
-          VIP积分
-          <text class="inte_num">+1800</text>
-        </view>
-        <view class="date">
-          2021-3-25 14:28:00
-        </view>
-      </view>
-    </view>
-  </block>
-  <!-- <view class="main">
-        <block wx:if="{{orderList}}">
-      <view class="order_status">
-        <view>如渔店</view>
-        <view>已支付</view>
-      </view>
-      <view class="order_id">订单编号：6086816569005598</view>
-      <view class="order_img">
-        <view>
-          <image src="/static/order/vip.png" class="vip_pic"></image>
-          <text class="yearCard">一年卡</text>
-        </view>
-        <view class="right_box">
-          <view>
-            <image src="/static/order/money.png"></image>
-            <text>1800</text>
-          </view>
-          <view>
-            <image src="/static/order/error.png"></image>
-            <text>12</text>
-          </view>
-          <view>
-            合计:
-            <image src="/static/order/money.png"></image>
-            <text>3000</text>
-          </view>
-        </view>
-      </view>
-
-      <view class="cre_time">
-        <view>
-          VIP积分
-          <text class="inte_num">+1800</text>
-        </view>
-        <view class="date">
-          2021-3-25 14:28:00
         </view>
       </view>
     </block>
-  </view> -->
+  </view>
+  <view class="order_list" wx:if="{{chooseId == 1}}">
+    <block wx:for="{{otherList}}" wx:key="index">
+      <view class="main_order">
+        <view class="order_status">
+          <view class="storeName">{{item.storeName}}</view>
+        </view>
+        <view class="order_id">订单编号：{{item.order_id}}</view>
+        <view class="order_img">
+          <view>
+            <image src="/static/order/vip.png" class="vip_pic"></image>
+            <text class="yearCard">{{item.orderName}}</text>
+          </view>
+          <view class="right_box">
+            <view>
+              {{item.type==1?'行为积分':'消费积分'}}
+              <text>{{item.money}}</text>
+            </view>
+            <view>
+              <text style="font-size:24rpx;">× {{item.inte_num}}</text>
+            </view>
+            <view>合计:  3000 </view>
+          </view>
+        </view>
+        <view class="ctime">2021-3-25 14:28:00 </view>
+      </view>
+    </block>
+  </view>
 </view>

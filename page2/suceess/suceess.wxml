@@ -11,7 +11,7 @@
     </view>
   </view>
   <!-- 购买卡成功 -->
-  <view class="buy-succ" wx:elif="{{isShow ==2}}">
+  <view class="buy-succ" wx:elif="{{isShow == 2}}">
     <icon type="success" size="50"></icon>
     <view class="buyTip">购买成功</view>
     <view class="getInte">
@@ -42,13 +42,13 @@
   <!-- 积分购卡成功 -->
   <view class="inteConvert" wx:elif="{{isShow ==4}}">
     <icon type="success" size="50"></icon>
-    <view class="buyTip">购买成功</view>
+    <view class="buyTip">兑换成功</view>
     <view class="getInte">
       <text>获得VIP积分</text>
-      <text> -180</text>
+      <text> - {{costInte}}</text>
     </view>
     <view class="buyBtn">
-       <button class="btn"  hover-class="none" plain>完成</button>
+       <button class="btn"  hover-class="none" plain bindtap="backHome">完成</button>
        <button class="btn in" open-type="share" hover-class="none" >叫上朋友一起练吧</button>
     </view>
   </view>

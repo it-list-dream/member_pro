@@ -6,38 +6,53 @@
 }
 
 .selectCourse .course_list {
+  position: relative;
   width: 690rpx;
   height: 240rpx;
   margin: 0 auto;
-  background-size: 100% 100%;
   border-radius: 8rpx;
   margin-bottom: 20rpx;
+  background-color: rgb(82, 73, 91);
+}
+
+.bg2{
+   position: absolute;
+   z-index: 100;
+   top: 25rpx;
+   right:20rpx;
+   width: 190rpx;
+   height: 190rpx;
 }
 
 .selectCourse .course_item {
+  position: relative;
+  z-index: 10;
   padding: 20rpx;
-  /* display: flex; */
-
 }
+
+/* .orderCourse{
+  position: relative;
+  z-index: 10;
+} */
 
 .selectCourse .top {
   display: flex;
 }
 
 .pic1 {
-  width: 52rpx;
-  height: 52rpx;
+  width: 74rpx;
+  height: 74rpx;
   border-radius: 50%;
 }
 
 .pic2 {
-  width: 20rpx;
-  height: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
   vertical-align: middle;
 }
 
 .selectCourse .course-info {
-  font-size: 22rpx;
+  font-size: 28rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
@@ -52,7 +67,7 @@
 .selectCourse .bottom {
   /* display: flex;
   flex-direction: column; */
-  margin-top: 50rpx;
+  margin-top: 30rpx;
 }
 
 .selectCourse .course_number {
@@ -68,4 +83,11 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
+}
+.none{
+  display: flex;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

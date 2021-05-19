@@ -38,7 +38,9 @@ Page({
     pageSize: 5,
     currPage: 1,
     //团课列表
-    togetherClass: []
+    togetherClass: [],
+    chooseCoach:null,
+    isChoose:false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -86,7 +88,7 @@ Page({
     dayList.push({
       'day': myDate.getDate(),
       'month': myDate.getMonth() + 1,
-      'week': util.toWeekDay(myDate.getDay()),
+      'week': util.toWeekDay(myDate),
       'year': myDate.getFullYear()
     });
     for (var i = 0; i < 4; i++) {
@@ -94,7 +96,7 @@ Page({
       dayList.push({
         'day': myDate.getDate(),
         'month': myDate.getMonth() + 1,
-        'week': util.toWeekDay(myDate.getDay()),
+        'week': util.toWeekDay(myDate),
         'year': myDate.getFullYear()
       });
     }
@@ -160,7 +162,7 @@ Page({
         dataTime[i].type = 0;
       }
     }
-    console.log(dataTime)
+   // console.log(dataTime)
     this.setData({
       datatime: dataTime
     })
@@ -190,18 +192,28 @@ Page({
           pageIndex: that.data.currPage
         }
       }).then(res => {
-        if (res.data.code == '1') {
+        if (res.data.code == 1 && res.data.data.length>0) {
           that.setData({
-            currentCoach: res.data.data[0]
+            currentCoach: res.data.data[0],
+            isCanCoach:true
           })
           //预约时间
           that.getPrivateAppointment();
-
-        }
+        }else{
+          that.setData({
+            isCanCoach:false
+          })
+         }
       })
       return;
     }
     that.getPrivateAppointment();
+  },
+  //跳转私教课页面
+  chooseSpecilClass:function(){
+      wx.navigateTo({
+        url: '/pages/classList/classList',
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -385,7 +397,7 @@ Page({
   },
   showCalendar() {
     this.setData({
-      date: true
+      date: !this.data.date
     })
   },
   //团课预约

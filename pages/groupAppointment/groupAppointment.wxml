@@ -30,11 +30,11 @@
     </view>
   </view>
   <!-- 免费的团课 -->
-  <view class="order_list" wx:if="{{tclass.CTO_Price == 0}}">
-    <view class="order" bindtap="handleSeat">预约</view>
-  </view>
+  <!-- <view class="order_list" wx:if="{{tclass.CTO_Price == 0}}">
+    <view class="order" bindtap="handleSeat">预约{{tclass.IsPickNumChk == 1?'（选座）':''}}</view>
+  </view> -->
   <!-- 收费的团课 -->
-  <view wx:else class="pay_course">
+  <view class="pay_course">
     <view class="pay_list">
       <view class="pay">
         <view class="pay_title">支付方式</view>
@@ -55,22 +55,21 @@
     </view>
   </view>
   <!-- 选座 -->
-  <view class="mask" wx:if="{{chooseSeat}}" bindtap="close">
+  <view class="mask" hidden="{{!chooseSeat}}" catchtap="close">
     <view class="mask-item">
       <view style="padding: 0 30rpx;">
         <view class="seatTitle">选择座位</view>
         <ul class="seatAll">
           <block wx:for="{{seatList}}" wx:key="index">
             <li>
-              <view class="seat {{item.IsUse==1?'col':''}}" catchtap="judgeSeatExist{{item.IsUse==1?'1':'2'}}"
-              data-index="{{index+1}}"
-                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}}">
+              <view class="seat {{item.IsUse==1?'col':''}} {{num==index+1 ? 'choosing':''}}" catchtap="judgeSeatExist{{item.IsUse==1?'1':'2'}}"
+              data-index="{{index+1}}">
                 {{index+1}}</view>
             </li>
           </block>
         </ul>
         <!-- 确定 -->
-        <view class="confirm-btn" bindtap="onconfirm">确定</view>
+        <view class="confirm-btn" catchtap="onconfirm">确定</view>
       </view>
     </view>
   </view>

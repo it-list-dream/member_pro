@@ -1,5 +1,5 @@
 <nav-bar page-name="积分规则"></nav-bar>
-<view class="content" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}}px)">
+<view class="content" style="margin-top:{{navHeight}}px;">
   <view class="shopping">
     <view class="product">
       商城积分是什么？
@@ -40,7 +40,7 @@
       <text class="consumer">消费积分：</text>
       例如：每消费1元加1积分。
       满积分奖励：消费满1000元在原本积分上加100积分。
-
+      指定日翻倍：当在特殊日或节假日对于原本增加积分进行翻倍奖励。
     </text>
   </view>
 </view>

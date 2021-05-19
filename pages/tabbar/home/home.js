@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerList: [],
+    bannerList: ['http://user.360ruyu.cn/images/userBanner/banner1.png'],
     coachList: [],
     recomentList: [],
     activityCard: [],
@@ -47,6 +47,13 @@ Page({
   toShop() {
     wx.navigateTo({
       url: '/pages/shop/shop',
+    })
+  },
+  code: function () {
+    wx.scanCode({
+      success(res) {
+        console.log(res)
+      }
     })
   },
   //私教预约
@@ -90,9 +97,6 @@ Page({
         url: '/page2/login/login',
       })
     }
-    wx.navigateTo({
-      url: '/page2/memberCode/memberCode',
-    })
   },
   // //获取私教课
   // getMyCoachClassList: function () {
@@ -133,11 +137,13 @@ Page({
       that.setData({
         store: app.globalData.store
       })
+     // wx.setStorageSync('storeName', list.sort(this.compare('distance'))[0].GB_Name)
     } else {
       app.globalData.store = that.data.storeList[0]
       that.setData({
         store: that.data.storeList[0]
       })
+     // wx.setStorageSync('storeName', list.sort(this.compare('distance'))[0].GB_Name)
     }
   },
   //获取门店信息
@@ -204,8 +210,8 @@ Page({
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
-      console.log(res)
-      if (res.data.code == 1) {
+      // console.log(res)
+      if (res.data.code == 1 && res.data.data.length > 0) {
         that.setData({
           bannerList: res.data.data
         })
@@ -281,6 +287,11 @@ Page({
         that.setData({
           GymLogo: res.data.data[0].GymLogo
         })
+        if(wx.getStorageSync('GymLog')){
+          wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
+        }else{
+          wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
+        }
       }
     })
   },

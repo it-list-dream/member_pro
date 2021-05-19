@@ -18,22 +18,16 @@ Page({
    */
   onLoad: function (options) {
     let phoneNumber = wx.getStorageSync('phone');
-    
-    if(!phoneNumber && phoneNumber==''){
+    if (!phoneNumber && phoneNumber == '') {
       wx.navigateTo({
         url: '/page2/login/login',
       })
     }
-
     this.getWeekList();
-    //sport
-    this.getMotionCalendar()
-    //
-    this.getScoreRewardActList()
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      menuRight:app.globalData.menuRight
+      menuRight: app.globalData.menuRight
     })
     console.log(app.globalData.menuRight)
   },
@@ -47,11 +41,25 @@ Page({
     this.getMotionCalendar()
   },
   runing: function () {
+    let phone = wx.getStorageSync('phone');
+    if (!phone && phone == '') {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+      return
+    }
     wx.navigateTo({
       url: '/pages/movementData/movementData',
     })
   },
   fitness: function () {
+    let phone = wx.getStorageSync('phone');
+    if (!phone && phone == '') {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+      return
+    }
     wx.navigateTo({
       url: '/page2/instrument/instrument',
     })
@@ -66,7 +74,24 @@ Page({
       chooseCourse: false
     })
   },
+  myClass: function () {
+    let phone = wx.getStorageSync('phone');
+    if (!phone && phone == '') {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/page2/myCourse/myCourse',
+      })
+    }
+
+  },
   groupCourse: function () {
+    let phone = wx.getStorageSync('phone')
+    // if(phone ){
+
+    // }
     wx.navigateTo({
       url: '/pages/appointment/appointment?course=1',
     })
@@ -91,14 +116,17 @@ Page({
     while ((endDate.getTime() - startDate.getTime()) >= 0) {
       let month = (startDate.getMonth() + 1).toString().length === 1 ? "0" + (startDate.getMonth() + 1).toString() : (startDate.getMonth() + 1);
       let day = startDate.getDate().toString().length === 1 ? "0" + startDate.getDate() : startDate.getDate();
-      dayList.push(month + "-" + day);
+      dayList.push({
+        date:month + "-" + day,
+        week:util.toWeek(startDate)
+      })
+   //   dayList.push(month + "-" + day);
       startDate.setDate(startDate.getDate() + 1);
     }
     this.setData({
       weekList: dayList,
       year: new Date().getFullYear()
     })
-    //console.log(dayList)
   },
   //运动日历
   getMotionCalendar: function () {
@@ -108,7 +136,7 @@ Page({
       data: {
         user_token: wx.getStorageSync('token'),
         GB_ID: wx.getStorageSync('GB_ID'),
-        searchData: that.data.year + '-' + that.data.weekList[that.data.changebg],
+        searchData: that.data.year + '-' + that.data.weekList[that.data.changebg].date,
         UI_ID: wx.getStorageSync('UI_ID') || 0
       }
     }).then(res => {
@@ -133,8 +161,36 @@ Page({
       //console.log(res)
       if (res.data.code == 1) {
         that.setData({
-          integral_list:res.data.data.slice(0,3)
+          integral_list: res.data.data.slice(0, 6)
         })
+      }
+    })
+  },
+  selfRewordInte: function (e) {
+    console.log(e)
+    let se_id = e.currentTarget.dataset.id;
+    let price_type = e.currentTarget.dataset.prizetype
+    wx.navigateTo({
+      url: '/page2/integralMall/integralMall?se_id=' + se_id + '&price_type=' + price_type + '&type=1',
+    })
+  },
+  memberCode() {
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      //会员卡存在
+      wx.navigateTo({
+        url: '/page2/memberCode/memberCode',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
+  },
+  code: function () {
+    wx.scanCode({
+      success(res) {
+        console.log(res)
       }
     })
   },
@@ -149,7 +205,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+   
+    //sport
+    this.getMotionCalendar()
+    //
+    this.getScoreRewardActList()
   },
 
   /**

@@ -1,9 +1,9 @@
 <nav-bar page-name="编辑资料"></nav-bar>
-<view class="edit_list" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}}px )">
+<view class="edit_list" style="margin-top:{{navHeight}}px;">
   <view class="edit_item">
     <view class="my_info">
       <view>
-        <image class="userinfo-avatar" src="/static/avtor.png" mode="cover"></image>
+        <image class="userinfo-avatar" src="{{userInfo?userInfo.avatarUrl:'/static/avtor.png'}}" mode="cover"></image>
       </view>
       <!--  -->
       <view class="pro_bottom">
@@ -12,8 +12,8 @@
           <!--  -->
           <picker class="pick" mode="selector" bindchange="changeSex" range="{{sex}}">
             <view>
-              <text>{{sexId ? sex[sexId]:'请选择'}}</text>
-              <image src="/static/next.png"></image>
+              <text class="right_con">{{sexId ? sex[sexId]:'请选择'}}</text>
+              <image src="/static/arrowAll.png"></image>
             </view>
           </picker>
         </view>
@@ -28,8 +28,8 @@
           <view>生日</view>
           <picker class="pick" mode="date" start="1900-01-01" end="{{endTime}}" bindchange="changeBirthday">
             <view>
-              <text>{{ birthday? birthday:'请选择'}}</text>
-              <image src="/static/next.png"></image>
+              <text class="right_con">{{ birthday? birthday:'请选择'}}</text>
+              <image src="/static/arrowAll.png"></image>
             </view>
           </picker>
 
@@ -38,8 +38,8 @@
           <view>身高</view>
           <picker class="pick"  mode="selector" bindchange="changeHeight" range="{{heightList}}">
             <view>
-              <text>{{heightId?heightList[heightId]+'cm':'请选择'}}</text>
-              <image src="/static/next.png"></image>
+              <text class="right_con">{{heightId?heightList[heightId]+'cm':'请选择'}}</text>
+              <image src="/static/arrowAll.png"></image>
             </view>
           </picker>
 
@@ -48,8 +48,8 @@
           <view>体重</view>
           <picker class="pick"  mode="selector" bindchange="changeWeight" range="{{weightList}}">
           <view>
-            <text>{{weightId?weightList[weightId]+'kg':'请选择'}}</text>
-            <image src="/static/next.png"></image>
+            <text class="right_con">{{weightId?weightList[weightId]+'kg':'请选择'}}</text>
+            <image src="/static/arrowAll.png"></image>
           </view>
           </picker>
         </view>
@@ -59,6 +59,6 @@
   </view>
   <!--  -->
   <view class="btn-list">
-    <view class="exitBtn">退出</view>
+    <view class="exitBtn" bindtap="exit">退出</view>
   </view>
 </view>

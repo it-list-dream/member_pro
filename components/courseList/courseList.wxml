@@ -1,16 +1,13 @@
-<wxs module="tools" src="./courseList.wxs"></wxs>
-<view class="coach_subject" catchtap="handleDetail">
-  <view class="coach_pic">
-    <!-- 蒙层 -->
-    <view class="mask">
-      <image src="{{course.CP_Logo?course.CP_Logo:'/static/coach02.png'}}" class="bg"></image>
-    </view>
-    <view class="subject">
-      <view>{{course.CP_Name}}</view>
-      <view>
-        <text class="price">￥</text>
-        <text class="num">{{tools.toFixed(course.OnlinePrice)}}/节</text>
-      </view>
-    </view>
-  </view>
+
+<view class="coach_subject">
+   <view class="subject_item" bindtap="handleDetail">
+     <image class="coach_head" src="{{course.CP_Logo}}"></image>
+     <view class="subject_content">
+         <view>{{course.CP_Name}}</view>
+         <view class="price_box"><text>￥</text>{{course.OnlinePrice}}/节</view>
+     </view>
+     <view class="chooseClass">
+      <image src="/static/arrowAll.png"></image>
+     </view>
+   </view>
 </view>

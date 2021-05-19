@@ -1,57 +1,71 @@
 <!-- 背景 -->
 <view class="inteTip">
+  <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
   <view class="navbar" style='height:{{navHeight}}px;'>
     <view class="tip" style="margin-top:{{navTop}}px;margin-left:{{menuRight}}px">
-      <view class="tipItem">
+      <view class="tipItem" bindtap="memberCode">
         <image src="/static/home_pic/QRcode.png"></image>
       </view>
       <view class="line"></view>
-      <view class="tipItem">
+      <view class="tipItem" bindtap="code">
         <image src="/static/home_pic/scan.png"></image>
       </view>
     </view>
-    <view class='navbar-title' style='top:{{navTop}}px;'>积分</view>
+    <view class='navbar-title' style='top:{{navTop}}px;'>积分商城</view>
   </view>
 </view>
-<!--  自律积分-->
+<!-- 自律积分 -->
 <view class="integral_list">
-  <view class="inte_title1">
-    <view class="inte_item1">
-      <view>行为积分</view>
-      <view>{{actionIntegral}}<text class="char">分</text></view>
+  <!--积分明细 -->
+  <view class="inteTitleBox">
+    <view class="behInte">
+      <view class="integral_bar">行为积分</view>
+      <view>
+        {{actionIntegral}}
+        <text class="branch">分</text>
+      </view>
     </view>
-    <view class="vertical_line"></view>
-    <view class="inte_item1">
-      <view>VIP积分</view>
-      <view>{{vipIntegral}}<text class="char">分</text></view>
+    <view class="vipInte">
+      <view class="integral_bar">VIP积分</view>
+      <view>
+        {{vipIntegral}}
+        <text class="branch">分</text>
+      </view>
     </view>
-    <view class="vertical_line"></view>
-    <view class="bill" bindtap="pointsBill">积分账单</view>
-    <view class="vertical_line"></view>
-    <view class="inte_con">
-      <image src="/static/choose.png" style="width:40rpx;height:40rpx;" bindtap="filtrateData"></image>
+    <view class="billBox">
+      <view class="bill" bindtap="pointsBill">积分账单</view>
+    </view>
+    <view class="inteIcon">
+      <image src="/static/choose.png" bindtap="filtrateData"></image>
     </view>
   </view>
+
   <!-- 筛选 -->
   <view class="filterBox" hidden="{{!isScreen}}">
     <view catchtouchmove="preventTouchMove" class="wrapper">
-      <view class="inte_title1 copy">
-        <view class="inte_item1">
-          <view>行为积分</view>
-          <view>{{actionIntegral}}<text class="char">分</text></view>
+      <view class="inteTitleBox copyinte">
+        <view class="behInte">
+          <view class="integral_bar">行为积分</view>
+          <view>
+            {{actionIntegral}}
+            <text class="branch">分</text>
+          </view>
         </view>
-        <view class="vertical_line"></view>
-        <view class="inte_item1">
-          <view>VIP积分</view>
-          <view>{{vipIntegral}}<text class="char">分</text></view>
+        <view class="vipInte">
+          <view class="integral_bar">VIP积分</view>
+          <view>
+            {{vipIntegral}}
+            <text class="branch">分</text>
+          </view>
         </view>
-        <view class="vertical_line"></view>
-        <view class="bill">积分账单</view>
-        <view class="vertical_line"></view>
-        <view class="inte_con">
-          <image src="/static/choose.png" style="width:40rpx;height:40rpx;"></image>
+        <view class="billBox">
+          <view class="bill" bindtap="pointsBill">积分账单</view>
+        </view>
+        <view class="inteIcon">
+          <image src="/static/choose.png" bindtap="filtrateData"></image>
         </view>
       </view>
+      <!-- 筛选 -->
       <view class="filter_item">
         <!-- 积分类型 -->
         <view class="inteType">积分类型</view>
@@ -61,7 +75,8 @@
               <!-- <view class="{{choose == index1?'choosebg1':''}}" bindtap="choosebg" data-index="{{index1}}">{{item}}</view> -->
               <view class="intradion_item {{item.checked?'changebg':''}}">
                 <label class="checkbox {{item.checked?'is_checked':''}}">
-                  <checkbox value="{{item.inteName}}" checked="{{item.checked}}" hidden="false" />{{item.inteName}}
+                  <checkbox value="{{item.inteName}}" checked="{{item.checked}}" hidden="false" />
+                  {{item.inteName}}
                 </label>
               </view>
             </block>
@@ -80,7 +95,7 @@
         </view>
       </view>
     </view>
-    <!--  -->
+    <!-- 关闭 -->
     <view class="close" bindtap="close"></view>
   </view>
   <!-- 轮播图 -->
@@ -94,18 +109,22 @@
   <view class="nav">
     <view class="nav-title">自律奖励</view>
   </view>
-  <!--  自律奖励-->
+  <!-- 自律奖励 -->
   <view class="self_aword" wx:if="{{selfReword.length>0}}">
     <block wx:for="{{selfReword}}" wx:for-index="idx" wx:key="idx">
-
-        <view class="self_item" bindtap="selfRewordInte" data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
-          <view>
-            <image src="{{(item.SE_Logo && item.SE_Logo!='')?item.SE_Logo:'/static/sport/jifen01.png'}}"></image>
-          </view>
-          <view class="card_type">{{item.SE_Name}}</view>
-          <view class="card_count">{{item.ActScore}}<text class="char">分</text></view>
+      <view class="self_item" bindtap="selfRewordInte" data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
+        <view>
+          <image src="{{(item.SE_Logo && item.SE_Logo!='')?item.SE_Logo:'/static/sport/jifen01.png'}}" class="deg_img">
+          </image>
         </view>
-   
+        <view class="inteBottom">
+          <view class="card_type">{{item.SE_Name}}</view>
+          <view class="card_count">
+            {{item.ActScore}}<text class="char">积分</text>
+          </view>
+        </view>
+
+      </view>
     </block>
   </view>
   <!--  -->
@@ -115,13 +134,19 @@
   <!-- vip积分 -->
   <view class="inte_list" wx:if="{{VIPReword.length>0}}">
     <block wx:for="{{VIPReword}}" wx:key="index">
-        <view class="inte_item" bindtap="VIPRewards"  data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
-          <view>
-            <image src="{{(item.SE_Logo && item.SE_Logo!='') ?item.SE_Logo:'/static/sport/jifen01.png'}}"></image>
-          </view>
-          <view>{{item.SE_Name}}</view>
-          <view class="inte_num">{{item.PayScore}} <text>积分</text></view>
+      <view class="inte_item" bindtap="VIPRewards" data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
+        <view>
+          <image src="{{(item.SE_Logo && item.SE_Logo!='') ?item.SE_Logo:'/static/sport/jifen01.png'}}" class="deg_img">
+          </image>
         </view>
+        <view class="inteBottom">
+          <view>{{item.SE_Name}}</view>
+          <view class="inte_num">
+            {{item.PayScore}}<text>积分</text>
+          </view>
+        </view>
+
+      </view>
     </block>
   </view>
 </view>

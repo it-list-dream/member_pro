@@ -10,7 +10,7 @@ Page({
     chooseId: 0,
     orderList: [{
         storeName: '如鱼店',
-        order_id: '4222222222222222222',
+        order_id: '42182021051787131',
         card_year: '一年卡',
         inte_num: 1400,
         buy_course: 1,
@@ -19,8 +19,8 @@ Page({
       },
       {
         storeName: '体验店',
-        order_id: '4222223443422222',
-        card_year: '一年卡',
+        order_id: '4512202105167811',
+        card_year:'三年卡',
         inte_num: 10000,
         buy_course: 1,
         money: 2700,
@@ -37,7 +37,22 @@ Page({
       }
     ],
     otherList: [
-
+      {
+        storeName: '如鱼店',
+        order_id: '42182021051787131',
+        orderName: '一年卡',
+        inte_num: 1,
+        type:1,
+        money: 1700
+      },
+      {
+        storeName: '体验店',
+        order_id: '6086816569005598',
+        orderName: '瑜伽课',
+        inte_num: 1,
+        type:2,
+        money: 2100
+      }
     ]
   },
 

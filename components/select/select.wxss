@@ -22,7 +22,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   padding:0 40rpx 0 12rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 .com-sList{
   background: #F0F2F5;
@@ -53,4 +53,7 @@
 }
 .com-sItem:first-child{
   border-top: none;
+}
+.touchbg{
+  background: #52495B;
 }

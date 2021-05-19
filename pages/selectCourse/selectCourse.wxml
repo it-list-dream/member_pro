@@ -1,8 +1,9 @@
+<wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="选择课程"></nav-bar>
 <view class="selectCourse" style="margin-top:{{navHeight}}px">
   <block wx:for="{{coachClassList}}" wx:key="index">
-    <!-- <block wx:for="{{5}}" wx:key="index">  -->
-    <view class="course_list" style="background-image:url({{cardImg}})">
+    <view class="course_list">
+      <image src="/static/course11.png" class="bg2"></image>
       <view class="course_item" catchtap="orderCourse" data-coach="{{item}}">
         <view class="top">
           <view>
@@ -17,11 +18,17 @@
           </view>
         </view>
         <view class="bottom">
-          <view class="course_number">{{item.CP_Name}}（{{item.CO_Have}}节）</view>
+          <view class="course_number">{{tools.replaceChar1( item.CP_Name,'。','')}}（{{item.CO_Have}}节）</view>
           <view class="expirationDate">截止{{item.CO_ActiveEnd}}</view>
         </view>
       </view>
     </view>
   </block>
-
+  <view class="none"
+      wx:if="{{coachClassList.length == 0}}">
+      <view class="none_list">
+        <image src="/static/none.png" style="width:200rpx;height:200rpx;"></image>
+        <view>暂无内容</view>
+      </view>
+    </view>
 </view>

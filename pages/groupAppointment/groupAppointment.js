@@ -12,10 +12,10 @@ Page({
     //选座
     chooseSeat: false,
     //选择座位的号码
-    num: -1,
+    num: null,
     seatList: [],
     //是否预约
-    isAppoinment:true
+    isAppoinment: true
   },
 
   /**
@@ -36,15 +36,7 @@ Page({
       this.setData({
         chooseSeat: true
       })
-      wx.showModal({
-        title: '',
-        content: '确定预约该课程',
-        success(res) {
-          if (res.confirm) {
-            that.getCardTogetherIsPickNum();
-          }
-        }
-      })
+     that.getCardTogetherIsPickNum()
 
     } else {
       wx.showModal({
@@ -79,7 +71,7 @@ Page({
     }
   },
   //条件
-  appoinmentChoose:function(){
+  appoinmentChoose: function () {
 
   },
   //关闭选座
@@ -117,32 +109,48 @@ Page({
     })
   },
   onconfirm: function () {
-    var that = this
-    api.request({
-      url: "/CardTogetherAppointment",
-      data: {
-        user_token: wx.getStorageSync('token'),
-        UI_ID: wx.getStorageSync('UI_ID'),
-        CTO_ID: that.data.tclass.CTO_ID,
-        //座位号
-        PickNum: that.data.num
-      }
-    }).then(res => {
-      console.log(res)
-      that.setData({
-        num: null
+    var that = this;
+    if (!that.data.num) {
+      wx.showToast({
+        icon:"none",
+        title: '请选择座位',
       })
-      if (res.data.code == 1) {
-        wx.navigateTo({
-          url: '/page2/suceess/suceess',
-        })
-      } else {
-        wx.showToast({
-          icon: "none",
-          title: res.data.msg,
-        })
+      return
+    }
+    wx.showModal({
+      title: '',
+      content: '确定预约该课程',    
+      success(res) {
+        if (res.confirm) {
+          api.request({
+            url: "/CardTogetherAppointment",
+            data: {
+              user_token: wx.getStorageSync('token'),
+              UI_ID: wx.getStorageSync('UI_ID'),
+              CTO_ID: that.data.tclass.CTO_ID,
+              //座位号
+              PickNum: that.data.num
+            }
+          }).then(res => {
+            console.log(res)
+            if (res.data.code == 1) {
+              that.setData({
+                num: null
+              })
+              wx.navigateTo({
+                url: '/page2/suceess/suceess',
+              })
+            } else {
+              wx.showToast({
+                icon: "none",
+                title: res.data.msg,
+              })
+            }
+          })
+        }
       }
     })
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -162,7 +170,10 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({
+      chooseSeat: false,
+     // num: null
+    })
   },
 
   /**

@@ -1,6 +1,5 @@
 /* page2/myVIPCard/myVIPCard.wxss */
 .vipCard {
-  width: 100%;
   background: #F0F2F5;
   padding: 0 30rpx;
   height : auto;
@@ -12,7 +11,7 @@
   box-sizing: border-box;
   padding: 20rpx;
   width: 690rpx;
-  height: 440rpx;
+  height: auto;
   background-color: #ffffff;
   border-radius: 8rpx;
 }
@@ -78,4 +77,12 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
+}
+
+.none{
+  display: flex;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

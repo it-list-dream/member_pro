@@ -6,6 +6,7 @@
   left: 0;
   z-index: 999;
 }
+
 .navbar {
   position: relative;
   top: 0;
@@ -16,9 +17,14 @@
   flex-shrink: 0;
 }
 
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
 .icon .icon-arrow {
-  width: 36rpx;
-  height: 36rpx;
+  width: 32px;
+  height: 32px;
 }
 
 .navbar-title {
@@ -32,9 +38,10 @@
   position: absolute;
   left: 0;
   z-index: 10;
-  color: #333;
-  font-size: 16px;
-  font-weight: bold;
+  font-family: PingFang SC;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 500;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -51,9 +58,9 @@
   position: absolute;
   left: 10px;
   z-index: 11;
-  line-height: 1;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  /* line-height: 1; */
+  height: 32px;
+  /* background: red; */
 }
 
 

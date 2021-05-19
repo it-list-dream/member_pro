@@ -7,9 +7,9 @@
 .edit_item {
   padding-top: 20rpx;
   font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
 
 .my_info {
@@ -26,15 +26,16 @@ color: #333333;
 }
 
 .userinfo-avatar {
-  width: 90rpx;
-  height: 90rpx;
+  width: 140rpx;
+  height: 140rpx;
   vertical-align: bottom;
+  border-radius: 50%;
 }
 
 .info_item {
   box-sizing: border-box;
   padding: 0 20rpx;
-  height: 80rpx;
+  height: 90rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,32 +59,47 @@ color: #333333;
 }
 
 .pick image {
-  width: 30rpx;
-  height: 30rpx;
-  width: 30rpx;
-  height: 30rpx;
+  width: 64rpx;
+  height: 64rpx;
   vertical-align: middle;
 }
-.info_item .phoneNumber{
+
+.right_con {
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.info_item .phoneNumber {
   text-align: right;
 }
-.btn-list{
+
+.btn-list {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   margin-bottom: 57rpx;
 }
-.exitBtn{
+
+.info_item>view {
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.exitBtn {
   margin: 0 auto;
   width: 690rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 66rpx;
+  line-height: 66rpx;
   background: #12D58B;
   border-radius: 30rpx;
-  font-size: 28rpx;
+  font-size: 34rpx;
   text-align: center;
-font-family: PingFang SC;
-font-weight: 500;
-color: #FFFFFF;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
 }

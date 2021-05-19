@@ -4,7 +4,7 @@
     <view class="card_list">
       <image src="/static/vipimg.png"></image>
       <view class="card_status">
-        <view class="year">{{item.GB_Name}}</view>
+        <view class="year">{{item.SC_Name}}</view>
         <view class="status">状态：{{item.UI_FirstData?'使用中':'未激活'}}</view>
       </view>
       <view wx:if="{{item.UI_FirstDate}}">
@@ -19,4 +19,10 @@
     </view>
   </block>
 
+  <view class="none" wx:if="{{cardList.length==0}}">
+    <view class="none_list">
+      <image src="/static/none.png" style="width:200rpx;height:200rpx;"></image>
+      <view>暂无内容</view>
+    </view>
+  </view>
 </view>

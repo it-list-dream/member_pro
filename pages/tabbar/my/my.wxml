@@ -1,13 +1,14 @@
-<view class="my_container">
+<!-- <view class="my_container"> -->
   <!-- 头部信息 -->
   <view class="myTip">
+    <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
     <view class="navbar" style='height:{{navHeight}}px;'>
       <view class="tip" style="margin-top:{{navTop}}px;margin-left:{{menuRight}}px">
-        <view class="tipItem">
+        <view class="tipItem" bindtap="memberCode">
           <image src="/static/home_pic/QRcode.png"></image>
         </view>
         <view class="line"></view>
-        <view class="tipItem">
+        <view class="tipItem" bindtap="code">
           <image src="/static/home_pic/scan.png"></image>
         </view>
       </view>
@@ -19,12 +20,12 @@
     <view class="my_info">
       <image class="head"
         src="{{info?info.avatarUrl:'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'}}"
-        bindtap="edit">
+        catchtap="edit">
       </image>
       <!-- 未登录状态 -->
       <view class="unLogin" wx:if="{{loginStatus == 0}}">
         <view class="no_title">游客</view>
-        <navigator url="/page2/login/login" class="loginAndRes" bindtap="login" hover-class="none">登录/注册</navigator>
+        <navigator url="/page2/login/login" class="loginAndRes" catchtap="login" hover-class="none">登录/注册</navigator>
       </view>
       <!-- 未绑定手机号码 -->
       <view class="bindPhone" wx:elif="{{loginStatus == 1}}">
@@ -51,7 +52,7 @@
       </view>
       <view class="cItem" catchtap="message">
         <view>
-          <image src="/static/my/message.png" alt="" style="width:36rpx;height:36rpx;"></image>
+          <image src="/static/my/message.png" alt="" style="width:38rpx;height:38rpx;"></image>
         </view>
         <view>消息</view>
         <!-- <view class="dot dotMessage">10</view> -->
@@ -116,4 +117,4 @@
       </block>
     </view>
   </view>
-</view>
+<!-- </view> -->

@@ -25,8 +25,9 @@
 }
 
 .line_active {
-  margin: 10rpx 28rpx 0 28rpx;
-  width: 20rpx;
+  margin: 10rpx 28rpx 0 35rpx;
+  width: 30rpx;
+  text-align: center;
   height: 4rpx;
   background: #52495B;
   border-radius: 2rpx;
@@ -154,4 +155,20 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
+}
+
+.none{
+  display: flex;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.none{
+  display: flex;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

@@ -1,5 +1,5 @@
 var getWeekdDay = function (value, t) {
-  //console.log(value,t)
+ // console.log(value,t)
   t = t.toString();
   //今天
   var today = getDate();
@@ -8,9 +8,9 @@ var getWeekdDay = function (value, t) {
   //星期
   var weekDay = date.getDay();
   //今天时间
-  var time = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  var time = today.getFullYear() + '-' + (today.getMonth() + 1) + '/' + today.getDate();
   //当前时间
-  var time1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+  var time1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '/' + date.getDate();
   //console.log(time,time1 )
   switch (weekDay) {
     case 0:
@@ -77,7 +77,19 @@ var sub = function (val, start, end) {
   }
 }
 function replaceChar(str){
+  if(str!=null){
    return str.replace(getRegExp(',','g'),'  |  ');
+  }else{
+    return str
+  }
+}
+function replaceChar1(str,replaceChar,charCode){
+  if(str!=null){
+    return str.replace(getRegExp(replaceChar,'g'),charCode);
+  }else{
+    return str
+  }
+ 
 }
 module.exports = {
   getWeekdDay: getWeekdDay,
@@ -85,5 +97,6 @@ module.exports = {
   toFixed: toFixed,
   timeIsinarea: timeIsinarea,
   sub: sub,
-  replaceChar:replaceChar
+  replaceChar:replaceChar,
+  replaceChar1:replaceChar1
 }

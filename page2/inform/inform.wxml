@@ -9,7 +9,7 @@
   <!--  -->
   <view class="infrom_con" hidden="{{!tabs_index==0}}">
     <scroll-view scroll-y class="infrom_scroll">
-      <block wx:for="{{20}}">
+      <block wx:for="{{2}}">
         <view class="infom_item">
           <view class="versions">
             <text> 2.0版本正式上线！</text>
@@ -22,7 +22,7 @@
   </view>
   <view class="infrom_con" hidden="{{!tabs_index==1}}">
      <scroll-view scroll-y class="infrom_scroll">    
-      <block wx:for="{{20}}">
+      <block wx:for="{{2}}">
        <view class="course_info">
            <view>
              <text class="couseName">拉伸课</text>
