@@ -33,7 +33,7 @@
     </view>
     <!--  全部-->
     <view class="record" wx:if="{{tab==0}}">
-      <scroll-view scroll-y class="inte_scroll" style="height:calc(100vh - {{navHeight}}px - 384rpx )"
+      <scroll-view scroll-y class="inte_scroll" style="height:calc(100vh - {{navHeight}}px - 384rpx - 84rpx)"
         lower-threshold="0" bindscrolltolower="loadMore">
         <block wx:for="{{all}}" wx:key="ROWID">
           <view class="record_item">

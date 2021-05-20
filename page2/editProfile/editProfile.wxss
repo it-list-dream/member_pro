@@ -6,6 +6,7 @@
 
 .edit_item {
   padding-top: 20rpx;
+  height: auto;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -15,9 +16,10 @@
 .my_info {
   overflow: hidden;
   width: 690rpx;
-  height: 597rpx;
+  height: auto;
   background: #FFFFFF;
   border-radius: 8rpx;
+  padding-bottom: 91rpx;
 }
 
 .my_info>view:first-child {

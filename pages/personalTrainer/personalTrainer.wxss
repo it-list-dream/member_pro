@@ -206,13 +206,11 @@ swiper {
   font-weight: 500;
   color: #333333;
   font-size: 50rpx;
-  border-radius: 8rpx 0px 0px 8rpx;
 }
 .count_box>view:nth-child(2){
   padding:0 10rpx;
   font-size: 40rpx !important;
-  border-radius: 0 !important;
-  text-align: center;
+
 }
 
 .by {
@@ -221,16 +219,15 @@ swiper {
   font-weight: 500;
   color: #333333;
 }
-
+/* 
 .count {
   width: 50rpx;
   height: 100%;
-
   line-height: 50rpx;
   text-align: center;
   background: #F0F2F5;
   margin-right: 1px;
-}
+} */
 
 .num {
   box-sizing: border-box;
@@ -238,9 +235,13 @@ swiper {
   height: 50rpx;
   background: #F0F2F5;
 }
-
+.count:first-child{
+  border-radius:  8rpx 0 0 8rpx;
+  margin-right: 1px;
+}
 .count:last-child {
   margin-left: 1px;
+  border-radius: 0 8rpx 8rpx 0;
 }
 
 /* bottom */
@@ -252,6 +253,7 @@ swiper {
   bottom: 0;
   background: white;
 }
+
 
 .fixedbottom>view:first-child {
   padding: 18rpx 0;

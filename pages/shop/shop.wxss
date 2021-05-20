@@ -26,7 +26,6 @@
 .location_info .address {
   font-size: 30rpx;
   font-family: PingFang SC;
-  font-weight: bold;
   padding: 0 7rpx 0 5rpx;
 }
 
@@ -47,9 +46,8 @@
 .location_info .store_list {
   position: relative;
   display: flex;
-  width: 644rpx;
   margin: 0 auto;
-  padding: 31rpx 0;
+  padding: 31rpx 0 30rpx 30rpx;
   border-top: 1px solid #EEEEEE;
 }
 

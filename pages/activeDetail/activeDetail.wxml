@@ -38,7 +38,7 @@
         <text>选择会籍</text>
         <view class="pick_name">
           <picker value="{{index}}" range="{{membership}}" range-key="AI_Name" bindchange="bindPickerChange">
-            {{membership[m_index].AI_Name}}
+           <text>{{membership[m_index].AI_Name}}</text>
             <image src="/static/bottom_arrow.png"></image>
           </picker>
         </view>

@@ -38,7 +38,7 @@
           <text>健康评分</text>
         </view>
         <view>
-          <image src="/static/exceed.png" style="width:32rpx;height:32rpx;"></image>
+          <image src="/static/exceed.png" style="width:64rpx;height:64rpx;"></image>
         </view>
       </view>
     </block>

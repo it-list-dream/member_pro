@@ -172,7 +172,6 @@ page {
   width: 100%;
   box-sizing: border-box;
   border-top: 1px solid #eeeeee;
-
 }
 
 .calendar {

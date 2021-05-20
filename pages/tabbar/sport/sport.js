@@ -65,6 +65,13 @@ Page({
     })
   },
   appointment: function () {
+    let phone = wx.getStorageSync('phone')
+    if (!phone && phone == '') {
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+      return
+    }
     this.setData({
       chooseCourse: true
     })
@@ -117,10 +124,10 @@ Page({
       let month = (startDate.getMonth() + 1).toString().length === 1 ? "0" + (startDate.getMonth() + 1).toString() : (startDate.getMonth() + 1);
       let day = startDate.getDate().toString().length === 1 ? "0" + startDate.getDate() : startDate.getDate();
       dayList.push({
-        date:month + "-" + day,
-        week:util.toWeek(startDate)
+        date: month + "-" + day,
+        week: util.toWeek(startDate)
       })
-   //   dayList.push(month + "-" + day);
+      //   dayList.push(month + "-" + day);
       startDate.setDate(startDate.getDate() + 1);
     }
     this.setData({
@@ -205,7 +212,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+
     //sport
     this.getMotionCalendar()
     //

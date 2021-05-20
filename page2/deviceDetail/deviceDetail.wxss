@@ -122,10 +122,9 @@
 }
 
 .norm_item {
-  padding: 14rpx 0 10rpx 0;
   box-sizing: border-box;
-  height: 164rpx;
-
+  padding: 20rpx 0;
+  height: 178rpx;
   border-bottom: 1px solid #D4D4D4;
 }
 
@@ -139,7 +138,7 @@
 .body_status {
   display: flex;
   justify-content: space-evenly;
-  font-size: 21rpx;
+  font-size: 22rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #666666;
@@ -174,10 +173,10 @@
 .body_data>view::after {
   content: '';
   position: absolute;
-  bottom: 34rpx;
+  top: -20rpx;
   left: 22rpx;
   width: 12rpx;
-  height: 12rpx;
+  height: 13rpx;
   background:white;
   border-radius: 50%;
 }
@@ -206,7 +205,7 @@
   text-align: center;
   background: #62CAB6;
   border-radius: 14rpx;
-  font-size: 14rpx;
+  font-size: 18rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
@@ -246,7 +245,7 @@
 
 .segment_title text {
   width: 50%;
-  font-size: 24rpx;
+  font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;

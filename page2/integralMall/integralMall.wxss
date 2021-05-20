@@ -1,5 +1,6 @@
 .coverstionBox {
   width: 100vw;
+  font-family: PingFang SC;
 }
 
 .scorecard {
@@ -247,6 +248,7 @@ swiper {
 }
 
 .intro_content {
+  padding-right: 30rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 400;
@@ -341,12 +343,16 @@ swiper {
   height: 60rpx;
   line-height: 60rpx;
   background: #F0F2F5;
-  border-radius: 8rpx 0px 0px 8rpx;
   font-size: 50rpx;
   font-family: PingFang SC;
   font-weight: 500;
 }
-
+.buy_count .symbol:first-child{
+  border-radius: 8rpx 0 0 rpx;
+}
+.buy_count .symbol:last-child{
+  border-radius: 0 8rpx 8rpx 0;
+}
 .buy_count text:nth-child(2) {
   margin: 0 1px;
   width: auto;
@@ -356,7 +362,6 @@ swiper {
   font-family: PingFang SC;
   font-weight: 500;
   background: #F0F2F5;
-  border-radius: 6rpx 0px 0px 6rpx;
 }
 
 /*  */

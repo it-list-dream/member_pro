@@ -60,11 +60,11 @@
     </view>
   </view>
   <!-- nav -->
-  <view class="nav" bindtap="storedMoney">
+  <view class="nav">
     <text class="nav-title">储值金额</text>
   </view>
   <!--  -->
-  <view class="stored active">
+  <view class="stored active" bindtap="storedMoney">
     <view class="leftStored avtive_item">
       <view class="inte_con">
         <view>充值金额</view>
@@ -81,11 +81,11 @@
     </view>
   </view>
   <!-- nav -->
-  <view class="nav1" bindtap="inteAwrad">
+  <view class="nav1">
     <text class="nav-title">积分</text>
   </view>
   <!--  -->
-  <view class="inte active">
+  <view class="inte active"  bindtap="inteAwrad">
     <view class="leftInte avtive_item">
       <view class="inte_con">
         <view>VIP积分</view>

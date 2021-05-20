@@ -1,0 +1,6 @@
+
+<view class="blank_list" style="height:{{height}}">
+   <view class="none">
+       
+   </view>
+</view>

@@ -5,7 +5,7 @@
       <image src="/static/vipimg.png"></image>
       <view class="card_status">
         <view class="year">{{item.SC_Name}}</view>
-        <view class="status">状态：{{item.UI_FirstData?'使用中':'未激活'}}</view>
+        <view class="status">状态：{{item.UI_FirstDate?'使用中':'未激活'}}</view>
       </view>
       <view wx:if="{{item.UI_FirstDate}}">
         <view class="use_day">

@@ -1337,6 +1337,78 @@
           "pathName": "pages/selectCourse/selectCourse",
           "query": "course=1",
           "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/activeDetail/activeDetail",
+          "pathName": "pages/activeDetail/activeDetail",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/activeDetail/activeDetail",
+          "pathName": "pages/activeDetail/activeDetail",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/shop/shop",
+          "pathName": "pages/shop/shop",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/myStored/myStored",
+          "pathName": "page2/myStored/myStored",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/smartDevice/smartDevice",
+          "pathName": "page2/smartDevice/smartDevice",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/deviceDetail/deviceDetail",
+          "pathName": "page2/deviceDetail/deviceDetail",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/myStored/myStored",
+          "pathName": "page2/myStored/myStored",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/myStored/myStored",
+          "pathName": "page2/myStored/myStored",
+          "query": "course=1",
+          "scene": null
         }
       ]
     }

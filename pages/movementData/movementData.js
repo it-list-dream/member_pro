@@ -21,8 +21,7 @@ function initChart(canvas, width, height, dpr) {
       axisPointer: { // 坐标轴指示器，坐标轴触发有效
         type: 'shadow',
         shadowStyle: {
-          opacity: 0,
-          color:'red'
+          opacity: 0
         },
       },
     },
@@ -39,7 +38,7 @@ function initChart(canvas, width, height, dpr) {
       axisTick: {
         alignWithLabel: true,
         show: false,
-        inside:false,
+        inside: false,
       },
       axisLine: {
         lineStyle: {
@@ -48,8 +47,8 @@ function initChart(canvas, width, height, dpr) {
           width: '1' //坐标线的宽度
         }
       },
-      axisLabel:{
-        color:"#333333"
+      axisLabel: {
+        color: "#333333"
       }
     }],
     yAxis: [{
@@ -74,31 +73,44 @@ function initChart(canvas, width, height, dpr) {
           //   position: 'top', //在上方显示
           //   color: '#AEEAD6'
           // },
-          color: '#B7F2DC',
+          // color: function (params) {
+          //   //通过判断选中的名字改变柱子的颜色样式
+          //   if (checkName === params.name) {
+          //     return '#12D58B';
+          //   } else {
+          //     return '#B7F2DC';
+          //   }
+          // }
+          color:"#AEEAD6"
+
         },
 
       },
       emphasis: { // 鼠标经过时：
-        color: '#FFD117',
-        // borderColor: 'rgba(251,251,251,1)',   
+        color: '#FFD117',  
         label: {
           show: true,
           position: 'top',
           padding: [5, 15, 5, 15],
           borderWidth: 0,
-          // borderRadius: 4,
-          // backgroundColor: '#AEEAD6',
           color: "#333333",
-          fontSize:14,
-          fontFamily:'PingFang SC',
-          // backgroundColor:'#12D58B'
+          fontSize: 14,
+          fontFamily: 'PingFang SC',
         },
       }
     }],
   };
   chart.setOption(option);
+  // let checkName = '';
+  // chart.on('click', function (params) {
+  //   checkName = params.name;
+  //   //柱形图重构
+  //   //chart.setOption(option);
+  // })
+
   return chart;
 }
+
 const app = getApp()
 const util = require('../../utils/util.js')
 Page({
@@ -114,7 +126,7 @@ Page({
       onInit: initChart
     },
     endTime: '',
-    sportDesc:null
+    sportDesc: null
   },
 
   /**
@@ -143,28 +155,28 @@ Page({
     })
   },
   //运动天数
-  getClassCountByuserId:function(){
+  getClassCountByuserId: function () {
     var that = this
     api.request({
-      url:'/ClassCountByuserId',
-      data:{
-        user_token:wx.getStorageSync('token'),
-        GB_ID:wx.getStorageSync('GB_ID'),
-        UI_ID:wx.getStorageSync('UI_ID')
+      url: '/ClassCountByuserId',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: wx.getStorageSync('GB_ID'),
+        UI_ID: wx.getStorageSync('UI_ID')
       }
-    }).then(res=>{
+    }).then(res => {
       console.log(res)
-      if(res.data.code == 1){
-         that.setData({
-          sportDesc:res.data.data
-         })
+      if (res.data.code == 1) {
+        that.setData({
+          sportDesc: res.data.data
+        })
       }
     })
   },
-  _navBack:function(){
-     wx.navigateBack({
-       delta: 1,
-     })
+  _navBack: function () {
+    wx.navigateBack({
+      delta: 1,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -159,7 +159,7 @@ Page({
     // console.log('触底了')
   },
   loadMore: function () {
-    console.log('触底了');
+    console.log('触底了ffdf');
     var that = this;
     var pageSize = that.data.currPage + 1; //获取当前页数并+1
     that.setData({

@@ -150,6 +150,6 @@
       </view>
     </view>
     <!--关闭 -->
-    <view class="close"></view>
+    <view class="close" catchtap="close"></view>
   </view>
 </view>

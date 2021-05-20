@@ -54,7 +54,7 @@
   box-sizing: border-box;
   margin: 0 auto;
   width: 690rpx;
-  height: 120rpx;
+  height: 160rpx;
   background: #FFFFFF;
   border-radius: 10rpx;
   margin-bottom: 20rpx;
@@ -67,28 +67,28 @@
   justify-content: space-around;
 }
 .physical text:first-child{
-  font-size: 30rpx;
+  font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: bold;
+  font-weight: 500;
   color: #12D58B;
 }
 .physical text:last-child{
-  font-size: 20rpx;
+  font-size: 26rpx;
   font-family: PingFang SC;
   font-weight: 400;
   color: #52495B;
 }
 .deTip {
   text-align: center;
-  line-height: 70rpx;
-  width: 70rpx;
-  height: 70rpx;
+  line-height: 100rpx;
+  width: 100rpx;
+  height: 100rpx;
   background: #52495B;
   border-radius: 8rpx;
 }
 
 .deTip image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 64rpx;
+  height: 64rpx;
   vertical-align: middle;
 }
