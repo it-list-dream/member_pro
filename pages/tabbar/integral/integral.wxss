@@ -246,9 +246,10 @@ swiper {
 .self_item:last-child {
   margin-bottom: 0;
 }
-.inteBottom{
+
+.inteBottom {
   box-sizing: border-box;
-  padding:19rpx 0 19rpx 19rpx;
+  padding: 19rpx 0 19rpx 19rpx;
   display: flex;
   height: 107rpx;
   flex-direction: column;
@@ -506,4 +507,19 @@ button {
   top: 0;
   left: 0;
   z-index: 10;
+}
+
+.none {
+  display: flex;
+  height: 40vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #ffffff;
+}
+
+
+.none_list image {
+  width: 180rpx;
+  height: 200rpx;
 }

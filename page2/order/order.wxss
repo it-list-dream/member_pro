@@ -11,18 +11,19 @@
 }
 
 .order_title {
-  /* flex: 1; */
-  display: flex;
+  position: relative;
+  /* width: 50%; */
+  line-height: 88rpx;
   height: 100%;
-  /* height: 30rpx; */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
 }
 
-.active_lice {
-  margin-top: 6rpx;
+.active_lice::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14rpx;
+  content: '';
   width: 20rpx;
   height: 4rpx;
   background: #52495B;
@@ -33,11 +34,11 @@
 .main_order {
   box-sizing: border-box;
   width: 690rpx;
-  height: 330rpx;
+  height: 380rpx;
   background: #FFFFFF;
   border-radius: 10rpx;
   margin-bottom: 30rpx;
-  padding: 30rpx 30rpx 0 30rpx;
+  padding: 30rpx;
 }
 
 .order_status {
@@ -46,22 +47,22 @@
 }
 
 .order_status>view {
-  font-size: 28rpx;
+  font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
 }
 
 .order_status>view:last-child {
-  font-size: 24rpx;
+  font-size: 26rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #12D58B;
 }
 
 .order_id {
-  margin-top: 15rpx;
-  font-size: 20rpx;
+  margin-top: 20rpx;
+  font-size: 22rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
@@ -69,9 +70,24 @@
 }
 
 .order_img {
-  margin: 15rpx 0;
+  margin-bottom: 20rpx;
   display: flex;
   justify-content: space-between;
+}
+
+.my_money {
+  text-align: right;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+.my_money text{
+  font-size: 24rpx;
+}
+
+.order_img>view:first-child{
+  display: flex;
 }
 
 .vip_pic {
@@ -80,9 +96,6 @@
   vertical-align: bottom;
 }
 
-.order_img>view:first-child {
-  display: flex;
-}
 
 .yearCard {
   margin-left: 30rpx;
@@ -92,19 +105,12 @@
   color: #333333;
 }
 
-.right_box {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.right_box>view>image {
-  width: 25rpx;
-  height: 25rpx;
+.right_box{
+  text-align: right;
 }
 
 .right_box>view:first-child {
-  margin-top: -24rpx;
+  margin-top: 28rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -112,15 +118,7 @@
 }
 
 .right_box>view:nth-child(2) {
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-  opacity: 0.6;
-}
-
-.right_box>view:last-child {
-  margin-top: 70rpx;
+  margin-top: 45rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: bold;
@@ -160,7 +158,7 @@
   color: #333333 !important;
 }
 
-.ctime {
+.ctime,.time1{
   text-align: right;
   font-size: 24rpx;
   font-family: PingFang SC;

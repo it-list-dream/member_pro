@@ -347,12 +347,15 @@ swiper {
   font-family: PingFang SC;
   font-weight: 500;
 }
-.buy_count .symbol:first-child{
+
+.buy_count .symbol:first-child {
   border-radius: 8rpx 0 0 rpx;
 }
-.buy_count .symbol:last-child{
+
+.buy_count .symbol:last-child {
   border-radius: 0 8rpx 8rpx 0;
 }
+
 .buy_count text:nth-child(2) {
   margin: 0 1px;
   width: auto;
@@ -397,32 +400,22 @@ swiper {
 }
 
 /* 快递方式 */
-.exp_way {
-  /* margin-bottom: 200rpx; */
-  margin-top: 30rpx;
-  width: 100%;
-  height: 180rpx;
-  /* background: #FFFFFF; */
-}
-
-.exp_item:first-child {
-  border-bottom: 1px solid #eeeeee;
-}
 
 .exp_item {
+  margin-top: 30rpx;
   box-sizing: border-box;
   padding-left: 30rpx;
   height: 90rpx;
   line-height: 90rpx;
   display: flex;
   background: #FFFFFF;
+  white-space: nowrap;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .way {
-  position: relative;
   display: flex;
   justify-content: space-between;
-  flex: 1;
 }
 
 /* .way>view {
@@ -439,9 +432,54 @@ swiper {
 }
 
 .dispatching {
-  padding-left: 30rpx;
+  height: auto;
+  padding: 20rpx;
+  background: #ffffff;
+  white-space: normal;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 48rpx;
 }
 
 .dispatching>text {
   padding-left: 30rpx;
+}
+
+.way>view {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.kong:last-child {
+  margin-left: 20rpx;
+}
+
+.way button {
+  height: 60rpx !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 30rpx !important;
+  line-height: 60rpx !important;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333 !important;
+  text-align: left;
+  background: #ffffff;
+  margin-left: 10rpx !important;
+}
+
+.choose1:last-child {
+  margin-right: 30rpx;
+}
+
+.chooseAdd:first-child {
+  width: 120rpx;
+}
+
+.chooseAdd:last-child {
+  width: 220rpx;
 }

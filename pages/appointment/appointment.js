@@ -40,23 +40,28 @@ Page({
     //团课列表
     togetherClass: [],
     chooseCoach:null,
-    isChoose:false
+    //是否有私教课
+    isChoose: false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(wx.getStorageSync('myCoach')){
+        this.setData({
+          chooseCoach:wx.getStorageSync('myCoach')
+        })
+    }
+
     let today = util.formatTime(new Date());
     today = today.slice(0, 10).replace(/\//g, '-')
     this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
       today: today,
       SearchDate: today,
       selectClass: Number(options.course),
       showcourse: Number(options.course),
-    })
-    this.setData({
-      navHeight: app.globalData.navHeight,
-      navTop: app.globalData.navTop,
     })
     //日期
     this.getWeekList();
@@ -162,7 +167,7 @@ Page({
         dataTime[i].type = 0;
       }
     }
-   // console.log(dataTime)
+    // console.log(dataTime)
     this.setData({
       datatime: dataTime
     })
@@ -187,33 +192,41 @@ Page({
         url: "/MyCoachClassList",
         data: {
           user_token: wx.getStorageSync('token'),
-          UI_ID: wx.getStorageSync('UI_ID'),
+          UI_ID: wx.getStorageSync('UI_ID') || 0,
           pageSize: that.data.pageSize,
           pageIndex: that.data.currPage
         }
       }).then(res => {
-        if (res.data.code == 1 && res.data.data.length>0) {
+        if (res.data.code == 1 && res.data.data.length > 0) {
           that.setData({
             currentCoach: res.data.data[0],
-            isCanCoach:true
+            isCanCoach: true,
           })
+          if(!wx.getStorageSync('myCoach')){
+            let newObj = Object.assign({},res.data.data[0]); 
+            wx.setStorageSync('myCoach', newObj);
+            that.setData({
+              chooseCoach: newObj
+            })
+          }   
           //预约时间
           that.getPrivateAppointment();
-        }else{
+        } else {
           that.setData({
-            isCanCoach:false
+            isCanCoach: false
           })
-         }
+        }
       })
       return;
+    } else {
+      that.getPrivateAppointment();
     }
-    that.getPrivateAppointment();
   },
   //跳转私教课页面
-  chooseSpecilClass:function(){
-      wx.navigateTo({
-        url: '/pages/classList/classList',
-      })
+  chooseSpecilClass: function () {
+    wx.navigateTo({
+      url: '/pages/classList/classList',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -237,7 +250,7 @@ Page({
       data: {
         user_token: wx.getStorageSync('token'),
         SearchDate: that.data.SearchDate,
-        FK_AL_TeachCoach_ID: that.data.currentCoach.FK_AL_TeachCoach_ID
+        FK_AL_TeachCoach_ID: that.data.chooseCoach.FK_AL_TeachCoach_ID
       }
     }).then(res => {
       console.log(res)
@@ -324,7 +337,7 @@ Page({
                 [cs_num]: num
               })
               let coach1 = JSON.stringify(that.data.currentCoach)
-              setTimeout(function (){
+              setTimeout(function () {
                 wx.navigateTo({
                   url: '/page2/suceess/suceess?coach=' + coach1,
                 })

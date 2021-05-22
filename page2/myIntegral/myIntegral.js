@@ -22,7 +22,9 @@ Page({
       }
     ],
     all: [],
+    //赚积分
     profitable: [],
+    //花积分
     takeIntegral: [],
     //分页
     currPage: 1,
@@ -33,8 +35,8 @@ Page({
     scoreType: 0,
     //积分消费 与取得  0全部 1获得2扣除
     useType: 0,
-    vipIntegral:0,
-    actionIntegral:0
+    vipIntegral: 0,
+    actionIntegral: 0
   },
 
   /**
@@ -47,13 +49,12 @@ Page({
       vipIntegral: options.vipIntegral,
       actionIntegral: options.actionIntegral
     })
-    this.getScoreDetailed()
+    // this.getScoreDetailed()
     // console.log(options)
   },
   optionsTab: function (e) {
     var that = this
-    console.log(e);
-
+    console.log(e.currentTarget.dataset.index);
     var index = e.currentTarget.dataset.index;
     //0全部 1获得2扣除
     if (index == 1) {
@@ -61,22 +62,27 @@ Page({
         useType: 1,
         currPage: 1
       })
+      console.log('赚积分')
       that.getScoreDetailed()
     } else if (index == 2) {
       that.setData({
         useType: 2,
         currPage: 1
       })
+      console.log('花积分')
       that.getScoreDetailed()
     } else {
       that.setData({
         useType: 0
       })
+      console.log('所有的积分');
+      that.getScoreDetailed()
     }
     this.setData({
       tab: index
     })
   },
+  //切片
   getDate: function (e) {
     var that = this
     let id = e.detail.id
@@ -89,7 +95,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this;
+    api.request({
+      url: "/ScoreDetailed",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage,
+        scoreType: 0,
+        useType: 0
+      }
+    }).then(res => {
+      that.setData({
+        all: res.data.data
+      })
+    })
   },
   getScoreDetailed: function () {
     var that = this
@@ -97,7 +117,9 @@ Page({
       that.setData({
         currPage: that.data.total
       })
+      console.log('hahhaha')
     } else {
+      console.log('hello')
       api.request({
         url: "/ScoreDetailed",
         data: {
@@ -109,7 +131,7 @@ Page({
         }
       }).then(res => {
         if (that.data.tab == 0) {
-          if (res.data.code == '1') {
+          if (res.data.code == 1 && res.data.data.length > 0) {
             var t = Math.ceil(res.data.recordCount / that.data.pageSize);
             let newArr1 = [...that.data.all, ...res.data.data];
             var n = that.unique(newArr1)
@@ -117,31 +139,40 @@ Page({
               all: n,
               total: t
             })
+            console.log('tab ==0')
           }
+
         } else if (that.data.tab == 1) {
-          if (res.data.code == '1') {
+          if (res.data.code == 1 && res.data.data.length > 0) {
             var t = Math.ceil(res.data.recordCount / that.data.pageSize);
-            let newArr1 = [...that.data.all, ...res.data.data];
-            var n = that.unique(newArr1)
+          //   let newArr1 = [...that.data.profitable, ...res.data.data];
+          //   var n = that.unique(newArr1) 
             that.setData({
-              profitable: n,
+              profitable : [],
               total: t
+            })
+            console.log('tab ==1')
+            that.setData({
+              profitable:res.data.data
             })
           }
         } else if (that.data.tab == 2) {
-          if (res.data.code == '1') {
+          if (res.data.code == 1 && res.data.data.length > 0) {
             var t = Math.ceil(res.data.recordCount / that.data.pageSize);
-            let newArr1 = [...that.data.all, ...res.data.data];
+            let newArr1 = [...that.data.takeIntegral, ...res.data.data];
             var n = that.unique(newArr1)
             that.setData({
               takeIntegral: n,
               total: t
             })
+            console.log('tab ==2')
           }
+
         }
       })
     }
   },
+  //右边的切片
   getScoreDetailed2: function () {
     var that = this
     that.setData({
@@ -158,7 +189,7 @@ Page({
       }
     }).then(res => {
       if (that.data.tab == 0) {
-        console.log(that.data.currPage)
+        //   console.log(that.data.currPage)
         that.setData({
           all: res.data.data
         })
@@ -186,7 +217,7 @@ Page({
     that.setData({
       currPage: pageSize, //更新当前页数
     })
-    that.getScoreDetailed(); //重新调用请求获取下一页数据
+    //that.getScoreDetailed(); //重新调用请求获取下一页数据
   },
   //数组对象去重
   unique: function (arr) {

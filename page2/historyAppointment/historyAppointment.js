@@ -83,8 +83,10 @@ Page({
           return
         }
         if (that.data.type == 1) {
+          let newL1 = [...that.data.completedHistory, ...res.data.data];
+          let arr1 = that.unique(newL1)
           this.setData({
-            completedHistory: [...that.data.completedHistory, ...res.data.data]
+            completedHistory:arr1
           })
         } else if (that.data.type == 2) {
           let newL1 = [...that.data.alreadyHistory, ...res.data.data];

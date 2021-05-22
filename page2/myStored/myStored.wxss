@@ -22,28 +22,39 @@
   border-radius: 10rpx;
 }
 
-.stored_img view:first-child {
-  margin-top: 40rpx;
-}
-
-.stored_img view {
-  text-align: center;
-  font-size: 34rpx;
+.stored_img_title {  
+  font-size: 35rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
 }
+
+.stored_img view:first-child {
+  padding-top: 30rpx;
+}
+
+.stored_img view {
+  text-align: center;
+}
 .recharge{
   margin-top: 60rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
 } 
 .recharge text {
-  color: #FFF4C08D !important;
+  color: #F4C08D !important;
 }
 .give{
   margin-top: 40rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
 }
 .give text {
-  color: green;
+  color: #12D58B;
 }
 
 .stored_tab {
@@ -73,7 +84,7 @@
 .active::after {
   position: absolute;
   bottom: 0;
-  left: 106rpx;
+  left: 111rpx;
   content: '';
   width: 20rpx;
   height: 4rpx;

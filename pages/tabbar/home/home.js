@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerList: ['http://user.360ruyu.cn/images/userBanner/banner1.png'],
+    bannerList: [],
+    bannerList1: ['http://user.360ruyu.cn/images/userBanner/banner2.png', 'http://user.360ruyu.cn/images/userBanner/banner3.png'],
     coachList: [],
     recomentList: [],
     activityCard: [],
@@ -137,13 +138,13 @@ Page({
       that.setData({
         store: app.globalData.store
       })
-     // wx.setStorageSync('storeName', list.sort(this.compare('distance'))[0].GB_Name)
+      // wx.setStorageSync('storeName', list.sort(this.compare('distance'))[0].GB_Name)
     } else {
       app.globalData.store = that.data.storeList[0]
       that.setData({
         store: that.data.storeList[0]
       })
-     // wx.setStorageSync('storeName', list.sort(this.compare('distance'))[0].GB_Name)
+      // wx.setStorageSync('storeName', list.sort(this.compare('distance'))[0].GB_Name)
     }
   },
   //获取门店信息
@@ -210,11 +211,17 @@ Page({
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
-      // console.log(res)
-      if (res.data.code == 1 && res.data.data.length > 0) {
-        that.setData({
-          bannerList: res.data.data
-        })
+      if (res.data.code == 1) {
+        if (res.data.data.length > 0) {
+          that.setData({
+            bannerList: res.data.data
+          })
+        }else{
+          that.setData({
+            bannerList: that.data.bannerList1
+          })
+        }
+
       }
     })
   },
@@ -287,9 +294,9 @@ Page({
         that.setData({
           GymLogo: res.data.data[0].GymLogo
         })
-        if(wx.getStorageSync('GymLog')){
+        if (wx.getStorageSync('GymLog')) {
           wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
-        }else{
+        } else {
           wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
         }
       }

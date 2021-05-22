@@ -86,7 +86,8 @@
           <block wx:for="{{coachList}}" wx:key="index">
             <swiper-item bindtap="coach_choose" data-index="{{index}}">
               <view class="coach_img">
-                <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}" class="{{chooseCoach == index ? 'active':''}}"></image>
+                <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}"
+                  class="{{chooseCoach == index ? 'active':''}}"></image>
               </view>
               <view class="coach_info">{{item.AI_Name}}</view>
             </swiper-item>
@@ -145,26 +146,22 @@
       </view>
     </view>
     <!-- 快递方式 -->
-    <view class="exp_way">
-      <view class="exp_item">
-        兑换方式：
-        <view class="way">
-          <block wx:for="{{takeMethods}}" wx:for-index="index1" wx:key="index1">
-            <view>
-              <view class="kong" catchtap="takeWay" style="background-color:{{take_index == index1?'#52495B':''}}"
-                data-index="{{index1}}"></view>
+
+    <view class="exp_item">
+      兑换方式：
+      <view class="way">
+        <block wx:for="{{takeMethods}}" wx:for-index="index1" wx:key="index1">
+          <view class="choose1">
+            <view class="kong" catchtap="takeWay" style="background-color:{{take_index == index1?'#52495B':''}}"
+              data-index="{{index1}}"></view>
+            <button class="chooseAdd" bindtap="getWechatAddress">
               {{item}}
-            </view>
-          </block>
-          <!-- <view>
-            <view class="kong" catchtap="takeWay"></view>
-            快递上门（到付）
-          </view> -->
-        </view>
+            </button>
+          </view>
+        </block>
       </view>
-      <view class="exp_item dispatching" wx:if="{{take_index==1}}">
-        <text>配送至：</text>{{address}}
-      </view>
+    </view>
+    <view class="dispatching" wx:if="{{take_index==1}}">配送至：{{detailAddress}}
     </view>
     <view class="infinity">
       <view class="conversion">{{reward.CashCount}}人已经兑换</view>

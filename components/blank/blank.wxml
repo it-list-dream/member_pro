@@ -1,6 +1,6 @@
-
 <view class="blank_list" style="height:{{height}}">
-   <view class="none">
-       
-   </view>
+  <view class="none_list">
+    <image src="/static/none.png" style="width:200rpx;height:200rpx;"></image>
+    <view>暂无内容</view>
+  </view>
 </view>

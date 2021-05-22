@@ -32,7 +32,7 @@
       </view>
       <view class="sport_tip fitness" bindtap="fitness">
         <view class="sport_day">
-          <view>体适能</view>
+          <view>健康分</view>
           <view>95 <text class="test">分</text></view>
           <view class="btn to_dete">去检测</view>
         </view>
@@ -111,14 +111,14 @@
   </view>
   <!-- 自律积分 -->
   <view class="nav">
-    <view class="run_title nav-title">自律积分</view>
+    <view class="run_title nav-title">自律奖励</view>
     <navigator url="/pages/tabbar/integral/integral" style="display:block;" hover-class="none" open-type="switchTab">
       <text class="nav-name">全部奖励</text>
       <image class="nav-img" src="/static/next.png"></image>
     </navigator>
   </view>
   <!-- 积分奖励 -->
-  <view class="inte_list">
+  <view class="inte_list" wx:if="{{integral_list.length>0}}">
     <block wx:for="{{integral_list}}" wx:key="index1" wx:for-index="index1">
       <view class="inte_item" bindtap="selfRewordInte" data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
         <view>
@@ -131,6 +131,13 @@
       </view>
     </block>
   </view>
+
+  <view class="none" wx:else>
+      <view class="none_list">
+        <image src="/static/none.png"></image>
+        <view>暂无内容</view>
+      </view>
+    </view>
   <!-- 蒙层 -->
   <view class="mask" catchtouchmove='true' hidden="{{!chooseCourse}}">
     <view class="modalDlg" wx:if="{{chooseCourse}}">

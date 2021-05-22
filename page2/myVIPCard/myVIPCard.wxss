@@ -86,3 +86,7 @@
   justify-content: center;
   text-align: center;
 }
+.none_list image{
+  width:180rpx;
+  height:200rpx;
+}

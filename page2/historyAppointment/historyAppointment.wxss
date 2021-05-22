@@ -9,6 +9,7 @@
   align-items: center;
   flex-wrap: wrap;
   height: 100rpx;
+  line-height: 100rpx;
   font-size: 32rpx;
   font-family: PingFang SC;
   color: #333333;
@@ -17,11 +18,24 @@
 
 .his_wrapper {
   position: relative;
-  height: 28rpx;
+  height: 100%;
 }
 
 .his_active {
+  position: relative;
   font-weight: bold;
+}
+
+.his_active::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  content: '';
+  bottom: 18rpx;
+  width: 20rpx;
+  height: 4rpx;
+  background: #52495B;
+  border-radius: 2rpx;
 }
 
 .line_active {
@@ -117,8 +131,6 @@
 .score_item {
   display: flex;
   justify-content: flex-end;
-  margin-top: 10rpx;
-
 }
 
 .btn {
@@ -157,7 +169,7 @@
   color: #333333;
 }
 
-.none{
+.none {
   display: flex;
   height: 70vh;
   align-items: center;
@@ -165,7 +177,7 @@
   text-align: center;
 }
 
-.none{
+.none {
   display: flex;
   height: 70vh;
   align-items: center;

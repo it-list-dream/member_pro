@@ -24,7 +24,8 @@ Page({
     VIPReword: [],
     typeValue: '',
     //lun
-    inteBannerList: []
+    inteBannerList: [],
+    inteBannerList1: ['http://user.360ruyu.cn/images/userBanner/score1.png', 'http://user.360ruyu.cn/images/userBanner/score2.png']
   },
   /**
    * 生命周期函数--监听页面加载
@@ -96,7 +97,7 @@ Page({
       inteList[j].checked = false
     }
     this.setData({
-     // isScreen: false,
+      // isScreen: false,
       typeValue: '',
       inteTypeList: inteList
     })
@@ -221,9 +222,15 @@ Page({
       }
     }).then(res => {
       if (res.data.code == 1) {
-        that.setData({
-          inteBannerList: res.data.data
-        })
+        if (res.data.data.length == 0) {
+          that.setData({
+            inteBannerList: that.data.inteBannerList1
+          })
+        } else {
+          that.setData({
+            inteBannerList: res.data.data
+          })
+        }
       }
     })
   },
@@ -241,7 +248,7 @@ Page({
     //行为积分
     this.getScoreRewardActList()
     //轮播图
-    this.getScoreBannerList()
+    this.getScoreBannerList();
   },
   //关闭
   close: function () {

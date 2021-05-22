@@ -2,9 +2,14 @@
 <view class="entrance" style="margin-top:{{navHeight}}px">
   <view class="entrance_scroll">
     <block wx:for="{{entrancdList}}" wx:key="index">
-      <view class="entrance_item" style="color:{{(item.CheckIn && item.CheckOut)?'#FD575C':'#12D58B'}}">
-        <view>{{(item.CheckIn && item.CheckOut) ? item.CheckOut:item.CheckIn}}</view>
-        <view>{{(item.CheckIn && item.CheckOut)?'离场':'进场'}}</view>
+      <!--  style="color:{{(item.CheckIn && item.CheckOut)?'#FD575C':'#12D58B'}}" -->
+      <view class="entrance_item" style="color:#12D58B;" wx:if="{{item.CheckIn}}">
+        <view>{{item.CheckIn}}</view>
+        <view>进场</view>
+      </view>
+      <view class="entrance_item" style="color:#FD575C;" wx:if="{{item.CheckOut}}">
+        <view>{{item.CheckOut}}</view>
+        <view>离场</view>
       </view>
     </block>
   </view>

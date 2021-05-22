@@ -72,8 +72,10 @@ Page({
     console.log(e)
     var prevPage = pages[pages.length - 2]; //上一页面
     prevPage.setData({
-      currentCoach: e.currentTarget.dataset.coach
+      currentCoach: e.currentTarget.dataset.coach,
+      chooseCoach:e.currentTarget.dataset.coach
     })
+    wx.setStorageSync('myCoach',  e.currentTarget.dataset.coach)
     wx.navigateBack({
       delta: 1,
     })

@@ -21,7 +21,8 @@ Page({
     //总积分
     allTotal: 0,
     //收货地址
-    address: '上海市杨浦区江浦路1112弄'
+    address: '',
+    detailAddress: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -88,7 +89,7 @@ Page({
           reward: res.data.data
         })
       }
-    })
+    }) 
   },
   //消费
   getScoreRewardPayContent: function (se_id, prizeType) {
@@ -184,32 +185,32 @@ Page({
   },
   //兑换实物
   exchange2: function () {
-    var that = this
-    let coachId = 0;
-    let num = 0;
-    let address = this.data.address;
-    //判断是行为积分还是消费积分兑换
-    if (this.data.inteType == 1) {
-      wx.showModal({
-        title: '',
-        content: '确定兑换该物品',
-        success(res) {
-          if (res.confirm) {
-            that.exchangeActScoreProEx();
-          }
-        }
-      })
-    } else if (this.data.inteType == 2) {
-      wx.showModal({
-        title: '',
-        content: '确定兑换该物品',
-        success(res) {
-          if (res.confirm) {
-            that.exchangePayScoreProEx(coachID, num)
-          }
-        }
-      })
-    }
+    // var that = this
+    // let coachId = 0;
+    // let num = 0;
+    // let address = this.data.address;
+    // //判断是行为积分还是消费积分兑换
+    // if (this.data.inteType == 1) {
+    //   wx.showModal({
+    //     title: '',
+    //     content: '确定兑换该物品',
+    //     success(res) {
+    //       if (res.confirm) {
+    //         that.exchangeActScoreProEx();
+    //       }
+    //     }
+    //   })
+    // } else if (this.data.inteType == 2) {
+    //   wx.showModal({
+    //     title: '',
+    //     content: '确定兑换该物品',
+    //     success(res) {
+    //       if (res.confirm) {
+    //         that.exchangePayScoreProEx(coachID, num)
+    //       }
+    //     }
+    //   })
+    // }
   },
   //兑换实物
 
@@ -332,6 +333,71 @@ Page({
           icon: "none",
           title: res.data.msg,
         })
+      }
+    })
+  },
+  getWechatAddress: function () {
+    var that = this
+    //1.获取用户当前设置
+    wx.getSetting({
+      success(res) {
+        //2.res.authSetting:返回的授权结果
+        if (res.authSetting['scope.address']) {
+          wx.chooseAddress({
+            success(data) {
+              that.data.isWechat = true
+              that.data.concatPerson = data.userName //收货人姓名
+              that.data.phone = data.telNumber //收货人手机号码
+              that.data.address = data.detailInfo //详细收货地址信息
+              let provinceName = data.provinceName //国标收货地址第一级地址
+              let cityName = data.cityName //国标收货地址第二级地址
+              let countyName = data.countyName //国标收货地址第三级地址
+              console.log(provinceName, cityName, countyName)
+              that.setData({
+                detailAddress: provinceName + cityName + countyName + that.data.address
+              })
+            }
+          })
+        } else {
+          //4.取消过收货地址授权，调用wx.openSetting(),调起客户端小程序设置界面让用户去打开授权
+          if (res.authSetting['scope.address'] == false) {
+            wx.openSetting({
+              success(data) {
+                console.log('openSetting', data)
+                //打开授权， 用wx.chooseAddress()，获取用户收货地址
+                wx.chooseAddress({
+                  success(res) {
+                    console.log('5.chooseAddress', res)
+                    that.data.isWechat = true
+                    that.data.concatPerson = res.userName //收货人姓名
+                    that.data.phone = res.telNumber //收货人手机号码
+                    that.data.address = res.detailInfo //详细收货地址信息
+                    let provinceName = res.provinceName //国标收货地址第一级地址
+                    let cityName = res.cityName //国标收货地址第二级地址
+                    let countyName = res.countyName //国标收货地址第三级地址
+                    console.log(provinceName, cityName, countyName)
+                  }
+                })
+              }
+            })
+          } else {
+            //4.2用户当前设置不包含收货地址授权（说明是第一次打开获取用户收货地址信息的授权），
+            wx.chooseAddress({
+              success(data) {
+                console.log('4.2chooseAddress', data)
+                that.data.isWechat = true
+                that.data.concatPerson = data.userName //收货人姓名
+                that.data.phone = data.telNumber //收货人手机号码
+                that.data.address = data.detailInfo //详细收货地址信息
+                let provinceName = data.provinceName //国标收货地址第一级地址
+                let cityName = data.cityName //国标收货地址第二级地址
+                let countyName = data.countyName //国标收货地址第三级地址
+                console.log(provinceName, cityName, countyName)
+              }
+            })
+          }
+        }
+
       }
     })
   },

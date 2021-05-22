@@ -1409,6 +1409,78 @@
           "pathName": "page2/myStored/myStored",
           "query": "course=1",
           "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/order/order",
+          "pathName": "page2/order/order",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/historyAppointment/historyAppointment",
+          "pathName": "page2/historyAppointment/historyAppointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/entrance/entrance",
+          "pathName": "page2/entrance/entrance",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "course=1",
+          "scene": null
         }
       ]
     }

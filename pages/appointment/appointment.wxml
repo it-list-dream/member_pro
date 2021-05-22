@@ -14,22 +14,21 @@
     <view class="coach_info" wx:if="{{showcourse==0 && isCanCoach}}">
       <view class="coach_list">
         <view class="head">
-          <image src="{{currentCoach.AI_Face?currentCoach.AI_Face:'/static/appointment/headPortrait.png'}}"></image>
+          <image src="{{chooseCoach.AI_Face?chooseCoach.AI_Face:'/static/appointment/headPortrait.png'}}"></image>
           <view class="head_info">
             <view>
-              <text>{{currentCoach.AI_Name}}</text>
-              <image src="{{currentCoach.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}"
+              <text>{{chooseCoach.AI_Name}}</text>
+              <image src="{{chooseCoach.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}"
                 style="width:25rpx;height:25rpx;"></image>
             </view>
-            <view>时长：{{currentCoach.CP_Time}}分钟</view>
+            <view>时长：{{chooseCoach.CP_Time}}分钟</view>
           </view>
         </view>
         <view class="course_content">
-          <view>截止：{{tools.replaceChar1(currentCoach.CO_ActiveEnd,'。','')}}</view>
+          <view class="course_name">{{tools.replaceChar1(chooseCoach.CP_Name,'。','')}}({{chooseCoach.CO_Have-chooseCoach.CS_Num}}/{{chooseCoach.CO_Have}}) 节</view>
+          <navigator url="/pages/selectCourse/selectCourse" class="switch" hover-class="none"><image src="/static/appointment/sort.png"></image></navigator>
+          <view>截止：{{tools.replaceChar1(chooseCoach.CO_ActiveEnd,'。','')}}</view>
         </view>
-        <navigator url="/pages/selectCourse/selectCourse" class="switch" hover-class="none">
-          <image src="/static/appointment/sort.png"></image>
-        </navigator>
       </view>
     </view>
   </view>
@@ -99,6 +98,6 @@
   </view>
   <view wx:if="{{showcourse==0 && !isCanCoach}}" class="no_personalClass">
      <image src="/static/unclass.png"></image>
-     <button type="plain" bindtap="chooseSpecilClass" class="immediately">快去选课吧!</button>
+     <button type="plain" bindtap="chooseSpecilClass" class="immediately">快去买课吧!</button>
   </view>
 </view>

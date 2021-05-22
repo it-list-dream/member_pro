@@ -6,7 +6,6 @@
       <view class="his_wrapper">
         <view bindtap="chooseNav" data-index="{{index}}" class="histroy_item {{index==chooseId?'his_active':''}}">
           {{item}}</view>
-        <view class="{{index==chooseId?'line_active':''}}"></view>
       </view>
     </block>
   </view>

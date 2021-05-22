@@ -1,120 +1,115 @@
 <!-- <view class="my_container"> -->
-  <!-- 头部信息 -->
-  <view class="myTip">
-    <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
-    <view class="navbar" style='height:{{navHeight}}px;'>
-      <view class="tip" style="margin-top:{{navTop}}px;margin-left:{{menuRight}}px">
-        <view class="tipItem" bindtap="memberCode">
-          <image src="/static/home_pic/QRcode.png"></image>
-        </view>
-        <view class="line"></view>
-        <view class="tipItem" bindtap="code">
-          <image src="/static/home_pic/scan.png"></image>
-        </view>
+<!-- 头部信息 -->
+<view class="myTip">
+  <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
+  <view class="navbar" style='height:{{navHeight}}px;'>
+    <view class="tip" style="margin-top:{{navTop}}px;margin-left:{{menuRight}}px">
+      <view class="tipItem" bindtap="memberCode">
+        <image src="/static/home_pic/QRcode.png"></image>
       </view>
-      <view class='navbar-title' style='top:{{navTop}}px;'>我的</view>
+      <view class="line"></view>
+      <view class="tipItem" bindtap="code">
+        <image src="/static/home_pic/scan.png"></image>
+      </view>
+    </view>
+    <view class='navbar-title' style='top:{{navTop}}px;'>我的</view>
+  </view>
+</view>
+<!--个人信息 -->
+<view class="my_banner">
+  <view class="my_info">
+    <image class="head"
+      src="{{info?info.avatarUrl:'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'}}"
+      catchtap="edit">
+    </image>
+    <!-- 未登录状态 -->
+    <view class="unLogin" wx:if="{{loginStatus == 0}}">
+      <view class="no_title">游客</view>
+      <navigator url="/page2/login/login" class="loginAndRes" catchtap="login" hover-class="none">登录/注册</navigator>
+    </view>
+    <!-- 未绑定手机号码 -->
+    <view class="bindPhone" wx:elif="{{loginStatus == 1}}">
+      <view class="no_title">{{info.nickName}}</view>
+      <navigator url="/page2/login/login" class="bindPhoneBtn" hover-class="none">点击绑定手机号</navigator>
+    </view>
+    <!--登录状态  -->
+    <view class="succ_info" wx:elif="{{loginStatus == 2}}">
+      <view class="member_info">
+        如渔会员<image src="{{info.gender == 2?'/static/my/woman.png':'/static/man.png'}}" style="margin-left:15rpx;">
+        </image>
+      </view>
+      <view class="phone">{{phone}}</view>
     </view>
   </view>
-  <!--个人信息 -->
-  <view class="my_banner">
-    <view class="my_info">
-      <image class="head"
-        src="{{info?info.avatarUrl:'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'}}"
-        catchtap="edit">
-      </image>
-      <!-- 未登录状态 -->
-      <view class="unLogin" wx:if="{{loginStatus == 0}}">
-        <view class="no_title">游客</view>
-        <navigator url="/page2/login/login" class="loginAndRes" catchtap="login" hover-class="none">登录/注册</navigator>
-      </view>
-      <!-- 未绑定手机号码 -->
-      <view class="bindPhone" wx:elif="{{loginStatus == 1}}">
-        <view class="no_title">{{info.nickName}}</view>
-        <navigator url="/page2/login/login" class="bindPhoneBtn" hover-class="none">点击绑定手机号</navigator>
-      </view>
-      <!--登录状态  -->
-      <view class="succ_info" wx:elif="{{loginStatus == 2}}">
-        <view class="member_info">
-          如渔会员<image src="{{info.gender == 2?'/static/my/woman.png':'/static/man.png'}}" style="margin-left:15rpx;"></image>
-        </view>
-        <view class="phone">{{phone}}</view>
-      </view>
+  <!-- 详情 -->
+  <view class="my_course">
+    <view class="cItem" catchtap="vipCard">
+      <view class="num">{{myVipCardCount}}</view>
+      <view class="vipCard">会员卡</view>
     </view>
-    <!-- 详情 -->
-    <view class="my_course">
-      <view class="cItem" catchtap="vipCard">
-        <view class="num">{{myVipCardCount}}</view>
-        <view class="vipCard">会员卡</view>
+    <view class="cItem" catchtap="perCourse">
+      <view>{{myCoachCount}}</view>
+      <view>私教课</view>
+    </view>
+    <view class="cItem" catchtap="message">
+      <view>
+        <image src="/static/my/message.png" alt="" style="width:38rpx;height:38rpx;"></image>
       </view>
-      <view class="cItem" catchtap="perCourse">
-        <view>{{myCoachCount}}</view>
-        <view>私教课</view>
-      </view>
-      <view class="cItem" catchtap="message">
+      <view>消息</view>
+      <!-- <view class="dot dotMessage">10</view> -->
+    </view>
+  </view>
+</view>
+<!-- nav -->
+<view class="nav">
+  <text class="nav-title">我的储值</text>
+</view>
+<!--  -->
+<view class="stored active" bindtap="storedMoney">
+  <view class="leftStored avtive_item">
+    <text>充值金额</text>
+    <text>{{rechargeMoney}}</text>
+    <text class="yuan">元</text>
+  </view>
+  <view class="rightStored avtive_item">
+    <text>赠送金额</text>
+    <text>{{giveMoney}}</text>
+    <text class="yuan">元</text>
+  </view>
+</view>
+<!-- nav -->
+<view class="nav1">
+  <text class="nav-title">我的积分</text>
+</view>
+<!--  -->
+<view class="inte active" bindtap="inteAwrad">
+  <view class="leftInte avtive_item">
+    <text>VIP积分</text>
+    <text>{{vipIntegral}}</text>
+    <text class="yuan">分</text>
+  </view>
+  <view class="rightInte avtive_item">
+    <text>行为积分</text>
+    <text>{{actionIntegral}}</text>
+    <text class="yuan">分</text>
+  </view>
+</view>
+<!-- nav -->
+<view class="nav2">
+  <text class="nav-title">更多服务</text>
+</view>
+<!-- 更多服务 -->
+<view class="more">
+  <view class="moreService">
+    <block wx:for="{{serviceList}}" wx:key="index">
+      <view class="service" catchtap="lookRecord" data-index="{{index}}">
         <view>
-          <image src="/static/my/message.png" alt="" style="width:38rpx;height:38rpx;"></image>
+          <image src="{{item.img}}"></image>
         </view>
-        <view>消息</view>
-        <!-- <view class="dot dotMessage">10</view> -->
+        <text>{{item.name}}</text>
+        <!-- <view class="dot" wx:if="{{item.unreadyNum && item.unreadyNum>0}}">{{item.unreadyNum}}</view> -->
       </view>
-    </view>
+    </block>
   </view>
-  <!-- nav -->
-  <view class="nav">
-    <text class="nav-title">储值金额</text>
-  </view>
-  <!--  -->
-  <view class="stored active" bindtap="storedMoney">
-    <view class="leftStored avtive_item">
-      <view class="inte_con">
-        <view>充值金额</view>
-        <text>{{rechargeMoney}}</text>   
-        元
-      </view>
-    </view>
-    <view class="rightStored avtive_item">
-      <view class="inte_con">
-        <view>赠送金额</view>
-        <text>{{giveMoney}}</text>  
-        元
-      </view>
-    </view>
-  </view>
-  <!-- nav -->
-  <view class="nav1">
-    <text class="nav-title">积分</text>
-  </view>
-  <!--  -->
-  <view class="inte active"  bindtap="inteAwrad">
-    <view class="leftInte avtive_item">
-      <view class="inte_con">
-        <view>VIP积分</view>
-        <text>{{vipIntegral}}</text>分
-      </view>
-    </view>
-    <view class="rightInte avtive_item">
-      <view class="inte_con">
-        <view>行为积分</view>
-        <text>{{actionIntegral}}</text>分
-      </view>
-    </view>
-  </view>
-  <!-- nav -->
-  <view class="nav2">
-    <text class="nav-title">更多服务</text>
-  </view>
-  <!-- 更多服务 -->
-  <view class="more">
-    <view class="moreService">
-      <block wx:for="{{serviceList}}" wx:key="index">
-        <view class="service" catchtap="lookRecord" data-index="{{index}}">
-          <view>
-            <image src="{{item.img}}"></image>
-          </view>
-          <text>{{item.name}}</text>
-          <!-- <view class="dot" wx:if="{{item.unreadyNum && item.unreadyNum>0}}">{{item.unreadyNum}}</view> -->
-        </view>
-      </block>
-    </view>
-  </view>
+</view>
 <!-- </view> -->

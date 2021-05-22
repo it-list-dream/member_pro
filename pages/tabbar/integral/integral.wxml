@@ -101,8 +101,8 @@
   <!-- 轮播图 -->
   <view class="spend_img">
     <swiper autoplay circular>
-      <swiper-item wx:for="{{inteBannerList}}" wx:key="ID">
-        <image mode="widthFix" src="{{item.ImageUrl || '/static/cost.png'}}"></image>
+      <swiper-item wx:for="{{inteBannerList}}" wx:for-index="index3" wx:key="index3">
+        <image mode="widthFix" src="{{item.ImageUrl ? item.ImageUrl:item}}"></image>
       </swiper-item>
     </swiper>
   </view>
@@ -127,6 +127,13 @@
       </view>
     </block>
   </view>
+
+  <view class="none" wx:else>
+    <view class="none_list">
+      <image src="/static/none.png"></image>
+      <view>暂无内容</view>
+    </view>
+  </view>
   <!--  -->
   <view class="nav">
     <view class="nav-title">VIP奖励</view>
@@ -148,5 +155,12 @@
 
       </view>
     </block>
+  </view>
+  
+  <view class="none" wx:else>
+    <view class="none_list">
+      <image src="/static/none.png"></image>
+      <view>暂无内容</view>
+    </view>
   </view>
 </view>

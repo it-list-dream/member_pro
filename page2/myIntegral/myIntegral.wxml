@@ -33,7 +33,7 @@
     </view>
     <!--  全部-->
     <view class="record" wx:if="{{tab==0}}">
-      <scroll-view scroll-y class="inte_scroll" style="height:calc(100vh - {{navHeight}}px - 384rpx - 84rpx)"
+      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - 60px - 451rpx)"
         lower-threshold="0" bindscrolltolower="loadMore">
         <block wx:for="{{all}}" wx:key="ROWID">
           <view class="record_item">
@@ -49,23 +49,23 @@
     </view>
     <!-- 赚积分 -->
     <view class="record" wx:elif="{{tab==1}}">
-      <scroll-view scroll-y class="inte_scroll" style="height:calc(100vh - {{navHeight}}px - 384rpx )"
+      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - 60px - 451rpx)"
         lower-threshold="0" bindscrolltolower="loadMore">
-        <block wx:for="{{profitable}}" wx:key="ROWID">
+        <block wx:for="{{profitable }}" wx:key="ROWID">
           <view class="record_item">
             <view class="left_record">
               <view>{{item.PayMoneyTypeName}}</view>
               <view>{{item.Createdate}}</view>
             </view>
             <view class="right_record" style="color:{{item.ScoreType==1?'#F4C08D':'#B6B9BE'}}">
-              {{item.Score>0?'+':''}}{{item.Score}}</view>
+            + {{item.Score}}</view>
           </view>
         </block>
       </scroll-view>
     </view>
     <!-- 花积分 -->
     <view class="record" wx:elif="{{tab==2}}">
-      <scroll-view scroll-y class="inte_scroll" style="height:calc(100vh - {{navHeight}}px - 384rpx )"
+      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - 60px - 451rpx)"
         lower-threshold="0" bindscrolltolower="loadMore">
         <block wx:for="{{takeIntegral}}" wx:key="ROWID">
           <view class="record_item">
@@ -74,7 +74,7 @@
               <view>{{item.Createdate}}</view>
             </view>
             <view class="right_record" style="color:{{item.ScoreType==1?'#F4C08D':'#B6B9BE'}}">
-              {{item.Score>0?'+':''}}{{item.Score}}</view>
+              {{item.Score}}</view>
           </view>
         </block>
       </scroll-view>

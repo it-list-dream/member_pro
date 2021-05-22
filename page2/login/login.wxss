@@ -6,7 +6,8 @@
   width: 100%;
   height: 100vh;
 }
-.login_bg{
+
+.login_bg {
   position: absolute;
   z-index: -1;
   left: 0;
@@ -14,6 +15,7 @@
   width: 100%;
   height: 100%;
 }
+
 .avatar {
   margin-top: 140px;
   text-align: center;
@@ -34,34 +36,30 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100rpx;
-  /* background-color: pink; */
+  font-weight: normal;
 }
 
 .sto_title {
-  font-size: 36rpx;
+  font-size: 34rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #FFFFFF;
 }
 
 .getInfo {
   font-size: 28rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #FFFFFF;
 }
 
 .login-layout .btn {
   width: 690rpx;
-  height: 80rpx;
-  /* line-height: 80rpx; */
-  line-height: 40rpx;
-  font-size: 40rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
-  font-weight: bold;
-  border-radius: 40rpx;
+  height: 70rpx;
+  line-height: 35rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC !important;
+  border-radius: 35rpx;
   color: #FFFFFF;
+  font-weight: normal;
 }
 
 .login-layout .doLogin {
@@ -69,15 +67,17 @@
 }
 
 .login-layout .cancel {
-  margin-top: 40rpx;
+  margin-top: 48rpx;
   background: rgba(255, 255, 255, 0);
   border: 1px solid #FFFFFF;
 }
-.succ-icon{
+/* 蒙层 */
+.succ-icon {
   margin-top: 52rpx;
   text-align: center;
 }
-.modalTip{
+
+.modalTip {
   margin-top: 30rpx;
   height: 100rpx;
   display: flex;
@@ -85,13 +85,15 @@
   justify-content: space-between;
   align-items: center;
 }
-.modalTip view:first-child{
+
+.modalTip view:first-child {
   font-size: 36rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #333333;
 }
-.modalTip view:last-child{
+
+.modalTip view:last-child {
   font-size: 34rpx;
   font-family: PingFang SC;
   font-weight: 500;

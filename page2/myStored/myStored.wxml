@@ -2,7 +2,7 @@
 <view class="stored_container" style="margin-top:{{navHeight}}px">
   <view class="stored_list">
     <view class="stored_img">
-      <view>可用储值</view>
+      <view class='stored_img_title'>可用储值</view>
       <view class="recharge">支付充值：<text>{{reMoney}}</text></view>
       <view class="give">赠送充值：<text>{{giveMoney}}</text> </view>
     </view>

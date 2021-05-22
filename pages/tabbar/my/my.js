@@ -32,11 +32,11 @@ Page({
         name: '会员体测',
         img: '/static/my/test.png'
       },
-      {
-        id: 6,
-        name: '收货地址',
-        img: '/static/my/location.png'
-      }
+      // {
+      //   id: 6,
+      //   name: '收货地址',
+      //   img: '/static/my/location.png'
+      // }
     ],
     //0表示既未绑定手机号码又未获取用户信息
     //1表示授权了用户信息，但未绑定手机号码
