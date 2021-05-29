@@ -2,45 +2,61 @@
 <view class="content" style="margin-top:{{navHeight}}px;">
   <view class="shopping">
     <view class="product">
-      商城积分是什么？
+      <!-- 商城积分是什么？ -->
+     {{ rules[0].FTitle}}
     </view>
-    <text class="product-text">商城积分是为了回馈会员而放发的一种可用于兑换俱乐部积分商城指定礼品和服务的积分。
+    <text class="product-text">
+    <!-- 商城积分是为了回馈会员而放发的一种可用于兑换俱乐部积分商城指定礼品和服务的积分。 -->
+      {{ rules[0].FContent}}
     </text>
     <view class="product type">
-      积分商城分为几种类型？
+      {{ rules[1].FTitle}}
+      <!-- 积分商城分为几种类型？ -->
     </view>
-    <text class="product-text spty">积分类型分为行为积分和消费积分两种:
+    <text class="product-text spty">
+      <!-- 积分类型分为行为积分和消费积分两种:
       行为积分指的是通过某些对于俱乐部参与行为获得积 分。
       消费积分指的是通过在俱乐部的消费所获得积分。
-      两者所能兑换的礼品不同。
-    </text>
-    <view class="product houqi">如何获得积分?
-    </view>
-    <text class="product-text hry">行为积分：会员进场签到、生日积分、私教上课积分、团课签到、满
-      积分奖励、指定日积分翻倍等。
-      消费积分：会员通过消费获得积分，在指定日消费也可获得翻倍积分奖励。
+      两者所能兑换的礼品不同。 -->
+      {{ rules[1].FContent}}
     </text>
     <view class="product houqi">
-      如何使用积分？
+    <!-- 如何获得积分?  -->
+    {{ rules[2].FTitle}}
     </view>
-    <text class="product-text str">积分使用是会员通过积分商城下单兑换。
+    <text class="product-text hry">
+      {{ rules[2].FContent}}
+    <!-- 行为积分：会员进场签到、生日积分、私教上课积分、团课签到、满
+      积分奖励、指定日积分翻倍等。
+      消费积分：会员通过消费获得积分，在指定日消费也可获得翻倍积分奖励。 -->
+    </text>
+    <view class="product houqi">
+      <!-- 如何使用积分？ -->
+      {{ rules[3].FTitle}}
+    </view>
+    <text class="product-text str">
+      {{ rules[3].FContent}}
+    <!-- 积分使用是会员通过积分商城下单兑换。
       适用范围是兑换积分商城指定的服务与礼品，暂不可兑换没有上架在积分商城的商品。
-      礼品兑换后分为门店自取和快递上门，其中目前快递上门是到付制。
+      礼品兑换后分为门店自取和快递上门，其中目前快递上门是到付制。 -->
     </text>
     <view class="product tixi">
-      积分体系
+      <!-- 积分体系 -->
+      {{ rules[4].FTitle}}
     </view>
-    <text class="product-text str"><text class="xinwei">行为积分：</text>
-      进场签到积分：会员每次进场加10积分。
+    <text class="product-text str">
+     <!-- <text class="xinwei">行为积分：</text> -->
+      <!-- 进场签到积分：会员每次进场加10积分。
       生日积分：会员生日加20分。
       私教积分：私教上课加50分。
       团课积分：团课签到加10分。
       满积分奖励：例如累计满1000分时赠送20积分。
-      指定日翻倍：当在特殊日或节假日对于原本增加积分进行翻倍奖励。
-      <text class="consumer">消费积分：</text>
-      例如：每消费1元加1积分。
+      指定日翻倍：当在特殊日或节假日对于原本增加积分进行翻倍奖励。 -->
+      {{ rules[4].FContent}}
+      <!-- <text class="consumer">消费积分：</text> -->
+      <!-- 例如：每消费1元加1积分。
       满积分奖励：消费满1000元在原本积分上加100积分。
-      指定日翻倍：当在特殊日或节假日对于原本增加积分进行翻倍奖励。
+      指定日翻倍：当在特殊日或节假日对于原本增加积分进行翻倍奖励。 -->
     </text>
   </view>
 </view>

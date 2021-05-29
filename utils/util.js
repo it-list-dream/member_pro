@@ -8,7 +8,12 @@ const formatTime = date => {
 
   return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
 }
-
+const formatTime1 = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${[year, month, day].map(formatNumber).join('/')}`
+}
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : `0${n}`
@@ -182,9 +187,30 @@ function toWeekDay(date) { // 传入数据  讲一周的某一天返回成中文
   return '传入未知参数';
 }
 //var res = createEveryday();
+function closestToCurrentTime(timeArr) {
+ // var timeArr = ['2017-07-10', '2019-08-15', '2020-10-01', '2017-01-01',
+  //    '2021-04-15', '2021-05-21'];
+  var timestamp = Date.now();
+  var min;
+  var index = 0;
+  timeArr.forEach(function (item, i) {
+      var itemStamp = new Date(item).getTime();
+      var interVal = Math.abs(timestamp - itemStamp);
+      if (min == void 0) { min = interVal } else {
+          if (min > interVal) {
+              min = interVal;
+              index = i;
+          }
+      }
+  })
+  return index
+  //console.log(index);
+}
 module.exports = {
   formatTime:formatTime,
+  formatTime1 : formatTime1 ,
   days,
   toWeek:toWeek,
-  toWeekDay:toWeekDay
+  toWeekDay:toWeekDay,
+  closestToCurrentTime:closestToCurrentTime
 }

@@ -11,36 +11,36 @@
     <block wx:for="{{orderList}}" wx:key="index">
       <view class="main_order">
         <view class="order_status">
-          <view>{{item.storeName}}</view>
+          <view>{{item.GB_Name}}</view>
           <!--  -->
-          <view>{{item.state==1?'已支付':'未支付'}}</view>
+          <view>已支付</view>
         </view>
-        <view class="order_id">订单编号：{{item.order_id}}</view>
+        <view class="order_id">订单编号：{{item.OrderNo}}</view>
         <!-- 金额 -->
         <view class="my_money">
-          ￥<text>{{item.money}}</text>
+          ￥<text>{{item.Price}}</text>
         </view>
         <view class="order_img">
           <view>
-            <image src="/static/order/vip.png" class="vip_pic"></image>
-            <text class="yearCard">{{item.card_year}}</text>
+            <image src="{{item.SC_Logo?item.SC_Logo:'/static/order/vip.png'}}" class="vip_pic"></image>
+            <text class="yearCard">{{item.SC_Name}}</text>
           </view>
           <view class="right_box">
             <view>
-              <text style="font-size:24rpx;">×</text>
-              <text>{{item.buy_course}}</text>
+              <text style="font-size:24rpx;">×{{item.Num}}</text>
+              <!-- <text>{{item.Price}}</text> -->
             </view>
             <view>
-              合计:<text>￥</text>3000
+              合计:<text>￥</text>{{item.UP_MoneyReal}}
             </view>
           </view>
         </view>
         <!--  -->
         <view class="cre_time">
           <view>
-            VIP积分 <text class="inte_num">+1800</text>
+            VIP积分 <text class="inte_num">+{{item.Score}}</text>
           </view>
-          <view class="date">2021-3-25 14:28:00 </view>
+          <view class="date">{{item.Createdate}} </view>
         </view>
       </view>
     </block>
@@ -50,30 +50,30 @@
     <block wx:for="{{otherList}}" wx:key="index">
       <view class="main_order">
         <view class="order_status">
-          <view>{{item.storeName}}</view>
+          <view>{{item.GB_Name}}</view>
           <!--  -->
-          <view>{{item.state==1?'已支付':'未支付'}}</view>
+          <view>已支付</view>
         </view>
-        <view class="order_id">订单编号：{{item.order_id}}</view>
+        <view class="order_id">订单编号：{{item.OrderNo}}</view>
         <!-- 金额 -->
         <view class="my_money">
-          消费积分 <text>{{item.money}}</text>
+          消费积分 <text>{{item.TotalScore}}</text>
         </view>
         <view class="order_img">
           <view>
             <image src="/static/order/vip.png" class="vip_pic"></image>
-            <text class="yearCard">拉升课</text>
+            <text class="yearCard">{{item.SE_Name}}</text>
           </view>
           <view class="right_box">
             <view>
               <text style="font-size:24rpx;">×</text>
-              <text>{{item.buy_course}}10</text>
+              <text>{{item.Num}}</text>
             </view>
-            <view>合计： 3000 </view>
+            <view>合计： {{item.TotalScore}}</view>
           </view>
         </view>
         <!--  -->
-        <view class="time1">2021-3-25 14:28:00</view>
+        <view class="time1">{{item.Createdate}}</view>
       </view>
     </block>
   </view>

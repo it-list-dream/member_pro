@@ -44,11 +44,15 @@
   border-bottom: 1px solid #eeeeee;
 }
 
+input{
+  margin-right: 22rpx;
+}
+.sex-box{
+  margin-right: 22rpx;
+}
 .info_item>view:last-child>image {
-  width: 30rpx;
-  height: 30rpx;
-  width: 30rpx;
-  height: 30rpx;
+  width: 64rpx;
+  height: 64rpx;
   vertical-align: middle;
 }
 

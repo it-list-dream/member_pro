@@ -57,32 +57,37 @@ Component({
                 code: code
               }
             }).then(res => {
-              wx.setStorageSync('userOpenid', res.data.openid)
-              api.request({
-                url: "/userPhoneBind",
-                data: {
-                  user_token: res.data.user_token,
-                  encryptedDataStr: e.detail.encryptedData,
-                  iv: e.detail.iv,
-                }
-              }).then(res => {
-                //保存token 
-                if (res.data.code == 1) {
-                  wx.setStorageSync('token', res.data.user_token);
-                  that.getMyAllCrad();
-                  wx.setStorageSync('loginStatus', 2);
-                  // 保存手机号码
-                  wx.setStorageSync('phone', res.data.phone);
-                  //返回上一个页面
-                  wx.navigateBack({
-                    delta: 1,
-                  })
-                } else {
-                  wx.navigateBack({
-                    delta: 1,
-                  })
-                }
-              })
+              if (res.data.code == 1) {
+                wx.setStorageSync('userOpenid', res.data.openid);
+                console.log(111)
+                wx.setStorageSync('token', res.data.user_token);
+                api.request({
+                  url: "/userPhoneBind",
+                  data: {
+                    user_token: res.data.user_token,
+                    encryptedDataStr: e.detail.encryptedData,
+                    iv: e.detail.iv,
+                  }
+                }).then(res => {
+                  //保存token 
+                  if (res.data.code == 1) {
+                    wx.setStorageSync('token', res.data.user_token);
+                    that.getMyAllCrad();
+                    wx.setStorageSync('loginStatus', 2);
+                    // 保存手机号码
+                    wx.setStorageSync('phone', res.data.phone);
+                    //返回上一个页面
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  } else {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }
+                })
+              }
+  
             })
           }
         })
@@ -92,7 +97,6 @@ Component({
           delta: 1,
         })
       }
-
     },
     //获取已有的会员信息
     getMyAllCrad: function () {

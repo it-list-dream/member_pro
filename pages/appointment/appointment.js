@@ -39,7 +39,7 @@ Page({
     currPage: 1,
     //团课列表
     togetherClass: [],
-    chooseCoach:null,
+    chooseCoach: null,
     //是否有私教课
     isChoose: false
   },
@@ -47,12 +47,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(wx.getStorageSync('myCoach')){
-        this.setData({
-          chooseCoach:wx.getStorageSync('myCoach')
-        })
+    if (wx.getStorageSync('myCoach')) {
+      this.setData({
+        chooseCoach: wx.getStorageSync('myCoach')
+      })
     }
-
+    if (options.coach && options !== '') {
+      let coach1 = JSON.parse(options.coach);
+      this.setData({
+        chooseCoach: coach1
+      })
+      wx.setStorageSync('myCoach', coach1)
+    }
     let today = util.formatTime(new Date());
     today = today.slice(0, 10).replace(/\//g, '-')
     this.setData({
@@ -67,8 +73,6 @@ Page({
     this.getWeekList();
     //教练列表
     this.getMyCoachClassList();
-
-    //this.getMyCurrentTime();
   },
   //切换
   switchClass(e) {
@@ -202,13 +206,13 @@ Page({
             currentCoach: res.data.data[0],
             isCanCoach: true,
           })
-          if(!wx.getStorageSync('myCoach')){
-            let newObj = Object.assign({},res.data.data[0]); 
+          if (!wx.getStorageSync('myCoach')) {
+            let newObj = Object.assign({}, res.data.data[0]);
             wx.setStorageSync('myCoach', newObj);
             that.setData({
               chooseCoach: newObj
             })
-          }   
+          }
           //预约时间
           that.getPrivateAppointment();
         } else {
@@ -426,9 +430,23 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      that.setData({
-        togetherClass: res.data.data
-      })
+      if (res.data.code == 1) {
+        let tuanke = res.data.data
+        for (let i = 0; i < tuanke.length; i++) {
+          let time1 = Date.parse(tuanke[i].CTO_SignUpEndDate);
+          let nowTime = new Date().getTime();
+          console.log(time1,nowTime)
+          if (time1 > nowTime) {
+            tuanke[i].cantappointment = 1
+          }else{
+            //console.log('过期了')
+            tuanke[i].cantappointment = 0
+          }
+        }
+        that.setData({
+          togetherClass: tuanke
+        })
+      }
     })
   },
   //预约团课
@@ -439,11 +457,9 @@ Page({
     //是否购买会员卡
     let phone = wx.getStorageSync('phone')
     if (phone && phone !== '') {
-      if (Number(tcalss.IsAppointment) == 0) {
-        wx.navigateTo({
-          url: '/pages/groupAppointment/groupAppointment?tclass=' + JSON.stringify(tcalss),
-        })
-      }
+      wx.navigateTo({
+        url: '/pages/groupAppointment/groupAppointment?tclass=' + JSON.stringify(tcalss),
+      })
     } else {
       wx.navigateTo({
         url: '/page2/login/login',

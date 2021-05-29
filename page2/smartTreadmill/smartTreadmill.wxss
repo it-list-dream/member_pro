@@ -1,0 +1,88 @@
+/* page2/smartTreadmill/smartTreadmill.wxss */
+.treadmill {
+  padding: 40rpx 30rpx 0 30rpx;
+}
+
+.treadmill-box {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  width: 690rpx;
+  height: auto;
+  background: #FFFFFF;
+  border-radius: 8rpx;
+}
+
+.treadmill_header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 108rpx;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.line {
+  width: 80rpx;
+  height: 2rpx;
+  background: #333333;
+}
+
+picker {
+  text-align: center;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+picker image {
+  margin-top: -8rpx;
+  width: 30rpx;
+  height: 30rpx;
+  transform: rotate(-90deg);
+  vertical-align: middle;
+}
+
+.treadmill_item {
+  display: flex;
+  height: auto;
+  padding: 40rpx 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.left_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 252rpx;
+  height: 252rpx;
+  background: #F0F2F5;
+  border-radius: 8rpx;
+}
+
+.right_box {
+  margin-left: 40rpx;
+  font-family: PingFang SC;
+  color: #333333;
+  font-weight: 500;
+}
+
+.right_box>view:first-child {
+  font-size: 36rpx;
+}
+
+.right_box>view {
+  margin-bottom: 15rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.right_box>view:last-child {
+  margin-bottom: 0;
+}
+
+.treadmill_image {
+  width: 190rpx;
+  height: 190rpx;
+  vertical-align: middle;
+}

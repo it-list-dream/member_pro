@@ -31,8 +31,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(app.globalData)
-
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -59,8 +57,8 @@ Page({
           vipIntegral: res.data.data[0].UI_Score,
           actionIntegral: res.data.data[0].UI_ActionScore
         })
-        app.globalData.UI_Score = res.data.data[0].UI_Score;
-        app.globalData.UI_ActionScore = res.data.data[0].UI_ActionScore
+        // app.globalData.UI_Score = res.data.data[0].UI_Score;
+        // app.globalData.UI_ActionScore = res.data.data[0].UI_ActionScore
       }
     })
   },
@@ -97,7 +95,6 @@ Page({
       inteList[j].checked = false
     }
     this.setData({
-      // isScreen: false,
       typeValue: '',
       inteTypeList: inteList
     })
@@ -178,18 +175,6 @@ Page({
         score: score || 0
       }
     }).then(res => {
-      console.log(res)
-
-      //   let list = [];
-      //   for(var i =0;i<list.length;i++){
-      //      list.push({
-      //   "SE_Name": "常规课。",
-      //   "ActScore": "500",
-      //   "SE_Logo": "http://47.111.150.151:8011/file/584/Card/2021/1620887280pgxqc584.jpg",
-      //   "SE_ID": "3",
-      //   "PrizeType": "2"
-      // })
-      // }
       that.setData({
         selfReword: res.data.data
       })
@@ -275,7 +260,7 @@ Page({
   },
   memberCode() {
     let phone = wx.getStorageSync('phone')
-    console.log(111)
+   // console.log(111)
     if (phone && phone !== '') {
       //会员卡存在
       wx.navigateTo({
@@ -303,22 +288,9 @@ Page({
     })
   },
   /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

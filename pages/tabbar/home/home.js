@@ -1,6 +1,7 @@
 // pages/home/home.js
 const app = getApp();
-const api = require('../../../utils/request.js')
+const api = require('../../../utils/request.js');
+const util = require('../../../utils/util.js');
 Page({
 
   /**
@@ -13,21 +14,26 @@ Page({
     recomentList: [],
     activityCard: [],
     store: null,
-    GymLogo: null
+    GymLogo: null,
+    //我的会员卡
+    myCard: null
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //定位信息
+    this.getLocation();
+
     this.getSearchGymQR();
+    //获取会员卡
+    this.getMyAllVIPCard();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       GymName: wx.getStorageSync('GymName'),
       menuRight: app.globalData.menuRight
     })
-
   },
   callPhone(e) {
     console.log(e.currentTarget.dataset.phone)
@@ -89,7 +95,7 @@ Page({
   memberCode() {
     let phone = wx.getStorageSync('phone')
     if (phone && phone !== '') {
-      //会员卡存在
+      //未登录
       wx.navigateTo({
         url: '/page2/memberCode/memberCode',
       })
@@ -99,18 +105,23 @@ Page({
       })
     }
   },
-  // //获取私教课
-  // getMyCoachClassList: function () {
-  //   var that = this
-  //   api.request({
-  //     user_token: wx.getStorageSync('token'),
-  //     pageSize: 8,
-  //     pageIndex: 1,
-  //     UI_ID: wx.getStorageSync('UI_ID')
-  //   }).then(res => {
-  //     console.log(res)
-  //   })
-  // },
+  //获取我的会员卡
+  getMyAllVIPCard: function () {
+    var that = this;
+    api.request({
+      url: "/MyAllVIPCard",
+      data: {
+        user_token: wx.getStorageSync('token')
+      }
+    }).then(res => {
+      //有卡优先到有卡的门店
+      if (res.data.code == 1) {
+        that.setData({
+          myCard: res.data.data
+        })
+      }
+    })
+  },
   //定位
   Rad: function (d) { //根据经纬度判断距离
     return d * Math.PI / 180.0;
@@ -118,33 +129,108 @@ Page({
   //计算商家和用户之间的距离
   getDistance: function () {
     var that = this;
+    let locationList = this.data.storeList;
+    let cardList = this.data.myCard;
     // lat1用户的纬度  // lng1用户的经度  // lat2商家的纬度  // lng2商家的经度
     var lat1 = this.data.latitude;
     var lng1 = this.data.longitude;
     if (lat1 && lng1) {
-      var list = this.data.storeList;
-      for (var i = 0; i < list.length; i++) {
+      for (let i = 0; i < locationList.length; i++) {
         var radLat1 = this.Rad(lat1);
-        var radLat2 = this.Rad(list[i].lat);
+        var radLat2 = this.Rad(locationList[i].lat);
         var a = radLat1 - radLat2;
-        var b = this.Rad(lng1) - this.Rad(list[i].lng);
+        var b = this.Rad(lng1) - this.Rad(locationList[i].lng);
         var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
         s = s * 6378.137;
         s = Math.round(s * 10000) / 10000;
         s = s.toFixed(2) //保留两位小数
-        list[i].distance = s;
+        locationList[i].distance = s;
       }
-      app.globalData.store = list.sort(this.compare('distance'))[0];
-      that.setData({
-        store: app.globalData.store
-      })
-      // wx.setStorageSync('storeName', list.sort(this.compare('distance'))[0].GB_Name)
+
+      locationList.sort(this.compare('distance'))
+      console.log(locationList)
+      //有卡
+      if (cardList.length > 0) {
+        for (let j = 0; j < locationList.length; j++) {
+          for (let k = 0; k < cardList.length; k++) {
+            if (locationList[j].GB_ID == cardList[k].FK_GB_ID) {
+              that.setData({
+                store: locationList[j]
+              })
+              // console.log(locationList[j])
+              //  app.globalData.store = locationList[j]
+              wx.setStorageSync('GB_ID', that.data.store.GB_ID)
+              break;
+            }
+          }
+        }
+        console.log('定位且有卡')
+      } else {
+        //没卡就定位
+        //  app.globalData.store = locationList[0];
+        that.setData({
+          store: locationList[0]
+        })
+        wx.setStorageSync('GB_ID', that.data.store.GB_ID)
+        console.log('定位且没有卡')
+      }
+      // console.log(locationList.sort(this.compare('distance')))
     } else {
-      app.globalData.store = that.data.storeList[0]
+      //没定位
+      if (that.data.myCard.length > 0) {
+        var newList = that.data.myCard.map(item => item.CheckInDate)
+        let slist = that.data.storeList;
+        let latest = util.closestToCurrentTime(newList);
+        for (let i = 0; i < slist.length; i++) {
+          if (slist[i].GB_ID == cardList[latest].FK_GB_ID) {
+            that.setData({
+              store: slist[i]
+            })
+            wx.setStorageSync('GB_ID', that.data.store.GB_ID)
+            // app.globalData.store = slist[i]
+          }
+        }
+        console.log('没定位有卡，以最后一次离场')
+      } else {
+        that.setData({
+          store: that.data.storeList[0]
+        })
+        wx.setStorageSync('GB_ID', that.data.store.GB_ID)
+        //  app.globalData.store = that.data.storeList[0];
+        console.log('没定位且没有卡')
+      }
+    }
+  },
+  getDistance1() {
+    var that = this;
+    let list1 = that.data.storeList;
+    // lat1用户的纬度  // lng1用户的经度  // lat2商家的纬度  // lng2商家的经度
+    var lat1 = this.data.latitude;
+    var lng1 = this.data.longitude;
+    if (lat1 && lng1) {
+      for (let i = 0; i < list1.length; i++) {
+        var radLat1 = this.Rad(lat1);
+        var radLat2 = this.Rad(list1[i].lat);
+        var a = radLat1 - radLat2;
+        var b = this.Rad(lng1) - this.Rad(list1[i].lng);
+        var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+        s = s * 6378.137;
+        s = Math.round(s * 10000) / 10000;
+        s = s.toFixed(2) //保留两位小数
+        list1[i].distance = s;
+      }
+      list1.sort(this.compare('distance'))
+      that.setData({
+        store: list1[0]
+      })
+      wx.setStorageSync('GB_ID', that.data.store.GB_ID)
+      // app.globalData.store = list1[0];
+    } else {
       that.setData({
         store: that.data.storeList[0]
       })
-      // wx.setStorageSync('storeName', list.sort(this.compare('distance'))[0].GB_Name)
+      // app.globalData.store = that.data.storeList[0];
+      wx.setStorageSync('GB_ID', that.data.store.GB_ID)
     }
   },
   //获取门店信息
@@ -159,15 +245,16 @@ Page({
       that.setData({
         storeList: res.data.data
       })
-      if (!app.globalData.store) {
+      //未登录
+      let phone = wx.getStorageSync('phone')
+      if (phone && phone !== '') {
+        //登录
+       // console.log('登录')
         that.getDistance();
-        console.log('计算距离');
-        wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)
       } else {
-        that.setData({
-          store: app.globalData.store
-        })
-        wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)
+        //未登录
+        //console.log('未登录')
+        that.getDistance1()
       }
       //教练风采
       this.getCoachStyleList()
@@ -176,7 +263,7 @@ Page({
       //活动卡推荐
       this.getSuggestActivityCard();
       //轮播图
-      this.getBannerList()
+      this.getBannerList();
     })
   },
   //明星教练
@@ -189,7 +276,6 @@ Page({
         GB_ID: that.data.store.GB_ID
       }
     }).then(res => {
-      console.log(res)
       if (res.data.data.length > 3) {
         that.setData({
           coachList: res.data.data.slice(0, 3)
@@ -216,7 +302,7 @@ Page({
           that.setData({
             bannerList: res.data.data
           })
-        }else{
+        } else {
           that.setData({
             bannerList: that.data.bannerList1
           })
@@ -235,10 +321,9 @@ Page({
         GB_ID: that.data.store.GB_ID
       }
     }).then(res => {
-      console.log(res.data.data);
-      if (res.data.data.length > 4) {
+      if (res.data.data.length > 2) {
         that.setData({
-          recomentList: res.data.data.slice(0, 4)
+          recomentList: res.data.data.slice(0, 2)
         })
       } else {
         that.setData({
@@ -260,7 +345,6 @@ Page({
       that.setData({
         activityCard: res.data.data.slice(0, 2)
       })
-      console.log(res)
     })
   },
   //定位
@@ -306,7 +390,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getLocation();
+
   },
 
   /**

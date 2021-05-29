@@ -18,17 +18,22 @@ Page({
   },
   //获取门店信息
   getStoreInfo: function (d) {
+    wx.setStorageSync('UrlBySign',d.sign || 'ruyu')
     api.request({
       url: "/GetUrlBySign",
       data: {
         sign: d.sign || 'ruyu'
       }
     }).then(res => {
-      // console.log(res)
+      console.log(res)
+      // if(res.data.code == 1){
+      //   wx.setStorageSync('token', res.data.user_token)
+      //   wx.setStorageSync('GymName', res.data.GymName)
+      // }
       var t = wx.getStorageSync('token')
       if (!t) {
         wx.setStorageSync('token', res.data.user_token)
-        //保存门店名字
+        //保存品牌名
         wx.setStorageSync('GymName', res.data.GymName)
       }
       wx.switchTab({

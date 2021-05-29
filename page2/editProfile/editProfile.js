@@ -9,16 +9,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: '',
-    sex: ['男', '女'],
+    // userInfo: '',
     heightList: [],
-    phone: '15111428921',
+    phone: wx.getStorageSync('phone'),
     sexId: null,
     birthday: null,
     endTime: null,
     heightId: null,
     weightId: null,
-    weightList: []
+    weightList: [],
+    allInfo: null
   },
 
   /**
@@ -26,19 +26,19 @@ Page({
    */
   onLoad: function (options) {
     let date = util.formatTime(new Date());
+    if (wx.getStorageSync('userInfo')) {
+      this.setData({
+        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
+      })
+    }
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       endTime: date,
-      GB_ID:wx.getStorageSync('GB_ID')
+      GB_ID: wx.getStorageSync('GB_ID'),
+      UrlBySign: wx.getStorageSync('UrlBySign')
     })
-  },
-  changeSex(e) {
-    //console.log(e)
-    wx.setStorageSync('sex', e.detail.value)
-    this.setData({
-      sexId: e.detail.value
-    })
+    this.getUserInfo()
   },
   changePhone(e) {
     this.setData({
@@ -46,18 +46,62 @@ Page({
     })
   },
   changeBirthday(e) {
+    console.log(111)
+    var that = this;
     this.setData({
       birthday: e.detail.value
+    })
+    api.request({
+      url: '/UserInfoBirthday',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        birthday: e.detail.value
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        wx.showToast({
+          icon: "none",
+          title: '修改成功',
+        })
+      }
     })
   },
   changeHeight(e) {
     this.setData({
       heightId: e.detail.value
     })
+    api.request({
+      url: '/UserInfoHeight',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        height: e.detail.value
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        wx.showToast({
+          icon: "none",
+          title: '修改成功',
+        })
+      }
+    })
   },
   changeWeight(e) {
     this.setData({
       weightId: e.detail.value
+    })
+    api.request({
+      url: '/UserInfoWeight',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        weight: e.detail.value
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        wx.showToast({
+          icon: "none",
+          title: '修改成功',
+        })
+      }
     })
   },
   getHeight() {
@@ -100,30 +144,49 @@ Page({
           api.request({
             url: "/GetUrlBySign",
             data: {
-              sign: 'ruyu'
+              sign: that.data.UrlBySign
             }
           }).then(res => {
-            // console.log(res)
-        
             if (res.data.code == 1) {
-              var t = wx.getStorageSync('token')
-              if (!t) {
-                wx.setStorageSync('token', res.data.user_token)
-                //保存门店名字
-                wx.setStorageSync('GymName', res.data.GymName);
-                wx.setStorageSync('GB_ID',that.data.GB_ID)
-                wx.navigateBack({
-                  delta: 1,
-                })
-              }
+              // var t = wx.getStorageSync('token')
+              // if (!t) {
+              wx.setStorageSync('token', res.data.user_token)
+              //保存门店名字
+              wx.setStorageSync('GymName', res.data.GymName);
+              wx.setStorageSync('GB_ID', that.data.GB_ID)
+              //重新设置标识
+              wx.setStorageSync('UrlBySign', that.data.UrlBySign)
+              wx.navigateBack({
+                delta: 1,
+              })
+              //  }
             }
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }
     })
 
+  },
+  getUserInfo: function () {
+    var that = this
+    api.request({
+      url: '/UserInfo',
+      data: {
+        user_token: wx.getStorageSync('token')
+      }
+    }).then(res => {
+      let {
+        UI_Birthday,
+        UI_Weight,
+        UI_Height
+      } = res.data.data[0];
+      let date = new Date(UI_Birthday);
+      that.setData({
+        birthday: date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate(),
+        heightId: UI_Weight,
+        weightId: UI_Height
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面显示

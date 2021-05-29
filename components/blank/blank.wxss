@@ -1,8 +1,0 @@
-/* components/blank/blank.wxss */
-.blank_list{
-  width: 100%;
-  box-sizing: border-box;
-}
-.none{
-   
-}

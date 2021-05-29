@@ -145,9 +145,7 @@
 .record {
   margin-top: 10rpx;
 }
-.inte_scroll{
-  /* background: red; */
-}
+
 .record_item {
   display: flex;
   justify-content: space-between;

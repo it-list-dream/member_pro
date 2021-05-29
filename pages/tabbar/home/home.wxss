@@ -48,12 +48,14 @@ swiper image {
   width: 30rpx;
   height: 30rpx;
 }
-
+/* page{
+  padding-bottom:48px;
+} */
 /* 内容 */
 .home_content {
   position: relative;
   height: auto;
-  padding-bottom: 30rpx;
+  padding-bottom: 130rpx;
 }
 
 .store_pic {
@@ -332,19 +334,28 @@ swiper image {
 
 .recommend_list {
   display: flex;
+  box-sizing: border-box;
   padding: 20rpx;
   width: 690rpx;
   height: 378rpx;
+  /* height: 750rpx; */
+  /* height: auto; */
   justify-content: space-between;
   flex-wrap: wrap;
   background: #FFFFFF;
   border-radius: 8rpx;
   box-sizing: border-box;
 }
-
+/*  */
 .recommend_content .recommend_item {
   width: 314rpx;
+  height: 332rpx;
+  /* background: yellow; */
 }
+
+/* .recommend_active:nth-child(-n+2){
+  margin-bottom: 40rpx;
+} */
 
 .recommend_item image {
   width: 314rpx;
@@ -353,7 +364,7 @@ swiper image {
 }
 
 .course {
-  padding-top: 20rpx;
+  margin-top: 20rpx;
   /* box-sizing: border-box; */
 }
 
@@ -361,7 +372,7 @@ swiper image {
   display: flex;
   align-items: center;
   font-family: PingFang SC;
-  padding-top: 14rpx;
+  margin-top: 14rpx;
   /* box-sizing: border-box; */
 }
 
@@ -457,3 +468,6 @@ swiper image {
   font-weight: 500;
   color: #52495B;
 }
+/* .kong{
+  height: 48px;
+} */

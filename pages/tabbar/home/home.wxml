@@ -153,3 +153,5 @@
     </view>
   </view>
 </view>
+<view class="kong"></view>
+<tabbar selected="{{0}}"></tabbar>

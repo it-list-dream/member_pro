@@ -25,9 +25,11 @@ Page({
       navTop: app.globalData.navTop,
     })
   },
-  personalAppointment: function () {
+  personalAppointment: function (e) {
+    console.log(e.currentTarget.dataset.coach)
+    let coach = JSON.stringify(e.currentTarget.dataset.coach)
     wx.navigateTo({
-      url: '/pages/appointment/appointment?course=0',
+      url: '/pages/appointment/appointment?course=0&coach='+coach,
     })
   },
   /**

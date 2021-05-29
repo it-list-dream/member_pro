@@ -1,5 +1,6 @@
 // page2/order/order.js
 var app = getApp()
+var api = require('../../utils/request.js')
 Page({
 
   /**
@@ -8,52 +9,11 @@ Page({
   data: {
     orderTitle: ['支付', '积分'],
     chooseId: 0,
-    orderList: [{
-        storeName: '如鱼店',
-        order_id: '42182021051787131',
-        card_year: '一年卡',
-        inte_num: 1400,
-        buy_course: 1,
-        money: 1700,
-        state: 0
-      },
-      {
-        storeName: '体验店',
-        order_id: '4512202105167811',
-        card_year:'三年卡',
-        inte_num: 10000,
-        buy_course: 1,
-        money: 2700,
-        state: 1
-      },
-      {
-        storeName: '如鱼店',
-        order_id: '线下消费',
-        card_year: '一年卡',
-        inte_num: 1400,
-        buy_course: 1,
-        money: 2800,
-        state: 1
-      }
-    ],
-    otherList: [
-      {
-        storeName: '如鱼店',
-        order_id: '42182021051787131',
-        orderName: '一年卡',
-        inte_num: 1,
-        type:1,
-        money: 1700
-      },
-      {
-        storeName: '体验店',
-        order_id: '6086816569005598',
-        orderName: '瑜伽课',
-        inte_num: 1,
-        type:2,
-        money: 2100
-      }
-    ]
+    orderList: [],
+    otherList: [],
+    currPage: 1,
+    pageSize: 10,
+    flag: true
   },
 
   /**
@@ -63,14 +23,72 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
     })
+    this.getMyOrderListByPay();
+    this.getMyOrderListByScore()
   },
   choose(e) {
     let index = e.target.dataset.index
-    console.log(e)
+    if(index == this.data.chooseId){
+      return
+    }
+    if (index == 1) {
+      this.setData({
+        currPage: 1,
+        flag:true
+      })
+    } else {
+      this.setData({
+        currPage: 1
+      })
+    }
     this.setData({
       chooseId: index
+    })
+  },
+  //金额
+  getMyOrderListByPay: function () {
+    var that = this
+    api.request({
+      url: "/MyOrderListByPay",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage
+      }
+    }).then(res => {
+      console.log(res.data)
+      if (res.data.code == 1) {
+        if (res.data.data.length > 0) {
+          that.setData({
+            orderList: [...that.data.orderList, ...res.data.data]
+          })
+        } else {
+          that.data.flag = false;
+        }
+      }
+    })
+  },
+  //积分
+  getMyOrderListByScore: function () {
+    var that = this
+    api.request({
+      url: "/MyOrderListByScore",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        if (res.data.data.length > 0) {
+          that.setData({
+            otherList: [...that.data.otherList, ...res.data.data]
+          })
+        } else {
+          that.data.flag = false;
+        }
+      }
     })
   },
   /**
@@ -112,7 +130,20 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var that = this;
+    console.log('触底了')
+    if (this.data.flag) {
+      var pageSize = that.data.currPage + 1; //获取当前页数并+1
+      that.setData({
+        currPage: pageSize, //更新当前页数
+      })
+      if(that.data.chooseId==1){
+        that.getMyOrderListByScore()
+      }else{
+        that.getMyOrderListByPay()
+      }
+     // that.getMyCoachMyClass(); //重新调用请求获取下一页数据
+    }
   },
 
   /**

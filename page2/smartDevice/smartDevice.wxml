@@ -1,4 +1,4 @@
-<nav-bar page-name="人体成分仪"></nav-bar>
+<nav-bar page-name="人体成分仪" icon1="{{true}}"></nav-bar>
 <view class="device_all" style="margin-top:{{navHeight}}px">
   <view class="date_screen">
     <view>

@@ -23,7 +23,7 @@
             <text class="course_num">{{tools.replaceChar1(item.CP_Name,'。','')}}（{{item.CO_Have}}节）</text>
             <text class="exp_date">截止{{item.CO_ActiveEnd}}</text>
           </view>
-          <view class="appoinmentBtn" catchtap="personalAppointment">预约</view>
+          <view class="appoinmentBtn" catchtap="personalAppointment" data-coach="{{item}}">预约</view>
         </view>
       </view>
     </view>

@@ -31,7 +31,7 @@
                   <view>{{item.CTO_Name}}</view>
                   <view>教练：{{item.CoachName}}</view>
                   <view>时间：{{item.ClassTime}}</view>
-                  <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Addres}}</view>
+                  <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Address}}</view>
                   <view wx:if="{{item.ClassType==1 && item.PickNum>0}}">座位：{{item.PickNum}}</view>
                 </view>
               </view>
@@ -79,7 +79,7 @@
                   <view>{{item.CTO_Name}}</view>
                   <view>教练：{{item.CoachName}}</view>
                   <view>时间：{{item.ClassTime}}</view>
-                  <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Addres}}</view>
+                  <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Address}}</view>
                   <view wx:if="{{item.ClassType==1}}">座位：{{item.PickNum}}</view>
                 </view>
               </view>
@@ -117,7 +117,7 @@
                   <view>{{item.CTO_Name}}</view>
                   <view>教练：{{item.CoachName}}</view>
                   <view>时间：{{item.ClassTime}}</view>
-                  <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Addres}}</view>
+                  <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Address}}</view>
                   <view wx:if="{{item.ClassType==1}}">座位：{{item.PickNum}}</view>
                 </view>
               </view>
@@ -136,13 +136,5 @@
         </view>
       </view>
     </view>
-    <!-- <view class="none"
-      wx:if="{{completedHistory.length==0 || alreadyHistory.length==0 || unfinishedHistory.length==0}}">
-      <view class="none_list">
-        <image src="/static/none.png" style="width:200rpx;height:200rpx;"></image>
-        <view>暂无内容</view>
-      </view>
-    </view> -->
-
   </view>
 </view>

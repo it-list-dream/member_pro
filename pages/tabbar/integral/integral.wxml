@@ -72,7 +72,6 @@
         <view class="intradion">
           <checkbox-group bindchange="serviceValChange" class="chGroup">
             <block wx:for="{{inteTypeList}}" wx:key="id">
-              <!-- <view class="{{choose == index1?'choosebg1':''}}" bindtap="choosebg" data-index="{{index1}}">{{item}}</view> -->
               <view class="intradion_item {{item.checked?'changebg':''}}">
                 <label class="checkbox {{item.checked?'is_checked':''}}">
                   <checkbox value="{{item.inteName}}" checked="{{item.checked}}" hidden="false" />
@@ -156,7 +155,7 @@
       </view>
     </block>
   </view>
-  
+
   <view class="none" wx:else>
     <view class="none_list">
       <image src="/static/none.png"></image>
@@ -164,3 +163,4 @@
     </view>
   </view>
 </view>
+<tabbar selected="{{2}}"></tabbar>

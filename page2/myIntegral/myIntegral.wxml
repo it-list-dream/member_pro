@@ -33,7 +33,7 @@
     </view>
     <!--  全部-->
     <view class="record" wx:if="{{tab==0}}">
-      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - 60px - 451rpx)"
+      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - {{navHeight}}px - 451rpx)"
         lower-threshold="0" bindscrolltolower="loadMore">
         <block wx:for="{{all}}" wx:key="ROWID">
           <view class="record_item">
@@ -49,7 +49,7 @@
     </view>
     <!-- 赚积分 -->
     <view class="record" wx:elif="{{tab==1}}">
-      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - 60px - 451rpx)"
+      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - {{navHeight}}px  - 451rpx)"
         lower-threshold="0" bindscrolltolower="loadMore">
         <block wx:for="{{profitable }}" wx:key="ROWID">
           <view class="record_item">
@@ -65,7 +65,7 @@
     </view>
     <!-- 花积分 -->
     <view class="record" wx:elif="{{tab==2}}">
-      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - 60px - 451rpx)"
+      <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - {{navHeight}}px - 451rpx)"
         lower-threshold="0" bindscrolltolower="loadMore">
         <block wx:for="{{takeIntegral}}" wx:key="ROWID">
           <view class="record_item">

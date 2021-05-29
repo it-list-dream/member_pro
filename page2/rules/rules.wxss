@@ -1,45 +1,45 @@
-.content{
+.content {
   height: 100%;
   padding: 20rpx 0 90rpx 0;
   box-sizing: border-box;
   background: #ffffff
 }
-.shopping{
+
+.shopping {
   height: 100%;
 }
+
 .product {
-  width: 247rpx;
-  margin: 20rpx 0rpx 20rpx 30rpx;
+  display: inline-block;
+  margin: 20rpx 0 0 30rpx;
+  padding:8rpx 30rpx;
   font-size: 26rpx;
   color: #ffffff;
   text-align: center;
   border-radius: 8rpx;
   background-color: #52495B;
 }
+
 .product-text {
   display: block;
   width: 675rpx;
   font-size: 22rpx;
   color: #333333;
   margin-left: 30rpx;
-  margin-top: 20rpx;
   line-height: 38rpx;
 }
-.type {
-  width: 317rpx; 
-}
+
 .tyop {
   margin-bottom: 0rpx;
   width: 551rpx;
 }
-.houqi {
-  width: 217rpx;
-}
+
 .consumer {
   margin-top: 4rpx;
   display: inline-block;
   font-weight: 600;
 }
+
 .xinwei {
   display: inline-block;
   font-weight: 600;

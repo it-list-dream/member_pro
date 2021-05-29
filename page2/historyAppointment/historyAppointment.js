@@ -139,6 +139,11 @@ Page({
                 title: '取消成功',
                 icon: 'none'
               })
+            }else{
+              wx.showToast({
+                icon:"none",
+                title: res.data.msg,
+              })
             }
 
             //console.log(res);

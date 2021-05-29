@@ -12,10 +12,10 @@
       <image src="./images/bracelet.png"></image>
     </view>
   </view>
-  <view class="instument_item treadmill ">
+  <navigator  url="/page2/smartTreadmill/smartTreadmill" class="instument_item treadmill"  hover-class="none">
     <view class="instuTitle">智能跑步机</view>
     <view class="instu_img">
       <image src="./images/treadmill.png"></image>
     </view>
-  </view>
+  </navigator>
 </view>

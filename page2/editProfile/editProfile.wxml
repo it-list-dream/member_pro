@@ -9,18 +9,15 @@
       <view class="pro_bottom">
         <view class="info_item">
           <view>性别</view>
-          <!--  -->
-          <picker class="pick" mode="selector" bindchange="changeSex" range="{{sex}}">
-            <view>
-              <text class="right_con">{{sexId ? sex[sexId]:'请选择'}}</text>
-              <image src="/static/arrowAll.png"></image>
-            </view>
-          </picker>
+          <view class="sex-box">
+            <text class="right_con">{{userInfo.gender==2?'女':'男'}}</text>
+            <!-- <image src="/static/arrowAll.png"></image> -->
+          </view>
         </view>
         <view class="info_item">
           <view>电话</view>
           <view>
-            <input type="number" value="{{phone}}" maxlength="11" class="phoneNumber" cursor="11"
+            <input type="number" value="{{phone}}" maxlength="11" class="phoneNumber" cursor="11" disabled
               bindblur="changePhone" />
           </view>
         </view>
@@ -28,17 +25,16 @@
           <view>生日</view>
           <picker class="pick" mode="date" start="1900-01-01" end="{{endTime}}" bindchange="changeBirthday">
             <view>
-              <text class="right_con">{{ birthday? birthday:'请选择'}}</text>
+              <text class="right_con">{{ birthday.length>0? birthday:'请选择'}}</text>
               <image src="/static/arrowAll.png"></image>
             </view>
           </picker>
-
         </view>
         <view class="info_item">
           <view>身高</view>
-          <picker class="pick"  mode="selector" bindchange="changeHeight" range="{{heightList}}">
+          <picker class="pick" mode="selector" bindchange="changeHeight" range="{{heightList}}">
             <view>
-              <text class="right_con">{{heightId?heightList[heightId]+'cm':'请选择'}}</text>
+              <text class="right_con">{{heightId>0?heightList[heightId]+'cm':'请选择'}}</text>
               <image src="/static/arrowAll.png"></image>
             </view>
           </picker>
@@ -46,11 +42,11 @@
         </view>
         <view class="info_item">
           <view>体重</view>
-          <picker class="pick"  mode="selector" bindchange="changeWeight" range="{{weightList}}">
-          <view>
-            <text class="right_con">{{weightId?weightList[weightId]+'kg':'请选择'}}</text>
-            <image src="/static/arrowAll.png"></image>
-          </view>
+          <picker class="pick" mode="selector" bindchange="changeWeight" range="{{weightList}}">
+            <view>
+              <text class="right_con">{{weightId>0?weightList[weightId]+'kg':'请选择'}}</text>
+              <image src="/static/arrowAll.png"></image>
+            </view>
           </picker>
         </view>
       </view>

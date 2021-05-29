@@ -34,7 +34,7 @@
     </view>
     <!-- 充值 -->
     <view class="stored_item" wx:elif="{{tabIndex==1}}">
-      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 388rpx )" lower-threshold="0" bindscrolltolower="loadMore">
+      <scroll-view scroll-y class="stored_scroll"  style="height:calc(100vh - {{navHeight}}px - 474rpx)"  lower-threshold="0" bindscrolltolower="loadMore">
         <block wx:for="{{rechangeMoney}}" wx:key="i" wx:for-index="i">
           <view class="storedWrapper">
             <view class="stored_all">
@@ -49,7 +49,7 @@
 
     <!-- 消费 -->
     <view class="stored_item" wx:elif="{{tabIndex==2}}">
-      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 388rpx )" lower-threshold="0" bindscrolltolower="loadMore">
+      <scroll-view scroll-y class="stored_scroll"  style="height:calc(100vh - {{navHeight}}px - 474rpx)"  lower-threshold="0" bindscrolltolower="loadMore">
         <block wx:for="{{consumeMoney}}" wx:key="j" wx:for-index="j">
           <view class="storedWrapper">
             <view class="stored_all">

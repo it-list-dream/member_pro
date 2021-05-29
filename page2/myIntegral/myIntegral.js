@@ -36,7 +36,9 @@ Page({
     //积分消费 与取得  0全部 1获得2扣除
     useType: 0,
     vipIntegral: 0,
-    actionIntegral: 0
+    actionIntegral: 0,
+    //最后
+    isEnd: true
   },
 
   /**
@@ -49,53 +51,7 @@ Page({
       vipIntegral: options.vipIntegral,
       actionIntegral: options.actionIntegral
     })
-    // this.getScoreDetailed()
-    // console.log(options)
-  },
-  optionsTab: function (e) {
     var that = this
-    console.log(e.currentTarget.dataset.index);
-    var index = e.currentTarget.dataset.index;
-    //0全部 1获得2扣除
-    if (index == 1) {
-      that.setData({
-        useType: 1,
-        currPage: 1
-      })
-      console.log('赚积分')
-      that.getScoreDetailed()
-    } else if (index == 2) {
-      that.setData({
-        useType: 2,
-        currPage: 1
-      })
-      console.log('花积分')
-      that.getScoreDetailed()
-    } else {
-      that.setData({
-        useType: 0
-      })
-      console.log('所有的积分');
-      that.getScoreDetailed()
-    }
-    this.setData({
-      tab: index
-    })
-  },
-  //切片
-  getDate: function (e) {
-    var that = this
-    let id = e.detail.id
-    that.setData({
-      scoreType: id
-    })
-    that.getScoreDetailed2();
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    var that = this;
     api.request({
       url: "/ScoreDetailed",
       data: {
@@ -111,66 +67,92 @@ Page({
       })
     })
   },
+  optionsTab: function (e) {
+    var that = this
+    let index = e.currentTarget.dataset.index;
+    if (that.data.tab == e.currentTarget.dataset.index) {
+      return
+    }
+    this.setData({
+      tab: index,
+      currPage: 1,
+      isEnd: true
+    })
+    //0全部 1获得2扣除
+    if (index == 1) {
+      that.setData({
+        useType: 1,
+      })
+      console.log('赚积分')
+      that.data.profitable = [];
+      that.getScoreDetailed();
+    } else if (index == 2) {
+      that.setData({
+        useType: 2,
+      })
+      that.data.takeIntegral = [];
+      console.log('花积分')
+      that.getScoreDetailed()
+    } else {
+      that.setData({
+        useType: 0
+      })
+      console.log('所有的积分');
+      that.data.all = []
+      that.getScoreDetailed()
+    }
+  },
+  //切片
+  getDate: function (e) {
+    var that = this
+    let id = e.detail.id
+    that.setData({
+      scoreType: id
+    })
+    that.getScoreDetailed2();
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {},
+  //分页
   getScoreDetailed: function () {
     var that = this
-    if (that.data.currPage > that.data.total && that.data.currPage > 0 && that.data.total > 0) {
-      that.setData({
-        currPage: that.data.total
-      })
-      console.log('hahhaha')
-    } else {
-      console.log('hello')
-      api.request({
-        url: "/ScoreDetailed",
-        data: {
-          user_token: wx.getStorageSync('token'),
-          pageSize: that.data.pageSize,
-          pageIndex: that.data.currPage,
-          scoreType: that.data.scoreType,
-          useType: that.data.useType
+    api.request({
+      url: "/ScoreDetailed",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage,
+        scoreType: that.data.scoreType,
+        useType: that.data.useType
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        if (that.data.tab == 0 && res.data.data.length > 0) {
+          let n = that.unique([...that.data.all, ...res.data.data])
+          that.setData({
+            all: n
+          })
+          console.log('all')
+        } else if (that.data.tab == 1 && res.data.data.length > 0) {
+          let n = that.unique([...that.data.profitable, ...res.data.data])
+          that.setData({
+            profitable: n
+          })
+          console.log('zhuang')
+        } else if (that.data.tab == 2 && res.data.data.length > 0) {
+          let n = that.unique([...that.data.takeIntegral, ...res.data.data])
+          that.setData({
+            takeIntegral: n
+          })
+          console.log('hua')
+        } else {
+          console.log('数据已经到底了')
+          that.data.isEnd = false
         }
-      }).then(res => {
-        if (that.data.tab == 0) {
-          if (res.data.code == 1 && res.data.data.length > 0) {
-            var t = Math.ceil(res.data.recordCount / that.data.pageSize);
-            let newArr1 = [...that.data.all, ...res.data.data];
-            var n = that.unique(newArr1)
-            that.setData({
-              all: n,
-              total: t
-            })
-            console.log('tab ==0')
-          }
-
-        } else if (that.data.tab == 1) {
-          if (res.data.code == 1 && res.data.data.length > 0) {
-            var t = Math.ceil(res.data.recordCount / that.data.pageSize);
-          //   let newArr1 = [...that.data.profitable, ...res.data.data];
-          //   var n = that.unique(newArr1) 
-            that.setData({
-              profitable : [],
-              total: t
-            })
-            console.log('tab ==1')
-            that.setData({
-              profitable:res.data.data
-            })
-          }
-        } else if (that.data.tab == 2) {
-          if (res.data.code == 1 && res.data.data.length > 0) {
-            var t = Math.ceil(res.data.recordCount / that.data.pageSize);
-            let newArr1 = [...that.data.takeIntegral, ...res.data.data];
-            var n = that.unique(newArr1)
-            that.setData({
-              takeIntegral: n,
-              total: t
-            })
-            console.log('tab ==2')
-          }
-
-        }
-      })
-    }
+      }
+    })
   },
   //右边的切片
   getScoreDetailed2: function () {
@@ -189,7 +171,6 @@ Page({
       }
     }).then(res => {
       if (that.data.tab == 0) {
-        //   console.log(that.data.currPage)
         that.setData({
           all: res.data.data
         })
@@ -213,11 +194,14 @@ Page({
   loadMore: function () {
     console.log('触底了');
     var that = this;
-    var pageSize = that.data.currPage + 1; //获取当前页数并+1
-    that.setData({
-      currPage: pageSize, //更新当前页数
-    })
-    //that.getScoreDetailed(); //重新调用请求获取下一页数据
+    if (that.data.isEnd) {
+      var pageSize = that.data.currPage + 1; //获取当前页数并+1
+      that.setData({
+        currPage: pageSize, //更新当前页数
+      })
+      that.getScoreDetailed();
+    }
+    //重新调用请求获取下一页数据
   },
   //数组对象去重
   unique: function (arr) {

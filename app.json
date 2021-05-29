@@ -39,7 +39,9 @@
         "rules/rules",
         "smartDevice/smartDevice",
         "deviceDetail/deviceDetail",
-        "instrument/instrument"
+        "instrument/instrument",
+        "treadmillDetail/treadmillDetail",
+        "smartTreadmill/smartTreadmill"
       ]
     }],
   "plugins": {
@@ -49,6 +51,7 @@
     }
   },
   "tabBar": {
+    "custom": true,
     "position": "bottom",
     "selectedColor": "#52495B",
     "color": "#C0BEC9",

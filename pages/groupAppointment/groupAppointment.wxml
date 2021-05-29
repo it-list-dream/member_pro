@@ -21,7 +21,8 @@
     </view>
   </view>
   <view class="course_name">课程名：{{tclass.CTO_Name}}</view>
-  <view class="course_time">时间：{{tclass.CTO_DateStart}}-{{tools.sub(tclass.CTO_DateEnd,tclass.CTO_DateEnd.length-8)}}</view>
+  <view class="course_time">时间：{{tclass.CTO_DateStart}}-{{tools.sub(tclass.CTO_DateEnd,tclass.CTO_DateEnd.length-8)}}
+  </view>
   <view class="course_introduce">
     <view class="introduce">介绍：</view>
     <view class="introduce_detail">
@@ -30,8 +31,14 @@
     </view>
   </view>
   <!-- 免费的团课 -->
+  <!-- 
+ style="background:{{(tclass.IsAppointment==1 || tclass.cantappointment ==1 )?'gray':'#12D58B;'}}"
+    style="background:{{(item.cantappointment==1 && item.IsAppointment==0)?'#12D58B':item.IsAppointment==1?'#7B6F85':'#ada6ac'}}"
+   -->
   <view class="order_list" wx:if="{{tclass.CTO_Price == 0}}">
-    <view class="order" bindtap="handleSeat">预约{{tclass.IsPickNumChk == 1?'（选座）':''}}</view>
+    <view class="order"
+      style="background:{{(tclass.cantappointment==1 && tclass.IsAppointment==0)?'#12D58B':tclass.IsAppointment==1?'#7B6F85':'#ada6ac'}}"
+      bindtap="handleSeat">{{tclass.IsAppointment==1?'已预约':'预约'}}{{tclass.IsPickNumChk == 1?'（选座）':''}}</view>
   </view>
   <!-- 收费的团课 -->
   <view class="pay_course" wx:else>
@@ -46,24 +53,27 @@
       <view class="pay_total">
         <view class="pay_number">
           <text>合计：</text>
-          <view class="price">20.00元</view>
+          <view class="price">{{tclass.CTO_Price}}元</view>
         </view>
         <view class="pay_order">
-          <view class="order_title">预约</view>
+        <!-- style="background:{{item.cantappointment==1?'#FD4E54':'gray'}}" -->
+          <view class="order_title" bindtap="paygrounplesson"
+            style="background:{{tclass.cantappointment==1?'#FD4E54':'gray'}}">
+            {{tclass.IsAppointment==1?'已购买':'购买'}}</view>
         </view>
       </view>
     </view>
   </view>
   <!-- 选座 -->
-  <view class="mask" hidden="{{!chooseSeat}}" >
+  <view class="mask" hidden="{{!chooseSeat}}">
     <view class="mask-item">
       <view style="padding: 0 30rpx;">
         <view class="seatTitle">选择座位</view>
         <ul class="seatAll">
           <block wx:for="{{seatList}}" wx:key="index">
             <li>
-              <view class="seat {{item.IsUse==1?'col':''}} {{num==index+1 ? 'choosing':''}}" catchtap="judgeSeatExist{{item.IsUse==1?'1':'2'}}"
-              data-index="{{index+1}}">
+              <view class="seat {{item.IsUse==1?'col':''}} {{num==index+1 ? 'choosing':''}}"
+                catchtap="judgeSeatExist{{item.IsUse==1?'1':'2'}}" data-index="{{index+1}}">
                 {{index+1}}</view>
             </li>
           </block>

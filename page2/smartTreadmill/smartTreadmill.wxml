@@ -1,0 +1,31 @@
+<nav-bar page-name="智能跑步机" icon1="{{true}}"></nav-bar>
+<view class="treadmill" style="margin-top:{{navHeight}}px">
+  <view class="treadmill-box">
+    <view class="treadmill_header">
+      <picker mode="date" value="{{firstDate}}" start="2015-09-01" end="{{endDate}}" bindchange="bindDateChange"
+        fields="year" fields="month" class="picker">
+        {{firstDate}}
+        <image src="/static/arrow.png"></image>
+      </picker>
+      <view class="line"></view>
+      <picker mode="date" value="{{lastDat}}" start="2015-09-01" end="{{endDate}}" bindchange="bindDateChange1"
+        fields="year" fields="month" class="picker">
+        {{lastDate}}
+        <image src="/static/arrow.png"></image>
+      </picker>
+    </view>
+    <!-- contaner -->
+    <view class="treadmill_item" wx:for="{{2}}" bindtap="treadmillDetail">
+      <view class="left_box">
+        <image src="./images/treadmill@2x.png" class="treadmill_image"></image>
+      </view>
+      <view class="right_box">
+       <view>2021-9-3</view>
+       <view>跑步时长：1</view>
+       <view>跑步距离：0.07km</view>
+       <view>消耗热量：6kcal</view>
+       <view>平均速度：3.99km/h</view>
+      </view>
+    </view>
+  </view>
+</view>

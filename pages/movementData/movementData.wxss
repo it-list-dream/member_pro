@@ -24,12 +24,29 @@
   left: 0;
 }
 
+.arrow-nav{
+   position: relative;
+   left: 10px;
+   z-index: 20;
+}
+
 .navbar_title {
-  height: 100%;
-  padding:0 115px;
-  font-size: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 115px;
+  padding-right: 115px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  z-index: 10;
   font-family: PingFang SC;
+  font-size: 18px;
   font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   color: #FFFEFE;
 }
 
@@ -38,6 +55,7 @@
   height: 32px;
 }
 
+/* 标题 */
 .sport_title1 {
   position: absolute;
   top: 180rpx;

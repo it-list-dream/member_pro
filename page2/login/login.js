@@ -9,15 +9,25 @@ Page({
     showModal: false,
     hasUserInfo: false,
     //门店名
-    GymName:wx.getStorageSync('GymName') ||'如渔科技',
+    GymName: wx.getStorageSync('GymName') || '如渔科技',
     //门店logo
-    GymLogo:wx.getStorageSync('GymLogo')
+    GymLogo: wx.getStorageSync('GymLogo')
 
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          //发起网络请求
+          console.log(res.code)
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    })
     console.log(wx.getStorageSync('GymLogo'))
     let hasUserInfo = wx.getStorageSync('hasUserInfo');
     this.setData({
@@ -39,9 +49,11 @@ Page({
       icon: 'none',
       duration: 2000
     })
-    wx.navigateBack({
-      delta: 1,
-    })
+    setTimeout(function () {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }, 1500)
   },
   getUserProfile(e) {
     var that = this;
@@ -70,59 +82,101 @@ Page({
   //通过绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
-    if (e.detail.errMsg == 'getPhoneNumber:ok') {
-      //登录
-      wx.login({
-        success: function (res) {
-          let code = res.code
-          api.request({
-            url: "/WxUserLogin",
-            data: {
-              user_token: wx.getStorageSync('token'),
-              code: code
-            }
-          }).then(res => {
-            wx.setStorageSync('userOpenid', res.data.openid)
+    wx.checkSession({
+      success() {
+        console.log('sessionkey 没过期')
+        //session_key 未过期，并且在本生命周期一直有效
+        wx.login({
+          success: function (res) {
             api.request({
-              url: "/userPhoneBind",
+              url: "/WxUserLogin",
               data: {
-                user_token: res.data.user_token,
-                encryptedDataStr: e.detail.encryptedData,
-                iv: e.detail.iv,
+                user_token: wx.getStorageSync('token'),
+                code: res.code
               }
             }).then(res => {
-              //保存token 
               if (res.data.code == 1) {
-                wx.setStorageSync('token', res.data.user_token);
-                that.getMyAllCrad();
-                wx.setStorageSync('loginStatus', 2);
-                // 保存手机号码
-                wx.setStorageSync('phone', res.data.phone);
-                //返回上一个页面
-                wx.navigateBack({
-                  delta: 1,
-                })
-              } else {
-                wx.navigateBack({
-                  delta: 1,
+                wx.setStorageSync('userOpenid', res.data.openid);
+                api.request({
+                  url: "/userPhoneBind",
+                  data: {
+                    user_token: res.data.user_token,
+                    encryptedDataStr: e.detail.encryptedData,
+                    iv: e.detail.iv,
+                  }
+                }).then(res => {
+                  //保存token 
+                  if (res.data.code == 1) {
+                    wx.setStorageSync('token', res.data.user_token);
+                    that.getMyAllCrad();
+                    wx.setStorageSync('loginStatus', 2);
+                    // 保存手机号码
+                    wx.setStorageSync('phone', res.data.phone);
+                    //返回上一个页面
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  } else {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }
                 })
               }
             })
-          })
-        }
-      })
-    } else {
-      //返回上一个页面
-      wx.navigateBack({
-        delta: 1,
-      })
-    }
-
+          }
+        })
+      },
+      fail() {
+        console.log('sessionkey 过期')
+        // session_key 已经失效，需要重新执行登录流程
+        wx.login({
+          success: function (res) {
+            api.request({
+              url: "/WxUserLogin",
+              data: {
+                user_token: wx.getStorageSync('token'),
+                code: res.code
+              }
+            }).then(res => {
+              if (res.data.code == 1) {
+                wx.setStorageSync('userOpenid', res.data.openid);
+                api.request({
+                  url: "/userPhoneBind",
+                  data: {
+                    user_token: res.data.user_token,
+                    encryptedDataStr: e.detail.encryptedData,
+                    iv: e.detail.iv,
+                  }
+                }).then(res => {
+                  //保存token 
+                  if (res.data.code == 1) {
+                    wx.setStorageSync('token', res.data.user_token);
+                    that.getMyAllCrad();
+                    wx.setStorageSync('loginStatus', 2);
+                    // 保存手机号码
+                    wx.setStorageSync('phone', res.data.phone);
+                    //返回上一个页面
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  } else {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }
+                })
+              }
+            })
+          }
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
   //获取已有的会员信息
   getMyAllCrad: function () {
     var that = this;

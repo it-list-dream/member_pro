@@ -2,13 +2,14 @@
 <nav-bar page-name="教练详情"></nav-bar>
 <view class="coachDetail" style="margin-top:{{navHeight}}px">
   <view class="coach_bg">
+    <!-- /static/coach02.png -->
     <image src="/static/coach02.png"></image>
   </view>
   <view class="detail_list">
     <view class="coach_info">
       <view class="coach_left">
         <view class="head_list">
-          <image src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/head.png'}}" class="coach_head"></image>
+          <image src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/head.png'}}" class="coach_head" mode="widthFix"></image>
         </view>
 
         <view class="coach_man">

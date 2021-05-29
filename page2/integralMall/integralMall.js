@@ -2,7 +2,6 @@
 var app = getApp()
 var api = require('../../utils/request.js')
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,9 +12,21 @@ Page({
     chooseCoach: 0,
     //课程数量
     courseNum: 1,
-    takeMethods: ['门店自取', '快递上门（到付）'],
-    take_index: 0,
+    //  takeMethods: ['门店自取', '快递上门（到付）'],
+    //take_index: 0,
     //
+    takeMethods: [{
+        id: 1,
+        name: '门店自取',
+        checked: true
+      },
+      {
+        id: 2,
+        name: '快递上门（到付）'
+      }
+    ],
+    //收货方式， 1到店自取，2快递
+    take_index: 1,
     reward: null,
     coachList: [],
     //总积分
@@ -28,7 +39,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(app)
+    console.log(app)
     let t = options.type;
     if (t == 1) {
       this.getScoreRewardActContent(options.se_id, options.price_type);
@@ -71,7 +82,7 @@ Page({
     })
 
   },
-  //行为
+  //行为积分
   getScoreRewardActContent: function (se_id, prizeType) {
     var that = this
     api.request({
@@ -83,15 +94,15 @@ Page({
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
-      console.log(res);
+      //console.log(res);
       if (res.data.code == 1) {
         that.setData({
           reward: res.data.data
         })
       }
-    }) 
+    })
   },
-  //消费
+  //消费积分
   getScoreRewardPayContent: function (se_id, prizeType) {
     var that = this
     api.request({
@@ -149,9 +160,10 @@ Page({
     if (this.data.inteType == 1) {
       //获取教练的ID , 获取兑换课程的节数
       let coachID1 = that.data.coachList[that.data.chooseCoach].FK_AL_TeachCoach_ID;
-      console.log(coachID1, num1)
+     
       let num1 = that.data.courseNum;
-      let address1 = ""
+      let address1 = "";
+      console.log(coachID1, num1)
       wx.showModal({
         title: '',
         content: '确定兑换该物品',
@@ -185,32 +197,45 @@ Page({
   },
   //兑换实物
   exchange2: function () {
-    // var that = this
-    // let coachId = 0;
-    // let num = 0;
-    // let address = this.data.address;
-    // //判断是行为积分还是消费积分兑换
-    // if (this.data.inteType == 1) {
-    //   wx.showModal({
-    //     title: '',
-    //     content: '确定兑换该物品',
-    //     success(res) {
-    //       if (res.confirm) {
-    //         that.exchangeActScoreProEx();
-    //       }
-    //     }
-    //   })
-    // } else if (this.data.inteType == 2) {
-    //   wx.showModal({
-    //     title: '',
-    //     content: '确定兑换该物品',
-    //     success(res) {
-    //       if (res.confirm) {
-    //         that.exchangePayScoreProEx(coachID, num)
-    //       }
-    //     }
-    //   })
-    // }
+    var that = this
+    let coachId = 0;
+    let num = 0;
+    let address = {
+      name: that.data.concatPerson || '',
+      phone: that.data.phone || '',
+      recType: Number(that.data.take_index)
+    };
+    if (!that.data.detailAddress && that.data.take_index == 2) {
+      wx.showToast({
+        icon: "none",
+        title: '请填写收货地址',
+      })
+      return
+    } else {
+      address.address = that.data.detailAddress
+    }
+    //判断是行为积分还是消费积分兑换
+    if (this.data.inteType == 1) {
+      wx.showModal({
+        title: '',
+        content: '确定兑换该物品',
+        success(res) {
+          if (res.confirm) {
+            that.exchangeActScoreProEx(coachId, num, JSON.stringify(address));
+          }
+        }
+      })
+    } else if (this.data.inteType == 2) {
+      wx.showModal({
+        title: '',
+        content: '确定兑换该物品',
+        success(res) {
+          if (res.confirm) {
+            that.exchangePayScoreProEx(coachId, num, JSON.stringify(address))
+          }
+        }
+      })
+    }
   },
   //兑换实物
 
@@ -256,34 +281,34 @@ Page({
         address: address
       }
     }).then(res => {
+      console.log(res)
       if (res.data.code == 1) {
-        let CashCount = CashCount ? CashCount : 0
-        // console.log(CashCount)
-        that.setData({
-          CashCount: ++CashCount
-        })
-        let inte1 = 0;
-        if (that.data.type == 2) {
-          app.globalData.UI_ActionScore = app.globalData.UI_ActionScore - that.data.reward.ActScore * that.data.courseNum;
-          inte1 = that.data.reward.ActScore * that.data.courseNum;
+        console.log(res.data)
+        let inte2 = 0;
+        //type 
+        //周卡1 体验课2  实物 3
+        if (that.data.type == 1) {
+          inte2 = that.data.reward.ActScore
+        } else if (that.data.type == 2) {
+          inte2 = that.data.reward.ActScore * that.data.courseNum
         } else {
-          app.globalData.UI_ActionScore = app.globalData.UI_ActionScore - that.data.reward.ActScore;
-          inte1 = that.data.reward.ActScore
+          inte2 = that.data.reward.ActScore
         }
-        //console.log(app)
-        // wx.showToast({
-        //   icon: "none",
-        //   title: '兑换成功',
-        // })
+        let cashCount = that.data.reward.CashCount ? that.data.reward.CashCount : 0;
+        cashCount += 1;
+        console.log(cashCount)
+        that.setData({
+          ['reward.CashCount']: cashCount++
+        })
         setTimeout(function () {
           wx.navigateTo({
-            url: '/page2/suceess/suceess?costPoints=' + inte1 + '&isShow=4',
+            url: '/page2/suceess/suceess?costPoints=' + inte2 + '&isShow=4',
           })
         }, 1000)
       } else {
         wx.showToast({
           icon: "none",
-          title: res.data.msg,
+          title: res.data.msg || '兑换失败',
         })
       }
     })
@@ -305,33 +330,35 @@ Page({
       }
     }).then(res => {
       if (res.data.code == 1) {
-        let CashCount = CashCount ? CashCount : 0
-        that.setData({
-          CashCount: ++CashCount
-        })
-        // app.globalData.UI_Score = app.globalData.UI_Score - that.data.reward.ActScore;
-        // console.log(app)
-        let inte1 = 0;
-        if (that.data.type == 2) {
-          app.globalData.UI_ActionScore = app.globalData.UI_ActionScore - that.data.reward.ActScore * that.data.courseNum;
-          inte1 = that.data.reward.ActScore * that.data.courseNum;
+        let inte2 = 0;
+        //周卡1 体验课2  实物 3
+        if (that.data.type == 1) {
+          inte2 = that.data.reward.PayScore
+        } else if (that.data.type == 2) {
+          inte2 = that.data.reward.PayScore * that.data.courseNum
         } else {
-          app.globalData.UI_ActionScore = app.globalData.UI_ActionScore - that.data.reward.ActScore;
-          inte1 = that.data.reward.ActScore
+          inte2 = that.data.reward.PayScore
         }
+        console.log(inte2)
         // wx.showToast({
         //   icon: "none",
         //   title: '兑换成功',
         // })
+        let cashCount = that.data.reward.CashCount ? that.data.reward.CashCount : 0;
+        cashCount += 1;
+        console.log(cashCount)
+        that.setData({
+          ['reward.CashCount']: cashCount
+        })
         setTimeout(function () {
           wx.navigateTo({
-            url: '/page2/suceess/suceess?costPoints=' + inte1 + '&isShow=4',
+            url: '/page2/suceess/suceess?costPoints=' + inte2 + '&isShow=4',
           })
         }, 1000)
       } else {
         wx.showToast({
           icon: "none",
-          title: res.data.msg,
+          title: res.data.msg || '兑换失败',
         })
       }
     })
@@ -384,7 +411,7 @@ Page({
             //4.2用户当前设置不包含收货地址授权（说明是第一次打开获取用户收货地址信息的授权），
             wx.chooseAddress({
               success(data) {
-                console.log('4.2chooseAddress', data)
+                //console.log('4.2chooseAddress', data)
                 that.data.isWechat = true
                 that.data.concatPerson = data.userName //收货人姓名
                 that.data.phone = data.telNumber //收货人手机号码
@@ -400,6 +427,19 @@ Page({
 
       }
     })
+  },
+  radioChange: function (e) {
+    this.choose(e.detail.value);
+    this.setData({
+      take_index: e.detail.value
+    })
+  },
+  choose: function (m) {
+    if (m == 1) {
+      console.log('自取')
+    } else if (m == 2) {
+      this.getWechatAddress();
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

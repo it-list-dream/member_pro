@@ -13,20 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/shop/shop",
-          "pathName": "pages/shop/shop",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/coachList/coachList",
           "pathName": "pages/coachList/coachList",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/selectCourse/selectCourse",
-          "pathName": "pages/selectCourse/selectCourse",
           "query": "",
           "scene": null
         },
@@ -51,12 +39,6 @@
         {
           "name": "pages/appointment/appointment",
           "pathName": "pages/appointment/appointment",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/chooseSeat/chooseSeat",
-          "pathName": "pages/chooseSeat/chooseSeat",
           "query": "",
           "scene": null
         },
@@ -249,12 +231,6 @@
         {
           "name": "pages/activeDetail/activeDetail",
           "pathName": "pages/activeDetail/activeDetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/tabbar/sport/sport",
-          "pathName": "pages/tabbar/sport/sport",
           "query": "",
           "scene": null
         },
@@ -1479,6 +1455,174 @@
         {
           "name": "pages/tabbar/integral/integral",
           "pathName": "pages/tabbar/integral/integral",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/instrument/instrument",
+          "pathName": "page2/instrument/instrument",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/personalTrainer/personalTrainer",
+          "pathName": "pages/personalTrainer/personalTrainer",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/smartTreadmill/smartTreadmill",
+          "pathName": "page2/smartTreadmill/smartTreadmill",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/smartDevice/smartDevice",
+          "pathName": "page2/smartDevice/smartDevice",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/order/order",
+          "pathName": "page2/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/order/order",
+          "pathName": "page2/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/editProfile/editProfile",
+          "pathName": "page2/editProfile/editProfile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/editProfile/editProfile",
+          "pathName": "page2/editProfile/editProfile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/rules1/rules1",
+          "pathName": "page2/rules1/rules1",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "vipIntegral=10547&actionIntegral=10546",
+          "scene": null
+        },
+        {
+          "name": "pages/movementData/movementData",
+          "pathName": "pages/movementData/movementData",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
+          "scene": null
+        },
+        {
+          "name": "page2/order/order",
+          "pathName": "page2/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "vipIntegral=10547&actionIntegral=10546",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/selectCourse/selectCourse",
+          "pathName": "pages/selectCourse/selectCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "vipIntegral=10547&actionIntegral=10546",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
           "query": "course=1",
           "scene": null
         }

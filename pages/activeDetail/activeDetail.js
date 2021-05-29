@@ -107,7 +107,7 @@ Page({
   getpaydata(order, businessNo, money) {
     var that = this
     wx.request({
-      url: "https://shop.360ruyu.cn/api/gym/gym.asmx/GetPayDataApplet",
+      url: "https://shop.360ruyu.cn/api/gym/gym.asmx/GetPayDataAppletV2",
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
@@ -118,7 +118,7 @@ Page({
         body: "ss",
         attach: "df",
         sub_mch_id: businessNo,
-        total_fee: money * 1
+        total_fee: money * 100
       },
       method: 'POST',
       success: function (res) {

@@ -1,12 +1,13 @@
 // page2/rules/rules.js
 const app = getApp()
+var api = require('../../utils/request.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+     rules:[]
   },
 
   /**
@@ -15,9 +16,9 @@ Page({
   onLoad: function (options) {
     this.setData({
       navHeight: app.globalData.navHeight,
-      navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
+      navTop: app.globalData.navTop
     })
+    this.getRules();
   },
 
   /**
@@ -26,8 +27,21 @@ Page({
   onReady: function () {
 
   },
-
-  /**
+  getRules:function(){
+   var that = this
+   api.request({
+     url:"/ScoreRuleList",
+     data:{
+       user_token:wx.getStorageSync('token')
+     }
+   }).then(res=>{
+     console.log(res.data.data)
+     that.setData({
+       rules:res.data.data
+     })
+   })
+  },
+  /**{}
    * 生命周期函数--监听页面显示
    */
   onShow: function () {

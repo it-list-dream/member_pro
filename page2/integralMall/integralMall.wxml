@@ -82,7 +82,7 @@
       <view class="coach_swiper">
         <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="1000"
           display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
-          next-margin="{{coachList.length==1?'640rpx':(coachList.length==2?'3600rpx':'220rpx')}}" previous-margin="0">
+          next-margin="{{coachList.length==1?'640rpx':(coachList.length==2?'360rpx':'240rpx')}}" previous-margin="0">
           <block wx:for="{{coachList}}" wx:key="index">
             <swiper-item bindtap="coach_choose" data-index="{{index}}">
               <view class="coach_img">
@@ -149,8 +149,15 @@
 
     <view class="exp_item">
       兑换方式：
-      <view class="way">
-        <block wx:for="{{takeMethods}}" wx:for-index="index1" wx:key="index1">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{takeMethods}}" wx:key="id">
+          <view>
+            <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
+          </view>
+        </label>
+      </radio-group>
+      <!--  <view class="way">
+       <block wx:for="{{takeMethods}}" wx:for-index="index1" wx:key="index1">
           <view class="choose1">
             <view class="kong" catchtap="takeWay" style="background-color:{{take_index == index1?'#52495B':''}}"
               data-index="{{index1}}"></view>
@@ -158,10 +165,10 @@
               {{item}}
             </button>
           </view>
-        </block>
-      </view>
+        </block> 
+      </view>-->
     </view>
-    <view class="dispatching" wx:if="{{take_index==1}}">配送至：{{detailAddress}}
+    <view class="dispatching" wx:if="{{take_index==2}}">配送至：{{detailAddress}}
     </view>
     <view class="infinity">
       <view class="conversion">{{reward.CashCount}}人已经兑换</view>

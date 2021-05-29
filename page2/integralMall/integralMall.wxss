@@ -413,24 +413,6 @@ swiper {
   border-bottom: 1px solid #eeeeee;
 }
 
-.way {
-  display: flex;
-  justify-content: space-between;
-}
-
-/* .way>view {
-  padding-left: 40rpx;
-} */
-
-.kong {
-  display: inline-block;
-  width: 36rpx;
-  height: 36rpx;
-  border: 1px solid #52495B;
-  border-radius: 50%;
-  vertical-align: middle;
-}
-
 .dispatching {
   height: auto;
   padding: 20rpx;
@@ -446,40 +428,25 @@ swiper {
   padding-left: 30rpx;
 }
 
-.way>view {
+
+.radio-group{
   display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: space-evenly;
+}
+.radio:last-child{
+  margin-left: 48rpx;
+}
+/* radio */
+radio .wx-radio-input.wx-radio-input-checked {
+  border: none;
+  background: #52495B !important;
 }
 
-.kong:last-child {
-  margin-left: 20rpx;
-}
-
-.way button {
-  height: 60rpx !important;
-  border: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 30rpx !important;
-  line-height: 60rpx !important;
-  font-family: PingFang SC;
-  font-weight: 400;
-  color: #333333 !important;
-  text-align: left;
-  background: #ffffff;
-  margin-left: 10rpx !important;
-}
-
-.choose1:last-child {
-  margin-right: 30rpx;
-}
-
-.chooseAdd:first-child {
-  width: 120rpx;
-}
-
-.chooseAdd:last-child {
-  width: 220rpx;
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before {
+  /* 去除对号 */
+  content: '';
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background-color: #52495B;
 }

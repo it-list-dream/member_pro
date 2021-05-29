@@ -2,7 +2,7 @@
   <view class="banner">
     <view class="custom-nav" style="height:{{navHeight}}px;">
       <view style="top:{{navTop}}px">
-        <view bindtap="_navBack">
+        <view bindtap="_navBack" class="arrow-nav">
           <image class="icon-arrow" src="../../components/navbar/images/white-arrow.png"></image>
         </view>
         <view class="navbar_title">运动数据</view>
@@ -69,7 +69,7 @@
         <picker mode="date" value="{{date}}" start="2015-09-01" end="{{endTime}}" fields="year"
           bindchange="bindYearChange">
           <!-- <text>2021年</text> -->
-          <text>{{date || 2021}}年</text>
+          <text>{{date}}年</text>
           <image src="/static/bottom_arrow.png"></image>
         </picker>
       </view>
@@ -85,11 +85,11 @@
         </view>
       </view>
       <view class="dateDetail">
-        <image src="/static/left_arrow.png" class="arrow1"></image>
-        <view>2021/03/08</view>
+        <image src="/static/left_arrow.png" class="arrow1" bindtap="pervClick"></image>
+        <view>{{startDate}}</view>
         <view class="line"></view>
-        <view>2021/04/08</view>
-        <image src="/static/next.png" class="arrow1"></image>
+        <view>{{endDate}}</view>
+        <image src="/static/next.png" class="arrow1" bindtap="nextClick"></image>
       </view>
       <!--echarts  -->
       <view class="echarts_container">

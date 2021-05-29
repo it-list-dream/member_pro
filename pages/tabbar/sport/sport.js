@@ -17,23 +17,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let phoneNumber = wx.getStorageSync('phone');
-    if (!phoneNumber && phoneNumber == '') {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-    }
     this.getWeekList();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       menuRight: app.globalData.menuRight
     })
-    console.log(app.globalData.menuRight)
   },
   changeDate(e) {
-    // console.log(e.target)
-    console.log(e.currentTarget.dataset.num)
     let changebg = e.currentTarget.dataset.num
     this.setData({
       changebg: changebg
@@ -41,37 +32,16 @@ Page({
     this.getMotionCalendar()
   },
   runing: function () {
-    let phone = wx.getStorageSync('phone');
-    if (!phone && phone == '') {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-      return
-    }
     wx.navigateTo({
       url: '/pages/movementData/movementData',
     })
   },
   fitness: function () {
-    let phone = wx.getStorageSync('phone');
-    if (!phone && phone == '') {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-      return
-    }
     wx.navigateTo({
       url: '/page2/instrument/instrument',
     })
   },
   appointment: function () {
-    let phone = wx.getStorageSync('phone')
-    if (!phone && phone == '') {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-      return
-    }
     this.setData({
       chooseCourse: true
     })
@@ -82,23 +52,11 @@ Page({
     })
   },
   myClass: function () {
-    let phone = wx.getStorageSync('phone');
-    if (!phone && phone == '') {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-    } else {
-      wx.navigateTo({
-        url: '/page2/myCourse/myCourse',
-      })
-    }
-
+    wx.navigateTo({
+      url: '/page2/myCourse/myCourse',
+    })
   },
   groupCourse: function () {
-    let phone = wx.getStorageSync('phone')
-    // if(phone ){
-
-    // }
     wx.navigateTo({
       url: '/pages/appointment/appointment?course=1',
     })
@@ -182,17 +140,9 @@ Page({
     })
   },
   memberCode() {
-    let phone = wx.getStorageSync('phone')
-    if (phone && phone !== '') {
-      //会员卡存在
-      wx.navigateTo({
-        url: '/page2/memberCode/memberCode',
-      })
-    } else {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-    }
+    wx.navigateTo({
+      url: '/page2/memberCode/memberCode',
+    })
   },
   code: function () {
     wx.scanCode({
@@ -212,8 +162,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-    //sport
     this.getMotionCalendar()
     //
     this.getScoreRewardActList()
@@ -225,14 +173,6 @@ Page({
   onHide: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -246,11 +186,4 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -77,7 +77,8 @@ Page({
     })
   },
   // 购买下单
-  paysuccess() {
+   // 购买下单
+   paysuccess() {
     var that = this
     //判断是否买了会员卡 是否手登录
     let ui_id = Number(wx.getStorageSync('UI_ID'));
@@ -115,8 +116,9 @@ Page({
   },
   getpaydata(order, businessNo, money) {
     var that = this
+    console.log(order,businessNo,money)
     wx.request({
-      url: "https://shop.360ruyu.cn/api/gym/gym.asmx/GetPayDataApplet",
+      url: "https://shop.360ruyu.cn/api/gym/gym.asmx/GetPayDataAppletV2",
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },

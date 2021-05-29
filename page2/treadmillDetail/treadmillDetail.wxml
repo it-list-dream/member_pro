@@ -1,0 +1,36 @@
+<nav-bar page-name="智能跑步机"></nav-bar>
+<view class="machine_container" style="margin-top:{{navHeight}}px">
+  <view class="running_title">2021-09-03</view>
+  <!-- banner -->
+  <view class="machine_bar">
+    <view class="left bar">
+      <image src="./images/time.png"></image>
+      <view class="bar_item">
+        <view>1分11秒</view>
+        <view>全程用时</view>
+      </view>
+    </view>
+    <view class="right bar">
+      <image src="./images/distance.png"></image>
+      <view class="bar_item">
+        <view>0.07km</view>
+        <view>全程距离km</view>
+      </view>
+    </view>
+  </view>
+  <!-- 详细数据 -->
+  <view class="detailData">
+    <view class="detail_title">详细数据</view>
+    <view class="detail_list">
+      <block wx:for="{{detailList}}" wx:key="index">
+        <view class="detail_item">
+          <view>
+            <text>{{item.count}}</text>
+            <image src="{{item.img}}"></image>
+          </view>
+          <view>{{item.title}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
