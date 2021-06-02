@@ -17,7 +17,6 @@ Page({
    this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
     })
   },
   informTab(e){

@@ -39,20 +39,51 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app)
+    // console.log(app)
+    var that = this
+    //type是区分行为积分还是消费积分的
     let t = options.type;
-    if (t == 1) {
-      this.getScoreRewardActContent(options.se_id, options.price_type);
-    } else if (t == 2) {
-      this.getScoreRewardPayContent(options.se_id, options.price_type);
+    console.log(options)
+    if (options.sign && options.sign !== '') {
+      api.request({
+        url: "/GetUrlBySign",
+        data: {
+          sign: options.sign
+        }
+      }).then(res => {
+        if (res.data.code == 1) {
+          if (!wx.getStorageSync('token')) {
+            wx.setStorageSync('token', res.data.user_token)
+            //保存品牌名
+            wx.setStorageSync('GymName', res.data.GymName);
+            //保存门店的id
+            wx.setStorageSync('GB_ID', options.GB_ID);
+          }
+          //行为积分和消费积分
+          if (t == 1) {
+            this.getScoreRewardActContent(options.se_id, options.price_type, options.GB_ID);
+          } else if (t == 2) {
+            this.getScoreRewardPayContent(options.se_id, options.price_type, options.GB_ID);
+          }
+        }
+      })
+    } else {
+      if (t == 1) {
+        this.getScoreRewardActContent(options.se_id, options.price_type);
+      } else if (t == 2) {
+        this.getScoreRewardPayContent(options.se_id, options.price_type);
+      }
     }
     //所有的教练
     if (options.price_type == 2) {
       this.getAllCoach();
     }
+
+
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
+      //判断是行为积分还是消费积分
       inteType: options.type,
       type: options.price_type,
       se_id: options.se_id
@@ -83,7 +114,7 @@ Page({
 
   },
   //行为积分
-  getScoreRewardActContent: function (se_id, prizeType) {
+  getScoreRewardActContent: function (se_id, prizeType, id) {
     var that = this
     api.request({
       url: "/ScoreRewardActContent",
@@ -91,7 +122,7 @@ Page({
         user_token: wx.getStorageSync('token'),
         se_id: se_id,
         prizeType: prizeType,
-        GB_ID: wx.getStorageSync('GB_ID')
+        GB_ID: wx.getStorageSync('GB_ID') || id
       }
     }).then(res => {
       //console.log(res);
@@ -103,7 +134,7 @@ Page({
     })
   },
   //消费积分
-  getScoreRewardPayContent: function (se_id, prizeType) {
+  getScoreRewardPayContent: function (se_id, prizeType, id) {
     var that = this
     api.request({
       url: "/ScoreRewardPayContent",
@@ -111,7 +142,7 @@ Page({
         user_token: wx.getStorageSync('token'),
         se_id: se_id,
         prizeType: prizeType,
-        GB_ID: wx.getStorageSync('GB_ID')
+        GB_ID: wx.getStorageSync('GB_ID') || id
       }
     }).then(res => {
       console.log(res);
@@ -160,7 +191,7 @@ Page({
     if (this.data.inteType == 1) {
       //获取教练的ID , 获取兑换课程的节数
       let coachID1 = that.data.coachList[that.data.chooseCoach].FK_AL_TeachCoach_ID;
-     
+
       let num1 = that.data.courseNum;
       let address1 = "";
       console.log(coachID1, num1)
@@ -238,7 +269,6 @@ Page({
     }
   },
   //兑换实物
-
   //教练列表
   getAllCoach: function () {
     var that = this;
@@ -290,7 +320,7 @@ Page({
         if (that.data.type == 1) {
           inte2 = that.data.reward.ActScore
         } else if (that.data.type == 2) {
-          inte2 = that.data.reward.ActScore * that.data.courseNum
+          inte2 = Number(that.data.reward.ActScore) * Number(that.data.courseNum)
         } else {
           inte2 = that.data.reward.ActScore
         }
@@ -300,11 +330,12 @@ Page({
         that.setData({
           ['reward.CashCount']: cashCount++
         })
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '/page2/suceess/suceess?costPoints=' + inte2 + '&isShow=4',
-          })
-        }, 1000)
+        //setTimeout(function () {
+        //prizeType = 兑换类型 //消费还是行为积分 inteType
+        wx.navigateTo({
+          url: '/page2/suceess/suceess?costPoints=' + inte2 + '&isShow=4&se_id=' + that.data.reward.SE_ID + '&inteType=' + that.data.inteType + '&prizeType=' + that.data.type,
+        })
+        //  }, 1000)
       } else {
         wx.showToast({
           icon: "none",
@@ -335,7 +366,7 @@ Page({
         if (that.data.type == 1) {
           inte2 = that.data.reward.PayScore
         } else if (that.data.type == 2) {
-          inte2 = that.data.reward.PayScore * that.data.courseNum
+          inte2 = Number(that.data.reward.PayScore) * Number(that.data.courseNum)
         } else {
           inte2 = that.data.reward.PayScore
         }
@@ -350,11 +381,11 @@ Page({
         that.setData({
           ['reward.CashCount']: cashCount
         })
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '/page2/suceess/suceess?costPoints=' + inte2 + '&isShow=4',
-          })
-        }, 1000)
+        //   setTimeout(function () {
+        wx.navigateTo({
+          url: '/page2/suceess/suceess?costPoints=' + inte2 + '&isShow=4&se_id=' + that.data.reward.SE_ID + '&inteType=' + that.data.inteType + '&prizeType=' + that.data.type
+        })
+        //   }, 1000)
       } else {
         wx.showToast({
           icon: "none",

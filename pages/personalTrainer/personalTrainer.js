@@ -16,18 +16,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //  console.log(JSON.parse(options.course1))
+    // console.log(options)
     this.getCoachStyleList()
     let o = JSON.parse(options.course1);
-    if (options.course1) {
-      this.setData({
-        personal: o,
-        priceTotal: o.OnlinePrice
-      })
-    }
+    // if (options.course1) {
+    //   this.setData({
+    //     personal: o,
+    //     priceTotal: o.OnlinePrice
+    //   })
+    // }
     this.setData({
       navHeight: app.globalData.navHeight,
-      navTop: app.globalData.navTop
+      navTop: app.globalData.navTop,
+      personal: o,
+      priceTotal: o.OnlinePrice
     })
   },
   reduce() {
@@ -83,7 +85,14 @@ Page({
     //判断是否买了会员卡 是否手登录
     let ui_id = Number(wx.getStorageSync('UI_ID'));
     let phone = wx.getStorageSync('phone')
-    if (ui_id > 0 && phone && phone !== '') {
+    if (phone && phone !== '') {
+      if(!ui_id){
+        wx.showToast({
+          icon:"none",
+          title: '你还未购买会员卡',
+        })
+        return 
+      }
       api.request({
         url: "/OrderCoachLesson",
         data: {
@@ -95,10 +104,8 @@ Page({
           CoachID: that.data.coachList[that.data.chooseNum].FK_AL_TeachCoach_ID
         }
       }).then(res => {
-        console.log(res)
         if (res.data.code == 1) {
           that.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].MoneyShould)
-          console.log(res)
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -107,11 +114,9 @@ Page({
         }
       })
     } else {
-      wx.showToast({
-        icon:'none',
-        title: '您还未登录或您还没有买卡',
+      wx.navigateTo({
+        url:"/page2/login/login"
       })
-      
     }
   },
   getpaydata(order, businessNo, money) {
@@ -143,7 +148,7 @@ Page({
           'success': function (res) {
             that.ordersuccess(order)
             that.setData({
-              'personal.SaleCount': that.data.personal.SaleCount + 1
+              'personal.SaleCount':Number(that.data.personal.SaleCount )+ 1
             })
           },
           'fail': function (res) {
@@ -174,9 +179,14 @@ Page({
         orderNo: orderNo
       }
     }).then(res => {
-      if (res.data.code == 1) {
+       if (res.data.code.startsWith('1')) {
         wx.showToast({
           title: '支付成功',
+        })
+        let teacherid = that.data.coachList[that.data.chooseNum].FK_AL_TeachCoach_ID;
+        console.log(teacherid)
+        wx.navigateTo({
+          url: '/page2/suceess/suceess?isShow=3&teacherid='+teacherid,
         })
       } else {
         wx.showToast({

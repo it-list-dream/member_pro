@@ -24,14 +24,13 @@ Page({
   onLoad: function (options) {
     //定位信息
     this.getLocation();
-
     this.getSearchGymQR();
     //获取会员卡
     this.getMyAllVIPCard();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      GymName: wx.getStorageSync('GymName'),
+      //  GymName: wx.getStorageSync('GymName'),
       menuRight: app.globalData.menuRight
     })
   },
@@ -116,6 +115,7 @@ Page({
     }).then(res => {
       //有卡优先到有卡的门店
       if (res.data.code == 1) {
+        console.log(res.data.data)
         that.setData({
           myCard: res.data.data
         })
@@ -148,9 +148,9 @@ Page({
       }
 
       locationList.sort(this.compare('distance'))
-      console.log(locationList)
+      //console.log(locationList)
       //有卡
-      if (cardList.length > 0) {
+      if (that.data.myCard) {
         for (let j = 0; j < locationList.length; j++) {
           for (let k = 0; k < cardList.length; k++) {
             if (locationList[j].GB_ID == cardList[k].FK_GB_ID) {
@@ -177,7 +177,7 @@ Page({
       // console.log(locationList.sort(this.compare('distance')))
     } else {
       //没定位
-      if (that.data.myCard.length > 0) {
+      if (that.data.myCard) {
         var newList = that.data.myCard.map(item => item.CheckInDate)
         let slist = that.data.storeList;
         let latest = util.closestToCurrentTime(newList);
@@ -246,15 +246,56 @@ Page({
         storeList: res.data.data
       })
       //未登录
-      let phone = wx.getStorageSync('phone')
+      let phone = wx.getStorageSync('phone');
+      let gb_id = wx.getStorageSync('GB_ID');
+      let my_store = null;
       if (phone && phone !== '') {
         //登录
-       // console.log('登录')
-        that.getDistance();
+        // console.log('登录')
+        if (!wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID') == ' ') {
+          console.log('第一次进入 登录')
+          that.getDistance();
+        } else {
+          //加载门店的信息
+          my_store = that.data.storeList.filter(item => item.GB_ID == gb_id)
+          // console.log(my_store)
+          if (my_store.length > 0) {
+            that.setData({
+              store: my_store[0]
+            })
+          }
+        }
+
+        // if (!app.globalData.store || !wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID'=='')) {
+        //   that.getDistance();
+        // } else {
+        //   that.setData({
+        //     store: app.globalData.store
+        //   })
+        //   wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)
+        // }
+
       } else {
         //未登录
-        //console.log('未登录')
-        that.getDistance1()
+        // console.log('登录')
+        if (!wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID' == '')) {
+          that.getDistance1()
+          console.log('第一次进入 未登录')
+        } else {
+           //加载门店的信息
+           my_store = that.data.storeList.filter(item => item.GB_ID == gb_id)
+           // console.log(my_store)
+           if (my_store.length > 0) {
+             that.setData({
+               store: my_store[0]
+             })
+           }
+        }
+        //   // that.setData({
+        //   //   store: app.globalData.store
+        //   // })
+        //   wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)
+        // }
       }
       //教练风采
       this.getCoachStyleList()
@@ -273,7 +314,8 @@ Page({
       url: '/CoachStyleList',
       data: {
         user_token: wx.getStorageSync('token'),
-        GB_ID: that.data.store.GB_ID
+        // GB_ID: that.data.store.GB_ID
+        GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
       if (res.data.data.length > 3) {
@@ -318,7 +360,8 @@ Page({
       url: '/SuggestCoachClass',
       data: {
         user_token: wx.getStorageSync('token'),
-        GB_ID: that.data.store.GB_ID
+        //  GB_ID: that.data.store.GB_ID
+        GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
       if (res.data.data.length > 2) {
@@ -339,7 +382,8 @@ Page({
       url: '/SuggestActivityCard',
       data: {
         user_token: wx.getStorageSync('token'),
-        GB_ID: that.data.store.GB_ID
+        //   GB_ID: that.data.store.GB_ID
+        GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
       that.setData({
@@ -378,11 +422,11 @@ Page({
         that.setData({
           GymLogo: res.data.data[0].GymLogo
         })
-        if (wx.getStorageSync('GymLog')) {
-          wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
-        } else {
-          wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
-        }
+        // if (wx.getStorageSync('GymLog')) {
+        //  wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
+        // } else {
+        wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
+        //  }
       }
     })
   },
@@ -417,7 +461,7 @@ Page({
   },
   //查看会员卡列表
   suggestCard: function (e) {
-    console.log(e.currentTarget.dataset.card)
+    //console.log(e.currentTarget.dataset.card)
     let card = JSON.stringify(e.currentTarget.dataset.card);
     wx.navigateTo({
       url: '/pages/activeDetail/activeDetail?card=' + card,

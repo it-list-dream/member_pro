@@ -1,7 +1,9 @@
 var baseURL = 'https://user.360ruyu.cn/MobileUserV2.asmx';
+// 同时发送异步代码的次数
+let ajaxTimes = 0;
 var fixtion = {}
 var request = (options) => {
-  if (options.url == '/GetUrlBySign' || options.url == '/WxUserLogin' || options.url == '/userPhoneBind' || options.url =='/GymList') {
+  if (options.url == '/GetUrlBySign' || options.url == '/WxUserLogin' || options.url == '/userPhoneBind' || options.url == '/GymList') {
     fixtion = {
       key: "BD687B66ECDBED4E12C4320B0ABB3BB111",
     }
@@ -10,6 +12,7 @@ var request = (options) => {
     let header = {
       'content-type': 'application/x-www-form-urlencoded'
     };
+    // ajaxTimes++;
     // wx.showLoading({
     //   title: '加载中...',
     // })
@@ -34,7 +37,11 @@ var request = (options) => {
         reject(res);
       },
       complete: function () {
-        //wx.hideLoading()
+        // ajaxTimes--;
+        // if (ajaxTimes === 0) {
+        //   //  关闭正在等待的图标
+        //   wx.hideLoading();
+        // }
       }
     })
   })

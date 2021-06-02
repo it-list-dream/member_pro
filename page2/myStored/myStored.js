@@ -75,7 +75,7 @@ Page({
           type: that.data.type
         }
       }).then(res => {
-        console.log(res)
+       // console.log(res)
         if (res.data.data.length == 0) {
           that.setData({
             flag: true

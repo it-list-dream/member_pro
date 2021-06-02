@@ -16,14 +16,60 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    var that = this
+    if(options.card && options.card!==''){
+       this.setData({
+        cardDetail: JSON.parse(options.card)
+       })
+    }
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      cardDetail: JSON.parse(options.card)
+    });
+    if (options.sign && options.sign !== '') {
+      api.request({
+        url: "/GetUrlBySign",
+        data: {
+          sign: options.sign
+        }
+      }).then(res => {
+        if (res.data.code == 1) {
+          if (!wx.getStorageSync('token')) {
+            wx.setStorageSync('token', res.data.user_token)
+            //保存品牌名
+            wx.setStorageSync('GymName', res.data.GymName);
+            //保存门店的id
+            wx.setStorageSync('GB_ID',options.GB_ID)
+          }
+          that.getCardInfoByID(options.GB_ID,options.SC_ID);
+          that.getAdviserListByBuy(options.SC_ID);
+        }
+      })
+    } else {
+      this.getSupportStore();
+      this.getAdviserListByBuy();
+    }
+
+  },
+  //活动卡详情
+  getCardInfoByID: function (GB_ID, SC_ID) {
+    var that = this
+    api.request({
+      url: "/CardInfoByID",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: GB_ID,
+        SC_ID: SC_ID
+      }
+    }).then(res=>{
+     if(res.data.code ==1){
+        that.setData({
+          cardDetail:res.data.data[0],
+          supportStoreInfo:res.data.data[0].GB_Name
+        })
+     }
     })
-    //console.log(111)
-    this.getSupportStore();
-    this.getAdviserListByBuy();
   },
   bindPickerChange(e) {
     console.log(e)
@@ -54,13 +100,13 @@ Page({
     })
   },
   //会籍顾问
-  getAdviserListByBuy: function () {
+  getAdviserListByBuy: function (id) {
     var that = this;
     api.request({
       url: "/AdviserListByBuy",
       data: {
         user_token: wx.getStorageSync('token'),
-        GB_ID: wx.getStorageSync('GB_ID')
+        GB_ID: wx.getStorageSync('GB_ID') || id
       }
     }).then(res => {
       console.log(res)
@@ -133,7 +179,7 @@ Page({
           'success': function (res) {
             that.ordersuccess(order)
             that.setData({
-              'cardDetail.SaleCount': that.data.cardDetail.SaleCount + 1
+              'cardDetail.SaleCount': Number(that.data.cardDetail.SaleCount) + 1
             })
           },
           'fail': function (res) {
@@ -171,9 +217,22 @@ Page({
         UI_ID: wx.getStorageSync('UI_ID') || 0
       }
     }).then(res => {
-      if (res.data.code == 1) {
-        wx.showToast({
-          title: '支付成功',
+      // if (res.data.code == 1) {
+      //   wx.showToast({
+      //     title: '支付成功',
+      //   })
+      // } else {
+      //   wx.showToast({
+      //     title: res.data.msg,
+      //   })
+      // }
+      if (res.data.code.startsWith('1')) {
+        // wx.showToast({
+        //   title: '支付成功',
+        // })
+        console.log(teacherid)
+        wx.navigateTo({
+          url: '/page2/suceess/suceess?isShow=3&sc_id=' + that.cardDetail.SC_ID,
         })
       } else {
         wx.showToast({

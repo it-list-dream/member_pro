@@ -18,8 +18,6 @@ Page({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
     })
-    var phone = wx.getStorageSync('phone')
-    // if(phone && phone!=='')
     this.getMyAllCard();
   },
   lookReword: function () {

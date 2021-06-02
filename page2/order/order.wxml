@@ -8,8 +8,8 @@
   </view>
   <!-- 主要部分 -->
   <view class="order_list" wx:if="{{chooseId == 0}}">
-    <block wx:for="{{orderList}}" wx:key="index">
-      <view class="main_order">
+    <block wx:if="{{orderList.length>0}}">
+      <view class="main_order" wx:for="{{orderList}}" wx:key="index">
         <view class="order_status">
           <view>{{item.GB_Name}}</view>
           <!--  -->
@@ -44,11 +44,19 @@
         </view>
       </view>
     </block>
+    <block wx:else>
+      <view class="none">
+        <view class="none_list">
+          <image src="/static/none.png" style="width:200rpx;height:200rpx;"></image>
+          <view>暂无内容</view>
+        </view>
+      </view>
+    </block>
   </view>
 
   <view class="order_list" wx:if="{{chooseId == 1}}">
-    <block wx:for="{{otherList}}" wx:key="index">
-      <view class="main_order">
+    <block wx:if="{{otherList.length>0}}">
+      <view class="main_order" wx:for="{{otherList}}" wx:key="index">
         <view class="order_status">
           <view>{{item.GB_Name}}</view>
           <!--  -->
@@ -74,6 +82,14 @@
         </view>
         <!--  -->
         <view class="time1">{{item.Createdate}}</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="none">
+        <view class="none_list">
+          <image src="/static/none.png" style="width:200rpx;height:200rpx;"></image>
+          <view>暂无内容</view>
+        </view>
       </view>
     </block>
   </view>

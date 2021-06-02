@@ -25,13 +25,12 @@ Page({
         sign: d.sign || 'ruyu'
       }
     }).then(res => {
-      console.log(res)
       // if(res.data.code == 1){
       //   wx.setStorageSync('token', res.data.user_token)
       //   wx.setStorageSync('GymName', res.data.GymName)
       // }
-      var t = wx.getStorageSync('token')
-      if (!t) {
+      //var t = wx.getStorageSync('token')
+      if (!wx.getStorageSync('token')) {
         wx.setStorageSync('token', res.data.user_token)
         //保存品牌名
         wx.setStorageSync('GymName', res.data.GymName)

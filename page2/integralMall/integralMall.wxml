@@ -38,7 +38,7 @@
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">{{reward.ActScore}}积分</text>
+          <text class="inte_count">{{reward.PayScore}}积分</text>
         </view>
         <view class="conBtn" bindtap="exchange">兑换</view>
       </view>
@@ -110,7 +110,7 @@
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">{{reward.ActScore * courseNum}}积分</text>
+          <text class="inte_count">{{reward.PayScore * courseNum}}积分</text>
         </view>
         <view class="conBtn" bindtap="exchange1">兑换</view>
       </view>
@@ -175,7 +175,7 @@
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">{{reward.ActScore}}积分</text>
+          <text class="inte_count">{{reward.PayScore}}积分</text>
         </view>
         <view class="conBtn" bindtap="exchange2">兑换</view>
       </view>

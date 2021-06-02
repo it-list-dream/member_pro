@@ -182,6 +182,13 @@ Page({
 
   },
   inteAwrad: function () {
+    let phone = wx.getStorageSync('phone')
+    if(!phone && phone==''){
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+      return
+    }
     wx.navigateTo({
       url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral,
     })
@@ -190,7 +197,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(111)
+   // console.log(111)
     //用户状态
     this.getUserStatus();
     //

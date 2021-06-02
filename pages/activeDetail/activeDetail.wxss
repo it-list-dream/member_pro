@@ -12,7 +12,6 @@
 .vipMoney {
   width: 100%;
   height: auto;
-  /* margin-bottom: 300rpx; */
 }
 
 .price {
@@ -57,6 +56,10 @@
   line-height: 100rpx;
   background-color: #ffffff;
   border-bottom: 1px solid #EEEEEE;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
 
 .eff {
@@ -75,6 +78,10 @@
   line-height: 100rpx;
   background-color: #ffff;
   border-bottom: 1px solid #EEEEEE;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
 
 .support>text:first-child {
@@ -85,6 +92,10 @@
   overflow: hidden;
   background-color: #ffffff;
   border-bottom: 1px solid #EEEEEE;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
 
 .quantum {
@@ -99,6 +110,10 @@
   box-sizing: border-box;
   padding: 32rpx;
   background-color: #ffffff;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
 
 
@@ -110,10 +125,6 @@
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
 }
 
 /*  */

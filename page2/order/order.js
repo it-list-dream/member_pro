@@ -24,8 +24,8 @@ Page({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
     })
-    this.getMyOrderListByPay();
-    this.getMyOrderListByScore()
+   this.getMyOrderListByPay();
+   this.getMyOrderListByScore()
   },
   choose(e) {
     let index = e.target.dataset.index

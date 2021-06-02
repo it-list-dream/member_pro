@@ -23,15 +23,94 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    if (options.tclass && options.tclass !== '') {
+      this.setData({
+        tclass: JSON.parse(options.tclass)
+      })
+    }
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      tclass: JSON.parse(options.tclass)
     })
-    if (this.data.tclass.IsPickNumChk == 1) {
-      this.getCardTogetherIsPickNum()
+    if (options.sign && options.sign !== '') {
+      api.request({
+        url: "/GetUrlBySign",
+        data: {
+          sign: options.sign
+        }
+      }).then(res => {
+        if (res.data.code == 1) {
+          if (!wx.getStorageSync('token')) {
+            wx.setStorageSync('token', res.data.user_token);
+            //保存品牌名
+            wx.setStorageSync('GymName', res.data.GymName);
+            //保存门店的id
+            wx.setStorageSync('GB_ID', options.GB_ID);
+          }
+          var that = this
+          api.request({
+            url: "/CardTogetherById",
+            data: {
+              user_token: wx.getStorageSync('token'),
+              CTO_ID: options.CTO_ID
+            }
+          }).then(res => {
+            //  console.log(res)
+            if (res.data.code == 1 && res.data.data.length > 0) {
+              let tuanke = res.data.data[0];
+              that.setData({
+                tclass: tuanke
+              })
+              //判断当前的团课是否已经过期
+              let time1 = Date.parse(tuanke.CTO_SignUpEndDate);
+              let nowTime = new Date().getTime();
+              if (time1 > nowTime) {
+                that.setData({
+                  'tclass.cantappointment': 1
+                })
+                //console.log(111)
+              } else {
+                that.setData({
+                  'tclass.cantappointment': 0
+                })
+                // console.log(222)
+              }
+              if (this.data.tclass.IsPickNumChk == 1) {
+                this.getCardTogetherIsPickNum()
+              }
+            } else {
+              wx.switchTab({
+                url: '/pages/tabbar/home/home'
+              })
+            }
+          })
+        }
+      })
+    } else {
+      if (this.data.tclass.IsPickNumChk == 1) {
+        this.getCardTogetherIsPickNum()
+      }
     }
+
   },
+  //团课详情
+  // getCardTogetherById: function () {
+  //   var that = this
+  //   api.request({
+  //     url: "/CardTogetherById",
+  //     data: {
+  //       user_token: wx.getStorageSync('token'),
+  //       CTO_ID: CTO_ID
+  //     }
+  //   }).then(res => {
+  //     console.log(res)
+  //     if(res.data.code ==1){
+  //       that.setData({
+  //         tclass:res.data.data[0]
+  //       })
+  //     }
+  //   })
+  // },
   handleSeat: function () {
     var that = this
     console.log(this.data.tclass.cantappointment)
@@ -71,10 +150,11 @@ Page({
             }).then(res => {
               if (res.data.code == 1) {
                 that.setData({
-                  'tclass.IsAppointment': 1
+                  'tclass.IsAppointment': 1,
+                  'tclass.CTO_PeopleAttend': Number(that.data.tclass.CTO_PeopleAttend) + 1
                 })
                 wx.navigateTo({
-                  url: '/page2/suceess/suceess',
+                  url: '/page2/suceess/suceess?CTO_ID=' + that.data.tclass.CTO_ID,
                 })
               } else {
                 wx.showToast({
@@ -90,7 +170,6 @@ Page({
   },
   // //条件
   // appoinmentChoose: function () {
-
   // },
   //关闭选座
   close: function () {
@@ -161,14 +240,15 @@ Page({
                 PickNum: that.data.num
               }
             }).then(res => {
-              console.log(res)
+              // console.log(res)
               if (res.data.code == 1) {
                 that.setData({
                   num: null,
-                  'tclass.IsAppointment': 1
+                  'tclass.IsAppointment': 1,
+                  'tclass.CTO_PeopleAttend': Number(that.data.tclass.CTO_PeopleAttend) + 1
                 })
                 wx.navigateTo({
-                  url: '/page2/suceess/suceess',
+                  url: '/page2/suceess/suceess?CTO_ID=' + that.data.tclass.CTO_ID + '&isShow=0',
                 })
               } else {
                 that.setData({
@@ -185,8 +265,6 @@ Page({
         }
       })
     }
-
-
   },
   // 团课购买
   paygrounplesson() {
@@ -250,39 +328,14 @@ Page({
       }
     }).then(res => {
       if (res.data.code == 1) {
-        api.request({
-          url: "/CardTogetherAppointment",
-          data: {
-            user_token: wx.getStorageSync('token'),
-            UI_ID: wx.getStorageSync('UI_ID'),
-            CTO_ID: that.data.tclass.CTO_ID,
-            //座位号
-            PickNum: that.data.num || 0
-          }
-        }).then(res => {
-          if (res.data.code == 1) {
-            that.setData({
-              num: null,
-              chooseSeat: false,
-              'tclass.IsAppointment': 1
-            })
-            wx.navigateTo({
-              url: '/page2/suceess/suceess',
-            })
-          } else {
-            that.setData({
-              num: null,
-              chooseSeat: false
-            })
-            wx.showToast({
-              icon:"none",
-              title: res.data.msg,
-            })
-          }
+        //支付成功，预约成功
+        that.setData({
+          'tclass.IsAppointment': 1,
+          'tclass.CTO_PeopleAttend': Number(that.data.tclass.CTO_PeopleAttend) + 1
         })
-        // wx.navigateTo({
-        //   url: '/page2/suceess/suceess',
-        // })
+        wx.navigateTo({
+          url: '/page2/suceess/suceess?CTO_ID=' + that.data.tclass.CTO_ID + '&isShow=0',
+        })
       } else {
         wx.showToast({
           title: res.data.msg,

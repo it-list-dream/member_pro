@@ -1,17 +1,29 @@
-.active_list{
+.active_list {
   background: #F0F2F5;
   height: auto;
+  padding: 0 30rpx;
+  padding-bottom: 30rpx;
+  overflow: hidden;
 }
-.vip_card{
-  padding: 20rpx 30rpx;
-}
-.vip_card image{
+
+.vip_card {
+  box-sizing: border-box;
+  padding: 20rpx;
   width: 690rpx;
-  height: 295rpx;
+  height: 348rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
+  margin-top: 30rpx;
+}
+
+.vip_card image {
+  width: 648rpx;
+  height: 252rpx;
   vertical-align: middle;
 }
-.card_title{
+
+.card_title {
   box-sizing: border-box;
   padding-top: 12rpx;
-    
+
 }

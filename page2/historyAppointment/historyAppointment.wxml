@@ -1,4 +1,3 @@
-<wxs src="./date.wxs" module="util" />
 <nav-bar page-name="历史预约"></nav-bar>
 <view class="history_app" style="margin-top:{{navHeight}}px">
   <view class="history_header">
@@ -49,6 +48,7 @@
             </view>
           </view>
         </block>
+        <view wx:if="{{flag}}" class="no_more">没有更多了</view>
       </view>
       <view class="none" wx:else>
         <view class="none_list">
@@ -87,6 +87,7 @@
             </view>
           </view>
         </block>
+        <view wx:if="{{flag}}" class="no_more">没有更多了</view>
       </view>
 
       <view class="none" wx:else>
@@ -128,6 +129,7 @@
             </view>
           </view>
         </block>
+        <view wx:if="{{flag}}" class="no_more">没有更多了</view>
       </view>
       <view class="none" wx:else>
         <view class="none_list">

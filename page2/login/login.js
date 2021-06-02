@@ -9,10 +9,9 @@ Page({
     showModal: false,
     hasUserInfo: false,
     //门店名
-    GymName: wx.getStorageSync('GymName') || '如渔科技',
+    GymName: wx.getStorageSync('GymName'),
     //门店logo
     GymLogo: wx.getStorageSync('GymLogo')
-
   },
   /**
    * 生命周期函数--监听页面加载
@@ -28,7 +27,7 @@ Page({
         }
       }
     })
-    console.log(wx.getStorageSync('GymLogo'))
+   // console.log(wx.getStorageSync('GymLogo'))
     let hasUserInfo = wx.getStorageSync('hasUserInfo');
     this.setData({
       navHeight: app.globalData.navHeight,
@@ -38,7 +37,11 @@ Page({
       hasUserInfo: hasUserInfo
     })
   },
-  onCancel() {
+  onCancel(flag) {
+   // console.log(flag)
+    this.setData({
+      showModal:flag
+    })
     wx.navigateBack({
       delta: 1,
     })
@@ -79,120 +82,76 @@ Page({
       }
     })
   },
-  //通过绑定手机号登录
-  getPhoneNumber: function (e) {
+   //通过绑定手机号登录
+   getPhoneNumber: function (e) {
     var that = this
-    wx.checkSession({
-      success() {
-        console.log('sessionkey 没过期')
-        //session_key 未过期，并且在本生命周期一直有效
-        wx.login({
-          success: function (res) {
-            api.request({
-              url: "/WxUserLogin",
-              data: {
-                user_token: wx.getStorageSync('token'),
-                code: res.code
-              }
-            }).then(res => {
-              if (res.data.code == 1) {
-                wx.setStorageSync('userOpenid', res.data.openid);
-                api.request({
-                  url: "/userPhoneBind",
-                  data: {
-                    user_token: res.data.user_token,
-                    encryptedDataStr: e.detail.encryptedData,
-                    iv: e.detail.iv,
-                  }
-                }).then(res => {
-                  //保存token 
-                  if (res.data.code == 1) {
-                    wx.setStorageSync('token', res.data.user_token);
-                    that.getMyAllCrad();
-                    wx.setStorageSync('loginStatus', 2);
-                    // 保存手机号码
-                    wx.setStorageSync('phone', res.data.phone);
-                    //返回上一个页面
-                    wx.navigateBack({
-                      delta: 1,
-                    })
-                  } else {
-                    wx.navigateBack({
-                      delta: 1,
-                    })
-                  }
-                })
-              }
-            })
-          }
-        })
-      },
-      fail() {
-        console.log('sessionkey 过期')
-        // session_key 已经失效，需要重新执行登录流程
-        wx.login({
-          success: function (res) {
-            api.request({
-              url: "/WxUserLogin",
-              data: {
-                user_token: wx.getStorageSync('token'),
-                code: res.code
-              }
-            }).then(res => {
-              if (res.data.code == 1) {
-                wx.setStorageSync('userOpenid', res.data.openid);
-                api.request({
-                  url: "/userPhoneBind",
-                  data: {
-                    user_token: res.data.user_token,
-                    encryptedDataStr: e.detail.encryptedData,
-                    iv: e.detail.iv,
-                  }
-                }).then(res => {
-                  //保存token 
-                  if (res.data.code == 1) {
-                    wx.setStorageSync('token', res.data.user_token);
-                    that.getMyAllCrad();
-                    wx.setStorageSync('loginStatus', 2);
-                    // 保存手机号码
-                    wx.setStorageSync('phone', res.data.phone);
-                    //返回上一个页面
-                    wx.navigateBack({
-                      delta: 1,
-                    })
-                  } else {
-                    wx.navigateBack({
-                      delta: 1,
-                    })
-                  }
-                })
-              }
-            })
-          }
-        })
-      }
-    })
+    if (e.detail.errMsg == 'getPhoneNumber:ok') {
+      //登录
+      wx.login({
+        success: function (res) {
+          let code = res.code
+          api.request({
+            url: "/WxUserLogin",
+            data: {
+              user_token: wx.getStorageSync('token'),
+              code: code
+            }
+          }).then(res => {
+            if (res.data.code == 1) {
+              wx.setStorageSync('userOpenid', res.data.openid);
+              api.request({
+                url: "/userPhoneBind",
+                data: {
+                  user_token: res.data.user_token,
+                  encryptedDataStr: e.detail.encryptedData,
+                  iv: e.detail.iv,
+                }
+              }).then(res => {
+                //保存token 
+                if (res.data.code == 1) {
+                  wx.setStorageSync('token', res.data.user_token);
+                  wx.setStorageSync('loginStatus', 2);
+                  // 保存手机号码
+                  wx.setStorageSync('phone', res.data.phone);
+                   //获取已有的会员信息
+                  api.request({
+                    url: "/MyAllVIPCard",
+                    data: {
+                      user_token: wx.getStorageSync('token')
+                    }
+                  }).then(res => {
+                    if (res.data.data.length > 0) {
+                      wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
+                      //返回上一个页面
+                      wx.navigateBack({
+                        delta: 1,
+                      })
+                    }
+                  })
+
+                } else {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                }
+              })
+            }
+
+          })
+        }
+      })
+    } else {
+      //返回上一个页面
+      wx.navigateBack({
+        delta: 1,
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () { },
   //获取已有的会员信息
-  getMyAllCrad: function () {
-    var that = this;
-    api.request({
-      url: "/MyAllVIPCard",
-      data: {
-        user_token: wx.getStorageSync('token')
-      }
-    }).then(res => {
-      if (res.data.data.length > 0) {
-        wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
-      } else {
-        wx.setStorageSync('UI_ID', 0);
-      }
-    })
-  },
   /**
    * 生命周期函数--监听页面显示
    */

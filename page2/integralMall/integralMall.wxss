@@ -35,10 +35,6 @@ swiper {
   padding: 0 32rpx;
 }
 
-.w-h:nth-child(n+3) {
-  /* border-top: 1px solid #EEEEEE; */
-}
-
 .integral {
   display: flex;
   align-items: center;
@@ -85,10 +81,6 @@ swiper {
 .minute-type {
   width: 206rpx;
   height: 28rpx;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
 }
 
 .dura {
@@ -100,6 +92,7 @@ swiper {
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
+  margin-right: 14rpx;
 }
 
 .introduce {
@@ -108,6 +101,10 @@ swiper {
   background: #ffffff;
   height: auto;
   padding: 20rpx 30rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
 
 .introduce>text:last-child {
@@ -116,6 +113,10 @@ swiper {
 
 .w-h {
   border-bottom: 1px solid #eeeeee;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
 
 .introduce>view {
@@ -245,6 +246,10 @@ swiper {
 .intro_title {
   padding-left: 64rpx;
   white-space: nowrap;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
 
 .intro_content {
@@ -429,12 +434,14 @@ swiper {
 }
 
 
-.radio-group{
+.radio-group {
   display: flex;
 }
-.radio:last-child{
+
+.radio:last-child {
   margin-left: 48rpx;
 }
+
 /* radio */
 radio .wx-radio-input.wx-radio-input-checked {
   border: none;

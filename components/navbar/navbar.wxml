@@ -9,6 +9,12 @@
           <image src="/static/home_index.png" class="icon-arrow"></image>
         </view>
       </block>
+      <block wx:else>
+         <!-- 是分享页面 -->
+         <view class="icon" bindtap="_toIndex">
+          <image src="/static/home_index.png" class="icon-arrow"></image>
+        </view>
+      </block>
     </view>
     <!-- 标题 -->
     <view class='navbar-title' style='top:{{navTop}}px;color:{{titleColor}}'>{{pageName}}</view>

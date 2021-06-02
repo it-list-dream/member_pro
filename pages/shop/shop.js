@@ -130,12 +130,14 @@ Page({
       return Number(a[prop]) - Number(b[prop])
     }
   },
-  chooseStore:function(e){
+  chooseStore: function (e) {
     console.log(e.currentTarget.dataset.location)
-   app.globalData.store = e.currentTarget.dataset.location;
-   wx.navigateBack({
-     delta: 1,
-   })
+    let store = e.currentTarget.dataset.location;
+    wx.setStorageSync('GB_ID', store.GB_ID)
+    // app.globalData.store = e.currentTarget.dataset.location;
+    wx.navigateBack({
+      delta: 1,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

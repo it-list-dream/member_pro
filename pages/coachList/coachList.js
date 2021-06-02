@@ -18,15 +18,23 @@ Page({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
     })
-    this.getCoachList()
+    //console.log(options.sign)
+    if (options.sign && options.sign !== '') {
+      Promise.all([Promise.resolve(this.getGetUrlBySign(options.sign))]).then(res => {
+        this.getCoachList();
+      })
+    } else {
+      this.getCoachList()
+    }
   },
   getCoach: function (e) {
     let coach = e.currentTarget.dataset.coach;
-    console.log(coach)
+    //console.log(coach)
     wx.navigateTo({
       url: '/pages/coachDetail/coachDetail?coach=' + JSON.stringify(coach),
     })
   },
+  //教练列表
   getCoachList: function () {
     var that = this
     api.request({
@@ -42,6 +50,7 @@ Page({
       })
     })
   },
+  //call
   call: function (e) {
     if (e.currentTarget.dataset.phone) {
       wx.makePhoneCall({
@@ -56,6 +65,27 @@ Page({
       })
     }
 
+  },
+  //获取标识
+  getGetUrlBySign: function (sign) {
+    // var that = this;
+    api.request({
+      url: "/GetUrlBySign",
+      data: {
+        sign: sign
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        let u_token = wx.getStorageSync('token');
+        if (!u_token && u_token == '') {
+          wx.setStorageSync('token', res.data.user_token)
+          //保存品牌名
+          wx.setStorageSync('GymName', res.data.GymName);
+          //保存门店的id
+          wx.setStorageSync('GB_ID', options.GB_ID);
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

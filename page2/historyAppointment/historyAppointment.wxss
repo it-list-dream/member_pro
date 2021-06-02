@@ -180,3 +180,12 @@
   justify-content: center;
   text-align: center;
 }
+/* 没有更多了 */
+.no_more{
+  text-align: center;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  padding-bottom: 20rpx;
+}

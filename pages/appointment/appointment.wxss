@@ -295,13 +295,13 @@ page {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 45vh;
+  height: 50vh;
   background-color: #F0F2F5;
 }
 
 .unclass>image {
   width: 120rpx;
-  height: 120rpx;
+  height: 140rpx;
 }
 
 .unclass>view {
@@ -385,22 +385,22 @@ page {
 }
 
 .no_personalClass image {
-  width: 180rpx;
-  height: 200rpx;
+  width:120rpx;
+  height: 140rpx;
 }
 
 .immediately {
-  width: 260rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+  width: 240rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   margin: 0;
-  margin-top: 70rpx !important;
+  margin-top: 60rpx !important;
   padding: 0;
   box-sizing: border-box;
   text-align: center;
   background: #12D58B !important;
   background-color: #F8F8F8;
-  border-radius: 8rpx !important;
+  border-radius: 10rpx !important;
   font-size: 36rpx;
   font-family: PingFang SC;
   font-weight: 500;

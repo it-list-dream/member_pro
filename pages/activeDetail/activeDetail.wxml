@@ -27,7 +27,9 @@
     </view>
     <view class="introduce_box">
       <view class="introduceTip"> 
-        介绍: 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。
+        介绍: <text decode>&nbsp;&nbsp;</text> 
+        {{cardDetail.Remarks}}
+        <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。 -->
       </view>
     </view>
   </view>

@@ -150,13 +150,12 @@ Page({
     })
   },
   showch1: function (e) {
-    console.log(e.currentTarget.dataset.num);
+   // console.log(e.currentTarget.dataset.num);
     this.setData({
       num: e.currentTarget.dataset.num,
       starttime: e.currentTarget.dataset.s,
       endtime: e.currentTarget.dataset.e
     })
-
   },
   // 判断哪些时间已过期
   getMyCurrentTime: function () {
@@ -270,13 +269,13 @@ Page({
     let stime = that.data.starttime.split(':');
     let endTime = null;
     var hour, min;
-    if (Number(stime[1]) + Number(that.data.currentCoach.CP_Time) >= 60) {
-      hour = Number(stime[0]) + parseInt((Number(that.data.currentCoach.CP_Time) + Number(stime[1])) / 60);
-      min = Number(stime[1]) + Number(that.data.currentCoach.CP_Time) - parseInt((Number(that.data.currentCoach.CP_Time) + Number(stime[1])) / 60) * 60;
+    if (Number(stime[1]) + Number(that.data.chooseCoach.CP_Time) >= 60) {
+      hour = Number(stime[0]) + parseInt((Number(that.data.chooseCoach.CP_Time) + Number(stime[1])) / 60);
+      min = Number(stime[1]) + Number(that.data.chooseCoach.CP_Time) - parseInt((Number(that.data.chooseCoach.CP_Time) + Number(stime[1])) / 60) * 60;
       endTime = hour + ':' + (min == 0 ? min + '0' : min);
     } else {
       hour = Number(stime[0]);
-      min = Number(stime[1]) + Number(that.data.currentCoach.CP_Time)
+      min = Number(stime[1]) + Number(that.data.chooseCoach.CP_Time)
       endTime = hour + ':' + (min == 0 ? min + '0' : min);
     }
     console.log(endTime)
@@ -285,7 +284,7 @@ Page({
     })
     // 上传预约时间
     let yuyueList = that.data.datatime;
-    if (Number(that.data.currentCoach.CP_Time) > 30 && Number(that.data.currentCoach.CP_Time) <= 60 && that.data.num < yuyueList.length) {
+    if (Number(that.data.chooseCoach.CP_Time) > 30 && Number(that.data.chooseCoach.CP_Time) <= 60 && that.data.num < yuyueList.length) {
       console.log('小于60分钟')
       if (yuyueList[that.data.num].type != 2) {
         wx.showToast({
@@ -293,7 +292,7 @@ Page({
         })
         return
       }
-    } else if (Number(that.data.currentCoach.CP_Time) > 60 && Number(that.data.currentCoach.CP_Time) <= 90 && that.data.num + 1 < yuyueList.length) {
+    } else if (Number(that.data.chooseCoach.CP_Time) > 60 && Number(that.data.chooseCoach.CP_Time) <= 90 && that.data.num + 1 < yuyueList.length) {
       console.log('大于60分钟')
       if (yuyueList[that.data.num + 1].type != 2) {
         wx.showToast({
@@ -304,11 +303,11 @@ Page({
     }
     //约课
     var reserveJson = {
-      CO_ID: that.data.currentCoach.CO_ID,
+      CO_ID: that.data.chooseCoach.CO_ID,
       UI_ID: wx.getStorageSync('UI_ID') || 0,
       FK_GB_ID: wx.getStorageSync('GB_ID'),
-      CP_ID: that.data.currentCoach.CP_ID,
-      CoachID: that.data.currentCoach.FK_AL_TeachCoach_ID,
+      CP_ID: that.data.chooseCoach.CP_ID,
+      CoachID: that.data.chooseCoach.FK_AL_TeachCoach_ID,
       StartTime: that.data.SearchDate + ' ' + that.data.starttime,
       EndTime: that.data.SearchDate + ' ' + that.data.endtime
     }
@@ -324,33 +323,30 @@ Page({
               reserveJson: JSON.stringify(reserveJson)
             }
           }).then(res => {
-            console.log(res)
             if (res.data.code == 1) {
               that.getPrivateAppointment();
               // wx.showToast({
               //   icon: "none",
               //   title: '预约成功',
               // })
-              var cs_num = "currentCoach.CS_Num";
-              var num = that.data.currentCoach.CS_Num++;
-              console.log(num)
+              var num = that.data.chooseCoach.CS_Num + 1;
               that.setData({
                 num: null,
                 starttime: null,
                 endtime: null,
-                [cs_num]: num
+                'chooseCoach.CS_Num': num
               })
-              let coach1 = JSON.stringify(that.data.currentCoach)
-              setTimeout(function () {
+             // let coach1 = JSON.stringify(that.data.currentCoach)
+              // setTimeout(function () {
+                //跳到分享页面
                 wx.navigateTo({
-                  url: '/page2/suceess/suceess?coach=' + coach1,
+                  url: '/page2/suceess/suceess?isShow=1',
                 })
-              }, 1000);
-
+              // }, 1000);
             } else {
               wx.showToast({
                 icon: "none",
-                title: res.data.msg + ",暂时不能约课",
+                title: res.data.msg,
               })
             }
           })
@@ -429,17 +425,15 @@ Page({
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
-      console.log(res)
+      //console.log(res)
       if (res.data.code == 1) {
         let tuanke = res.data.data
         for (let i = 0; i < tuanke.length; i++) {
           let time1 = Date.parse(tuanke[i].CTO_SignUpEndDate);
           let nowTime = new Date().getTime();
-          console.log(time1,nowTime)
           if (time1 > nowTime) {
             tuanke[i].cantappointment = 1
           }else{
-            //console.log('过期了')
             tuanke[i].cantappointment = 0
           }
         }

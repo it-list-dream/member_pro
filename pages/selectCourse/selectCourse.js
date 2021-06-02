@@ -8,7 +8,7 @@ Page({
   data: {
     cardImg: '/static/selectCourse.png',
     //每页显示的数量
-    pageSize: 5,
+    pageSize: 10,
     //当前页数
     currPage: 1,
     //教练列表

@@ -111,7 +111,7 @@ Page({
     sportDesc: null,
     //日期
     startDate: '2020/01/01',
-    endDate: '2020/01/08'
+    endDate: '2020/01/07'
   },
   /**
    * 生命周期函数--监听页面加载
@@ -135,21 +135,52 @@ Page({
     if (e.target.dataset.index == 1) {
       //月
       let sDate = new Date(this.data.startDate);
-      let eDate = new Date(this.data.endDate);
-      let sMonth = sDate.getMonth()+1;
-
-      // console.log(sDate,eDate)
+      let Y = sDate.getFullYear();
+      let M = sDate.getMonth() + 1 < 10 ? +'0' + (sDate.getMonth() + 1) : sDate.getMonth() + 1;
+      let D = '01';
+      let next_month = Number(M + 1) < 10 ? +'0' + Number(M + 1) : Number(M + 1);
+      let next_day = null;
+      if (next_month > 12) {
+        next_month = '01';
+        next_day = new Date(Y + '/' + next_month + '/' + D).setDate(0);
+        // next_day = new Date(next_day);
+        let mm = new Date(next_day).getMonth();
+        mm = mm + 1 < 10 ? +'0' + (mm + 1) : mm + 1;
+        let dd = new Date(next_day).getDate();
+        dd = dd < 10 ? +'0' + dd : dd
+        next_day = new Date(Y + '/' + mm + '/' + dd)
+      } else {
+        next_day = new Date(Y + '/' + next_month + '/' + D).setDate(0);
+      }
+      // console.log(next_day)
+      this.setData({
+        startDate: Y + '/' + M + '/' + D,
+        endDate: util.formatTime1(new Date(next_day))
+      })
     } else {
       //周
+      //开始时间
+      let sDate = new Date(this.data.startDate);
+      let eDate = sDate.setDate(sDate.getDate() + 6);
+      this.setData({
+        endDate: util.formatTime1(new Date(eDate))
+      })
     }
     this.setData({
       isSelected: this.isSelected
     })
   },
   bindYearChange(e) {
-    console.log(e.detail.value);
+  //  console.log(e.detail.value);
+    let start_time = this.data.startDate;
+    let end_time = this.data.endDate;
+    start_time = start_time.replace(start_time.split('/')[0], e.detail.value);
+    end_time = end_time.replace(end_time.split('/')[0], e.detail.value);
+    //console.log(start_time, end_time)
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
+      startDate: start_time,
+      endDate: end_time
     })
   },
   //运动天数
@@ -172,7 +203,6 @@ Page({
     })
   },
   _navBack: function () {
-    console.log(22222)
     wx.navigateBack({
       delta: 1,
     })
@@ -191,15 +221,22 @@ Page({
         endDate: newDate1,
       })
     } else {
-      let y = fristDate.getFullYear();
-      let y1 = lastDate.getFullYear();
-      let m = fristDate.getMonth();
-      let m1 = lastDate.getMonth();
-      let day = new Date(y, m, 0).getDate();
-      let day1 = new Date(y1, m1, 0).getDate();
+      let sTime = new Date(this.data.startDate);
+      let eTime = new Date(this.data.endDate);
+      //获取到当前的月份减1
+      let s_t = new Date(sTime.setDate(0))
+      let s_y = s_t.getFullYear();
+      let s_m = s_t.getMonth() + 1;
+      s_m = s_m < 10 ? '0' + s_m : s_m;
+      let s_d = '01';
+      // console.log(s_m)
+      let start_date = new Date(s_y + '/' + s_m + '/' + s_d);
+      // console.log(start_date)
+      //结束日期
+      let e_t = new Date(eTime.setDate(0))
       that.setData({
-        startDate: util.formatTime1(new Date(fristDate.setDate(fristDate.getDate() - day))),
-        endDate: util.formatTime1(new Date(lastDate.setDate(lastDate.getDate() - day1))),
+        startDate: util.formatTime1(start_date),
+        endDate: util.formatTime1(new Date(e_t)),
       })
     }
   },
@@ -210,22 +247,68 @@ Page({
     let lastDate = new Date(that.data.endDate)
     let isWeek = that.data.isSelected == 0 ? true : false;
     if (isWeek) {
-      let newDate = util.formatTime1(new Date(fristDate.setDate(fristDate.getDate() + 7)));
-      let newDate1 = util.formatTime1(new Date(lastDate.setDate(lastDate.getDate() + 7)));
+      let newDate = util.formatTime1(new Date(fristDate.setDate(fristDate.getDate() + 6)));
+      let newDate1 = util.formatTime1(new Date(lastDate.setDate(lastDate.getDate() + 6)));
       that.setData({
         startDate: newDate,
         endDate: newDate1,
       })
     } else {
-      let y = fristDate.getFullYear();
-      let y1 = lastDate.getFullYear();
-      let m = fristDate.getMonth();
-      let m1 = lastDate.getMonth();
-      let day = new Date(y, m, 0).getDate();
-      let day1 = new Date(y1, m1, 0).getDate();
+      let sTime = new Date(this.data.startDate);
+      let eTime = new Date(this.data.endDate);
+      //获取到当前的月份加1
+      let s_y = sTime.getFullYear();
+      let s_m = sTime.getMonth() + 1;
+      s_m = s_m < 10 ? '0' + s_m : s_m;
+      let day_count = new Date(s_y, s_m, 0).getDate();
+      let ss1 = new Date(sTime.setDate(sTime.getDate() + day_count));
+      // //结束日期
+      let e_y = eTime.getFullYear();
+      let e_m = eTime.getMonth() + 2;
+      e_m = e_m < 10 ? '0' + e_m : e_m;
+      let day_count1 = null;
+      let next_date = null;
+      //获取下一个月的日期的天数
+      if (Number(e_m) > 12) {
+        e_m = '01';
+        e_y = e_y + 1;
+        day_count1 = new Date(e_y, e_m, 0).getDate();
+        next_date = new Date(eTime.setDate(eTime.getDate() + day_count1))
+      } else {
+        day_count1 = new Date(e_y, e_m, 0).getDate();
+        next_date = new Date(eTime.setDate(eTime.getDate() + day_count1))
+      }
+      // let day_count1 = new Date(e_y, e_m, 0).getDate();
+      // console.log(day_count)
+      // let ss2 = new Date(eTime.setDate(day_count1));
+      // console.log(util.formatTime1(ss2))
+      // let n_m = ss1.getMonth() + 2;
+      // n_m = n_m < 10 ? '0' + n_m : n_m;
+      // let n_d = ss1.getDate();
+      // n_d = n_d < 10 ? '0' + n_d : n_d;
+      //日期
+      // let next_date = null;
+      // if (Number(n_m)> 12) {
+      //   n_m = '01';
+      //   s_y = s_y + 1;
+      //   next_date = new Date(s_y + '/' + n_m + '/' + n_d);
+      //   return;
+      // let d_count = new Date(next_date.getFullYear(), next_date.getMonth(), 0).getDate();
+      // next_date = next_date.setDate(next_date.getDate() + d_count)
+      //获取当前月份的最后一天
+      // let mm1 = new Date(next_date).getMonth();
+      // mm1 = mm1 + 1 < 10 ? +'0' + (mm1 + 1) : mm1 + 1;
+      // let dd1 = new Date(next_date).getDate();
+      // dd1 = dd1 < 10 ? +'0' + dd1 : dd1
+      // next_date = new Date((s_y +1) + '/' + mm1 + '/' + dd1)
+      // } else {
+      //   next_date = new Date(s_y + '/' + n_m + '/' + n_d);
+      // }
+      // console.log(next_date)
+      // let e_t = new Date(next_date).setDate(0)
       that.setData({
-        startDate: util.formatTime1(new Date(fristDate.setDate(fristDate.getDate() + day))),
-        endDate: util.formatTime1(new Date(lastDate.setDate(lastDate.getDate() + day1))),
+        startDate: util.formatTime1(ss1),
+        endDate: util.formatTime1(next_date),
       })
     }
   },

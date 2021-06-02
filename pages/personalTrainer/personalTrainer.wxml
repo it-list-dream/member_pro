@@ -8,7 +8,7 @@
   <view class="course_num">
       <image src="/static/money.png"></image>
       <view class="number">
-        <text>{{tools.toFixed(personal.OnlinePrice)}}</text>
+        <text>{{personal.OnlinePrice}}</text>
         <text>节</text>
       </view>
   </view>
@@ -70,7 +70,7 @@
     <view>{{personal.SaleCount}}人已购</view>
     <view class="footer_pay">
       <view>合计
-        <text>  ￥{{payNum * personal.OnlinePrice}}</text>
+        <text>￥{{personal.OnlinePrice}}</text>
       </view>
       <view bindtap="paysuccess" class="buy">购买</view>
     </view>

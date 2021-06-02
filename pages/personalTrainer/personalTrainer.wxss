@@ -80,6 +80,9 @@
 .introduce_title {
   padding-left: 32rpx;
   white-space: nowrap;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
 }
 
 .introduce>view:last-child {

@@ -8,51 +8,91 @@ Page({
    */
   data: {
     coachDetail: null,
-    suggestCoach:[]
+    suggestCoach: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   //  console.log(options)
-    if (options) {
+    var that = this
+    console.log(options)
+    if (options.coach) {
       this.setData({
-        coachDetail:JSON.parse(options.coach)
+        coachDetail: JSON.parse(options.coach),
       })
     }
-    this.getSuggestCoach();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
     })
-
+    if (options.sign && options.sign !== '') {
+      api.request({
+        url: "/GetUrlBySign",
+        data: {
+          sign: options.sign
+        }
+      }).then(res => {
+        if (res.data.code == 1) {
+          if (!wx.getStorageSync('token')) {
+            console.log(111111111111)
+            wx.setStorageSync('token', res.data.user_token)
+            //保存品牌名
+            wx.setStorageSync('GymName', res.data.GymName);
+            //保存门店的id
+            wx.setStorageSync('GB_ID', options.GB_ID);
+          }
+          that.getSuggestCoach(options.GB_ID);
+          that.getMyCoachRecommendPersonalInformation(options.teacherid);
+        }
+      })
+    } else {
+      that.getSuggestCoach();
+    }
   },
-  getSuggestCoach:function(){
+  //私教课详情
+  getMyCoachRecommendPersonalInformation: function (teacherid) {
     var that = this
     api.request({
-      url:"/SuggestCoachClass",
-      data:{
-        user_token:wx.getStorageSync('token'),
-        GB_ID:wx.getStorageSync('GB_ID')
+      url: "/MyCoachRecommendPersonalInformation",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        FK_AL_TeachCoach_ID: teacherid
       }
-    }).then(res=>{
-       console.log(res)
+    }).then(res => {
+      if (res.data.code == 1) {
+        that.setData({
+          coachDetail: res.data.data[0]
+        })
+      }
+    })
+  },
+  //推荐课程
+  getSuggestCoach: function (id) {
+    var that = this
+    api.request({
+      url: "/SuggestCoachClass",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: wx.getStorageSync('GB_ID') || id
+      }
+    }).then(res => {
+      //console.log(res)
       that.setData({
-        suggestCoach:res.data.data
+        suggestCoach: res.data.data
       })
     })
   },
-  call:function(e){
+  call: function (e) {
     if (e.currentTarget.dataset.phone) {
       wx.makePhoneCall({
         phoneNumber: e.currentTarget.dataset.phone,
-      }).catch(e=>{
-          console.log(e)
+      }).catch(e => {
+        console.log(e)
       })
-    }else{
+    } else {
       wx.showToast({
-        icon:"none",
+        icon: "none",
         title: '该教练没有预留手机号码',
       })
     }

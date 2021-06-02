@@ -1,7 +1,16 @@
 <nav-bar page-name="无锡美洲健身"></nav-bar>
 <!-- 成功页面 -->
 <view class="success-box" style="margin-top:{{navHeight}}px">
-  <!-- 预约成功 -->
+<!-- 团课预约成功 -->
+ <view class="appoinment-succ" wx:if="{{isShow ==0}}">
+    <icon type="success" size="50"></icon>
+    <view class="sucessTip">预约成功</view>
+    <view class="sucessBtn">
+       <button class="cancel btn" plain hover-class="none" bindtap="backHome">完成</button>
+       <button class="complete btn" open-type="share" hover-class="none">叫上朋友一起练吧</button>
+    </view>
+  </view>
+  <!-- 私教预约成功 -->
   <view class="appoinment-succ" wx:if="{{isShow ==1}}">
     <icon type="success" size="50"></icon>
     <view class="sucessTip">预约成功</view>
@@ -14,32 +23,32 @@
   <view class="buy-succ" wx:elif="{{isShow == 2}}">
     <icon type="success" size="50"></icon>
     <view class="buyTip">购买成功</view>
-    <view class="getInte">
+    <!-- <view class="getInte">
       <text>获得VIP积分</text>
       <text> +180</text>
-    </view>
+    </view> -->
     <view class="buyBtn">
-       <button class="buyCancel btn"  hover-class="none">看看喜欢的教练</button>
+       <button class="buyCancel btn"  hover-class="none" bindtap="lookCoachList">看看喜欢的教练</button>
        <button class="buyComplete btn" open-type="share" hover-class="none">叫上朋友一起练吧</button>
     </view>
     <view class="comBox">
-      <button plain class="comBtn">完成</button>
+      <button plain class="comBtn" bindtap="backHome">完成</button>
     </view>
   </view>
   <!-- 购买私教课成功 -->
   <view class="inteConvert" wx:elif="{{isShow ==3}}">
     <icon type="success" size="50"></icon>
     <view class="buyTip">购买成功</view>
-    <view class="getInte">
+    <!-- <view class="getInte">
       <text>获得VIP积分</text>
       <text> 300</text>
-    </view>
+    </view> -->
     <view class="buyBtn">
-       <button class="btn"  hover-class="none" plain>完成</button>
+       <button class="btn"  hover-class="none" plain bindtap="backHome">完成</button>
        <button class="btn in" open-type="share" hover-class="none">叫上朋友一起练吧</button>
     </view>
   </view>
-  <!-- 积分购卡成功 -->
+  <!-- 积分兑换成功 -->
   <view class="inteConvert" wx:elif="{{isShow ==4}}">
     <icon type="success" size="50"></icon>
     <view class="buyTip">兑换成功</view>
@@ -49,7 +58,7 @@
     </view>
     <view class="buyBtn">
        <button class="btn"  hover-class="none" plain bindtap="backHome">完成</button>
-       <button class="btn in" open-type="share" hover-class="none" >叫上朋友一起练吧</button>
+       <button class="btn in" open-type="share" hover-class="none">叫上朋友一起练吧</button>
     </view>
   </view>
 </view>
