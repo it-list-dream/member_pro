@@ -10,36 +10,45 @@ Page({
     storeList: [],
     gymCount: 0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData)
+    //console.log(app.globalData)
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
     })
   },
   getMyStoreList() {
-    api.request({
-      url: "/GymList",
-      data: {
-        user_token: wx.getStorageSync('token') || app.token1
-      },
-    }).then(res => {
-      this.setData({
-        storeList: res.data.data,
-        gymCount: res.data.gymCount
+    // let storeList = wx.getStorageSync('storeList');
+    // if (storeList && storeList !== '') {
+    //   this.setData({
+    //     storeList: storeList,
+    //     gymCount: storeList.length
+    //   })
+    //   this.findXy();
+    // } else {
+      api.request({
+        url: "/GymList",
+        data: {
+          user_token: wx.getStorageSync('token')
+        },
+      }).then(res => {
+        this.setData({
+          storeList: res.data.data,
+          gymCount: res.data.gymCount
+        })
+        this.findXy();
       })
-      this.findXy();
-    })
+  //  }
   },
   //获取用户的经纬度
   findXy() {
     let that = this;
     wx.getSetting({
       success: (res) => {
+        console.log(res)
         // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
         // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
         // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
@@ -96,6 +105,7 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success(res) {
+        console.log(res.latitude, res.longitude)
         that.getDistance(res.latitude, res.longitude)
       }
     })
@@ -116,7 +126,9 @@ Page({
       s = s * 6378.137;
       s = Math.round(s * 10000) / 10000;
       s = s.toFixed(2) //保留两位小数
-      list[i].distance = s;
+      if (!isNaN(s)) {
+        list[i].distance = s;
+      }
     }
     //排序
     list.sort(this.compare('distance'))
@@ -131,7 +143,7 @@ Page({
     }
   },
   chooseStore: function (e) {
-    console.log(e.currentTarget.dataset.location)
+    // console.log(e.currentTarget.dataset.location)
     let store = e.currentTarget.dataset.location;
     wx.setStorageSync('GB_ID', store.GB_ID)
     // app.globalData.store = e.currentTarget.dataset.location;
@@ -177,13 +189,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

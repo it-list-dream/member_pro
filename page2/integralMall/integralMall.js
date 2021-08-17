@@ -43,7 +43,7 @@ Page({
     var that = this
     //type是区分行为积分还是消费积分的
     let t = options.type;
-    console.log(options)
+   // console.log(options)
     if (options.sign && options.sign !== '') {
       api.request({
         url: "/GetUrlBySign",

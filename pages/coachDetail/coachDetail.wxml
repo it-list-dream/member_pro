@@ -1,31 +1,22 @@
 <wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="教练详情"></nav-bar>
 <view class="coachDetail" style="margin-top:{{navHeight}}px">
-  <view class="coach_bg">
-    <image src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/coach02.png'}}"></image>
-  </view>
+  <image class="coach_bg" src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/home_pic/coach_all.jpg'}}"></image>
   <view class="detail_list">
     <view class="coach_info">
-      <view class="coach_left">
-        <view class="head_list">
-          <image src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/head.png'}}" class="coach_head" mode="widthFix"></image>
+      <image src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/head.png'}}" class="coach_head"></image>
+      <view class="coach_item">
+        <view>
+          <text>{{coachDetail.AI_Name}}</text>
+          <image src="{{coachDetail.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}" class="sex"></image>
         </view>
-
-        <view class="coach_man">
-          <view>
-            <text class="coach_name">{{coachDetail.AI_Name}}</text>
-            <image src="{{coachDetail.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}" style="width:20rpx;height:20rpx;"></image>
-          </view>
-          <view class="pro">
-            <text>{{tools.replaceChar(coachDetail.AI_GoodAt)}}</text>
-            <text class="course_num">累计上课{{coachDetail.CS_Num}}节</text>
-          </view>
+        <view>
+          {{tools.replaceChar(coachDetail.AI_GoodAt)}}
+          <text style="margin-left:{{coachDetail.AI_GoodAt.length>0?'20rpx':0}}">累计上课{{coachDetail.CS_Num}}节</text>
         </view>
-      </view>
-      <view class="coach_right">
-        <image src="/static/phone4.png" style="width:30rpx;height:30rpx;" catchtap="call" data-phone="{{coachDetail.AI_Tel}}"></image>
       </view>
     </view>
+    <image src="/static/green_phone.png" catchtap="call" data-phone="{{coachDetail.AI_Tel}}" class="phone_icon"></image>
   </view>
   <!-- 教练介绍 -->
   <view class="coach_introduce">
@@ -36,7 +27,7 @@
   <view class="class_introduce">推荐课程</view>
   <view>
     <block wx:for="{{suggestCoach}}" wx:key="index">
-      <course-list  course="{{item}}"></course-list>
+      <course-list course="{{item}}"></course-list>
     </block>
   </view>
 </view>

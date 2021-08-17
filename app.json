@@ -24,8 +24,6 @@
         "memberCode/memberCode",
         "historyAppointment/historyAppointment",
         "order/order",
-        "address/address",
-        "addAdress/addAdress",
         "login/login",
         "editProfile/editProfile",
         "myCourse/myCourse",
@@ -41,9 +39,11 @@
         "deviceDetail/deviceDetail",
         "instrument/instrument",
         "treadmillDetail/treadmillDetail",
-        "smartTreadmill/smartTreadmill"
+        "smartTreadmill/smartTreadmill",
+        "copyRight/copyRight"
       ]
-    }],
+    }
+  ],
   "plugins": {
     "calendar": {
       "version": "1.1.3",
@@ -55,39 +55,39 @@
     "position": "bottom",
     "selectedColor": "#52495B",
     "color": "#C0BEC9",
-    "borderStyle":"white",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/tabbar/home/home",
         "text": "首页",
         "iconPath": "static/tabbar/home.png",
-        "selectedIconPath": "static/tabbar/home-h.png"
+        "selectedIconPath": "static/tabbar/home_active.png"
       },
       {
         "pagePath": "pages/tabbar/sport/sport",
         "text": "运动",
         "iconPath": "static/tabbar/sport.png",
-        "selectedIconPath": "static/tabbar/sport-h.png"
+        "selectedIconPath": "static/tabbar/sport_active.png"
       },
       {
         "pagePath": "pages/tabbar/integral/integral",
         "text": "积分",
         "iconPath": "static/tabbar/integral.png",
-        "selectedIconPath": "static/tabbar/integral-h.png"
+        "selectedIconPath": "static/tabbar/integral_active.png"
       },
       {
         "pagePath": "pages/tabbar/my/my",
         "text": "我的",
         "iconPath": "static/tabbar/my.png",
-        "selectedIconPath": "static/tabbar/my-h.png"
+        "selectedIconPath": "static/tabbar/my_active.png"
       }
     ]
   },
   "permission": {
     "scope.userLocation": {
-        "desc": "你的位置信息将用于小程序位置接口的效果展示"
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
-    },
+  },
   "window": {
     "navigationStyle": "custom",
     "backgroundTextStyle": "light",

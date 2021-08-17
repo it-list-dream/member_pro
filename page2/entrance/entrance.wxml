@@ -1,3 +1,4 @@
+<import src="/template/nothing/nothing.wxml"/>
 <nav-bar page-name="入场记录"></nav-bar>
 <view class="entrance" style="margin-top:{{navHeight}}px">
   <view class="entrance_scroll">
@@ -11,6 +12,9 @@
         <view>{{item.CheckOut}}</view>
         <view>离场</view>
       </view>
+    </block>
+    <block wx:if="{{!entrancdList.length}}">
+      <template is="nothing" data="{{message:'暂无数据'}}"/>  
     </block>
   </view>
 </view>

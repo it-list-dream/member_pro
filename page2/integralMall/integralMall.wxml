@@ -3,21 +3,14 @@
 <view class="coverstionBox" style="margin-top:{{navHeight}}px;">
   <!-- 周卡 -->
   <view class="scorecard" wx:if="{{type==1}}">
-    <view class="card_banner">
-      <swiper duration="300" circular="{{true}}">
-        <block wx:for="{{reward.imgList}}" wx:key="index">
-          <swiper-item>
-            <image class="scorec-img" src="{{item.SI_Logo}}"></image>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
+    <image src="{{reward.SE_Logo}}" class="rewardImg1" mode="widthFix"></image>
     <!-- 内容 -->
     <view class="conternt">
       <view class="w-h integral">
-        <text class="minute" wx:if="{{inteType==1}}">分</text>
+        <view class="minute" wx:if="{{inteType==1}}">分</view>
         <text class="vip_inte" wx:else>VIP</text>
-        <text class="credits">{{reward.ActScore}}</text>积分
+        <text class="credits">{{reward.ActScore || reward.PayScore }}</text>
+        <text class="jifen">积分</text>
       </view>
       <view class="w-h weeksCard">
         <text class="minute-type">卡类型</text>：
@@ -38,7 +31,7 @@
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">{{reward.PayScore}}积分</text>
+          <text class="inte_count">{{reward.PayScore || reward.ActScore}}积分</text>
         </view>
         <view class="conBtn" bindtap="exchange">兑换</view>
       </view>
@@ -46,20 +39,12 @@
   </view>
   <!-- 体验课 -->
   <view class="real_box" wx:elif="{{type==2}}">
-    <view class="card_banner">
-      <swiper duration="300" circular="{{true}}">
-        <block wx:for="{{reward.imgList}}" wx:for-index="index1" wx:key="index1">
-          <swiper-item>
-            <image class="scorec-img" src="{{item.si_url}}"></image>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
+    <image src="{{reward.SE_Logo}}" class="rewardImg1" mode="widthFix"></image>
     <view class="real_detail">
       <view class="real_item real_inte">
         <text class="minute" wx:if="{{inteType==1}}" style="text-align: center;">分</text>
         <text class="vip_inte" wx:else>VIP</text>
-        <text class="credits">{{reward.ActScore}}</text>
+        <text class="credits">{{reward.ActScore || reward.PayScore}}</text>
         积分
       </view>
       <view class="real_item real_course">
@@ -110,7 +95,7 @@
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">{{reward.PayScore * courseNum}}积分</text>
+          <text class="inte_count">{{(reward.PayScore || reward.ActScore ) * courseNum}}积分</text>
         </view>
         <view class="conBtn" bindtap="exchange1">兑换</view>
       </view>
@@ -118,21 +103,13 @@
   </view>
   <!-- 实物 -->
   <view class="available_list" wx:elif="{{type==3}}">
-    <view class="card_banner">
-      <swiper duration="300" circular="{{true}}">
-        <block wx:for="{{reward.imgList}}" wx:key="index">
-          <swiper-item>
-            <image class="scorec-img" src="{{item.si_url}}"></image>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
+    <image src="{{reward.SE_Logo}}" class="rewardImg1" mode="widthFix"></image>
     <!--  -->
     <view class="available_item">
       <view class="available_inte inte">
         <text class="minute" wx:if="{{inteType==1}}">分</text>
         <text class="vip_inte" wx:else>VIP</text>
-        <text class="credits">{{reward.ActScore}}</text>
+        <text class="credits">{{reward.PayScore || reward.ActScore}}</text>
         积分
       </view>
       <!--  -->
@@ -146,36 +123,27 @@
       </view>
     </view>
     <!-- 快递方式 -->
+    <view class="exp_wrapper">
+      <view class="exp_item">
+        兑换方式：
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{takeMethods}}" wx:key="id">
+            <view>
+              <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
+            </view>
+          </label>
+        </radio-group>
+      </view>
+      <view class="dispatching" wx:if="{{take_index==2}}">配送至：{{detailAddress}}
+      </view>
+    </view>
 
-    <view class="exp_item">
-      兑换方式：
-      <radio-group class="radio-group" bindchange="radioChange">
-        <label class="radio" wx:for="{{takeMethods}}" wx:key="id">
-          <view>
-            <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
-          </view>
-        </label>
-      </radio-group>
-      <!--  <view class="way">
-       <block wx:for="{{takeMethods}}" wx:for-index="index1" wx:key="index1">
-          <view class="choose1">
-            <view class="kong" catchtap="takeWay" style="background-color:{{take_index == index1?'#52495B':''}}"
-              data-index="{{index1}}"></view>
-            <button class="chooseAdd" bindtap="getWechatAddress">
-              {{item}}
-            </button>
-          </view>
-        </block> 
-      </view>-->
-    </view>
-    <view class="dispatching" wx:if="{{take_index==2}}">配送至：{{detailAddress}}
-    </view>
     <view class="infinity">
       <view class="conversion">{{reward.CashCount}}人已经兑换</view>
       <view class="total_list">
         <view>
           <text class="total">合计：</text>
-          <text class="inte_count">{{reward.PayScore}}积分</text>
+          <text class="inte_count">{{reward.PayScore || reward.ActScore}}积分</text>
         </view>
         <view class="conBtn" bindtap="exchange2">兑换</view>
       </view>

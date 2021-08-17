@@ -14,13 +14,17 @@ Page({
     currPage: 1,
     //1完成2进行中3未完成
     type: 2,
-    //完成
-    completedHistory: [],
-    //已预约
-    alreadyHistory: [],
-    //未完成
-    unfinishedHistory: [],
-    flag: false
+    // //完成
+    // completedHistory: [],
+    // //已预约
+    // alreadyHistory: [],
+    // //未完成
+    // unfinishedHistory: [],
+    histories: [],
+    flag: true,
+    isRefreshing: false,
+    isLoadingMoreData: false,
+    isLoadingMoreData: false
   },
 
   /**
@@ -35,13 +39,17 @@ Page({
   },
   chooseNav(e) {
     let index = e.target.dataset.index;
-    console.log(index)
+    if (index == this.data.chooseId) {
+      return
+    }
+    // console.log(index)
     if (index == 1) {
       this.setData({
         type: 3,
         //当前页数
         currPage: 1,
-        flag: false
+        flag: true,
+        histories: []
       })
       this.getMyCoachMyClass();
     } else if (index == 2) {
@@ -49,13 +57,18 @@ Page({
         type: 1,
         //当前页数
         currPage: 1,
-        flag: false
+        flag: true,
+        histories: []
       })
       this.getMyCoachMyClass();
     } else {
       this.setData({
-        type: 2
+        type: 2,
+        flag: true,
+        currPage: 1,
+        histories: []
       })
+      this.getMyCoachMyClass();
     }
     this.setData({
       chooseId: index
@@ -63,48 +76,38 @@ Page({
   },
   //历史预约
   getMyCoachMyClass: function () {
-    var that = this
-    if (!that.data.flag) {
-      api.request({
-        url: '/MyCoachMyClass',
-        data: {
-          user_token: wx.getStorageSync('token'),
-          pageSize: that.data.pageSize,
-          pageIndex: that.data.currPage,
-          UI_ID: wx.getStorageSync('UI_ID'),
-          type: that.data.type
-        }
-      }).then(res => {
-        console.log(res)
-        if (res.data.data.length == 0) {
-          that.setData({
-            flag: true
-          })
-          return
-        }
-        if (that.data.type == 1) {
-          let newL1 = [...that.data.completedHistory, ...res.data.data];
-          let arr1 = that.unique(newL1)
-          this.setData({
-            completedHistory:arr1
-          })
-        } else if (that.data.type == 2) {
-          let newL1 = [...that.data.alreadyHistory, ...res.data.data];
-          let arr1 = that.unique(newL1)
-          console.log(arr1)
-          this.setData({
-            alreadyHistory: arr1
-          })
-        } else if (that.data.type == 3) {
-          let newL1 = [...that.data.unfinishedHistory, ...res.data.data];
-          let arr1 = that.unique(newL1)
-          this.setData({
-            unfinishedHistory: arr1
-          })
-        }
-      })
-    }
-
+    console.log('重新加载数据！')
+    var that = this;
+    api.request({
+      url: '/MyCoachMyClass',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage,
+        UI_ID: wx.getStorageSync('UI_ID'),
+        type: that.data.type
+      }
+    }).then(res => {
+    //  console.log(res)
+      if (res.data.data.length == 0) {
+        that.setData({
+        //  histories: res.data.data,
+          flag: false,
+          isLoadingMoreData: false,
+        })
+        return
+      } else {
+        //  console.log(res)
+        let newL1 = [...that.data.histories, ...res.data.data];
+        let arr1 = that.unique(newL1)
+       // console.log(arr1)
+        that.setData({
+          //flag: false
+          histories: arr1,
+          isLoadingMoreData: false,
+        })
+      }
+    })
   },
   //团课取消
   cancelClass: function (e) {
@@ -115,7 +118,6 @@ Page({
       content: '确定取消该课程',
       success(res) {
         if (res.confirm) {
-
           //删除数据
           api.request({
             url: "/CancelCardTogether",
@@ -125,27 +127,26 @@ Page({
               CTO_ID: e.currentTarget.dataset.id
             }
           }).then(res => {
-            if (res.data.code == '1') {
-              var list = that.data.alreadyHistory;
+            if (res.data.code == 1) {
+              var list = that.data.histories;
               var listIndex = list.findIndex(vlaue => {
                 return vlaue.ClassID == e.currentTarget.dataset.id
               });
               list.splice(listIndex, 1)
               console.log(listIndex, list)
               that.setData({
-                alreadyHistory: list
+                histories: list
               })
               wx.showToast({
                 title: '取消成功',
                 icon: 'none'
               })
-            }else{
+            } else {
               wx.showToast({
-                icon:"none",
+                icon: "none",
                 title: res.data.msg,
               })
             }
-
             //console.log(res);
             // that.setData({
             //   currPage: 1,
@@ -155,8 +156,6 @@ Page({
         }
       }
     })
-
-
   },
   call: function (e) {
     let phoneNumber = e.currentTarget.dataset.phone
@@ -198,15 +197,15 @@ Page({
               ClassID: id
             }
           }).then(res => {
-            if (res.data.code == '1') {
-              let list = that.data.alreadyHistory;
+            if (res.data.code == 1) {
+              let list = that.data.histories;
               let listIndex = list.findIndex(vlaue => {
                 return vlaue.ClassID == e.currentTarget.dataset.id
               });
               list.splice(listIndex, 1)
-              console.log(listIndex, list)
+              //console.log(listIndex, list)
               that.setData({
-                alreadyHistory: list
+                histories: list
               })
               wx.showToast({
                 title: '取消成功',
@@ -252,10 +251,13 @@ Page({
   onReachBottom: function () {
     //  console.log('触底反应')
     var that = this;
-    var pageSize = that.data.currPage + 1; //获取当前页数并+1
-    that.setData({
-      currPage: pageSize, //更新当前页数
-    })
-    that.getMyCoachMyClass(); //重新调用请求获取下一页数据
+    if (this.data.flag) {
+      var pageSize = that.data.currPage + 1; //获取当前页数并+1
+      that.setData({
+        currPage: pageSize, //更新当前页数
+        isLoadingMoreData: true
+      })
+      that.getMyCoachMyClass(); //重新调用请求获取下一页数据
+    }
   }
 })

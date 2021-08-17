@@ -11,7 +11,7 @@ Page({
   data: {
     // userInfo: '',
     heightList: [],
-    phone: wx.getStorageSync('phone'),
+    phone: '',
     sexId: null,
     birthday: null,
     endTime: null,
@@ -36,7 +36,9 @@ Page({
       navTop: app.globalData.navTop,
       endTime: date,
       GB_ID: wx.getStorageSync('GB_ID'),
-      UrlBySign: wx.getStorageSync('UrlBySign')
+      UrlBySign: wx.getStorageSync('UrlBySign'),
+      GymLogo: wx.getStorageSync('GymLogo'),
+      phone: wx.getStorageSync('phone')
     })
     this.getUserInfo()
   },
@@ -148,18 +150,16 @@ Page({
             }
           }).then(res => {
             if (res.data.code == 1) {
-              // var t = wx.getStorageSync('token')
-              // if (!t) {
               wx.setStorageSync('token', res.data.user_token)
               //保存门店名字
               wx.setStorageSync('GymName', res.data.GymName);
               wx.setStorageSync('GB_ID', that.data.GB_ID)
               //重新设置标识
               wx.setStorageSync('UrlBySign', that.data.UrlBySign)
+              wx.setStorageSync('GymLogo', that.data.GymLogo)
               wx.navigateBack({
                 delta: 1,
               })
-              //  }
             }
           })
         }
@@ -175,17 +175,21 @@ Page({
         user_token: wx.getStorageSync('token')
       }
     }).then(res => {
-      let {
-        UI_Birthday,
-        UI_Weight,
-        UI_Height
-      } = res.data.data[0];
-      let date = new Date(UI_Birthday);
-      that.setData({
-        birthday: date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate(),
-        heightId: UI_Weight,
-        weightId: UI_Height
-      })
+      if (res.data.data.length > 0) {
+        let {
+          UI_Birthday,
+          UI_Weight,
+          UI_Height
+        } = res.data.data[0];
+        if (UI_Birthday) {
+          UI_Birthday = UI_Birthday.slice(0, 10)
+        }
+        that.setData({
+          birthday: UI_Birthday,
+          heightId: UI_Weight,
+          weightId: UI_Height
+        })
+      }
     })
   },
   /**
@@ -202,14 +206,12 @@ Page({
   onHide: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
 
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -221,13 +223,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

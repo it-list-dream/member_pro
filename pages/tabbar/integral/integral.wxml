@@ -2,69 +2,18 @@
 <view class="inteTip">
   <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
   <view class="navbar" style='height:{{navHeight}}px;'>
-    <view class="tip" style="margin-top:{{navTop}}px;margin-left:{{menuRight}}px">
-      <view class="tipItem" bindtap="memberCode">
-        <image src="/static/home_pic/QRcode.png"></image>
-      </view>
-      <view class="line"></view>
-      <view class="tipItem" bindtap="code">
-        <image src="/static/home_pic/scan.png"></image>
-      </view>
-    </view>
+    <my-capsule class="capsule_icon"  style="top:{{navTop}}px;left:{{menuRight}}px" my-class="gray"></my-capsule>
     <view class='navbar-title' style='top:{{navTop}}px;'>积分商城</view>
   </view>
 </view>
 <!-- 自律积分 -->
 <view class="integral_list">
   <!--积分明细 -->
-  <view class="inteTitleBox">
-    <view class="behInte">
-      <view class="integral_bar">行为积分</view>
-      <view>
-        {{actionIntegral}}
-        <text class="branch">分</text>
-      </view>
-    </view>
-    <view class="vipInte">
-      <view class="integral_bar">VIP积分</view>
-      <view>
-        {{vipIntegral}}
-        <text class="branch">分</text>
-      </view>
-    </view>
-    <view class="billBox">
-      <view class="bill" bindtap="pointsBill">积分账单</view>
-    </view>
-    <view class="inteIcon">
-      <image src="/static/choose.png" bindtap="filtrateData"></image>
-    </view>
-  </view>
-
+  <integral-type vipIntegral="{{vipIntegral}}" actionIntegral="{{actionIntegral}}" isisDlog="{{isScreen}}" bindpopup="onPopup"></integral-type>
   <!-- 筛选 -->
-  <view class="filterBox" hidden="{{!isScreen}}">
-    <view catchtouchmove="preventTouchMove" class="wrapper">
-      <view class="inteTitleBox copyinte">
-        <view class="behInte">
-          <view class="integral_bar">行为积分</view>
-          <view>
-            {{actionIntegral}}
-            <text class="branch">分</text>
-          </view>
-        </view>
-        <view class="vipInte">
-          <view class="integral_bar">VIP积分</view>
-          <view>
-            {{vipIntegral}}
-            <text class="branch">分</text>
-          </view>
-        </view>
-        <view class="billBox">
-          <view class="bill" bindtap="pointsBill">积分账单</view>
-        </view>
-        <view class="inteIcon">
-          <image src="/static/choose.png" bindtap="filtrateData"></image>
-        </view>
-      </view>
+  <view class="filterBox" hidden="{{!isScreen}}" catchtouchmove="preventTouchMove">
+    <view  class="wrapper">
+      <integral-type vipIntegral="{{vipIntegral}}" actionIntegral="{{actionIntegral}}" bindpopup="onPopup" isisDlog="{{isScreen}}"></integral-type>
       <!-- 筛选 -->
       <view class="filter_item">
         <!-- 积分类型 -->
@@ -98,13 +47,7 @@
     <view class="close" bindtap="close"></view>
   </view>
   <!-- 轮播图 -->
-  <view class="spend_img">
-    <swiper autoplay circular>
-      <swiper-item wx:for="{{inteBannerList}}" wx:for-index="index3" wx:key="index3">
-        <image mode="widthFix" src="{{item.ImageUrl ? item.ImageUrl:item}}"></image>
-      </swiper-item>
-    </swiper>
-  </view>
+  <m-swiper images="{{inteBannerList}}" class="myswiper"></m-swiper>
   <view class="nav">
     <view class="nav-title">自律奖励</view>
   </view>
@@ -126,7 +69,6 @@
       </view>
     </block>
   </view>
-
   <view class="none" wx:else>
     <view class="none_list">
       <image src="/static/none.png"></image>

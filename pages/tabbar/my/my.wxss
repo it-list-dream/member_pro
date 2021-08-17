@@ -45,44 +45,13 @@
   color: #FFFFFF;
 }
 
-.tip {
+.capsule_icon{
   position: fixed;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 160rpx;
-  height: 60rpx;
-  /* background: #B4B3BB; */
-  /* background: rgba(0, 0, 0, 0.4); */
-  background: rgba(203, 187, 181, 0.6);
-  border-radius: 30rpx;
-  z-index: 200;
+  z-index: 999;
 }
-
-
-.tipItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 70rpx;
-  line-height: 70rpx;
-  height: 100%;
-  box-sizing: border-box;
+.gray{
+  background:#B4B2BB !important;
 }
-
-
-.line {
-  width: 1px;
-  height: 24rpx;
-  background: #DDDDDD;
-}
-
-.tip image {
-  width: 36rpx;
-  height: 36rpx;
-}
-
 /*  */
 .my_container {
   position: relative;
@@ -115,7 +84,7 @@
   margin-left: 22rpx;
 }
 
-.member_info {
+.member_info text{
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -123,6 +92,7 @@
 }
 
 .member_info image {
+  margin-left: 24rpx;
   width: 36rpx;
   height: 36rpx;
   vertical-align: middle;
@@ -211,7 +181,7 @@
   /* text-align: center; */
 }
 
-.cItem:nth-child(2)::before {
+/* .cItem:nth-child(1)::before {
   position: absolute;
   content: "";
   width: 2rpx;
@@ -219,9 +189,9 @@
   top: 18rpx;
   left: 0;
   background: #EEEEEE;
-}
+} */
 
-.cItem:nth-child(2)::after {
+.cItem:nth-child(1)::after {
   position: absolute;
   content: "";
   top: 22rpx;
@@ -231,9 +201,6 @@
   background: #EEEEEE;
 }
 
-.cItem:last-child {
-  position: relative;
-}
 
 .dotMessage {
   position: absolute;
@@ -331,15 +298,17 @@
 }
 
 .moreService {
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  align-content:space-between;
   width: 690rpx;
-  height: 250rpx;
+  height: 280rpx;
   background: #FFFFFF;
   box-shadow: 0 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
   border-radius: 8rpx;
+  padding: 30rpx 0;
+  box-sizing: border-box;
 }
 
 .service {

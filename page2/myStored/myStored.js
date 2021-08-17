@@ -9,7 +9,7 @@ Page({
     storedTab: ['全部', '充值', '消费'],
     tabIndex: 0,
     currPage: 1,
-    pageSize: 16,
+    pageSize: 10000,
     type: 0,
     //所有
     userMoney: [],
@@ -17,7 +17,7 @@ Page({
     rechangeMoney: [],
     //消费
     consumeMoney: [],
-    flag: false
+    //flag: false,
   },
 
   /**
@@ -28,12 +28,12 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      reMoney:options.reMoney,
-      giveMoney:options.giveMoney
+      reMoney: options.reMoney,
+      giveMoney: options.giveMoney
     })
   },
   tabStored(e) {
-    console.log(e.target.dataset)
+    //console.log(e.target.dataset)
     let idx = e.target.dataset.idx;
     if (idx == 1) {
       this.setData({
@@ -50,63 +50,59 @@ Page({
     } else {
       this.setData({
         type: 0,
+        currPage: 1
       })
+      this.getUserMoneyTranRecord();
     }
     this.setData({
       tabIndex: idx
     })
   },
-  // swiperTab:function(e){
-  //   let current = e.detail.current;
-  //   this.setData({
-  //     tabIndex:current
-  //   })
-  // },
+  //我的储值
   getUserMoneyTranRecord: function () {
-    var that = this
-    if (!that.data.flag) {
-      api.request({
-        url: "/UserMoneyTranRecord",
-        data: {
-          user_token: wx.getStorageSync('token'),
-          pageSize: that.data.pageSize,
-          pageIndex: that.data.currPage,
-          UI_ID: wx.getStorageSync('UI_ID')||0,
-          type: that.data.type
-        }
-      }).then(res => {
-       // console.log(res)
-        if (res.data.data.length == 0) {
-          that.setData({
-            flag: true
+    var that = this;
+    api.request({
+      url: "/UserMoneyTranRecord",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage,
+        UI_ID: wx.getStorageSync('UI_ID') || 0,
+        type: that.data.type
+      }
+    }).then(res => {
+      //所有
+      if (this.data.tabIndex == 0) {
+        if (res.data.data.length > 0) {
+          // let originUserMoney = this.data.userMoney;
+          // let newUserList = originUserMoney.concat(res.data.data)
+          this.setData({
+            userMoney: res.data.data
           })
-        }
-        if (that.data.type == 0) {
-          that.setData({
-            userMoney: [...that.data.userMoney, ...res.data.data]
+         // console.log('所有的数据')
+        } 
+      } else if (this.data.tabIndex == 1) {
+        //   //充值
+        if (res.data.data.length > 0) {
+          // let originRechange = this.data.rechangeMoney;
+          // let newRechange = originRechange.concat(res.data.data)
+          this.setData({
+            rechangeMoney: res.data.data
           })
-        } else if (that.data.type == 1) {
-        //  console.log(res.data.data)
-        let newL1 = [...that.data.rechangeMoney, ...res.data.data];
-        let arr1 = that.unique(newL1)
-          if (res.data.data.length > 0) {
-            that.setData({
-              rechangeMoney:arr1
-            })
-          }
-        } else if (that.data.type == 2) {
-          let newL1 = [...that.data.consumeMoney, ...res.data.data];
-        let arr1 = that.unique(newL1)
-          if (res.data.data.length > 0) {
-            that.setData({
-              consumeMoney:arr1
-            })
-          }
+         // console.log('充值的数据')
         }
-
-      })
-    }
-
+      } else if (this.data.tabIndex == 2) {
+        //consumeMoney
+        if (res.data.data.length > 0) {
+          //let originConsume = this.data.rechangeMoney;
+          // let newConsume = originConsume.concat(res.data.data)
+          this.setData({
+            consumeMoney: res.data.data
+          })
+        //  console.log('消费的数据')
+        } 
+      }
+    });
   },
   //数组对象去重
   unique: function (arr) {
@@ -159,13 +155,19 @@ Page({
     // console.log('触底了')
   },
   loadMore: function () {
-    console.log('触底了ffdf');
-    var that = this;
-    var pageSize = that.data.currPage + 1; //获取当前页数并+1
-    that.setData({
-      currPage: pageSize, //更新当前页数
-    })
-    that.getUserMoneyTranRecord(); //重新调用请求获取下一页数据
+    // var that = this;
+    // if (this.data.flag) {
+    //   var pageSize = that.data.currPage + 1; //获取当前页数并+1
+    //   that.setData({
+    //     currPage: pageSize, //更新当前页数
+    //   })
+    //   that.getUserMoneyTranRecord(); //重新调用请求获取下一页数据
+    // } else {
+    //   wx.showToast({
+    //     icon: 'none',
+    //     title: "已经到底了..."
+    //   })
+    // }
   },
   /**
    * 用户点击右上角分享

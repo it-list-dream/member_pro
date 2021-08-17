@@ -94,15 +94,16 @@ Component({
                         user_token: wx.getStorageSync('token')
                       }
                     }).then(res => {
-                      if (res.data.data.length > 0) {
-                        wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
+                      if (res.data.code == 1) {
+                        if(res.data.data.length>0){
+                          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
+                        }
                         //返回上一个页面
                         wx.navigateBack({
                           delta: 1,
                         })
                       }
                     })
-
                   } else {
                     wx.navigateBack({
                       delta: 1,

@@ -15,8 +15,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       navHeight: app.globalData.navHeight,
-      navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
+      navTop: app.globalData.navTop
     })
   },
 

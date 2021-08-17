@@ -1,4 +1,5 @@
 /* navbar */
+/* @import '../../template/annimation/annimation.wxss'; */
 .nav-wrap {
   position: fixed;
   width: 100%;
@@ -80,18 +81,69 @@
 }
 
 /*  */
+.code_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.code {
+  width: 180rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background: #fff;
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.qrcode {
+  margin-top: 140rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.canvas_code {
+  width: 160px;
+  height: 160px;
+}
+
+.member_code {
+  border-radius: 8rpx 0 0 8rpx;
+  border: 1px solid #cccccc;
+  border-right: 0 !important;
+}
+
+.unlocking {
+  border-radius: 0 8rpx 8rpx 0;
+  border: 1px solid #cccccc;
+}
+
+.active_code {
+  color: #12D58B;
+}
+
+/*  */
+.pull {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
 .all {
   position: relative;
-  background-color: #F0F2F5;
-  box-sizing: border-box;
-  padding-top: 78rpx;
+  padding-top: 80rpx;
+  min-height: 100%;
 }
 
 .header {
   position: absolute;
-  top: 22rpx;
+  top: 42rpx;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 100;
 }
 
 .header image {
@@ -105,14 +157,14 @@
   overflow: hidden;
   margin: 0 auto;
   width: 620rpx;
-  height: 842rpx;
+  height: 882rpx;
   background: #FFFFFF;
   box-shadow: 0 0 20rpx 0 rgba(82, 73, 91, 0.03);
   border-radius: 3rpx;
 }
 
 .member_store {
-  margin-top: 138rpx;
+  margin-top: 120rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -126,55 +178,64 @@
   font-weight: 400;
   color: #333333;
 }
-.eff_date{
+
+.eff_date {
   margin-top: 36rpx;
   font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: 400;
-color: #12D58B;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #12D58B;
 }
-.member_item{
+
+.member_item {
+  position: relative;
+  margin-top: 40rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 160px;
 }
-.member_code{
-  padding: 22rpx 0;
+
+.member_item>image {
+  width: 320rpx;
+  height: 320rpx;
+}
+
+.member_item::after {
+  position: absolute;
+  bottom: -38rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  content: '';
   width: 380rpx;
-  height: 326rpx;
-  border-bottom: 3rpx solid #333333;
-  /* background-color: #12D58B; */
+  height: 1px;
+  background: #333333;
+
 }
-.canvas{
-  width: 300rpx;
-  height: 300rpx;
-  margin-left: 36rpx;
+
+.canvas {
+  background: #fff;
+  width: 160px;
+  height: 160px;
 }
-.year_card{
-  margin-top: 38rpx;
+
+.year_card {
+  margin-top: 76rpx;
   font-size: 30rpx;
-font-family: PingFang SC;
-font-weight: 500;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
 }
-.use_count{
+
+.use_count {
   margin-top: 20rpx;
   font-size: 24rpx;
-font-family: PingFang SC;
-font-weight: 400;
-color: #333333;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
 }
-/*  */
-/* .mask {
-  position: fixed;
-  z-index: 99;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.6);
-} */
 
 .model {
   position: fixed;
@@ -188,9 +249,7 @@ color: #333333;
 
 .modelcon {
   width: 100%;
-  background: white;
-  padding-bottom: 20rpx;
-
+  background: #EAECEF;
 }
 
 .close {
@@ -200,10 +259,10 @@ color: #333333;
 
 .modelcon .cardinfo {
   display: flex;
-  font-size: 28rpx;
-  font-family: PingFangSC-Medium;
+  font-size: 36rpx;
+  font-family: PingFang SC;
   font-weight: 500;
-  color: rgba(51, 51, 51, 1);
+  color: #333333;
 }
 
 .store {
@@ -222,20 +281,49 @@ color: #333333;
 .mask_item {
   padding: 0 30rpx;
   display: flex;
-  height: 70rpx;
+  height: 114rpx;
   align-items: center;
   justify-content: space-between;
-  /* border-bottom: 1px solid #eeeeee; */
-}
-.line{
-  background: #eeeeee;
-  width: 100%;
-  height: 1px;
 }
 
-.notActive{
-  margin-top: 15rpx;
-  font-size: 24rpx; 
+.line {
+  margin: 0 auto;
+  width: 690px;
+  height: 1px;
+  background: #D9D9D9;
+}
+
+.cardStatus {
+  align-self: flex-end;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+}
+
+.notActive {
+  margin: 38rpx;
+  font-size: 24rpx;
   font-family: PingFangSC-Medium;
   font-weight: 500;
+  color: red;
+}
+
+.member_list>view {
+  overflow: hidden;
+  height: 100% !important;
+  box-sizing: border-box;
+}
+
+.tip_message {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999999;
+  font-size: 28rpx;
+}
+
+.gui {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

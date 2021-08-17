@@ -78,23 +78,24 @@
 }
 
 .modalTip {
-  margin-top: 30rpx;
-  height: 100rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-top: 30rpx;
+  height: 100rpx;
 }
 
 .modalTip view:first-child {
-  font-size: 36rpx;
+  font-size: 34rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #333333;
 }
 
 .modalTip view:last-child {
-  font-size: 34rpx;
+  margin-top: 28rpx;
+  font-size: 32rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;

@@ -250,7 +250,7 @@
   left: 144rpx;
   content: '';
   width: 52rpx;
-  height: 4rpx;
+  height: 6rpx;
   background: #12D58B;
   border-radius: 2rpx;
 }
@@ -266,19 +266,19 @@
   align-items: center;
   height: auto;
 }
-
+/* 箭头 */
+.arrow_box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 64rpx;
+}
 .dateDetail .arrow1 {
   width: 32rpx;
   height: 32rpx;
 }
 
-.dateDetail .arrow1:first-child {
-  margin-right: 15rpx;
-}
-
-.dateDetail .arrow1:last-child {
-  margin-left: 15rpx;
-}
 
 .dateDetail>.line {
   width: 68rpx;
@@ -303,7 +303,6 @@
   display: flex;
   justify-content: space-between;
   padding: 0 32rpx;
-  /* justify-items: center; */
 }
 
 .sp_title {

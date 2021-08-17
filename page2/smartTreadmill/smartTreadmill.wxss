@@ -1,4 +1,4 @@
-/* page2/smartTreadmill/smartTreadmill.wxss */
+@import '/template/nothing/nothing.wxss';
 .treadmill {
   padding: 40rpx 30rpx 0 30rpx;
 }

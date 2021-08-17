@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "course-list":"../../components/courseList/courseList",
+    "course-list":"../../components/course-list/course-list",
     "nav-bar":"/components/navbar/navbar"
   }
 }

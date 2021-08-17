@@ -1,7 +1,4 @@
-/* page2/smartDevice/smartDevice.wxss */
-/* page{
-  background-color: #F0F2F5;
-} */
+@import '/template/nothing/nothing.wxss';
 .device_all {
   height: auto;
 }

@@ -1,17 +1,8 @@
-<!-- <view class="my_container"> -->
 <!-- 头部信息 -->
 <view class="myTip">
   <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
   <view class="navbar" style='height:{{navHeight}}px;'>
-    <view class="tip" style="margin-top:{{navTop}}px;margin-left:{{menuRight}}px">
-      <view class="tipItem" bindtap="memberCode">
-        <image src="/static/home_pic/QRcode.png"></image>
-      </view>
-      <view class="line"></view>
-      <view class="tipItem" bindtap="code">
-        <image src="/static/home_pic/scan.png"></image>
-      </view>
-    </view>
+    <my-capsule class="capsule_icon" style="top:{{navTop}}px;left:{{menuRight}}px" my-class="gray"></my-capsule>
     <view class='navbar-title' style='top:{{navTop}}px;'>我的</view>
   </view>
 </view>
@@ -25,7 +16,7 @@
     <!-- 未登录状态 -->
     <view class="unLogin" wx:if="{{loginStatus == 0}}">
       <view class="no_title">游客</view>
-      <navigator url="/page2/login/login" class="loginAndRes" catchtap="login" hover-class="none">登录/注册</navigator>
+      <navigator url="/page2/login/login" class="loginAndRes" hover-class="none">登录/注册</navigator>
     </view>
     <!-- 未绑定手机号码 -->
     <view class="bindPhone" wx:elif="{{loginStatus == 1}}">
@@ -35,7 +26,8 @@
     <!--登录状态  -->
     <view class="succ_info" wx:elif="{{loginStatus == 2}}">
       <view class="member_info">
-        如渔会员<image src="{{info.gender == 2?'/static/my/woman.png':'/static/man.png'}}" style="margin-left:15rpx;">
+        <text>如渔会员</text>
+        <image src="{{info.gender == 2?'/static/my/woman.png':'/static/man.png'}}">
         </image>
       </view>
       <view class="phone">{{phone}}</view>
@@ -51,13 +43,13 @@
       <view>{{myCoachCount}}</view>
       <view>私教课</view>
     </view>
-    <view class="cItem" catchtap="message">
+    <!-- <view class="cItem" catchtap="message">
       <view>
         <image src="/static/my/message.png" alt="" style="width:38rpx;height:38rpx;"></image>
       </view>
       <view>消息</view>
-      <!-- <view class="dot dotMessage">10</view> -->
-    </view>
+      <view class="dot dotMessage">10</view>
+    </view> -->
   </view>
 </view>
 <!-- nav -->
@@ -82,13 +74,13 @@
   <text class="nav-title">我的积分</text>
 </view>
 <!--  -->
-<view class="inte active" bindtap="inteAwrad">
-  <view class="leftInte avtive_item">
+<view class="inte active">
+  <view class="leftInte avtive_item" bindtap="inteAwrad" data-index="0">
     <text>VIP积分</text>
     <text>{{vipIntegral}}</text>
     <text class="yuan">分</text>
   </view>
-  <view class="rightInte avtive_item">
+  <view class="rightInte avtive_item" bindtap="inteAwrad" data-index="1">
     <text>行为积分</text>
     <text>{{actionIntegral}}</text>
     <text class="yuan">分</text>
@@ -102,15 +94,13 @@
 <view class="more">
   <view class="moreService">
     <block wx:for="{{serviceList}}" wx:key="index">
-      <view class="service" catchtap="lookRecord" data-index="{{index}}">
+      <view class="service" bindtap="lookRecord" data-index="{{index}}" data-path="{{item.serviceUrl}}">
         <view>
           <image src="{{item.img}}"></image>
         </view>
         <text>{{item.name}}</text>
-        <!-- <view class="dot" wx:if="{{item.unreadyNum && item.unreadyNum>0}}">{{item.unreadyNum}}</view> -->
       </view>
     </block>
   </view>
 </view>
-<!-- </view> -->
 <tabbar selected="{{3}}"></tabbar>

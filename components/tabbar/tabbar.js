@@ -20,29 +20,42 @@ Component({
         "pagePath": "/pages/tabbar/home/home",
         "text": "首页",
         "iconPath": "/static/tabbar/home.png",
-        "selectedIconPath": "/static/tabbar/home-h.png"
+        "selectedIconPath": "/static/tabbar/home_active.png"
       },
       {
         "pagePath": "/pages/tabbar/sport/sport",
         "text": "运动",
         "iconPath": "/static/tabbar/sport.png",
-        "selectedIconPath": "/static/tabbar/sport-h.png"
+        "selectedIconPath": "/static/tabbar/sport_active.png"
       },
       {
         "pagePath": "/pages/tabbar/integral/integral",
         "text": "积分",
         "iconPath": "/static/tabbar/integral.png",
-        "selectedIconPath": "/static/tabbar/integral-h.png"
+        "selectedIconPath": "/static/tabbar/integral_active.png"
       },
       {
         "pagePath": "/pages/tabbar/my/my",
         "text": "我的",
         "iconPath": "/static/tabbar/my.png",
-        "selectedIconPath": "/static/tabbar/my-h.png"
+        "selectedIconPath": "/static/tabbar/my_active.png"
       }
     ]
   },
-
+  lifetimes: {
+    // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
+    attached: function () {
+      // console.log(111)
+      // let tabList = this.data.list;
+      // let index = tabList.findIndex(item=>item.text=='积分');
+      // tabList.splice(index,1)
+      // this.setData({
+      //   list:tabList
+      // })
+     },
+    moved: function () { },
+    detached: function () { },
+  },
   /**
    * 组件的方法列表
    */

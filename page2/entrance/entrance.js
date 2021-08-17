@@ -9,26 +9,28 @@ Page({
     entrancdList: [],
     //分页
     pageSize:17,
-    currPage:1
+    currPage:1,
+   // UI_ID:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserCheckInList()
+  //  console.log(options)
+    this.getUserCheckInList(options.UI_ID)
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
     })
   },
-  getUserCheckInList:function(){
+  getUserCheckInList:function(id){
     var that = this
      api.request({
        url:"/UserCheckInList",
        data:{
         user_token:wx.getStorageSync('token'),
-        UI_ID:wx.getStorageSync('UI_ID'),
+        UI_ID:id,
         pageSize:that.data.pageSize,
         pageIndex:that.data.currPage
        }

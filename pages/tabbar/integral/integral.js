@@ -6,8 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    vipIntegral: 0,
-    actionIntegral: 0,
     //筛选
     isScreen: false,
     inteTypeList: [{
@@ -23,9 +21,11 @@ Page({
     selfReword: [],
     VIPReword: [],
     typeValue: '',
-    //lun
+    //轮播图
     inteBannerList: [],
-    inteBannerList1: ['http://user.360ruyu.cn/images/userBanner/score1.png', 'http://user.360ruyu.cn/images/userBanner/score2.png']
+    inteBannerList1: ['http://user.360ruyu.cn/images/userBanner/score1.png', 'http://user.360ruyu.cn/images/userBanner/score2.png'],
+    vipIntegral: 0,
+    actionIntegral: 0,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -52,7 +52,7 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      if (res.data.code == 1) {
+      if (res.data.code == 1 && res.data.data.length>0) {
         that.setData({
           vipIntegral: res.data.data[0].UI_Score,
           actionIntegral: res.data.data[0].UI_ActionScore
@@ -63,14 +63,14 @@ Page({
     })
   },
   //积分账单
-  pointsBill: function () {
-    let phone = wx.getStorageSync('phone')
-    if (phone && phone !== '') {
-      wx.navigateTo({
-        url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral,
-      })
-    }
-  },
+  // pointsBill: function () {
+  //   let phone = wx.getStorageSync('phone')
+  //   if (phone && phone !== '') {
+  //     wx.navigateTo({
+  //       url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral,
+  //     })
+  //   }
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -80,7 +80,7 @@ Page({
       choose: e.currentTarget.dataset.index
     })
   },
-  filtrateData: function () {
+  onPopup: function () {
     this.setData({
       isScreen: !this.data.isScreen
     })
@@ -112,25 +112,25 @@ Page({
       scores = 0;
     }
     if (newList.includes('VIP奖励') && newList.length == 1) {
-      console.log(1)
+     // console.log(1)
       this.getScoreRewardPayList(scores)
       let selfReword = [];
       this.setData({
         selfReword: selfReword
       })
     } else if (newList.includes('自律奖励') && newList.length == 1) {
-      console.log(2)
+      //console.log(2)
       this.getScoreRewardActList(scores);
       let VIPReword = []
       this.setData({
         VIPReword: VIPReword
       })
     } else if (newList.includes('自律奖励') && newList.includes('VIP奖励')) {
-      console.log(3)
+      //console.log(3)
       this.getScoreRewardPayList(scores)
       this.getScoreRewardActList(scores)
     } else {
-      console.log('请至少选择一个');
+     // console.log('请至少选择一个');
       this.getScoreRewardPayList(scores)
       this.getScoreRewardActList(scores)
     }
@@ -223,10 +223,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      vipIntegral: app.globalData.UI_Score,
-      actionIntegral: app.globalData.UI_ActionScore
-    })
     this.getScoreTotalByPhone()
     //消费积分
     this.getScoreRewardPayList()
@@ -256,27 +252,6 @@ Page({
     let price_type = e.currentTarget.dataset.prizetype;
     wx.navigateTo({
       url: '/page2/integralMall/integralMall?se_id=' + se_id + '&price_type=' + price_type + '&type=2',
-    })
-  },
-  memberCode() {
-    let phone = wx.getStorageSync('phone')
-   // console.log(111)
-    if (phone && phone !== '') {
-      //会员卡存在
-      wx.navigateTo({
-        url: '/page2/memberCode/memberCode',
-      })
-    } else {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-    }
-  },
-  code: function () {
-    wx.scanCode({
-      success(res) {
-        console.log(res)
-      }
     })
   },
   /**

@@ -9,12 +9,12 @@
       <text class="fon-size">{{cardDetail.OnlinePrice}}</text>
     </view>
     <view class="vipStr">
-      <text class="type">卡类型:  </text>
+      <text class="type">卡类型: </text>
       <text class="titleTip">{{cardDetail.SC_Name}}</text>
     </view>
-    <view class="eff_date" >
-      <text class="eff">有效期:   </text>
-      <text class="titleTip" wx:if="{{cardDetail.SC_Times>0}}">次数:   {{cardDetail.SC_Times}}</text>
+    <view class="eff_date">
+      <text class="eff">有效期: </text>
+      <text class="titleTip" wx:if="{{cardDetail.SC_Times>0}}">次数: {{cardDetail.SC_Times}}</text>
       <text class="titleTip" wx:else>{{cardDetail.Expdate}}</text>
     </view>
     <view class="support ch">
@@ -26,8 +26,8 @@
       <text class="titleTip">{{cardDetail.SC_TimeStart+' - '+cardDetail.SC_TimeEnd}}</text>
     </view>
     <view class="introduce_box">
-      <view class="introduceTip"> 
-        介绍: <text decode>&nbsp;&nbsp;</text> 
+      <view class="introduceTip">
+        介绍: <text decode>&nbsp;&nbsp;</text>
         {{cardDetail.Remarks}}
         <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。 -->
       </view>
@@ -40,25 +40,24 @@
         <text>选择会籍</text>
         <view class="pick_name">
           <picker value="{{index}}" range="{{membership}}" range-key="AI_Name" bindchange="bindPickerChange">
-           <text>{{membership[m_index].AI_Name}}</text>
-            <image src="/static/bottom_arrow.png"></image>
+            <view class="picker_wrapper">
+              <text>{{membership[m_index].AI_Name}}</text>
+              <image src="/static/bottom_arrow.png"></image>
+            </view>
           </picker>
         </view>
       </view>
       <!--  -->
       <view class="choose_way choose_item">
         <text>支付方式</text>
-        <view class="pay">
-          <text>微信支付</text>
-          <image src="/static/bottom_arrow.png"></image>
-        </view>
+        <view class="pay">微信支付</view>
       </view>
     </view>
     <view class="purchase">{{cardDetail.SaleCount}}人已购买</view>
     <view class="total">
       <view class="total_item">
         合计：
-        <text class="course_price">{{cardDetail.OnlinePrice * 1}}元</text>
+        <text class="course_price">{{cardDetail.OnlinePrice}}元</text>
       </view>
       <view class="purcl-tye" bindtap="paysuceess">购买</view>
     </view>

@@ -2,7 +2,6 @@
 var app = getApp()
 var api = require('../../utils/request.js')
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,7 +11,9 @@ Page({
     pageSize: 5,
     currPage: 1,
     //锁
-    flag: false
+    flag: true,
+    isRefreshing: false,
+    isLoadingMoreData: false
   },
 
   /**
@@ -29,7 +30,7 @@ Page({
     console.log(e.currentTarget.dataset.coach)
     let coach = JSON.stringify(e.currentTarget.dataset.coach)
     wx.navigateTo({
-      url: '/pages/appointment/appointment?course=0&coach='+coach,
+      url: '/pages/appointment/appointment?course=0&coach=' + coach,
     })
   },
   /**
@@ -40,28 +41,32 @@ Page({
   },
   getMyCoachClassList: function () {
     var that = this
-    if (!that.data.flag) {
-      api.request({
-        url: '/MyCoachClassList',
-        data: {
-          user_token: wx.getStorageSync('token'),
-          pageSize: that.data.pageSize,
-          pageIndex: that.data.currPage,
-          UI_ID: wx.getStorageSync('UI_ID')
-        }
-      }).then(res => {
-        console.log(res)
+    // if (!that.data.flag) {
+    api.request({
+      url: '/MyCoachClassList',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        pageSize: that.data.pageSize,
+        pageIndex: that.data.currPage,
+        UI_ID: wx.getStorageSync('UI_ID')
+      }
+    }).then(res => {
+      console.log(res)
+      if (res.data.code == 1) {
         if(res.data.data.length==0){
            that.setData({
-            flag:true
+            flag:false,
+            isLoadingMoreData: false
            })
            return
         }
         that.setData({
-          myCoachList: [...that.data.myCoachList, ...res.data.data]
+          myCoachList: [...that.data.myCoachList, ...res.data.data],
+          isLoadingMoreData: false,
         })
-      })
-    }
+      }
+    })
+    // }
 
   },
   /**
@@ -89,11 +94,15 @@ Page({
    */
   onReachBottom: function () {
     var that = this;
-    var pageSize = that.data.currPage + 1; //获取当前页数并+1
-    that.setData({
-      currPage: pageSize, //更新当前页数
-    })
-    that.getMyCoachClassList(); //重新调用请求获取下一页数据
+    if (this.data.flag) {
+      var pageSize = that.data.currPage + 1; //获取当前页数并+1
+      that.setData({
+        currPage: pageSize, //更新当前页数
+        isLoadingMoreData: true
+      })
+      that.getMyCoachClassList(); //重新调用请求获取下一页数据
+    }
+
   },
 
   /**

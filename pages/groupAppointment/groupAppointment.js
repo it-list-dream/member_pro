@@ -15,7 +15,9 @@ Page({
     num: null,
     seatList: [],
     //是否预约
-    isAppoinment: true
+    isAppoinment: true,
+    //支付
+    // checkPay: true
   },
 
   /**
@@ -126,6 +128,12 @@ Page({
         title: '你已经预约该课程',
       })
       return
+    }else if(this.data.tclass.CTO_PeopleAttend == this.data.tclass.CTO_PeopleFull){
+      wx.showToast({
+        icon: "none",
+        title: '该团课报名人数已满',
+      })
+      return
     }
     //需要选座
     if (that.data.tclass.IsPickNumChk == 1) {
@@ -179,7 +187,7 @@ Page({
     })
   },
   //选座
-  getCardTogetherIsPickNum: function () {
+  getCardTogetherIsPickNum: function (res) {
     var that = this
     api.request({
       url: "/CardTogetherIsPickNum",
@@ -192,6 +200,10 @@ Page({
       that.setData({
         seatList: res.data.data
       })
+      // console.log(typeof res)
+      // if(res && typeof res == 'function'){
+      //   res();
+      // }
     })
   },
   judgeSeatExist1: function () {
@@ -217,12 +229,13 @@ Page({
     if (that.data.tclass.CTO_Price > 0) {
       // that.payGroup();
       // console.log('付费')
-      that.getCardTogetherIsPickNum();
-      new Promise((resolve, reject) => {
-        resolve()
-      }).then(res => {
-        that.payGroup();
-      })
+     // that.getCardTogetherIsPickNum();
+      // new Promise((resolve, reject) => {
+      //   resolve()
+      // }).then(res => {
+       
+      // })
+      that.payGroup();
     } else {
       console.log('免费')
       wx.showModal({
@@ -293,12 +306,17 @@ Page({
           chooseSeat: true
         })
       } else {
+        console.log('wuzuo')
         that.payGroup()
       }
     }
   },
   payGroup: function () {
     var that = this
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     api.request({
       url: "/OrderGroupLesson",
       data: {
@@ -306,12 +324,17 @@ Page({
         UI_ID: wx.getStorageSync('UI_ID') || 0,
         GB_ID: wx.getStorageSync('GB_ID'),
         CTO_ID: that.data.tclass.CTO_ID,
-        PickNum: that.data.tclass.IsPickNumChk
+        PickNum: that.data.num || 0
       }
     }).then(res => {
-      // console.log(res)
       if (res.data.code == 1) {
-        that.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].MoneyShould)
+        that.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].WxPrice)
+      } else {
+        wx.hideLoading()
+        wx.showToast({
+          icon: 'none',
+          title: res.data.msg,
+        })
       }
     })
   },
@@ -328,6 +351,7 @@ Page({
       }
     }).then(res => {
       if (res.data.code == 1) {
+        wx.hideLoading();
         //支付成功，预约成功
         that.setData({
           'tclass.IsAppointment': 1,
@@ -337,6 +361,7 @@ Page({
           url: '/page2/suceess/suceess?CTO_ID=' + that.data.tclass.CTO_ID + '&isShow=0',
         })
       } else {
+        wx.hideLoading();
         wx.showToast({
           title: res.data.msg,
         })
@@ -359,7 +384,7 @@ Page({
         body: "ss",
         attach: "df",
         sub_mch_id: businessNo,
-        total_fee: money * 100
+        total_fee: money
       },
       method: 'POST',
       success: function (res) {
@@ -371,12 +396,14 @@ Page({
           'signType': 'MD5',
           'paySign': res.data.data[0].paySign,
           'success': function (res) {
+            console.log('支付成功')
             that.ordersuccess(order)
             that.setData({
               'tclass.SaleCount': Number(that.data.tclass.SaleCount) + 1
             })
           },
           'fail': function (res) {
+            wx.hideLoading();
             wx.showToast({
               title: '支付失败，请重新支付',
               icon: "none"
@@ -390,6 +417,7 @@ Page({
         })
       },
       fail: function (res) {
+        wx.hideLoading();
         wx.showToast({
           title: '加载失败，请重试',
           icon: 'none'

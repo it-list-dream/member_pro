@@ -2,11 +2,9 @@
 <nav-bar page-name="团课预约" class="topNav"></nav-bar>
 <!-- 内容 -->
 <view class="group_container" style="margin-top:{{navHeight}}px;margin-bottom:{{tclass.CTO_Price>0?'100rpx':'212rpx'}}">
-  <view class="group_pic">
-    <view class="join_num">已参加 {{tclass.CTO_PeopleAttend+'/'+tclass.CTO_PeopleFull}}</view>
-  </view>
-  <view class="coach_img">
-    <image src="/static/coach01.png"></image>
+  <view class="groupImage">
+    <image src="{{tclass.CTO_Log?tclass.CTO_Log:'/static/group.png'}}"  mode="scaleToFill"></image>
+    <view class="attentNum">已参加 {{tclass.CTO_PeopleAttend+'/'+tclass.CTO_PeopleFull}}</view>
   </view>
   <!-- 课程开始时间 -->
   <view class="course_date">
@@ -15,15 +13,17 @@
       <text class="coachName">{{tclass.AI_Name}}</text>
       <image src="{{tclass.AI_Sex == '男' ? '/static/man.png':'/static/woman.png'}}"></image>
     </view>
-    <view class="right" style="{{!tclass.CTO_SignUpStart?'justify-content: center;':''}}">
+    <view class="right" style="justify-content:{{!tclass.CTO_SignUpStart?'center;':' space-around'}}">
       <view wx:if="{{tclass.CTO_SignUpStart}}">报名开始：{{tclass.CTO_SignUpStart}}</view>
       <view>截止日期：{{tclass.CTO_SignUpEndDate}}</view>
     </view>
   </view>
-  <view class="course_name">课程名：{{tclass.CTO_Name}}</view>
-  <view class="course_time">时间：{{tclass.CTO_DateStart}}-{{tools.sub(tclass.CTO_DateEnd,tclass.CTO_DateEnd.length-8)}}
+  <view class="course_name column">课程名：{{tclass.CTO_Name}}</view>
+  <view class="course_time column">时间：{{tclass.CTO_DateStart}}-{{tools.sub(tclass.CTO_DateEnd,tclass.CTO_DateEnd.length-8)}}
   </view>
-  <view class="course_introduce">
+  <!-- 动感单车房 -->
+  <view class="course_address column">地点： {{tclass.CTO_Address}}</view>
+  <view class="course_introduce column">
     <view class="introduce">介绍：</view>
     <view class="introduce_detail">
       <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇 -->
@@ -31,10 +31,6 @@
     </view>
   </view>
   <!-- 免费的团课 -->
-  <!-- 
- style="background:{{(tclass.IsAppointment==1 || tclass.cantappointment ==1 )?'gray':'#12D58B;'}}"
-    style="background:{{(item.cantappointment==1 && item.IsAppointment==0)?'#12D58B':item.IsAppointment==1?'#7B6F85':'#ada6ac'}}"
-   -->
   <view class="order_list" wx:if="{{tclass.CTO_Price == 0}}">
     <view class="order"
       style="background:{{(tclass.cantappointment==1 && tclass.IsAppointment==0)?'#12D58B':tclass.IsAppointment==1?'#7B6F85':'#ada6ac'}}"
@@ -56,7 +52,6 @@
           <view class="price">{{tclass.CTO_Price}}元</view>
         </view>
         <view class="pay_order">
-        <!-- style="background:{{item.cantappointment==1?'#FD4E54':'gray'}}" -->
           <view class="order_title" bindtap="paygrounplesson"
             style="background:{{tclass.cantappointment==1?'#FD4E54':'gray'}}">
             {{tclass.IsAppointment==1?'已购买':'购买'}}</view>

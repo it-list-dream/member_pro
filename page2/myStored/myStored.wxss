@@ -12,17 +12,16 @@
   left: 50%;
   transform: translateX(-50%); */
   margin: 0 auto;
-  margin-top:20rpx;
+  margin-top: 20rpx;
   overflow: hidden;
   width: 690rpx;
   height: 340rpx;
-  /* background: #52495B; */
   background-size: 100% 100%;
   background-image: url(data:image/jpg;base64,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);
   border-radius: 10rpx;
 }
 
-.stored_img_title {  
+.stored_img_title {
   font-size: 35rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -36,23 +35,27 @@
 .stored_img view {
   text-align: center;
 }
-.recharge{
+
+.recharge {
   margin-top: 60rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
-} 
+}
+
 .recharge text {
   color: #F4C08D !important;
 }
-.give{
+
+.give {
   margin-top: 40rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
 }
+
 .give text {
   color: #12D58B;
 }
@@ -60,14 +63,15 @@
 .stored_tab {
   display: flex;
   height: 64rpx;
+  padding: 0 30rpx;
 }
 
 .stored_con {
-  padding: 20rpx 20rpx 0 20rpx;
+  padding: 20rpx 0rpx 0 0rpx;
   box-sizing: border-box;
   /* height: auto; */
   background: #ffffff;
-  
+
 }
 
 .tab {
@@ -75,16 +79,22 @@
   flex: 1;
   font-size: 32rpx;
   font-family: PingFang SC;
-  font-weight: bold;
   color: #333333;
   text-align: center;
   line-height: 64rpx;
 }
 
+.active {
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+
+}
+
 .active::after {
   position: absolute;
   bottom: 0;
-  left: 111rpx;
+  left: 108rpx;
   content: '';
   width: 20rpx;
   height: 4rpx;
@@ -98,22 +108,34 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eeeeee;
+  margin: 0 auto;
+  padding-left: 15rpx;
+  overflow: hidden;
+  width: 690rpx;
 }
 
 .stored_item {
   width: 100%;
-  padding-top: 30rpx; 
+  padding-top: 30rpx;
 }
-.stored_scroll{
+
+.stored_scroll {
   width: 100%;
   /* background: green; */
 }
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .stored_all {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
- 
+
 }
 
 .stored_all view:first-child {
@@ -136,4 +158,11 @@
   font-family: PingFang SC;
   font-weight: 500;
 
+}
+
+.tip_message {
+  padding: 100rpx 0;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999999;
 }

@@ -12,13 +12,13 @@ Page({
         month: 'current',
         day: new Date().getDate(),
         color: 'white',
-        background: '#AAD4F5'
+        background: '#12D58B'
       },
       {
         month: 'current',
         day: new Date().getDate(),
         color: 'white',
-        background: '#AAD4F5'
+        background: '#12D58B'
       }
     ],
     //日期的显示和隐藏
@@ -47,6 +47,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //onsole.log(options)
     if (wx.getStorageSync('myCoach')) {
       this.setData({
         chooseCoach: wx.getStorageSync('myCoach')
@@ -127,13 +128,14 @@ Page({
     var that = this
     var dayIndex = e.currentTarget.dataset.index;
     var da = e.currentTarget.dataset.date.replace('.', '-')
-    console.log(da)
+   // console.log(da)
     var sdate = this.data.SearchDate;
     var year = new Date(sdate).getFullYear();
     this.setData({
       choosesDay: dayIndex,
       SearchDate: year + '-' + da,
-      num: null
+      num: null,
+      date:false
     })
     //所选的是团课还是私教课
     if (that.data.selectClass == 0) {
@@ -156,6 +158,15 @@ Page({
       starttime: e.currentTarget.dataset.s,
       endtime: e.currentTarget.dataset.e
     })
+  },
+  //更新当前的教练
+  updateCurrentCoach(list){
+      let coach = wx.getStorageSync('myCoach');
+      list = Array.isArray(list)?list:[];
+      list = list.filter(item=>item.CO_ID == coach.CO_ID);
+      if(list.length>0){
+         wx.setStorageSync('myCoach',list[0])
+      }
   },
   // 判断哪些时间已过期
   getMyCurrentTime: function () {
@@ -190,6 +201,7 @@ Page({
   //教练列表
   getMyCoachClassList: function () {
     var that = this;
+   // console.log(999999999999);
     if (!that.data.currentCoach) {
       api.request({
         url: "/MyCoachClassList",
@@ -201,6 +213,10 @@ Page({
         }
       }).then(res => {
         if (res.data.code == 1 && res.data.data.length > 0) {
+          //获取教练列表
+          console.log(res)
+          //更新
+          that.updateCurrentCoach(res.data.data);
           that.setData({
             currentCoach: res.data.data[0],
             isCanCoach: true,
@@ -336,13 +352,13 @@ Page({
                 endtime: null,
                 'chooseCoach.CS_Num': num
               })
-             // let coach1 = JSON.stringify(that.data.currentCoach)
-              // setTimeout(function () {
+              //将记录保存到缓存中
+              wx.setStorageSync('myCoach', that.data.chooseCoach)
+             // let coach1 = JSON.stringify(that.data.currentCoach) 
                 //跳到分享页面
                 wx.navigateTo({
                   url: '/page2/suceess/suceess?isShow=1',
                 })
-              // }, 1000);
             } else {
               wx.showToast({
                 icon: "none",
@@ -446,7 +462,7 @@ Page({
   //预约团课
   orderTogther: function (e) {
     let tcalss = e.currentTarget.dataset.togther
-    console.log(tcalss)
+   // console.log(tcalss)
     //判断是否登录
     //是否购买会员卡
     let phone = wx.getStorageSync('phone')

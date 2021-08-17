@@ -1,7 +1,10 @@
-.com-selectBox{
-  width: 168rpx;
+.com-selectBox {
+  position: relative;
+  width: 180rpx;
+  height: auto;
 }
-.com-sContent{
+
+.com-sContent {
   position: relative;
   height: 50rpx;
   line-height: 50rpx;
@@ -9,7 +12,8 @@
   background: white;
   font-size: 28rpx;
 }
-.com-sImg{
+
+.com-sImg {
   position: absolute;
   top: 50%;
   right: 10rpx;
@@ -17,43 +21,51 @@
   height: 28rpx;
   transform: translateY(-50%);
 }
-.com-sTxt{
+
+.com-sTxt {
+  text-align: left;
+  padding-left: 20rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  color: #333333;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding:0 40rpx 0 12rpx;
-  font-size: 32rpx;
 }
-.com-sList{
+
+.com-sList {
+  position: absolute;
   background: #F0F2F5;
   width: inherit;
-  position: absolute;
+  max-height: 180rpx;
   border: 1px solid #e2e2e2;
   border-top: none;
   box-sizing: border-box;
-  z-index: 3;
-  max-height: 160rpx;
   overflow: auto;
+  z-index: 100;
 }
-.com-sItem{
+
+.com-sItem {
   box-sizing: border-box;
   height: 50rpx;
   line-height: 50rpx;
   border-top: 1px solid #e2e2e2;
-  padding: 0 20rpx;
-  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 28rpx;
-  
+  padding-left: 20rpx;
+  text-align: left;
 }
-.changeList{
-   background: #A4A6A7;
+
+.changeList {
+  background: #A4A6A7;
 }
-.com-sItem:first-child{
+
+.com-sItem:first-child {
   border-top: none;
 }
-.touchbg{
+
+.touchbg {
   background: #52495B;
 }

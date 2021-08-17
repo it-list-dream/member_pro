@@ -53,6 +53,7 @@
 
 .location_info .store_item {
   padding-left: 20rpx;
+  flex: 1;
 }
 
 .location_info .store_item .store_adr {
@@ -80,6 +81,7 @@
 
 .location_info .store_item .detail_address .detail {
   padding-left: 15rpx;
+  flex: 1;
 }
 
 .location_info .distance {

@@ -21,15 +21,15 @@ const formatNumber = n => {
 // 
 //之后30天的日期
 const days = (d) => {
-  var timestamp,date;
+  var timestamp, date;
   if (d) {
-     date = new Date(d)
+    date = new Date(d)
   } else {
     timestamp = Date.parse(new Date());
     date = new Date(timestamp);
   }
 
- // console.log(date)
+  // console.log(date)
   //获取年份  
   var Y = date.getFullYear();
   //获取月份  
@@ -110,17 +110,17 @@ const days = (d) => {
         }
       }
     }
-    
+
     time.push(date)
   }
   return time
 }
-const toWeek = (date)=> { // 传入数据  讲一周的某一天返回成中文状态下的字符
+const toWeek = (date) => { // 传入数据  讲一周的某一天返回成中文状态下的字符
   var today = new Date();
   var currTime = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   var nextDay = new Date(date)
   var nextTime = nextDay.getFullYear() + '-' + (nextDay.getMonth() + 1) + '-' + nextDay.getDate();
-  if(currTime == nextTime){
+  if (currTime == nextTime) {
     return '今日'
   }
   switch (date.getDay()) {
@@ -151,12 +151,12 @@ const toWeek = (date)=> { // 传入数据  讲一周的某一天返回成中文�
 }
 
 function toWeekDay(date) { // 传入数据  讲一周的某一天返回成中文状态下的字符
-  console.log(date)
+  //console.log(date)
   var today = new Date();
   var currTime = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   var nextDay = new Date(date)
   var nextTime = nextDay.getFullYear() + '-' + (nextDay.getMonth() + 1) + '-' + nextDay.getDate();
-  if(currTime == nextTime){
+  if (currTime == nextTime) {
     return '今天'
   }
   switch (date.getDay()) {
@@ -188,29 +188,57 @@ function toWeekDay(date) { // 传入数据  讲一周的某一天返回成中文
 }
 //var res = createEveryday();
 function closestToCurrentTime(timeArr) {
- // var timeArr = ['2017-07-10', '2019-08-15', '2020-10-01', '2017-01-01',
+  // var timeArr = ['2017-07-10', '2019-08-15', '2020-10-01', '2017-01-01',
   //    '2021-04-15', '2021-05-21'];
   var timestamp = Date.now();
   var min;
   var index = 0;
   timeArr.forEach(function (item, i) {
-      var itemStamp = new Date(item).getTime();
-      var interVal = Math.abs(timestamp - itemStamp);
-      if (min == void 0) { min = interVal } else {
-          if (min > interVal) {
-              min = interVal;
-              index = i;
-          }
+    var itemStamp = new Date(item).getTime();
+    var interVal = Math.abs(timestamp - itemStamp);
+    if (min == void 0) {
+      min = interVal
+    } else {
+      if (min > interVal) {
+        min = interVal;
+        index = i;
       }
+    }
   })
   return index
   //console.log(index);
 }
+
+function format(date, fmt) {
+  let d = new Date(date)
+  var o = {
+    "M+": d.getMonth() + 1, //月份
+    "d+": d.getDate(), //日
+    "h+": d.getHours(), //小时
+    "m+": d.getMinutes(), //分
+    "s+": d.getSeconds(), //秒
+    "q+": Math.floor((d.getMonth() + 3) / 3), //季度
+    "S": d.getMilliseconds() //毫秒
+  };
+  //  获取年份 
+  if (/(y+)/i.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, (d.getFullYear() + "").substr(4 - RegExp.$1.length));
+  }
+
+  for (var k in o) {
+    if (new RegExp("(" + k + ")", "i").test(fmt)) {
+      fmt = fmt.replace(
+        RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    }
+  }
+  return fmt;
+}
 module.exports = {
-  formatTime:formatTime,
-  formatTime1 : formatTime1 ,
+  formatTime: formatTime,
+  formatTime1: formatTime1,
   days,
-  toWeek:toWeek,
-  toWeekDay:toWeekDay,
-  closestToCurrentTime:closestToCurrentTime
+  toWeek: toWeek,
+  toWeekDay: toWeekDay,
+  closestToCurrentTime: closestToCurrentTime,
+  format: format
 }

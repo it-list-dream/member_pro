@@ -1,24 +1,24 @@
-<nav-bar page-name="人体成分仪"></nav-bar>
+<nav-bar page-name="人体成分仪" icon1="{{true}}"></nav-bar>
 <view class="bodyInfo" style="margin-top:{{navHeight}}px">
   <view class="baseinfo">
     <view class="base_item">
       <image src="{{userInfo?userInfo.avatarUrl:'./images/people.png'}}"></image>
-      <view>2020-09-03</view>
+      <view>{{sbody.Createdate}}</view>
     </view>
     <view class="physical_info">
       <view class="physical_item">
         <text>身体年龄</text>
-        <view>39 <text style="font-size:18rpx;">岁</text></view>
+        <view>{{sbody.BodyAge}} <text style="font-size:18rpx;">岁</text></view>
       </view>
       <view class="line"></view>
       <view class="physical_item">
         <text>健康评分</text>
-        <view>60 <text style="font-size:18rpx;">分</text></view>
+        <view>{{sbody.Score}} <text style="font-size:18rpx;">分</text></view>
       </view>
       <view class="line"></view>
       <view class="physical_item">
         <text>提醒判定</text>
-        <text>肥胖型</text>
+        <text>{{sbody.Figure}}</text>
       </view>
     </view>
   </view>
@@ -30,10 +30,10 @@
         <image src="/static/big_arrow.png" catchtap="hidenNorm"></image>
       </view>
     </view>
-    <view class="norm_content" wx:if="{{normShow}}">
-      <block wx:for="{{3}}">
+    <view class="norm_content" hidden="{{normShow}}">
+      <block wx:for="{{cautionList}}" wx:key="index">
         <view class="norm_item">
-          <view class="weight">体重</view>
+          <view class="weight">{{item.body_key}}</view>
           <view class="body_status">
             <text>偏低</text>
             <text>正常</text>
@@ -41,25 +41,26 @@
           </view>
           <view class="norm_all">
             <view class="norm_progress">
-              <progress percent="20" stroke-width="3" border-radius="10"
+              <progress percent="100" stroke-width="3" border-radius="10"
                 activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
                 backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
                 stroke-width="10" />
             </view>
-            <view>90.50kg</view>
+            <view>{{item.body_value.value}}{{item.monad}}</view>
           </view>
           <view class="body_data">
-            <view>13.97</view>
-            <view>69.07</view>
+            <view>{{item.body_value.prv['0']}}</view>
+            <view>{{item.body_value.prv['1']}}</view>
           </view>
           <view class="need">
-            <view>需 -15.50kg</view>
+            <view>需{{item.body_value.need}}{{item.monad}}</view>
             <view>偏高</view>
           </view>
         </view>
       </block>
     </view>
   </view>
+
   <!-- 身体成分分析 -->
   <view class="body_analyze">
     <view class="analyze norm_title">
@@ -68,10 +69,10 @@
         <image src="/static/big_arrow.png" catchtap="hidenBody"></image>
       </view>
     </view>
-    <view class="analyze_content" wx:if="{{bodyShow}}">
-      <block wx:for="{{5}}">
+    <view class="analyze_content" hidden="{{bodyShow}}">
+      <block wx:for="{{bodyCompositionList}}" wx:key="body_key">
         <view class="norm_item">
-          <view class="weight">体重</view>
+          <view class="weight">{{item.body_key}}</view>
           <view class="body_status">
             <text>偏低</text>
             <text>正常</text>
@@ -79,20 +80,20 @@
           </view>
           <view class="norm_all">
             <view class="norm_progress">
-              <progress percent="20" stroke-width="3" border-radius="10"
-                activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
-                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+              <progress percent="{{item.body_value.grade == 1?'20':(item.body_value.grade == 2?'50':'90')}}"
+                stroke-width="3" border-radius="10" activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)"
+                active backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
                 stroke-width="10" />
             </view>
-            <view>90.50kg</view>
+            <view>{{item.body_value.value}}{{item.monad}}</view>
           </view>
           <view class="body_data">
-            <view>13.97</view>
-            <view>69.07</view>
+            <view>{{item.body_value.prv['0']}}</view>
+            <view>{{item.body_value.prv['1']}}</view>
           </view>
           <view class="need">
-            <view>需 -15.50kg</view>
-            <view>偏高</view>
+            <view>需{{item.body_value.need}}{{item.monad}}</view>
+            <view style="background-color:{{item.health_color}}">{{item.body_health}}</view>
           </view>
         </view>
       </block>
@@ -106,10 +107,10 @@
         <image src="/static/big_arrow.png" catchtap="hidenFat"></image>
       </view>
     </view>
-    <view class="fat_content" wx:if="{{fatShow}}">
-      <block wx:for="{{5}}">
+    <view class="fat_content" hidden="{{fatShow}}">
+      <block wx:for="{{fatList}}" wx:key="body_key">
         <view class="norm_item">
-          <view class="weight">体重</view>
+          <view class="weight">{{item.body_key}}</view>
           <view class="body_status">
             <text>偏低</text>
             <text>正常</text>
@@ -117,21 +118,23 @@
           </view>
           <view class="norm_all">
             <view class="norm_progress">
-              <progress percent="20" stroke-width="3" border-radius="10"
-                activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
-                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+              <progress percent="{{item.body_value.grade == 1?'20':(item.body_value.grade == 2?'50':'90')}}"
+                stroke-width="3" border-radius="10" activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)"
+                active backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
                 stroke-width="10" />
             </view>
-            <view>90.50kg</view>
+            <view>{{item.body_value.value}}{{item.monad}}</view>
           </view>
-          <view class="body_data">
-            <view>13.97</view>
-            <view>69.07</view>
-          </view>
-          <view class="need">
-            <view>需 -15.50kg</view>
-            <view>偏高</view>
-          </view>
+          <block wx:if="{{item.hasNeed}}">
+            <view class="body_data">
+              <view>{{item.body_value.prv['0']}}</view>
+              <view>{{item.body_value.prv['1']}}</view>
+            </view>
+            <view class="need" wx:if="{{item.hasNeed}}">
+              <view>需 {{item.body_value.need}}{{item.monad}}</view>
+              <view style="background-color:{{item.health_color}}">{{item.body_health}}</view>
+            </view>
+          </block>
         </view>
       </block>
     </view>
@@ -145,48 +148,51 @@
     <view class="bodybgList">
       <view class="bodyLeft bg">
         <view>
-          <view>左上肢 4.24kg</view>
-          <view>偏高</view>
+          <view>左上肢 {{segmental_muscle.la.value}}kg</view>
+          <!-- //1不足:@2一般:@3:充足 -->
+          <view>{{segmental_muscle.la.grade == 1?'不足':(segmental_muscle.la.grade == 2?'一般':'充足') }}</view>
         </view>
         <view>
-          <view>右上肢 4.24kg</view>
-          <view>偏高</view>
+          <view>右上肢 {{segmental_muscle.ra.value}}kg</view>
+          <view>{{segmental_muscle.ra.grade == 1?'不足':(segmental_muscle.ra.grade == 2?'一般':'充足') }}</view>
         </view>
         <view>躯干</view>
         <view>
-          <view>右下肢 4.24kg</view>
-          <view>正常</view>
+          <view>左下肢 {{segmental_muscle.ll.value}}kg</view>
+          <view>{{segmental_muscle.ll.grade == 1?'不足':(segmental_muscle.ll.grade == 2?'一般':'充足') }}</view>
         </view>
         <view>
-          <view>右下肢 4.24kg</view>
-          <view>正常</view>
+          <view>右下肢 {{segmental_muscle.rl.value}}kg</view>
+          <view>{{segmental_muscle.rl.grade == 1?'不足':(segmental_muscle.rl.grade == 2?'一般':'充足') }}</view>
         </view>
         <view>
           <view>躯干</view>
-          <view>31.23kg 正常</view>
+          <view>{{segmental_muscle.tr.value}}kg {{segmental_muscle.tr.grade == 1?'不足':(segmental_muscle.tr.grade ==
+            2?'一般':'充足') }}</view>
         </view>
       </view>
       <view class="bodyRight bg">
         <view>
-          <view>左上肢 4.24kg</view>
-          <view>偏高</view>
+          <view>左上肢 {{segmental_fat.la.value}}kg</view>
+          <view>{{segmental_fat.la.grade == 1?'偏低':(segmental_fat.la.grade == 2?'正常':'偏高') }}</view>
         </view>
         <view>
-          <view>右上肢 4.24kg</view>
-          <view>偏高</view>
+          <view>右上肢 {{segmental_fat.ra.value}}kg</view>
+          <view>{{segmental_fat.ra.grade == 1?'偏低':(segmental_fat.ra.grade == 2?'正常':'偏高') }}</view>
         </view>
         <view>躯干</view>
         <view>
-          <view>右下肢 4.24kg</view>
-          <view>正常</view>
+          <view>左下肢 {{segmental_fat.ll.value}}kg</view>
+          <view>{{segmental_fat.ll.grade == 1?'偏低':(segmental_fat.ll.grade == 2?'正常':'偏高') }}</view>
         </view>
         <view>
-          <view>右下肢 4.24kg</view>
-          <view>正常</view>
+          <view>右下肢 {{segmental_fat.rl.value}}kg</view>
+          <view>{{segmental_fat.rl.grade == 1?'偏低':(segmental_fat.rl.grade == 2?'正常':'偏高') }}</view>
         </view>
         <view>
           <view>躯干</view>
-          <view>31.23kg 正常</view>
+          <view>{{segmental_fat.tr.value}}kg {{segmental_fat.tr.grade == 1?'偏低':(segmental_fat.tr.grade == 2?'正常':'偏高')
+            }}</view>
         </view>
       </view>
     </view>

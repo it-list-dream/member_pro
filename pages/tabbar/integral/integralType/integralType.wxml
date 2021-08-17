@@ -1,0 +1,22 @@
+<view class="inteTitleBox">
+    <view class="behInte">
+      <view class="integral_bar">行为积分</view>
+      <view>
+        {{actionIntegral}}
+        <text class="branch">分</text>
+      </view>
+    </view>
+    <view class="vipInte">
+      <view class="integral_bar">VIP积分</view>
+      <view>
+        {{vipIntegral}}
+        <text class="branch">分</text>
+      </view>
+    </view>
+    <view class="billBox" bindtap="pointsBill">
+      <view class="bill">积分账单</view>
+    </view>
+    <view class="inteIcon" bindtap="filtrateData">
+      <image src="/static/choose.png"></image>
+    </view>
+  </view>

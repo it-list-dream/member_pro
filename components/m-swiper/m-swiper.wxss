@@ -1,0 +1,10 @@
+.swiper {
+  /* */
+  width: 100%;
+  box-sizing: border-box;
+  height: calc(100vw * 290/690)px;
+}
+
+.swiper-image {
+  width: 100%;
+}

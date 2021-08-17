@@ -1,0 +1,10 @@
+<!--components/my-capsule/my-capsule.wxml-->
+<view class="capsule_list my-class">
+  <navigator class="capsule_item" hover-class="none" url="/pages/shop/shop">
+    <image src="/static/home_pic/ship.png" class="icon30"></image>
+  </navigator>
+  <view class="line"></view>
+  <view class="capsule_item" bindtap="qrCode">
+    <image src="/static/home_pic/QRcode.png" class="icon30"></image>
+  </view>
+</view>

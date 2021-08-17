@@ -26,7 +26,7 @@
         <!--  -->
         <view class="sport_item">
           <view class="sport_num">
-            1200
+            {{sportDesc.runtime}}
             <text class="info">分钟</text>
           </view>
           <view class="info">运动时长</view>
@@ -35,7 +35,7 @@
         <!--  -->
         <view class="sport_item">
           <view class="sport_num">
-            300
+            {{sportDesc.burncal}}
             <text>Kcal</text>
           </view>
           <view class="info">消耗</view>
@@ -58,7 +58,7 @@
         </view>
         <view class="line"></view>
         <view class="course">
-          <text>{{sportDesc.runDistance}}公里</text>
+          <text>{{sportDesc.runDistance / 1000}}公里</text>
           <text>跑步机</text>
         </view>
       </view>
@@ -76,20 +76,22 @@
       <!--  -->
       <view class="list">
         <view class="week_day">
-          <!-- <view class="active">周</view>
-          <view>月</view> -->
-          <block wx:for="{{date_info}}">
-            <view class="{{index == isSelected ? 'active':''}}" bindtap="changeDate" data-index="{{index}}">{{item}}
+          <block wx:for="{{date_info}}" wx:for-index="idx" wx:key="idx">
+            <view class="{{idx == isSelected ? 'active':''}}" bindtap="changeDate" data-index="{{idx}}">{{item}}
             </view>
           </block>
         </view>
       </view>
       <view class="dateDetail">
-        <image src="/static/left_arrow.png" class="arrow1" bindtap="pervClick"></image>
+        <view class="arrow_box"  bindtap="pervClick">
+          <image src="./images/left.png" class="arrow1"></image>
+        </view>
         <view>{{startDate}}</view>
         <view class="line"></view>
         <view>{{endDate}}</view>
-        <image src="/static/next.png" class="arrow1" bindtap="nextClick"></image>
+        <view class="arrow_box" bindtap="nextClick">
+          <image src="./images/right.png" class="arrow1"></image>
+        </view>
       </view>
       <!--echarts  -->
       <view class="echarts_container">
@@ -98,16 +100,16 @@
       <!--  -->
       <view class="bottom_content">
         <view class="sp_title">
-          <view>月运动天数</view>
-          <view>20<text>天</text></view>
+          <view>{{isSelected ==0?'周':'月'}}运动天数</view>
+          <view>{{runTotalList[0].rundays}}<text>天</text></view>
         </view>
         <view class="sp_title sp1">
-          <view>月运动时长</view>
-          <view>150<text>分钟</text></view>
+          <view>{{isSelected ==0?'周':'月'}}运动时长</view>
+          <view>{{runTotalList[0].runtime }}<text>分钟</text></view>
         </view>
         <view class="sp_title sp2">
-          <view>月消耗</view>
-          <view>500<text>Kcal</text></view>
+          <view>{{isSelected ==0?'周':'月'}}消耗</view>
+          <view>{{runTotalList[0].burncal}}<text>Kcal</text></view>
         </view>
       </view>
     </view>

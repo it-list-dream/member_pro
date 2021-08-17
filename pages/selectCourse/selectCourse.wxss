@@ -65,16 +65,15 @@
 }
 
 .selectCourse .bottom {
-  /* display: flex;
-  flex-direction: column; */
   margin-top: 30rpx;
 }
 
 .selectCourse .course_number {
   font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #FFFFFF;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .selectCourse .expirationDate {

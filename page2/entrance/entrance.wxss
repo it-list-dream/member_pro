@@ -1,4 +1,5 @@
 /* page2/entrance/entrance.wxss */
+@import '/template/nothing/nothing.wxss';
 .entrance {
   padding: 20rpx 30rpx 30rpx 30rpx;
   background-color: #F0F2F5;

@@ -5,7 +5,7 @@
       <view class="loaction">
         <view class="location_title">
           <image src="/static/laction.png"></image>
-          <text class="address">上海市</text>
+          <text class="address">全部</text>
           <image src="/static/bottom_arrow.png"></image>
         </view>
         <view class="shop_num">共{{gymCount}}家</view>

@@ -1,6 +1,6 @@
-<view class='com-selectBox' style="margin-top:{{top}}rpx;">
+<view class='com-selectBox'>
     <view class='com-sContent' bindtap='selectToggle'>
-        <view class='com-sTxt'>{{nowText}}</view>
+        <view class='com-sTxt'>{{selectText}}</view>
         <image src='/static/bottom_arrow.png' class='com-sImg'></image>
     </view>
     <view class='com-sList' wx:if="{{selectShow}}">

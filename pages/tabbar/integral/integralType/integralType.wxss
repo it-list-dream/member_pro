@@ -1,0 +1,83 @@
+/* pages/tabbar/integral/integralType/integralType.wxss */
+.inteTitleBox {
+  display: flex;
+  width: 690rpx;
+  height: 100rpx;
+  /* background: pink; */
+  background: #ffffff;
+  margin-top: -48rpx;
+  border-radius: 8rpx;
+}
+
+.inteTitleBox>view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.inteTitleBox>view:nth-child(-n+2)>view:last-child {
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.inteTitleBox>view:nth-child(-n+3) {
+  position: relative;
+  width: 28.5%;
+  height: 100%;
+  /* background-color: yellow; */
+}
+
+.inteTitleBox>view:nth-child(-n+3)::after {
+  position: absolute;
+  top: 24rpx;
+  right: 0;
+  display: block;
+  content: '';
+  width: 1px;
+  height: 50rpx;
+  background: #000000;
+  opacity: 0.1;
+
+}
+
+.inteIcon {
+  width: calc(100vw - 28.5% *3);
+  height: 100%;
+  /* background: purple; */
+
+}
+
+.inteIcon image {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: bottom;
+}
+
+.integral_bar {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.billBox .bill {
+  width: 105rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: #12D58B;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.branch {
+  font-size: 22rpx;
+  font-family: PingFang SC;
+}

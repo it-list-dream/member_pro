@@ -21,35 +21,28 @@
 
 .modal-btn-wrapper {
   display: flex;
-  flex-direction: row;
   height: 100rpx;
   line-height: 100rpx;
-  border-top: 2rpx solid rgba(7, 17, 27, 0.1);
+  font-family: PingFang SC;
 }
 
-.cancel-btn,
 .confirm-btn {
   flex: 1;
   background: #12D58B;
-  border-radius: 0px 0px 10rpx 0px;
-  height: 100rpx;
-  line-height: 100rpx;
+  border-radius: 0 0 10rpx 0;
   text-align: center;
-  font-size: 32rpx;
   font-size: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
   color: #FFFFFF;
 }
 
 .cancel-btn {
-  border-right: 2rpx solid rgba(7, 17, 27, 0.1);
-  background: RGBA(234, 234, 234, 1);
-  border-radius: 0px 0px 0px 10rpx;
+  flex: 1;
+  text-align: center;
+  background: rgba(234, 234, 234, 1);
+  border-radius: 0 0 0 10rpx;
   font-size: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
   color: #333333;
+  font-weight: normal;
 }
 
 .main-content {
@@ -59,14 +52,16 @@
 }
 
 /* 按钮的样式 */
-.allow {
+.confirm-btn .allow {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  width: 100%;
+  height: 100%;
   line-height: 100rpx;
-  background-color: transparent !important;
-  border-radius: 0rpx !important;
-  padding: 0rpx !important;
-  margin: 0rpx !important;
-  display: inline-block !important;
-  color: #fff !important;
+  font-weight: normal;
 }
 .allow::after {
   /*button的边框样式是通过::after方式实现的*/

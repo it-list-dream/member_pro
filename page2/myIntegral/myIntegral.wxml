@@ -14,7 +14,7 @@
             VIP积分：<text class="fen">{{vipIntegral}}</text>
           </view>
 
-          <navigator class="immediate" open-type="navigateBack">立即使用</navigator>
+          <navigator class="immediate" open-type="switchTab" url="/pages/tabbar/integral/integral">立即使用</navigator>
         </view>
       </view>
     </view>
@@ -28,13 +28,13 @@
         </view>
       </block>
       <view class="tabs_item">
-        <select prop-array='{{selectArray}}' top="10" bind:myget='getDate'></select>
+        <select prop-array='{{selectArray}}' top="10" select-text='{{typing}}' bind:myget='getDate'></select>
       </view>
     </view>
     <!--  全部-->
-    <view class="record" wx:if="{{tab==0}}">
+    <view class="record" hidden="{{tab!==0}}">
       <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - {{navHeight}}px - 451rpx)"
-        lower-threshold="100" bindscrolltolower="loadMore">
+        lower-threshold="100" >
         <block wx:for="{{all}}" wx:key="ROWID">
           <view class="record_item">
             <view class="left_record">
@@ -42,15 +42,19 @@
               <view>{{item.Createdate}}</view>
             </view>
             <view class="right_record" style="color:{{item.ScoreType==1?'#F4C08D':'#B6B9BE'}}">
+               <image src="/static/icon-give.png" class="give_icon" wx:if="{{item.IsGive == 1}}"></image>
               {{item.Score>0?'+':''}}{{item.Score}}</view>
           </view>
+        </block>
+        <block wx:if="{{all.length==0}}">
+          <view class="tip_message">暂无数据</view>
         </block>
       </scroll-view>
     </view>
     <!-- 赚积分 -->
-    <view class="record" wx:elif="{{tab==1}}">
+    <view class="record" hidden="{{tab!==1}}">
       <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - {{navHeight}}px  - 451rpx)"
-        lower-threshold="100" bindscrolltolower="loadMore">
+        lower-threshold="100" >
         <block wx:for="{{profitable }}" wx:key="ROWID">
           <view class="record_item">
             <view class="left_record">
@@ -58,15 +62,19 @@
               <view>{{item.Createdate}}</view>
             </view>
             <view class="right_record" style="color:{{item.ScoreType==1?'#F4C08D':'#B6B9BE'}}">
-            + {{item.Score}}</view>
+              <image src="/static/icon-give.png" class="give_icon" wx:if="{{item.IsGive == 1}}"></image>
+              + {{item.Score}}</view>
           </view>
+        </block>
+        <block wx:if="{{profitable.length==0}}">
+          <view class="tip_message">暂无数据</view>
         </block>
       </scroll-view>
     </view>
     <!-- 花积分 -->
-    <view class="record" wx:elif="{{tab==2}}">
+    <view class="record" hidden="{{tab!==2}}">
       <scroll-view scroll-y class="inte_scroll" style="height: calc(100vh - {{navHeight}}px - 451rpx)"
-        lower-threshold="100" bindscrolltolower="loadMore">
+        lower-threshold="100" >
         <block wx:for="{{takeIntegral}}" wx:key="ROWID">
           <view class="record_item">
             <view class="left_record">
@@ -74,9 +82,14 @@
               <view>{{item.Createdate}}</view>
             </view>
             <view class="right_record" style="color:{{item.ScoreType==1?'#F4C08D':'#B6B9BE'}}">
+              <image src="/static/icon-give.png" class="give_icon" wx:if="{{item.IsGive == 1}}"></image>
               {{item.Score}}</view>
           </view>
         </block>
+        <block wx:if="{{takeIntegral.length==0}}">
+          <view class="tip_message">暂无数据</view>
+        </block>
+        <!--  -->
       </scroll-view>
     </view>
   </view>

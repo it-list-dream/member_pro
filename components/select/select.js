@@ -7,12 +7,12 @@ Component({
   },
   properties: {
     propArray: {
-      type:Array,
-      value:[]
+      type: Array,
+      value: []
     },
-    top:{
-      type:String,
-      value:0
+    selectText: {
+      type: String,
+      value: '请选择'
     }
   },
   /**
@@ -20,15 +20,16 @@ Component({
    */
   data: {
     selectShow: false, //初始option不显示
-    nowText: "请选择", //初始内容
-    chooseBg:null
+    // nowText: "", //初始内容
+    chooseBg: null
   },
   /**
    * 组件的方法列表
    */
-  attached: function () {
-      console.log(this.properties.propArray)
-   }, 
+
+  lifetimes: {
+
+  },
   methods: {
     //option的显示与否
     selectToggle: function () {
@@ -40,21 +41,18 @@ Component({
     //设置内容
     setText: function (e) {
       var nowData = this.properties.propArray; //当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
-      console.log(nowData)
       var nowIdx = e.target.dataset.index; //当前点击的索引
-      console.log(nowIdx)
       var nowText = nowData[nowIdx].text; //当前点击的内容
-      console.log(nowText)
       this.setData({
         selectShow: false,
-        nowText: nowText,
-        chooseBg:nowIdx
+       // nowText: nowText,
+        chooseBg: nowIdx
       })
       var nowDate = {
         id: nowIdx,
-        text: nowText
+        selectText: nowText
       }
       this.triggerEvent('myget', nowDate)
-    },
+    }
   }
 })

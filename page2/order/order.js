@@ -12,8 +12,12 @@ Page({
     orderList: [],
     otherList: [],
     currPage: 1,
-    pageSize: 10,
-    flag: true
+    pageSize: 5,
+    flag: true,
+    //加载更多
+    // hasMoreData: true,
+    isRefreshing: false,
+    isLoadingMoreData: false
   },
 
   /**
@@ -24,22 +28,23 @@ Page({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
     })
-   this.getMyOrderListByPay();
-   this.getMyOrderListByScore()
+    this.getMyOrderListByPay();
+    this.getMyOrderListByScore()
   },
   choose(e) {
     let index = e.target.dataset.index
-    if(index == this.data.chooseId){
+    if (index == this.data.chooseId) {
       return
     }
     if (index == 1) {
       this.setData({
         currPage: 1,
-        flag:true
+        flag: true
       })
     } else {
       this.setData({
-        currPage: 1
+        currPage: 1,
+        flag:true
       })
     }
     this.setData({
@@ -61,17 +66,23 @@ Page({
       if (res.data.code == 1) {
         if (res.data.data.length > 0) {
           that.setData({
-            orderList: [...that.data.orderList, ...res.data.data]
+            orderList: [...that.data.orderList, ...res.data.data],
+            isLoadingMoreData: false,
           })
         } else {
-          that.data.flag = false;
+          // that.data.flag = false;
+          // that.data.isLoadingMoreData = false
+          that.setData({
+            flag: false,
+            isLoadingMoreData: false
+          })
         }
       }
     })
   },
   //积分
   getMyOrderListByScore: function () {
-    var that = this
+    var that = this;
     api.request({
       url: "/MyOrderListByScore",
       data: {
@@ -83,10 +94,16 @@ Page({
       if (res.data.code == 1) {
         if (res.data.data.length > 0) {
           that.setData({
-            otherList: [...that.data.otherList, ...res.data.data]
+            otherList: [...that.data.otherList, ...res.data.data],
+            isLoadingMoreData: false,
           })
         } else {
-          that.data.flag = false;
+          // that.data.flag = false;
+          // that.data.isLoadingMoreData = false
+          that.setData({
+            flag: false,
+            isLoadingMoreData: false
+          })
         }
       }
     })
@@ -131,18 +148,19 @@ Page({
    */
   onReachBottom: function () {
     var that = this;
-    console.log('触底了')
+    //  console.log('触底了')
     if (this.data.flag) {
       var pageSize = that.data.currPage + 1; //获取当前页数并+1
       that.setData({
         currPage: pageSize, //更新当前页数
+        isLoadingMoreData: true
       })
-      if(that.data.chooseId==1){
+      //重新调用请求获取下一页数据
+      if (that.data.chooseId == 1) {
         that.getMyOrderListByScore()
-      }else{
+      } else {
         that.getMyOrderListByPay()
       }
-     // that.getMyCoachMyClass(); //重新调用请求获取下一页数据
     }
   },
 

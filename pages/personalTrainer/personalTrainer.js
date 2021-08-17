@@ -11,6 +11,8 @@ Page({
     priceTotal: 0,
     personal: null,
     chooseNum: 0,
+    //支付
+   // checkPay:true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -19,12 +21,6 @@ Page({
     // console.log(options)
     this.getCoachStyleList()
     let o = JSON.parse(options.course1);
-    // if (options.course1) {
-    //   this.setData({
-    //     personal: o,
-    //     priceTotal: o.OnlinePrice
-    //   })
-    // }
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -44,7 +40,7 @@ Page({
     })
   },
   addnum() {
-    var num = this.data.payNum + 1
+    var num = this.data.payNum + 1;
     var price = this.data.personal.OnlinePrice;
     var total = num * price
     this.setData({
@@ -93,6 +89,10 @@ Page({
         })
         return 
       }
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+       })
       api.request({
         url: "/OrderCoachLesson",
         data: {
@@ -105,13 +105,15 @@ Page({
         }
       }).then(res => {
         if (res.data.code == 1) {
-          that.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].MoneyShould)
+          that.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].WxPrice)
         } else {
+          wx.hideLoading();
           wx.showToast({
             title: res.data.msg,
             icon: 'none'
-          })
+          })       
         }
+
       })
     } else {
       wx.navigateTo({
@@ -134,7 +136,7 @@ Page({
         body: "ss",
         attach: "df",
         sub_mch_id: businessNo,
-        total_fee: money * 100
+        total_fee: money
       },
       method: 'POST',
       success: function (res) {
@@ -152,15 +154,17 @@ Page({
             })
           },
           'fail': function (res) {
+            wx.hideLoading()
             wx.showToast({
               title: '支付失败，请重新支付',
               icon: 'none'
             })
           },
-          'complete': function (res) {}
+          'complete': function (res) { }
         })
       },
       fail: function (res) {
+        wx.hideLoading()
         wx.showToast({
           title: '加载失败，请重试',
           icon: 'none'
@@ -180,15 +184,16 @@ Page({
       }
     }).then(res => {
        if (res.data.code.startsWith('1')) {
-        wx.showToast({
-          title: '支付成功',
-        })
+        // wx.showToast({
+        //   title: '支付成功',
+        // })
+        wx.hideLoading();
         let teacherid = that.data.coachList[that.data.chooseNum].FK_AL_TeachCoach_ID;
-        console.log(teacherid)
         wx.navigateTo({
           url: '/page2/suceess/suceess?isShow=3&teacherid='+teacherid,
         })
       } else {
+        wx.hideLoading()
         wx.showToast({
           title: res.data.msg,
         })

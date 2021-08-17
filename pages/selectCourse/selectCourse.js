@@ -54,12 +54,14 @@ Page({
   },
   orderCourse: function (e) {
     var pages = getCurrentPages(); //当前页面
-    console.log(e)
+    console.log(e.currentTarget.dataset.coach)
     var prevPage = pages[pages.length - 2]; //上一页面
+  //  console.log(prevPage)
     prevPage.setData({
-      currentCoach: e.currentTarget.dataset.coach,
-      chooseCoach: e.currentTarget.dataset.coach
+     // currentCoach: e.currentTarget.dataset.coach,
+     chooseCoach: e.currentTarget.dataset.coach
     })
+    //chooseCoach
     //刷新
     prevPage.getPrivateAppointment()
     wx.setStorageSync('myCoach', e.currentTarget.dataset.coach)
@@ -99,7 +101,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('触底反应')
+   // console.log('触底反应')
     var that = this;
     if (this.data.flag) {
       var pageSize = that.data.currPage + 1; //获取当前页数并+1

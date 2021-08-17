@@ -11,13 +11,17 @@ Page({
     weekList: [],
     changebg: 0,
     chooseCourse: false,
-    motionList: []
+    motionList: [],
+    sportDays: 0,
+    score: 0
+    //无数据
+    // nodata:false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getWeekList();
+
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -85,7 +89,6 @@ Page({
         date: month + "-" + day,
         week: util.toWeek(startDate)
       })
-      //   dayList.push(month + "-" + day);
       startDate.setDate(startDate.getDate() + 1);
     }
     this.setData({
@@ -139,15 +142,22 @@ Page({
       url: '/page2/integralMall/integralMall?se_id=' + se_id + '&price_type=' + price_type + '&type=1',
     })
   },
-  memberCode() {
-    wx.navigateTo({
-      url: '/page2/memberCode/memberCode',
-    })
-  },
-  code: function () {
-    wx.scanCode({
-      success(res) {
-        console.log(res)
+  getClassCountByuserId: function () {
+    var that = this
+    api.request({
+      url: '/ClassCountByuserId',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: wx.getStorageSync('GB_ID'),
+        UI_ID: wx.getStorageSync('UI_ID')
+      }
+    }).then(res => {
+     // console.log(res)
+      if (res.data.code == 1) {    
+        that.setData({
+          sportDays: res.data.data.CheckInNum,
+          score: res.data.score
+        })
       }
     })
   },
@@ -162,9 +172,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getWeekList();
     this.getMotionCalendar()
     //
     this.getScoreRewardActList()
+    this.getClassCountByuserId();
   },
 
   /**

@@ -1,11 +1,13 @@
 <nav-bar page-name="我的会员卡"></nav-bar>
+<!--导入模板-->
+<import src="/template/nothing/nothing.wxml" />
 <view class="vipCard" style="margin-top:{{navHeight}}px">
   <block wx:for="{{cardList}}" wx:key="index">
-    <view class="card_list">
+    <view class="card_list" bindtap="lookReword" data-date="{{item.UI_FirstDate}}" data-ui_id="{{item.UI_ID}}">
       <image src="/static/vipimg.png"></image>
       <view class="card_status">
         <view class="year">{{item.SC_Name}}</view>
-        <view class="status">状态：{{item.UI_FirstDate?'使用中':'未激活'}}</view>
+        <view class="status">状态：{{item.status}}</view>
       </view>
       <view wx:if="{{item.UI_FirstDate}}">
         <view class="use_day">
@@ -13,16 +15,13 @@
         </view>
         <view class="searchResult">
           <view>{{item.UI_LastDate}} 到期</view>
-          <view catchtap="lookReword">查看入场记录</view>
+          <view >查看入场记录</view>
         </view>
       </view>
     </view>
   </block>
+   <block wx:if="{{cardList.length==0}}">
+     <template data="{{message:'暂无内容'}}" is="nothing"></template>
+   </block>
 
-  <view class="none" wx:if="{{cardList.length==0}}">
-    <view class="none_list">
-      <image src="/static/none.png"></image>
-      <view>暂无内容</view>
-    </view>
-  </view>
 </view>

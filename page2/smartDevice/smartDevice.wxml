@@ -1,46 +1,48 @@
+<import src="/template/nothing/nothing.wxml" />
 <nav-bar page-name="人体成分仪" icon1="{{true}}"></nav-bar>
 <view class="device_all" style="margin-top:{{navHeight}}px">
   <view class="date_screen">
     <view>
       <picker mode="date" value="{{firstDate}}" start="2015-09-01" end="{{endDate}}" bindchange="bindDateChange"
-      fields="year"  fields="month"
-        class="picker">
+        fields="year" fields="month" class="picker">
         {{firstDate}}
         <image src="/static/white_bottom.png"></image>
-      </picker>     
+      </picker>
     </view>
     <view class="line"></view>
     <view>
       <picker mode="date" value="{{lastDat}}" start="2015-09-01" end="{{endDate}}" bindchange="bindDateChange1"
-      fields="year"  fields="month"
-        class="picker">
+        fields="year" fields="month" class="picker">
         {{lastDate}}
         <image src="/static/white_bottom.png"></image>
       </picker>
     </view>
   </view>
   <view class="detection_list">
-    <block wx:for="{{4}}">
-      <view class="detection_item" bindtap="testBody">
+    <block wx:for="{{bodyList}}" wx:key="index">
+      <view class="detection_item" bindtap="testBody" data-body="{{item}}">
         <view class="deTip">
           <image src="/static/detection.png"></image>
         </view>
         <view class="physical">
-          <text>09-03</text>
+          <text>{{item.Createdate}}</text>
           <text>检测时间</text>
         </view>
         <view class="physical">
-          <text>39</text>
+          <text>{{item.BodyAge}}</text>
           <text>身体年龄</text>
         </view>
         <view class="physical">
-          <text>69</text>
+          <text>{{item.Score}}</text>
           <text>健康评分</text>
         </view>
         <view>
           <image src="/static/exceed.png" style="width:64rpx;height:64rpx;"></image>
         </view>
       </view>
+    </block>
+    <block wx:if="{{!bodyList.length}}">
+      <template is="nothing" data="{{message: '暂无数据'}}" />
     </block>
   </view>
 </view>

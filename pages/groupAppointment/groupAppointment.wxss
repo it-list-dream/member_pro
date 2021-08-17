@@ -3,41 +3,44 @@
   background-color: #F0F2F5;
 }
 
-.group_container .group_pic {
+/* 图片 */
+.groupImage {
   position: relative;
-  width: 750rpx;
-  height: 296rpx;
+  width: 100%;
+  height: 421rpx;
 }
 
-.group_container .group_pic .join_num {
+.groupImage image {
+  width: 100%;
+  height: 100%;
+  vertical-align: bottom;
+}
+
+.attentNum {
   position: absolute;
-  right: 28rpx;
-  bottom: 20rpx;
-  width: 140rpx;
+  bottom: 30rpx;
+  right: 30rpx;
+  padding: 0 16rpx;
+  text-align: center;
   height: 50rpx;
-  z-index: 20;
-  background: #7B6F85;
+  line-height: 50rpx;
+  /* background: #7B6F85; */
   border-radius: 8rpx;
   font-size: 22rpx;
-  line-height: 50rpx;
-  text-align: center;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FFFFFF;
 }
 
-.coach_img {
-  width: 750rpx;
-  height: 296rpx;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-
-.coach_img>image {
-  width: 100%;
-  height: 100%;
+/*  */
+.course_date {
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  height: 130rpx;
+  background-color: #FFFFFF;
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
 }
 
 .course_date .left {
@@ -58,16 +61,18 @@
 .course_date .left image:last-child {
   width: 40rpx;
   height: 40rpx;
- 
+
 }
 
-.course_date {
-  padding: 20rpx;
-  display: flex;
-  justify-content: space-between;
-  background-color: #FFFFFF;
-  border: 1px solid #eeeeee;
+.column {
+  padding: 30rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #333333;
+  background: #FFFFFF;
 }
+
+
 
 .course_date .coachName {
   padding: 0 9rpx 0 20rpx;
@@ -81,47 +86,36 @@
 
 .course_date .right {
   display: flex;
+  height: 100%;
   flex-direction: column;
-  justify-content: space-between;
-  height: 60rpx;
+  /* justify-content: space-evenly; */
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: #B6B9BE;
 }
 
-/* .course_date .right view:first-child {
-  margin-bottom: 20rpx;
-} */
 
 .course_name {
-  padding: 28rpx 0 28rpx 32rpx;
-  background: #FFFFFF;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
   border: 1px solid #eeeeee;
 }
 
 .course_time {
-  padding: 31rpx 0 31rpx 63rpx;
-  background: #FFFFFF;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+  text-indent: 1em;
   border: 1px solid #eeeeee;
 }
 
+.course_address {
+  text-indent: 1em;
+  border-bottom: 1px solid #eeeeee;
+}
+
 .course_introduce {
-  font-size: 30rpx;
-  font-family: PingFang SC;
+  display: flex;
   font-weight: 400;
   color: #333333;
-  display: flex;
-  padding: 30rpx 31rpx 30rpx 63rpx;
   background: #FFFFFF;
+  text-indent: 1em;
 }
 
 .course_introduce .introduce {
@@ -291,11 +285,12 @@
   font-weight: 500;
   color: #999999;
 }
-.confirm-btn{
+
+.confirm-btn {
   margin: 20rpx auto;
   width: 220rpx;
   height: 60rpx;
-  line-height:60rpx;
+  line-height: 60rpx;
   text-align: center;
   border-radius: 12rpx;
   background: #12D58B;
@@ -303,18 +298,23 @@
   font-size: 32rpx;
   font-family: PingFang SC;
 }
-.close{
-  position:fixed;
+
+.close {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 2;
 }
-.col{
-  background: #eeeeee;
+
+.col {
+  background: #FF4349;
+  border: none !important;
+  color: #ffffff;
 }
-.choosing{
+
+.choosing {
   color: #ffffff;
   background: #12D58B;
   border: none;

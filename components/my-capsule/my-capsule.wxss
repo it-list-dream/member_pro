@@ -1,0 +1,31 @@
+/* components/my-capsule/my-capsule.wxss */
+.capsule_list {
+  position: relative;
+  display: flex;
+  width: 165rpx;
+  height: 60rpx;
+  background: #CCBFB9;
+  border-radius: 30rpx;
+}
+
+.capsule_item {
+  position: relative;
+  width: 49%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+}
+
+.line {
+  align-self: center;
+  width: 1px;
+  height: 24rpx;
+  background: #DDDDDD;
+}
+
+.capsule_item .icon30 {
+  align-self: center;
+  width: 30rpx;
+  height: 30rpx;
+}

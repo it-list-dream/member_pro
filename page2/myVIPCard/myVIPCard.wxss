@@ -1,4 +1,5 @@
 /* page2/myVIPCard/myVIPCard.wxss */
+@import '/template/nothing/nothing.wxss';
 .vipCard {
   background: #F0F2F5;
   padding: 0 30rpx;
@@ -79,14 +80,16 @@
   color: #333333;
 }
 
-.none{
+/* .none{
   display: flex;
   height: 70vh;
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-size: 28rpx;
+  color: #999999;
 }
 .none_list image{
   width:180rpx;
   height:200rpx;
-}
+} */

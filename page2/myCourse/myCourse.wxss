@@ -1,24 +1,18 @@
+@import "/template/nothing/nothing.wxss";
+
 .course_container {
   padding: 20rpx 30rpx 0 30rpx;
   background-color: #F0F2F5;
   height: auto;
 }
-.course_container .list{
+
+.course_container .list {
   position: relative;
 }
-/* .bg1{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 690rpx;
-  height: 240rpx;
-}
-.bg1 image{
-  width: 100%;
-  height: 100%;
-} */
+
+
 .course_list {
-  position: relative;
+  /* position: relative; */
   margin-bottom: 20rpx;
   box-sizing: border-box;
   padding: 20rpx 20rpx 20rpx 30rpx;
@@ -26,15 +20,21 @@
   height: 260rpx;
   background: rgb(82, 73, 91);
   border-radius: 10rpx;
+  /* z-index: 100; */
 }
 
-.course_bg1{
-  position: absolute;
+.course_list>view {
+  position: relative;
   z-index: 99;
+}
+
+.course_bg1 {
+  position: absolute;
+  z-index: 10;
   top: 28rpx;
   right: 51rpx;
-   width: 174rpx;
-   height: 174rpx;
+  width: 174rpx;
+  height: 174rpx;
 }
 
 .courseTop {
@@ -43,7 +43,7 @@
 
 }
 
-.courseTop>view:first-child image {
+.courseTop>image {
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
@@ -71,38 +71,32 @@
   vertical-align: middle;
 }
 
+/*  */
 .courseBottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 56rpx;
+  margin-top: 40rpx;
 }
 
-.courseBottom view:first-child {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.course_num {
-  margin-top: -10rpx;
-  padding-bottom: 14rpx;
+.courseBottom .course_num {
+  white-space: nowrap;
+  overflow: hidden;
   font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #FFFFFF;
 }
 
-.exp_date {
+.courseBottom>view:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.courseBottom .exp_date {
   font-size: 22rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #FFFFFF;
+  align-self: flex-end;
 }
 
 .appoinmentBtn {
-  position: relative;
-  z-index:120;
   width: 110rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -111,14 +105,5 @@
   border-radius: 8rpx;
   font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #FFFFFF;
-}
-
-.none{
-  display: flex;
-  height: 70vh;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }

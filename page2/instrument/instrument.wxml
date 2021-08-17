@@ -6,12 +6,12 @@
       <image src="./images/analysisMeter.png"></image>
     </view>
   </navigator>
-  <view class="instument_item bracelet">
+  <!-- <view class="instument_item bracelet">
     <view class="instuTitle">心率穿戴设备</view>
     <view class="instu_img">
       <image src="./images/bracelet.png"></image>
     </view>
-  </view>
+  </view> -->
   <navigator  url="/page2/smartTreadmill/smartTreadmill" class="instument_item treadmill"  hover-class="none">
     <view class="instuTitle">智能跑步机</view>
     <view class="instu_img">

@@ -13,6 +13,11 @@
   height: 100%;
 }
 
+.myswiper {
+  display: block;
+  margin-top: 30rpx;
+}
+
 /*  */
 .navbar {
   position: relative;
@@ -43,153 +48,19 @@
   color: #FFFFFF;
 }
 
-.tip {
+.capsule_icon {
   position: fixed;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 160rpx;
-  height: 60rpx;
-  /* background: rgba(0, 0, 0, 0.4); */
-  background: rgba(203, 187, 181, 0.6);
-  /* background: #B4B3BB; */
-  border-radius: 30rpx;
-  z-index: 200;
+  z-index: 999;
 }
 
-.tipItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 70rpx;
-  line-height: 70rpx;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.line {
-  width: 1px;
-  height: 24rpx;
-  background: #DDDDDD;
-}
-
-.tip image {
-  width: 36rpx;
-  height: 36rpx;
+.gray {
+  background: #B4B2BB !important;
 }
 
 /*  积分标题*/
 .integral_list {
   position: relative;
-  /* box-sizing: border-box;
-  width: 100%;
-  height: auto; */
   padding: 0 30rpx 130rpx 30rpx;
-}
-
-.inteTitleBox {
-  display: flex;
-  width: 690rpx;
-  height: 100rpx;
-  /* background: pink; */
-  background: #ffffff;
-  margin-top: -48rpx;
-  border-radius: 8rpx;
-}
-
-.inteTitleBox>view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.inteTitleBox>view:nth-child(-n+2)>view:last-child {
-  font-size: 32rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.inteTitleBox>view:nth-child(-n+3) {
-  position: relative;
-  width: 28.5%;
-  height: 100%;
-  /* background-color: yellow; */
-
-}
-
-.inteTitleBox>view:nth-child(-n+3)::after {
-  position: absolute;
-  top: 24rpx;
-  right: 0;
-  display: block;
-  content: '';
-  width: 1px;
-  height: 50rpx;
-  background: #000000;
-  opacity: 0.1;
-
-}
-
-.inteIcon {
-  width: calc(100vw - 28.5% *3);
-  height: 100%;
-  /* background: purple; */
-
-}
-
-.inteIcon image {
-  width: 40rpx;
-  height: 40rpx;
-  vertical-align: bottom;
-}
-
-.integral_bar {
-  font-size: 22rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.billBox .bill {
-  width: 105rpx;
-  height: 40rpx;
-  line-height: 40rpx;
-  text-align: center;
-  background: #12D58B;
-  border-radius: 8rpx;
-  font-size: 22rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-}
-
-.branch {
-  font-size: 22rpx;
-  font-family: PingFang SC;
-}
-
-/* 弹出层 */
-
-
-/* 轮播图 */
-.spend_img {
-  margin-top: 40rpx;
-}
-
-swiper {
-  width: 100%;
-  height: 270rpx;
-}
-
-.spend_img image {
-  width: 690rpx;
-  height: 270rpx;
-  vertical-align: bottom;
-  border-radius: 8rpx;
 }
 
 .deg_img {
@@ -212,7 +83,7 @@ swiper {
 /* 行为积分 */
 .self_aword {
   display: flex;
-  padding: 20rpx;
+  padding: 20rpx 20rpx 0;
   justify-content: space-between;
   flex-wrap: wrap;
   background: #FFFFFF;
@@ -226,32 +97,35 @@ swiper {
 
 .self_item {
   width: 203rpx;
-  height: 261rpx;
+  /* height: 261rpx; */
+  min-height: 224rpx;
   background: #FFFFFF;
   box-shadow: 0 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
   border-radius: 8rpx;
-  margin-bottom: 16rpx;
+  margin-bottom: 20rpx;
 }
 
 .self_item image {
   width: 203rpx;
-  height: 154rpx;
+  /* height: 154rpx; */
+  height: 114rpx;
   vertical-align: bottom;
 }
 
-.self_item:not(:nth-child(3n)) {
+/* .self_item:not(:nth-child(3n)) {
   margin-bottom: 0;
 }
 
 .self_item:last-child {
   margin-bottom: 0;
-}
+} */
 
 .inteBottom {
   box-sizing: border-box;
   padding: 19rpx 0 19rpx 19rpx;
   display: flex;
-  height: 107rpx;
+  /* height: 107rpx; */
+  height: auto;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -261,7 +135,12 @@ swiper {
   font-family: PingFang SC;
   font-weight: 500;
   color: #333333;
-  /* padding: 12rpx 0 0 20rpx; */
+}
+
+.inteBottom>view {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .card_count {
@@ -269,7 +148,6 @@ swiper {
   font-family: PingFang SC;
   /* font-weight: bold; */
   color: #333333;
-  /* padding: 12rpx 0 0 20rpx; */
 }
 
 .char {
@@ -285,8 +163,6 @@ swiper {
   padding: 20rpx;
   display: flex;
   justify-content: space-between;
-  /* align-items: flex-end;
-  align-content: space-between; */
   flex-wrap: wrap;
   width: 690rpx;
   /* height: 582rpx; */
@@ -302,7 +178,8 @@ swiper {
 .inte_item {
   box-sizing: border-box;
   width: 204rpx;
-  height: 262rpx;
+  /* height: 262rpx; */
+  min-height: 224rpx;
   background: #FFFFFF;
   box-shadow: 0 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
   border-radius: 8rpx;
@@ -316,9 +193,9 @@ swiper {
   color: #333333;
 }
 
-.inte_item:not(:nth-child(3n)) {
+/* .inte_item:not(:nth-child(3n)) {
   margin-bottom: 0;
-}
+} */
 
 .inte_num {
   font-size: 28rpx;
@@ -336,7 +213,7 @@ swiper {
 
 .inte_list image {
   width: 204rpx;
-  height: 154rpx;
+  height: 114rpx;
   vertical-align: bottom;
 }
 
@@ -371,8 +248,6 @@ swiper {
 .filter_item {
   overflow: hidden;
   width: 100%;
-  height: 400rpx;
-  /* background: red; */
   padding: 0 44rpx;
   box-sizing: border-box;
 }
@@ -445,6 +320,7 @@ swiper {
   display: flex;
   justify-content: space-between;
   margin-top: 26rpx;
+  padding-bottom: 30rpx;
 }
 
 button:after {
@@ -512,6 +388,8 @@ button {
   justify-content: center;
   text-align: center;
   background: #ffffff;
+  font-size: 28rpx;
+  color: #999;
 }
 
 

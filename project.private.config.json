@@ -13,39 +13,9 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/tabbar/my/my",
-          "pathName": "pages/tabbar/my/my",
-          "query": "course=1",
-          "scene": null
-        },
-        {
-          "name": "pages/movementData/movementData",
-          "pathName": "pages/movementData/movementData",
-          "query": "course=1",
-          "scene": null
-        },
-        {
-          "name": "pages/tabbar/sport/sport",
-          "pathName": "pages/tabbar/sport/sport",
-          "query": "course=1",
-          "scene": null
-        },
-        {
           "name": "pages/appointment/appointment",
           "pathName": "pages/appointment/appointment",
           "query": "course=1",
-          "scene": null
-        },
-        {
-          "name": "page2/suceess/suceess",
-          "pathName": "page2/suceess/suceess",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/activeList/activeList",
-          "pathName": "pages/activeList/activeList",
-          "query": "",
           "scene": null
         },
         {
@@ -63,18 +33,6 @@
           "referrerInfo": {}
         },
         {
-          "name": "pages/activeDetail/activeDetail",
-          "pathName": "pages/activeDetail/activeDetail",
-          "query": "SC_ID=482&GB_iD=88",
-          "scene": null
-        },
-        {
-          "name": "pages/activeDetail/activeDetail",
-          "pathName": "pages/activeDetail/activeDetail",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "page2/integralMall/integralMall",
           "pathName": "page2/integralMall/integralMall",
           "query": "se_id=9&price_type=1&type=1",
@@ -88,28 +46,9 @@
           "referrerInfo": {}
         },
         {
-          "name": "page2/login/login",
-          "pathName": "page2/login/login",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "page2/integralMall/integralMall",
           "pathName": "page2/integralMall/integralMall",
           "query": "se_id=10&price_type=1&type=2&GB_ID=88&sign=ruyu",
-          "scene": 1036,
-          "referrerInfo": {}
-        },
-        {
-          "name": "pages/appointment/appointment",
-          "pathName": "pages/appointment/appointment",
-          "query": "course=1",
-          "scene": null
-        },
-        {
-          "name": "pages/groupAppointment/groupAppointment",
-          "pathName": "pages/groupAppointment/groupAppointment",
-          "query": "CTO_ID=1983&sign=ruyu",
           "scene": 1036,
           "referrerInfo": {}
         },
@@ -121,21 +60,135 @@
           "referrerInfo": {}
         },
         {
+          "name": "page2/myStored/myStored",
+          "pathName": "page2/myStored/myStored",
+          "query": "reMoney=0.00&giveMoney=0.00",
+          "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myIntegral/myIntegral",
+          "pathName": "page2/myIntegral/myIntegral",
+          "query": "vipIntegral=30000&actionIntegral=1&types=vip",
+          "scene": null
+        },
+        {
+          "name": "pages/groupAppointment/groupAppointment",
+          "pathName": "pages/groupAppointment/groupAppointment",
+          "query": "tclass=%7B%22CTO_ID%22%3A%222068%22%2C%22CTO_Name%22%3A%22%E7%91%9C%E4%BC%BD%22%2C%22CTO_Price%22%3A%220.01%22%2C%22WxPrice%22%3A%221%22%2C%22CTO_Log%22%3A%22http%3A%2F%2F47.111.150.151%3A8011%2Fimage%2F88%2F2021%2FClassLogo%2F20210807152651032068.jpg%22%2C%22CTO_PeopleFull%22%3A%2220%22%2C%22CTO_PeopleAttend%22%3A%221%22%2C%22CTO_DateStart%22%3A%222021%2F8%2F7%2019%3A00%3A00%22%2C%22CTO_DateEnd%22%3A%222021%2F8%2F7%2020%3A00%3A00%22%2C%22AI_Name%22%3A%22%E6%95%99%E7%BB%83%22%2C%22IsAppointment%22%3A%221%22%2C%22ISShow%22%3A%221%22%2C%22CTO_SignUpEndDate%22%3A%222021%2F8%2F7%2019%3A00%3A00%22%2C%22SaleCount%22%3A%225%22%2C%22IsPickNumChk%22%3A%221%22%2C%22CTO_SignUpStart%22%3A%22%22%2C%22CTO_Content%22%3A%221111%22%2C%22AI_Face%22%3A%22http%3A%2F%2F47.111.150.151%3A8011%2Fimage%2F88%2Fadmin_face%2F2021%2F2021080314235102586.jpg%22%2C%22AI_Sex%22%3A%22%E5%A5%B3%22%2C%22CTO_Address%22%3A%22%E7%91%9C%E4%BC%BD%E6%88%BF%22%2C%22cantappointment%22%3A1%7D",
+          "scene": null
+        },
+        {
+          "name": "page2/suceess/suceess",
+          "pathName": "page2/suceess/suceess",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/order/order",
+          "pathName": "page2/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/memberCode/memberCode",
+          "pathName": "page2/memberCode/memberCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/sport/sport",
+          "pathName": "pages/tabbar/sport/sport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/integral/integral",
+          "pathName": "pages/tabbar/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
           "name": "pages/appointment/appointment",
           "pathName": "pages/appointment/appointment",
           "query": "course=0",
           "scene": null
         },
         {
-          "name": "page2/historyAppointment/historyAppointment",
-          "pathName": "page2/historyAppointment/historyAppointment",
+          "name": "page2/myCourse/myCourse",
+          "pathName": "page2/myCourse/myCourse",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/movementData/movementData",
-          "pathName": "pages/movementData/movementData",
+          "name": "pages/classList/classList",
+          "pathName": "pages/classList/classList",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=0",
+          "scene": null
+        },
+        {
+          "name": "pages/coachDetail/coachDetail",
+          "pathName": "pages/coachDetail/coachDetail",
+          "query": "coach=%7B%22AI_Face%22%3A%22http%3A%2F%2F47.111.150.151%3A8011%2Fimage%2F88%2Fadmin_face%2F2021%2F2021080314235102586.jpg%22%2C%22FK_AL_TeachCoach_ID%22%3A%22586%22%2C%22AI_Name%22%3A%22%E6%95%99%E7%BB%83%22%2C%22AI_Tel%22%3A%2213812345678%22%2C%22AI_Sex%22%3A%22%E5%A5%B3%22%2C%22AI_GoodAt%22%3A%22%E4%BF%AE%E8%BA%AB%2C%E5%87%8F%E8%84%82%2C%E6%8B%89%E4%BC%B8%22%2C%22CS_Num%22%3A%2212%22%2C%22AI_Introduction%22%3A%22%E4%BA%8E%E6%98%A5%E9%9B%B7%EF%BC%8C%E6%80%A7%E5%88%AB%EF%BC%9A%E7%94%B7%EF%BC%8C%E5%B9%B4%E9%BE%8435%E5%B2%81%EF%BC%8C%E5%B1%B1%E8%A5%BF%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6%E6%AF%95%E4%B8%9A%EF%BC%8C%E5%9B%BD%E5%AE%B6%E4%BD%93%E8%82%B2%E6%80%BB%E5%B1%80%E4%B8%80%E7%BA%A7%E7%A4%BE%E4%BC%9A%E4%BD%93%E8%82%B2%E6%8C%87%E5%AF%BC%E5%91%98%EF%BC%8C%E8%BF%90%E5%8A%A8%E8%90%A5%E5%85%BB%E5%B8%88%E5%AF%BC%E5%B8%88%EF%BC%8C%E5%9B%BD%E5%AE%B6%E5%81%A5%E8%BA%AB%E8%90%A5%E5%85%BB%E5%B8%88%E5%AF%BC%E5%B8%88%EF%BC%8C%E7%A7%81%E4%BA%BA%E6%95%99%E7%BB%83%E5%9F%B9%E8%AE%AD%E5%AF%BC%E5%B8%88%20%E4%BA%9A%E6%B4%B2%E5%BD%A2%E4%BD%93%E5%81%A5%E8%BA%AB%E5%AD%A6%E9%99%A2%E5%9F%B9%E8%AE%AD%E5%AF%BC%E5%B8%88%EF%BC%8C%E5%93%A5%E4%BC%A6%E6%AF%94%E4%BA%9A%E8%BF%90%E5%8A%A8%E8%90%A5%E5%85%BB%E5%B8%88%E3%80%82%E3%80%81%E3%80%81%E3%80%81%E3%80%81%E3%80%81%E3%80%81%E3%80%81%22%7D",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appointment/appointment",
+          "pathName": "pages/appointment/appointment",
+          "query": "course=1",
           "scene": null
         },
         {
@@ -145,16 +198,34 @@
           "scene": null
         },
         {
-          "name": "page2/myVIPCard/myVIPCard",
-          "pathName": "page2/myVIPCard/myVIPCard",
+          "name": "page2/historyAppointment/historyAppointment",
+          "pathName": "page2/historyAppointment/historyAppointment",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/movementData/movementData",
-          "pathName": "pages/movementData/movementData",
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "page2/login/login",
+          "pathName": "page2/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/activeDetail/activeDetail",
+          "pathName": "pages/activeDetail/activeDetail",
+          "query": "sign=ruyu&GB_ID=88&SC_ID=482",
+          "scene": 1007
+        },
+        {
+          "name": "pages/activeDetail/activeDetail",
+          "pathName": "pages/activeDetail/activeDetail",
+          "query": "SC_ID=462&sign=ruyu&GB_ID=88",
+          "scene": 1008
         }
       ]
     }

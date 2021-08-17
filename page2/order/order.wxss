@@ -1,5 +1,5 @@
 .order_container {
-  height: 100vh;
+  /* height: 100vh; */
   padding: 0 30rpx;
 }
 
@@ -16,6 +16,7 @@
   line-height: 88rpx;
   height: 100%;
   text-align: center;
+  color: #666666;
 }
 
 .active_lice::after {
@@ -29,7 +30,9 @@
   background: #52495B;
   border-radius: 2rpx;
 }
-
+.active_lice{
+  color: black;
+}
 /* 内容 */
 .main_order {
   box-sizing: border-box;
@@ -172,4 +175,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-size: 28rpx;
+  color: #999999;
+}
+.none image{
+  width: 140rpx;
 }

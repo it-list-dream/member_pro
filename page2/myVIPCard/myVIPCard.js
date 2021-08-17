@@ -1,5 +1,5 @@
 // page2/myVIPCard/myVIPCard.js
-const filter = require('../../utils/filter.js');
+// const filter = require('../../utils/filter.js');
 const app = getApp()
 var api = require('../../utils/request.js')
 Page({
@@ -20,10 +20,15 @@ Page({
     })
     this.getMyAllCard();
   },
-  lookReword: function () {
-    wx.navigateTo({
-      url: '/page2/entrance/entrance',
-    })
+  lookReword: function (e) {
+    let date = e.currentTarget.dataset.date;
+    let ui_id = e.currentTarget.dataset.ui_id;
+    //console.log(ui_id)
+     if(date && date!==''){
+      wx.navigateTo({
+        url: '/page2/entrance/entrance?UI_ID='+ui_id,
+      })
+     }
   },
   getMyAllCard: function () {
     var that = this;
@@ -33,7 +38,20 @@ Page({
         user_token: wx.getStorageSync('token')
       }
     }).then(res => {
-      if (res.data.code == '1') {
+      if (res.data.code == 1) {
+        let cardList = res.data.data;
+        let nowDate = new Date().getDate();
+        let lastDate = new Date().getDate();
+        console.log(nowDate,lastDate)
+        cardList.forEach(item => {
+           if(item.UI_FirstDate){
+               item.status = '已激活'
+           }else if(lastDate < nowDate){
+              item.status = '已过期'
+           }else{
+             item.status = '未激活'
+           }
+        });
         that.setData({
           cardList: res.data.data
         })

@@ -2,8 +2,10 @@
 const app = getApp();
 const api = require('../../../utils/request.js');
 const util = require('../../../utils/util.js');
+import {
+  checkLogin
+} from '../../../utils/authorities.js'
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,10 +15,16 @@ Page({
     coachList: [],
     recomentList: [],
     activityCard: [],
-    store: null,
+    //切换门店
+    //  gb_id: 0,
     GymLogo: null,
     //我的会员卡
-    myCard: null
+    myCard: null,
+    //加载
+    loading: true,
+    //隐藏的属性
+    hideBanner: false,
+    hideContent: false,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -24,18 +32,16 @@ Page({
   onLoad: function (options) {
     //定位信息
     this.getLocation();
-    this.getSearchGymQR();
     //获取会员卡
-    this.getMyAllVIPCard();
+    //console.log(app)
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      //  GymName: wx.getStorageSync('GymName'),
       menuRight: app.globalData.menuRight
     })
   },
   callPhone(e) {
-    console.log(e.currentTarget.dataset.phone)
+    //console.log(e.currentTarget.dataset.phone)
     let phoneNumber = e.currentTarget.dataset.phone
     if (phoneNumber) {
       wx.makePhoneCall({
@@ -50,31 +56,13 @@ Page({
       })
     }
   },
-  toShop() {
-    wx.navigateTo({
-      url: '/pages/shop/shop',
-    })
-  },
-  code: function () {
-    wx.scanCode({
-      success(res) {
-        console.log(res)
-      }
-    })
-  },
   //私教预约
   goLeagueLecture() {
-    //判断用户是否登录
-    let phone = wx.getStorageSync('phone')
-    if (phone && phone !== '') {
-      wx.navigateTo({
-        url: '/pages/appointment/appointment?course=0',
-      })
-    } else {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-    }
+    checkLogin('/pages/appointment/appointment?course=0')
+  },
+  //运动记录
+  sportRecord() {
+    checkLogin('/pages/movementData/movementData')
   },
   recomment() {
     wx.navigateTo({
@@ -91,21 +79,8 @@ Page({
       url: '/pages/activeList/activeList',
     })
   },
-  memberCode() {
-    let phone = wx.getStorageSync('phone')
-    if (phone && phone !== '') {
-      //未登录
-      wx.navigateTo({
-        url: '/page2/memberCode/memberCode',
-      })
-    } else {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-    }
-  },
   //获取我的会员卡
-  getMyAllVIPCard: function () {
+  getMyAllVIPCard: function (reslove) {
     var that = this;
     api.request({
       url: "/MyAllVIPCard",
@@ -113,12 +88,18 @@ Page({
         user_token: wx.getStorageSync('token')
       }
     }).then(res => {
-      //有卡优先到有卡的门店
+      //查看
       if (res.data.code == 1) {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         that.setData({
           myCard: res.data.data
         })
+        //console.log(res.data.cardCount)
+        if (!wx.getStorageSync('UI_ID') && res.data.cardCount > 0) {
+          //  console.log('这是测试的数据！！！！！！！')
+          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
+        }
+        reslove && reslove();
       }
     })
   },
@@ -126,6 +107,7 @@ Page({
   Rad: function (d) { //根据经纬度判断距离
     return d * Math.PI / 180.0;
   },
+  //计算商家和用户之间的距离
   //计算商家和用户之间的距离
   getDistance: function () {
     var that = this;
@@ -148,6 +130,9 @@ Page({
       }
 
       locationList.sort(this.compare('distance'))
+      that.setData({
+        storeList: locationList
+      })
       //console.log(locationList)
       //有卡
       if (that.data.myCard) {
@@ -229,12 +214,11 @@ Page({
       that.setData({
         store: that.data.storeList[0]
       })
-      // app.globalData.store = that.data.storeList[0];
       wx.setStorageSync('GB_ID', that.data.store.GB_ID)
     }
   },
-  //获取门店信息
-  getGymList() {
+  //所有门店
+  getStoreList(resolve) {
     var that = this;
     api.request({
       url: "/GymList",
@@ -245,67 +229,81 @@ Page({
       that.setData({
         storeList: res.data.data
       })
-      //未登录
-      let phone = wx.getStorageSync('phone');
-      let gb_id = wx.getStorageSync('GB_ID');
-      let my_store = null;
-      if (phone && phone !== '') {
-        //登录
-        // console.log('登录')
-        if (!wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID') == ' ') {
-          console.log('第一次进入 登录')
-          that.getDistance();
-        } else {
-          //加载门店的信息
-          my_store = that.data.storeList.filter(item => item.GB_ID == gb_id)
-          // console.log(my_store)
-          if (my_store.length > 0) {
-            that.setData({
-              store: my_store[0]
-            })
-          }
-        }
-
-        // if (!app.globalData.store || !wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID'=='')) {
-        //   that.getDistance();
-        // } else {
-        //   that.setData({
-        //     store: app.globalData.store
-        //   })
-        //   wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)
-        // }
-
-      } else {
-        //未登录
-        // console.log('登录')
-        if (!wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID' == '')) {
-          that.getDistance1()
-          console.log('第一次进入 未登录')
-        } else {
-           //加载门店的信息
-           my_store = that.data.storeList.filter(item => item.GB_ID == gb_id)
-           // console.log(my_store)
-           if (my_store.length > 0) {
-             that.setData({
-               store: my_store[0]
-             })
-           }
-        }
-        //   // that.setData({
-        //   //   store: app.globalData.store
-        //   // })
-        //   wx.setStorageSync('GB_ID', app.globalData.store.GB_ID)
-        // }
+      if (resolve && typeof resolve == 'function') {
+        resolve();
       }
-      //教练风采
-      this.getCoachStyleList()
-      //推荐课程
-      this.getSuggestCoachClass()
-      //活动卡推荐
-      this.getSuggestActivityCard();
-      //轮播图
-      this.getBannerList();
     })
+  },
+  //获取门店信息
+  getGymList(res) {
+    var that = this;
+    var storeList = wx.getStorageSync('storeList');
+    if (storeList) {
+      this.setData({
+        storeList: storeList
+      })
+      that.loadData();
+    } else {
+      //console.log('没有缓存数据呀')
+      this.getStoreList(() => {
+        that.loadData();
+      })
+    }
+    if (res && typeof res == 'function') {
+      res();
+    }
+  },
+  loadData() {
+    var that = this
+    let storeList = wx.getStorageSync('storeList');
+    //未登录
+    let phone = wx.getStorageSync('phone');
+    let gb_id = wx.getStorageSync('GB_ID');
+    let my_store = null;
+    if (phone && phone !== '') {
+      //登录
+      // console.log('登录')
+      if (!wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID') == ' ') {
+        console.log('第一次进入 登录')
+        that.getDistance();
+      } else {
+        //加载门店的信息
+        my_store = that.data.storeList.filter(item => item.GB_ID == gb_id)
+        // console.log(my_store)
+        if (my_store.length > 0) {
+          that.setData({
+            store: my_store[0]
+          })
+        }
+      }
+    } else {
+      //未登录
+      if (!wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID' == '')) {
+        that.getDistance1()
+        console.log('第一次进入 未登录')
+      } else {
+        //加载门店的信息
+        my_store = that.data.storeList.filter(item => item.GB_ID == gb_id)
+        // console.log(my_store)
+        if (my_store.length > 0) {
+          that.setData({
+            store: my_store[0]
+          })
+        }
+      }
+    }
+    if (!storeList) {
+      console.log('fsfd')
+      wx.setStorageSync('storeList', this.data.storeList)
+    }
+    //教练风采
+    this.getCoachStyleList()
+    //推荐课程
+    this.getSuggestCoachClass()
+    //活动卡推荐
+    this.getSuggestActivityCard();
+    //轮播图
+    this.getBannerList();
   },
   //明星教练
   getCoachStyleList: function () {
@@ -387,7 +385,10 @@ Page({
       }
     }).then(res => {
       that.setData({
-        activityCard: res.data.data.slice(0, 2)
+        activityCard: res.data.data,
+        loading: false,
+        hideBanner: true,
+        hideContent: true
       })
     })
   },
@@ -422,11 +423,7 @@ Page({
         that.setData({
           GymLogo: res.data.data[0].GymLogo
         })
-        // if (wx.getStorageSync('GymLog')) {
-        //  wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
-        // } else {
         wx.setStorageSync('GymLogo', res.data.data[0].GymLogo)
-        //  }
       }
     })
   },
@@ -436,13 +433,14 @@ Page({
   onReady: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     //获取门店信息
     this.getGymList()
+    //门店图标
+    this.getSearchGymQR();
   },
   //查看教练详情
   lookCoachDetail: function (e) {
@@ -468,21 +466,15 @@ Page({
     })
   },
   /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
 
+  },
+  onPullDownRefresh() {
+    wx.removeStorageSync('storeList')
+    this.getGymList(() => {
+      wx.stopPullDownRefresh();
+    });
   }
 })

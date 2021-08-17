@@ -1,15 +1,13 @@
-import * as echarts from '../../components/ec-canvas/echarts.min';
-var api = require('../../utils/request.js')
-let chart = null;
+import * as echarts from '../../components/ec-canvas/echarts.min.js';
+import {
+  format
+} from '../../utils/util.js';
+var api = require('../../utils/request.js');
+//let chart = null;
+const app = getApp()
+const util = require('../../utils/util.js')
 
-function initChart(canvas, width, height, dpr) {
-  chart = echarts.init(canvas, null, {
-    width: width,
-    height: height,
-    devicePixelRatio: dpr // new
-  });
-  //console.log(width, height, dpr)
-  canvas.setChart(chart);
+function getOption(xdata, ydata) {
   var option = {
     clickable: true,
     triggerEvent: true,
@@ -26,29 +24,32 @@ function initChart(canvas, width, height, dpr) {
       },
     },
     grid: {
-      left: '2%',
-      right: '2%',
-      bottom: '3%',
+      top: '22%',
+      left: '5%',
+      right: '5%',
+      bottom: '4%',
       containLabel: true
     },
     xAxis: [{
       show: true, //---是否显示
       type: 'category',
-      data: ['03.08', '03.09', '03.10', '03.11', '03.12', '03.13', '03.14'],
+      data: xdata,
       axisTick: {
         alignWithLabel: true,
-        show: false,
-        inside: false,
+        // show: false,
+        inside: true,
       },
       axisLine: {
         lineStyle: {
           type: 'solid',
           color: '#03c986', //左边线的颜色
           width: '1' //坐标线的宽度
-        }
+        },
       },
       axisLabel: {
-        color: "#333333"
+        color: "#333333",
+        // interval:0,
+        // rotate:40
       }
     }],
     yAxis: [{
@@ -65,7 +66,7 @@ function initChart(canvas, width, height, dpr) {
       name: '分钟',
       type: 'bar',
       barWidth: '50%',
-      data: [100, 152, 200, 334, 390, 330, 220, 120],
+      data: ydata,
       itemStyle: {
         normal: {
           color: "#AEEAD6"
@@ -76,11 +77,12 @@ function initChart(canvas, width, height, dpr) {
         label: {
           show: true,
           position: 'top',
-          padding: [5, 15, 5, 15],
+          padding: [4, 15, 5, 15],
           borderWidth: 0,
           color: "#333333",
-          fontSize: 14,
+          fontSize: 12,
           fontFamily: 'PingFang SC',
+          formatter: params => params.value + "分钟"
         },
         itemStyle: {
           color: '#12D58B'
@@ -88,13 +90,10 @@ function initChart(canvas, width, height, dpr) {
       }
     }],
   };
-  chart.setOption(option);
-  return chart;
+  return option
 }
 
-const app = getApp()
-const util = require('../../utils/util.js')
-const watch = require('../../utils/watch.js')
+
 Page({
 
   /**
@@ -104,31 +103,50 @@ Page({
     date_info: ['周', '月'],
     isSelected: 0,
     date: '2018',
+    // ec: {
+    //   onInit: initChart
+    // },
     ec: {
-      onInit: initChart
+      lazyLoad: true
     },
     endTime: '',
     sportDesc: null,
     //日期
-    startDate: '2020/01/01',
-    endDate: '2020/01/07'
+    startDate: '',
+    endDate: '',
+    runTotalList: [],
+    //echarts中的数据
+    dateList: [],
+    myRunList: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var nowDate = util.formatTime(new Date());
+    //获取echarts
+    this.ecComponent = this.selectComponent('#mychart-dom-bar');
+    var nowDate = util.format(new Date(), 'YYYY-MM-DD')
+    var Year = new Date().getFullYear();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      endTime: nowDate
+      endTime: nowDate,
+      date: Year
     })
-    this.getClassCountByuserId()
+    this.initCurrentDate();
+    this.getClassCountByuserId();
+    this.getRunRecordByDays();
+    this.getRunRecordByTotal();
   },
-  watch: {
-    date: function () {
-      console.log('发生改变了')
-    }
+  initCurrentDate() {
+    let start_date = new Date();
+    start_date.setDate(1);
+    let last_date = new Date(start_date);
+    last_date = last_date.setDate(7);
+    this.setData({
+      startDate: util.format(start_date, 'yyyy/mm/dd'),
+      endDate: util.format(last_date, 'yyyy/mm/dd')
+    })
   },
   changeDate(e) {
     this.isSelected = e.target.dataset.index;
@@ -136,23 +154,22 @@ Page({
       //月
       let sDate = new Date(this.data.startDate);
       let Y = sDate.getFullYear();
-      let M = sDate.getMonth() + 1 < 10 ? +'0' + (sDate.getMonth() + 1) : sDate.getMonth() + 1;
+      let M = (sDate.getMonth() + 1) < 10 ? '0' + (sDate.getMonth() + 1) : sDate.getMonth() + 1;
       let D = '01';
-      let next_month = Number(M + 1) < 10 ? +'0' + Number(M + 1) : Number(M + 1);
+      let next_month = Number(M) + 1 < 10 ? '0' + (Number(M) + 1) : Number(M) + 1;
+      console.log(M, next_month)
       let next_day = null;
       if (next_month > 12) {
         next_month = '01';
         next_day = new Date(Y + '/' + next_month + '/' + D).setDate(0);
-        // next_day = new Date(next_day);
         let mm = new Date(next_day).getMonth();
-        mm = mm + 1 < 10 ? +'0' + (mm + 1) : mm + 1;
+        mm = mm + 1 < 10 ? '0' + (mm + 1) : mm + 1;
         let dd = new Date(next_day).getDate();
-        dd = dd < 10 ? +'0' + dd : dd
+        dd = dd < 10 ? '0' + dd : dd
         next_day = new Date(Y + '/' + mm + '/' + dd)
       } else {
         next_day = new Date(Y + '/' + next_month + '/' + D).setDate(0);
       }
-      // console.log(next_day)
       this.setData({
         startDate: Y + '/' + M + '/' + D,
         endDate: util.formatTime1(new Date(next_day))
@@ -169,9 +186,11 @@ Page({
     this.setData({
       isSelected: this.isSelected
     })
+    this.getRunRecordByDays()
+    this.getRunRecordByTotal();
   },
   bindYearChange(e) {
-  //  console.log(e.detail.value);
+    //  console.log(e.detail.value);
     let start_time = this.data.startDate;
     let end_time = this.data.endDate;
     start_time = start_time.replace(start_time.split('/')[0], e.detail.value);
@@ -182,8 +201,10 @@ Page({
       startDate: start_time,
       endDate: end_time
     })
+    this.getRunRecordByDays()
+    this.getRunRecordByTotal();
   },
-  //运动天数
+  //累计运动天数
   getClassCountByuserId: function () {
     var that = this
     api.request({
@@ -194,10 +215,11 @@ Page({
         UI_ID: wx.getStorageSync('UI_ID')
       }
     }).then(res => {
-      console.log(res)
       if (res.data.code == 1) {
+        let s1 = res.data.data;
+        s1.runtime = Math.ceil(s1.runtime / 60)
         that.setData({
-          sportDesc: res.data.data
+          sportDesc: s1
         })
       }
     })
@@ -210,12 +232,14 @@ Page({
   //上一个
   pervClick: function () {
     var that = this
-    let fristDate = new Date(that.data.startDate)
-    let lastDate = new Date(that.data.endDate)
+    let fristDate = new Date(that.data.startDate);
+    let lastDate = that.data.startDate;
+    // let lastDate = new Date(that.)
+    //console.log(fristDate,lastDate)
     let isWeek = that.data.isSelected == 0 ? true : false;
     if (isWeek) {
-      let newDate = util.formatTime1(new Date(fristDate.setDate(fristDate.getDate() - 7)));
-      let newDate1 = util.formatTime1(new Date(lastDate.setDate(lastDate.getDate() - 7)));
+      let newDate = util.formatTime1(new Date(fristDate.setDate(fristDate.getDate() - 6)));
+      let newDate1 = util.format(lastDate, 'yyyy-mm-dd');
       that.setData({
         startDate: newDate,
         endDate: newDate1,
@@ -239,12 +263,21 @@ Page({
         endDate: util.formatTime1(new Date(e_t)),
       })
     }
+    this.getRunRecordByDays()
+    this.getRunRecordByTotal();
   },
   //下一个
   nextClick: function () {
     var that = this
     let fristDate = new Date(that.data.startDate)
-    let lastDate = new Date(that.data.endDate)
+    let lastDate = new Date(that.data.endDate);
+    let now = util.formatTime1(new Date());
+    if (lastDate.getTime() > new Date(now).getTime()) {
+      // console.log('不能超过当前时间')
+      return;
+    }
+    //console.log(now)
+    //获取当前的日期
     let isWeek = that.data.isSelected == 0 ? true : false;
     if (isWeek) {
       let newDate = util.formatTime1(new Date(fristDate.setDate(fristDate.getDate() + 6)));
@@ -278,79 +311,105 @@ Page({
         day_count1 = new Date(e_y, e_m, 0).getDate();
         next_date = new Date(eTime.setDate(eTime.getDate() + day_count1))
       }
-      // let day_count1 = new Date(e_y, e_m, 0).getDate();
-      // console.log(day_count)
-      // let ss2 = new Date(eTime.setDate(day_count1));
-      // console.log(util.formatTime1(ss2))
-      // let n_m = ss1.getMonth() + 2;
-      // n_m = n_m < 10 ? '0' + n_m : n_m;
-      // let n_d = ss1.getDate();
-      // n_d = n_d < 10 ? '0' + n_d : n_d;
-      //日期
-      // let next_date = null;
-      // if (Number(n_m)> 12) {
-      //   n_m = '01';
-      //   s_y = s_y + 1;
-      //   next_date = new Date(s_y + '/' + n_m + '/' + n_d);
-      //   return;
-      // let d_count = new Date(next_date.getFullYear(), next_date.getMonth(), 0).getDate();
-      // next_date = next_date.setDate(next_date.getDate() + d_count)
-      //获取当前月份的最后一天
-      // let mm1 = new Date(next_date).getMonth();
-      // mm1 = mm1 + 1 < 10 ? +'0' + (mm1 + 1) : mm1 + 1;
-      // let dd1 = new Date(next_date).getDate();
-      // dd1 = dd1 < 10 ? +'0' + dd1 : dd1
-      // next_date = new Date((s_y +1) + '/' + mm1 + '/' + dd1)
-      // } else {
-      //   next_date = new Date(s_y + '/' + n_m + '/' + n_d);
-      // }
-      // console.log(next_date)
-      // let e_t = new Date(next_date).setDate(0)
+
       that.setData({
         startDate: util.formatTime1(ss1),
         endDate: util.formatTime1(next_date),
       })
     }
+    this.getRunRecordByDays();
+    this.getRunRecordByTotal();
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //运动次数
+  getRunRecordByDays() {
+    api.request({
+      url: "/RunRecordByDays",
+      data: {
+        token: wx.getStorageSync('token'),
+        dateFrom: this.data.startDate,
+        dateTo: this.data.endDate
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        let runDays = res.data.data;
+        let dateList = runDays.map(item => util.format(item.createdate, 'MM.DD'))
+        let myRunList = runDays.map(item => Number(Math.ceil(item.runtime / 60)))
+        this.setData({
+          dateList,
+          myRunList
+        })
+        this.init(dateList, myRunList)
+      }
+    })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
 
   },
+  //初始化echarts中的数据
+  onReady: function () {
 
+  },
+  //初始化init
+  init: function (xdata, ydata) {
+    this.ecComponent.init((canvas, width, height, dpr) => {
+      // 获取组件的 canvas、width、height 后的回调函数
+      // 在这里初始化图表
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height,
+        devicePixelRatio: dpr // new
+      });
+      //xdata ydata 
+      let option = getOption(xdata, ydata);
+      // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
+      this.chart = chart;
+      chart.setOption(option)
+      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+      return chart;
+    });
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  //数据总和
+  getRunRecordByTotal() {
+    let totleList = [];
+    //测试
+    api.request({
+      url: "/RunRecordByTotal",
+      data: {
+        token: wx.getStorageSync('token'),
+        dateFrom: this.data.startDate,
+        dateTo: this.data.endDate
+      }
+    }).then(res => {
+      console.log(res)
+      if (res.data.code == 1) {
+        totleList = res.data.data;
+        totleList.forEach(item => {
+          item.runtime = Math.ceil(item.runtime / 60)
+        })
+        this.setData({
+          runTotalList: totleList
+        })
+      }
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
 
-  }
+  },
+  // compare: function (prop) {
+  //   return function (a, b) {
+  //     return Number(a[prop]) - Number(b[prop])
+  //   }
+  // },
 })

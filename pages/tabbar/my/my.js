@@ -10,27 +10,32 @@ Page({
         id: 1,
         name: '预约日程',
         img: '/static/my/app_info.png',
+        serviceUrl: '/page2/historyAppointment/historyAppointment',
         unreadyNum: 1
       },
       {
         id: 2,
         name: '我的订单',
-        img: '/static/my/order.png'
+        img: '/static/my/order.png',
+        serviceUrl: '/page2/order/order',
       },
       {
         id: 3,
         name: '积分商城',
-        img: '/static/my/integral.png'
+        img: '/static/my/integral.png',
+        serviceUrl: '/pages/tabbar/integral/integral'
       },
       {
         id: 4,
         name: '运动记录',
-        img: '/static/my/recod.png'
+        img: '/static/my/recod.png',
+        serviceUrl: '/pages/movementData/movementData'
       },
       {
         id: 5,
         name: '会员体测',
-        img: '/static/my/test.png'
+        img: '/static/my/test.png',
+        serviceUrl: "/page2/smartDevice/smartDevice"
       },
       // {
       //   id: 6,
@@ -62,9 +67,9 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      menuRight:app.globalData.menuRight
+      menuRight: app.globalData.menuRight,
+      // tabSeleted: app.globalData.isTabShow
     })
-    // this.tranfromImage()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -75,34 +80,13 @@ Page({
   lookRecord(e) {
     //console.log(e.currentTarget.dataset.index)
     let phoneNumber = wx.getStorageSync('phone')
-    
+    let path = e.currentTarget.dataset.path;
     let index = e.currentTarget.dataset.index
-    if(!phoneNumber && phoneNumber == '' && index!==2){
+    if (!phoneNumber && phoneNumber == '' && index !== 2) {
       wx.navigateTo({
         url: '/page2/login/login',
       })
       return
-   }
-    let path = '';
-    switch (index) {
-      case 0:
-        path = '/page2/historyAppointment/historyAppointment'
-        break;
-      case 1:
-        path = '/page2/order/order'
-        break;
-      case 2:
-        path = '/pages/tabbar/integral/integral'
-        break;
-      case 3:
-        path = "/pages/movementData/movementData"
-        break;
-      case 4:
-        path = '/page2/smartDevice/smartDevice'
-        break;
-      case 5:
-        path = '/page2/address/address'
-        break
     }
     //console.log(path)
     if (path.trim()) {
@@ -128,11 +112,6 @@ Page({
         icon: "none",
         title: '你还未登录，请先登录！',
       })
-      // setTimeout(function () {
-      //   wx.navigateTo({
-      //     url: '/page2/login/login',
-      //   })
-      // }, 1500)
     }
   },
   vipCard: function () {
@@ -181,23 +160,32 @@ Page({
     //判断
 
   },
-  inteAwrad: function () {
+  inteAwrad: function (e) {
+    //console.log(e.currentTarget.dataset.index)
+    let index = e.currentTarget.dataset.index;
+    let types = '';
     let phone = wx.getStorageSync('phone')
-    if(!phone && phone==''){
+    if (!phone && phone == '') {
       wx.navigateTo({
         url: '/page2/login/login',
       })
       return
     }
+    //vip action
+    if (index == 0) {
+      types = 'vip'
+    } else {
+      types = 'action'
+    }
     wx.navigateTo({
-      url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral,
+      url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral + '&types=' + types,
     })
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   // console.log(111)
+    // console.log(111)
     //用户状态
     this.getUserStatus();
     //
@@ -213,22 +201,21 @@ Page({
   getUserStatus: function () {
     //用户状态
     var status = wx.getStorageSync('loginStatus') || 0;
-    console.log(status)
     //获取用户信息
     var info = wx.getStorageSync('userInfo') || '';
     //获取用户的手机号码
-     var phone = wx.getStorageSync('phone') || '';
+    var phone = wx.getStorageSync('phone') || '';
     if (status == 1 || status == 2) {
       this.setData({
         loginStatus: status,
         info: JSON.parse(info),
-        phone:phone
+        phone: phone
       })
     } else {
       this.setData({
         loginStatus: status,
-        info:null,
-        phone:''
+        info: null,
+        phone: ''
       })
     }
   },
@@ -242,16 +229,16 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      if(res.data.code ==1){
+      if (res.data.code == 1) {
         that.setData({
           myVipCardCount: res.data.cardCount
         })
-      }else{
+      } else {
         that.setData({
           myVipCardCount: 0
         })
       }
-    
+
     })
   },
   //私教课数量
@@ -267,11 +254,11 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      if(res.data.code ==1){
+      if (res.data.code == 1) {
         that.setData({
           myCoachCount: res.data.coachCount
         })
-      }else{
+      } else {
         that.setData({
           myCoachCount: 0
         })
@@ -288,13 +275,13 @@ Page({
         UI_ID: wx.getStorageSync('UI_ID') || 0
       }
     }).then(res => {
-      console.log(res)
-      if (res.data.code == 1) {
+      // console.log(res)
+      if (res.data.code == 1 && res.data.data.length > 0) {
         that.setData({
           rechargeMoney: res.data.data[0].UI_Money,
           giveMoney: res.data.data[0].UI_SendMoney
         })
-      }else{
+      } else {
         that.setData({
           rechargeMoney: 0,
           giveMoney: 0
@@ -311,12 +298,12 @@ Page({
         user_token: wx.getStorageSync('token')
       }
     }).then(res => {
-      if (res.data.code == 1) {
+      if (res.data.code == 1 && res.data.data.length > 0) {
         that.setData({
           vipIntegral: res.data.data[0].UI_Score,
           actionIntegral: res.data.data[0].UI_ActionScore
         })
-      }else{
+      } else {
         that.setData({
           vipIntegral: 0,
           actionIntegral: 0
@@ -324,37 +311,10 @@ Page({
       }
     })
   },
-  memberCode() {
-    let phone = wx.getStorageSync('phone')
-    if (phone && phone !== '') {
-      //会员卡存在
-      wx.navigateTo({
-        url: '/page2/memberCode/memberCode',
-      })
-    } else {
-      wx.navigateTo({
-        url: '/page2/login/login',
-      })
-    }
-  },
-  code: function () {
-    wx.scanCode({
-      success(res) {
-        console.log(res)
-      }
-    })
-  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
 
   },
 })

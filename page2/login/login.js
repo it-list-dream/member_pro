@@ -9,9 +9,9 @@ Page({
     showModal: false,
     hasUserInfo: false,
     //门店名
-    GymName: wx.getStorageSync('GymName'),
+    GymName: null,
     //门店logo
-    GymLogo: wx.getStorageSync('GymLogo')
+    GymLogo:null
   },
   /**
    * 生命周期函数--监听页面加载
@@ -27,26 +27,23 @@ Page({
         }
       }
     })
-   // console.log(wx.getStorageSync('GymLogo'))
     let hasUserInfo = wx.getStorageSync('hasUserInfo');
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-    })
-    this.setData({
-      hasUserInfo: hasUserInfo
+      hasUserInfo: hasUserInfo,
+      //
+      GymName: wx.getStorageSync('GymName'),
+      GymLogo: wx.getStorageSync('GymLogo')
     })
   },
-  onCancel(flag) {
-   // console.log(flag)
-    this.setData({
-      showModal:flag
-    })
+  //取消
+  onCancel() {
     wx.navigateBack({
       delta: 1,
     })
   },
-  modalCancel() {
+  modalCancel(e) {
     wx.showToast({
       title: '拒绝授权',
       icon: 'none',
@@ -82,8 +79,8 @@ Page({
       }
     })
   },
-   //通过绑定手机号登录
-   getPhoneNumber: function (e) {
+  //通过绑定手机号登录
+  getPhoneNumber: function (e) {
     var that = this
     if (e.detail.errMsg == 'getPhoneNumber:ok') {
       //登录
@@ -113,22 +110,23 @@ Page({
                   wx.setStorageSync('loginStatus', 2);
                   // 保存手机号码
                   wx.setStorageSync('phone', res.data.phone);
-                   //获取已有的会员信息
+                  //获取已有的会员信息
                   api.request({
                     url: "/MyAllVIPCard",
                     data: {
                       user_token: wx.getStorageSync('token')
                     }
                   }).then(res => {
-                    if (res.data.data.length > 0) {
-                      wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
+                    if (res.data.code == 1) {
+                      if(res.data.data.length>0){
+                        wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
+                      }                 
                       //返回上一个页面
                       wx.navigateBack({
                         delta: 1,
                       })
                     }
                   })
-
                 } else {
                   wx.navigateBack({
                     delta: 1,
@@ -150,7 +148,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () { },
+  onReady: function () {},
   //获取已有的会员信息
   /**
    * 生命周期函数--监听页面显示

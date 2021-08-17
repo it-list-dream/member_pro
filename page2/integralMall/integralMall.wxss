@@ -1,5 +1,4 @@
-.coverstionBox {
-  width: 100vw;
+page {
   font-family: PingFang SC;
 }
 
@@ -9,19 +8,12 @@
   padding-bottom: 130rpx;
 }
 
-swiper {
+.rewardImg1 {
   width: 100%;
-  height: 296rpx;
 }
 
-.scorec-img {
-  width: 100%;
-  vertical-align: middle;
-  height: 296rpx;
-}
 
 .conternt {
-  /* margin-bottom: 200rpx; */
   width: 100%;
   height: 362rpx;
   background-color: #ffffff;
@@ -73,7 +65,7 @@ swiper {
 }
 
 .credits {
-  margin-right: 4rpx;
+  /* margin-right: 4rpx; */
   font-size: 48rpx;
   font-weight: bold;
 }
@@ -190,7 +182,8 @@ swiper {
 /* 实物 */
 .real_detail {
   width: 100%;
-  height: 581rpx;
+  /* height: 581rpx; */
+  height:auto;
   background: #ffffff;
 }
 
@@ -238,9 +231,9 @@ swiper {
   overflow: hidden;
   box-sizing: border-box;
   width: 100%;
-  height: 220rpx;
-  /* background: green; */
+  min-height: 224rpx;
   padding: 24rpx 0;
+  margin-bottom: 56rpx;
 }
 
 .intro_title {
@@ -259,11 +252,6 @@ swiper {
   font-weight: 400;
   color: #333333;
   line-height: 45rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
 }
 
 /* 选择教练 */
@@ -374,13 +362,17 @@ swiper {
 
 /*  */
 .available_list {
+  height:auto;
+  padding-bottom: 80rpx;
+}
+
+.exp_wrapper {
   padding-bottom: 130rpx;
 }
 
 .available_item {
   width: 100%;
-  height: 452rpx;
-  /* background: pink; */
+  height: auto;
   background-color: #ffffff;
 }
 
@@ -407,32 +399,24 @@ swiper {
 /* 快递方式 */
 
 .exp_item {
+  display: flex;
   margin-top: 30rpx;
   box-sizing: border-box;
   padding-left: 30rpx;
   height: 90rpx;
   line-height: 90rpx;
-  display: flex;
   background: #FFFFFF;
   white-space: nowrap;
   border-bottom: 1px solid #eeeeee;
 }
 
 .dispatching {
-  height: auto;
   padding: 20rpx;
+  height: auto;
   background: #ffffff;
-  white-space: normal;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #333333;
-  line-height: 48rpx;
 }
-
-.dispatching>text {
-  padding-left: 30rpx;
-}
-
 
 .radio-group {
   display: flex;

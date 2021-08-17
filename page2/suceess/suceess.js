@@ -103,43 +103,45 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
-    console.log(options)
+   // console.log(options);
     var that = this
-    let type = this.data.isShow;
-    let imageUrl = 'http://user.360ruyu.cn/images/share2.jpg';
-    let title = '唯有健康身体是属于自己的';
-    let path_url = '';
-    //标识
-    let sign = wx.getStorageSync('UrlBySign');
-    //门店id
-    let GB_ID = wx.getStorageSync('GB_ID');
-    if (type == 0) {
-      console.log('团课分享');
-      path_url = '/pages/groupAppointment/groupAppointment?sign='+sign+'&CTO_ID='+that.data.cto_id
-      console.log(sign,that.data.cto_id)
-    } else if (type == 1) {
-      console.log('私教分享');
-      path_url = '/pages/coachList/coachList?sign=' + sign + '&GB_ID=' + GB_ID;
-      //到首页
-    } else if (type == 2) {
-      console.log('会员卡分享');
-      path_url = '/pages/activeDetail/activeDetail?SC_ID=' + that.data.sc_id + '&sign=' + sign + '&GB_ID=' + GB_ID;
-    } else if (type == 3) {
-      console.log('购买私教课分享');
-      path_url = '/pages/coachDetail/coachDetail?teacherid=' + that.data.teacherid + '&sign=' + sign + '&GB_ID=' + GB_ID;
-      console.log(that.data.teacherid, sign, GB_ID);
-    } else if (type == 4) {
-      console.log('积分兑换');
-      title = '自律的人才能拥有回报';
-      imageUrl = 'http://user.360ruyu.cn/images/share1.jpg';
-      //se_id:	 prizeType
-      path_url = '/page2/integralMall/integralMall?sign=' + sign + '&GB_ID=' + GB_ID + '&se_id=' + that.data.se_id + '&price_type=' + that.data.prizeType + '&type=' + that.data.inteType
-      console.log(sign, GB_ID, that.data.se_id,that.data.prizeType, that.data.inteType)
-    }
-    return {
-      title: title,
-      imageUrl: imageUrl,
-      path: path_url
+    if(options.from === 'button'){
+      let type = this.data.isShow;
+      let imageUrl = 'http://user.360ruyu.cn/images/share2.jpg';
+      let title = '唯有健康身体是属于自己的';
+      let path_url = '';
+      //标识
+      let sign = wx.getStorageSync('UrlBySign');
+      //门店id
+      let GB_ID = wx.getStorageSync('GB_ID');
+      if (type == 0) {
+        console.log('团课分享');
+        path_url = '/pages/groupAppointment/groupAppointment?sign='+sign+'&CTO_ID='+that.data.cto_id
+        console.log(sign,that.data.cto_id)
+      } else if (type == 1) {
+        console.log('私教分享');
+        path_url = '/pages/coachList/coachList?sign=' + sign + '&GB_ID=' + GB_ID;
+        //到首页
+      } else if (type == 2) {
+        console.log('会员卡分享');
+        path_url = '/pages/activeDetail/activeDetail?SC_ID=' + that.data.sc_id + '&sign=' + sign + '&GB_ID=' + GB_ID;
+      } else if (type == 3) {
+        console.log('购买私教课分享');
+        path_url = '/pages/coachDetail/coachDetail?teacherid=' + that.data.teacherid + '&sign=' + sign + '&GB_ID=' + GB_ID;
+        console.log(that.data.teacherid, sign, GB_ID);
+      } else if (type == 4) {
+        console.log('积分兑换');
+        title = '自律的人才能拥有回报';
+        imageUrl = 'http://user.360ruyu.cn/images/share1.jpg';
+        //se_id:	 prizeType
+        path_url = '/page2/integralMall/integralMall?sign=' + sign + '&GB_ID=' + GB_ID + '&se_id=' + that.data.se_id + '&price_type=' + that.data.prizeType + '&type=' + that.data.inteType
+        console.log(sign, GB_ID, that.data.se_id,that.data.prizeType, that.data.inteType)
+      }
+      return {
+        title: title,
+        imageUrl: imageUrl,
+        path: path_url
+      }
     }
   }
 })

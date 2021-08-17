@@ -53,7 +53,7 @@
     <icon type="success" size="50"></icon>
     <view class="buyTip">兑换成功</view>
     <view class="getInte">
-      <text>获得VIP积分</text>
+      <text>扣除积分</text>
       <text> - {{costInte}}</text>
     </view>
     <view class="buyBtn">

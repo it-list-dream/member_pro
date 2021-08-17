@@ -1,18 +1,8 @@
-<!-- <nav-bar page-name="运动" showNav="{{false}}"></nav-bar> -->
 <wxs src="../../../common/common.wxs" module="tools" />
 <view class="sprotTip">
   <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
   <view class="navbar" style='height:{{navHeight}}px;'>
-    <view class="tip" style="top:{{navTop}}px;left:{{menuRight}}px">
-      <view class="tipItem" bindtap="memberCode">
-        <image src="/static/home_pic/QRcode.png"></image>
-      </view>
-      <view class="line"></view>
-      <view class="tipItem" bindtap="code">
-        <image src="/static/home_pic/scan.png"></image>
-      </view>
-    </view>
-    <!--  -->
+    <my-capsule class="capsule_icon"  style="top:{{navTop}}px;left:{{menuRight}}px" my-class="gray"></my-capsule>
     <view class='navbar-title' style='top:{{navTop}}px'>运动</view>
   </view>
 </view>
@@ -23,7 +13,7 @@
       <view class="sport_tip" bindtap="runing">
         <view class="sport_day">
           <view>运动天数</view>
-          <view>20 <text class="test">天</text></view>
+          <view>{{sportDays}} <text class="test">天</text></view>
           <view class="btn go_run">去运动</view>
         </view>
         <view>
@@ -33,7 +23,7 @@
       <view class="sport_tip fitness" bindtap="fitness">
         <view class="sport_day">
           <view>健康分</view>
-          <view>95 <text class="test">分</text></view>
+          <view>{{score}} <text class="test">分</text></view>
           <view class="btn to_dete">去检测</view>
         </view>
         <view>
@@ -57,7 +47,7 @@
       <ul class="calendar_item">
         <block wx:for="{{ weekList}}" wx:key="index">
           <li catchtap="changeDate" data-num="{{index}}">
-            <view style="{{changebg==index?'font-weight:500;color: #333333;':''}}">{{item.week}}</view>
+            <view style="color:{{changebg==index?'#333333':''}}">{{item.week}}</view>
             <!-- getWeekdDay -->
             <view class="{{changebg==index?'change_active':''}}">{{tools.getFirstStr(item.date)}}</view>
           </li>
@@ -133,18 +123,18 @@
   </view>
 
   <view class="none" wx:else>
-      <view class="none_list">
-        <image src="/static/none.png"></image>
-        <view>暂无内容</view>
-      </view>
+    <view class="none_list">
+      <image src="/static/none.png"></image>
+      <view>暂无内容</view>
     </view>
+  </view>
   <!-- 蒙层 -->
   <cover-view class="mask" catchtouchmove='true' hidden="{{!chooseCourse}}">
     <cover-view class="modalDlg" wx:if="{{chooseCourse}}">
       <cover-view class="modalDlg_item">
         <cover-view class="mask_title">
           <cover-view>预约的课程类型</cover-view>
-          <cover-image src="/static/close.png" bindtap="close"></cover-image>
+          <cover-image src="/static/error1.png" bindtap="close"></cover-image>
         </cover-view>
         <cover-view class="sa_course" catchtap="groupCourse">
           <cover-view>团体课</cover-view>
@@ -155,7 +145,7 @@
           <cover-image src="/static/next.png"></cover-image>
         </cover-view>
       </cover-view>
-    </cover-view >
+    </cover-view>
     <!--关闭 -->
     <cover-view class="close" catchtap="close"></cover-view>
   </cover-view>

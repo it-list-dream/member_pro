@@ -2,9 +2,9 @@
 <nav-bar page-name="选择课程"></nav-bar>
 <view class="selectCourse" style="margin-top:{{navHeight}}px">
   <block wx:for="{{coachClassList}}" wx:key="index">
-    <view class="course_list">
+    <view class="course_list" bindtap="orderCourse" data-coach="{{item}}">
       <image src="/static/course11.png" class="bg2"></image>
-      <view class="course_item" catchtap="orderCourse" data-coach="{{item}}">
+      <view class="course_item">
         <view class="top">
           <view>
             <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}" class="pic1"></image>
