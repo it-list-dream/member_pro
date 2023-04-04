@@ -11,8 +11,6 @@ Page({
     priceTotal: 0,
     personal: null,
     chooseNum: 0,
-    //支付
-   // checkPay:true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -36,7 +34,7 @@ Page({
     var total = num * price
     this.setData({
       payNum: num,
-      priceTotal: total
+      priceTotal: total.toFixed(2)
     })
   },
   addnum() {
@@ -45,7 +43,7 @@ Page({
     var total = num * price
     this.setData({
       payNum: num,
-      priceTotal: total
+      priceTotal: total.toFixed(2)
     })
   },
   getCoachStyleList: function () {
@@ -69,7 +67,7 @@ Page({
   onReady: function () {
 
   },
-  chooseCoach: function (e) {
+  coach_choose: function (e) {
     this.setData({
       chooseNum: e.currentTarget.dataset.index
     })
@@ -90,7 +88,7 @@ Page({
         return 
       }
       wx.showLoading({
-        title: '加载中...',
+        title: '支付中...',
         mask: true
        })
       api.request({
@@ -177,7 +175,7 @@ Page({
     api.request({
       url: "/OrderCoachLessonSuccess",
       data: {
-        UI_ID: wx.getStorageSync('UI_ID'),
+        UI_ID: wx.getStorageSync('UI_ID') || -1,
         GB_ID: wx.getStorageSync('GB_ID'),
         user_token: wx.getStorageSync('token'),
         orderNo: orderNo
@@ -228,7 +226,4 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
 })

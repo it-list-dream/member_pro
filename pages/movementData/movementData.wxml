@@ -1,116 +1,113 @@
-<view class="sportData">
-  <view class="banner">
-    <view class="custom-nav" style="height:{{navHeight}}px;">
-      <view style="top:{{navTop}}px">
-        <view bindtap="_navBack" class="arrow-nav">
-          <image class="icon-arrow" src="../../components/navbar/images/white-arrow.png"></image>
+<nav-bar page-name="运动数据"></nav-bar>
+<view class="sportData" style="margin-top:{{navHeight}}px">
+  <view class="sport_days">
+    <image src="/static/sportData/sport_bg.png"></image>
+    <view class="run_days">
+      <view class="cumulativeDays">累计运动天数</view>
+      <view class="num">20</view>
+      <view class="class_days">
+        <view class="item">
+          <text>{{sportDesc.CheckInNum}}</text>
+          <text>到店天数/天</text>
         </view>
-        <view class="navbar_title">运动数据</view>
-      </view>
-    </view>
-    <view class="sport_title1">
-      <view> {{sportDesc.CheckInNum}} <text>天</text></view>
-      <view>累计运动天数</view>
-    </view>
-    <image src="/static/sportDevice.png"></image>
-    <view class="sport_info">
-      <view class="sport">
-        <view class="sport_item">
-          <view class="sport_num">
-            {{sportDesc.CheckInNum}}
-            <text>天</text>
-          </view>
-          <view class="info">到店天数</view>
+        <view class="item">
+          <text>{{sportDesc.runtime}}</text>
+          <text>运动时长/分钟</text>
         </view>
-        <view class="line"></view>
-        <!--  -->
-        <view class="sport_item">
-          <view class="sport_num">
-            {{sportDesc.runtime}}
-            <text class="info">分钟</text>
-          </view>
-          <view class="info">运动时长</view>
-        </view>
-        <view class="line"></view>
-        <!--  -->
-        <view class="sport_item">
-          <view class="sport_num">
-            {{sportDesc.burncal}}
-            <text>Kcal</text>
-          </view>
-          <view class="info">消耗</view>
+        <view class="item">
+          <text>{{sportDesc.burncal}}</text>
+          <text>消耗/kcal</text>
         </view>
       </view>
-
     </view>
   </view>
-  <view class="other_info">
-    <view class="other">
-      <view class="other_item">
-        <view class="course">
-          <text>{{sportDesc.GroupNum}}节</text>
-          <text>团课</text>
-        </view>
-        <view class="line"></view>
-        <view class="course">
-          <text>{{sportDesc.CoachNum}}节</text>
-          <text>私教</text>
-        </view>
-        <view class="line"></view>
-        <view class="course">
-          <text>{{sportDesc.runDistance / 1000}}公里</text>
-          <text>跑步机</text>
-        </view>
+  <view class="haveClassCount">
+    <view class="classItem">
+      <image src="/static/sportData/group.png"></image>
+      <view class="classesInfo">
+        <text>{{sportDesc.GroupNum}}</text>
+        <text>团课/节</text>
       </view>
     </view>
-    <!-- 日期 -->
-    <view class="date">
-      <view class="year">
-        <picker mode="date" value="{{date}}" start="2015-09-01" end="{{endTime}}" fields="year"
-          bindchange="bindYearChange">
-          <!-- <text>2021年</text> -->
-          <text>{{date}}年</text>
-          <image src="/static/bottom_arrow.png"></image>
-        </picker>
+    <view class="classItem">
+      <image src="/static/sportData/personal.png"></image>
+      <view class="classesInfo">
+        <text>{{sportDesc.CoachNum}}</text>
+        <text>私教/节</text>
       </view>
-      <!--  -->
-      <view class="list">
-        <view class="week_day">
-          <block wx:for="{{date_info}}" wx:for-index="idx" wx:key="idx">
-            <view class="{{idx == isSelected ? 'active':''}}" bindtap="changeDate" data-index="{{idx}}">{{item}}
-            </view>
-          </block>
-        </view>
+    </view>
+    <view class="classItem">
+      <image src="/static/sportData/run.png"></image>
+      <view class="classesInfo">
+        <text>{{sportDesc.runDistance}}</text>
+        <text>跑步机/公里</text>
       </view>
-      <view class="dateDetail">
-        <view class="arrow_box"  bindtap="pervClick">
-          <image src="./images/left.png" class="arrow1"></image>
-        </view>
-        <view>{{startDate}}</view>
-        <view class="line"></view>
-        <view>{{endDate}}</view>
-        <view class="arrow_box" bindtap="nextClick">
-          <image src="./images/right.png" class="arrow1"></image>
-        </view>
+    </view>
+  </view>
+  <!-- 日期 -->
+  <view class="date">
+    <view class="year">
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="{{endTime}}" fields="year"
+        bindchange="bindYearChange">
+        <text>{{date}}年</text>
+        <image src="/static/bottom_arrow.png"></image>
+      </picker>
+    </view>
+    <!--  -->
+    <view class="list">
+      <view class="week_day">
+        <block wx:for="{{date_info}}" wx:for-index="idx" wx:key="idx">
+          <view class="{{idx == isSelected ? 'active':''}}" bindtap="changeDate" data-index="{{idx}}">{{item}}
+          </view>
+        </block>
       </view>
-      <!--echarts  -->
-      <view class="echarts_container">
-        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+    </view>
+    <view class="dateDetail">
+      <view class="arrow_box" bindtap="pervClick">
+        <image src="./images/left.png" class="arrow1"></image>
       </view>
-      <!--  -->
-      <view class="bottom_content">
-        <view class="sp_title">
-          <view>{{isSelected ==0?'周':'月'}}运动天数</view>
-          <view>{{runTotalList[0].rundays}}<text>天</text></view>
+      <view>{{startDate}}</view>
+      <view class="line"></view>
+      <view>{{endDate}}</view>
+      <view class="arrow_box" bindtap="nextClick">
+        <image src="./images/right.png" class="arrow1"></image>
+      </view>
+    </view>
+    <!--echarts  -->
+    <view class="echarts_container">
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+    </view>
+  </view>
+  <!--  -->
+  <view class="bottom_content">
+    <view class="bottom_item">
+      <image src="/static/sportData/4.png"></image>
+      <view class="run_box">
+        <view class="run_box_days">
+          {{runTotalList[0].rundays}}
+          <text>天</text>
         </view>
-        <view class="sp_title sp1">
-          <view>{{isSelected ==0?'周':'月'}}运动时长</view>
-          <view>{{runTotalList[0].runtime }}<text>分钟</text></view>
+        <text class="run_month_days">{{isSelected ==0?'周':'月'}}运动天数</text>
+      </view>
+    </view>
+    <view class="bottom_item">
+      <image src="/static/sportData/5.png"></image>
+      <view class="run_box">
+        <view class="run_box_days">
+          {{runTotalList[0].runtime }}
+          <text>分钟</text>
         </view>
-        <view class="sp_title sp2">
-          <view>{{isSelected ==0?'周':'月'}}消耗</view>
-          <view>{{runTotalList[0].burncal}}<text>Kcal</text></view>
+        <text class="run_month_days">{{isSelected ==0?'周':'月'}}运动时长</text>
+      </view>
+    </view>
+    <view class="bottom_item">
+      <image src="/static/sportData/6.png"></image>
+      <view class="run_box">
+        <view class="run_box_days">
+          {{runTotalList[0].burncal}}
+          <text>kcal</text>
         </view>
+        <text class="run_month_days">{{isSelected ==0?'周':'月'}}消耗</text>
       </view>
     </view>
   </view>

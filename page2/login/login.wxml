@@ -1,23 +1,22 @@
-<nav-bar page-name="登录" titleColor="#FFFFFF" style="position: fixed;top:0;left:0;z-index:9999;" icon="{{true}}"
-  bgColor="transparent"></nav-bar>
-<view class="login-layout">
-  <image class="login_bg" src="./images/login_bg.png" mode="aspectFill" lazy-load="false"></image>
-  <view class="avatar">
-    <image src="{{ GymLogo?GymLogo:'/static/avtor.png'}}"></image>
-  </view>
-  <view class="personal_info">
-    <view class="sto_title">{{GymName}}</view>
-    <view class="getInfo">申请获取你的公开信息（昵称、头像等）</view>
+<nav-bar page-name="登录"></nav-bar>
+<view class="loginContainer" style="margin-top:{{navHeight}}px;">
+  <view class="login-info">
+    <view class="login-logo">
+      <image src="{{GymLogo?GymLogo:'/static/avtor.png'}}"></image>
+    </view>
+    <view class="store-name">{{GymName}}</view>
+    <view class="store-info">申请获取你的公开信息（昵称、头像等）</view>
   </view>
   <!-- 登录 -->
-  <button class="doLogin btn" type="primary" hover-class="none" bindtap="getUserProfile"
-    wx:if="{{!hasUserInfo}}">微信授权</button>
-  <button class="doLogin btn" open-type="getPhoneNumber" hover-class="none" bindgetphonenumber="getPhoneNumber"
-    wx:else>绑定手机号</button>
-  <!--  -->
-  <button class="cancel btn" type="default" hover-class="none" bindtap="onCancel">取消</button>
-  <!-- 绑定手机号码 -->
-  <modal show="{{showModal}}" height='40%' bindcancel="modalCancel" bindconfirm='modalConfirm' wx:if="{{showModal}}">
+  <view class="login-btn">
+    <button class="authorization" type="primary" hover-class="none" bindtap="getUserProfile"
+      wx:if="{{!hasUserInfo}}">微信授权</button>
+    <button class="authorization" open-type="getPhoneNumber" hover-class="none" bindgetphonenumber="getPhoneNumber" hover-stay-time="100"
+      wx:else>绑定手机号</button>
+    <button class="cancel" type="default" hover-class="none" bindtap="onCancel">取消</button>
+  </view>
+
+  <modal show="{{showModal}}" height='490rpx' bindcancel="modalCancel" bindconfirm='modalConfirm' wx:if="{{showModal}}">
     <view class="succ-icon">
       <icon type="success" size="50"></icon>
     </view>

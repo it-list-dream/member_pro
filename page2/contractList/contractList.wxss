@@ -1,0 +1,84 @@
+page {
+  background-color: #F6F9FF;
+  font-family: PingFang SC;
+}
+
+.contract-list {
+  padding: 30rpx 0;
+}
+
+.contract-item:not(:last-child) {
+  margin-bottom: 30rpx;
+}
+
+.contract-item {
+  width: 690rpx;
+  height: 375rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 50rpx 40rpx;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.contract-item .contract-serial {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 46rpx;
+  border-bottom: 1px dashed #C6C6C6;
+}
+
+.contract-serial .contract-id {
+  font-size: 28rpx;
+  color: #646464;
+
+}
+
+.contract-serial .contract-status {
+  width: 130rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  text-align: center;
+  background: #E0E9FE;
+  border-radius: 26rpx;
+  font-size: 24rpx;
+  color: #2564F6;
+}
+
+.contract-info {
+  font-size: 32rpx;
+  font-family: PingFang SC;
+}
+
+.contract-info .cname {
+  margin-top: 20rpx;
+  color: #2C2C2C;
+}
+
+.contract-info .company {
+  margin-top: 14rpx;
+  color: #646464;
+}
+
+.contract-price {
+  margin-top: 16rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FF4343;
+  text-align: right;
+}
+
+/* .contract-info .operator-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.operator-info .operator {
+  color: #2C2C2C;
+}
+
+.operator-info .cprice {
+  color: #FF4343;
+} */

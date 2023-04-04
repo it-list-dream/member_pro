@@ -1,106 +1,69 @@
 .coachList {
-  padding-top: 20rpx;
+  padding-top: 30rpx;
+  font-family: PingFang SC;
 }
 
 .coachList_card {
   position: relative;
   margin: 0 auto;
-  margin-bottom: 22rpx;
+  padding: 30rpx;
   width: 690rpx;
-  height: 260rpx;
+  height: 320rpx;
+  background-color: #ffffff;
   box-sizing: border-box;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.coachList_card {
+  display: flex;
+}
+
+.coachList_card image {
+  flex-shrink: 0;
+  width: 260rpx;
+  height: 260rpx;
   border-radius: 10rpx;
 }
 
-/* .bg_con {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.coach_introduce {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 28rpx;
+  flex: 1;
 }
 
-.bg_con image {
-  width: 100%;
-  height: 100%;
+.coach {
+  font-size: 34rpx;
+  color: #666666;
+}
+
+/* .classes text {
+  color: #222222;
 } */
 
-.coachList .coachList_item {
-  position: relative;
+.classes,
+.classType {
+  margin-top: 24rpx;
+  overflow: hidden;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #666666;
+}
+
+.concatCoach {
+  margin-left: auto;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 48rpx;
+  border: 1px solid #12D58B;
+  border-radius: 25rpx;
+  text-align: center;
   box-sizing: border-box;
-  padding: 20rpx;
-  width: 100%;
-  height: 260rpx;
-  background:  #52495B;
-  border-radius: 10rpx;
-  
-}
-.coach_bg{
-  position: absolute;
-  top: 20rpx;
-  right: 74rpx;
-  width: 207rpx;
-  height: 200rpx;
-}
-
-.coachList .coach_info {
-  display: flex;
-  align-items: center;
-}
-
-.coach_info>image:first-child {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-}
-
-.coach_info>image:last-child {
-  width: 40rpx;
-  height: 40rpx;
-}
-
-.coachList .coach_info .coachName {
-  padding: 0 12rpx;
-  color: #FFFFFF;
-}
-
-.coachList .coach_info image {
-  vertical-align: middle;
-}
-
-.coach_content {
-  margin-top: 30rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.coach_left .accruing {
-  font-size: 36rpx;
+  font-size: 26rpx;
   font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-  padding-bottom: 18rpx;
-}
-
-.coach_left .type {
-  font-size: 22rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-}
-
-.coach_right {
-  width: 70rpx;
-  height: 70rpx;
-  background-color: #12D58B;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-}
-
-.coach_right>image {
-  width: 40rpx;
-  height: 40rpx;
+  /* font-weight: 500; */
+  color: #12D58B;
 }

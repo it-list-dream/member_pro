@@ -2,26 +2,27 @@
 <!--导入模板-->
 <import src="/template/nothing/nothing.wxml" />
 <view class="vipCard" style="margin-top:{{navHeight}}px">
-  <block wx:for="{{cardList}}" wx:key="index">
-    <view class="card_list" bindtap="lookReword" data-date="{{item.UI_FirstDate}}" data-ui_id="{{item.UI_ID}}">
-      <image src="/static/vipimg.png"></image>
-      <view class="card_status">
-        <view class="year">{{item.SC_Name}}</view>
-        <view class="status">状态：{{item.status}}</view>
+  <view class="my_card" wx:for="{{cardList}}" wx:key="index" bindtap="lookReword" data-date="{{item.UI_FirstDate}}" data-ui_id="{{item.UI_ID}}">
+    <image src="/static/others/vip_bg.png"></image>
+    <view class="card_info">
+      <view class="card_state">
+        <text class="year">{{item.SC_Name}}</text>
+        <text class="status" style="color:{{item.UI_FirstDate?'#FCE4AC':'#8F7F59'}};">状态：{{item.status}}</text>
       </view>
-      <view wx:if="{{item.UI_FirstDate}}">
-        <view class="use_day">
-          <text>{{item.RemainingTime}}</text> 天可用
-        </view>
+      <block wx:if="{{item.UI_FirstDate}}">
+        <view class="remainingTime" wx:if="{{item.SC_Type == 1}}">{{item.RemainingTime}}天可用</view>
+        <view class="remainingTime" wx:if="{{item.SC_Type == 2}}">{{item.UI_Times}}次</view>
         <view class="searchResult">
-          <view>{{item.UI_LastDate}} 到期</view>
-          <view >查看入场记录</view>
+          <text class="time">{{item.UI_LastDate}} 到期</text>
+          <text class="record">查看入场记录</text>
         </view>
-      </view>
+      </block>
+      <block wx:else>
+         <view class="unactivated">待激活</view> 
+      </block>
     </view>
+  </view>
+  <block wx:if="{{cardList.length==0}}">
+    <template data="{{message:'暂无内容'}}" is="nothing"></template>
   </block>
-   <block wx:if="{{cardList.length==0}}">
-     <template data="{{message:'暂无内容'}}" is="nothing"></template>
-   </block>
-
 </view>

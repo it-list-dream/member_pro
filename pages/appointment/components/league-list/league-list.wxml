@@ -1,0 +1,45 @@
+<wxs src="../../../../common/common.wxs" module="tools" />
+<view class="league-list">
+  <view class="league-item" wx:for="{{list}}" wx:key="CTO_ID" bindtap="orderTogther" data-togther="{{item}}">
+    <view class="mask-BG"></view>
+    <image class="league-BG" wx:if="{{leagueType ==0}}" src="{{item.CTO_Log?item.CTO_Log:'/static/couse_default.jpg'}}" mode="heightFix"></image>
+    <image class="league-BG" wx:else src="{{item.leagueUrl?item.leagueUrl:'/static/home_pic/league.jpg'}}" mode="heightFix"/>
+    <view class="league-info">
+      <view class="attend-info">
+        <!-- leagueType==1?item. :  -->
+        已参加{{leagueType==1?item.PeopleAttend +'/'+item.PeopleFull:item.CTO_PeopleAttend+'/'+item.CTO_PeopleFull}}
+      </view>
+      <view class="league-name">{{leagueType==0?item.CTO_Name:item.ClassName}}</view>
+      <view class="league-coach">{{leagueType==0? item.AI_Name:item.TeacherName}}</view>
+      <view class="league-appinfo">
+        <view class="league-time" wx:if="{{leagueType==0}}">{{ item.CTO_DateStart+'-'+tools.sub(item.CTO_DateEnd,item.CTO_DateEnd.length-5)}} </view>
+        <view class="league-time" wx:else>
+          {{ item.ClassStartTime+'-'+tools.sub(item.ClassEndTime,item.ClassEndTime.length-5)}}
+        </view>
+        <!-- '#7B6F85'opacity: 0.1;item.cantappointment==1 && {{item.cantappointment==1?'#FD4E54':'gray'}} -->
+        <block wx:if="{{leagueType==0}}">
+          <view class="class-status" wx:if="{{item.CTO_Price>0}}" style="background:#FD4E54;">
+            {{item.IsAppointment==1?'已购买':'购买'}}
+          </view>
+          <view wx:else>
+            <!-- item.cantappointment==1 && item.IsAppointment==0)?'#12D58B':item.IsAppointment==1?'#7B6F85':'#ada6ac' -->
+            <view class="class-status" style="background:{{item.IsAppointment==0?'#12D58B':'#ada6ac'}}">
+              {{item.IsAppointment==0?'预约':'已预约'}}
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view>
+            <view class="class-status" style="background:{{item.IsRegisterUser==0?'#12D58B':'#ada6ac'}}">
+              {{item.IsRegisterUser==0?'预约':'已预约'}}
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="unclass" wx:if="{{list.length==0}}">
+    <image src="/static/none2.png"></image>
+    <view>今天没课，放飞自我</view>
+  </view>
+</view>

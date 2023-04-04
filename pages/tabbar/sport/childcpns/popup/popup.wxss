@@ -1,0 +1,75 @@
+/* 蒙层 */
+.mask {
+  position: fixed;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .6);
+}
+
+.modalDlg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 120;
+  width: 100%;
+  background: #FFFFFF;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+}
+
+
+.mask_title {
+  position: relative;
+}
+
+.title {
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: normal;
+  color: #222222;
+  background: #EAECEF;
+}
+
+.mask_title .cover-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 26rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.sa_course {
+  display: flex;
+  padding: 30rpx 26rpx;
+  justify-content: space-between;
+  font-size: 32rpx;
+  color: #222222;
+  font-weight: normal;
+}
+
+.sa_course .cover-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.line {
+  width: 690rpx;
+  height: 1px;
+  background: #DFDFDF;
+  margin: 0 auto;
+}
+
+.close {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

@@ -9,8 +9,8 @@ Page({
   data: {
     orderTitle: ['支付', '积分'],
     chooseId: 0,
-    orderList: [],
-    otherList: [],
+    payList: [],
+    integralList: [],
     currPage: 1,
     pageSize: 5,
     flag: true,
@@ -29,7 +29,7 @@ Page({
       navTop: app.globalData.navTop,
     })
     this.getMyOrderListByPay();
-    this.getMyOrderListByScore()
+    //this.getMyOrderListByScore()
   },
   choose(e) {
     let index = e.target.dataset.index
@@ -39,13 +39,17 @@ Page({
     if (index == 1) {
       this.setData({
         currPage: 1,
-        flag: true
+        flag: true,
+        payList:[]
       })
+      this.getMyOrderListByScore();
     } else {
       this.setData({
         currPage: 1,
-        flag:true
+        flag:true,
+        integralList:[]
       })
+      this.getMyOrderListByPay();
     }
     this.setData({
       chooseId: index
@@ -54,6 +58,7 @@ Page({
   //金额
   getMyOrderListByPay: function () {
     var that = this
+    console.log('支付')
     api.request({
       url: "/MyOrderListByPay",
       data: {
@@ -66,12 +71,10 @@ Page({
       if (res.data.code == 1) {
         if (res.data.data.length > 0) {
           that.setData({
-            orderList: [...that.data.orderList, ...res.data.data],
+            payList: [...that.data.payList, ...res.data.data],
             isLoadingMoreData: false,
           })
         } else {
-          // that.data.flag = false;
-          // that.data.isLoadingMoreData = false
           that.setData({
             flag: false,
             isLoadingMoreData: false
@@ -94,12 +97,10 @@ Page({
       if (res.data.code == 1) {
         if (res.data.data.length > 0) {
           that.setData({
-            otherList: [...that.data.otherList, ...res.data.data],
+            integralList: [...that.data.integralList, ...res.data.data],
             isLoadingMoreData: false,
           })
         } else {
-          // that.data.flag = false;
-          // that.data.isLoadingMoreData = false
           that.setData({
             flag: false,
             isLoadingMoreData: false
@@ -148,7 +149,7 @@ Page({
    */
   onReachBottom: function () {
     var that = this;
-    //  console.log('触底了')
+    //console.log('触底了')
     if (this.data.flag) {
       var pageSize = that.data.currPage + 1; //获取当前页数并+1
       that.setData({
@@ -162,12 +163,5 @@ Page({
         that.getMyOrderListByPay()
       }
     }
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

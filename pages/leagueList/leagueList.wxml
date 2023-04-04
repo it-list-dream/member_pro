@@ -1,0 +1,25 @@
+<nav-bar page-name="团课列表"></nav-bar>
+<view style="margin-top:calc({{navHeight}}px + 30rpx)">
+  <block wx:for="{{leagueList}}" wx:for-item="league">
+    <view class="suggestionBox" bindtap="handleDetail" data-league="{{league}}">
+      <view class="left_box">
+        <image class="coach_head" src="{{item.leagueUrl?item.leagueUrl:'/static/home_pic/league.jpg'}}"></image>
+        <view>
+          <view class="subject_content">
+          {{league.SG_Name}}
+        </view>
+        <view class="training">
+          <block wx:for="{{stars}}" wx:key="index">
+            <image class="star-image" src="{{index<league.SG_Strength?'../../static/appointment/star_active.png':'../../static/appointment/star.png'}}">
+            </image>
+          </block>
+        </view>
+        </view>
+      </view>
+      <view class="chooseClass">
+        <image src="/static/arrowAll.png"></image>
+      </view>
+    </view>
+  </block>
+
+</view>

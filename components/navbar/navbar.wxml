@@ -17,6 +17,9 @@
       </block>
     </view>
     <!-- 标题 -->
-    <view class='navbar-title' style='top:{{navTop}}px;color:{{titleColor}}'>{{pageName}}</view>
+    <view class='navbar-title' style='top:{{navTop}}px;color:{{titleColor}}'>
+    {{pageName}}
+      <slot name="navSlot"></slot>
+    </view>
   </view>
 </view>

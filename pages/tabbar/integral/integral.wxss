@@ -1,399 +1,93 @@
-.inteTip {
-  position: relative;
+/*  积分标题*/
+/* .integral_list {
+  padding: 0 0 130rpx 0;
+} */
+
+.integralNavList {
+  position: fixed;
+  left: 0;
+  display: flex;
   width: 100%;
-  height: 280rpx;
+  height: 100rpx;
+  background-color: #ffff;
+  border-top: 1px solid #e5e5e5;
+  z-index: 1000;
 }
 
-.bg_image {
+.inteNav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
+
+.inteNav .icon {
+  margin-right: 10rpx;
+}
+
+.inteNav text {
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #222222;
+}
+
+.inteNav::after {
   position: absolute;
-  z-index: -1;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
+  content: '';
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 20rpx;
+  background: #000000;
+  opacity: 0.1;
+}
+
+.inteNav image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.inteNav .arrow {
+  border-color:  transparent transparent transparent  #12D58B !important;
+}
+
+.inteNav .jiantou {
+  transform: rotate(90deg);
+  margin-left: 6rpx;
+  margin-top: 10rpx;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10rpx 10rpx 10rpx 10rpx;
+  border-color:  transparent transparent transparent #222222;
+}
+
+/*  */
+.integral_content {
+  position: relative;
+  top: 100rpx;
+  left: 0;
+  padding: 0 30rpx 130rpx;
 }
 
 .myswiper {
   display: block;
-  margin-top: 30rpx;
-}
-
-/*  */
-.navbar {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.navbar-title {
-  position: fixed;
-  left: 0;
-  width: 100%;
-  height: 32px;
-  box-sizing: border-box;
-  padding: 0 115px;
-  line-height: 32px;
-  text-align: center;
-  z-index: 100;
-  font-size: 18px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-}
-
-.capsule_icon {
-  position: fixed;
-  z-index: 999;
-}
-
-.gray {
-  background: #B4B2BB !important;
-}
-
-/*  积分标题*/
-.integral_list {
-  position: relative;
-  padding: 0 30rpx 130rpx 30rpx;
-}
-
-.deg_img {
-  border-radius: 8rpx;
+  padding: 30rpx 0;
 }
 
 /*  */
 .nav {
-  height: 84rpx;
-  line-height: 84rpx;
+  width: 100%;
+  height: 94rpx;
 }
 
 .nav-title {
+  line-height: 94rpx;
   font-size: 34rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #333333;
-}
-
-/* 行为积分 */
-.self_aword {
-  display: flex;
-  padding: 20rpx 20rpx 0;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  background: #FFFFFF;
-  border-radius: 10rpx;
-}
-
-.self_aword:after {
-  content: '';
-  width: 203rpx;
-}
-
-.self_item {
-  width: 203rpx;
-  /* height: 261rpx; */
-  min-height: 224rpx;
-  background: #FFFFFF;
-  box-shadow: 0 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
-  border-radius: 8rpx;
-  margin-bottom: 20rpx;
-}
-
-.self_item image {
-  width: 203rpx;
-  /* height: 154rpx; */
-  height: 114rpx;
-  vertical-align: bottom;
-}
-
-/* .self_item:not(:nth-child(3n)) {
-  margin-bottom: 0;
-}
-
-.self_item:last-child {
-  margin-bottom: 0;
-} */
-
-.inteBottom {
-  box-sizing: border-box;
-  padding: 19rpx 0 19rpx 19rpx;
-  display: flex;
-  /* height: 107rpx; */
-  height: auto;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card_type {
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.inteBottom>view {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.card_count {
-  font-size: 26rpx;
-  font-family: PingFang SC;
-  /* font-weight: bold; */
-  color: #333333;
-}
-
-.char {
-  padding-left: 4rpx;
-  font-weight: normal;
-  font-size: 23rpx;
-}
-
-/* vip积分 */
-.inte_list {
-  position: relative;
-  box-sizing: border-box;
-  padding: 20rpx;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 690rpx;
-  /* height: 582rpx; */
-  background: #ffffff;
-  border-radius: 10rpx;
-}
-
-.inte_list::after {
-  content: '';
-  width: 203rpx;
-}
-
-.inte_item {
-  box-sizing: border-box;
-  width: 204rpx;
-  /* height: 262rpx; */
-  min-height: 224rpx;
-  background: #FFFFFF;
-  box-shadow: 0 6rpx 20rpx 0 rgba(0, 0, 0, 0.06);
-  border-radius: 8rpx;
-  margin-bottom: 16rpx;
-}
-
-.inte_item>view:nth-child(2) {
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-/* .inte_item:not(:nth-child(3n)) {
-  margin-bottom: 0;
-} */
-
-.inte_num {
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  /* font-weight: bold; */
-  color: #333333;
-}
-
-.inte_num>text {
-  font-size: 23rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.inte_list image {
-  width: 204rpx;
-  height: 114rpx;
-  vertical-align: bottom;
-}
-
-/* 筛选 */
-.filterBox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100vh;
-  z-index: 99;
-}
-
-.wrapper {
-  position: absolute;
-  top: 232rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 690rpx;
-  /* height: 475rpx; */
-  background: #ffffff;
-  border-radius: 8rpx;
-  z-index: 99;
-}
-
-.copyinte {
-  margin-top: 0;
-
-}
-
-.filter_item {
-  overflow: hidden;
-  width: 100%;
-  padding: 0 44rpx;
-  box-sizing: border-box;
-}
-
-.inteType {
-  margin-top: 28rpx;
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.intradion {
-  box-sizing: border-box;
-  height: 80rpx;
-  margin-top: 24rpx;
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  border-bottom: 1px solid #E5E5E5;
-}
-
-.chGroup {
-  display: flex;
-}
-
-.intradion .intradion_item {
-  box-sizing: border-box;
-  text-align: center;
-  width: 140rpx;
-  height: 40rpx;
-  border: 1px solid #333333;
-  border-radius: 8rpx;
-}
-
-.intradion .intradion_item:last-child {
-  margin-left: 64rpx;
-}
-
-.btnWrapper {
-  margin-top: 24rpx;
-}
-
-.descList {
-  margin-top: 20rpx;
-}
-
-.intext {
-  padding: 0 8rpx;
-  display: inline-block;
-  width: 120rpx;
-  height: 30rpx;
-  border: 1px solid #333333;
-  vertical-align: middle;
-
-}
-
-.holder {
-  font-size: 20rpx;
-  font-family: PingFang SC;
-  font-weight: 500 !important;
-  color: #333333;
-}
-
-.desc {
-  padding-left: 12rpx;
-}
-
-.btn_list {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 26rpx;
-  padding-bottom: 30rpx;
-}
-
-button:after {
-  border: none；
-}
-
-button {
-  margin: 0 !important;
-  font-weight: 500;
-  padding: 0 !important;
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: 500 !important;
-  color: #333333 !important;
-}
-
-.btn {
-  width: 211rpx !important;
-  height: 50rpx;
-  line-height: 44rpx;
-  text-align: center;
-  border-radius: 8rpx;
-}
-
-.checkbox {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-}
-
-.is_checked {
-  background: #12D58B;
-  color: #ffffff;
-  border-radius: 8rpx;
-  line-height: 40rpx;
-}
-
-.changebg {
-  border: none !important;
-  border-radius: 8rpx;
-}
-
-.onreset {
-  border: 1px solid #333333;
-}
-
-.onconfrim {
-  background: #12D58B;
-  color: #ffffff !important;
-}
-
-.close {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-
-.none {
-  display: flex;
-  height: 40vh;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: #ffffff;
-  font-size: 28rpx;
-  color: #999;
-}
-
-
-.none_list image {
-  width: 180rpx;
-  height: 200rpx;
 }

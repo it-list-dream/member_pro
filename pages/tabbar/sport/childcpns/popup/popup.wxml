@@ -1,0 +1,20 @@
+<!-- 蒙层 -->
+<cover-view class="mask" catchtouchmove='true' hidden="{{!isPopup}}">
+  <cover-view class="modalDlg">
+    <cover-view class="mask_title">
+      <cover-view class="title">预约的课程类型</cover-view>
+      <cover-image src="/static/others/close.png" bindtap="close" class="cover-image"></cover-image>
+    </cover-view>
+    <cover-view class="sa_course" catchtap="groupCourse">
+      <cover-view>团体课</cover-view>
+      <cover-image src="/static/others/next.png" class="cover-image"></cover-image>
+    </cover-view>
+    <cover-view class="line"></cover-view>
+    <cover-view class="sa_course" catchtap="personalCourse" wx:if="{{!isHideCoachPr}}">
+      <cover-view>私教课</cover-view>
+      <cover-image src="/static/others/next.png" class="cover-image"></cover-image>
+    </cover-view>
+  </cover-view>
+  <!-- 关闭 -->
+  <cover-view class="close" catchtap="close"></cover-view>
+</cover-view>

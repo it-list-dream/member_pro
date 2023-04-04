@@ -7,8 +7,9 @@
 .com-sContent {
   position: relative;
   height: 50rpx;
-  line-height: 50rpx;
-  border: 1px solid #e2e2e2;
+  line-height: 48rpx;
+  /* border: 1px solid #e2e2e2; */
+  border: 1px solid #333333;
   background: white;
   font-size: 28rpx;
 }
@@ -35,10 +36,11 @@
 
 .com-sList {
   position: absolute;
-  background: #F0F2F5;
+  /* background: #F0F2F5; */
+  background-color: #E3E1E4 ;
   width: inherit;
   max-height: 180rpx;
-  border: 1px solid #e2e2e2;
+  border: 1px solid #52495B;
   border-top: none;
   box-sizing: border-box;
   overflow: auto;
@@ -49,7 +51,7 @@
   box-sizing: border-box;
   height: 50rpx;
   line-height: 50rpx;
-  border-top: 1px solid #e2e2e2;
+  border-top:1px solid #52495B;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

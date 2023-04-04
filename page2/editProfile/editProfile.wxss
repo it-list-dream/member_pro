@@ -1,111 +1,65 @@
 /* page2/editProfile/editProfile.wxss */
+page {
+  background: #FFFFFF;
+  font-family: PingFang SC;
+}
+
 .edit_list {
-  background-color: #f0f2f5;
+  overflow: hidden;
   padding: 0 30rpx;
 }
 
-.edit_item {
-  padding-top: 20rpx;
-  height: auto;
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.my_info {
-  overflow: hidden;
-  width: 690rpx;
-  height: auto;
-  background: #FFFFFF;
-  border-radius: 8rpx;
-  padding-bottom: 91rpx;
-}
-
-.my_info>view:first-child {
-  margin-top: 30rpx;
+.avatar {
+  margin: 60rpx 0;
   text-align: center;
 }
 
-.userinfo-avatar {
-  width: 140rpx;
-  height: 140rpx;
-  vertical-align: bottom;
+.avatar image {
+  width: 180rpx;
+  height: 180rpx;
   border-radius: 50%;
 }
 
-.info_item {
+.userInfo .user_item {
+  display: flex;
+  height: 110rpx;
+  line-height: 110rpx;
   box-sizing: border-box;
-  padding: 0 20rpx;
-  height: 90rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #eeeeee;
 }
 
-input{
-  margin-right: 22rpx;
-}
-.sex-box{
-  margin-right: 22rpx;
-}
-.info_item>view:last-child>image {
-  width: 64rpx;
-  height: 64rpx;
-  vertical-align: middle;
-}
-
-.pro_bottom {
-  margin-top: 46rpx;
-}
-
-.pick {
-  display: flex;
-}
-
-.pick image {
-  width: 64rpx;
-  height: 64rpx;
-  vertical-align: middle;
-}
-
-.right_con {
+.userInfo .user_item text {
   font-size: 32rpx;
   font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+  /* font-weight: 500; */
+  color: #999999;
+  padding: 0 60rpx 0 30rpx;
+  flex-shrink: 0;
 }
-
-.info_item .phoneNumber {
-  text-align: right;
+.user_item view,.user_item picker{
+  flex: 1;
+  border-bottom: 0.5px solid #e5e5e5;
+}
+picker {
+  flex: 1;
 }
 
 .btn-list {
   position: fixed;
-  bottom: 0;
+  bottom: 50rpx;
   left: 0;
   width: 100%;
-  margin-bottom: 57rpx;
-}
-
-.info_item>view {
-  font-size: 32rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
 }
 
 .exitBtn {
   margin: 0 auto;
-  width: 690rpx;
-  height: 66rpx;
-  line-height: 66rpx;
+  width: 630rpx;
+  height: 70rpx;
+  line-height: 70rpx;
   background: #12D58B;
-  border-radius: 30rpx;
+  border-radius: 35rpx;
   font-size: 34rpx;
   text-align: center;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #FFFFFF;
 }

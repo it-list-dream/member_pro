@@ -2,80 +2,96 @@
 .device_all {
   height: auto;
 }
+
 .date_screen {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 80rpx;
-  background: #52495B;
-  border-radius: 1px;
+  height: 100rpx;
+  border-top: 1px solid #e5e5e5;
+  background-color: #FFFFFF;
 }
-.picker{
-  height: 80rpx;
-  line-height: 80rpx;
-  color: #FFFFFF;
+
+.picker {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #222222;
 }
+
 .date_screen>view {
   display: flex;
   align-items: center;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
 }
 
 .date_screen .line {
   width: 70rpx;
-  height: 2px;
-  background: #FFFFFF;
+  height: 1px;
+  background: #E5E5E5;
 }
 
 .date_screen image {
   margin-left: 12rpx;
   width: 22rpx;
   height: 22rpx;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .detection_list {
-  padding-top: 16rpx;
-  width: 100%;
-  height: auto;
+  margin-top: 30rpx;
 }
 
 .detection_item {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  box-sizing: border-box;
   margin: 0 auto;
   width: 690rpx;
   height: 160rpx;
   background: #FFFFFF;
   border-radius: 10rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
+  /* box-shadow: 0px 0px 40px 0px rgba(102, 102, 102, 0.1); */
 }
 
-.physical{
+
+.physical {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
-.physical text:first-child{
+
+.physical text:first-child {
   font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: 500;
-  color: #12D58B;
+  /* font-weight: 500; */
+  color: #222222;
 }
-.physical text:last-child{
+
+.physical text:last-child {
   font-size: 26rpx;
   font-family: PingFang SC;
-  font-weight: 400;
-  color: #52495B;
+  /* font-weight: 500; */
+  color: #999999;
 }
-.deTip {
+
+.iconAll image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.lang {
+  width: 30rpx;
+  height: 8rpx;
+  background: #F8BA6E;
+}
+
+/* .deTip {
   text-align: center;
   line-height: 100rpx;
   width: 100rpx;
@@ -88,4 +104,4 @@
   width: 64rpx;
   height: 64rpx;
   vertical-align: middle;
-}
+} */

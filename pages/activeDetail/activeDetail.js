@@ -1,5 +1,6 @@
 const app = getApp()
 var api = require('../../utils/request.js')
+var util = require('../../utils/util.js')
 Page({
   /**
    * 页面的初始数据
@@ -16,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('19', options)
+    //console.log('19', options)
     var that = this
     if (options.card && options.card !== '') {
       this.setData({
@@ -28,8 +29,6 @@ Page({
       navTop: app.globalData.navTop,
     });
     if (options.sign && options.GB_ID && options.SC_ID) {
-      console.log('31------', options.sign)
-      console.log('通过分享页面进来的')
       var user_token = wx.getStorageSync('token');
       //别人通过分享的链接进去
       api.request({
@@ -39,7 +38,6 @@ Page({
         }
       }).then(res => {
         if (res.data.code == 1) {
-          console.log('47', res)
           if (user_token) {
             //门店信息
             that.getCardInfoByID(options.GB_ID, options.SC_ID);
@@ -49,7 +47,6 @@ Page({
             wx.setStorageSync('token', res.data.user_token)
             //保存品牌名
             wx.setStorageSync('GymName', res.data.GymName);
-            //保存门店的id
             wx.setStorageSync('GB_ID', options.GB_ID);
             //门店信息
             that.getCardInfoByID(options.GB_ID, options.SC_ID);
@@ -59,7 +56,6 @@ Page({
         }
       })
     } else {
-      console.log('不是通过分享页面进来的')
       //获取支持的门店
       this.getSupportStore();
       this.getAdviserListByBuy();
@@ -67,7 +63,6 @@ Page({
   },
   //活动卡详情
   getCardInfoByID: function (gb_id, sc_id) {
-    console.log('60-----', gb_id, sc_id)
     var that = this
     api.request({
       url: "/CardInfoByID",
@@ -78,7 +73,6 @@ Page({
       }
     }).then(res => {
       if (res.data.code == 1) {
-        console.log('71' + res)
         that.setData({
           cardDetail: res.data.data[0],
           supportStoreInfo: res.data.data[0].GB_Name
@@ -102,7 +96,7 @@ Page({
         SC_ID: that.data.cardDetail.SC_ID
       }
     }).then(res => {
-      console.log('95' + res)
+      // console.log('105',res)
       let supportStore = res.data.data;
       let storeInfo = '';
       for (var i = 0; i < supportStore.length; i++) {
@@ -116,16 +110,15 @@ Page({
   },
   //会籍顾问
   getAdviserListByBuy: function (id) {
-    console.log('109-------', id)
     var gb_id = wx.getStorageSync('GB_ID') || id;
     api.request({
       url: "/AdviserListByBuy",
       data: {
         user_token: wx.getStorageSync('token'),
-        GB_ID: gb_id 
+        GB_ID: gb_id
       }
     }).then(res => {
-       console.log('123', res)
+      console.log('123', res)
       if (res.data.code == 1) {
         this.setData({
           membership: res.data.data
@@ -139,7 +132,7 @@ Page({
     let phoneNumber = wx.getStorageSync('phone')
     if (phoneNumber && phoneNumber !== '') {
       wx.showLoading({
-        title: '加载中...',
+        title: '支付中...',
         mask: true
       })
       api.request({
@@ -240,9 +233,16 @@ Page({
     }).then(res => {
       if (res.data.code == 1) {
         wx.hideLoading()
-        wx.navigateTo({
-          url: '/page2/suceess/suceess?isShow=3&sc_id=' + that.data.cardDetail.SC_ID,
-        })
+        console.log('205:',res)
+        if (res.data.PayMoneyID) {
+          app.globalData.PayMoneyID = res.data.PayMoneyID;
+          util.handleNavigateTo('/page2/contractDetail/contractDetail')
+        } else {
+          wx.navigateTo({
+            url: '/page2/suceess/suceess?isShow=3&sc_id=' + that.data.cardDetail.SC_ID,
+          })
+        }
+
       } else {
         wx.hideLoading()
         wx.showToast({
@@ -254,9 +254,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示

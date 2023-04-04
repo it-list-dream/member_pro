@@ -8,6 +8,12 @@ const formatTime = date => {
 
   return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
 }
+ function compare(prop) {
+  return function (a, b) {
+    return Number(a[prop]) - Number(b[prop])
+  }
+}
+
 const formatTime1 = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -188,8 +194,6 @@ function toWeekDay(date) { // 传入数据  讲一周的某一天返回成中文
 }
 //var res = createEveryday();
 function closestToCurrentTime(timeArr) {
-  // var timeArr = ['2017-07-10', '2019-08-15', '2020-10-01', '2017-01-01',
-  //    '2021-04-15', '2021-05-21'];
   var timestamp = Date.now();
   var min;
   var index = 0;
@@ -206,7 +210,6 @@ function closestToCurrentTime(timeArr) {
     }
   })
   return index
-  //console.log(index);
 }
 
 function format(date, fmt) {
@@ -233,6 +236,87 @@ function format(date, fmt) {
   }
   return fmt;
 }
+
+const Rad = d => {
+  //根据经纬度判断距离
+  return d * Math.PI / 180.0;
+}
+
+const getDistance = (lat1, lng1, lat2, lng2) => {
+  // lat1用户的纬度    // lng1用户的经度      // lat2商家的纬度   // lng2商家的经度
+  if (lat1 && lng1 && lat2 && lng2) {
+    var radLat1 = Rad(lat1);
+    var radLat2 = Rad(lat2);
+    var a = radLat1 - radLat2;
+    var b = Rad(lng1) - Rad(lng2);
+    var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+    s = s * 6378.137;
+    s = Math.round(s * 10000) / 10000;
+    s = s.toFixed(1) //保留两位小数
+    return s
+  } else {
+    return ""
+  }
+}
+const getLocation = () => {
+  return new Promise((resolve, reject) => {
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        resolve(res)
+      },
+      fail: function (err) {
+        reject(err)
+      }
+    });
+  })
+}
+
+const uploadImage = (url, fileUrl, imageName, formData = {}) => {
+  return new Promise((resolve, reject) => {
+    wx.showLoading({
+      title: '图片上传中...',
+    })
+    wx.uploadFile({
+      url: "https://user.360ruyu.cn/MobileUserV2.asmx" + url,
+      filePath: fileUrl,
+      name: imageName,
+      formData: {
+        user_token: wx.getStorageSync('token'),
+        ...formData
+      },
+      header: {
+        "Content-Type": "multipart/form-data"
+      },
+      success: function (res) {
+        resolve(JSON.parse(res.data));
+      },
+      fail: function (error) {
+        reject(error);
+      },
+      complete: function () {
+        wx.hideLoading();
+      }
+    })
+  })
+}
+
+var isNavigating = false; // 记录是否正在跳转
+
+// 监听跳转事件
+function handleNavigateTo(url) {
+  var isNavigating = false; // 记录是否正在跳转
+  if (!isNavigating) {
+    isNavigating = true;
+    wx.navigateTo({
+      url: url,
+      complete: function () {
+        isNavigating = false; // 跳转完成后将变量置为 false
+      }
+    });
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
   formatTime1: formatTime1,
@@ -240,5 +324,10 @@ module.exports = {
   toWeek: toWeek,
   toWeekDay: toWeekDay,
   closestToCurrentTime: closestToCurrentTime,
-  format: format
+  format: format,
+  getLocation: getLocation,
+  getDistance: getDistance,
+  compare:compare,
+  uploadImage,
+  handleNavigateTo,
 }

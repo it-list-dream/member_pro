@@ -1,36 +1,27 @@
 @import '/template/nothing/nothing.wxss';
-.treadmill {
-  padding: 40rpx 30rpx 0 30rpx;
-}
-
-.treadmill-box {
-  padding: 0 30rpx;
-  box-sizing: border-box;
-  width: 690rpx;
-  height: auto;
-  background: #FFFFFF;
-  border-radius: 8rpx;
-}
 
 .treadmill_header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 108rpx;
-  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-top: 1px solid #e5e5e5;
+  background-color: #FFFFFF;
 }
 
 .line {
   width: 80rpx;
   height: 2rpx;
-  background: #333333;
+  background: #E5E5E5;
 }
 
 picker {
   text-align: center;
   font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
 }
 
@@ -41,48 +32,51 @@ picker image {
   transform: rotate(-90deg);
   vertical-align: middle;
 }
-
+.treadmill-box{
+  margin: 30rpx 0;
+}
 .treadmill_item {
+  width: 690rpx;
+  height: 306rpx;
+  background: #FFFFFF;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  /* box-shadow: 0px 0px 40rpx 0px rgba(102, 102, 102, 0.1); */
+  border-radius: 10rpx;
+  margin: 0 auto 30rpx;
+}
+
+.treadmill{
   display: flex;
-  height: auto;
-  padding: 40rpx 0;
-  border-bottom: 1px solid #eeeeee;
+}
+.treadmill_time {
+  padding: 22rpx 0;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #222222;
 }
 
 .left_box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 252rpx;
-  height: 252rpx;
-  background: #F0F2F5;
+  width: 212rpx;
+  height: 192rpx;
   border-radius: 8rpx;
+  flex-shrink: 0;
 }
-
+.left_box .treadmill_image{
+  width: 100%;
+  height: 100%;
+}
 .right_box {
-  margin-left: 40rpx;
-  font-family: PingFang SC;
-  color: #333333;
-  font-weight: 500;
-}
-
-.right_box>view:first-child {
-  font-size: 36rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 30rpx;
 }
 
 .right_box>view {
-  margin-bottom: 15rpx;
-  font-size: 28rpx;
+  font-size: 26rpx;
   font-family: PingFang SC;
-  color: #333333;
-}
-
-.right_box>view:last-child {
-  margin-bottom: 0;
-}
-
-.treadmill_image {
-  width: 190rpx;
-  height: 190rpx;
-  vertical-align: middle;
+  /* font-weight: 500; */
+  color: #222222;
 }

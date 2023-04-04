@@ -1,0 +1,8 @@
+<view class='nav-wrap' style='height: {{navHeight}}px;'>
+  <view class="navbar" style='height:{{navHeight}}px;background-color:{{bgColor}};'>
+    <my-capsule class="capsule_icon" style="top:{{navTop}}px;left:{{menuRight}}px;"></my-capsule>
+    <view class="navbar-title" style="top:{{navTop}}px;">
+      <slot></slot>
+    </view>
+  </view>
+</view>

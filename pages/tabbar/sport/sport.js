@@ -13,23 +13,24 @@ Page({
     chooseCourse: false,
     motionList: [],
     sportDays: 0,
-    score: 0
-    //无数据
-    // nodata:false
+    score: 0,
+    isHideCoachPre:0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       menuRight: app.globalData.menuRight
-    })
+    });
   },
   changeDate(e) {
     let changebg = e.currentTarget.dataset.num
+    if(changebg == this.data.changebg){
+       return;
+    }
     this.setData({
       changebg: changebg
     })
@@ -45,35 +46,14 @@ Page({
       url: '/page2/instrument/instrument',
     })
   },
-  appointment: function () {
+  onClose(){
     this.setData({
-      chooseCourse: true
+      chooseCourse:false
     })
   },
-  close() {
+  appointment(){
     this.setData({
-      chooseCourse: false
-    })
-  },
-  myClass: function () {
-    wx.navigateTo({
-      url: '/page2/myCourse/myCourse',
-    })
-  },
-  groupCourse: function () {
-    wx.navigateTo({
-      url: '/pages/appointment/appointment?course=1',
-    })
-    this.setData({
-      chooseCourse: false
-    })
-  },
-  personalCourse: function () {
-    wx.navigateTo({
-      url: '/pages/appointment/appointment?course=0',
-    })
-    this.setData({
-      chooseCourse: false
+      chooseCourse:true
     })
   },
   getWeekList: function () {
@@ -81,7 +61,8 @@ Page({
     //获取当前时间
     let startDate = new Date();
     let endDate = new Date();
-    endDate.setDate(startDate.getDate() + 6);
+    let isHideCoachPre = parseInt(app.globalData.setOptions.IsHidenCoachPre);
+    endDate.setDate(startDate.getDate() + 4);
     while ((endDate.getTime() - startDate.getTime()) >= 0) {
       let month = (startDate.getMonth() + 1).toString().length === 1 ? "0" + (startDate.getMonth() + 1).toString() : (startDate.getMonth() + 1);
       let day = startDate.getDate().toString().length === 1 ? "0" + startDate.getDate() : startDate.getDate();
@@ -93,7 +74,8 @@ Page({
     }
     this.setData({
       weekList: dayList,
-      year: new Date().getFullYear()
+      year: new Date().getFullYear(),
+      isHideCoachPre:isHideCoachPre
     })
   },
   //运动日历
@@ -149,10 +131,9 @@ Page({
       data: {
         user_token: wx.getStorageSync('token'),
         GB_ID: wx.getStorageSync('GB_ID'),
-        UI_ID: wx.getStorageSync('UI_ID')
+        UI_ID: wx.getStorageSync('UI_ID') || -1
       }
     }).then(res => {
-     // console.log(res)
       if (res.data.code == 1) {    
         that.setData({
           sportDays: res.data.data.CheckInNum,
@@ -174,7 +155,6 @@ Page({
   onShow: function () {
     this.getWeekList();
     this.getMotionCalendar()
-    //
     this.getScoreRewardActList()
     this.getClassCountByuserId();
   },
@@ -192,10 +172,4 @@ Page({
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
 })

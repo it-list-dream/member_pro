@@ -1,106 +1,92 @@
-<!-- 头部信息 -->
-<view class="myTip">
-  <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
-  <view class="navbar" style='height:{{navHeight}}px;'>
-    <my-capsule class="capsule_icon" style="top:{{navTop}}px;left:{{menuRight}}px" my-class="gray"></my-capsule>
-    <view class='navbar-title' style='top:{{navTop}}px;'>我的</view>
-  </view>
-</view>
 <!--个人信息 -->
-<view class="my_banner">
-  <view class="my_info">
-    <image class="head"
-      src="{{info?info.avatarUrl:'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'}}"
-      catchtap="edit">
-    </image>
-    <!-- 未登录状态 -->
-    <view class="unLogin" wx:if="{{loginStatus == 0}}">
-      <view class="no_title">游客</view>
-      <navigator url="/page2/login/login" class="loginAndRes" hover-class="none">登录/注册</navigator>
+<top-bar>我的</top-bar>
+<view style="margin-top: {{navHeight}}px;" class="profileContainer">
+  <view class="avatar-list" bindtap="edit">
+    <view class="avatar_left">
+      <image src="{{loginStatus!==0?info.avatarUrl:unLoginUrl}}"></image>
     </view>
-    <!-- 未绑定手机号码 -->
-    <view class="bindPhone" wx:elif="{{loginStatus == 1}}">
-      <view class="no_title">{{info.nickName}}</view>
-      <navigator url="/page2/login/login" class="bindPhoneBtn" hover-class="none">点击绑定手机号</navigator>
+    <view class="avatar_right">
+      <block wx:if="{{loginStatus!==2}}">
+        <view class="loginName">{{loginStatus==0?'游客':info.nickName}}</view>
+        <!-- <navigator url="/page2/login/login" class="loginBtn" hover-class="none" hover-stop-propagation='true'>{{loginStatus==0?'登录/注册':'点击绑定手机号'}}</navigator> -->
+        <view class="loginBtn" catchtap="login">{{loginStatus==0?'登录/注册':'点击绑定手机号'}}</view>
+      </block>
+      <block wx:else>
+        <view class="loginName">{{info.nickName}}</view>
+        <view class="phone">{{phone}}</view>
+      </block>
     </view>
-    <!--登录状态  -->
-    <view class="succ_info" wx:elif="{{loginStatus == 2}}">
-      <view class="member_info">
-        <text>如渔会员</text>
-        <image src="{{info.gender == 2?'/static/my/woman.png':'/static/man.png'}}">
-        </image>
+    <image src="/static/my/black_arrow.png" class="arrow"></image>
+  </view>
+  <view class="course_list">
+    <view class="course_item" bindtap="vipCard">
+      <image src="/static/my/card.png"></image>
+      <view class="course_content">
+        <text>会员卡</text>
+        <text class="num">{{myVipCardCount}}</text>
       </view>
-      <view class="phone">{{phone}}</view>
     </view>
-  </view>
-  <!-- 详情 -->
-  <view class="my_course">
-    <view class="cItem" catchtap="vipCard">
-      <view class="num">{{myVipCardCount}}</view>
-      <view class="vipCard">会员卡</view>
-    </view>
-    <view class="cItem" catchtap="perCourse">
-      <view>{{myCoachCount}}</view>
-      <view>私教课</view>
-    </view>
-    <!-- <view class="cItem" catchtap="message">
-      <view>
-        <image src="/static/my/message.png" alt="" style="width:38rpx;height:38rpx;"></image>
+    <view class="course_item" bindtap="perCourse">
+      <image src="/static/my/course.png"></image>
+      <view class="course_content">
+        <text>课程包</text>
+        <text class="num">{{myCoachCount}}</text>
+        <!-- <text>私教课</text>
+         <text class="num">{{myCoachCount}}</text> -->
       </view>
-      <view>消息</view>
-      <view class="dot dotMessage">10</view>
-    </view> -->
+    </view>
   </view>
-</view>
-<!-- nav -->
-<view class="nav">
-  <text class="nav-title">我的储值</text>
-</view>
-<!--  -->
-<view class="stored active" bindtap="storedMoney">
-  <view class="leftStored avtive_item">
-    <text>充值金额</text>
-    <text>{{rechargeMoney}}</text>
-    <text class="yuan">元</text>
-  </view>
-  <view class="rightStored avtive_item">
-    <text>赠送金额</text>
-    <text>{{giveMoney}}</text>
-    <text class="yuan">元</text>
-  </view>
-</view>
-<!-- nav -->
-<view class="nav1">
-  <text class="nav-title">我的积分</text>
-</view>
-<!--  -->
-<view class="inte active">
-  <view class="leftInte avtive_item" bindtap="inteAwrad" data-index="0">
-    <text>VIP积分</text>
-    <text>{{vipIntegral}}</text>
-    <text class="yuan">分</text>
-  </view>
-  <view class="rightInte avtive_item" bindtap="inteAwrad" data-index="1">
-    <text>行为积分</text>
-    <text>{{actionIntegral}}</text>
-    <text class="yuan">分</text>
-  </view>
-</view>
-<!-- nav -->
-<view class="nav2">
-  <text class="nav-title">更多服务</text>
-</view>
-<!-- 更多服务 -->
-<view class="more">
-  <view class="moreService">
-    <block wx:for="{{serviceList}}" wx:key="index">
-      <view class="service" bindtap="lookRecord" data-index="{{index}}" data-path="{{item.serviceUrl}}">
+  <!-- 储值 -->
+  <view class="money-list">
+    <view class="money_item" bindtap="storedMoney">
+      <view class="stored_title">
+        <text>储值金额</text>
+        <image src="/static/my/gray.png"></image>
+      </view>
+      <view class="stored_money">
+        <image src="/static/my/recharge.png"></image>
         <view>
-          <image src="{{item.img}}"></image>
+          {{rechargeMoney}} <text class="yuan">元</text>
         </view>
-        <text>{{item.name}}</text>
       </view>
-    </block>
+      <view class="stored_money">
+        <image src="/static/my/give.png"></image>
+        <view>
+          {{giveMoney}} <text class="yuan">元</text>
+        </view>
+      </view>
+    </view>
+    <view class="money_item" bindtap="inteAwrad">
+      <view class="stored_title">
+        <text>积分</text>
+        <image src="/static/my/gray.png"></image>
+      </view>
+      <view class="stored_money">
+        <image src="/static/my/vip.png"></image>
+        <view>
+          {{vipIntegral}} <text class="yuan">分</text>
+        </view>
+      </view>
+      <view class="stored_money">
+        <image src="/static/my/action.png"></image>
+        <view>
+          {{actionIntegral}} <text class="yuan">分</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <nav nav-title="更多服务" show="{{false}}"></nav>
+  <!--  -->
+  <view class="moreServiceList">
+    <view class="more_item" wx:for="{{serviceList}}" wx:key="index" bindtap="lookRecord" data-index="{{index}}" data-path="{{item.serviceUrl}}">
+      <view class="left">
+        <image src="{{item.img}}"></image>
+      </view>
+      <view class="right">
+        <text>{{item.name}}</text>
+        <image src="/static/my/gray.png"></image>
+      </view>
+    </view>
   </view>
 </view>
 <tabbar selected="{{3}}"></tabbar>

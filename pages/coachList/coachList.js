@@ -17,8 +17,8 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
+      setOptions:app.globalData.setOptions
     })
-    //console.log(options.sign)
     if (options.sign && options.sign !== '') {
       Promise.all([Promise.resolve(this.getGetUrlBySign(options.sign))]).then(res => {
         this.getCoachList();
@@ -52,12 +52,15 @@ Page({
   },
   //call
   call: function (e) {
-    if (e.currentTarget.dataset.phone) {
+    let phone = e.currentTarget.dataset.phone
+    console.log(app.globalData.setOptions.IsHidenCoachPhone)
+    if(app.globalData.setOptions.IsHidenCoachPhone == 1){
+          phone = app.globalData.gymPhone;
+    }
+    if (phone) {
       wx.makePhoneCall({
-        phoneNumber: e.currentTarget.dataset.phone,
-      }).catch(e => {
-        console.log(e)
-      })
+        phoneNumber: phone,
+      }).catch(e => {})
     } else {
       wx.showToast({
         icon: "none",

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "my-capsule":"/components/my-capsule/my-capsule"
+  }
+}

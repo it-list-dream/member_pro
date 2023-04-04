@@ -1,3 +1,4 @@
+var util = require('./utils/util.js');
 App({
   onLaunch: function (options) {
     var that = this
@@ -8,7 +9,6 @@ App({
     //console.log(systemInfo.screenWidth - menuButtonObject.right)
     wx.getSystemInfo({
       success: res => {
-       // console.log('navtar')
         //导航高度
         let statusBarHeight = res.statusBarHeight,
           navTop = menuButtonObject.top,
@@ -16,13 +16,14 @@ App({
         this.globalData.navHeight = navHeight;
         this.globalData.navTop = navTop;
         this.globalData.windowHeight = res.windowHeight;
+        this.globalData.windowWidth = res.windowWidth;
+        this.globalData.pixelRatio = res.pixelRatio
       }
     });
     this.autoUpdate();
   },
   //自动更新
   autoUpdate: function () {
-    console.log(new Date())
     var self = this
     // 获取小程序更新机制兼容
     if (wx.canIUse('getUpdateManager')) {
@@ -41,10 +42,16 @@ App({
                 if (res.confirm) {
                   //3. 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
                   updateManager.applyUpdate()
-                  wx.clearStorage();
-                  // wx.reLaunch({
-                  //   url: 'pages/hello/hello',
-                  // })
+                  // wx.removeStorageSync('loginStatus');
+                  // wx.removeStorageSync('token')
+                  // wx.removeStorageSync('phone');
+                  // wx.removeStorageSync('UI_ID');
+                  // wx.removeStorageSync('userInfo');
+                  // wx.removeStorageSync('hasUserInfo');
+                  // wx.removeStorageSync('tid');
+                  // wx.removeStorageSync('co_id');
+                  wx.removeStorageSync('expireTime')
+                  //wx.clearStorage();
                 } else if (res.cancel) {
                   //如果需要强制更新，则给出二次弹窗，如果不需要，则这里的代码都可以删掉了
                   wx.showModal({
@@ -75,23 +82,40 @@ App({
       })
     }
   },
+  //重新获取sign
+  seceneInfo(options) {
+    console.log('options:',options)
+    //判断场景值
+    if (options.scene == 1011 || options.scene == 1035 || options.scene == 1047 || options.scene == 1048 || options.scene == 1049 || options.scene == 1012) {
+      this.globalData.isChange = true
+    } else {
+      this.globalData.isChange = false
+    };
+  },
   globalData: {
     isIphoneX: false,
     userInfo: null,
+    isChange: false,
     share: false,
-    GB_ID: 0,
     //门店信息
     store: null,
     menuRight: 0,
-    //tabbar
-    // isTabShow:false
+    gymPhone: '',
+    setOptions: {},
+    //1 表示特殊团课
+    leagueType: 0,
+    suggestLeague:[],
+    PayMoneyID:'',
+    isSigning:''
   },
   onShow: function (options) {
+    console.log(options)
     // 判断是否由分享进入小程序
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1044 || options.scene == 1036) {
       this.globalData.share = true
     } else {
       this.globalData.share = false
     };
+    this.seceneInfo(options);
   },
 })

@@ -1,183 +1,171 @@
+@import '/template/nothing/nothing.wxss';
+
 .order_container {
-  /* height: 100vh; */
+  overflow: hidden;
+}
+
+.order_tabs {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #FFFFFF;
+}
+
+.order_tabs text {
+  position: relative;
+  display: block;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #999999;
+}
+
+.order_tabs .active_lice {
+  color: #333333;
+}
+
+.order_tabs .active_lice::after{
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 20rpx;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 6rpx;
+  background: #222222;
+  border-radius: 25%;
+}
+
+
+
+.orderWrapper {
+  margin-top: 30rpx;
   padding: 0 30rpx;
 }
 
-.order_head {
-  display: flex;
-  height: 88rpx;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.order_title {
-  position: relative;
-  /* width: 50%; */
-  line-height: 88rpx;
-  height: 100%;
-  text-align: center;
-  color: #666666;
-}
-
-.active_lice::after {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 14rpx;
-  content: '';
-  width: 20rpx;
-  height: 4rpx;
-  background: #52495B;
-  border-radius: 2rpx;
-}
-.active_lice{
-  color: black;
-}
-/* 内容 */
-.main_order {
-  box-sizing: border-box;
+.pay_list,
+.integral_list {
   width: 690rpx;
-  height: 380rpx;
+  height: 584rpx;
   background: #FFFFFF;
-  border-radius: 10rpx;
+  padding: 60rpx 30rpx;
+  box-sizing: border-box;
   margin-bottom: 30rpx;
-  padding: 30rpx;
 }
 
-.order_status {
+.pay_title {
   display: flex;
   justify-content: space-between;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
 }
 
-.order_status>view {
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
+.pay_title text:first-child {
   color: #333333;
 }
 
-.order_status>view:last-child {
-  font-size: 26rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #12D58B;
+.pay_title text:last-child {
+  color: #909090;
 }
 
 .order_id {
-  margin-top: 20rpx;
-  font-size: 22rpx;
+  padding: 15rpx 0;
+  font-size: 26rpx;
   font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-  opacity: 0.6;
+  /* font-weight: 500; */
+  color: #909090;
 }
 
-.order_img {
-  margin-bottom: 20rpx;
+.order_info {
   display: flex;
+  padding: 30rpx 0;
+  border-top: 0.5px solid #E5E5E5;
+  border-bottom: 0.5px solid #E5E5E5;
+}
+
+.order_left image {
+  flex-shrink: 0;
+  width: 200rpx;
+  height: 180rpx;
+  border-radius: 10rpx;
+}
+
+.order_right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+}
+
+.order_right .card_type {
+  padding-left: 30rpx;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.order_right .price_box {
+  text-align: right;
+}
+
+.order_right .price_box text {
+  display: block;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #909090;
+}
+
+.order_right .price_box text:first-child {
+  margin-bottom: 15rpx;
+}
+
+.all_price {
+  display: flex;
+  padding: 15rpx 0;
   justify-content: space-between;
 }
 
-.my_money {
+.all_price>view {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #222222;
+}
+
+.orange {
+  color: #DAB274;
+}
+
+.red {
+  color: #FF282C;
+}
+
+.pay_time {
   text-align: right;
   font-size: 26rpx;
   font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-.my_money text{
-  font-size: 24rpx;
-}
-
-.order_img>view:first-child{
-  display: flex;
-}
-
-.vip_pic {
-  width: 230rpx;
-  height: 142rpx;
-  vertical-align: bottom;
-}
-
-
-.yearCard {
-  margin-left: 30rpx;
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.right_box{
-  text-align: right;
-}
-
-.right_box>view:first-child {
-  margin-top: 28rpx;
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.right_box>view:nth-child(2) {
-  margin-top: 45rpx;
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
-  color: #333333;
+  /* font-weight: 500; */
+  color: #909090;
 }
 
 /*  */
-.cre_time {
-  display: flex;
-  justify-content: space-between;
-
-}
-
-.cre_time>view:first-child {
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
-  color: #333333;
-}
-
-.cre_time>view:first-child text {
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
-  color: #F4C08D;
-}
-
-.date {
-  font-size: 20rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-  opacity: 0.6;
-}
-
-.storeName {
-  color: #333333 !important;
-}
-
-.ctime,.time1{
+.integral_total {
   text-align: right;
-  font-size: 24rpx;
+  font-size: 30rpx;
   font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-  opacity: 0.6;
+  /* font-weight: 500; */
+  color: #222222;
+  padding: 15rpx 0;
 }
-.none {
-  display: flex;
-  height: 70vh;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 28rpx;
-  color: #999999;
-}
-.none image{
-  width: 140rpx;
+
+.createTime {
+  text-align: right;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #909090;
 }

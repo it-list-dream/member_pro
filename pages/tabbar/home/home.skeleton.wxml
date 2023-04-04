@@ -1,5 +1,5 @@
 <!--
-此文件为开发者工具生成，生成时间: 2021/6/24 下午12:24:59
+此文件为开发者工具生成，生成时间: 2022/8/5 上午10:07:57
 使用方法：
 在 D:\weixinEworkSpace\member_pro\pages\tabbar\home\home.wxml 引入模板
 
@@ -17,121 +17,100 @@
 -->
 <template name="skeleton">
   <view class="sk-container">
-    <view class="banner" hidden="{{hideBanner}}">
-      <swiper autoplay="false" circular="true" class="swiper" indicator-active-color="rgba(251,251,251,1)" indicator-color="rgba(251,251,251,0.6)" interval="2000" current="0"></swiper>
+    <view is="components/top-bar/top-bar">
+      <view class="bar--nav-wrap" style="height: 60px;">
+        <view class="bar--navbar" style="height:60px;background-color:#ffffff;">
+          <view is="components/my-capsule/my-capsule" class="bar--capsule_icon" style="top:24px;left:7px;">
+            <view class="capsule--capsule_list ">
+              <navigator class="capsule--capsule_item" hover-class="none">
+                <image class="capsule--icon30 sk-image"></image>
+              </navigator>
+              <view class="capsule--line"></view>
+              <view class="capsule--capsule_item">
+                <image class="capsule--icon30 sk-image"></image>
+              </view>
+              <view class="capsule--line"></view>
+              <view class="capsule--capsule_item">
+                <image class="capsule--icon30 sk-image"></image>
+              </view>
+            </view>
+          </view>
+          <view class="bar--navbar-title" style="top:24px;"></view>
+        </view>
+      </view>
     </view>
-    <view class="home_content" hidden="{{hideContent}}">
-      <view class="store_pic">
-        <image class="sk-image"></image>
-      </view>
-      <view class="store_wrapper">
-        <view class="store_title sk-transparent sk-text-14-2857-277 sk-text">如渔科技 </view>
-        <view class="store_bottom">
-          <view class="do_business">
-            <text class="sk-transparent sk-text-14-7059-354 sk-text">营业中</text>
-            <text class="time sk-transparent sk-text-14-7059-822 sk-text">6:00-22:00</text>
-          </view>
-          <view class="information" data-phone="4000000000">
-            <view class="phone_wrapper" style="background-color: rgb(255, 255, 255) !important;">
-              <image class="phone sk-image"></image>
-            </view>
-            <view class="phone_info sk-transparent sk-text-20-0000-289 sk-text" style="background-position-x: 50%;">4000000000</view>
-          </view>
+    <view class="home_content" style="margin-top: 60px;">
+      <view class="sk-transparent">;
+        <view class="swiper-wrapper" hidden="{{hideBanner}}">
+          <swiper indicator-dots="true" autoplay="false" circular="true" indicator-active-color="#fff" indicator-color="#BDADAB" interval="4000" current="0">
+            <swiper-item style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+              <image class="swiper-image sk-gray" src="http://47.111.150.151:8011/file/584/Banner/2021/2021051719272507584.jpg"></image>
+            </swiper-item>
+            <swiper-item style="position: absolute; width: 100%; height: 100%; transform: translate(100%, 0px) translateZ(0px);">
+              <image class="swiper-image sk-gray" src="http://47.111.150.151:8011/file/584/Banner/2021/2021051719273007584.jpg"></image>
+            </swiper-item>
+          </swiper>
         </view>
-      </view>
-      <view class="classList">
-        <navigator class="classList_item" hover-class="none">
-          <image class="class_pic sk-image"></image>
-          <text class="sk-transparent sk-text-14-2857-935 sk-text">团课</text>
-        </navigator>
-        <view class="classList_item">
-          <image class="class_pic sk-image"></image>
-          <text class="sk-transparent sk-text-14-2857-913 sk-text">私教</text>
-        </view>
-        <navigator class="classList_item" hover-class="none" open-type="switchTab">
-          <image class="class_pic sk-image"></image>
-          <text class="sk-transparent sk-text-14-2857-721 sk-text">积分商城</text>
-        </navigator>
-        <navigator class="classList_item" hover-class="none">
-          <image class="class_pic sk-image"></image>
-          <text class="sk-transparent sk-text-14-2857-446 sk-text">运动记录</text>
-        </navigator>
-      </view>
-      <view class="coach_list">
-        <view class="star_coach">
-          <text class="sk-transparent sk-text-14-2857-809 sk-text">明星教练</text>
-        </view>
-        <view class="all_t">
-          <text class="sk-transparent sk-text-14-2857-976 sk-text">全部</text>
-          <image class="sk-image"></image>
-        </view>
-      </view>
-      <view class="starCoachList">
-        <view class="star_item">
-          <view class="coach_wrapper" data-coach="[object Object]">
-            <view class="top_star">
-              <image class="top_star_img deg_img sk-image"></image>
-            </view>
-            <view class="bottom_star">
-              <view class="star_title coachInfo1">
-                <text class="sk-transparent sk-text-14-2857-812 sk-text">杨阳</text>
-                <image data-phone="15278787879" class="sk-image"></image>
-              </view>
-              <view class="star_title countNum sk-opacity sk-transparent">累计上课
-                <text style="color:#333333;" class="sk-transparent sk-text-14-2857-902 sk-text">18</text>节</view>
-              <view class="star_title" style="background-color: rgb(255, 255, 255) !important;">
-                <view class="recomTitle sk-transparent sk-image">荐</view>
-                <view class="str_comment sk-transparent sk-text-18-7500-380 sk-text" style="background-position-x: 50%;">店长推荐</view>
-              </view>
-            </view>
+        <view class="storeList" hidden="{{hideStore}}">
+          <view class="store_title sk-transparent sk-text-14-2857-907 sk-text">如渔马术系统</view>
+          <view class="store_time sk-transparent sk-text-14-2857-196 sk-text">营业中：09:00-21:00</view>
+          <view class="store_phone" data-phone="400021999">
+            <image class="sk-image"></image>
+            <text class="margin-text sk-transparent sk-text-14-2857-163 sk-text">联系电话：400021999</text>
           </view>
-          <view class="coach_wrapper" data-coach="[object Object]">
-            <view class="top_star">
-              <image class="top_star_img deg_img sk-image"></image>
-            </view>
-            <view class="bottom_star">
-              <view class="star_title coachInfo1">
-                <text class="sk-transparent sk-text-14-2857-355 sk-text">教练</text>
-                <image data-phone="13812345678" class="sk-image"></image>
-              </view>
-              <view class="star_title countNum sk-opacity sk-transparent">累计上课
-                <text style="color:#333333;" class="sk-transparent sk-opacity">7</text>节</view>
-              <view class="star_title" style="background-color: rgb(255, 255, 255) !important;">
-                <view class="recomTitle sk-transparent sk-image">荐</view>
-                <view class="str_comment sk-transparent sk-text-18-7500-915 sk-text" style="background-position-x: 50%;">店长推荐</view>
-              </view>
-            </view>
+          <view class="store_address">
+            <image class="sk-image"></image>
+            <text class="margin-text sk-transparent sk-text-14-2857-954 sk-text">徐汇区中山西路2025号407</text>
+            <image class="arrow sk-image"></image>
           </view>
-          <view class="coach_wrapper" data-coach="[object Object]">
-            <view class="top_star">
-              <image class="top_star_img deg_img sk-image"></image>
-            </view>
-            <view class="bottom_star">
-              <view class="star_title coachInfo1">
-                <text class="sk-transparent sk-text-14-2857-360 sk-text">小明</text>
-                <image data-phone="true" class="sk-image"></image>
-              </view>
-              <view class="star_title countNum sk-opacity sk-transparent">累计上课
-                <text style="color:#333333;" class="sk-transparent sk-opacity">0</text>节</view>
-              <view class="star_title" style="background-color: rgb(255, 255, 255) !important;">
-                <view class="recomTitle sk-transparent sk-image">荐</view>
-                <view class="str_comment sk-transparent sk-text-18-7500-743 sk-text" style="background-position-x: 50%;">店长推荐</view>
-              </view>
-            </view>
+          <image class="storeLogo sk-image" mode="heightFix" style="width: 70px;"></image>
+        </view>
+        <view class="classList" hidden="{{hideCategory}}">
+          <navigator class="classList_item" hover-class="none">
+            <image class="class_pic sk-image"></image>
+            <text class="sk-transparent sk-text-14-2857-590 sk-text">团课</text>
+          </navigator>
+          <view class="classList_item">
+            <image class="class_pic sk-image"></image>
+            <text class="sk-transparent sk-text-14-2857-269 sk-text">私教</text>
+          </view>
+          <navigator class="classList_item" hover-class="none" open-type="switchTab">
+            <image class="class_pic sk-image"></image>
+            <text class="sk-transparent sk-text-14-2857-870 sk-text">积分商城</text>
+          </navigator>
+          <view class="classList_item">
+            <image class="class_pic sk-image"></image>
+            <text class="sk-transparent sk-text-14-2857-681 sk-text">运动记录</text>
           </view>
         </view>
       </view>
-      <view class="coach_list">
-        <view class="star_coach">
-          <text class="sk-transparent sk-text-14-2857-696 sk-text">推荐课程</text>
-        </view>
-        <view class="all_t">
-          <text class="sk-transparent sk-text-14-2857-538 sk-text">全部</text>
-          <image class="sk-image"></image>
+      <view is="components/nav/nav" class="navWrapper" hidden="{{hideNav}}">
+        <view class="nav--navBox">
+          <view class="nav--nav_left sk-transparent sk-text-14-2857-946 sk-text">明星教练</view>
+          <view class="nav--nav_right">
+            <text class="nav--all sk-transparent sk-text-14-2857-326 sk-text">全部</text>
+            <image class="nav--image sk-image"></image>
+          </view>
         </view>
       </view>
-      <view class="recommend_content">
-        <view class="recommend_list"></view>
+      <view class="scroll-list" hidden="{{hideCoachList}}">
+        <scroll-view scroll-x="true" class="scroll_x" enable-flex="true" style="height: 182px;">
+          <view class="coach_item" data-coach="[object Object]">
+            <view>
+              <image class="sk-image"></image>
+            </view>
+          </view>
+          <view class="coach_item" data-coach="[object Object]">
+            <view>
+              <image class="sk-image"></image>
+            </view>
+          </view>
+          <view class="coach_item" data-coach="[object Object]">
+            <view>
+              <image class="sk-image"></image>
+            </view>
+          </view>
+        </scroll-view>
       </view>
     </view>
   </view>

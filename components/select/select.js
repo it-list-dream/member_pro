@@ -12,7 +12,7 @@ Component({
     },
     selectText: {
       type: String,
-      value: '请选择'
+      value: '全部'
     }
   },
   /**

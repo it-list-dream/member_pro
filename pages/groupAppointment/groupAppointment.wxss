@@ -1,19 +1,44 @@
+page {
+  font-family: PingFang SC;
+  background-color: #FFFFFF;
+}
+
 .group_container {
   position: relative;
-  background-color: #F0F2F5;
+  background-color: #F9F9F9;
 }
 
 /* 图片 */
 .groupImage {
   position: relative;
-  width: 100%;
-  height: 421rpx;
+  width: 690rpx;
+  margin: 0 auto;
+  height: 388rpx;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10rpx;
+}
+
+.mask-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 690rpx;
+  height: 388rpx;
+  background:rgba(0, 0,0, 0.3);
+  z-index: 10;
 }
 
 .groupImage image {
-  width: 100%;
-  height: 100%;
-  vertical-align: bottom;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 388rpx;
+  /* vertical-align: bottom; */
+  border-radius: 10rpx;
+  z-index: 2;
 }
 
 .attentNum {
@@ -24,210 +49,244 @@
   text-align: center;
   height: 50rpx;
   line-height: 50rpx;
-  /* background: #7B6F85; */
   border-radius: 8rpx;
   font-size: 22rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FFFFFF;
+  z-index: 100;
 }
 
 /*  */
-.course_date {
-  padding: 0 30rpx;
+.coach_detail {
   display: flex;
   justify-content: space-between;
-  height: 130rpx;
-  background-color: #FFFFFF;
-  border: 1px solid #eeeeee;
+  padding: 40rpx 30rpx;
   box-sizing: border-box;
+  background-color: #ffffff;
 }
 
-.course_date .left {
+.left_box {
   display: flex;
-  align-items: center;
 }
 
-.course_date .left image {
-  vertical-align: middle;
-}
-
-.course_date .left image:first-child {
-  width: 53rpx;
-  height: 53rpx;
+.left_box .head {
+  width: 102rpx;
+  height: 102rpx;
   border-radius: 50%;
 }
 
-.course_date .left image:last-child {
-  width: 40rpx;
-  height: 40rpx;
-
+.coach_box {
+  padding: 10rpx 0 0 20rpx;
 }
 
-.column {
-  padding: 30rpx;
+.coach_box text {
+  padding-right: 20rpx;
   font-size: 30rpx;
-  font-family: PingFang SC;
-  color: #333333;
-  background: #FFFFFF;
-}
-
-
-
-.course_date .coachName {
-  padding: 0 9rpx 0 20rpx;
-  font-size: 48rpx;
-  font-family: PingFang SC;
   font-weight: bold;
-  color: #333333;
+  color: #000000;
 }
 
-
-
-.course_date .right {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  /* justify-content: space-evenly; */
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #B6B9BE;
-}
-
-
-.course_name {
-  border: 1px solid #eeeeee;
-}
-
-.course_time {
-  text-indent: 1em;
-  border: 1px solid #eeeeee;
-}
-
-.course_address {
-  text-indent: 1em;
-  border-bottom: 1px solid #eeeeee;
-}
-
-.course_introduce {
-  display: flex;
-  font-weight: 400;
-  color: #333333;
-  background: #FFFFFF;
-  text-indent: 1em;
-}
-
-.course_introduce .introduce {
-  white-space: nowrap;
-}
-
-/* 免费的团课 */
-.order_list {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100rpx;
-  background: #FFFFFF;
-}
-
-.order {
-  width: 690rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  background: #12D58B;
-  border-radius: 30rpx;
-  color: #FFFFFF;
-  margin: 0 auto;
-  margin-top: 20rpx;
-}
-
-/* 支付方式 */
-.pay_course {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 212rpx;
-  background-color: #FFFFFF;
-}
-
-.pay_course .pay_list {
-  padding: 0 34rpx;
-}
-
-.pay_course .pay_list .pay {
-  display: flex;
-  align-items: center;
-  /* height: 102rpx; */
-  padding: 26rpx 0;
-  border-bottom: 1px solid #eeeeee;
-}
-
-.pay_course .pay_title {
-  font-size: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.pay_course .WeChatPay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 22rpx;
-  width: 201rpx;
-  height: 55rpx;
-  border: 1px solid #cccccc;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-
-}
-
-.pay_course .WeChatPay image {
-  width: 36rpx;
-  height: 36rpx;
-  padding-left: 28rpx;
+.coach_box image {
+  width: 30rpx;
+  height: 30rpx;
   vertical-align: middle;
 }
 
-.pay_course .pay_total {
+.right_box {
+  /* align-self: flex-end; */
+  font-size: 22rpx;
+  color: #B6B9BE;
+}
+
+.right_box>view:last-child {
+  margin-top: 10rpx;
+}
+
+.group_detail {
+  margin-top: 20rpx;
+  padding: 0 30rpx;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.group_col {
+  width: 100%;
+  height: 106rpx;
+  line-height: 106rpx;
+  border-bottom: 0.5px solid #e5e5e5;
+}
+
+.group_col:last-child {
+  border: none !important;
+}
+
+.group_icon {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+}
+
+.group_col text {
+  padding-left: 15rpx;
+  font-size: 28rpx;
+  color: #000000;
+}
+
+.gruop_introduce {
+  margin-top: 20rpx;
+  padding: 60rpx 30rpx;
+  background-color: #ffffff;
+}
+
+.introduce_title {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #000000;
+}
+
+.introduce_title::before {
+  content: '';
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  border: 2rpx solid #12D58B;
+  border-radius: 50%;
+}
+
+.introduce_title text {
+  padding-left: 14rpx;
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #000000;
+}
+
+.introduce_content {
+  padding: 40rpx 0 220rpx;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 26rpx;
+  color: #000000;
+  line-height: 48rpx;
+}
+
+.group_bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 240rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 8rpx 0px rgba(4, 0, 0, 0.26);
+}
+
+.wechatPay {
+  display: flex;
+  height: 118rpx;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.wechatPay image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.wechatPay text {
+  padding-left: 18rpx;
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #000000;
+}
+
+/* .payMehods {
+  width: 100%;
+  height: 118rpx;
+  line-height: 118rpx;
+  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.payMehods text {
+  padding-right: 28rpx;
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #000000;
+}
+
+.payMehods .pay {
+  display: inline-block;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border: 0.5px solid #333333;
+  font-size: 26rpx;
+  color: #000000;
+}  */
+
+.price_box {
   display: flex;
   justify-content: space-between;
+  height: 120rpx;
   align-items: center;
-  padding: 26rpx 0;
-  font-size: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
 }
 
-.pay_course .pay_total .pay_number {
-  display: flex;
+.price {
+  font-size: 50rpx;
+  font-family: Alibaba PuHuiTi;
+  font-weight: bold;
+  color: #FD575C;
 }
 
-.pay_course .pay_total .pay_number .price {
-  color: red;
-}
-
-.pay_order .order_title {
-  width: 160rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+.price_box .appoinmentBtn {
+  width: 220rpx;
+  height: 80rpx;
+  margin: 0;
+  padding: 0;
+  line-height: 80rpx;
   text-align: center;
-  color: #ffffff;
-  font-size: 34rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-  background: #12D58B;
-  border-radius: 30rpx;
+  background: #52495B;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  color: #FFFFFF !important;
+}
+button::after { border: none; }
+
+.free_group {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 8rpx 0px rgba(4, 0, 0, 0.26);
 }
 
+.free_group .appoinemnt {
+  width: 690rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: #52495B;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #FFFFFF !important;
+}
+
+/* 新的样式 */
+/*  */
 /* 选座 */
 .mask {
   position: fixed;
@@ -256,7 +315,7 @@
   line-height: 68rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
   border-bottom: 1px solid #eeeeee;
 }
@@ -282,7 +341,7 @@
   margin-bottom: 20rpx;
   font-size: 26rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #999999;
 }
 

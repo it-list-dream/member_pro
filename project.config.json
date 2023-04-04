@@ -1,7 +1,8 @@
 {
-  "description": "项目配置文件",
+  "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "packOptions": {
-    "ignore": []
+    "ignore": [],
+    "include": []
   },
   "skeleton-config": {
     "global": {
@@ -23,15 +24,17 @@
         "shape": "circle",
         "shapeOpposite": []
       },
-      "excludes": [
-        ".head_wrapper"
+      "excludes": [],
+      "remove": [
+        ".copyright",
+        ".company",
+        "top-bar"
       ],
-      "remove": [],
       "empty": [],
-      "hide": [
-        ".countNum"
+      "hide": [],
+      "grayBlock": [
+        ".swiper-image"
       ],
-      "grayBlock": [],
       "showNative": false,
       "backgroundColor": "transparent",
       "mode": "fullscreen",
@@ -40,7 +43,7 @@
       "decimal": 4
     },
     "pages": {
-      "tabbar/home/hoome": {}
+      "pages/tabbar/home/hoome": {}
     }
   },
   "setting": {
@@ -71,27 +74,28 @@
     },
     "enableEngineNative": false,
     "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
-    "showES6CompileOption": false
+    "condition": false,
+    "disableUseStrict": false,
+    "useStaticServer": true,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "lazyloadPlaceholderEnable": false,
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.18.0",
+  "libVersion": "2.18.1",
   "appid": "wx31644a3c951aa4ac",
   "projectname": "member_pro",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {},
-  "staticServerOptions": {
-    "baseURL": "",
-    "servePath": ""
-  },
-  "isGameTourist": false,
   "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
+  "simulatorPluginLibVersion": {
+    "wxext14566970e7e9f62": "2.27.3"
+  },
   "condition": {
     "search": {
       "list": []
@@ -111,5 +115,9 @@
     "miniprogram": {
       "list": []
     }
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
   }
 }

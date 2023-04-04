@@ -1,0 +1,9 @@
+<view class="rewardContainer">
+  <view class="rewards_item" wx:for="{{rewardsList}}" wx:key="index" bindtap="_selfRewordInte" data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
+    <image src="{{item.SE_Logo}}" class="reward_picture"></image>
+    <view class="reward_coontent">
+      <view class="reward_title">{{item.SE_Name}}</view>
+      <view class="reward_score">{{item.ActScore || item.PayScore}}<text class="score">积分</text></view>
+    </view>
+  </view>
+</view>

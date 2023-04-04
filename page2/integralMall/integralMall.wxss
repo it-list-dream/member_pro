@@ -1,443 +1,384 @@
 page {
   font-family: PingFang SC;
-}
-
-.scorecard {
-  width: 100%;
-  height: auto;
-  padding-bottom: 130rpx;
-}
-
-.rewardImg1 {
-  width: 100%;
-}
-
-
-.conternt {
-  width: 100%;
-  height: 362rpx;
-  background-color: #ffffff;
-}
-
-.w-h {
-  box-sizing: border-box;
-  width: 100%;
-  height: 90rpx;
-  line-height: 90rpx;
-  padding: 0 32rpx;
-}
-
-.integral {
-  display: flex;
-  align-items: center;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  color: #333333;
-}
-
-.vip_inte {
-  margin-right: 8rpx;
-  display: block;
-  width: 52rpx;
-  height: 52rpx;
-  line-height: 52rpx;
-  text-align: center;
-  background: #F4C08D;
-  border-radius: 50%;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 800;
-  color: #FFFFFF;
-}
-
-.minute {
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 32rpx;
-  font-family: PingFang SC;
-  width: 52rpx;
-  height: 52rpx;
-  margin-right: 10rpx;
-  line-height: 52rpx;
-  text-align: center;
-  border-radius: 50%;
-  background-color: #B6B9BE;
-}
-
-.credits {
-  /* margin-right: 4rpx; */
-  font-size: 48rpx;
-  font-weight: bold;
-}
-
-.minute-type {
-  width: 206rpx;
-  height: 28rpx;
-}
-
-.dura {
-  width: 376rpx;
-  height: 30rpx;
-  margin-right: 10rpx;
-  margin-left: 33rpx;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-  margin-right: 14rpx;
-}
-
-.introduce {
-  box-sizing: border-box;
-  width: 100%;
   background: #ffffff;
-  height: auto;
-  padding: 20rpx 30rpx;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
 }
 
-.introduce>text:last-child {
-  line-height: 50rpx;
+.coverstionBox {
+  padding-top: 20rpx;
 }
 
-.w-h {
-  border-bottom: 1px solid #eeeeee;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+.scorecard,
+.inKind,
+.experienceClass {
+  width: 100%;
+  background-color: #F9F9F9;
 }
 
-.introduce>view {
-  height: 100%;
+.card_header {
+  background: #ffffff;
+  padding: 0 30rpx 60rpx;
+}
+
+.bannerImage {
+  width: 690rpx;
+  height: 460rpx;
+  border-radius: 10rpx;
+  vertical-align: bottom;
+}
+
+.card_title {
+  padding: 60rpx 0 40rpx;
+}
+
+.card_title::before {
+  content: '';
   display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 20rpx;
+  height: 20rpx;
+  border: 2rpx solid #12D58B;
+  border-radius: 50%;
 }
 
-/* <!-- 兑换 --> */
-.infinity {
-  position: fixed;
-  bottom: 0rpx;
-  left: 0;
-  width: 100%;
-  height: 200rpx;
-  background-color: #FFFFFF;
-}
-
-.conversion {
-  width: 100%;
-  height: 70rpx;
-  line-height: 70rpx;
-  text-align: center;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-  background-color: #52495B;
-}
-
-.real_box {
-  padding-bottom: 220rpx;
-}
-
-.total_list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 130rpx;
-  padding: 0 30rpx;
-}
-
-.total_list>view:first-child {
-  font-family: PingFang SC;
-  font-weight: 500;
-  font-size: 36rpx;
-}
-
-.total {
-  color: #333333;
-}
-
-.inte_count {
-  color: #FD585D;
-}
-
-.conBtn {
-  width: 160rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  background: #12D58B;
-  border-radius: 30rpx;
-  font-size: 34rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
-  color: #FFFFFF;
-}
-
-/* 实物 */
-.real_detail {
-  width: 100%;
-  /* height: 581rpx; */
-  height:auto;
-  background: #ffffff;
-}
-
-.real_item {
-  box-sizing: border-box;
-  height: 90rpx;
-  line-height: 90rpx;
-  border-bottom: 1px solid #EEEEEE;
+.card_title text {
+  padding-left: 12rpx;
   font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+  font-weight: 800;
+  color: #000000;
 }
 
-/* .real_item text {
-  text-align-last: justify;
-  text-align: justify;
-} */
-
-.real_inte {
-  display: flex;
-  align-items: center;
-  padding-left: 32rpx;
-}
-
-.real_course {
-  padding-left: 32rpx;
-}
-
-.real_duration {
-  padding-left: 64rpx;
-  /* border: 1px solid #eeeeee; */
-}
-
-.real_date {
-  padding-left: 32rpx;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.introduction {
-  display: flex;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 224rpx;
-  padding: 24rpx 0;
-  margin-bottom: 56rpx;
-}
-
-.intro_title {
-  padding-left: 64rpx;
-  white-space: nowrap;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.intro_content {
-  padding-right: 30rpx;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 400;
-  color: #333333;
-  line-height: 45rpx;
-}
-
-/* 选择教练 */
-.chooseCoach {
-  width: 100%;
-  height: 286rpx;
-  overflow: hidden;
-  background: #FFFFFF;
-  /* background: pink; */
-}
-
-.coach {
-  padding: 28rpx 0 28rpx 32rpx;
-  font-size: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.coach_swiper {
-  box-sizing: border-box;
-  /* margin: 0 30rpx; */
-}
-
-.coach_swiper swiper {
-  height: 188rpx;
-}
-
-.coach_swiper swiper-item {
-  height: 100%;
+.integralCount {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 200rpx;
+  height: 220rpx;
+  background: #ECECEC;
+  /* border: 4rpx solid #858584; */
+  border-radius: 10rpx;
 }
 
-.coach_img image {
-  width: 108rpx;
-  height: 108rpx;
+.integralCount image {
+  margin-top: 56rpx;
+  width: 41rpx;
+  height: 41rpx;
+}
+
+.integralCount .vipIcon {
+  margin-top: 56rpx;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: #D5B47E;
   border-radius: 50%;
+  font-size: 14rpx;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.integral_number {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #222222;
+}
+
+.integral_number text {
+  font-size: 20rpx;
+}
+
+.card-detail {
+  margin-top: 20rpx;
+  padding: 0 30rpx 120rpx;
+  background: #ffffff;
+}
+
+.duration {
+  font-size: 28rpx;
+  color: #000000;
+}
+
+.card_introduce {
+  font-size: 28rpx;
+  color: #000000;
+  line-height: 48rpx;
+  word-break: break-all;
+  padding-bottom: 220rpx;
+}
+
+.card_bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  padding: 0 30rpx;
   box-sizing: border-box;
+  background: #ffffff;
+  box-shadow: 0px 0px 8rpx 0px rgba(4, 0, 0, 0.26);
 }
 
-.active {
-  border: 2px solid #12D58B;
-}
 
-/*  */
-.pitch {
+.exchangeBox {
   display: flex;
-  justify-content: space-between;
-  height: 90rpx;
-  margin: 20rpx 0 0 0;
-  padding: 0 32rpx;
-  background-color: #ffffff;
-}
-
-.pitch view:first-child {
-  font-size: 36rpx;
-  line-height: 90rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-
-}
-
-.buy_count {
-  display: flex;
-  font-size: 38rpx;
-  font-family: PingFang SC;
+  width: 100%;
   height: 100%;
   align-items: center;
-  text-align: center;
+  justify-content: space-between;
 }
 
-.buy_count>text:nth-child(2) {
-  padding: 0 16rpx;
-  font-family: PingFang SC;
+.score_box {
+  display: flex;
 }
 
-.buy_count .symbol {
-  width: 60rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  background: #F0F2F5;
+.score_box view {
   font-size: 50rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
+  font-weight: bold;
+  color: #FD575C;
 }
 
-.buy_count .symbol:first-child {
-  border-radius: 8rpx 0 0 rpx;
+.char {
+  font-size: 30rpx;
 }
 
-.buy_count .symbol:last-child {
-  border-radius: 0 8rpx 8rpx 0;
+.exchange_number {
+  padding-left: 12rpx;
+  padding-bottom: 8rpx;
+  align-self: flex-end;
+  font-size: 20rpx;
+  color: #999999;
 }
 
-.buy_count text:nth-child(2) {
-  margin: 0 1px;
-  width: auto;
-  height: 60rpx;
-  padding: 0 20rpx;
-  font-size: 40rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  background: #F0F2F5;
+.exchangeBox .echangeBtn {
+  width: 220rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #52495B;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
 }
 
-/*  */
-.available_list {
-  height:auto;
-  padding-bottom: 80rpx;
-}
-
-.exp_wrapper {
-  padding-bottom: 130rpx;
-}
-
-.available_item {
-  width: 100%;
-  height: auto;
-  background-color: #ffffff;
-}
-
-.available_inte {
+/* 体验课 */
+.experience_time {
+  margin-top: 20rpx;
+  background: #ffffff;
+  padding: 0 30rpx;
   box-sizing: border-box;
+}
+
+.experience_time>view {
+  height: 108rpx;
+  line-height: 108rpx;
+}
+
+.experience_time>view text {
+  padding-left: 12rpx;
+}
+
+.experience_time .time {
+  border-bottom: 0.5px solid #E5E5E5;
+}
+
+.time image,
+.date image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.chooseCoach {
+  box-sizing: border-box;
+  padding: 40rpx 30rpx;
+}
+
+.coach_tile {
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #000000;
+}
+
+.scroll-x {
+  display: flex;
+  height: 220rpx;
+  flex-wrap: nowrap;
+  margin-top: 60rpx;
+}
+
+.choose_box {
+  position: relative;
+  width: 200rpx;
+  height: 220rpx;
+  background: #ffffff;
+  margin-right: 20rpx;
+  box-shadow: 0px 0px 10rpx 0px rgba(102, 102, 102, 0.2);
+  border-radius: 10rpx;
+  flex-shrink: 0;
+}
+
+.choose-item {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose_active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200rpx;
+  height: 220rpx;
+}
+
+.chooseBorder {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.choose-item image {
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #000000;
+}
+
+.experience_introduce {
+  padding: 0 30rpx 240rpx;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.exper_desc {
+  padding-bottom: 220rpx;
+  font-size: 26rpx;
+  color: #000000;
+  line-height: 48rpx;
+  word-break: break-all;
+}
+
+.experience_bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 240rpx;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  z-index: 1000;
+  box-shadow: 0px 0px 8rpx 0px rgba(4, 0, 0, 0.26);
+}
+
+.exper_num {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #eeeeee;
-  height: 91rpx;
+  justify-content: space-between;
+  width: 100%;
+  height: 118rpx;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.inte {
-  padding-left: 32rpx;
+.exchangeNum {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #000000;
 }
 
-.product {
-  padding-left: 64rpx;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #010101;
-}
-
-/* 快递方式 */
-
-.exp_item {
+.counter {
   display: flex;
-  margin-top: 30rpx;
-  box-sizing: border-box;
-  padding-left: 30rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  background: #FFFFFF;
-  white-space: nowrap;
-  border-bottom: 1px solid #eeeeee;
 }
 
-.dispatching {
-  padding: 20rpx;
-  height: auto;
-  background: #ffffff;
-  font-family: PingFang SC;
+.counter text {
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  background: #F0F2F5;
+}
+
+.course_number {
+  margin: 0 1px;
+  width: unset;
+  font-size: 40rpx;
+  padding: 0 8rpx;
   color: #333333;
 }
 
-.radio-group {
-  display: flex;
+.counter .flag {
+  font-size: 50rpx;
+  color: #000000;
+  opacity: 0.4;
 }
 
-.radio:last-child {
-  margin-left: 48rpx;
+.reduce {
+  border-radius: 8rpx 0px 0px 8rpx;
+}
+
+.plus {
+  border-radius: 0px 8rpx 8rpx 0px;
+}
+
+/* 实物 */
+
+.inKind_head,
+.experience_head {
+  background: #ffffff;
+  padding: 0 30rpx 60rpx;
+  box-sizing: border-box;
+}
+
+.inKindDesc {
+  font-size: 26rpx;
+  color: #000000;
+  word-break: break-all;
+  line-height: 48rpx;
+}
+
+.inKindInfo {
+  margin-top: 20rpx;
+  background: #ffffff;
+  padding: 0 30rpx 340rpx;
+  box-sizing: border-box;
+}
+
+.radio-group view {
+  font-size: 28rpx;
+  color: #000000;
+}
+
+.radio-group label:last-child>view {
+  margin-top: 40rpx;
 }
 
 /* radio */
+radio .wx-radio-input.wx-radio-input {
+  width: 30rpx;
+  height: 30rpx;
+}
+
 radio .wx-radio-input.wx-radio-input-checked {
   border: none;
-  background: #52495B !important;
+  background: #222222 !important;
 }
 
 /* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
 radio .wx-radio-input.wx-radio-input-checked::before {
   /* 去除对号 */
   content: '';
-  width: 36rpx;
-  height: 36rpx;
+  width: 24rpx;
+  height: 24rpx;
   border-radius: 50%;
-  background-color: #52495B;
+  background: #222222;
 }

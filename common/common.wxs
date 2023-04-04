@@ -1,5 +1,5 @@
 var getWeekdDay = function (value, t) {
- // console.log(value,t)
+  // console.log(value,t)
   t = t.toString();
   //今天
   var today = getDate();
@@ -45,9 +45,6 @@ var getFirstStr = function (value) {
   var cur_day = value.slice(value.length - 2, value.length)
   return Number(cur_day, cur_day)
 }
-var toFixed = function (value) {
-  return Math.floor(value)
-}
 
 // 判断时间是不是在一个区间内
 var timeIsinarea = function isTimes(enddate) {
@@ -76,27 +73,55 @@ var sub = function (val, start, end) {
     return val
   }
 }
-function replaceChar(str){
-  if(str!=null){
-   return str.replace(getRegExp(',','g'),'  |  ');
-  }else{
+
+function replaceChar(str) {
+  if (str != null) {
+    return str.replace(getRegExp(',', 'g'), '  |  ');
+  } else {
     return str
   }
 }
-function replaceChar1(str,replaceChar,charCode){
-  if(str!=null){
-    return str.replace(getRegExp(replaceChar,'g'),charCode);
-  }else{
+
+function replaceChar1(str, replaceChar, charCode) {
+  if (str != null) {
+    return str.replace(getRegExp(replaceChar, 'g'), charCode);
+  } else {
     return str
   }
- 
+
 }
+var toFixed = function (value) {
+  return Math.floor(value)
+}
+
+function toFixed1(value, number) {
+  //console.log(value, number)
+  if (value) {
+    return parseFloat(value).toFixed(number || 1);
+  }
+}
+
+function transfromString(char){
+   if(char == null || char == 'undefined'){
+       return "";
+   }else{
+     return char;
+   }
+}
+
+
+// function getLeaguePrice(value,priceList){
+
+// }
+
 module.exports = {
   getWeekdDay: getWeekdDay,
   getFirstStr: getFirstStr,
-  toFixed: toFixed,
   timeIsinarea: timeIsinarea,
   sub: sub,
-  replaceChar:replaceChar,
-  replaceChar1:replaceChar1
+  replaceChar: replaceChar,
+  replaceChar1: replaceChar1,
+  toFixed: toFixed,
+  toFixed1: toFixed1,
+  transfromString:transfromString
 }

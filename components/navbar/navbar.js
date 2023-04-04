@@ -4,6 +4,7 @@ const app = getApp();
 Component({
   options: {
     addGlobalClass: true,
+    multipleSlots: true
   },
   externalClasses: ['custom-class'],
   /**
@@ -41,16 +42,12 @@ Component({
   },
   lifetimes: {
     attached: function () {
-
       this.setData({
-        share: app.globalData.share
-      })
-
-      this.setData({
+        share: app.globalData.share,
         navHeight: app.globalData.navHeight,
         navTop: app.globalData.navTop
       })
-    }
+    },
   },
   /**
    * 组件的方法列表
@@ -58,13 +55,15 @@ Component({
   methods: {
     //回退
     _navBack: function () {
-      // console.log(111)
       wx.navigateBack({
         delta: 1
       })
     },
     //回主页
     _toIndex: function () {
+      if(app.globalData.share){
+        app.globalData.share = false;
+      }
       wx.switchTab({
         url: '/pages/tabbar/home/home'
       })

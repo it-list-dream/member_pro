@@ -1,7 +1,10 @@
 {
   "usingComponents": {
-    "nav-bar":"/components/navbar/navbar",
     "tabbar":"/components/tabbar/tabbar",
-    "my-capsule":"/components/my-capsule/my-capsule"
+    "my-capsule":"/components/my-capsule/my-capsule",
+    "top-bar":"/components/top-bar/top-bar",
+    "nav":"/components/nav/nav",
+    "popup":"./childcpns/popup/popup",
+    "reward-points":"/components/reward-points/reward-points"
   }
 }

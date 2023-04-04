@@ -1,0 +1,17 @@
+<nav-bar page-name="合同列表"></nav-bar>
+<view class="contract-list" style="margin-top:{{navHeight}}px;">
+    <view class="contract-item" wx:for="{{contractList}}" bindtap="goContractDetail" wx:key="index" data-contract="{{item}}">
+        <view class="contract-serial">
+            <view class="contract-id">合同编码：{{item.ContractNo?item.ContractNo:''}}</view>
+            <view class="contract-status">{{item.SC_ID?'已签署':'未签署'}}</view>
+        </view>
+        <view class="contract-info">
+            <view class="cname">{{item.CardName}}</view>
+            <view class="company">{{item.GB_Name}}</view>
+            <view class="contract-price">¥{{item.UP_MoneyReal}}</view>
+            <!-- <view class="operator-info">
+                <view class="cprice">¥2900,00</view>
+            </view> -->
+       </view>
+    </view>
+</view>

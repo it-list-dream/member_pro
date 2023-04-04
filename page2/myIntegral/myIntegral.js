@@ -38,7 +38,7 @@ Page({
     actionIntegral: 0,
     //最后
     // isEnd: true,
-    typing: '请选择'
+    typing: '全部'
   },
 
   /**
@@ -51,20 +51,20 @@ Page({
       vipIntegral: options.vipIntegral || 0,
       actionIntegral: options.actionIntegral || 0
     })
-
-    if (options.types == 'vip') {
-      this.setData({
-        typing: '消费积分'
-      })
-      this.getInteData(1, 0);
-    } else if (options.types == 'action') {
-      this.setData({
-        typing: '行为积分'
-      })
-      this.getInteData(2, 0);
-    } else {
-      this.getInteData(0, 0);
-    }
+    // if (options.types == 'vip') {
+    //   this.setData({
+    //     typing: '消费积分'
+    //   })
+    //   this.getInteData(1, 0);
+    // } else if (options.types == 'action') {
+    //   this.setData({
+    //     typing: '行为积分'
+    //   })
+    //   this.getInteData(2, 0);
+    // } else {
+    //   this.getInteData(0, 0);
+    // }
+    this.getInteData(0, 0);
   },
   getInteData(scoreType, useType) {
     var that = this
@@ -194,17 +194,17 @@ Page({
       }
     }).then(res => {
       if (that.data.tab == 0) {
-        console.log('all所有的内容')
+        //console.log(0)
         that.setData({
           all: res.data.data
         })
       } else if (that.data.tab == 1) {
-        console.log('profitable内容')
+        //console.log(1)
         this.setData({
           profitable: res.data.data
         })
       } else if (that.data.tab == 2) {
-        console.log('takeIntegral内容')
+        //console.log(2)
         this.setData({
           takeIntegral: res.data.data
         })

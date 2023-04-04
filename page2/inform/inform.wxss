@@ -70,7 +70,7 @@
 .versions text:last-child {
   font-size: 20rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
   opacity: 0.6;
 }
@@ -78,7 +78,7 @@
 .infom_item view:last-child {
   font-size: 24rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
 }
 
@@ -108,14 +108,14 @@
 .coach {
   font-size: 24rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
 }
 
 .time {
   font-size: 20rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
   opacity: 0.6;
 }

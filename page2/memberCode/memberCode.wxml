@@ -1,24 +1,8 @@
 <wxs src="./handleDate.wxs" module="tools" />
-<view class='nav-wrap' style='height: {{navHeight}}px;'>
-  <view class="navbar" style='height:{{navHeight}}px;'>
-    <view class="navbar-action-wrap" style='top:{{navTop}}px;' bindtap="_navBack">
-      <view class="icon">
-        <image src="/static/left_arrow.png" class="icon-arrow"></image>
-      </view>
-    </view>
-    <view class='navbar-title' style='top:{{navTop}}px;'>
-      <block wx:if="{{type=='member_code'}}">
-        <view bindtap="showModel">
-          会员码
-          <text style="margin-left:10rpx;">({{cardCount}}张)</text>
-          <image src="/static/bottom_arrow.png" class="arrow"></image>
-        </view>
-      </block>
-      <block wx:else></block>
-    </view>
+<nav-bar page-name="{{navBarTitle}}">
+  <view slot="navSlot" class="navslot {{type=='unlocking'?'hide':''}}" bindtap="showModel"> {{cardCount}}张 <image class="arrow" src="/static/bottom_arrow.png"></image>
   </view>
-</view>
-
+</nav-bar>
 <!-- 二维码的切换 -->
 <view class="code_wrapper" style="margin-top:calc({{navHeight + 20}}px);">
   <view class="member_code code {{type == 'member_code'?'active_code':''}}" bindtap="cutCode" data-type="member_code">
@@ -26,66 +10,52 @@
   <view class="unlocking code {{type == 'unlocking' ? 'active_code':''}}" bindtap="cutCode" data-type="unlocking">开柜码
   </view>
 </view>
-<!-- <scroll-y pull="{{pull}}" bindrefresh="onRefresh" style="top:calc({{navHeight + 80}}px);" class="pull"> -->
 <!--  -->
 <view class="all">
-  <view class="header">
+  <view class="avatar_warapper">
     <image src="{{user?user.avatarUrl:'/static/avtor.png '}}"></image>
   </view>
-  <view class="member_list">
-    <view wx:if="{{type == 'member_code'}}">
-      <block wx:if="{{cardCount>0}}">
-        <view class="member_store">
-          {{useCard.SC_Name}}
+  <view class="code-box" hidden="{{type !='member_code'}}">
+    <block wx:if="{{cardCount>0}}">
+      <view class="member_store">
+        {{useCard.SC_Name}}
+      </view>
+      <view class="member_card">
+        卡号：{{useCard.UI_No}}
+      </view>
+      <view wx:if="{{useCard.UI_FirstDate}}">
+        <view class='eff_date' wx:if='{{useCard.SC_Type==1}}'>
+          {{useCard.UI_LastDate}}到期({{useCard.RemainingTime}}天)
         </view>
-        <view class="member_card">
-          卡号：{{useCard.UI_No}}
+        <view class='eff_date' wx:elif="{{useCard.SC_Type==2}}">
+          {{useCard.UI_LastDate}}到期(剩余{{useCard.UI_Times}}次)
         </view>
-        <view wx:if="{{useCard.UI_FirstDate}}">
-          <view class='eff_date' wx:if='{{useCard.SC_Type==1}}'>
-            {{useCard.UI_LastDate}}到期({{useCard.RemainingTime}}天)
-          </view>
-          <view class='eff_date' wx:elif="{{useCard.SC_Type==2}}">
-            {{useCard.UI_LastDate}}到期(剩余{{useCard.UI_Times}}次)
-          </view>
-        </view>
-        <view wx:else class="notActive">此卡未激活</view>
-        <view class="member_item">
-          <canvas class='canvas' canvas-id='canvas'></canvas>
-        </view>
-        <view class="year_card">
-          {{useCard.SC_Type}}年卡
-        </view>
-        <view class="use_count">
-          运动次数：{{useCard.CheckinTimes}}次
-        </view>
-      </block>
-      <block wx:else>
-        <view class="tip_message">暂无数据</view>
-      </block>
-    </view>
-    <view wx:else class="gui">
-      <block wx:if="{{cardCount>0}}">
-        <view>会员开柜码</view>
-        <view class="qrcode">
-          <canvas class='canvas_code' canvas-id='canvas_code'></canvas>
-        </view>
-      </block>
-      <block wx:else>
-        <view class="tip_message">暂无数据</view>
-      </block>
-    </view>
+      </view>
+      <view wx:else class="notActive">此卡未激活</view>
+      <view class="member_item">
+        <canvas class='canvas' canvas-id='canvas'></canvas>
+      </view>
+      <view class="use_count">
+        运动次数：{{useCard.CheckinTimes}}次
+      </view>
+    </block>
+    <block wx:else>
+      <view class="tip_message">暂无数据</view>
+    </block>
+  </view>
+  <view class="code-box" hidden="{{type !='unlocking'}}">
+    <view>会员开柜码</view>
+    <canvas id="openCode" canvas-id='openCode'></canvas>
   </view>
 </view>
-<!-- </scroll-y> -->
 <!-- 遮罩层 -->
-<cover-view class='model' wx:if='{{showchoose}}' style="top:{{navHeight}}px">
-  <cover-view class='modelcon'>
+<cover-view class='model' hidden='{{!showchoose}}' style="top:{{navHeight}}px">
+  <cover-view class='modelcon' style="max-height:calc({{windowHeight - navHeight}}px);">
     <block wx:for="{{ card_list}}" wx:key="index">
       <cover-view class="mask_item" bindtap='chooseCard' data-choose="{{item}}">
         <cover-view class='cardinfo'>
           {{item.SC_Name}}
-          <cover-view style="color:{{item.UI_FirstDate?'#12D58B':'#FD4E54'}};" class="cardStatus">
+          <cover-view style="color:{{item.UI_FirstDate?'#12D58B':'#A4A3A3'}};" class="cardStatus">
             ({{item.status}})</cover-view>
         </cover-view>
         <cover-view class="store">{{item.GB_Name}}</cover-view>

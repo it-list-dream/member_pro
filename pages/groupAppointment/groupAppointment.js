@@ -16,6 +16,8 @@ Page({
     seatList: [],
     //是否预约
     isAppoinment: true,
+    //是否禁用
+    isDisabled: true
     //支付
     // checkPay: true
   },
@@ -24,10 +26,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    //console.log(9999,options.tclass)
     if (options.tclass && options.tclass !== '') {
+      var tclass = JSON.parse(options.tclass)
+      console.log(tclass)
       this.setData({
-        tclass: JSON.parse(options.tclass)
+        tclass: tclass
       })
     }
     this.setData({
@@ -64,18 +68,18 @@ Page({
                 tclass: tuanke
               })
               //判断当前的团课是否已经过期
-              let time1 = Date.parse(tuanke.CTO_SignUpEndDate);
+              //  let time1 = Date.parse(tuanke.CTO_SignUpEndDate);
+              let time1 = new Date(tuanke.CTO_SignUpEndDate).getTime();
               let nowTime = new Date().getTime();
+              // console.log(tim1>nowTime)
               if (time1 > nowTime) {
                 that.setData({
                   'tclass.cantappointment': 1
                 })
-                //console.log(111)
               } else {
                 that.setData({
                   'tclass.cantappointment': 0
                 })
-                // console.log(222)
               }
               if (this.data.tclass.IsPickNumChk == 1) {
                 this.getCardTogetherIsPickNum()
@@ -93,29 +97,48 @@ Page({
         this.getCardTogetherIsPickNum()
       }
     }
+    //倒计时
+    if (this.data.tclass.CTO_SignUpStart) {
+      //console.log('111')
+      this.countTime();
+    } else {
+      this.setData({
+        isDisabled: false
+      })
+    }
+  },
+  countTime() {
+    var that = this;
+    var now = new Date().getTime();
+    console.log(new Date())
+    var endDate = new Date(that.data.tclass.CTO_SignUpStart.replace(/-/g, '/')); //设置截止时间
+    var end = endDate.getTime();
+    var leftTime = end - now; //时间差      
+    var s;
+    if (leftTime >= 0) {
+      s = Math.floor(leftTime / 1000);
+      s = s < 10 ? "0" + s : s;
+      if (s <= 60) {
+        that.setData({
+          countdown: s,
+          isDisabled: false
+        })
+      }
+      this.timer = setTimeout(that.countTime, 1000);
+    } else {
+      // console.log('已开始')
+      that.setData({
+        isDisabled: false
+      })
+    }
 
   },
-  //团课详情
-  // getCardTogetherById: function () {
-  //   var that = this
-  //   api.request({
-  //     url: "/CardTogetherById",
-  //     data: {
-  //       user_token: wx.getStorageSync('token'),
-  //       CTO_ID: CTO_ID
-  //     }
-  //   }).then(res => {
-  //     console.log(res)
-  //     if(res.data.code ==1){
-  //       that.setData({
-  //         tclass:res.data.data[0]
-  //       })
-  //     }
-  //   })
-  // },
   handleSeat: function () {
     var that = this
-    console.log(this.data.tclass.cantappointment)
+    if (this.data.countdown && parseInt(this.data.countdown) > 0) {
+      return;
+    }
+    // console.log(this.data.tclass.cantappointment)
     if (this.data.tclass.cantappointment == 0 && this.data.tclass.IsAppointment == 0) {
       wx.showToast({
         icon: "none",
@@ -128,7 +151,7 @@ Page({
         title: '你已经预约该课程',
       })
       return
-    }else if(this.data.tclass.CTO_PeopleAttend == this.data.tclass.CTO_PeopleFull){
+    } else if (this.data.tclass.CTO_PeopleAttend == this.data.tclass.CTO_PeopleFull) {
       wx.showToast({
         icon: "none",
         title: '该团课报名人数已满',
@@ -176,9 +199,6 @@ Page({
       })
     }
   },
-  // //条件
-  // appoinmentChoose: function () {
-  // },
   //关闭选座
   close: function () {
     this.setData({
@@ -229,11 +249,11 @@ Page({
     if (that.data.tclass.CTO_Price > 0) {
       // that.payGroup();
       // console.log('付费')
-     // that.getCardTogetherIsPickNum();
+      // that.getCardTogetherIsPickNum();
       // new Promise((resolve, reject) => {
       //   resolve()
       // }).then(res => {
-       
+
       // })
       that.payGroup();
     } else {
@@ -282,6 +302,9 @@ Page({
   // 团课购买
   paygrounplesson() {
     var that = this
+    if (this.data.countdown && parseInt(this.data.countdown) > 0) {
+      return;
+    }
     if (that.data.tclass.IsAppointment == 1) {
       wx.showToast({
         icon: "none",
@@ -293,7 +316,7 @@ Page({
       wx.showToast({
         title: '课程已售完',
         icon: 'none'
-      })
+      });
     } else if (that.data.tclass.cantappointment == 0) {
       wx.showToast({
         title: '课程预约时间已过',
@@ -314,9 +337,9 @@ Page({
   payGroup: function () {
     var that = this
     wx.showLoading({
-      title: '加载中...',
+      title: '支付中...',
       mask: true
-    })
+    });
     api.request({
       url: "/OrderGroupLesson",
       data: {
@@ -453,7 +476,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearTimeout(this.timer);
   },
   /**
    * 页面上拉触底事件的处理函数

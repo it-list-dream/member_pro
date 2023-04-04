@@ -1,160 +1,135 @@
-<!-- banner -->
 <import src="home.skeleton.wxml" />
-<template is="skeleton" wx-if="{{loading}}" data="{{hideBanner,hideContent}}" />
-<view class="banner" data-skeleton-hide="hideBanner" hidden="{{!hideBanner}}">
-  <swiper class="swiper" autoplay="true" circular="true" indicator-color="rgba(251,251,251,0.6)"
-    indicator-active-color="rgba(251,251,251,1)" interval="2000">
-    <block wx:for="{{bannerList}}" wx:key="index">
-      <swiper-item>
-        <image src="{{item.ImageUrl? item.ImageUrl:item}}" lazy-load></image>
-      </swiper-item>
-    </block>
-  </swiper>
-  <my-capsule class="capsule_icon" style="top:{{navTop}}px;left:{{menuRight}}px"></my-capsule>
-  <!-- 二维码 -->
-</view>
-<!-- 内容 -->
-<view class="home_content" data-skeleton-hide="hideContent" hidden="{{!hideContent}}">
-  <view class="store_pic">
-    <image src="{{GymLogo?GymLogo:'/static/home_pic/ship_head.png'}}"></image>
-  </view>
-  <view class="store_wrapper">
-    <view class="store_title">{{store.GB_Name}}</view>
-    <view class="store_bottom">
-      <view class="do_business">
-        <text>营业中</text>
-        <text class="time">{{store.StartShop}}-{{store.StopShop}}</text>
-      </view>
-      <view class="information" bindtap="callPhone" data-phone="{{store.GB_Tel}}">
-        <view class="phone_wrapper" data-skeleton-bgColor="#ffffff">
-          <image src="/static/phone4.png" class="phone"></image>
-        </view>
-        <view class="phone_info">{{store.GB_Tel}}</view>
-      </view>
+<wxs module="utils" src="../../../common/common.wxs"></wxs>
+<template is="skeleton" wx:if="{{loading}}" data="{{ hideBanner,hideStore,hideCategory,hideNav,hideCoachList}}" />
+<top-bar></top-bar>
+<view class="home_content" style="margin-top: {{navHeight}}px;">
+  <view>
+    <view class="swiper-wrapper" data-skeleton-hide="hideBanner" hidden="{{!hideBanner}}">
+      <swiper autoplay="true" circular="true" interval="4000" indicator-dots indicator-color="#BDADAB"
+        indicator-active-color="#fff">
+        <block wx:for="{{bannerList}}" wx:key="index">
+          <swiper-item>
+            <image src="{{item.ImageUrl? item.ImageUrl:item}}" class="swiper-image"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <viw class="onlineCount" wx:if="{{onlineCount}}">在场总人数:{{onlineCount}}人</viw>
     </view>
-  </view>
-  <!-- 课程列表 -->
-  <view class="classList">
-    <navigator class="classList_item" url="/pages/appointment/appointment?course=1" hover-class="none">
-      <image src="/static/home_pic/tuanke.png" class="class_pic"></image>
-      <text>团课</text>
-    </navigator>
-    <view class="classList_item" bindtap="goLeagueLecture">
-      <image src="/static/home_pic/sijiao.png" class="class_pic"></image>
-      <text>私教</text>
+    <!-- 门店 -->
+    <view class="storeList" data-skeleton-hide="hideStore" hidden="{{!hideStore}}">
+      <view class="store_title">{{store.GB_Name}}</view>
+      <view class="store_time">营业中：{{utils.transfromString(store.StartShop)}}-{{utils.transfromString(store.StopShop)}}
+      </view>
+      <view class="store_phone" bindtap="callPhone" data-phone="{{store.GymTel}}">
+        <image src="/static/icon/phone.png"></image>
+        <text class="margin-text">联系电话：{{utils.transfromString(store.GymTel)}}</text>
+      </view>
+      <view class="store_address" bindtap="showMap">
+        <image src="/static/icon/location.png"></image>
+        <text class="margin-text">{{store.GB_Address}}</text>
+        <image src="/static/icon/left_arrow.png" class="arrow"></image>
+      </view>
+      <image src="{{GymLogo?GymLogo:'/static/avtor.png'}}" class="storeLogo" mode="heightFix"></image>
     </view>
-    <navigator class="classList_item" open-type="switchTab" url="/pages/tabbar/integral/integral" hover-class="none">
-      <image src="/static/home_pic/gift.png" class="class_pic"></image>
-      <text>积分商城</text>
-    </navigator>
-    <view class="classList_item" bindtap="sportRecord">
-      <image src="/static/home_pic/sport.png" class="class_pic"></image>
-      <text>运动记录</text>
+    <!-- 课程列表 -->
+    <view class="classList" data-skeleton-hide="hideCategory" hidden="{{!hideCategory}}">
+      <view class="classList_item" hover-class="none" bindtap="toLeague">
+        <image src="/static/home_pic/tuanke.png" class="class_pic"></image>
+        <text>团课</text>
+      </view>
+      <view wx:if="{{setOptions.IsHidenCoachPre !=1 }}" class="classList_item" bindtap="goLeagueLecture">
+        <image src="/static/home_pic/sijiao.png" class="class_pic"></image>
+        <text>私教</text>
+      </view>
+      <navigator class="classList_item" open-type="switchTab" url="/pages/tabbar/integral/integral" hover-class="none">
+        <image src="/static/home_pic/gift.png" class="class_pic"></image>
+        <text>积分商城</text>
+      </navigator>
+      <view class="classList_item" bindtap="sportRecord">
+        <image src="/static/home_pic/sport.png" class="class_pic"></image>
+        <text>运动记录</text>
+      </view>
     </view>
   </view>
   <!-- 明星教练 -->
-  <view class="coach_list" wx:if="{{coachList.length>0}}">
-    <view class="star_coach">
-      <text>明星教练</text>
-    </view>
-    <view class="all_t" bindtap="allCoach">
-      <text>全部</text>
-      <image src="/static/next.png"></image>
-    </view>
-  </view>
-
-  <!-- 明星教练 -->
-  <view class="starCoachList" wx:if="{{coachList.length>0}}">
-    <view class="star_item">
-      <view class="coach_wrapper" wx:for="{{coachList}}" wx:key="index" bindtap="lookCoachDetail" data-coach="{{item}}"
-        data-skeleton-text>
-        <image src="{{item.AI_Face?item.AI_Face:'/static/home_pic/coach_all.jpg'}}" class="top_star_img deg_img">
-        </image>
-        <view class="bottom_star">
-          <view class="star_title coachInfo1">
-            <view class="coachName1">{{item.AI_Name}}</view>
-            <image src="/static/phonenumber.png" catchtap="callPhone" data-phone="{{item.AI_Tel}}"></image>
-          </view>
-          <view class="star_title countNum">累计上课{{item.CS_Num}}节</view>
-          <!-- <view class="star_title starTip">{{item.AI_GoodAt}}</view> -->
-          <view class="star_title" data-skeleton-bgColor="#ffffff">
-            <view class="recomTitle">荐</view>
-            <view class="str_comment">店长推荐</view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- 推荐课程 -->
-  <view class="coach_list" wx:if="{{recomentList.length>0}}">
-    <view class="star_coach">
-      <text>推荐课程</text>
-    </view>
-    <view class="all_t" bindtap="recomment">
-      <text>全部</text>
-      <image src="/static/next.png"></image>
-    </view>
-  </view>
-  <view class="recommend_content" wx:if="{{recomentList.length>0}}">
-    <view class="recommend_list">
-      <block wx:for="{{recomentList}}" wx:key="CP_ID">
-        <view class="recommend_item" bindtap="lookSuggClass" data-sclass="{{item}}">
-          <image src="{{item.CP_Logo?item.CP_Logo:'/static/home_pic/coach2.png'}}" class="recommend_pic deg_img">
-          </image>
-          <view class="course">{{item.CP_Name}}</view>
-          <view class="course_detail">
-            <text>￥</text>
-            <view class="course_num">
-              {{item.OnlinePrice}}
-              <text style="font-style:oblique;">/</text>
-              <text class="font-weight: 500;color: #FD4E54;">节</text>
+  <block wx:if="{{coachList.length>0}}">
+    <nav nav-title="明星教练" nav-path="/pages/coachList/coachList" class="navWrapper" content="全部" wx:if="{{hideNav}}"
+      data-skeleton-hide="hideNav">
+    </nav>
+    <view class="scroll-list" data-skeleton-hide="hideCoachList" hidden="{{!hideCoachList}}" data-skeleton-list>
+      <scroll-view scroll-x class="scroll_x" enable-flex="true"
+        style="height: {{setOptions.IsHidenNum==1?'324rpx':'364rpx'}};">
+        <block wx:for="{{coachList}}" wx:key="index">
+          <view class="coach_item" bindtap="lookCoachDetail" data-coach="{{item}}">
+            <view>
+              <image src="{{item.AI_Face?item.AI_Face:'/static/others/coach.jpg'}}"></image>
             </view>
-            <text class="buy">{{item.SaleCount}}人已购买</text>
+            <view class="coach_name">{{item.AI_Name}}</view>
+            <view class="classesNumber" wx:if="{{setOptions.IsHidenNum==0}}">累计上课{{item.CS_Num}}节</view>
+            <view class="concat" catchtap="callPhone" data-phone="{{item.AI_Tel}}">联系他</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </block>
+
+  <!-- 推荐课程 -->
+  <block wx:if="{{recomentList.length>0}}">
+    <nav nav-title="推荐课程" nav-path="/pages/classList/classList" content="全部" class="navWrapper" wx:if="{{!hideOthers}}">
+    </nav>
+    <view class="recommend" hidden="{{hideOthers}}">
+      <scroll-view scroll-x="true" class="sx" enable-flex="true">
+        <block wx:for="{{recomentList}}" wx:key="CP_ID">
+          <view class="recommend_item" bindtap="lookSuggClass" data-sclass="{{item}}">
+            <image src="{{item.CP_Logo?item.CP_Logo:'/static/home_pic/coach2.png'}}" class="house_pic">
+            </image>
+            <view class="cl">
+              <view class="class_level">{{item.CP_Name}}</view>
+            </view>
+            <view class="price">￥<text>{{item.OnlinePrice}}/节</text></view>
+            <view class="buy_btn">立即购买</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </block>
+
+  <!--  活动卡推荐 -->
+  <block wx:if="{{activityCard.length>0}}">
+    <nav nav-title="活动卡推荐" nav-path="/pages/activeList/activeList" content="全部" class="navWrapper"
+      wx-if="{{!hideOthers}}">
+    </nav>
+
+    <view class="scroll_wrapper" hidden="{{hideOthers}}">
+      <scroll-view scroll-x="true" class="scroll-x">
+        <view class="card-list" wx:for="{{activityCard}}" wx:key="SC_ID" bindtap="suggestCard" data-card="{{item}}">
+          <image src="{{item.SC_Logo?item.SC_Logo:'/static/home_pic/vip.png'}}" class="card_bg">
+          </image>
+          <view class="card_item">
+            <view class="year_card">{{item.SC_Name}}</view>
+            <view class="card_price">￥{{item.OnlinePrice}}</view>
           </view>
         </view>
-      </block>
+      </scroll-view>
     </view>
-  </view>
-  <!-- 活动卡推荐 -->
-  <view class="coach_list" wx:if="{{activityCard.length>0}}">
-    <view class="star_coach">
-      <text>活动卡推荐 </text>
-    </view>
-    <view class="all_t" bindtap="toActive">
-      <text>全部</text>
-      <image src="/static/next.png"></image>
-    </view>
-  </view>
-  <!-- 活动卡推荐 -->
-  <view class="scroll_wrapper" wx:if="{{activityCard.length>0}}">
-    <scroll-view scroll-x="true" class="scroll-x">
-      <view class="card-list" wx:for="{{activityCard}}" wx:key="SC_ID" bindtap="suggestCard" data-card="{{item}}">
-        <image src="{{item.SC_Logo?item.SC_Logo:'/static/home_pic/year_card.png'}}" class="card_bg"></image>
-        <view class="card_item">
-          <view class="card_name">{{item.SC_Name}}</view>
-          <view class="card_price">￥{{item.OnlinePrice}}</view>
-          <view class="joinBtn">立即加入</view>
-        </view>
+  </block>
+  <!-- 普拉提团课 -->
+  <block wx:if="{{leagueList.length>0}}">
+    <nav nav-title="推荐团课" content="全部" nav-path="/pages/leagueList/leagueList"  class="navWrapper" wx-if="{{!hideOthers}}">
+  </nav>
+  <scroll-view class="league-class" scroll-x hidden="{{hideOthers}}">
+  <block wx:for="{{leagueList}}" wx:key="SG_ID">
+    <view class="league-item" bindtap="leagueDetail" data-league="{{item}}">
+      <view>
+        <image class="cp-pic" src="{{item.leagueUrl?item.leagueUrl:'/static/home_pic/league.jpg'}}"></image>
       </view>
-    </scroll-view>
-  </view>
-  <!-- <view class="vipCard" wx:if="{{activityCard.length>0}}">
-    <view class="active">
-      <view class="active_list" wx:for="{{activityCard}}" wx:key="SC_ID" bindtap="suggestCard" data-card="{{item}}">
-        <image src="{{item.SC_Logo?item.SC_Logo:'/static/home_pic/vip_card.png'}}" class="card"></image>
-        <view class="active_content">
-          <view class="card">{{item.SC_Name}}</view>
-          <view class="card_price">
-            <text>￥</text>
-            <text>{{item.OnlinePrice}}</text>
-          </view>
-          <view class="join">立即加入</view>
-        </view>
-      </view>
+      <view class="cp-name">{{item.SG_Name}}</view>
     </view>
-  </view> -->
-  <!-- 科技 -->
-  <navigator class="copyright" hover-class="none" url="/page2/copyRight/copyRight">由<view class="company">如渔科技</view>
+  </block>
+  </scroll-view>
+  </block>
+  <navigator class="copyright" hover-class="none" url="/page2/copyRight/copyRight" wx:if="{{!hideOthers}}">由<view
+      class="company">如渔科技</view>
     提供技术支持
   </navigator>
 </view>

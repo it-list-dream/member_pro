@@ -1,10 +1,33 @@
 <!--components/my-capsule/my-capsule.wxml-->
 <view class="capsule_list my-class">
   <navigator class="capsule_item" hover-class="none" url="/pages/shop/shop">
-    <image src="/static/home_pic/ship.png" class="icon30"></image>
+    <image src="/static/icon/shop.png" class="icon30"></image>
   </navigator>
   <view class="line"></view>
   <view class="capsule_item" bindtap="qrCode">
-    <image src="/static/home_pic/QRcode.png" class="icon30"></image>
+    <image src="/static/icon/code.png" class="icon30"></image>
+  </view>
+  <view class="line"></view>
+  <view class="capsule_item" bindtap="handleScan">
+    <image src="/static/icon/scan.png" class="icon30"></image>
   </view>
 </view>
+<!-- top: {{navHeight}}px -->
+<cover-view class="maskContainer" wx:if="{{isShowModel}}">
+  <cover-view class="maskItem">
+    <cover-view class="scroll-y">
+      <cover-view class="selectCard" wx:for="{{allCradList}}" wx:key="index" bindtap="choose" data-card="{{item}}"
+        data-index="{{index}}">
+        <cover-view class="yuan"
+          style="background-color: {{num == index ? '#12D58B ':''}};border:{{num == index ? 'none':''}}"></cover-view>
+        <cover-view class="card_type">{{item.SC_Name}}</cover-view>
+        <cover-view class="remain">{{item.UI_FirstDate?item.UI_FirstDate +'-'+item.UI_LastDate:'未激活'}}</cover-view>
+        <cover-view class="t1" wx:if="{{item.UI_Times > 0}}">剩余{{item.UI_Times}}次</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view>
+      <button class="confirmBtn" bindtap="onConfrim">确定</button>
+    </cover-view>
+  </cover-view>
+  <cover-view class="close" bindtap="close"></cover-view>
+</cover-view>

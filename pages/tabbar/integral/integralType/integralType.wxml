@@ -1,22 +1,25 @@
-<view class="inteTitleBox">
-    <view class="behInte">
-      <view class="integral_bar">行为积分</view>
-      <view>
-        {{actionIntegral}}
-        <text class="branch">分</text>
-      </view>
+<view class="intePoupon" hidden="{{!isDlog}}" catchtouchmove='true' style="top: calc({{navHeight}}px + 100rpx);">
+  <view class="inteTitleBox">
+    <view class="score_type">
+      <view>积分类型</view>
+      <checkbox-group bindchange="_serviceValChange" class="screen_type">
+        <view wx:for="{{inteTypeList}}" wx:key="id">
+          <label class="checkbox  {{item.checked?'checked':''}}" bindtap='checkbox' data-index="{{index}}">
+            <checkbox value="{{item.inteName}}" checked="{{item.checked}}" />
+            {{item.inteName}}
+          </label>
+        </view>
+      </checkbox-group>
     </view>
-    <view class="vipInte">
-      <view class="integral_bar">VIP积分</view>
-      <view>
-        {{vipIntegral}}
-        <text class="branch">分</text>
-      </view>
+    <view class="score_list">
+      <view>积分</view>
+      <view class="input_box"><input type="number" value="{{searchValue}}" bindinput="handleInput" />
+      <text class="inner">内</text></view>
     </view>
-    <view class="billBox" bindtap="pointsBill">
-      <view class="bill">积分账单</view>
-    </view>
-    <view class="inteIcon" bindtap="filtrateData">
-      <image src="/static/choose.png"></image>
+    <view class="btn_list">
+      <button bindtap="reset">重置</button>
+      <button class="confrim" bindtap="confirm">确定</button>
     </view>
   </view>
+  <view class="close" bindtap="close"></view>
+</view>

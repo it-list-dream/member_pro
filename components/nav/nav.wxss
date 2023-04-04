@@ -1,0 +1,28 @@
+.navBox {
+  display: flex;
+  justify-content: space-between;
+  height: 122rpx;
+  font-family: PingFang SC;
+  /* background-color: green; */
+}
+.navBox .nav_left,.nav_right{
+  margin-top: 52rpx;
+}
+.navBox .nav_left {
+  font-size: 34rpx;
+  font-weight: bold;
+  font-weight: bold;
+  color: #333333;
+}
+
+.navBox .nav_right .all {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #B7B7B7;
+}
+
+.navBox .nav_right .image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}

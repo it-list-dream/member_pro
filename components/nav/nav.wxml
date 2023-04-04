@@ -1,0 +1,7 @@
+<view class="navBox" bindtap="_hanldeNav">
+  <view class="nav_left">{{navTitle}}</view>
+  <view class="nav_right" wx:if="{{show}}">
+    <text class="all">{{content}}</text>
+    <image src="/static/icon/left_gray.png" class="image"></image>
+  </view>
+</view>

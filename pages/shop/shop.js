@@ -1,8 +1,7 @@
-// pages/shop/shop.js
 const app = getApp()
-let api = require('../../utils/request.js')
+let api = require('../../utils/request.js');
+var util = require('../../utils/util.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -14,21 +13,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //console.log(app.globalData)
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-    })
+    });
+    this.getMyStoreList();
   },
   getMyStoreList() {
-    // let storeList = wx.getStorageSync('storeList');
-    // if (storeList && storeList !== '') {
-    //   this.setData({
-    //     storeList: storeList,
-    //     gymCount: storeList.length
-    //   })
-    //   this.findXy();
-    // } else {
       api.request({
         url: "/GymList",
         data: {
@@ -38,17 +29,14 @@ Page({
         this.setData({
           storeList: res.data.data,
           gymCount: res.data.gymCount
-        })
-        this.findXy();
+        });
       })
-  //  }
   },
   //获取用户的经纬度
   findXy() {
     let that = this;
     wx.getSetting({
       success: (res) => {
-        console.log(res)
         // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
         // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
         // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
@@ -89,9 +77,6 @@ Page({
               }
             }
           })
-        } else if (res.authSetting['scope.userLocation'] == undefined) {
-          //用户首次进入页面,调用wx.getLocation的API  //选择位置，需要用户授权
-          that.location();
         } else {
           //选择位置，需要用户授权
           that.location();
@@ -101,40 +86,34 @@ Page({
   },
   //获取位置
   location: function () {
-    var that = this
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        console.log(res.latitude, res.longitude)
-        that.getDistance(res.latitude, res.longitude)
-      }
-    })
+    var that = this;
+    if (this.isRefresh) {
+      that.calculateDistance(this.lat,this.lng);
+    }else{
+      util.getLocation().then(res => {
+        this.lat = res.latitude;
+        this.lng = res.longitude;
+        that.calculateDistance(res.latitude,res.longitude);
+     });
+    }
   },
-  Rad: function (d) { //根据经纬度判断距离
-    return d * Math.PI / 180.0;
-  },
-  //计算商家和用户之间的距离
-  getDistance: function (lat1, lng1) {
-    // lat1用户的纬度  // lng1用户的经度  // lat2商家的纬度  // lng2商家的经度
-    var list = this.data.storeList;
-    for (var i = 0; i < list.length; i++) {
-      var radLat1 = this.Rad(lat1);
-      var radLat2 = this.Rad(list[i].lat);
-      var a = radLat1 - radLat2;
-      var b = this.Rad(lng1) - this.Rad(list[i].lng);
-      var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
-      s = s * 6378.137;
-      s = Math.round(s * 10000) / 10000;
-      s = s.toFixed(2) //保留两位小数
-      if (!isNaN(s)) {
-        list[i].distance = s;
+  calculateDistance(latitude,longitude) {
+    let gymList = this.data.storeList,
+      myList = [],
+      otherList = [];
+    for (let i = 0; i < gymList.length; i++) {
+      gymList[i].distance = util.getDistance(latitude, longitude, gymList[i].lat, gymList[i].lng);
+      if (gymList[i].IsMyGym == 1) {
+        myList.push(gymList[i]);
+      } else {
+        otherList.push(gymList[i])
       }
     }
-    //排序
-    list.sort(this.compare('distance'))
+    otherList.sort(this.compare('distance'));
+    otherList.unshift(...myList);
     this.setData({
-      storeList: list
-    })
+      storeList: otherList
+    });
   },
   //比较
   compare: function (prop) {
@@ -143,27 +122,40 @@ Page({
     }
   },
   chooseStore: function (e) {
-    // console.log(e.currentTarget.dataset.location)
     let store = e.currentTarget.dataset.location;
-    wx.setStorageSync('GB_ID', store.GB_ID)
-    // app.globalData.store = e.currentTarget.dataset.location;
+    wx.setStorageSync('GB_ID', store.GB_ID);
+    if(store.UI_ID){
+      wx.setStorageSync('UI_ID', store.UI_ID);
+    }
+    wx.setStorageSync('expireTime',Date.now());
+    wx.setStorageSync('GymName', store.GB_Name);
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];
+    prevPage.getCoachStyleList();
+    prevPage.getSuggestCoachClass();
+    prevPage.getSuggestActivityCard();
+    prevPage.getSearchGymQR();
+    prevPage.getBannerList();
+    prevPage.getOtherSet();
+    prevPage.getSuggestLeague();
+    prevPage.setData({
+      store: store
+    });
     wx.navigateBack({
       delta: 1,
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //this.getMyStoreList();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.getMyStoreList();
-  },
+  onShow: function () {},
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -182,7 +174,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    // this.isRefresh = true;
+    // this.getMyStoreList();
   },
 
   /**

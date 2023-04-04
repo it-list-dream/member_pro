@@ -1,25 +1,25 @@
-<nav-bar page-name="智能跑步机"></nav-bar>
+<nav-bar page-name="智能跑步机" icon1="{{true}}"></nav-bar>
 <view class="machine_container" style="margin-top:{{navHeight}}px">
   <view class="running_title">{{runDeatil.startTime}}</view>
   <!-- banner -->
   <view class="machine_bar">
     <view class="left bar">
-      <image src="./images/time.png"></image>
+      <image src="./images/click.png"></image>
       <view class="bar_item">
-        <view>{{runDeatil.runtime}}</view>
         <view>全程用时</view>
+        <view>{{runDeatil.runtime}}</view>
       </view>
     </view>
     <view class="right bar">
       <image src="./images/distance.png"></image>
       <view class="bar_item">
-        <view>{{runDeatil.runDistance}}km</view>
         <view>全程距离km</view>
+        <view>{{runDeatil.runDistance}}km</view>
       </view>
     </view>
   </view>
   <!-- 详细数据 -->
-  <view class="detailData">
+  <view class="detailData" style="height: calc(100vh - {{navHeight}}px - 360rpx);">
     <view class="detail_title">详细数据</view>
     <view class="detail_list">
       <block wx:for="{{detailList}}" wx:key="index">

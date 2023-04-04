@@ -5,49 +5,152 @@ const util = require('../../../utils/util.js');
 import {
   checkLogin
 } from '../../../utils/authorities.js'
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     bannerList: [],
-    bannerList1: ['http://user.360ruyu.cn/images/userBanner/banner2.png', 'http://user.360ruyu.cn/images/userBanner/banner3.png'],
     coachList: [],
     recomentList: [],
     activityCard: [],
     //切换门店
-    //  gb_id: 0,
     GymLogo: null,
-    //我的会员卡
-    myCard: null,
+    store: null,
     //加载
     loading: true,
-    //隐藏的属性
+    //轮播图
     hideBanner: false,
-    hideContent: false,
+    //门店
+    hideStore: false,
+    hideCategory: false,
+    //导航
+    hideNav: false,
+    //教练列表
+    hideCoachList: false,
+    hideOthers: true,
+    //设置
+    setOptions: {},
+    isFresh: false,
+    leagueList: [],
+    //onlineCount: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //定位信息
-    this.getLocation();
-    //获取会员卡
-    //console.log(app)
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       menuRight: app.globalData.menuRight
+    });
+    this.getSearchGymQR();
+    this.getAllStore();
+    // this.getLocation();
+  },
+  getAllStore() {
+    api.request({
+      url: "/GymList",
+      data: {
+        user_token: wx.getStorageSync('token')
+      },
+    }).then(res => {
+      //wx.setStorageSync('storeList', res.data.data);
+      this.getRecentlyStore(res.data.data, () => {
+        this.getBannerList();
+        this.getCoachStyleList();
+        this.getSuggestCoachClass();
+        this.getSuggestActivityCard();
+        this.getSuggestLeague();
+        //设置
+        this.getOtherSet();
+      });
+    })
+  },
+  getRecentlyStore(recentStore, callback) {
+    var reacentCheckIn = null,
+      GB_ID = wx.getStorageSync('GB_ID');
+    api.request({
+      url: "/MyAllVIPCard",
+      data: {
+        user_token: wx.getStorageSync('token')
+      }
+    }).then(res => {
+      if (res.data.code == 1) {
+        var cardList = res.data.data,
+          //开过卡的卡
+          CheckInCards = [],
+          currentStore = null;
+        const expireTime = wx.getStorageSync('expireTime')
+        //自动切换到最近一次进场的会员卡和门店
+        if (cardList.length > 0) {
+          for (let i = 0; i < cardList.length; i++) {
+            if (cardList[i].CheckInDate) {
+              cardList[i].timestamp = Date.parse(cardList[i].CheckInDate);
+              CheckInCards.push(cardList[i]);
+            }
+          }
+          reacentCheckIn = CheckInCards.sort(this.compare('timestamp'));
+          if (expireTime && expireTime > reacentCheckIn[0].timestamp) {
+            console.log('切换门店了');
+            currentStore = recentStore.filter(item => item.GB_ID == GB_ID)[0];
+            wx.setStorageSync('UI_ID', currentStore.UI_ID);
+          } else {
+            if (reacentCheckIn.length > 0) {
+              currentStore = recentStore.filter(item => item.GB_ID == reacentCheckIn[0].FK_GB_ID)[0];
+              wx.setStorageSync('UI_ID', reacentCheckIn[0].UI_ID);
+              console.log('有最近进场记录', currentStore)
+            } else {
+              currentStore = recentStore.filter(item => item.GB_ID == cardList[0].FK_GB_ID)[0];
+              wx.setStorageSync('UI_ID', cardList[0].UI_ID)
+              console.log('没有进场记录', currentStore)
+            }
+            wx.setStorageSync('GB_ID', currentStore.GB_ID);
+          }
+        } else {
+          currentStore = recentStore[0];
+        }
+        callback && callback();
+        app.globalData.gymPhone = currentStore.GymTel;
+        this.setData({
+          store: currentStore,
+          hideBanner: true,
+          hideCategory: true,
+          hideStore: true,
+          hideNav: true,
+          hideCoachList: true,
+          loading: false,
+          hideOthers: false
+        });
+      } else if (res.data.code == -2) {
+        wx.setStorageSync('GB_ID', recentStore[0].GB_ID);
+        //表示未登录
+        callback && callback();
+        app.globalData.gymPhone = recentStore[0].GymTel;
+        this.setData({
+          store: recentStore[0],
+          hideBanner: true,
+          hideCategory: true,
+          hideStore: true,
+          hideNav: true,
+          hideCoachList: true,
+          loading: false,
+          hideOthers: false
+        });
+      }
     })
   },
   callPhone(e) {
-    //console.log(e.currentTarget.dataset.phone)
-    let phoneNumber = e.currentTarget.dataset.phone
+    let phoneNumber = e.currentTarget.dataset.phone;
+    if (this.data.setOptions.IsHidenCoachPhone == 1) {
+      phoneNumber = this.data.store.GymTel
+    }
     if (phoneNumber) {
       wx.makePhoneCall({
         phoneNumber: phoneNumber
       }).catch((e) => {
-        console.log(e) //用catch(e)来捕获错误{makePhoneCall:fail cancel}
+        console.log(e)
       })
     } else {
       wx.showToast({
@@ -58,252 +161,11 @@ Page({
   },
   //私教预约
   goLeagueLecture() {
-    checkLogin('/pages/appointment/appointment?course=0')
+    checkLogin('/pages/appointment/appointment?course=私教')
   },
   //运动记录
   sportRecord() {
     checkLogin('/pages/movementData/movementData')
-  },
-  recomment() {
-    wx.navigateTo({
-      url: '/pages/classList/classList',
-    })
-  },
-  allCoach() {
-    wx.navigateTo({
-      url: '/pages/coachList/coachList',
-    })
-  },
-  toActive() {
-    wx.navigateTo({
-      url: '/pages/activeList/activeList',
-    })
-  },
-  //获取我的会员卡
-  getMyAllVIPCard: function (reslove) {
-    var that = this;
-    api.request({
-      url: "/MyAllVIPCard",
-      data: {
-        user_token: wx.getStorageSync('token')
-      }
-    }).then(res => {
-      //查看
-      if (res.data.code == 1) {
-        // console.log(res.data.data)
-        that.setData({
-          myCard: res.data.data
-        })
-        //console.log(res.data.cardCount)
-        if (!wx.getStorageSync('UI_ID') && res.data.cardCount > 0) {
-          //  console.log('这是测试的数据！！！！！！！')
-          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
-        }
-        reslove && reslove();
-      }
-    })
-  },
-  //定位
-  Rad: function (d) { //根据经纬度判断距离
-    return d * Math.PI / 180.0;
-  },
-  //计算商家和用户之间的距离
-  //计算商家和用户之间的距离
-  getDistance: function () {
-    var that = this;
-    let locationList = this.data.storeList;
-    let cardList = this.data.myCard;
-    // lat1用户的纬度  // lng1用户的经度  // lat2商家的纬度  // lng2商家的经度
-    var lat1 = this.data.latitude;
-    var lng1 = this.data.longitude;
-    if (lat1 && lng1) {
-      for (let i = 0; i < locationList.length; i++) {
-        var radLat1 = this.Rad(lat1);
-        var radLat2 = this.Rad(locationList[i].lat);
-        var a = radLat1 - radLat2;
-        var b = this.Rad(lng1) - this.Rad(locationList[i].lng);
-        var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
-        s = s * 6378.137;
-        s = Math.round(s * 10000) / 10000;
-        s = s.toFixed(2) //保留两位小数
-        locationList[i].distance = s;
-      }
-
-      locationList.sort(this.compare('distance'))
-      that.setData({
-        storeList: locationList
-      })
-      //console.log(locationList)
-      //有卡
-      if (that.data.myCard) {
-        for (let j = 0; j < locationList.length; j++) {
-          for (let k = 0; k < cardList.length; k++) {
-            if (locationList[j].GB_ID == cardList[k].FK_GB_ID) {
-              that.setData({
-                store: locationList[j]
-              })
-              // console.log(locationList[j])
-              //  app.globalData.store = locationList[j]
-              wx.setStorageSync('GB_ID', that.data.store.GB_ID)
-              break;
-            }
-          }
-        }
-        console.log('定位且有卡')
-      } else {
-        //没卡就定位
-        //  app.globalData.store = locationList[0];
-        that.setData({
-          store: locationList[0]
-        })
-        wx.setStorageSync('GB_ID', that.data.store.GB_ID)
-        console.log('定位且没有卡')
-      }
-      // console.log(locationList.sort(this.compare('distance')))
-    } else {
-      //没定位
-      if (that.data.myCard) {
-        var newList = that.data.myCard.map(item => item.CheckInDate)
-        let slist = that.data.storeList;
-        let latest = util.closestToCurrentTime(newList);
-        for (let i = 0; i < slist.length; i++) {
-          if (slist[i].GB_ID == cardList[latest].FK_GB_ID) {
-            that.setData({
-              store: slist[i]
-            })
-            wx.setStorageSync('GB_ID', that.data.store.GB_ID)
-            // app.globalData.store = slist[i]
-          }
-        }
-        console.log('没定位有卡，以最后一次离场')
-      } else {
-        that.setData({
-          store: that.data.storeList[0]
-        })
-        wx.setStorageSync('GB_ID', that.data.store.GB_ID)
-        //  app.globalData.store = that.data.storeList[0];
-        console.log('没定位且没有卡')
-      }
-    }
-  },
-  getDistance1() {
-    var that = this;
-    let list1 = that.data.storeList;
-    // lat1用户的纬度  // lng1用户的经度  // lat2商家的纬度  // lng2商家的经度
-    var lat1 = this.data.latitude;
-    var lng1 = this.data.longitude;
-    if (lat1 && lng1) {
-      for (let i = 0; i < list1.length; i++) {
-        var radLat1 = this.Rad(lat1);
-        var radLat2 = this.Rad(list1[i].lat);
-        var a = radLat1 - radLat2;
-        var b = this.Rad(lng1) - this.Rad(list1[i].lng);
-        var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
-        s = s * 6378.137;
-        s = Math.round(s * 10000) / 10000;
-        s = s.toFixed(2) //保留两位小数
-        list1[i].distance = s;
-      }
-      list1.sort(this.compare('distance'))
-      that.setData({
-        store: list1[0]
-      })
-      wx.setStorageSync('GB_ID', that.data.store.GB_ID)
-      // app.globalData.store = list1[0];
-    } else {
-      that.setData({
-        store: that.data.storeList[0]
-      })
-      wx.setStorageSync('GB_ID', that.data.store.GB_ID)
-    }
-  },
-  //所有门店
-  getStoreList(resolve) {
-    var that = this;
-    api.request({
-      url: "/GymList",
-      data: {
-        user_token: wx.getStorageSync('token')
-      }
-    }).then(res => {
-      that.setData({
-        storeList: res.data.data
-      })
-      if (resolve && typeof resolve == 'function') {
-        resolve();
-      }
-    })
-  },
-  //获取门店信息
-  getGymList(res) {
-    var that = this;
-    var storeList = wx.getStorageSync('storeList');
-    if (storeList) {
-      this.setData({
-        storeList: storeList
-      })
-      that.loadData();
-    } else {
-      //console.log('没有缓存数据呀')
-      this.getStoreList(() => {
-        that.loadData();
-      })
-    }
-    if (res && typeof res == 'function') {
-      res();
-    }
-  },
-  loadData() {
-    var that = this
-    let storeList = wx.getStorageSync('storeList');
-    //未登录
-    let phone = wx.getStorageSync('phone');
-    let gb_id = wx.getStorageSync('GB_ID');
-    let my_store = null;
-    if (phone && phone !== '') {
-      //登录
-      // console.log('登录')
-      if (!wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID') == ' ') {
-        console.log('第一次进入 登录')
-        that.getDistance();
-      } else {
-        //加载门店的信息
-        my_store = that.data.storeList.filter(item => item.GB_ID == gb_id)
-        // console.log(my_store)
-        if (my_store.length > 0) {
-          that.setData({
-            store: my_store[0]
-          })
-        }
-      }
-    } else {
-      //未登录
-      if (!wx.getStorageSync('GB_ID') || wx.getStorageSync('GB_ID' == '')) {
-        that.getDistance1()
-        console.log('第一次进入 未登录')
-      } else {
-        //加载门店的信息
-        my_store = that.data.storeList.filter(item => item.GB_ID == gb_id)
-        // console.log(my_store)
-        if (my_store.length > 0) {
-          that.setData({
-            store: my_store[0]
-          })
-        }
-      }
-    }
-    if (!storeList) {
-      console.log('fsfd')
-      wx.setStorageSync('storeList', this.data.storeList)
-    }
-    //教练风采
-    this.getCoachStyleList()
-    //推荐课程
-    this.getSuggestCoachClass()
-    //活动卡推荐
-    this.getSuggestActivityCard();
-    //轮播图
-    this.getBannerList();
   },
   //明星教练
   getCoachStyleList: function () {
@@ -312,24 +174,16 @@ Page({
       url: '/CoachStyleList',
       data: {
         user_token: wx.getStorageSync('token'),
-        // GB_ID: that.data.store.GB_ID
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
-      if (res.data.data.length > 3) {
-        that.setData({
-          coachList: res.data.data.slice(0, 3)
-        })
-      } else {
-        that.setData({
-          coachList: res.data.data
-        })
-      }
+      that.setData({
+        coachList: res.data.data
+      })
     })
   },
   //轮播图
   getBannerList: function () {
-    var that = this
     api.request({
       url: "/BannerList",
       data: {
@@ -337,18 +191,57 @@ Page({
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
-      if (res.data.code == 1) {
-        if (res.data.data.length > 0) {
-          that.setData({
-            bannerList: res.data.data
-          })
-        } else {
-          that.setData({
-            bannerList: that.data.bannerList1
-          })
-        }
-
+      var defaultBanner = ['http://user.360ruyu.cn/images/userBanner/banner2.png', 'http://user.360ruyu.cn/images/userBanner/banner3.png'],
+        bannerList = [];
+      if (res.data.data && res.data.data.length > 0) {
+        bannerList = res.data.data;
+      } else {
+        bannerList = defaultBanner;
       }
+      this.setData({
+        bannerList,
+        onlineCount: res.data.checkInCount
+      })
+    })
+  },
+  //其他设置
+  getOtherSet() {
+    var that = this;
+    api.request({
+      url: "/OtherSet",
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: wx.getStorageSync('GB_ID')
+      }
+    }).then(res => {
+      if (res.statusCode == 200) {
+        //console.log(res.data.data)
+        that.setData({
+          setOptions: res.data.data[0]
+        })
+        app.globalData.setOptions = res.data.data[0];
+      } else if (res.statusCode == 500) {
+        let options = {
+          IsHidenCoachPhone: 0,
+          IsHidenNum: 0,
+          IsHidenCoachPre: 0
+        };
+        that.setData({
+          setOptions: options
+        })
+        app.globalData.setOptions = options;
+      }
+    })
+  },
+  toLeague() {
+    let type = "";
+    if (app.globalData.leagueType == 1) {
+      type = "普拉提团课"
+    } else {
+      type = "团课"
+    }
+    wx.navigateTo({
+      url: '/pages/appointment/appointment?course=' + type,
     })
   },
   //推荐课程
@@ -358,16 +251,11 @@ Page({
       url: '/SuggestCoachClass',
       data: {
         user_token: wx.getStorageSync('token'),
-        //  GB_ID: that.data.store.GB_ID
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
-      if (res.data.data.length > 2) {
-        that.setData({
-          recomentList: res.data.data.slice(0, 2)
-        })
-      } else {
-        that.setData({
+      if (res.data.code == 1) {
+        this.setData({
           recomentList: res.data.data
         })
       }
@@ -380,37 +268,38 @@ Page({
       url: '/SuggestActivityCard',
       data: {
         user_token: wx.getStorageSync('token'),
-        //   GB_ID: that.data.store.GB_ID
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
       that.setData({
-        activityCard: res.data.data,
-        loading: false,
-        hideBanner: true,
-        hideContent: true
+        activityCard: res.data.data
       })
     })
   },
-  //定位
-  getLocation() {
-    let that = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
+  getSuggestLeague() {
+    var that = this;
+    api.request({
+      url: '/GroupClassSuggest',
+      data: {
+        user_token: wx.getStorageSync('token'),
+        GB_ID: wx.getStorageSync('GB_ID')
+      }
+    }).then(res => {
+      console.log("leagueList:", res.data.data);
+      if (res.data.data && Array.isArray(res.data.data)) {
+        app.globalData.leagueType = 1;
         that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude,
+          leagueList: res.data.data
         })
       }
-    });
+    })
   },
   compare: function (prop) {
     return function (a, b) {
-      return Number(a[prop]) - Number(b[prop])
+      return Number(b[prop]) - Number(a[prop])
     }
   },
-  //
+  //加载门店logo
   getSearchGymQR: function () {
     var that = this
     api.request({
@@ -427,24 +316,8 @@ Page({
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    //获取门店信息
-    this.getGymList()
-    //门店图标
-    this.getSearchGymQR();
-  },
   //查看教练详情
   lookCoachDetail: function (e) {
-    // console.log(e.currentTarget.dataset.coach);
     let coach = JSON.stringify(e.currentTarget.dataset.coach)
     wx.navigateTo({
       url: '/pages/coachDetail/coachDetail?coach=' + coach,
@@ -459,22 +332,89 @@ Page({
   },
   //查看会员卡列表
   suggestCard: function (e) {
-    //console.log(e.currentTarget.dataset.card)
     let card = JSON.stringify(e.currentTarget.dataset.card);
     wx.navigateTo({
       url: '/pages/activeDetail/activeDetail?card=' + card,
     })
   },
-  /**
-   * 页面上拉触底事件的处理函数
+  leagueDetail(event) {
+    var league = JSON.stringify(event.currentTarget.dataset.league);
+    wx.navigateTo({
+      url: '/pages/leagueDetail/leagueDetail?league=' + league,
+    });
+  },
+  //显示地图
+  showMap() {
+    //31.252159, 121.521873, 15, "上海市杨浦区大连路地铁站"
+    var {
+      lat,
+      lng,
+      GB_Address
+    } = this.data.store;
+    this.openLocationFun(lat, lng, 15, GB_Address, "");
+  },
+  /**  
+   * 使用微信内置地图查看位置  
+   * 1、latitude：     纬度，范围为-90~90，负数表示南纬 必填  
+   * 2、longitude：    经度，范围为-180~180，负数表示西经 必填  
+   * 3、scale：        缩放比例，范围1~28，默认为28 选填  
+   * 4、name：         位置名 选填  
+   * 5、address：      地址的详细说明 选填  
+   * 6、cbSuccessFun： 接口调用成功的回调函数 选填  
+   * 7、cbFailFun：    接口调用失败的回调函数 选填  
+   * 8、cbCompleteFun：接口调用结束的回调函数（调用成功、失败都会执行） 选填  
    */
-  onReachBottom: function () {
-
+  openLocationFun: function (latitude, longitude, scale, name, address, cbSuccessFun, cbFailFun, cbCompleteFun) {
+    var openObj = {};
+    if (latitude && longitude) {
+      openObj.latitude = latitude;
+      openObj.longitude = longitude;
+    } else {
+      return;
+    }
+    if (scale > 0 && scale < 29) {
+      openObj.scale = scale;
+    } else {
+      openObj.scale = 15;
+    }
+    if (name && address) {
+      openObj.name = name;
+      openObj.address = address;
+    }
+    openObj.success = function (res) {
+      if (cbSuccessFun) {
+        cbSuccessFun();
+      }
+    }
+    openObj.fail = function (res) {
+      if (cbFailFun) {
+        cbFailFun();
+      } else {
+        console.log("openLocation fail:" + res.errMsg);
+      }
+    }
+    openObj.complete = function (res) {
+      if (cbCompleteFun) {
+        cbCompleteFun();
+      }
+    }
+    wx.openLocation(openObj);
+  },
+  onShow() {
+    this.timer = setInterval(this.getBannerList, 30 * 1000);
+  },
+  onReady() {
   },
   onPullDownRefresh() {
-    wx.removeStorageSync('storeList')
-    this.getGymList(() => {
+    this.getBannerList();
+    setTimeout(() => {
       wx.stopPullDownRefresh();
-    });
+    }, 500);
+  },
+  onHide() {
+    if (this.timer) {
+      console.log('onhide...')
+      clearInterval(this.timer)
+    }
   }
 })

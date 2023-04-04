@@ -8,19 +8,9 @@ Page({
   data: {
     //筛选
     isScreen: false,
-    inteTypeList: [{
-      id: 1,
-      inteName: '自律奖励',
-      checked: false
-    }, {
-      id: 2,
-      inteName: 'VIP奖励',
-      checked: false
-    }],
-    // choose: -1,
     selfReword: [],
     VIPReword: [],
-    typeValue: '',
+    // typeValue: '',
     //轮播图
     inteBannerList: [],
     inteBannerList1: ['http://user.360ruyu.cn/images/userBanner/score1.png', 'http://user.360ruyu.cn/images/userBanner/score2.png'],
@@ -37,11 +27,6 @@ Page({
       menuRight: app.globalData.menuRight
     })
   },
-  getValue: function (e) {
-    this.setData({
-      typeValue: e.detail.value
-    })
-  },
   //获取积分
   getScoreTotalByPhone: function () {
     var that = this
@@ -52,100 +37,33 @@ Page({
       }
     }).then(res => {
       console.log(res)
-      if (res.data.code == 1 && res.data.data.length>0) {
+      if (res.data.code == 1 && res.data.data.length > 0) {
         that.setData({
           vipIntegral: res.data.data[0].UI_Score,
           actionIntegral: res.data.data[0].UI_ActionScore
         })
-        // app.globalData.UI_Score = res.data.data[0].UI_Score;
-        // app.globalData.UI_ActionScore = res.data.data[0].UI_ActionScore
       }
     })
   },
   //积分账单
-  // pointsBill: function () {
-  //   let phone = wx.getStorageSync('phone')
-  //   if (phone && phone !== '') {
-  //     wx.navigateTo({
-  //       url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral,
-  //     })
-  //   }
-  // },
+  pointsBill: function () {
+    let phone = wx.getStorageSync('phone')
+    if (phone && phone !== '') {
+      wx.navigateTo({
+        url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral,
+      })
+    }else{
+      wx.navigateTo({
+        url: '/page2/login/login',
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
-  choosebg: function (e) {
-    this.setData({
-      choose: e.currentTarget.dataset.index
-    })
-  },
   onPopup: function () {
     this.setData({
       isScreen: !this.data.isScreen
-    })
-  },
-  preventTouchMove: function () {
-    return;
-  },
-  onreset: function () {
-    let inteList = this.data.inteTypeList;
-    //清空
-    for (var j = 0; j < inteList.length; j++) {
-      inteList[j].checked = false
-    }
-    this.setData({
-      typeValue: '',
-      inteTypeList: inteList
-    })
-  },
-  onconfrim: function () {
-    let inteList = this.data.inteTypeList;
-    let newList = []
-    for (let i = 0; i < inteList.length; i++) {
-      if (inteList[i].checked) {
-        newList.push(inteList[i].inteName)
-      }
-    }
-    let scores = this.data.typeValue
-    if (!scores && !scores.trim()) {
-      scores = 0;
-    }
-    if (newList.includes('VIP奖励') && newList.length == 1) {
-     // console.log(1)
-      this.getScoreRewardPayList(scores)
-      let selfReword = [];
-      this.setData({
-        selfReword: selfReword
-      })
-    } else if (newList.includes('自律奖励') && newList.length == 1) {
-      //console.log(2)
-      this.getScoreRewardActList(scores);
-      let VIPReword = []
-      this.setData({
-        VIPReword: VIPReword
-      })
-    } else if (newList.includes('自律奖励') && newList.includes('VIP奖励')) {
-      //console.log(3)
-      this.getScoreRewardPayList(scores)
-      this.getScoreRewardActList(scores)
-    } else {
-     // console.log('请至少选择一个');
-      this.getScoreRewardPayList(scores)
-      this.getScoreRewardActList(scores)
-    }
-    //消费积分
-    // this.getScoreRewardPayList()
-    //行为积分
-    // this.getScoreRewardActList()
-    //清空
-    for (var j = 0; j < inteList.length; j++) {
-      inteList[j].checked = false
-    }
-    this.setData({
-      isScreen: false,
-      typeValue: '',
-      inteTypeList: inteList
     })
   },
   //消费积分
@@ -180,23 +98,7 @@ Page({
       })
     })
   },
-  //checkbox
-  serviceValChange: function (e) {
-    let list = this.data.inteTypeList
-    let values = e.detail.value;
-    for (let i = 0; i < list.length; i++) {
-      list[i].checked = false
-      for (let j = 0; j < values.length; j++) {
-        if (list[i].inteName === values[j]) {
-          list[i].checked = true
-          break
-        }
-      }
-    }
-    this.setData({
-      inteTypeList: list
-    })
-  },
+  //轮播图
   getScoreBannerList: function () {
     var that = this
     api.request({
@@ -231,12 +133,6 @@ Page({
     //轮播图
     this.getScoreBannerList();
   },
-  //关闭
-  close: function () {
-    this.setData({
-      isScreen: false
-    })
-  },
   //自律奖励
   selfRewordInte: function (e) {
     console.log(e)
@@ -260,6 +156,42 @@ Page({
   onHide: function () {
     this.setData({
       isScreen: false
+    })
+  },
+  onClose() {
+    this.setData({
+      isScreen: false
+    })
+  },
+  onConform(e) {
+    var serach = e.detail;
+    var scores = serach.scrores;
+    console.log(serach)
+    if (Number(serach.scrores) == 0) {
+      scores = 0;
+    }
+  
+    if (serach.type.includes('VIP奖励') && serach.type.length == 1) {
+      this.getScoreRewardPayList(scores)
+      let selfReword = [];
+      this.setData({
+        selfReword: selfReword
+      })
+    } else if (serach.type.includes('自律奖励') && serach.type.length == 1) {
+      this.getScoreRewardActList(scores);
+      let VIPReword = []
+      this.setData({
+        VIPReword: VIPReword
+      })
+    } else if (serach.type.includes('自律奖励') && serach.type.includes('VIP奖励')) {
+      this.getScoreRewardPayList(scores)
+      this.getScoreRewardActList(scores)
+    } else {
+      this.getScoreRewardPayList(scores)
+      this.getScoreRewardActList(scores)
+    }
+    this.setData({
+      isScreen:false
     })
   },
   /**

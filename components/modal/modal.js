@@ -54,7 +54,7 @@ Component({
       this.setData({
         show: false
       })
-      this.triggerEvent('cancel',false)
+      this.triggerEvent('cancel', false)
     },
     //通过绑定手机号登录
     getPhoneNumber: function (e) {
@@ -87,7 +87,7 @@ Component({
                     wx.setStorageSync('loginStatus', 2);
                     // 保存手机号码
                     wx.setStorageSync('phone', res.data.phone);
-                     //获取已有的会员信息
+                    //获取已有的会员信息
                     api.request({
                       url: "/MyAllVIPCard",
                       data: {
@@ -95,7 +95,7 @@ Component({
                       }
                     }).then(res => {
                       if (res.data.code == 1) {
-                        if(res.data.data.length>0){
+                        if (res.data.data.length > 0) {
                           wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
                         }
                         //返回上一个页面
@@ -115,13 +115,20 @@ Component({
             })
           }
         })
-      } else {
+      } else if(e.detail.errMsg == 'getPhoneNumber:fail user deny'){
         //返回上一个页面
-        wx.navigateBack({
-          delta: 1,
+        wx.showToast({
+          title: '取消授权',
+          icon: 'none',
+          success: function () {
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1,
+              })
+            }, 1500)
+          }
         })
       }
     },
-   
   }
 })

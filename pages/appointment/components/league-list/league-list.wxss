@@ -1,0 +1,105 @@
+.league-list {
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.league-item {
+  position: relative;
+  margin: 0 auto 30rpx;
+  width: 690rpx;
+  height: 388rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.mask-BG {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 690rpx;
+  height: 388rpx;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 11;
+}
+
+.league-BG {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 388rpx;
+  z-index: 10;
+}
+
+.league-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 388rpx;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+  z-index: 100;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.attend-info {
+  line-height: 3em;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  color: #FFFFFF;
+}
+
+.league-name {
+  margin-top: 128rpx;
+  font-size: 34rpx;
+}
+.league-coach{
+  margin-top: 14rpx;
+  font-size: 28rpx;
+}
+
+.league-time {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.league-appinfo{
+  margin-top: 4rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.class-status{
+  width: 160rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #12D58B;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  color: #FFFFFF;
+}
+/* unclass */
+.unclass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 55vh;
+}
+
+.unclass>image {
+  width: 140rpx;
+  height: 169rpx;
+}
+
+.unclass>view {
+  margin-top: 60rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}

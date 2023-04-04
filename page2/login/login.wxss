@@ -1,102 +1,89 @@
-/* page2/login/login.wxss */
-.login-layout {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+page {
+  background-color: #ffffff;
+  font-family: PingFang SC;
 }
 
-.login_bg {
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+.login-info {
+  padding-top: 270rpx;
 }
 
-.avatar {
-  margin-top: 140px;
+.login-info view {
   text-align: center;
 }
 
-.avatar image {
+.login-logo {
+  text-align: center;
+}
+
+.login-logo image {
   width: 188rpx;
   height: 188rpx;
   border-radius: 50%;
   vertical-align: bottom;
 }
 
-.personal_info {
-  text-align: center;
-  margin: 42rpx 0 75rpx 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100rpx;
-  font-weight: normal;
+
+.store-name {
+  margin: 30rpx 0;
+  font-size: 36rpx;
+  color: #222222;
 }
 
-.sto_title {
-  font-size: 34rpx;
-  font-family: PingFang SC;
-  color: #FFFFFF;
-}
-
-.getInfo {
+.store-info {
   font-size: 28rpx;
-  font-family: PingFang SC;
-  color: #FFFFFF;
+  color: #999999;
 }
 
-.login-layout .btn {
-  width: 690rpx;
-  height: 70rpx;
-  line-height: 35rpx;
-  font-size: 32rpx;
-  font-family: PingFang SC !important;
-  border-radius: 35rpx;
-  color: #FFFFFF;
+.login-btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 290rpx;
+  box-sizing: border-box;
+}
+
+.login-btn button {
+  width: 690rpx !important;
+  height: 80rpx;
+  font-size: 36rpx;
   font-weight: normal;
+  border-radius: 40rpx;
+  color: #FFFFFF;
 }
 
-.login-layout .doLogin {
-  background: #12D58B;
+.login-btn .authorization {
+  background-color: #12D58B !important;
 }
 
-.login-layout .cancel {
-  margin-top: 48rpx;
-  background: rgba(255, 255, 255, 0);
-  border: 1px solid #FFFFFF;
+.login-btn .cancel {
+  margin-top: 60rpx !important;
+  border: 1px solid #DEDEDE;
+  font-size: 36rpx;
+  color: #999999;
+  background-color: #ffffff !important;
 }
-/* 蒙层 */
+
 .succ-icon {
-  margin-top: 52rpx;
   text-align: center;
 }
 
-.modalTip {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 30rpx;
-  height: 100rpx;
+icon {
+  padding: 40rpx 0;
 }
 
-.modalTip view:first-child {
-  font-size: 34rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
+.modalTip view {
+  font-size: 36rpx;
   color: #333333;
+  text-align: center;
 }
 
 .modalTip view:last-child {
-  margin-top: 28rpx;
-  font-size: 32rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #999999;
+}
+
+button[disabled]{
+  color: #ffffff;
 }

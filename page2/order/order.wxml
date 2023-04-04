@@ -1,50 +1,46 @@
+<import src="/template/nothing/nothing.wxml" />
 <nav-bar page-name="我的订单"></nav-bar>
 <view class="order_container" style="margin-top:{{navHeight}}px">
-  <view class="order_head">
+  <view class="order_tabs">
     <block wx:for="{{orderTitle}}" wx:key="index">
-      <view class="order_title {{chooseId==index?'active_lice':''}}" bindtap="choose" data-index="{{index}}">{{item}}
-      </view>
+      <text class="{{chooseId==index?'active_lice':''}}" bindtap="choose" data-index="{{index}}">{{item}}</text>
     </block>
   </view>
-  <!-- 主要部分 -->
-  <view class="order_list" hidden="{{chooseId !== 0}}">
-    <block wx:if="{{orderList.length>0}}">
-      <view class="main_order" wx:for="{{orderList}}" wx:key="index">
-        <view class="order_status">
-          <view>{{item.GB_Name}}</view>
-          <!--  -->
-          <view>已支付</view>
+  <!--  -->
+  <view class="orderWrapper">
+    <view hidden="{{chooseId!==0}}">
+      <view class="pay_list" wx:for="{{payList}}" wx:key="OrderNo">
+        <view class="pay_title">
+          <text>{{item.GB_Name}}</text>
+          <text>已支付</text>
         </view>
         <view class="order_id">订单编号：{{item.OrderNo}}</view>
-        <!-- 金额 -->
-        <view class="my_money">
-          ￥<text>{{item.Price}}</text>
-        </view>
-        <view class="order_img">
-          <view>
-            <image src="{{item.SC_Logo?item.SC_Logo:'/static/order/vip.png'}}" class="vip_pic"></image>
-            <text class="yearCard">{{item.SC_Name}}</text>
+        <view class="order_info">
+          <view class="order_left">
+            <image src="{{item.SC_Logo?item.SC_Logo:'/static/others/3.jpg'}}"></image>
+            <!-- <image src="/static/others/3.jpg"></image>  -->
           </view>
-          <view class="right_box">
-            <view>
-              <text style="font-size:24rpx;">×{{item.Num}}</text>
-              <!-- <text>{{item.Price}}</text> -->
-            </view>
-            <view>
-              合计:<text>￥</text>{{item.UP_MoneyReal}}
+          <view class="order_right">
+            <view class="card_type">{{item.SC_Name}}</view>
+            <view class="price_box">
+              <text>￥{{item.Price}}</text>
+              <text>x {{item.Num}}</text>
             </view>
           </view>
         </view>
-        <!--  -->
-        <view class="cre_time">
+        <view class="all_price">
           <view>
-            VIP积分 <text class="inte_num">+{{item.Score}}</text>
+            VIP积分
+            <text class="orange">+ {{item.Score}}</text>
           </view>
-          <view class="date">{{item.Createdate}} </view>
+          <view>
+            合计
+            <text class="red">￥{{item.UP_MoneyReal}}</text>
+          </view>
         </view>
+        <view class="pay_time">{{item.Createdate}}</view>
       </view>
-      <!-- 加载更多 -->
-      <view wx:if='{{!isRefreshing}}' class="weui-loadmore">
+      <view wx:if='{{!isRefreshing && payList.length>0}}' class="weui-loadmore">
         <view wx:if='{{isLoadingMoreData}}'>
           <view class="weui-loading"></view>
           <view class="weui-loadmore-tips">正在加载更多...</view>
@@ -53,47 +49,34 @@
           <view class="weui-loadmore-tips">没有更多内容啦</view>
         </view>
       </view>
-      <!--  -->
-    </block>
-    <block wx:else>
-      <view class="none">
-        <view class="none_list">
-          <image src="/static/none.png" mode="widthFix"></image>
-          <view>暂无内容</view>
-        </view>
-      </view>
-    </block>
-  </view>
-
-  <view class="order_list" hidden="{{chooseId !== 1}}">
-    <block wx:if="{{otherList.length>0}}">
-      <view class="main_order" wx:for="{{otherList}}" wx:key="index">
-        <view class="order_status">
-          <view style="color:#333333;">{{item.GB_Name}}</view>
+      <template wx:if="{{payList.length==0}}" is="nothing" data="{{message:'暂无内容'}}"></template>
+    </view>
+    <view hidden="{{chooseId!==1}}">
+      <view class="integral_list" wx:for="{{integralList}}" wx:key="OrderNo">
+        <view class="pay_title">
+          <text>{{item.GB_Name}}</text>
         </view>
         <view class="order_id">订单编号：{{item.OrderNo}}</view>
-        <!-- 金额 -->
-        <view class="my_money">
-          {{item.SocreType =='ActScore'?'行为积分':'消费积分'}} <text>{{item.Score}}</text>
-        </view>
-        <view class="order_img">
-          <view>
-            <image src="{{item.SE_Logo?item.SE_Logo:'/static/order/vip.png'}}" class="vip_pic"></image>
-            <text class="yearCard">{{item.SE_Name}}</text>
+        <view class="order_info">
+          <view class="order_left">
+            <image src="{{item.SC_Logo?item.SC_Logo:'/static/others/3.jpg'}}"></image>
+            <!-- <image src="{{item.SC_Logo?item.SC_Logo:'/static/order/owner_class.png'}}"></image> -->
+            <!-- <image src="/static/others/3.jpg"></image>  -->
           </view>
-          <view class="right_box">
-            <view>
-              <text style="font-size:24rpx;">×</text>
-              <text>{{item.Num}}</text>
+          <view class="order_right">
+            <view class="card_type">一年卡</view>
+            <view class="price_box">
+              <text>{{item.SocreType =='ActScore'?'行为积分':'消费积分'}}{{item.Score}}</text>
+              <text>x1</text>
             </view>
-            <view>合计： {{item.TotalScore}}</view>
           </view>
         </view>
-        <!--  -->
-        <view class="time1">{{item.Createdate}}</view>
+        <view class="integral_total">
+          合计 <text class="red"> 1800</text>
+        </view>
+        <view class="createTime">2021-07-20 15:48</view>
       </view>
-      <!-- 加载更多 -->
-      <view wx:if='{{!isRefreshing}}' class="weui-loadmore">
+      <view wx:if='{{!isRefreshing && integralList.length>0}}' class="weui-loadmore">
         <view wx:if='{{isLoadingMoreData}}'>
           <view class="weui-loading"></view>
           <view class="weui-loadmore-tips">正在加载更多...</view>
@@ -102,15 +85,7 @@
           <view class="weui-loadmore-tips">没有更多内容啦</view>
         </view>
       </view>
-      <!--  -->
-    </block>
-    <block wx:else>
-      <view class="none">
-        <view class="none_list">
-          <image src="/static/none.png" mode="widthFix"></image>
-          <view>暂无内容</view>
-        </view>
-      </view>
-    </block>
+      <template wx:if="{{integralList.length==0}}" is="nothing" data="{{message:'暂无内容'}}"></template>
+    </view>
   </view>
 </view>

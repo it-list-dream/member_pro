@@ -1,6 +1,6 @@
 <import src="/template/nothing/nothing"></import>
 <nav-bar page-name="历史预约"></nav-bar>
-<view  style="margin-top:{{navHeight}}px">
+<view style="margin-top:{{navHeight}}px">
   <view class="history_header">
     <block wx:for="{{historyList}}" wx:key="index">
       <view bindtap="chooseNav" data-index="{{index}}" class="histroy_item {{index==chooseId?'his_active':''}}">
@@ -17,12 +17,12 @@
           </view>
           <view class="status">{{historyList[chooseId]}}</view>
         </view>
-        <view class="app_content" style=" border-bottom:{{type!==2?'none':'1px solid #E5E5E5'}};">
+        <view class="app_content" style=" border-bottom:{{type!==2?'none':'0.5px solid #E5E5E5'}};">
           <view class="con_left">
             <view class="imageBox">
-              <image src="{{item.ClassLogo?item.ClassLogo:'./images/histroy.png'}}">
+              <image src="{{item.ClassLogo?item.ClassLogo:'./images/history.png'}}">
               </image>
-              <view class="score_item" wx:if="{{item.Score}}">自律积分  <text class="score">+{{item.Score}}</text></view>
+              <view class="score_item" wx:if="{{item.Score}}">自律积分 <text class="score">+{{item.Score}}</text></view>
             </view>
             <view class="app_w">
               <view>{{item.CTO_Name}}</view>
@@ -42,7 +42,12 @@
           <!-- 私教课取消 -->
           <view class="contact" wx:elif="{{item.ClassType==2}}">
             <view class="btn contact_item" bindtap="call" data-phone="{{item.AI_Tel}}">联系电话</view>
+            <view class="btn Confrim" bindtap="successClass" wx:if="{{item.IsUserConfirm == 1}}"
+              data-cs_id="{{item.ClassID}}">完成</view>
             <view class="btn cancel" bindtap="cancelPerClass" data-id="{{item.ClassID}}">取消</view>
+          </view>
+          <view class="btn groupCancel" bindtap="newGroupCancel" wx:elif="{{item.ClassType == 3}}" data-groupid="{{item.ClassID}}">
+            取消
           </view>
         </block>
       </view>
@@ -60,6 +65,6 @@
     <!-- <view wx:if="{{flag}}" class="no_more">没有更多了</view> -->
   </view>
   <block wx:else>
-    <template  is="nothing" data="{{message:'暂无内容'}}"></template>
+    <template is="nothing" data="{{message:'暂无内容'}}"></template>
   </block>
 </view>

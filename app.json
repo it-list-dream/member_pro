@@ -15,7 +15,9 @@
     "pages/personalTrainer/personalTrainer",
     "pages/movementData/movementData",
     "pages/activeDetail/activeDetail",
-    "pages/activeList/activeList"
+    "pages/activeList/activeList",
+    "pages/leagueDetail/leagueDetail",
+    "pages/leagueList/leagueList"
   ],
   "subpackages": [
     {
@@ -40,16 +42,23 @@
         "instrument/instrument",
         "treadmillDetail/treadmillDetail",
         "smartTreadmill/smartTreadmill",
-        "copyRight/copyRight"
+        "copyRight/copyRight",
+        "contractList/contractList",
+        "contractDetail/contractDetail",
+        "signature/signature",
+        "specialLeague/specialLeague"
       ]
     }
   ],
-  "plugins": {
-    "calendar": {
-      "version": "1.1.3",
-      "provider": "wx92c68dae5a8bb046"
+  "preloadRule": {
+    "pages/tabbar/home/home": {
+      "network": "all",
+      "packages": [
+        "page2"
+      ]
     }
   },
+  "plugins": {},
   "tabBar": {
     "custom": true,
     "position": "bottom",
@@ -82,11 +91,6 @@
         "selectedIconPath": "static/tabbar/my_active.png"
       }
     ]
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
   },
   "window": {
     "navigationStyle": "custom",

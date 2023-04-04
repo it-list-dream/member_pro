@@ -1,7 +1,0 @@
-<template name="loading">
-  <view class="loading">
-    <view class="demo1"></view>
-    <view class="demo1"></view>
-    <view class="demo1"></view>
-  </view>
-</template>

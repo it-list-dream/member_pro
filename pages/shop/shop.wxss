@@ -1,8 +1,6 @@
 /* pages/shop/shop.wxss */
 .loaction_wrapper {
-  background: #F0F2F5;
-  padding: 20rpx 30rpx 30rpx 30rpx;
-  /* height: auto; */
+  padding: 30rpx;
 }
 
 .loaction_wrapper .location_info {
@@ -10,12 +8,14 @@
   width: 690rpx;
   background: #ffffff;
   border-radius: 8rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
 }
 
 .loaction_wrapper .loaction {
   display: flex;
   justify-content: space-between;
-  padding: 20rpx 22rpx;
+  padding: 60rpx 0 30rpx;
 }
 
 .loaction_wrapper .location_title {
@@ -24,86 +24,97 @@
 }
 
 .location_info .address {
+  margin-right: 10rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
-  padding: 0 7rpx 0 5rpx;
 }
 
 .location_info .shop_num {
   font-size: 30rpx;
   font-family: PingFang SC;
-  font-weight: 400;
-  color: #333333;
+  color: #999999;
 }
 
 .location_info .location_title>image {
   width: 36rpx;
   height: 36rpx;
   vertical-align: middle;
-  padding-top: 2rpx;
 }
 
 .location_info .store_list {
   position: relative;
   display: flex;
-  margin: 0 auto;
-  padding: 31rpx 0 30rpx 30rpx;
+  height: 244rpx;
+  padding: 30rpx 0;
   border-top: 1px solid #EEEEEE;
+  box-sizing: border-box;
+}
+.myStoreLogo{
+  position: relative;
 }
 
-.location_info .store_item {
-  padding-left: 20rpx;
-  flex: 1;
-}
-
-.location_info .store_item .store_adr {
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.location_info .store_item .detail_address {
-  padding-top: 18rpx;
-  font-size: 22rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-  display: flex;
-  align-items: center;
-}
-
-.location_info .store_item .detail_address>image {
-  width: 36rpx;
-  height: 36rpx;
-  vertical-align: middle;
-}
-
-.location_info .store_item .detail_address .detail {
-  padding-left: 15rpx;
-  flex: 1;
-}
-
-.location_info .distance {
-  margin-top: 40rpx;
-  font-size: 22rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
 /* 离我最近 */
 .nearStore {
   position: absolute;
-  top: 20rpx;
-  right: 0;
-  width: 130rpx;
-  height: 30rpx;
-  line-height: 30rpx;
+  top: 0;
+  left: 0;
+  width: 110rpx;
+  height: 40rpx;
+  line-height: 40rpx;
   text-align: center;
   background: #12D58B;
-  border-radius: 14rpx 0px 0px 16rpx;
-  font-size: 20rpx;
+  border-radius: 10rpx 0px 10rpx 0px;
+  font-size: 24rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #FFFFFF;
 }
+
+.store_list .room {
+  width: 250rpx;
+  height: 184rpx;
+  flex-shrink: 0;
+}
+
+.location_info .store_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+  flex: 1;
+  font-family: PingFang SC;
+  overflow: hidden;
+}
+
+.location_info .store_item .store_adr {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.store_item .detail_address {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  color: #333333;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:3;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
+/* .detail_address>image {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+} */
+
+
+.location_info .distance {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  color: #999999;
+}
+

@@ -1,17 +1,13 @@
 page {
-  background: #F0F2F5;
-}
-
-.appointment_detail {
-  height: auto;
+  background: #FFFFFF;
 }
 
 .appointment_tabs {
   display: flex;
   padding: 0 30rpx;
-  height: 100rpx;
-  line-height: 100rpx;
-  /* background-color: yellow; */
+  height: 125rpx;
+  line-height: 90rpx;
+  background: #F0F2F5;
 }
 
 .tabs_item {
@@ -19,10 +15,8 @@ page {
   margin-left: 20rpx;
   padding: 0 20rpx;
   height: 100%;
-  /* background-color: pink; */
   font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #333333;
 }
 
@@ -32,13 +26,19 @@ page {
 
 .tabs_active::after {
   position: absolute;
-  bottom: 0;
+  bottom: 30rpx;
   left: 50%;
   transform: translateX(-50%);
   content: '';
   width: 30rpx;
   height: 6rpx;
   background: #12D58B;
+}
+
+/*  */
+.per_box{
+  padding-bottom: 30rpx;
+  background:#F0F2F5;
 }
 
 .personal_coach {
@@ -50,37 +50,46 @@ page {
   background: #FFFFFF;
   border-radius: 10rpx;
   box-sizing: border-box;
+  margin: 0 auto;
   padding: 30rpx;
-  margin: 30rpx auto;
+}
+
+.coach_info{
+  display: flex;
+  flex-direction: column;
+  font-family: PingFang SC;
+  color: #333333;
+  margin-left: 30rpx;
+  font-size: 26rpx;
+  flex: 1;
+  overflow: hidden;
 }
 
 .personal_coach .head {
   width: 116rpx;
   height: 116rpx;
+  border-radius: 50%;
 }
 
-.coachInfo {
-  margin-left: 32rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-.personal_coach .coachName {
+.coach_info .coach_name{
   font-size: 32rpx;
+  margin-bottom: 8rpx;
 }
 
-.coachInfo .couseCount {
-  margin-top: 8rpx;
-  font-size: 26rpx;
+.coach_info  .class_count{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 8rpx;
 }
 
-.time text {
-  font-size: 26rpx;
+.coach_info .cp_time{
+  display: flex;
 }
 
-.time text:last-child {
-  margin-left: 50rpx;
+.cp_time>text:last-child{
+  padding-left: 48rpx;
 }
 
 .qh {
@@ -104,17 +113,6 @@ page {
   padding: 30rpx 0;
   background: #FFFFFF;
   box-sizing: border-box;
-}
-
-.dayList_active::after {
-  position: absolute;
-  content: '';
-  left: 50%;
-  bottom: 0;
-  width: 690rpx;
-  height: 1px;
-  transform: translateX(-50%);
-  background: #E5E5E5;
 }
 
 .dayList .selectDate {
@@ -156,22 +154,13 @@ page {
   border: 1px solid rgba(51, 51, 51, 0.1);
   font-size: 30rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   text-align: center;
 }
 
-.dayList .red {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 26rpx;
-  height: 26rpx;
-}
 
 .week {
   font-size: 24rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #999999;
 }
 
@@ -179,7 +168,6 @@ page {
   margin-top: 15rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #333333;
 }
 
@@ -189,183 +177,108 @@ page {
   top: 30rpx;
   left: 0;
   z-index: 9999;
-  width: 100%;
-  box-sizing: border-box;
-  border-top: 1px solid #eeeeee;
 }
 
 .calendar {
   font-family: PingFang SC;
   background-color: #ffffff;
-  font-weight: 500;
   color: #333333;
   font-size: 34rpx;
+  padding-bottom: 60rpx;
 }
 
 .calendar-header {
   padding: 30rpx 0 !important;
   font-family: PingFang SC;
-  color: #333333;
-  font-size: 34rpx;
+  color: #333333 !important;
+  font-size: 34rpx !important;
+  font-weight: normal !important;
+}
+
+.calendar--calendar-header {
+  border-top: 1px solid #E5E5E5;
+}
+
+.calendar--cwj-icon {
+  font-weight: 800 !important;
+}
+
+.calendar--calendar-weeks {
+  font-weight: normal !important;
+  color: #333333 !important;
 }
 
 .calendar-board {
   color: #333333;
-  font-weight: 500;
-}
-/*  */
-.dayList .day .day_active {
-  color: #333333;
-}
-
-/*  */
-/* 团课详情 */
-.leagueClass {
-  padding: 0 30rpx 30rpx 30rpx;
-}
-
-.leagueClass .leagueClass_item {
-  position: relative;
-  box-sizing: border-box;
-  width: 690rpx;
-  height: 388rpx;
-  margin-bottom: 60rpx;
-}
-
-.group_img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.p1 {
-  position: relative;
-  z-index: 99;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 40rpx;
-}
-
-.leagueClass .progress {
-  display: inline-block;
-  padding: 0 14rpx;
-  height: 35rpx;
-  text-align: center;
-  line-height: 35rpx;
-  /* background: #7B6F85; */
-  border-radius: 8rpx;
-  font-size: 22rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
-  color: #FFFFFF;
-}
-
-.leagueClass .className {
-  margin-top: 160rpx;
-  font-size: 40rpx;
-  font-family: PingFang SC;
-  color: #FFFFFF;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.leagueClass .class_info {
-  display: flex;
-  justify-content: space-between;
-}
-
-.leagueClass .class_info .class_time {
-  align-self: flex-end;
-  font-size: 26rpx;
-  font-family: PingFang SC;
-  color: #FFFFFF;
-}
-
-.leagueClass .class_info .class_status {
-  width: 160rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  text-align: center;
-  background: #12D58B;
-  border-radius: 30rpx;
-  font-size: 26rpx;
-  font-family: PingFang SC;
-  color: #FFFFFF;
-
-}
-
-.unclass {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50vh;
-  background-color: #F0F2F5;
-}
-
-.unclass>image {
-  width: 120rpx;
-  height: 140rpx;
-}
-
-.unclass>view {
-  margin-top: 34rpx;
-  font-size: 32rpx;
-  font-family: PingFang SC;
-  color: #52495B;
 }
 
 /* 私教详情 */
-.trainer {
-  box-sizing: border-box;
-  padding: 30rpx 30rpx 0;
-  background: #ffffff;
-  padding-bottom: 60rpx;
+.trainer-box {
+  padding: 0 30rpx;
+  background: #ffffff
 }
 
+.trainer {
+  position: relative;
+  width: 100%;
+  padding-top: 30rpx;
+  padding-bottom: 70rpx;
+  border-top: 1px solid #E5E5E5;
+}
+
+/*  */
 .trainer .time {
-  box-sizing: border-box;
+  width: 100%;
   display: flex;
-  height: 100%;
-  height: 520rpx;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .trainer .time .clock {
-  width: 100%;
-  flex-basis: 20%;
+  width: 20%;
   height: 50rpx;
+  margin-bottom: 30rpx;
+  flex-shrink: 0;
 }
 
 .clock>view {
   margin: 0 auto;
-  box-sizing: border-box;
   width: 122rpx;
   height: 50rpx;
-  line-height: 46rpx;
+  line-height: 50rpx;
   text-align: center;
-  border: 1px solid #cccccc;
-  border-radius: 8rpx;
+  border-radius: 10rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
-  font-weight: 500;
   color: #333333;
+  background-color: #ffffff;
+  border: 1px solid #E5E5E5;
+  box-sizing: border-box;
 }
 
+.trainer .mycol {
+  background-color: #F0F2F5;
+  border-color: transparent !important;
+}
+
+.trainer .keyuyue {
+  border: 1px solid #E5E5E5;
+  background-color: #ffffff;
+}
+
+/*  */
 .oder_wrapper {
   position: fixed;
   width: 100%;
   left: 0;
   bottom: 50rpx;
+  background-color: #FFFFFF;
 }
 
 .oder_wrapper .order {
   width: 690rpx;
   height: 70rpx;
+  line-height: 70rpx;
   margin: 0 auto;
   background: #12D58B;
   border-radius: 35rpx;
@@ -373,45 +286,30 @@ page {
   font-family: PingFang SC;
   color: #FFFFFF;
   text-align: center;
-  line-height: 70rpx;
 }
 
 /*  */
-.mycol {
-  background-color: #F0F2F5 !important;
-  border: none !important;
-}
 
 .no_personalClass {
-  margin-top: 60rpx;
-  height: 45vh;
   display: flex;
+  height: 60vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.no_personalClass image {
-  width: 120rpx;
-  height: 140rpx;
+.no_title1 {
+  padding-top: 60rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #333333;
 }
 
-.immediately {
-  width: 240rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  margin: 0;
-  margin-top: 60rpx !important;
-  padding: 0;
-  box-sizing: border-box;
-  text-align: center;
-  background: #12D58B !important;
-  background-color: #F8F8F8;
-  border-radius: 10rpx !important;
-  font-size: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
+.no_personalClass image {
+  width: 140rpx;
+  height: 169rpx;
 }
 
 button::after {

@@ -2,7 +2,7 @@
 <view class="active_list" style="margin-top:{{navHeight}}px">
   <block wx:for="{{activeList}}" wx:key="index">
     <view class="vip_card" bindtap="detail" data-card="{{item}}">
-      <image src="/static/vip.png"></image>
+      <image src="{{item.SC_Logo?item.SC_Logo:'/static/home_pic/vip.png'}}"></image>
       <view class="card_title">{{item.SC_Name}}</view>
     </view>
   </block>

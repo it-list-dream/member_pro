@@ -6,7 +6,7 @@
       <picker mode="date" value="{{firstDate}}" start="2015-09-01" end="{{endDate}}" bindchange="bindDateChange"
         fields="year" fields="month" class="picker">
         {{firstDate}}
-        <image src="/static/white_bottom.png"></image>
+        <image src="/static/bottom_arrow.png"></image>
       </picker>
     </view>
     <view class="line"></view>
@@ -14,16 +14,16 @@
       <picker mode="date" value="{{lastDat}}" start="2015-09-01" end="{{endDate}}" bindchange="bindDateChange1"
         fields="year" fields="month" class="picker">
         {{lastDate}}
-        <image src="/static/white_bottom.png"></image>
+        <image src="/static/bottom_arrow.png"></image>
       </picker>
     </view>
   </view>
   <view class="detection_list">
     <block wx:for="{{bodyList}}" wx:key="index">
       <view class="detection_item" bindtap="testBody" data-body="{{item}}">
-        <view class="deTip">
+        <!-- <view class="deTip">
           <image src="/static/detection.png"></image>
-        </view>
+        </view> -->
         <view class="physical">
           <text>{{item.Createdate}}</text>
           <text>检测时间</text>
@@ -36,8 +36,10 @@
           <text>{{item.Score}}</text>
           <text>健康评分</text>
         </view>
-        <view>
-          <image src="/static/exceed.png" style="width:64rpx;height:64rpx;"></image>
+        <view class="iconAll">
+          <image src="/static/others/rise.png" wx:if="{{item.Score>60}}"></image>
+          <view wx:elif="{{item.Score ==60}}" class="lang"></view>
+          <image src="/static/others/decline.png" wx:else></image>
         </view>
       </view>
     </block>

@@ -1,36 +1,38 @@
 <import src="/template/nothing/nothing.wxml" />
 <nav-bar page-name="智能跑步机" icon1="{{true}}"></nav-bar>
-<view class="treadmill" style="margin-top:{{navHeight}}px">
-  <view class="treadmill-box">
-    <view class="treadmill_header">
-      <picker mode="date" value="{{firstDate}}" start="2018-09" end="{{endDate}}" bindchange="bindDateChange"
-        fields="year" fields="month" class="picker">
-        {{firstDate}}
-        <image src="/static/arrow.png"></image>
-      </picker>
-      <view class="line"></view>
-      <picker mode="date" value="{{lastDat}}" start="2018-09" end="{{endDate}}" bindchange="bindDateChange1"
-        fields="year" fields="month" class="picker">
-        {{lastDate}}
-        <image src="/static/arrow.png"></image>
-      </picker>
-    </view>
-    <!-- contaner -->
-    <view class="treadmill_item" bindtap="treadmillDetail" wx:for="{{runRewordList}}" data-treadmill="{{item}}">
-      <view class="left_box">
-        <image src="./images/treadmill@2x.png" class="treadmill_image"></image>
-      </view>
-      <view class="right_box">
-       <view>{{item.startTime}}</view>
-       <view>跑步时长：{{item.runtime}}</view>
-       <view>跑步距离：{{item.runDistance}}km</view>
-       <view>消耗热量：{{item.burncal}}kcal</view>
-       <view>平均速度：{{item.avgspeed}}km/h</view>
-      </view>
-      <!-- 500/72 -->
-    </view>
-    <block wx:if="{{!runRewordList.length}}">
-      <template is="nothing" data="{{message: '暂无数据'}}"/>
-    </block>
+<view style="margin-top:{{navHeight}}px">
+  <view class="treadmill_header">
+    <picker mode="date" value="{{firstDate}}" start="2018-09" end="{{endDate}}" bindchange="bindDateChange"
+      fields="year" fields="month" class="picker">
+      {{firstDate}}
+      <image src="/static/arrow.png"></image>
+    </picker>
+    <view class="line"></view>
+    <picker mode="date" value="{{lastDat}}" start="2018-09" end="{{endDate}}" bindchange="bindDateChange1" fields="year"
+      fields="month" class="picker">
+      {{lastDate}}
+      <image src="/static/arrow.png"></image>
+    </picker>
   </view>
+  <!-- contaner class="treadmill-list" -->
+  <view class="treadmill-box">
+    <view class="treadmill_item" bindtap="treadmillDetail" wx:for="{{runRewordList}}" data-treadmill="{{item}}"
+      wx:key="index">
+      <view class="treadmill_time">{{item.startTime}}</view>
+      <view class="treadmill">
+        <view class="left_box">
+          <image src="/static/others/run_device.png" class="treadmill_image"></image>
+        </view>
+        <view class="right_box">
+          <view>跑步时长：{{item.runtime}}</view>
+          <view>跑步距离：{{item.runDistance}}km</view>
+          <view>消耗热量：{{item.burncal}}kcal</view>
+          <view>平均速度：{{item.avgspeed}}km/h</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{!runRewordList.length}}">
+    <template is="nothing" data="{{message: '暂无数据'}}" />
+  </block>
 </view>

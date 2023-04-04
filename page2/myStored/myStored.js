@@ -8,99 +8,99 @@ Page({
   data: {
     storedTab: ['全部', '充值', '消费'],
     tabIndex: 0,
-    currPage: 1,
-    pageSize: 10000,
-    type: 0,
-    //所有
-    userMoney: [],
-    //充值
-    rechangeMoney: [],
-    //消费
-    consumeMoney: [],
-    //flag: false,
+    pageSize: 12,
+    storedList: {
+      allMoney: {
+        //当前页数
+        pageIndex: 1,
+        list: [],
+        flag: true
+      },
+      //充值
+      rechangeMoney: {
+        //当前页数
+        pageIndex: 1,
+        list: [],
+        flag: true
+      },
+      consumeMoney: {
+        //当前页数
+        pageIndex: 1,
+        list: [],
+        flag: true
+      }
+    },
+    //当前选中的元素
+    currentType: 'allMoney'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserMoneyTranRecord();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       reMoney: options.reMoney,
       giveMoney: options.giveMoney
     })
+    this.getUserMoneyTranRecord('allMoney', 0);
+    this.getUserMoneyTranRecord('rechangeMoney', 1);
+    this.getUserMoneyTranRecord('consumeMoney', 2);
   },
   tabStored(e) {
-    //console.log(e.target.dataset)
-    let idx = e.target.dataset.idx;
-    if (idx == 1) {
-      this.setData({
-        type: 1,
-        currPage: 1
-      })
-      this.getUserMoneyTranRecord();
-    } else if (idx == 2) {
-      this.setData({
-        type: 2,
-        currPage: 1
-      })
-      this.getUserMoneyTranRecord();
-    } else {
-      this.setData({
-        type: 0,
-        currPage: 1
-      })
-      this.getUserMoneyTranRecord();
+    var idx = e.target.dataset.idx;
+    console.log(idx)
+    if (idx == this.data.tabIndex) {
+      return;
+    }
+
+    let currentType = ''
+    switch (idx) {
+      case 0:
+        currentType = 'allMoney';
+        break
+      case 1:
+        currentType = 'rechangeMoney';
+        break
+      case 2:
+        currentType = 'consumeMoney'
+        break
     }
     this.setData({
-      tabIndex: idx
+      tabIndex: idx,
+      currentType: currentType
     })
   },
   //我的储值
-  getUserMoneyTranRecord: function () {
+  getUserMoneyTranRecord: function (currentType, type) {
+    var that = this;
+    var newStoredList = this.data.storedList;
+    var page_size = newStoredList[currentType].pageIndex
     var that = this;
     api.request({
       url: "/UserMoneyTranRecord",
       data: {
         user_token: wx.getStorageSync('token'),
         pageSize: that.data.pageSize,
-        pageIndex: that.data.currPage,
+        pageIndex: page_size,
         UI_ID: wx.getStorageSync('UI_ID') || 0,
-        type: that.data.type
+        type: type
       }
     }).then(res => {
       //所有
-      if (this.data.tabIndex == 0) {
+      if (res.data.code == 1) {
         if (res.data.data.length > 0) {
-          // let originUserMoney = this.data.userMoney;
-          // let newUserList = originUserMoney.concat(res.data.data)
+          newStoredList[currentType].list.push(...res.data.data)
           this.setData({
-            userMoney: res.data.data
+            storedList: newStoredList
           })
-         // console.log('所有的数据')
-        } 
-      } else if (this.data.tabIndex == 1) {
-        //   //充值
-        if (res.data.data.length > 0) {
-          // let originRechange = this.data.rechangeMoney;
-          // let newRechange = originRechange.concat(res.data.data)
+        } else {
+          newStoredList[currentType].flag = false;
           this.setData({
-            rechangeMoney: res.data.data
+            storedList: newStoredList
           })
-         // console.log('充值的数据')
         }
-      } else if (this.data.tabIndex == 2) {
-        //consumeMoney
-        if (res.data.data.length > 0) {
-          //let originConsume = this.data.rechangeMoney;
-          // let newConsume = originConsume.concat(res.data.data)
-          this.setData({
-            consumeMoney: res.data.data
-          })
-        //  console.log('消费的数据')
-        } 
       }
     });
   },
@@ -135,13 +135,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
@@ -155,6 +148,19 @@ Page({
     // console.log('触底了')
   },
   loadMore: function () {
+    console.log('下拉加载更多');
+    var that = this;
+    let storedList = this.data.storedList;
+    let type = this.data.currentType;
+    let tabIndex = this.data.tabIndex;
+    if (storedList[type].flag) {
+      storedList[type].pageIndex += 1; //获取当前页数并+1
+      this.setData({
+        storedList: storedList
+      })
+      this.getUserMoneyTranRecord(type, tabIndex)
+      // console.log('加载更多数据');
+    }
     // var that = this;
     // if (this.data.flag) {
     //   var pageSize = that.data.currPage + 1; //获取当前页数并+1
@@ -168,11 +174,5 @@ Page({
     //     title: "已经到底了..."
     //   })
     // }
-  },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

@@ -1,33 +1,39 @@
 <wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="教练详情"></nav-bar>
 <view class="coachDetail" style="margin-top:{{navHeight}}px">
-  <image class="coach_bg" src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/home_pic/coach_all.jpg'}}"></image>
-  <view class="detail_list">
-    <view class="coach_info">
-      <image src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/head.png'}}" class="coach_head"></image>
-      <view class="coach_item">
-        <view>
+  <view class="coach_head">
+    <image src="{{coachDetail.AI_Face1?coachDetail.AI_Face1:'/static/others/coach2.jpg'}}" class="bannerImage" mode="widthFix">
+    </image>
+    <view class="coachInfo">
+      <view class="coachAvatar">
+        <image src="{{coachDetail.AI_Face?coachDetail.AI_Face:'/static/others/coach.jpg'}}"></image>
+      </view>
+      <view class="flex">
+        <view class="coach">
           <text>{{coachDetail.AI_Name}}</text>
-          <image src="{{coachDetail.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}" class="sex"></image>
+          <image src="{{coachDetail.AI_Sex=='女'?'/static/appointment/woman.png':'/static/appointment/man.png'}}">
+          </image>
         </view>
-        <view>
-          {{tools.replaceChar(coachDetail.AI_GoodAt)}}
-          <text style="margin-left:{{coachDetail.AI_GoodAt.length>0?'20rpx':0}}">累计上课{{coachDetail.CS_Num}}节</text>
+        <view class="coachGoodAt">
+          <text wx:if="{{coachDetail.AI_GoodAt}}"> {{tools.replaceChar(coachDetail.AI_GoodAt)}}</text>
+          <text wx:if="{{setOptions.IsHidenCoachPhone == 0}}">累计上课{{coachDetail.CS_Num}}节</text>
         </view>
       </view>
+      <view class="phone" bindtap="call" data-phone="{{coachDetail.AI_Tel}}">
+         <image src="/static/others/phoneNumber.png"></image>
+      </view>
     </view>
-    <image src="/static/green_phone.png" catchtap="call" data-phone="{{coachDetail.AI_Tel}}" class="phone_icon"></image>
   </view>
-  <!-- 教练介绍 -->
   <view class="coach_introduce">
-    <view class="coach_in">教练介绍</view>
-    <view class="introduce_text">{{coachDetail.AI_Introduction}}</view>
+    <view class="coach_title"><text>教练简介</text></view>
+    <view class="coach_desc" wx:if=" {{coachDetail.AI_Introduction}}">
+     {{coachDetail.AI_Introduction}}
+    </view>
   </view>
-  <!-- 课程推荐 -->
-  <view class="class_introduce">推荐课程</view>
-  <view>
+  <view class="recommend">
+    <view class="coach_title"><text>推荐课程</text></view>
     <block wx:for="{{suggestCoach}}" wx:key="index">
-      <course-list course="{{item}}"></course-list>
+      <course-list course="{{item}}" class="courseWrapper"></course-list>
     </block>
   </view>
 </view>

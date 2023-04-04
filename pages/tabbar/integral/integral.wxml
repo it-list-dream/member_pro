@@ -1,108 +1,50 @@
 <!-- 背景 -->
-<view class="inteTip">
-  <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
-  <view class="navbar" style='height:{{navHeight}}px;'>
-    <my-capsule class="capsule_icon"  style="top:{{navTop}}px;left:{{menuRight}}px" my-class="gray"></my-capsule>
-    <view class='navbar-title' style='top:{{navTop}}px;'>积分商城</view>
-  </view>
-</view>
+<top-bar>积分商城</top-bar>
 <!-- 自律积分 -->
-<view class="integral_list">
-  <!--积分明细 -->
-  <integral-type vipIntegral="{{vipIntegral}}" actionIntegral="{{actionIntegral}}" isisDlog="{{isScreen}}" bindpopup="onPopup"></integral-type>
-  <!-- 筛选 -->
-  <view class="filterBox" hidden="{{!isScreen}}" catchtouchmove="preventTouchMove">
-    <view  class="wrapper">
-      <integral-type vipIntegral="{{vipIntegral}}" actionIntegral="{{actionIntegral}}" bindpopup="onPopup" isisDlog="{{isScreen}}"></integral-type>
-      <!-- 筛选 -->
-      <view class="filter_item">
-        <!-- 积分类型 -->
-        <view class="inteType">积分类型</view>
-        <view class="intradion">
-          <checkbox-group bindchange="serviceValChange" class="chGroup">
-            <block wx:for="{{inteTypeList}}" wx:key="id">
-              <view class="intradion_item {{item.checked?'changebg':''}}">
-                <label class="checkbox {{item.checked?'is_checked':''}}">
-                  <checkbox value="{{item.inteName}}" checked="{{item.checked}}" hidden="false" />
-                  {{item.inteName}}
-                </label>
-              </view>
-            </block>
-          </checkbox-group>
-        </view>
-        <view class="btnWrapper">
-          <view>积分类型</view>
-          <view class="descList">
-            <input class="weui-input intext" placeholder-class="holder" bindinput="getValue" value="{{typeValue}}" />
-            <label class="desc">内</label>
-          </view>
-          <view class="btn_list">
-            <button class="onreset btn" hover-class="none" bindtap="onreset">重置</button>
-            <button class="onconfrim btn" hover-class="none" bindtap="onconfrim">确定</button>
-          </view>
-        </view>
-      </view>
+<!--  class="integral_list"  -->
+<view style="margin-top: {{navHeight}}px;">
+  <!-- nav -->
+  <view class="integralNavList" style="top: {{navHeight}}px;" style="border-bottom:{{isScreen?'1px solid #e5e5e5':'none'}};">
+    <view class="inteNav">
+      <image src="/static/jifen/money.png" class="icon"></image>
+      <text>{{actionIntegral}}分</text>
     </view>
-    <!-- 关闭 -->
-    <view class="close" bindtap="close"></view>
+    <view class="inteNav">
+      <image src="/static/jifen/score.png" class="icon"></image>
+      <text>{{actionIntegral}}分</text>
+    </view>
+    <view class="inteNav" bindtap="pointsBill">
+      <text>积分账单</text>
+      <!-- <view class="jiantou"></view> -->
+      <!-- <image src="/static/jifen/arrow2.png"></image> -->
+    </view>
+    <view class="inteNav" bindtap="onPopup">
+      <image src="{{isScreen?'/static/jifen/screen_active.png':'/static/jifen/screen.png'}}" class="icon"></image>
+      <text style="color:{{isScreen?'#12D58B':'#222222'}};">筛选</text>
+      <view class="jiantou {{isScreen?'arrow':''}}" ></view>
+      <!-- <image src="/static/jifen/arrow2.png" class=""></image> -->
+    </view>
   </view>
-  <!-- 轮播图 -->
-  <m-swiper images="{{inteBannerList}}" class="myswiper"></m-swiper>
-  <view class="nav">
-    <view class="nav-title">自律奖励</view>
-  </view>
-  <!-- 自律奖励 -->
-  <view class="self_aword" wx:if="{{selfReword.length>0}}">
-    <block wx:for="{{selfReword}}" wx:for-index="idx" wx:key="idx">
-      <view class="self_item" bindtap="selfRewordInte" data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
-        <view>
-          <image src="{{(item.SE_Logo && item.SE_Logo!='')?item.SE_Logo:'/static/sport/jifen01.png'}}" class="deg_img">
-          </image>
-        </view>
-        <view class="inteBottom">
-          <view class="card_type">{{item.SE_Name}}</view>
-          <view class="card_count">
-            {{item.ActScore}}<text class="char">积分</text>
-          </view>
-        </view>
-
+  <view class="integral_content">
+    <!-- 轮播图 -->
+    <m-swiper images="{{inteBannerList}}" class="myswiper"></m-swiper>
+    <!-- 自律奖励 -->
+    <block wx:if="{{selfReword.length>0}}">
+      <view class="nav">
+        <view class="nav-title">自律奖励</view>
       </view>
+      <reward-points rewards-list="{{selfReword}}" reward-type="1"></reward-points>
     </block>
-  </view>
-  <view class="none" wx:else>
-    <view class="none_list">
-      <image src="/static/none.png"></image>
-      <view>暂无内容</view>
-    </view>
-  </view>
-  <!--  -->
-  <view class="nav">
-    <view class="nav-title">VIP奖励</view>
-  </view>
-  <!-- vip积分 -->
-  <view class="inte_list" wx:if="{{VIPReword.length>0}}">
-    <block wx:for="{{VIPReword}}" wx:key="index">
-      <view class="inte_item" bindtap="VIPRewards" data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
-        <view>
-          <image src="{{(item.SE_Logo && item.SE_Logo!='') ?item.SE_Logo:'/static/sport/jifen01.png'}}" class="deg_img">
-          </image>
-        </view>
-        <view class="inteBottom">
-          <view>{{item.SE_Name}}</view>
-          <view class="inte_num">
-            {{item.PayScore}}<text>积分</text>
-          </view>
-        </view>
-
+    <!-- vip积分 -->
+    <block wx:if="{{VIPReword.length>0}}">
+      <view class="nav">
+        <view class="nav-title">VIP奖励</view>
       </view>
+      <reward-points rewards-list="{{VIPReword}}" reward-type="2"></reward-points>
     </block>
-  </view>
-
-  <view class="none" wx:else>
-    <view class="none_list">
-      <image src="/static/none.png"></image>
-      <view>暂无内容</view>
-    </view>
+    <!-- 积分赛选 -->
+    <integral-type isDlog="{{isScreen}}"
+      bindclose="onClose" bindconfirm="onConform"></integral-type>
   </view>
 </view>
 <tabbar selected="{{2}}"></tabbar>

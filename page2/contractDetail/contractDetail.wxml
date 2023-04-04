@@ -1,0 +1,55 @@
+<nav-bar page-name="合同详情"></nav-bar>
+<view class="contract-detail" style="margin-top:{{navHeight}}px">
+  <view class="contract-title">
+    {{contract.SC_Name}}
+  </view>
+  <!-- 会员信息 -->
+  <view class="member-info">
+    <view>
+      姓名: {{contract.UI_Name}}
+    </view>
+    <view>
+      性别: {{contract.UI_Sex}}
+    </view>
+    <view>
+       手机号码: {{contract.UI_Phone}}
+    </view>
+    <view>
+      会员卡名称: {{contract.Card_Name}}
+    </view>
+    <view>
+      开始日期: {{contract.UP_StartDate?contract.UP_StartDate:''}}
+    </view>
+    <view>
+      截止日期: {{contract.UP_EndDate?contract.UP_EndDate:''}}
+    </view>
+  </view>
+  <!-- 合同内容 -->
+  <view class="contract-list">
+    <text>
+      {{contract.Content}}
+    </text>
+  </view>
+
+  <view class="contractDesc" wx:if="{{signingState == 1 || isSigning}}">
+    <view class="member-list">
+      <view>
+        <text>公司盖章：</text>
+        <image class="rules" src="{{contract.imgurl}}"></image>
+      </view>
+      <view>
+        <text>会员签署:</text>
+        <image class="handwrite" src="{{signWriteUrl}}"></image>
+      </view>
+    </view>
+    <!-- 日期 -->
+    <view class="signing-date" wx:if="{{isSigning}}">签署日期：{{signDate}}</view>
+  </view>
+  <view class="signing" wx:if="{{!isSigning}}">
+      <view class="signBtn" bindtap="onlineSign" hidden="{{signingState !=0}}">在线签字</view>
+      <view class="multipleBtn" hidden="{{signingState !=1}}">
+         <button class="resigning" bindtap="onlineSign">重新签名</button>
+         <button class="submitsigning" bindtap="submitSign">提交签名</button>
+      </view>
+  </view>
+</view>

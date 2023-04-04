@@ -1,37 +1,40 @@
+page{
+  background-color: #ffffff;
+}
 .instrument_list {
-  overflow: hidden;
+  padding-top: 30rpx;
 }
 
-.instument_item {
-  box-sizing: border-box;
-  padding: 0 30rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 30rpx;
+.instrument_item {
+  position: relative;
   width: 690rpx;
-  height: 180rpx;
-  background: linear-gradient(-90deg, #96B4EB, #779BD3);
-  border-radius: 8rpx;
+  height: 240rpx;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
 }
 
-.instuTitle {
-  font-size: 30rpx;
+.instrument_item image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.instrument {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+
+.instrument text {
+  padding-left: 30rpx;
+  font-size: 34rpx;
   font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
-}
-
-.instu_img image {
-  width: 118rpx;
-  height: 118rpx;
-}
-/* bracelet */
-.bracelet{
-  background: linear-gradient(-90deg, #999AD1, #8983D0) !important;
-}
-/* treadmill  */
-.treadmill {
-  background: linear-gradient(-90deg, #75D8B8, #76C7AB) !important;
+  /* font-weight: 500; */
+  color: #ffffff;
 }

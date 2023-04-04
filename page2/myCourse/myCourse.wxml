@@ -2,43 +2,42 @@
 <!-- 引入模块 -->
 <import src="/template/nothing/nothing.wxml" />
 <nav-bar page-name="我的课程"></nav-bar>
-<view class="course_container" style="margin-top:{{navHeight}}px">
-  <block wx:if="{{myCoachList.length>0}}">
-    <view class="list" wx:for="{{myCoachList}}" wx:key="index" bindtap="personalAppointment" data-coach="{{item}}">
-      <image class="course_bg1" src="/static/mycard.png"></image>
-      <view class="course_list">
-        <view>
-          <view class="courseTop">
-            <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}"></image>
-            <view class="coa_detail">
-              <view>
-                {{item.AI_Name}}
-                <image src="/static/woman.png"></image>
-              </view>
+<view style="margin-top:{{navHeight}}px">
+  <Tabs tabIndex="{{tabIndex}}" tabList="{{list}}" bind:tabsChange="tabItemChange">
+    <view class="class-list" wx:if="{{tabIndex == 0}}">
+      <block wx:for="{{myCoachList}}" wx:key="index">
+        <view class="course-item" 
+        style="height:{{isHideClass==1?'240rpx':'320rpx'}}" bindtap="personalAppointment" data-coach="{{item}}">
+          <image class="classBG" src="{{item.ClassLogo?item.ClassLogo:'/static/others/course_default.jpg'}}"></image>
+          <view class="course-info">
+            <view class="coach-info">
+              <text>{{item.AI_Name}}</text>
               <text>时长：{{item.CP_Time}}分钟</text>
             </view>
-          </view>
-          <view class="courseBottom">
-            <view class="course_num">{{tools.replaceChar1(item.CP_Name,'。','')}}（{{item.CO_Have}}节）</view>
-            <view>
-              <text class="exp_date">截止{{item.CO_ActiveEnd}}</text>
-              <view class="appoinmentBtn">预约</view>
-            </view>
+            <view class="coach-class">{{tools.replaceChar1( item.CP_Name,'。','')}}（{{item.CO_Have}}节）</view>
+            <view class="date">截止：{{item.CO_ActiveEnd}} </view>
+            <view class="appoinmentBtn" wx:if="{{!isHideClass}}">预约</view>
           </view>
         </view>
-      </view>
+      </block>
     </view>
-    <!-- 加载更多 -->
-    <view wx:if='{{!isRefreshing}}' class="weui-loadmore">
-      <view wx:if='{{isLoadingMoreData}}'>
-        <view class="weui-loading"></view>
-        <view class="weui-loadmore-tips">正在加载更多...</view>
-      </view>
-      <view wx:else>
-        <view class="weui-loadmore-tips">没有更多内容啦</view>
-      </view>
+    <!-- tuanke -->
+    <view class="class-list" wx:if="{{tabIndex == 1}}">
+       <view class="league" wx:for="{{leaguePackages}}">
+          <image class="classBG" src="{{item.leagueUrl?item.leagueUrl:'/static/home_pic/league.jpg'}}"></image>
+          <view class="league-info">
+             <view>{{item.ClassName}}</view>
+             <view wx:if="{{item.GO_Have!='∞'}}">
+              剩余次数: {{item.GO_Have}}次
+             </view>
+             <view>开始日期：{{item.GO_ActiveStart}}</view>
+             <view>截止日期：{{item.GO_ActiveEnd}}</view>
+          </view>
+          <view class="flag">
+            {{item.GO_Have=='∞'?'时效':'次数'}}
+          </view>
+       </view>
     </view>
-  </block>
-
-  <template wx:else is="nothing" data="{{message:'暂无内容'}}"></template>
+    <template wx:if="{{hasContent}}" is="nothing" data="{{message:'暂无内容'}}"></template>
+  </Tabs>
 </view>

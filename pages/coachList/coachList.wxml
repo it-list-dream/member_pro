@@ -3,22 +3,14 @@
 <view class="coachList" style="margin-top:{{navHeight}}px;">
   <block wx:for="{{coachList}}" wx:key="index">
     <view class="coachList_card" bindtap="getCoach" data-coach="{{item}}">
-      <view class="coachList_item">
-        <image src="/static/sport_list.png" class="coach_bg"></image>
-        <view class="coach_info">
-          <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}"></image>
-          <text class="coachName">{{item.AI_Name}}</text>
-          <image src="{{item.AI_Sex ==='男'?'/static/man.png':'/static/woman.png'}}"></image>
+      <image src="{{item.AI_Face?item.AI_Face:'/static/others/coach.jpg'}}"></image>
+      <view class="coach_introduce">
+        <view>
+          <view class="coach">{{item.AI_Name}}</view>
+          <view class="classes" wx:if="{{setOptions.IsHidenNum == 0}}">累计上课<text>{{item.CS_Num}}</text>节</view>
+          <view class="classType">{{tools.replaceChar(item.AI_GoodAt)}}</view>
         </view>
-        <view class="coach_content">
-          <view class="coach_left">
-            <view class="accruing">累计上课{{item.CS_Num}}节</view>
-            <view class="type">{{tools.replaceChar(item.AI_GoodAt)}}</view>
-          </view>
-          <view class="coach_right">
-            <image src="/static/phone4.png" catchtap="call" data-phone="{{item.AI_Tel}}"></image>
-          </view>
-        </view>
+        <view class="concatCoach" catchtap="call" data-phone="{{item.AI_Tel}}">联系他</view>
       </view>
     </view>
   </block>

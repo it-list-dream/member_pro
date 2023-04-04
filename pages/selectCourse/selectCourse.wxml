@@ -1,34 +1,32 @@
 <wxs src="../../common/common.wxs" module="tools" />
+<import src="/template/nothing/nothing.wxml" />
 <nav-bar page-name="选择课程"></nav-bar>
 <view class="selectCourse" style="margin-top:{{navHeight}}px">
   <block wx:for="{{coachClassList}}" wx:key="index">
-    <view class="course_list" bindtap="orderCourse" data-coach="{{item}}">
-      <image src="/static/course11.png" class="bg2"></image>
-      <view class="course_item">
-        <view class="top">
-          <view>
-            <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}" class="pic1"></image>
-          </view>
-          <view class="course-info">
-            <view>
-              <text class="courseName">{{item.AI_Name}}</text>
-              <image src="{{item.AI_Sex==='男'?'/static/man.png':'/static/woman.png'}}" class="pic2"></image>
-            </view>
-            <view>时长: {{item.CP_Time}}分钟</view>
-          </view>
-        </view>
-        <view class="bottom">
-          <view class="course_number">{{tools.replaceChar1( item.CP_Name,'。','')}}（{{item.CO_Have}}节）</view>
-          <view class="expirationDate">截止{{item.CO_ActiveEnd}}</view>
-        </view>
+    <view bindtap="orderCourse" data-coach="{{item}}" data-idx="{{index}}" class="course_item {{index == selectedCourse?'choseCourse':''}}">
+      <image src="{{item.ClassLogo?item.ClassLogo:'/static/others/course_default.jpg'}}"></image>
+      <view class="course_info">
+        <view class="coach_info">{{tools.replaceChar1( item.CP_Name,'。','')}}（{{item.CO_Have}}节）</view>
+        <view class="coach_class">时长: {{item.CP_Time}}分钟</view>
+        <view class="expirationDate">截止：{{item.CO_ActiveEnd}}</view>
       </view>
     </view>
   </block>
-  <view class="none"
-      wx:if="{{coachClassList.length == 0}}">
-      <view class="none_list">
-        <image src="/static/none.png" style="width:200rpx;height:200rpx;"></image>
-        <view>暂无内容</view>
+  <view class="classCoachBox">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{coachList}}" range-key="{{'TeachName'}}">
+      <view class="classCoachItem">
+        <view>上课教练</view>
+        <view class="coach_box">
+          <text>{{coachList[chooseIndex].TeachName}}</text>
+          <image src="/static/next.png" style="width: 30rpx;height: 30rpx;"></image>
+        </view>
       </view>
-    </view>
+    </picker>
+  </view>
+  <view class="confirm-box">
+    <button type="priamry" class="confrimBtn" bindtap="onConfrim">确定</button>
+  </view>
+  <block wx:if="{{coachClassList.length==0}}">
+    <template is="nothing" data="{{message:'暂无内容'}}"></template>
+  </block>
 </view>

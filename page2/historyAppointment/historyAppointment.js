@@ -1,4 +1,3 @@
-// page2/historyAppointment/historyAppointment.js
 const app = getApp()
 var api = require('../../utils/request.js')
 Page({
@@ -84,14 +83,14 @@ Page({
         user_token: wx.getStorageSync('token'),
         pageSize: that.data.pageSize,
         pageIndex: that.data.currPage,
-        UI_ID: wx.getStorageSync('UI_ID'),
+        UI_ID: wx.getStorageSync('UI_ID') || -1,
         type: that.data.type
       }
     }).then(res => {
-    //  console.log(res)
+      //  console.log(res)
       if (res.data.data.length == 0) {
         that.setData({
-        //  histories: res.data.data,
+          //  histories: res.data.data,
           flag: false,
           isLoadingMoreData: false,
         })
@@ -100,7 +99,7 @@ Page({
         //  console.log(res)
         let newL1 = [...that.data.histories, ...res.data.data];
         let arr1 = that.unique(newL1)
-       // console.log(arr1)
+        // console.log(arr1)
         that.setData({
           //flag: false
           histories: arr1,
@@ -111,7 +110,7 @@ Page({
   },
   //团课取消
   cancelClass: function (e) {
-    console.log(e.currentTarget.dataset.id)
+   // console.log(e.currentTarget.dataset.id)
     var that = this;
     wx.showModal({
       title: '',
@@ -133,7 +132,7 @@ Page({
                 return vlaue.ClassID == e.currentTarget.dataset.id
               });
               list.splice(listIndex, 1)
-              console.log(listIndex, list)
+             // console.log(listIndex, list)
               that.setData({
                 histories: list
               })
@@ -145,13 +144,51 @@ Page({
               wx.showToast({
                 icon: "none",
                 title: res.data.msg,
+                duration: 3000
               })
             }
-            //console.log(res);
-            // that.setData({
-            //   currPage: 1,
-            //   id: e.currentTarget.dataset.id
-            // })
+          })
+        }
+      }
+    })
+  },
+  newGroupCancel(event){
+     let groupId = event.currentTarget.dataset.groupid,
+     that = this;
+     wx.showModal({
+      title: '',
+      content: '确定取消该课程',
+      success(res) {
+        if (res.confirm) {
+          //删除数据
+          api.request({
+            url: "/GroupClassCancel",
+            data: {
+              user_token: wx.getStorageSync('token'),
+              UI_ID: wx.getStorageSync('UI_ID'),
+              CTO_ID: groupId
+            }
+          }).then(res => {
+            if (res.data.code == 1) {
+              var list = that.data.histories;
+              var listIndex = list.findIndex(vlaue => {
+                return vlaue.ClassID == groupId
+              });
+              list.splice(listIndex, 1)
+              that.setData({
+                histories: list
+              })
+              wx.showToast({
+                title: '取消成功',
+                icon: 'none'
+              })
+            } else {
+              wx.showToast({
+                icon: "none",
+                title: res.data.msg,
+                duration: 3000
+              })
+            }
           })
         }
       }
@@ -159,18 +196,55 @@ Page({
   },
   call: function (e) {
     let phoneNumber = e.currentTarget.dataset.phone
+    if (app.globalData.setOptions.IsHidenCoachPhone == 1) {
+      phoneNumber = app.globalData.gymPhone;
+    }
     if (phoneNumber) {
       wx.makePhoneCall({
         phoneNumber: phoneNumber
-      }).catch((e) => {
-        console.log(e) //用catch(e)来捕获错误{makePhoneCall:fail cancel}
-      })
+      }).catch((e) => {})
     } else {
       wx.showToast({
         icon: 'none',
         title: '该教练没有预留手机号码',
       })
     }
+  },
+  successClass: function (e) {
+    var that = this
+    wx.showModal({
+      title: '',
+      content: '是否完成此课程',
+      success(res) {
+        if (res.confirm) {
+          api.request({
+            url: '/UserCoachClassConfirm',
+            data: {
+              user_token: wx.getStorageSync('token'),
+              CS_ID: e.currentTarget.dataset.cs_id
+            }
+          }).then(res => {
+            if (res.data.code == 1) {
+              let list = that.data.histories;
+              let listIndex = list.findIndex(vlaue => {
+                return vlaue.ClassID == e.currentTarget.dataset.cs_id
+              });
+              list.splice(listIndex, 1)
+              that.setData({
+                histories: list
+              })
+            } else {
+              wx.showToast({
+                icon: "none",
+                title: res.data.msg,
+                duration: 3000
+              })
+            }
+          })
+        }
+      }
+    })
+
   },
   //数组对象去重
   unique: function (arr) {
@@ -210,6 +284,12 @@ Page({
               wx.showToast({
                 title: '取消成功',
                 icon: 'none'
+              })
+            } else {
+              wx.showToast({
+                icon: "none",
+                title: res.data.msg,
+                duration: 3000
               })
             }
           })

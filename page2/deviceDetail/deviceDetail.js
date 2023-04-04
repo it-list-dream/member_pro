@@ -3,37 +3,37 @@ var api = require('../../utils/request.js')
 let tranfromBodyList = [{
     key: 'weight',
     value: '体重',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'fat',
     value: '脂肪量',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'ffm',
     value: '去脂体重',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'mineral',
     value: '无机盐',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'muscle',
     value: '肌肉量',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'protein',
     value: '蛋白质',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'tbw',
     value: '身体总水分',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'segmental_muscle',
@@ -46,17 +46,17 @@ let tranfromBodyList = [{
   {
     key: 'whfr',
     value: '腰臀脂肪比',
-    monad:'%'
+    monad: '%'
   },
   {
     key: 'pbf',
     value: '体脂率',
-    monad:'%'
+    monad: '%'
   },
   {
     key: 'smm',
     value: '骨骼肌',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'vfi',
@@ -69,12 +69,12 @@ let tranfromBodyList = [{
   {
     key: 'bmr',
     value: '基础代谢',
-    monad:'kcal'
+    monad: 'kcal'
   },
   {
     key: 'tee',
     value: '总能量消耗',
-    monad:'kcal'
+    monad: 'kcal'
   },
   {
     key: 'bmi',
@@ -95,17 +95,17 @@ let tranfromBodyList = [{
   {
     key: 'fat_control',
     value: '体脂肪调节量',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'muscle_control',
     value: '肌肉调节量',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'calcium',
     value: '钙质',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'body_score',
@@ -119,63 +119,115 @@ let tranfromBodyList = [{
 let compositions = [{
     key: 'weight',
     value: '体重',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'fat',
     value: '脂肪量',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'protein',
     value: '蛋白质',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'tbw',
     value: '身体总水分',
-    monad:'kg'
+    monad: 'kg'
   },
   {
     key: 'smm',
     value: '骨骼肌',
-    monad:'kg'
+    monad: 'kg'
   }
 ]
-let fitness = [
-  {
+let fitness = [{
     key: 'bmi',
     value: '身体质量指数',
-    hasAssess:true,
+    hasAssess: true,
 
   },
   {
     key: 'pbf',
     value: '体脂率',
-    hasAssess:true,
-    monad:'%'
+    hasAssess: true,
+    monad: '%'
   },
   {
     key: 'whfr',
     value: '腰臀脂肪比',
-    hasAssess:true,
+    hasAssess: true,
   },
   {
     key: 'bmr',
     value: '基础代谢',
-    hasAssess:true,
-    monad:'kcal'
+    hasAssess: true,
+    monad: 'kcal'
   },
   {
     key: 'evaluation',
     value: '风险评估',
-    hasAssess:false
+    hasAssess: false
   },
   {
     key: 'fat_control',
     value: '体脂肪调节量',
-    hasAssess:false,
-    monad:'kg'
+    hasAssess: false,
+    monad: 'kg'
+  }
+];
+let list = [{
+    key: 'Weight',
+    value: '体重',
+    monad: 'kg'
+  }, {
+    key: 'Fat',
+    value: '脂肪量',
+    monad: 'kg'
+  },
+  {
+    key: 'SMM',
+    value: '骨骼肌',
+    monad: 'kg'
+  },
+  {
+    key: 'Protein',
+    value: '蛋白质',
+    monad: 'kg'
+  },
+  {
+    key: 'Water',
+    value: '身体水分',
+    monad: 'kg'
+  },
+  {
+    key: 'BMI',
+    value: 'BMI',
+    monad: ''
+  }, {
+    key: 'PBF',
+    value: '体脂率',
+    monad: '%'
+  }, {
+    key: "Muscle",
+    value: "肌肉量",
+    monad: "kg"
+  },
+  {
+    key: "WHR",
+    value: "腰臀比",
+    monad: ""
+  },
+  {
+    key: "BMR",
+    value: "基础代谢",
+    monad: "kcal"
+  },
+  {
+    key: "LiverRisk",
+    value: "脂肪肝风险系数",
+    monad: ""
   }
 ]
 Page({
@@ -193,8 +245,8 @@ Page({
     bodyCompositionList: [],
     //肥胖分析
     fatList: [],
-    segmental_muscle:null,
-    segmental_fat:null,
+    segmental_muscle: null,
+    segmental_fat: null,
     //动画
     animationData: {}
   },
@@ -215,28 +267,22 @@ Page({
     // this.setData({
     //   normShow: !this.data.normShow
     // })
-    this.showAnimation('normShow',!this.data.normShow)
+    this.showAnimation('normShow', !this.data.normShow)
   },
   hidenBody: function () {
     // this.setData({
     //   bodyShow: !this.data.bodyShow
     // })
-    this.showAnimation('bodyShow',!this.data.bodyShow)
+    this.showAnimation('bodyShow', !this.data.bodyShow)
   },
   hidenFat: function () {
     // this.setData({
     //   fatShow: !this.data.fatShow
     // })
-    this.showAnimation('fatShow',!this.data.fatShow)
+    this.showAnimation('fatShow', !this.data.fatShow)
   },
   //体侧
   getMyBodyTestListById() {
-    let caution = this.data.cautionList;
-    let bodyComposition = this.data.bodyCompositionList;
-    let fat = this.data.fatList;
-    //警示指标
-    let map1 = new Map();
-    let physicalMap = new Map();
     var that = this;
     api.request({
       url: "/MyBodyTestListById",
@@ -245,121 +291,205 @@ Page({
         rb_Id: that.data.sbody.BR_ID
       }
     }).then(res => {
-      // console.log(res.data.data)
-      let composition = res.data.data.composition;
-      for (var o in composition) {
-        for (var o1 in composition[o]) {
-          if (o1 == 'grade' && composition[o][o1] == 3) {
-            map1.set(o, composition[o]);
-          }
-        }
-      }
-      //console.log(map1)
-      map1.forEach((value, key) => {
-        //console.log(key, value);
-        for (var i = 0; i < tranfromBodyList.length; i++) {
-          if (key == tranfromBodyList[i].key) {
-            caution.push({
-              body_key: tranfromBodyList[i].value,
-              body_value: value,
-              monad:tranfromBodyList[i].monad
-            })
-          }
-        }
-      })
-
-      //身体成分分析
-      for (var b in composition) {
-        for (var b1 in composition[b]) {
-          physicalMap.set(b, composition[b])
-        }
-      }
-      console.log('身体成分', physicalMap)
-      physicalMap.forEach((value, key) => {
-        for (let j = 0; j < compositions.length; j++) {
-          if (key == compositions[j].key) {
-            if (value.grade == 1) {
-              bodyComposition.push({
-                body_key: compositions[j].value,
-                body_value: value,
-                body_health:'偏低',
-                health_color:'#EC7B87',
-                monad:compositions[j].monad
-              })
-            } else if (value.grade == 2) {
-              bodyComposition.push({
-                body_key: compositions[j].value,
-                body_value: value,
-                body_health:'正常',
-                health_color:'#F4C06D',
-                monad:compositions[j].monad
-              })
-            } else if (value.grade == 3) {
-              bodyComposition.push({
-                body_key: compositions[j].value,
-                body_value: value,
-                body_health:'偏高',
-                health_color:'#60CAB7',
-                monad:compositions[j].monad
-              })
+      if (res.data.deviceType == "清华同方") {
+        let testPhysical = res.data.data[0],
+          cautionList2 = [],
+          compositionList = [],
+          fatList2 = [];
+        for (let i = 0; i < list.length; i++) {
+          for (var item in testPhysical) {
+            // key, value, min, max, monad
+            if (list[i].key == item) {
+              compositionList
+                .push(this.compareAandB(list[i].value, testPhysical[list[i].key], testPhysical[list[i].key + 'Min'], testPhysical[list[i].key + 'Max'], list[i].monad));
             }
           }
         }
-      })
-      console.log('ok',bodyComposition)
-      //肥胖分析
-      physicalMap.forEach((value, key) => {
-        for (let k = 0; k < fitness.length; k++) {
-          if (key == fitness[k].key) {
-            if (value.grade == 1 && fitness[k].hasAssess) {
-              fat.push({
-                body_key: fitness[k].value,
-                body_value: value,
-                body_health:'偏低',
-                health_color:'#EC7B87',
-                hasNeed:true,
-                monad:fitness[k].monad
-              })
-            } else if (value.grade == 2 && fitness[k].hasAssess) {
-              fat.push({
-                body_key: fitness[k].value,
-                body_value: value,
-                body_health:'正常',
-                health_color:'#F4C06D',
-                hasNeed:true,
-                monad:fitness[k].monad
-              })
-            } else if (value.grade == 3 && fitness[k].hasAssess) {
-              fat.push({
-                body_key:fitness[k].value,
-                body_value: value,
-                body_health:'偏高',
-                health_color:'#60CAB7',
-                hasNeed:true,
-                monad:fitness[k].monad
-              })
-            }else{
-              fat.push({
-                body_key:fitness[k].value,
-                body_value: value,
-                health_color:'#60CAB7',
-                hasNeed:false,
-                monad:fitness[k].monad
-              })
+        cautionList2 = compositionList.filter(item => item.body_health && item.body_health !== "正常");
+        let exmpleList2 = ["BMI", "体脂率", "腰臀比", "基础代谢", "脂肪肝风险系数"];
+        for (let j = 0; j < exmpleList2.length; j++) {
+          for (let k = 0; k < compositionList.length; k++) {
+            if (exmpleList2[j] == compositionList[k].key) {
+              fatList2.push(compositionList[k])
             }
           }
         }
-      })
-      console.log('fat',fat)
-      that.setData({
-      //  list: res.data.data.composition,
-        cautionList: caution.slice(0, 6),
-        bodyCompositionList:bodyComposition,
-        fatList:fat,
-        segmental_muscle:physicalMap.get('segmental_muscle'),
-        segmental_fat: physicalMap.get('segmental_fat')
+        let segmental_fat2 = {},
+          segmental_muscle2 = {};
+        segmental_fat2.LA_fat = res.data.data[0]['LA_fat'];
+        segmental_fat2.RA_fat = res.data.data[0]['RA_fat'];
+        segmental_fat2.LL_fat = res.data.data[0]['LL_fat'];
+        segmental_fat2.RL_fat = res.data.data[0]['RL_fat'];
+        segmental_fat2.TR_fat = res.data.data[0]['TR_fat'];
+        segmental_muscle2.LA_muscle = res.data.data[0]['LA_muscle'];
+        segmental_muscle2.RA_muscle = res.data.data[0]['RA_muscle'];
+        segmental_muscle2.LL_muscle = res.data.data[0]['LL_muscle'];
+        segmental_muscle2.RL_muscle = res.data.data[0]['RL_muscle'];
+        segmental_muscle2.TR_muscle = res.data.data[0]['TR_muscle'];
+        this.setData({
+          cautionList2,
+          compositionList,
+          fatList2,
+          segmental_fat2,
+          segmental_muscle2
+        })
+      } else {
+        let caution = this.data.cautionList;
+        let bodyComposition = this.data.bodyCompositionList;
+        let fat = this.data.fatList;
+        //警示指标
+        let map1 = new Map();
+        let physicalMap = new Map();
+        let composition = res.data.data.composition;
+        for (var o in composition) {
+          for (var o1 in composition[o]) {
+            if (o1 == 'grade' && composition[o][o1] == 3) {
+              map1.set(o, composition[o]);
+            }
+          }
+        }
+        map1.forEach((value, key) => {
+          for (var i = 0; i < tranfromBodyList.length; i++) {
+            if (key == tranfromBodyList[i].key) {
+              caution.push({
+                body_key: tranfromBodyList[i].value,
+                body_value: value,
+                monad: tranfromBodyList[i].monad
+              })
+            }
+          }
+        })
+        //身体成分分析
+        for (var b in composition) {
+          for (var b1 in composition[b]) {
+            physicalMap.set(b, composition[b])
+          }
+        }
+        //console.log('身体成分', physicalMap)
+        physicalMap.forEach((value, key) => {
+          for (let j = 0; j < compositions.length; j++) {
+            if (key == compositions[j].key) {
+              if (value.grade == 1) {
+                bodyComposition.push({
+                  body_key: compositions[j].value,
+                  body_value: value,
+                  body_health: '偏低',
+                  health_color: '#EC7B87',
+                  monad: compositions[j].monad
+                })
+              } else if (value.grade == 2) {
+                bodyComposition.push({
+                  body_key: compositions[j].value,
+                  body_value: value,
+                  body_health: '正常',
+                  health_color: '#F4C06D',
+                  monad: compositions[j].monad
+                })
+              } else if (value.grade == 3) {
+                bodyComposition.push({
+                  body_key: compositions[j].value,
+                  body_value: value,
+                  body_health: '偏高',
+                  health_color: '#60CAB7',
+                  monad: compositions[j].monad
+                })
+              }
+            }
+          }
+        })
+        //肥胖分析
+        physicalMap.forEach((value, key) => {
+          for (let k = 0; k < fitness.length; k++) {
+            if (key == fitness[k].key) {
+              if (value.grade == 1 && fitness[k].hasAssess) {
+                fat.push({
+                  body_key: fitness[k].value,
+                  body_value: value,
+                  body_health: '偏低',
+                  health_color: '#EC7B87',
+                  hasNeed: true,
+                  monad: fitness[k].monad
+                })
+              } else if (value.grade == 2 && fitness[k].hasAssess) {
+                fat.push({
+                  body_key: fitness[k].value,
+                  body_value: value,
+                  body_health: '正常',
+                  health_color: '#F4C06D',
+                  hasNeed: true,
+                  monad: fitness[k].monad
+                })
+              } else if (value.grade == 3 && fitness[k].hasAssess) {
+                fat.push({
+                  body_key: fitness[k].value,
+                  body_value: value,
+                  body_health: '偏高',
+                  health_color: '#60CAB7',
+                  hasNeed: true,
+                  monad: fitness[k].monad
+                })
+              } else {
+                fat.push({
+                  body_key: fitness[k].value,
+                  body_value: value,
+                  health_color: '#60CAB7',
+                  hasNeed: false,
+                  monad: fitness[k].monad
+                })
+              }
+            }
+          }
+        })
+        //console.log('fat',fat)
+        that.setData({
+          cautionList: caution.slice(0, 6),
+          bodyCompositionList: bodyComposition,
+          fatList: fat,
+          segmental_muscle: physicalMap.get('segmental_muscle'),
+          segmental_fat: physicalMap.get('segmental_fat')
+        })
+      }
+      this.setData({
+        deviceType: res.data.deviceType
       })
     })
+  },
+  compareAandB(key, value, min, max, monad) {
+    var obj = {};
+    obj.key = key;
+    obj.value = value;
+    obj.monad = monad;
+    obj.min = min;
+    obj.max = max;
+    if (key == '脂肪肝风险系数') {
+      if (value < 5) {
+        obj.body_health = "正常";
+        obj.health_color = "#FF9A11";
+      } else if (value >= 5 && value <= 10) {
+        obj.body_health = "轻度";
+        obj.health_color = "#FF384C";
+      } else if (value > 10 && value <= 25) {
+        obj.body_health = "中度";
+        obj.health_color = "#FF384C";
+      } else {
+        obj.body_health = "重度";
+        obj.health_color = "red";
+      }
+    }
+    if (min == "" && max == "") {
+      obj.health_color = "";
+      obj.body_health = "";
+    } else if (Number(value) < Number(min)) {
+      obj.health_color = "#0AE399";
+      obj.body_health = "偏低";
+    } else if (Number(value) >= Number(min) && Number(value) <= Number(max)) {
+      obj.health_color = "#FF9A11";
+      obj.body_health = "正常";
+    } else if (Number(value) > Number(max)) {
+      obj.health_color = "#FF384C";
+      obj.body_health = "偏高";
+    }
+    return obj;
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -372,12 +502,12 @@ Page({
     }
   },
   //显示动画效果
-  showAnimation:function(ele,bool){
+  showAnimation: function (ele, bool) {
     //创建一个动画实例animation。调用实例的方法来描述动画。
     var animation = wx.createAnimation({
-      duration: 500,         //动画持续时间500ms
-      timingFunction: "ease",//动画以低速开始，然后加快，在结束前变慢
-      delay: 0               //动画延迟时间0ms
+      duration: 500, //动画持续时间500ms
+      timingFunction: "ease", //动画以低速开始，然后加快，在结束前变慢
+      delay: 0 //动画延迟时间0ms
     })
     this.animation = animation;
     animation.translateY(500).step()
@@ -430,7 +560,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  }
+  // }
 })

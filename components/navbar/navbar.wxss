@@ -20,7 +20,7 @@
 .icon {
   width: 32px;
   height: 32px;
-  padding: 4rpx;
+  /* padding: 4rpx; */
 }
 
 .icon .icon-arrow {
@@ -61,7 +61,6 @@
   z-index: 11;
   /* line-height: 1; */
   height: 32px;
-  /* background: red; */
 }
 
 

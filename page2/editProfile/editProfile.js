@@ -9,22 +9,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // userInfo: '',
-    heightList: [],
-    phone: '',
-    sexId: null,
-    birthday: null,
     endTime: null,
-    heightId: null,
-    weightId: null,
+    heightId: 0,
+    weightId: 0,
+    heightList: [],
     weightList: [],
-    allInfo: null
+    userInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getHeight();
+    this.getWeight();
     let date = util.formatTime(new Date());
     if (wx.getStorageSync('userInfo')) {
       this.setData({
@@ -33,26 +31,16 @@ Page({
     }
     this.setData({
       navHeight: app.globalData.navHeight,
-      navTop: app.globalData.navTop,
-      endTime: date,
-      GB_ID: wx.getStorageSync('GB_ID'),
-      UrlBySign: wx.getStorageSync('UrlBySign'),
-      GymLogo: wx.getStorageSync('GymLogo'),
-      phone: wx.getStorageSync('phone')
+      endTime: date
     })
     this.getUserInfo()
   },
-  changePhone(e) {
-    this.setData({
-      phone: e.detail.value
-    })
-  },
   changeBirthday(e) {
-    console.log(111)
-    var that = this;
+    console.log(e)
     this.setData({
-      birthday: e.detail.value
+      'myInfo.UI_Birthday': util.format(e.detail.value, 'yyyy-mm-dd')
     })
+    var that = this;
     api.request({
       url: '/UserInfoBirthday',
       data: {
@@ -69,14 +57,16 @@ Page({
     })
   },
   changeHeight(e) {
+    console.log(e.detail.value)
     this.setData({
-      heightId: e.detail.value
+      heightId: e.detail.value,
+      'myInfo.UI_Height': this.data.heightList[e.detail.value]
     })
     api.request({
       url: '/UserInfoHeight',
       data: {
         user_token: wx.getStorageSync('token'),
-        height: e.detail.value
+        height: this.data.heightList[e.detail.value]
       }
     }).then(res => {
       if (res.data.code == 1) {
@@ -88,14 +78,16 @@ Page({
     })
   },
   changeWeight(e) {
+    // console.log(e.detail.value)
     this.setData({
-      weightId: e.detail.value
+      weightId: e.detail.value,
+      'myInfo.UI_Weight': this.data.weightList[e.detail.value]
     })
     api.request({
       url: '/UserInfoWeight',
       data: {
         user_token: wx.getStorageSync('token'),
-        weight: e.detail.value
+        weight: Number(this.data.weightList[e.detail.value]) * 2
       }
     }).then(res => {
       if (res.data.code == 1) {
@@ -129,12 +121,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    let userInfo = wx.getStorageSync('userInfo');
-    this.setData({
-      userInfo: JSON.parse(userInfo)
-    })
-  },
+  onReady: function () {},
   exit: function () {
     var that = this
     wx.showModal({
@@ -142,21 +129,25 @@ Page({
       content: '确定是否要退出？',
       success(res) {
         if (res.confirm) {
-          wx.clearStorageSync();
+          wx.removeStorageSync('loginStatus');
+          wx.removeStorageSync('phone');
+          wx.removeStorageSync('UI_ID');
+          wx.removeStorageSync('userInfo');
+          wx.removeStorageSync('hasUserInfo');
+          wx.removeStorageSync('tid');
+          wx.removeStorageSync('co_id');
+          wx.setStorageSync('expireTime');
           api.request({
             url: "/GetUrlBySign",
             data: {
-              sign: that.data.UrlBySign
+              sign: wx.getStorageSync('UrlBySign')
             }
           }).then(res => {
             if (res.data.code == 1) {
               wx.setStorageSync('token', res.data.user_token)
-              //保存门店名字
+              // // //保存门店名字
               wx.setStorageSync('GymName', res.data.GymName);
-              wx.setStorageSync('GB_ID', that.data.GB_ID)
-              //重新设置标识
-              wx.setStorageSync('UrlBySign', that.data.UrlBySign)
-              wx.setStorageSync('GymLogo', that.data.GymLogo)
+              console.log('退出')
               wx.navigateBack({
                 delta: 1,
               })
@@ -176,18 +167,14 @@ Page({
       }
     }).then(res => {
       if (res.data.data.length > 0) {
-        let {
-          UI_Birthday,
-          UI_Weight,
-          UI_Height
-        } = res.data.data[0];
-        if (UI_Birthday) {
-          UI_Birthday = UI_Birthday.slice(0, 10)
+        var u = res.data.data[0];
+        if (u.UI_Birthday && u.UI_Weight) {
+          u.UI_Birthday = util.format(u.UI_Birthday, 'yyyy-mm-dd')
+          u.UI_Weight = u.UI_Weight / 2
+          //console.log(util.format(u.UI_Birthday,'yyyy-mm-dd'))
         }
-        that.setData({
-          birthday: UI_Birthday,
-          heightId: UI_Weight,
-          weightId: UI_Height
+        this.setData({
+          myInfo: u
         })
       }
     })
@@ -196,8 +183,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getHeight();
-    this.getWeight();
+    // this.getHeight();
+    // this.getWeight();
   },
 
   /**

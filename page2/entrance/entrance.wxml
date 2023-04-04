@@ -1,7 +1,7 @@
-<import src="/template/nothing/nothing.wxml"/>
+<import src="/template/nothing/nothing.wxml" />
 <nav-bar page-name="入场记录"></nav-bar>
 <view class="entrance" style="margin-top:{{navHeight}}px">
-  <view class="entrance_scroll">
+  <scroll-view class="entrance_scroll" style="height:calc(100vh - {{navHeight}}px - 40rpx);" scroll-y>
     <block wx:for="{{entrancdList}}" wx:key="index">
       <!--  style="color:{{(item.CheckIn && item.CheckOut)?'#FD575C':'#12D58B'}}" -->
       <view class="entrance_item" style="color:#12D58B;" wx:if="{{item.CheckIn}}">
@@ -13,8 +13,8 @@
         <view>离场</view>
       </view>
     </block>
-    <block wx:if="{{!entrancdList.length}}">
-      <template is="nothing" data="{{message:'暂无数据'}}"/>  
-    </block>
-  </view>
+  </scroll-view>
+  <block wx:if="{{!entrancdList.length}}">
+    <template is="nothing" data="{{message:'暂无数据'}}" />
+  </block>
 </view>

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "nav-bar":"/components/navbar/navbar"
+    "nav-bar":"/components/navbar/navbar",
+    "Tabs":"../../components/tabs/tabs"
   },
   "enablePullDownRefresh": false
 }

@@ -1,6 +1,6 @@
 .nothing {
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -8,13 +8,15 @@
 }
 
 .nothing-img {
-    width: 160rpx;
-    /* height: 200rpx; */
-    margin-bottom: 16rpx;
+    width: 198rpx;
+    height: 237rpx;
+    margin-bottom: 20rpx;
+    vertical-align: bottom;
 }
 
 .nothing-text {
-    font-size: 32rpx;
-    color: #999;
+    font-size: 30rpx;
     font-family: PingFang SC;
+    /* font-weight: 500; */
+    color: #999999;
 }

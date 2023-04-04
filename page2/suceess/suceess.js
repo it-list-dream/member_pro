@@ -11,17 +11,10 @@ Page({
     //花费的积分
     costInte: 0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log(options)
-    // if (options.coach) {
-    //   this.setData({
-    //     coach: JSON.parse(options.coach)
-    //   })
-    // }
     if (options.isShow) {
       this.setData({
         isShow: options.isShow,
@@ -47,7 +40,10 @@ Page({
     })
   },
   backHome: function () {
-    wx.reLaunch({
+    // wx.reLaunch({
+    //   url: '/pages/tabbar/home/home',
+    // })
+    wx.switchTab({
       url: '/pages/tabbar/home/home',
     })
   },

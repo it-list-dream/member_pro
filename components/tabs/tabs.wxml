@@ -1,0 +1,11 @@
+<view class="tabs">
+  <view class="tabs_header">
+    <scroll-view scroll-x="true" class="scroll-view ~justify-content" enable-flex>
+      <view wx:for="{{tabList}}" wx:key="id" class="tabs_header_item  {{tabIndex == index?'active':''}}"
+        bindtap="tabsChange" data-index="{{index}}">
+        <text style="color:{{tabIndex == index?activeColor:color}}">{{item.value}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <slot></slot>
+</view>

@@ -1,4 +1,3 @@
-// var server = require("../../utils/server.js")
 var QRCode = require('../../utils/weapp-qrcode.js')
 const app = getApp()
 const api = require('../../utils/request.js');
@@ -12,25 +11,16 @@ Page({
     useCard: null,
     //卡数量
     cardCount: 0,
-    //刷新
-    // isRefreshing: true,
-    //动画
-    // pull: {
-    //   isLoading: false,
-    //   loading: '/static/animation.gif',
-    //   pullText: '正在刷新'
-    // },
-    //显示二维码
-    // showCode: false,
     //默认
-    type: "member_code"
+    type: "member_code",
+    screenLight: 0.1,
+    navBarTitle: "会员码"
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     //获取卡信息
-    // this.getAllCard();
     var u = null;
     if (wx.getStorageSync('userInfo')) {
       u = JSON.parse(wx.getStorageSync('userInfo'))
@@ -38,9 +28,11 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      user: u
-    })
-    this.getScreenLight()
+      user: u,
+      windowHeight:app.globalData.windowHeight
+    });
+    this.getScreenLight();
+    this.getAllCard();
   },
   close() {
     this.setData({
@@ -61,29 +53,24 @@ Page({
   chooseCard: function (e) {
     var that = this
     let card = e.currentTarget.dataset.choose
-    // console.log(card)
     this.setData({
       useCard: card,
       showchoose: false,
-      // showCode: false
     })
-    wx.setStorageSync('UI_ID', card.UI_ID)
+    wx.setStorageSync('UI_ID', card.UI_ID);
     that.getQRCode();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function () {},
   getAllCard: function () {
     var that = this;
-    let ui_id = wx.getStorageSync('UI_ID');
-    let cardList = null;
-    let useCard = null;
+    let ui_id = wx.getStorageSync('UI_ID') || -1;
+    let cardList = null,
+      useCard = null;
     api.request({
       url: "/MyAllVIPCard",
-      method: 'POST',
       data: {
         user_token: wx.getStorageSync('token')
       }
@@ -91,21 +78,21 @@ Page({
       if (res.data.cardCount > 0) {
         //如果没切换卡默认选中第一张卡
         cardList = res.data.data;
-        if (ui_id) {
+        if (ui_id && cardList.filter(c => c.UI_ID == ui_id).length > 0) {
           cardList.forEach(item => {
             if (item.UI_ID == ui_id) {
               useCard = item;
             }
-          })
+          });
         } else {
           wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
           useCard = res.data.data[0];
         }
-        let nowDate = new Date().getDate();
+        let nowDate = new Date().getTime();
         cardList.forEach(item => {
           if (item.UI_FirstDate) {
             item.status = '已激活'
-          } else if (item.UI_LastDate && new Date(item.UI_LastDate).getDate()  < nowDate) {
+          } else if (item.UI_LastDate && new Date(item.UI_LastDate).getTime() < nowDate) {
             item.status = '已过期'
           } else {
             item.status = '未激活'
@@ -123,9 +110,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.getAllCard();
-  },
+ onReady(){
+    this.getOpenWardQR();
+ },
   //二维码
   getQRCode: function (fn) {
     var that = this
@@ -149,7 +136,6 @@ Page({
             correctLevel: QRCode.CorrectLevel.H,
           });
         } else {
-          //this.qrcode.clear();
           this.qrcode.makeCode(res.data.data[0].QRCode)
         }
       }
@@ -165,19 +151,32 @@ Page({
     } else {
       if (type == 'unlocking') {
         this.getOpenWardQR();
+        this.setData({
+          navBarTitle: "",
+          type: type
+        });
       } else {
         this.getQRCode();
+        this.setData({
+          navBarTitle: "会员码",
+          type: type
+        });
       }
-      this.setData({
-        type: type
-      })
     }
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onUnload: function () {
-    this.setScreenLight(this.data.screenLight);
+    //设置屏幕亮度为原来亮度
+    wx.setScreenBrightness({
+      value: this.data.screenLight,
+    })
+  },
+  onHide: function () {
+    wx.setScreenBrightness({
+      value: this.data.screenLight,
+    })
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -186,7 +185,6 @@ Page({
     this.getQRCode(() => {
       wx.stopPullDownRefresh();
     });
-    // this.onLoad();
   },
   //开柜码
   getOpenWardQR() {
@@ -196,39 +194,34 @@ Page({
         token: wx.getStorageSync('token')
       }
     }).then(res => {
-      if (!this.lockingCode) {
-        this.lockingCode = new QRCode('canvas_code', {
-          text: res.data,
-          width: 160,
-          height: 160,
-          colorDark: "#000000",
-          colorLight: "#ffffff",
-          correctLevel: QRCode.CorrectLevel.H,
+      if (res.statusCode == 200) {
+        let qrcode = new QRCode('openCode', {
+          text: res.data, // 二维码内容
+          width: 160, // 二维码宽度
+          height: 160, // 二维码高度
+          colorDark: "#000000", // 二维码颜色
+          colorLight: "#ffffff", // 二维码背景色
+          correctLevel: QRCode.CorrectLevel.L // 二维码容错级别
         });
-      } else {
-        // console.log('再次刷新二维码了')
-        this.lockingCode.makeCode(res.data)
       }
     })
-
   },
   getScreenLight() {
     var that = this;
     wx.getScreenBrightness({
       success: function (e) {
         that.setData({
-          screenLight: e.value
+          screenLight: parseFloat(e.value).toFixed(1)
         })
-        that.setScreenLight(1);
       },
       fail: function (err) {
         console.log(err)
       }
     })
-  },
-  setScreenLight(value) {
+    console.log('屏幕的亮度:', this.data.screenLight)
+    //设置屏幕亮度
     wx.setScreenBrightness({
-      value: value
+      value: 1, //屏幕亮度值，范围 0~1，0 最暗，1 最亮
     })
   }
 })

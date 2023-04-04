@@ -26,20 +26,20 @@ Page({
     var details = this.data.runDeatil
     let dList = [{
       run_key: details.burncal,
-        img: './images/sport_runing6.png',
+        img: './images/hire.png',
         title: '消耗（kcal)'
       },
       {
         run_key: details.avgspeed,
-        img: './images/sport_runing5.png',
+        img: './images/speed.png',
         title: '平均速度（km/h)'
       }, {
         run_key: details.heartrate,
-        img: './images/sport_runing8.png',
+        img: './images/heart.png',
         title: '平均心率'
       }, {
         run_key: details.gradient,
-        img: './images/sport_runing4.png',
+        img: './images/gradient.png',
         title: '最高坡度'
       }
     ]
@@ -92,7 +92,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  }
+  // }
 })

@@ -1,29 +1,32 @@
 <nav-bar page-name="我的门店"></nav-bar>
 <view class="loaction_wrapper" style="margin-top:{{navHeight}}px">
-    <view class="location_info">
-      <!-- 定位 -->
-      <view class="loaction">
-        <view class="location_title">
-          <image src="/static/laction.png"></image>
-          <text class="address">全部</text>
-          <image src="/static/bottom_arrow.png"></image>
-        </view>
-        <view class="shop_num">共{{gymCount}}家</view>
+  <view class="location_info">
+    <!-- 定位 -->
+    <view class="loaction">
+      <view class="location_title">
+        <image src="/static/laction.png"></image>
+        <text class="address">全部</text>
+        <image src="/static/bottom_arrow.png"></image>
       </view>
-      <!-- 门店 -->
-      <block wx:for="{{storeList}}" wx:key="index">
-        <view class="store_list" data-location="{{item}}" catchtap="chooseStore">
-          <image src="/static/room.png" style="width:200rpx;height:170rpx;"></image>
-          <view class="store_item">
-            <view class="store_adr">{{item.GB_Name}}</view>
-            <view class="detail_address">
-              <image src="/static/store.png"></image>
-              <text class="detail">{{item.GB_Address}}</text>
-            </view>
-            <view class="distance">{{item.distance?item.distance +'km':''}}</view>
-          </view>
+      <view class="shop_num">共{{gymCount}}家</view>
+    </view>
+    <!-- 门店 -->
+    <block wx:for="{{storeList}}" wx:key="index">
+      <view class="store_list" data-location="{{item}}" catchtap="chooseStore">
+        <view class="myStoreLogo">
+          <image src="/static/room.png" class="room"></image>
           <view class="nearStore" wx:if="{{item.IsMyGym == 1}}">我的门店</view>
         </view>
-      </block>
-    </view>
+        <view class="store_item">
+          <view>
+            <view class="store_adr">{{item.GB_Name}}</view>
+            <view class="detail_address">
+              {{item.GB_Address}}
+            </view>
+          </view>
+          <view class="distance" wx:if="{{item.distance.length>0}}">{{item.distance+'km'}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
 </view>

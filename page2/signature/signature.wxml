@@ -1,0 +1,25 @@
+<nav-bar page-name="合同签字"></nav-bar>
+<view style="margin-top:{{navHeight}}px;">
+  <canvas class="hand-writing" style="width:{{canvasWidth}}px;height:calc({{canvasHeight}}px - {{navHeight}}px)" disable-scroll="true"
+    bindtouchstart="uploadScaleStart" bindtouchmove="uploadScaleMove" bindtouchend="uploadScaleEnd"
+    canvas-id="handWriting">
+  </canvas>
+  <cover-view class="handdesc">
+    <cover-view class="btn-confrim" catchtap="subCanvas">确认</cover-view>
+    <cover-view class="btn-reset" catchtap="retDraw">
+      <cover-view>重签</cover-view>
+      <cover-image class="reset-img" src="./images/reset.png"></cover-image>
+    </cover-view>
+  </cover-view>
+</view>
+<!-- <view class="signatureContainer" style="margin-top:{{navHeight}}px;height:calc(100vh - {{navHeight}}px)">
+  <canvas class="hand-writing" style="width:{{width}}px;height:calc({{height - navHeight }}px);" disable-scroll="true"
+    bindtouchstart="uploadScaleStart" bindtouchmove="uploadScaleMove" bindtouchend="uploadScaleEnd"
+    canvas-id="handWriting">
+  </canvas>
+  <view class="confrimBtn" catchtap="subCanvas">确定</view>
+  <view class="countersign" catchtap="retDraw">
+     <text>重签</text>
+     <image src="./images/reset.png"></image>
+  </view>   
+</view> -->

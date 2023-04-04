@@ -11,7 +11,9 @@ Page({
     //门店名
     GymName: null,
     //门店logo
-    GymLogo:null
+    GymLogo: null,
+    //是否能连点击
+    disabled:false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -32,28 +34,29 @@ Page({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       hasUserInfo: hasUserInfo,
-      //
       GymName: wx.getStorageSync('GymName'),
       GymLogo: wx.getStorageSync('GymLogo')
     })
   },
   //取消
   onCancel() {
-    wx.navigateBack({
-      delta: 1,
-    })
+    // wx.navigateBack({
+    //   delta: 1,
+    // })
+    this.modalCancel()
   },
   modalCancel(e) {
     wx.showToast({
-      title: '拒绝授权',
+      title: '取消授权',
       icon: 'none',
-      duration: 2000
+      success: function () {
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1,
+          })
+        }, 2000)
+      }
     })
-    setTimeout(function () {
-      wx.navigateBack({
-        delta: 1,
-      })
-    }, 1500)
   },
   getUserProfile(e) {
     var that = this;
@@ -71,17 +74,21 @@ Page({
           hasUserInfo: true
         })
       },
-      fail: function () {
-        console.log('用户拒绝获取头像信息');
-        wx.navigateBack({
-          delta: 1,
-        })
+      fail: function (err) {
+        // console.log('用户拒绝获取头像信息');
+        // wx.navigateBack({
+        //   delta: 1,
+        // })
+        that.modalCancel() 
       }
     })
   },
   //通过绑定手机号登录
   getPhoneNumber: function (e) {
     var that = this
+    this.setData({
+      disabled:true
+    })
     if (e.detail.errMsg == 'getPhoneNumber:ok') {
       //登录
       wx.login({
@@ -118,9 +125,9 @@ Page({
                     }
                   }).then(res => {
                     if (res.data.code == 1) {
-                      if(res.data.data.length>0){
+                      if (res.data.data.length > 0) {
                         wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
-                      }                 
+                      }
                       //返回上一个页面
                       wx.navigateBack({
                         delta: 1,
@@ -132,17 +139,17 @@ Page({
                     delta: 1,
                   })
                 }
+                that.setData({
+                  disabled:false
+                })
               })
             }
-
           })
         }
       })
-    } else {
+    }else if(e.detail.errMsg == 'getPhoneNumber:fail user deny'){
       //返回上一个页面
-      wx.navigateBack({
-        delta: 1,
-      })
+      that.modalCancel();
     }
   },
   /**

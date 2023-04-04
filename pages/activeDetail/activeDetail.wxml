@@ -1,65 +1,57 @@
+<wxs src="/common/common.wxs" module="tools" />
 <nav-bar page-name="活动卡详情"></nav-bar>
-<view class="card" style="margin-top:{{navHeight}}px">
-  <view class="conter">
-    <image class="vipImg" src="{{cardDetail.SC_Logo? cardDetail.SC_Logo:'/static/vip.png'}}"></image>
-  </view>
-  <view class="vipMoney">
-    <view class="vipStr price">
-      <image class="monImg" src="/static/money.png"></image>
-      <text class="fon-size">{{cardDetail.OnlinePrice}}</text>
-    </view>
-    <view class="vipStr">
-      <text class="type">卡类型: </text>
-      <text class="titleTip">{{cardDetail.SC_Name}}</text>
-    </view>
-    <view class="eff_date">
-      <text class="eff">有效期: </text>
-      <text class="titleTip" wx:if="{{cardDetail.SC_Times>0}}">次数: {{cardDetail.SC_Times}}</text>
-      <text class="titleTip" wx:else>{{cardDetail.Expdate}}</text>
-    </view>
-    <view class="support ch">
-      <text>支持门店:</text>
-      <text class="titleTip"> {{supportStoreInfo}}</text>
-    </view>
-    <view class="time_qun ch" wx:if="{{cardDetail.SC_TimeArea == 1}}">
-      <text class="quantum">时间段:</text>
-      <text class="titleTip">{{cardDetail.SC_TimeStart+' - '+cardDetail.SC_TimeEnd}}</text>
-    </view>
-    <view class="introduce_box">
-      <view class="introduceTip">
-        介绍: <text decode>&nbsp;&nbsp;</text>
-        {{cardDetail.Remarks}}
-        <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。 -->
-      </view>
+<view class="cardContainer" style="margin-top:{{navHeight}}px">
+  <view class="card_desc">
+    <image class="vipImg" src="{{cardDetail.SC_Logo? cardDetail.SC_Logo:'/static/home_pic/vip.png'}}"
+      mode="widthFix"></image>
+    <view class="cardType"><text>卡类型</text></view>
+    <view class="cardPrice">
+      <view>{{cardDetail.SC_Name}}</view>
+      <!-- tools.toFixed1(cardDetail.OnlinePrice,1) -->
+      <view wx:if="{{cardDetail.OnlinePrice}}">￥{{cardDetail.OnlinePrice}}</view>
     </view>
   </view>
+  <view class="cardInfo">
+    <view class="cardType"><text>有效期</text></view>
+    <view class="period card_content" wx:if="{{cardDetail.SC_Times>0}}">{{cardDetail.SC_Times}}次</view>
+    <view class="period card_content" wx:else>{{cardDetail.Expdate}}</view>
+    <view class="cardType"><text>支持门店</text></view>
+    <view class="supportStore card_content">{{supportStoreInfo}}</view>
+    <block wx:if="{{cardDetail.SC_TimeArea == 1}}">
+      <view class="cardType"><text>时间段</text></view>
+      <view class="during card_content">{{cardDetail.SC_TimeStart+' - '+cardDetail.SC_TimeEnd}}</view>
+    </block>
+    <view class="cardType"><text>产品介绍</text></view>
+    <view class="introduce">
+      {{cardDetail.Remarks}}
+      <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。 -->
+    </view>
+  </view>
+  <!--  -->
   <view class="buy_list">
     <!-- 会籍 -->
-    <view class="choose">
-      <view class="choose_meb choose_item">
-        <text>选择会籍</text>
-        <view class="pick_name">
-          <picker value="{{index}}" range="{{membership}}" range-key="AI_Name" bindchange="bindPickerChange">
-            <view class="picker_wrapper">
-              <text>{{membership[m_index].AI_Name}}</text>
-              <image src="/static/bottom_arrow.png"></image>
-            </view>
-          </picker>
+    <view class="memberBox">
+      <!-- <view class="chooseMember"> -->
+      <text class="tips">选择会籍</text>
+      <picker value="{{index}}" range="{{membership}}" range-key="AI_Name" bindchange="bindPickerChange">
+        <view class="picker_wrapper">
+          <text>{{membership[m_index].AI_Name}}</text>
+          <image src="/static/bottom_arrow.png"></image>
         </view>
-      </view>
-      <!--  -->
-      <view class="choose_way choose_item">
-        <text>支付方式</text>
-        <view class="pay">微信支付</view>
-      </view>
+      </picker>
+      <!-- </view> -->
     </view>
-    <view class="purchase">{{cardDetail.SaleCount}}人已购买</view>
-    <view class="total">
-      <view class="total_item">
-        合计：
-        <text class="course_price">{{cardDetail.OnlinePrice}}元</text>
+    <view class="wechatPay">
+      <image src="/static/others/wechat.png"></image>
+      <text>微信支付</text>
+    </view>
+    <view class="priceInfo1">
+      <view>
+      <!--  wx:if="{{cardDetail.OnlinePrice}} tools.toFixed1()" -->
+        <text class="unitPrice">￥{{cardDetail.OnlinePrice}}</text>
+        <text class="buyCount">{{cardDetail.SaleCount || 0}}人已购买</text>
       </view>
-      <view class="purcl-tye" bindtap="paysuceess">购买</view>
+      <view class="buyBtn" bindtap="paysuceess">购买</view>
     </view>
   </view>
 </view>

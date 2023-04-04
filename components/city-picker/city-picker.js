@@ -59,7 +59,6 @@
           },
           _multiPickerColumnChange: function (e) {
             console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-          
             var cityData = this.data.cityData
             var multiCityArray=this.data.multiCityArray
             var multiIndex=this.data.multiIndex
@@ -94,10 +93,6 @@
                 'multiCityArray':multiCityArray,
                 'multiIndex':multiIndex
               })
-            }
-            
-            if(e.detail.column == 2){//滚动的是区县级
-         
             }
           },
      }

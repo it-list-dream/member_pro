@@ -1,77 +1,59 @@
 <wxs src="../../common/common.wxs" module="tools"></wxs>
 <nav-bar page-name="私教课详情"></nav-bar>
-<view class="container" style="margin-top:{{navHeight}}px">
-  <image src="{{personal.CP_Logo?personal.CP_Logo:'/static/couse_default.jpg'}}" class="headPortrait" mode="widthFix"></image>
-  <!--  -->
-  <view class="course_num">
-    <image src="/static/money.png"></image>
-    <view class="number">
-      <text>{{personal.OnlinePrice}}</text>
-      <text>节</text>
+<view class="personalContainer" style="margin-top:{{navHeight}}px">
+  <view class="experience_head">
+    <view>
+      <image src="{{personal.CP_Logo?personal.CP_Logo:'/static/home_pic/coach2.png'}}" class="bannerImage"></image>
+    </view>
+    <view class="card_title"><text>{{personal.CP_Name}}</text></view>
+    <view class="course_box">
+      <text class="course_name">{{personal.CP_Name}}</text>
+      <text class="course_price">￥{{personal.OnlinePrice}}</text>
     </view>
   </view>
-  <!-- 课程名 -->
-  <view class="course_name">
-    <text space="ensp">课程名：{{personal.CP_Name}}</text>
+  <view class="experience_time">
+    <image src="/static/others/TIME.png"></image>
+    <text>{{personal.ClassTime}}天</text>
   </view>
-  <!-- 时长 -->
-  <view class="duration">
-    <text space="ensp">时长：{{personal.ClassTime}}分钟</text>
+  <view class="chooseCoach">
+    <view class="coach_tile">选择教练</view>
+    <scroll-view class="scroll-x" scroll-x enable-flex="true">
+      <view class="choose_box" wx:for="{{coachList}}" bindtap="coach_choose" data-index="{{index}}"
+        wx:key="FK_AL_TeachCoach_ID">
+        <view class="choose-item {{chooseNum == index ?'chooseBorder':''}}">
+          <image src="{{item.AI_Face?item.AI_Face:'/static/others/coach.jpg'}}"></image>
+          <text class="name">{{item.AI_Name}}</text>
+        </view>
+        <image src="/static/others/border.png" class="choose_active" wx:if="{{chooseNum == index }}"></image>
+      </view>
+    </scroll-view>
   </view>
-  <!-- 介绍 -->
-  <view class="introduce">
-    <view class="introduce_title">介绍：</view>
-    <view style="">
-      <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。 -->
-      {{personal.CP_Content1?personal.CP_Content1:personal.CP_Content}}
+  <view class="course_detail" style="padding-bottom:220rpx;">
+    <view class="card_title"><text>课程介绍</text></view>
+    <view class="course_introduce">
+      {{personal.CP_Content || personal.CP_Content1}}
     </view>
   </view>
-  <!-- 选择教练 -->
-  <view class="co_list">
-    <view class="co_title">选择教练</view>
-    <view class="coach_swiper">
-      <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="1000"
-        display-multiple-items="{{coachList.length==1?1:(coachList.length==2?2:3)}}"
-        next-margin="{{coachList.length==1?'640rpx':(coachList.length==2?'360rpx':'240rpx')}}" previous-margin="0">
-        <block wx:for="{{coachList}}" wx:key="index">
-          <swiper-item bindtap="chooseCoach" data-index="{{index}}">
-            <view class="coach_img">
-              <image src="{{item.AI_Face?item.AI_Face:'/static/head.png'}}" class="{{chooseNum==index?'active':''}}">
-              </image>
-            </view>
-            <view class="coach_info">{{item.AI_Name}}</view>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
 
-  </view>
-  <!-- 支付方式 -->
-  <view class="payment">
-    <view class="pay_method">
-      <text style="padding-left:32rpx;">支付方式</text>
-      <view class="pay_box">
-        <text>微信支付</text>
-        <!-- <image src="/static/bottom_arrow.png"></image> -->
+  <view class="course_bottom">
+    <view class="number_list">
+      <view class="exchangeNum">兑换节数</view>
+      <view class="counter">
+        <text class="flag reduce" bindtap="reduce">-</text>
+        <text class="course_number">{{payNum}}</text>
+        <text class="flag plus" bindtap="addnum">+</text>
       </view>
     </view>
-    <view class="buy_count">
-      <view class="by">购买节数</view>
-      <view class="count_box">
-        <view class="count plus" bindtap="reduce">-</view>
-        <view class="num">{{payNum}}</view>
-        <view class="count add" bindtap="addnum">+</view>
-      </view>
+    <view class="wechatPay">
+      <image src="/static/others/wechat.png"></image>
+      <text>微信支付</text>
     </view>
-  </view>
-  <!-- bottom -->
-  <view class="fixedbottom">
-    <view>{{personal.SaleCount}}人已购</view>
-    <view class="footer_pay">
-      <view>合计
-        <text>￥{{priceTotal}}</text>
+    <view class="priceInfo1">
+      <view>
+        <text class="unitPrice">￥{{priceTotal}}</text>
+        <text class="buyCount">{{personal.SaleCount || 0}}人已购买</text>
       </view>
-      <view bindtap="paysuccess" class="buy">购买</view>
+      <view class="buyBtn" bindtap="paysuccess">购买</view>
     </view>
   </view>
 </view>

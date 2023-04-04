@@ -1,13 +1,12 @@
-
-<view class="coach_subject">
-   <view class="subject_item" bindtap="handleDetail">
-     <image class="coach_head" src="{{course.CP_Logo?course.CP_Logo:'/static/home_pic/coach3.png'}}"></image>
-     <view class="subject_content">
-         <view>{{course.CP_Name}}</view>
-         <view class="price_box"><text>￥</text>{{course.OnlinePrice}}/节</view>
-     </view>
-     <view class="chooseClass">
-      <image src="/static/arrowAll.png"></image>
-     </view>
-   </view>
+<view class="suggestionBox" bindtap="handleDetail">
+  <view class="left_box">
+    <image class="coach_head" src="{{course.CP_Logo?course.CP_Logo:'/static/home_pic/coach2.png'}}"></image>
+    <view class="subject_content">
+      <view class="course_name">{{course.CP_Name}}</view>
+      <view class="price_box"><text>￥</text>{{course.OnlinePrice}}/节</view>
+    </view>
+  </view>
+  <view class="chooseClass">
+    <image src="/static/arrowAll.png"></image>
+  </view>
 </view>

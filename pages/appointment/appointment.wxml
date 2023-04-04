@@ -1,107 +1,79 @@
 <wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="预约"></nav-bar>
-<view class="appointment" style="margin-top:{{navHeight}}px">
-    <!-- 头部 -->
-    <view class="appointment_tabs">
-      <block wx:for="{{courseList}}" wx:for-index="index1" wx:key="index1">
-        <view class="tabs_item {{selectClass==index1?'tabs_active':''}} " data-index="{{index1}}" bindtap="switchClass">
-          {{item}}</view>
-      </block>
-    </view>
-    <!-- 教练 -->
-    <view class="personal_coach" wx:if="{{showcourse==0 && isCanCoach}}">
-      <image src="{{chooseCoach.AI_Face?chooseCoach.AI_Face:'/static/appointment/headPortrait.png'}}" class="head">
+<view style="margin-top:{{navHeight}}px">
+  <!-- tabs -->
+  <view class="appointment_tabs">
+    <block wx:for="{{courseList}}" wx:for-index="index1" wx:key="index1">
+      <view class="tabs_item {{tabIndex==index1?'tabs_active':''}} " data-index="{{index1}}" bindtap="switchClass">
+        {{item}}
+      </view>
+    </block>
+  </view>
+  <view class="per_box" wx:if="{{courseList[tabIndex]=='私教' && isCanCoach}}">
+    <view class="personal_coach">
+      <image class="head" src="{{currentCoach.AI_Face || currentClasses.AI_Face ? (currentCoach.AI_Face || currentClasses.AI_Face)  : '/static/others/coach.jpg'}}">
       </image>
-      <view class="coachInfo">
-        <view class="coachName">{{chooseCoach.AI_Name}}</view>
-        <view class="couseCount">
-          {{tools.replaceChar1(chooseCoach.CP_Name,'。','')}}({{chooseCoach.CO_Have-chooseCoach.CS_Num}}/{{chooseCoach.CO_Have}})
-          节</view>
-        <view class="time">
-          <text>时长：{{chooseCoach.CP_Time}}分钟</text>
-          <text>截止：{{tools.replaceChar1(chooseCoach.CO_ActiveEnd,'。','')}}</text>
+      <view class="coach_info">
+        <view class="coach_name">{{currentCoach.TeachName || currentClasses.AI_Name}}</view>
+        <view class="class_count">
+          {{tools.replaceChar1(currentClasses.CP_Name,'。','')}}({{currentClasses.CO_Have-currentClasses.CS_Num}}/{{currentClasses.CO_Have}})
+          节
+        </view>
+        <view class="cp_time">
+          <text>时长：{{currentClasses.CP_Time}}分钟</text>
+          <text>截止：{{tools.replaceChar1(currentClasses.CO_ActiveEnd,'。','')}}</text>
         </view>
       </view>
-      <navigator url="/pages/selectCourse/selectCourse" hover-class="none" class="qh">
+      <navigator url="/pages/selectCourse/selectCourse?CO_ID={{currentClasses.CO_ID}}&tid={{currentCoach.AI_ID || currentClasses.FK_AL_TeachCoach_ID}}" hover-class="none" class="qh">
         <image src="/static/appointment/qiehuan.png"></image>
       </navigator>
     </view>
-  <!-- 团课和私教 -->
-  <view class="appointment_item">
-    <!-- 日期 -->
-    <view class="dayList" style="margin-top:{{showcourse==1 || !chooseCoach ?'30rpx;':''}}">
-      <view class="day_item {{!date?'dayList_active':''}}">
-        <view wx:for="{{weekList}}" wx:key="index2" wx:for-index="index2"
-          class="day {{choosesDay == index2?'ch_active':''}}" catchtap="chooseDate" data-index="{{index2}}"
-          data-date="{{item.month+'.'+item.day}}">
-          <!--   -->
-          <view class="week" style="color:{{choosesDay == index2?'#ffffff;':''}}">{{item.week}}</view>
-          <view class="date" style="color:{{choosesDay == index2?'#ffffff;':''}}">{{item.month+'.'+item.day}}</view>
+  </view>
+  <!-- 日期 -->
+  <view class="dayList">
+    <view class="day_item">
+      <view wx:for="{{weekList}}" wx:key="index2" wx:for-index="index2" class="day {{choosesDay == index2?'ch_active':''}}" catchtap="chooseDate" data-index="{{index2}}" data-date="{{item.month+'.'+item.day}}">
+        <!--  -->
+        <view class="week" style="color:{{choosesDay == index2?'#ffffff;':''}}">
+          {{item.week}}
         </view>
-        <view class="selectDate day" bindtap="showCalendar">
-          <image src="/static/appointment/calendar.png"></image>
+        <view class="date" style="color:{{choosesDay == index2?'#ffffff;':''}}">
+          {{item.month+'.'+item.day}}
         </view>
       </view>
-      <!-- 日历 -->
-      <view class="calendar_list" wx:if="{{date}}">
-        <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board" 
-          days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
+      <view class="selectDate day" bindtap="showCalendar">
+        <image src="/static/appointment/calendar.png"></image>
       </view>
     </view>
-    <!-- 团课详情 -->
-    <view class="leagueClass" wx:if="{{showcourse==1}}">
-      <block wx:for="{{togetherClass}}" wx:key="CTO_ID">
-        <view class="leagueClass_item" bindtap="orderTogther" data-togther="{{item}}">
-          <image src="{{item.CTO_Log?item.CTO_Log:'/static/group.png'}}" class="group_img" mode="scaleToFill"></image>
-          <view class="p1">
-            <view class="progress">已参加{{item.CTO_PeopleAttend+'/'+item.CTO_PeopleFull}}</view>
-            <view class="className">{{item.CTO_Name +' - '+item.AI_Name}}</view>
-            <view class="class_info">
-              <view class="class_time">{{item.CTO_DateStart}}-{{tools.sub(item.CTO_DateEnd,item.CTO_DateEnd.length-8)}}
-              </view>
-              <!-- '#7B6F85'opacity: 0.1;item.cantappointment==1 &&  -->
-              <view class="class_status" wx:if="{{item.CTO_Price>0}}"
-                style="background:{{item.cantappointment==1?'#FD4E54':'gray'}}">{{item.IsAppointment==1?'已购买':'购买'}}
-              </view>
-              <view wx:else>
-                <!--  -->
-                <view class="class_status"
-                  style="background:{{(item.cantappointment==1 && item.IsAppointment==0)?'#12D58B':item.IsAppointment==1?'#7B6F85':'#ada6ac'}}">
-                  {{item.IsAppointment==0?'预约':'已预约'}}</view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </block>
-      <view class="unclass" wx:if="{{togetherClass.length==0}}">
-        <image src="/static/unclass.png"></image>
-        <view>今天没课，放飞自我</view>
-      </view>
-    </view>
-    <!-- 私教详情 -->
-    <view wx:if="{{showcourse==0 && isCanCoach}}">
-      <view class="trainer">
-        <ul class="time">
-          <block wx:for="{{datatime}}" wx:key="index">
-            <li class="clock">
-              <view class="{{item.type !==2?'mycol':''}} {{num==index+1?'choose_border':''}}"
-                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#12D58B':''}};border:{{num==index+1 ?'none':''}}"
-                data-s="{{item.StartTime}}" data-e="{{item.EndTime}}" catchtap="show{{item.type !==2 ? 'ch':'ch1'}}"
-                data-num="{{index+1}}">
-                {{item.StartTime}}</view>
-            </li>
-          </block>
-        </ul>
-      </view>
-
-      <view class="oder_wrapper">
-        <view class="order" bindtap="succssful">预约</view>
-      </view>
+    <!-- 日历 -->
+    <view class="calendar_list" wx:if="{{date}}">
+      <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board" days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
     </view>
   </view>
-
-  <view wx:if="{{showcourse==0 && !isCanCoach}}" class="no_personalClass">
-    <image src="/static/unclass.png"></image>
-    <button type="plain" bindtap="chooseSpecilClass" class="immediately">快去买课吧!</button>
+  <!-- 私教详情 -->
+  <view wx:if="{{courseList[tabIndex]=='私教'}}" class="trainer-box">
+    <view class="trainer">
+      <ul class="time">
+        <block wx:for="{{datatime}}" wx:key="index">
+          <li class="clock">
+            <view class="{{item.type==2?'keyuyue':'mycol'}}" style="color:{{num==index+1 ? '#ffffff':''}};background:{{num==index+1 ? '#12D58B':''}}; border-color:{{num==index+1 ?'transparent':''}};" data-s="{{item.StartTime}}" data-e="{{item.EndTime}}" catchtap="show{{item.type !==2 ? 'ch':'ch1'}}" data-num="{{index+1}}">
+              {{item.StartTime}}
+            </view>
+          </li>
+        </block>
+      </ul>
+    </view>
+    <view class="oder_wrapper" hidden="{{!isCanCoach}}">
+      <view class="order" bindtap="succssful">预约</view>
+    </view>
+  </view>
+  <!-- 团课详情 -->
+  <league-list wx:if="{{courseList[tabIndex]=='团课'}}" list="{{togetherClass}}" linkUrl="/pages/groupAppointment/groupAppointment"></league-list>
+  <!--  -->
+  <league-list wx:if="{{courseList[tabIndex]=='普拉提团课'}}" list="{{speicalClassList}}" linkUrl="/page2/specialLeague/specialLeague" leagueType="1"></league-list>
+  <!-- none -->
+  <view wx:if="{{courseList[tabIndex] == '私教' && !isCanCoach}}" class="no_personalClass">
+    <image src="/static/none2.png"></image>
+    <view class="no_title1">快去选课吧</view>
   </view>
 </view>

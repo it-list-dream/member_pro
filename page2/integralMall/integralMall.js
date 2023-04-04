@@ -12,9 +12,6 @@ Page({
     chooseCoach: 0,
     //课程数量
     courseNum: 1,
-    //  takeMethods: ['门店自取', '快递上门（到付）'],
-    //take_index: 0,
-    //
     takeMethods: [{
         id: 1,
         name: '门店自取',
@@ -22,7 +19,7 @@ Page({
       },
       {
         id: 2,
-        name: '快递上门（到付）'
+        name: '快递上门(到付)'
       }
     ],
     //收货方式， 1到店自取，2快递
@@ -40,10 +37,11 @@ Page({
    */
   onLoad: function (options) {
     // console.log(app)
+    console.log(options)
     var that = this
     //type是区分行为积分还是消费积分的
     let t = options.type;
-   // console.log(options)
+    // console.log(options)
     if (options.sign && options.sign !== '') {
       api.request({
         url: "/GetUrlBySign",
@@ -90,23 +88,24 @@ Page({
     })
   },
   //计算数量
-  calculate: function (e) {
-    var operator = e.target.dataset.operator;
-    var total = this.data.courseNum;
-    if (operator == '+') {
-      total++;
-    } else if (operator == '-') {
-      if (total > 1) {
-        total--;
-      }
+  plus: function () {
+    var number1 = this.data.courseNum;
+    number1++;
+    this.setData({
+      courseNum: number1
+    })
+  },
+  reduce: function () {
+    var number1 = this.data.courseNum;
+    if (number1 > 1) {
+      number1--;
     }
     this.setData({
-      courseNum: total,
+      courseNum: number1
     })
   },
   //快递方式
   takeWay: function (e) {
-    // console.log(e.target.dataset);
     var idx = e.target.dataset.index;
     this.setData({
       take_index: idx
@@ -289,7 +288,6 @@ Page({
   },
   //选择教练
   coach_choose: function (e) {
-    // console.log(e.currentTarget.dataset.index)
     let index = e.currentTarget.dataset.index
     this.setData({
       chooseCoach: index
@@ -351,7 +349,7 @@ Page({
       url: "/PayScoreProEx",
       data: {
         user_token: wx.getStorageSync('token'),
-        UI_ID: wx.getStorageSync('UI_ID'),
+        UI_ID: wx.getStorageSync('UI_ID') || -1,
         GB_ID: wx.getStorageSync('GB_ID'),
         se_id: that.data.se_id,
         prizeType: that.data.type,
@@ -503,7 +501,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  }
+  // }
 })

@@ -1,7 +1,7 @@
 <nav-bar page-name="课程列表" ></nav-bar>
-<view class="cla_list" style="margin-top:{{navHeight}}px">
+<view class="class_list" style="margin-top:{{navHeight}}px">
   <block wx:for="{{classList}}" wx:key="index">
-    <course-list  course="{{item}}"></course-list>
+    <course-list  course="{{item}}" class="class_item"></course-list>
   </block>
 </view>
 

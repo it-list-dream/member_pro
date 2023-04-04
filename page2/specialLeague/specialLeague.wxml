@@ -1,0 +1,84 @@
+<nav-bar page-name="{{tclass.ClassName}}"></nav-bar>
+<wxs src="../../common/common.wxs" module="tools" />
+<view class="leagueIndex" style="margin-top:{{navHeight}}px;">
+  <view class="leagueBG">
+    <view class="league-mask"></view>
+    <image src="{{tclass.leagueUrl?tclass.leagueUrl:'/static/home_pic/league.jpg'}}" mode="heightFix"></image>
+    <view class="attend-count">已参加{{tclass.PeopleAttend}}/{{tclass.PeopleFull}}</view>
+  </view>
+  <!--  -->
+  <view class="coach_detail">
+    <view class="left_box">
+      <image src="{{tclass.AI_Face?tclass.AI_Face:'/static/head.png'}}" class="head"></image>
+      <view class="coach_box">
+        <text>{{tclass.TeacherName}}</text>
+      </view>
+    </view>
+    <view class="right_box" style="align-self:{{tclass.IsRegister!=1?'center':' flex-end'}};">
+      <view wx:if="{{tclass.IsRegister == 1}}">报名开始：{{tclass.RegisterTime}}</view>
+      <view>截止日期：{{tclass.DeadlineTime}}</view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="leagueinfo">
+    <view class="league-item">
+      <image src="/static/appointment/time.png" class="myicon"></image>
+    <text>{{ tclass.ClassStartTime+'-'+tools.sub(tclass.ClassEndTime,tclass.ClassEndTime.length-5)}}</text> 
+    </view>
+    <view class="league-item">
+      <image src="/static/appointment/category.png" class="myicon"></image>
+      <text>{{tclass.ClassName}}</text>
+    </view>
+    <view class="league-item">
+      <image src="/static/appointment/location.png" class="myicon"></image>
+      <text>{{tclass.GroupAddr}}</text>
+    </view>
+    <view class="league-item">
+      <image src="/static/appointment/location.png" class="myicon"></image>
+      <text>{{tclass.ClassTime}}分钟</text>
+    </view>
+  </view>
+  <view class="league-desc">
+    <view class="circle">
+      <text>训练强度</text>
+    </view>
+    <view class="training">
+      <block wx:for="{{stars}}" wx:key="item">
+        <image class="star-image" src="{{index<tclass.SG_Strength?'../../static/appointment/star_active.png':'../../static/appointment/star.png'}}">
+        </image>
+      </block>
+    </view>
+    <view class="circle">
+      <text>课程介绍</text>
+    </view>
+    <view class="introduce-content">
+      {{tclass.Remark}}
+    </view>
+  </view>
+  <!-- 弹窗 -->
+  <view class="mask" catchtouchmove='true' wx:if="{{ispoupon}}">
+    <view class="modalDlg">
+      <view class="mask_title">
+        <view class="title">课程类型</view>
+        <image src="/static/others/close.png" bindtap="close" class="image"></image>
+      </view>
+      <view wx:for="{{GroupClassList}}" class="sa_course" catchtap="selectGroup" data-id="{{item.GO_ID}}">
+        <view>类型:{{item.SP_Type}}</view>
+        <view>{{item.UI_Name}}</view>
+        <view wx:if="{{item.GO_Have!='∞'}}">剩余次数:{{item.GO_Have}}次</view>
+        <view>截止日期:{{item.GO_ActiveEnd}}</view>
+      </view>
+    </view>
+    <!-- 关闭 -->
+    <view class="close" catchtap="close"></view>
+  </view>
+  <!--  -->
+  <view class="fixedbtn">
+    <view class="sub-box" bindtap="payOrAppoinment" data-isbuy="{{isbuy}}">
+      <button wx:if="{{tclass.IsRegisterUser == 0}}" style="background:{{!isbuy?'#FD575C':''}}" class="btn">
+        {{isbuy?'预约':'购买'}}
+      </button>
+      <button class="btn" style="background:#ada6ac;" wx:else>已预约</button>
+    </view>
+  </view>
+</view>

@@ -9,7 +9,7 @@ Page({
     serviceList: [{
         id: 1,
         name: '预约日程',
-        img: '/static/my/app_info.png',
+        img: '/static/my/appointment.png',
         serviceUrl: '/page2/historyAppointment/historyAppointment',
         unreadyNum: 1
       },
@@ -22,13 +22,13 @@ Page({
       {
         id: 3,
         name: '积分商城',
-        img: '/static/my/integral.png',
+        img: '/static/my/jifen.png',
         serviceUrl: '/pages/tabbar/integral/integral'
       },
       {
         id: 4,
         name: '运动记录',
-        img: '/static/my/recod.png',
+        img: '/static/my/record.png',
         serviceUrl: '/pages/movementData/movementData'
       },
       {
@@ -37,15 +37,14 @@ Page({
         img: '/static/my/test.png',
         serviceUrl: "/page2/smartDevice/smartDevice"
       },
-      // {
-      //   id: 6,
-      //   name: '收货地址',
-      //   img: '/static/my/location.png'
-      // }
+      {
+        id: 6,
+        name: '电子合同',
+        img: '/static/my/contract.png',
+        serviceUrl: "/page2/contractList/contractList"
+      }
     ],
-    //0表示既未绑定手机号码又未获取用户信息
-    //1表示授权了用户信息，但未绑定手机号码
-    //2 完成了登录流程
+    //0 1 2 
     loginStatus: 0,
     //会员卡数量
     myVipCardCount: 0,
@@ -58,6 +57,7 @@ Page({
     vipIntegral: 0,
     //行为积分
     actionIntegral: 0,
+    unLoginUrl:'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'
   },
 
   /**
@@ -68,7 +68,6 @@ Page({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       menuRight: app.globalData.menuRight,
-      // tabSeleted: app.globalData.isTabShow
     })
   },
   /**
@@ -78,7 +77,6 @@ Page({
 
   },
   lookRecord(e) {
-    //console.log(e.currentTarget.dataset.index)
     let phoneNumber = wx.getStorageSync('phone')
     let path = e.currentTarget.dataset.path;
     let index = e.currentTarget.dataset.index
@@ -88,7 +86,6 @@ Page({
       })
       return
     }
-    //console.log(path)
     if (path.trim()) {
       if (index == 2) {
         wx.switchTab({
@@ -113,6 +110,11 @@ Page({
         title: '你还未登录，请先登录！',
       })
     }
+  },
+  login(){
+     wx.navigateTo({
+       url: '/page2/login/login',
+     })
   },
   vipCard: function () {
     let phone = wx.getStorageSync('phone')
@@ -140,12 +142,12 @@ Page({
       })
     }
   },
-  message: function () {
-    //判断
-    wx.navigateTo({
-      url: '/page2/inform/inform',
-    })
-  },
+  // message: function () {
+  //   //判断
+  //   wx.navigateTo({
+  //     url: '/page2/inform/inform',
+  //   })
+  // },
   storedMoney: function () {
     let phone = wx.getStorageSync('phone')
     if (phone && phone !== '') {
@@ -157,13 +159,11 @@ Page({
         url: '/page2/login/login',
       })
     }
-    //判断
-
   },
   inteAwrad: function (e) {
     //console.log(e.currentTarget.dataset.index)
-    let index = e.currentTarget.dataset.index;
-    let types = '';
+    // let index = e.currentTarget.dataset.index;
+    // let types = '';
     let phone = wx.getStorageSync('phone')
     if (!phone && phone == '') {
       wx.navigateTo({
@@ -172,20 +172,20 @@ Page({
       return
     }
     //vip action
-    if (index == 0) {
-      types = 'vip'
-    } else {
-      types = 'action'
-    }
+    // if (index == 0) {
+    //   types = 'vip'
+    // } else {
+    //   types = 'action'
+    // }
     wx.navigateTo({
-      url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral + '&types=' + types,
+      url: '/page2/myIntegral/myIntegral?vipIntegral=' + this.data.vipIntegral + '&actionIntegral=' + this.data.actionIntegral,
     })
+    // + '&types=' + types
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // console.log(111)
     //用户状态
     this.getUserStatus();
     //

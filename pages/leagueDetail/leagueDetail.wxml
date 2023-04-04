@@ -1,0 +1,62 @@
+<nav-bar page-name="{{league.SG_Name}}"></nav-bar>
+<view class="leagueIndex" style="margin-top:{{navHeight}}px;">
+  <view class="leagueBG">
+    <image src="{{league.leagueUrl?league.leagueUrl:'/static/home_pic/league.jpg'}}" mode="heightFix"></image>
+  </view>
+  <!--  -->
+  <view class="leagueinfo">
+    <view class="league-item">
+      <image src="/static/appointment/category.png" class="myicon"></image>
+      <text>{{league.SG_Name}}</text>
+    </view>
+    <view class="league-item flex">
+      <view>
+        <image class="myicon" src="../../static/appointment/mode.png"></image>
+        <text>购买模式</text>
+      </view>
+      <picker class="mode-pick" bindchange="modeChange" value="{{modeIndex}}" range="{{saleList}}" range-key="modeinfo">
+        <!--  //1 + henduo -->
+        <text>{{saleList[modeIndex].modeinfo}} </text>
+        <image class="myicon" src="../../static/appointment/arrow1.png"></image>
+      </picker>
+    </view>
+    <view class="league-item">
+      <image src="/static/appointment/category.png" class="myicon"></image>
+      <text>有效期：{{saleList[modeIndex].lifespan}}</text>
+    </view>
+  </view>
+  <view class="league-desc">
+    <view class="circle">
+      <text>训练强度</text>
+    </view>
+    <view class="training">
+      <block wx:for="{{stars}}" wx:key="item">
+        <image class="star-image" src="{{index<league.SG_Strength?'../../static/appointment/star_active.png':'../../static/appointment/star.png'}}">
+        </image>
+      </block>
+    </view>
+    <view class="circle">
+      <text>课程介绍</text>
+    </view>
+    <view class="introduce-content">
+      {{league.SG_Remarks}}
+    </view>
+  </view>
+  <!-- 弹窗 -->
+  <cover-view class="mask" catchtouchmove='true' hidden="{{!isModel}}">
+    <cover-view class="modalDlg">
+      请联系门店: {{gymPhone}}
+    </cover-view>
+    <!-- 关闭 -->
+    <cover-view class="close" catchtap="closeModel"></cover-view>
+  </cover-view>
+  <view class="fixedbtn">
+    <!--  -->
+    <view class="submit-info">
+      <view class="league-price">
+        ￥{{leaguePrice}}
+      </view>
+      <button class="buyBtn" bindtap="buyClass">购买</button>
+    </view>
+  </view>
+</view>

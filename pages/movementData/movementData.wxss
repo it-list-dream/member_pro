@@ -1,202 +1,145 @@
 .sportData {
-  position: relative;
-  z-index: 0;
-  width: 100%;
-  background-color: #F0F2F5;
+  padding: 30rpx 0;
 }
 
-.banner {
+.sport_days {
   position: relative;
+  margin: 0 auto;
+  width: 690rpx;
+  height: 330rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
 }
 
-.custom-nav {
-  position: fixed;
+.sport_days image {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
+  height: 100%;
+  z-index: 1;
 }
 
-.custom-nav>view {
+.run_days {
   position: relative;
-  display: flex;
-  align-items: center;
-  left: 0;
-}
-
-.arrow-nav{
-   position: relative;
-   left: 10px;
-   z-index: 20;
-}
-
-.navbar_title {
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
-  padding-left: 115px;
-  padding-right: 115px;
-  height: 32px;
-  line-height: 32px;
+  z-index: 100;
+  padding: 36rpx 0;
+}
+
+.cumulativeDays {
   text-align: center;
-  position: absolute;
-  left: 0;
-  z-index: 10;
-  font-family: PingFang SC;
-  font-size: 18px;
-  font-weight: 500;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  color: #FFFEFE;
+  font-size: 24rpx;
+  color: #DADADA;
 }
 
-.icon-arrow {
-  width: 32px;
-  height: 32px;
-}
-
-/* 标题 */
-.sport_title1 {
-  position: absolute;
-  top: 180rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0 30rpx;
-  height: 120rpx;
-  /* background: green; */
+.num {
+  margin-top: 15rpx;
   text-align: center;
-}
-
-.sport_title1>view:first-child {
   font-size: 60rpx;
   font-family: PingFang SC;
   font-weight: 800;
-  color: #12D58B;
+  color: #ffffff;
 }
 
-.sport_title1>view:last-child {
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
+.class_days {
+  display: flex;
+  margin-top: 40rpx;
 }
 
-.sport_title1>view:first-child>text {
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
-  color: #FFFFFF;
-}
-
-.banner>image {
-  width: 100%;
-  height: 546rpx;
-  vertical-align: bottom;
-}
-
-.banner .sport_info {
-  position: absolute;
-  left: 28rpx;
-  bottom: 76rpx;
-  z-index: 99;
-  width: 688rpx;
-  height: 112rpx;
-}
-
-.sport {
+.class_days .item {
+  position: relative;
   display: flex;
   align-items: center;
-  height: 100%;
-}
-
-.sport_item {
-  display: flex;
-  width: 228rpx;
-  height: 100%;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  width: 33.33%;
 }
 
-.sport_num {
-  font-size: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 800;
-  color: #FFFFFF;
+
+
+.class_days .item:nth-child(-n+2)::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  content: '';
+  width: 1px;
+  height: 30rpx;
+  background: #4C4C4C;
 }
 
-.sport_num>text {
-  font-size: 20rpx;
-  font-family: PingFang SC;
+.class_days .item text:first-child {
+  font-size: 40rpx;
   font-weight: bold;
   color: #FFFFFF;
 }
 
-.info {
-  font-size: 26rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #FFFFFF;
+.class_days .item text:last-child {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  /* font-weight: 500; */
+  color: #DADADA;
 }
 
-.line {
-  width: 2rpx;
-  height: 48rpx;
-  background: #EEEEEE;
+.haveClassCount {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.classItem {
+  position: relative;
+  width: 210rpx;
+  height: 206rpx;
+}
+
+.classItem image {
+  width: 100%;
+  height: 100%;
+}
+
+.classItem .classesInfo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.classItem .classesInfo text {
+  text-align: right;
+  padding-right: 30rpx;
+  display: block;
+  font-family: PingFang SC;
+}
+
+.classesInfo text:first-child {
+  margin-top: 80rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #222222;
+}
+
+.classesInfo text:last-child {
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  /* font-weight: 500; */
+  color: #B7B7B7;
 }
 
 /*  */
-.other_info {
-  position: relative;
-  width: 100%;
-  padding-bottom: 30rpx;
-}
-
-.other {
-  padding: 10rpx 0;
-  position: absolute;
-  width: 688rpx;
-  height: 100%;
-  height: 112rpx;
-  top: -45rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #FFFFFF;
-  box-shadow: 0 6rpx 20rpx 0 rgba(82, 73, 91, 0.06);
-  border-radius: 8rpx;
-}
-
-.other_item {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.course {
-  display: flex;
-  width: 228rpx;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.course text:first-child {
-  font-size: 26rpx !important;
-}
-
-.course text {
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
 
 .date {
-  width: 100%;
-  /* height: 600px; */
-  background: #F0F2F5;
-  padding-top: 112rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+  width: 690rpx;
+  background: #FFFFFF;
+  overflow: hidden;
+  border-radius: 10rpx;
 }
 
 .date image {
@@ -205,11 +148,11 @@
 }
 
 .year {
+  margin-top: 60rpx;
   font-size: 36rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
-  /* padding-bottom: 18rpx; */
   text-align: center;
 }
 
@@ -229,7 +172,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 2rpx solid #AEEAD6;
+  border-bottom: 2rpx solid #F5F5F5;
 }
 
 .week_day view {
@@ -240,40 +183,43 @@
   text-align: center;
   font-size: 26rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
 }
 
 .week_day .active::after {
   position: absolute;
-  bottom: -2rpx;
-  left: 144rpx;
   content: '';
-  width: 52rpx;
-  height: 6rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 40rpx;
+  height: 8rpx;
+  border-radius: 25%;
   background: #12D58B;
-  border-radius: 2rpx;
 }
 
 .dateDetail {
-  padding-top: 26rpx;
+  margin-top: 26rpx;
   font-size: 26rpx;
   font-family: PingFang SC;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #333333;
   display: flex;
   justify-content: center;
   align-items: center;
   height: auto;
 }
+
 /* 箭头 */
-.arrow_box{
+.arrow_box {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 64rpx;
   height: 64rpx;
 }
+
 .dateDetail .arrow1 {
   width: 32rpx;
   height: 32rpx;
@@ -282,65 +228,72 @@
 
 .dateDetail>.line {
   width: 68rpx;
-  height: 2px;
-  background: #2C2C2C;
+  height: 1px;
+  background: #333333;
   margin: 0 12rpx;
 }
 
 .echarts_container {
-  width: 687rpx;
+  width: 690rpx;
   height: 310rpx;
-  margin: 0 auto;
-  margin-top: 18rpx;
+  margin: 30rpx auto;
   background: #FFFFFF;
   border-radius: 8rpx;
+
 }
 
 /*  */
 .bottom_content {
-  margin-top: 40rpx;
+  margin-top: 60rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding: 0 32rpx;
+  padding: 0 30rpx;
 }
 
-.sp_title {
-  box-sizing: border-box;
-  padding: 12rpx 0;
-  width: 216rpx;
-  height: 110rpx;
+.bottom_content .bottom_item {
+  position: relative;
+  width: 210rpx;
+  height: 260rpx;
+  border-radius: 12rpx;
+  /* background: orange; */
+}
+
+.bottom_content .bottom_item image {
+  width: 100%;
+  height: 100%;
+}
+
+.run_box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  font-family: PingFang SC;
+}
+
+.run_box_days {
+  margin: 36rpx 0 16rpx;
   text-align: center;
-  background: linear-gradient(270deg, #84D4BB 0%, #6FCAAB 100%);
-  box-shadow: 0 6rpx 20rpx 0 rgba(0, 255, 170, 0.06);
-  border-radius: 8rpx;
-}
-
-.sp_title view:first-child {
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
-  color: #FFFFFF;
-}
-
-.sp_title view:nth-child(2) {
-  margin-top: 12rpx;
   font-size: 36rpx;
-  font-family: PingFang SC;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #222222;
+  border-radius: 12rpx;
 }
 
-.sp_title text {
+.run_box_days text {
   font-size: 20rpx;
+  font-weight: bold;
+  color: #222222;
 }
 
-.sp1 {
-  background: linear-gradient(270deg, #92B1E8 0%, #7B98D0 100%);
-  box-shadow: 0 6rpx 20rpx 0 rgba(255, 0, 9, 0.06);
-}
-
-.sp2 {
-  background: linear-gradient(270deg, #E9CF8B 0%, #DBBA77 100%);
-  box-shadow: 0 6rpx 20rpx 0 rgba(255, 141, 0, 0.06);
+.run_month_days {
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  /* font-weight: 500; */
+  color: #B7B7B7;
 }

@@ -1,153 +1,88 @@
 <wxs src="../../../common/common.wxs" module="tools" />
-<view class="sprotTip">
-  <image class='bg_image' src='/static/h_bg.png' mode="aspectFill"></image>
-  <view class="navbar" style='height:{{navHeight}}px;'>
-    <my-capsule class="capsule_icon"  style="top:{{navTop}}px;left:{{menuRight}}px" my-class="gray"></my-capsule>
-    <view class='navbar-title' style='top:{{navTop}}px'>运动</view>
-  </view>
-</view>
+<top-bar>运动</top-bar>
 <!-- 运动日历 -->
-<view class="all">
-  <view class="sport_device">
-    <view class="device_wrapper">
-      <view class="sport_tip" bindtap="runing">
-        <view class="sport_day">
-          <view>运动天数</view>
-          <view>{{sportDays}} <text class="test">天</text></view>
-          <view class="btn go_run">去运动</view>
-        </view>
-        <view>
-          <image src="/static/sport/run.png" style="width:130rpx;height:130rpx;"></image>
-        </view>
+<view class="all" style="margin-top: {{navHeight}}px;">
+  <view class="sport_bar">
+    <view class="sportBarItem" bindtap="runing">
+      <view class="sport_title">运动天数</view>
+      <view class="sport_days">{{sportDays}}<text>天</text></view>
+      <view class="tips">
+        <text>快去门店运动吧</text>
+        <image src="/static/icon/left_arrow.png"></image>
       </view>
-      <view class="sport_tip fitness" bindtap="fitness">
-        <view class="sport_day">
-          <view>健康分</view>
-          <view>{{score}} <text class="test">分</text></view>
-          <view class="btn to_dete">去检测</view>
-        </view>
-        <view>
-          <image src="/static/sport/side.png" style="width:130rpx;height:130rpx;"></image>
-        </view>
+      <image src="/static/sport/sport.png" class="sport_icon"></image>
+    </view>
+    <view class="sportBarItem" bindtap="fitness">
+      <view class="sport_title">健康分</view>
+      <view class="sport_days">{{score}}<text>分</text></view>
+      <view class="tips">
+        <text>快去门店检测吧</text>
+        <image src="/static/icon/left_arrow.png"></image>
       </view>
+      <image src="/static/sport/test.png" class="sport_icon"></image>
     </view>
   </view>
-  <!-- nav -->
-  <view class="nav run">
-    <view class="run_title nav-title">运动日历</view>
-    <view bindtap="myClass">
-      <text class="nav-name">我的课程</text>
-      <image class="nav-img" src="/static/next.png"></image>
-    </view>
-  </view>
-  <!--  -->
-  <view class="sp_calendar">
-    <!-- 日历 -->
-    <view class="calendar_wrapper">
-      <ul class="calendar_item">
-        <block wx:for="{{ weekList}}" wx:key="index">
-          <li catchtap="changeDate" data-num="{{index}}">
-            <view style="color:{{changebg==index?'#333333':''}}">{{item.week}}</view>
-            <!-- getWeekdDay -->
-            <view class="{{changebg==index?'change_active':''}}">{{tools.getFirstStr(item.date)}}</view>
-          </li>
-        </block>
-      </ul>
-    </view>
-    <!-- 课程 -->
-    <view class="con" wx:if="{{motionList.length>0}}">
-      <view class="calendar_tool" wx:for="{{motionList}}" wx:key="idx" wx:for-index="idx">
-        <view class="per_course_left">
-          <view class="per_title" wx:if="{{item.ClassType ==1}}">团</view>
-          <view class="per_title" wx:if="{{item.ClassType ==2}}">私</view>
-          <view class="per_item">
-            <view>
-              <image src="/static/sport/course_detail.png" class="icon"></image>
-              <text>{{tools.replaceChar1(item.CTO_Name,'。','')}}</text>
+  <nav nav-title="运动日历" nav-path="/page2/myCourse/myCourse" content="我的课程"></nav>
+  <!--运动日程  -->
+  <view class="sportCalendar">
+    <ul class="calendar_item">
+      <block wx:for="{{weekList}}" wx:key="index">
+        <li catchtap="changeDate" data-num="{{index}}">
+          <view style="color:{{changebg==index?'#333333':''}}">{{item.week}}</view>
+          <view class="{{changebg==index?'change_active':''}}">{{tools.getFirstStr(item.date)}}</view>
+        </li>
+      </block>
+    </ul>
+    <!-- 课数据 -->
+    <view class="myClassList">
+      <block wx:for="{{motionList}}" wx:key="idx" wx:for-index="idx">
+        <view class="classItem">
+          <view class="left_class" wx:if="{{item.ClassType ==1}}">团</view>
+          <view class="left_class" wx:else>私</view>
+          <view class="right_class">
+            <view class="l">
+              <view class="classes_info">
+                <image src="/static/sport/course.png" class="icon"></image>
+                <text>{{tools.replaceChar1(item.CTO_Name,'。','')}}</text>
+              </view>
+              <view class="classes_info">
+                <image src="/static/sport/head.png" class="icon"></image>
+                <text>{{item.CoachName}}</text>
+              </view>
             </view>
-            <view>
-              <image src="/static/sport/my.png" class="icon"></image>
-              <text>{{item.CoachName}}</text>
+            <view class="r">
+              <view class="classes_info">
+                <image src="/static/sport/calendar.png" class="icon"></image>
+                <text>{{item.ClassTime}}</text>
+              </view>
+              <view class="classes_info">
+                <block wx:if="{{item.ClassType ==1}}">
+                  <image src="/static/sport/loaction.png" class="icon"></image>
+                  <text>{{item.CTO_Address}}</text>
+                </block>
+                <block wx:else>
+                  <image src="/static/sport/time.png" class="icon"></image>
+                  <text>{{item.CP_Time}} 分钟</text>
+                </block>
+              </view>
             </view>
           </view>
         </view>
-        <!-- right -->
-        <view class="per_course_right">
-          <view>
-            <image src="/static/sport/calendar.png" class="icon"></image>
-            <text>{{item.ClassTime}}</text>
-          </view>
-          <view wx:if="{{item.ClassType ==2}}">
-            <image src="/static/sport/time.png" class="icon"></image>
-            <text>{{item.CP_Time}}</text>
-          </view>
-          <view wx:if="{{item.ClassType ==1}}">
-            <image src="/static/sport/location.png" class="icon"></image>
-            <text>{{item.CTO_Address}}</text>
-          </view>
+      </block>
+      <block wx:if="{{motionList.length==0}}">
+        <view class="no_classes">
+          <text>每一次运动都值得被认真记录！</text>
+          <view class="noClassBtn" bindtap="appointment">约课</view>
         </view>
-      </view>
-    </view>
-    <!--  -->
-    <view class="no_appointment" wx:else>
-      <view>
-        <view class="app_tip">每一次运动，都值得被认真记录</view>
-        <view class="appointment_btn" catchtap="appointment">
-          <image src="/static/plus.png"></image>
-          约课
-        </view>
-      </view>
+      </block>
     </view>
   </view>
   <!-- 自律积分 -->
-  <view class="nav">
-    <view class="run_title nav-title">自律奖励</view>
-    <navigator url="/pages/tabbar/integral/integral" style="display:block;" hover-class="none" open-type="switchTab">
-      <text class="nav-name">全部奖励</text>
-      <image class="nav-img" src="/static/next.png"></image>
-    </navigator>
-  </view>
-  <!-- 积分奖励 -->
-  <view class="inte_list" wx:if="{{integral_list.length>0}}">
-    <block wx:for="{{integral_list}}" wx:key="index1" wx:for-index="index1">
-      <view class="inte_item" bindtap="selfRewordInte" data-id="{{item.SE_ID}}" data-prizeType="{{item.PrizeType}}">
-        <view>
-          <image src="{{item.SE_Logo}}"></image>
-        </view>
-        <view class="inte_bottom">
-          <view>{{item.SE_Name}}</view>
-          <view class="inte_num">{{item.ActScore}}<text>积分</text></view>
-        </view>
-      </view>
-    </block>
-  </view>
-
-  <view class="none" wx:else>
-    <view class="none_list">
-      <image src="/static/none.png"></image>
-      <view>暂无内容</view>
-    </view>
-  </view>
-  <!-- 蒙层 -->
-  <cover-view class="mask" catchtouchmove='true' hidden="{{!chooseCourse}}">
-    <cover-view class="modalDlg" wx:if="{{chooseCourse}}">
-      <cover-view class="modalDlg_item">
-        <cover-view class="mask_title">
-          <cover-view>预约的课程类型</cover-view>
-          <cover-image src="/static/error1.png" bindtap="close"></cover-image>
-        </cover-view>
-        <cover-view class="sa_course" catchtap="groupCourse">
-          <cover-view>团体课</cover-view>
-          <cover-image src="/static/next.png"></cover-image>
-        </cover-view>
-        <cover-view class="sa_course" catchtap="personalCourse">
-          <cover-view>私人教练</cover-view>
-          <cover-image src="/static/next.png"></cover-image>
-        </cover-view>
-      </cover-view>
-    </cover-view>
-    <!--关闭 -->
-    <cover-view class="close" catchtap="close"></cover-view>
-  </cover-view>
+  <block wx:if="{{integral_list.length>0}}">
+    <nav nav-title="自律奖励" nav-path="/pages/tabbar/integral/integral" content="全部"></nav>
+    <reward-points rewards-list="{{integral_list}}" reward-type="1"></reward-points>
+  </block>
+  <!-- 弹出层 -->
+  <popup isHideCoachPr="{{isHideCoachPre}}" isPopup="{{chooseCourse}}" bindclose="onClose"></popup>
 </view>
 <tabbar selected="{{1}}"></tabbar>

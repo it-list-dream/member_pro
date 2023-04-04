@@ -1,4 +1,3 @@
-// pages/coachDetail/coachDetail.js
 const app = getApp()
 var api = require('../../utils/request.js')
 Page({
@@ -16,15 +15,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    console.log(options)
+  console.log(options)
     if (options.coach) {
       this.setData({
-        coachDetail: JSON.parse(options.coach),
+        coachDetail: JSON.parse(options.coach)
       })
     }
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
+      setOptions: app.globalData.setOptions
     })
     if (options.sign && options.sign !== '') {
       api.request({
@@ -84,12 +84,14 @@ Page({
     })
   },
   call: function (e) {
-    if (e.currentTarget.dataset.phone) {
+    let phone = e.currentTarget.dataset.phone
+    if (app.globalData.setOptions.IsHidenCoachPhone == 1) {
+      phone = app.globalData.gymPhone;
+    }
+    if (phone) {
       wx.makePhoneCall({
-        phoneNumber: e.currentTarget.dataset.phone,
-      }).catch(e => {
-        console.log(e)
-      })
+        phoneNumber: phone,
+      }).catch(e => {})
     } else {
       wx.showToast({
         icon: "none",

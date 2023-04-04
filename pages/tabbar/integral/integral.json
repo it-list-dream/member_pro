@@ -1,9 +1,10 @@
 {
   "usingComponents": {
-    "nav-bar":"/components/navbar/navbar",
     "tabbar":"/components/tabbar/tabbar",
     "integral-type":"./integralType/integralType",
     "my-capsule":"/components/my-capsule/my-capsule",
-    "m-swiper":"/components/m-swiper/m-swiper"
+    "m-swiper":"/components/m-swiper/m-swiper",
+    "top-bar":"/components/top-bar/top-bar",
+    "reward-points":"/components/reward-points/reward-points"
   }
 }

@@ -42,7 +42,7 @@ function getOption(xdata, ydata) {
       axisLine: {
         lineStyle: {
           type: 'solid',
-          color: '#03c986', //左边线的颜色
+          color: '#F5F5F5', //左边线的颜色
           width: '1' //坐标线的宽度
         },
       },
@@ -69,7 +69,7 @@ function getOption(xdata, ydata) {
       data: ydata,
       itemStyle: {
         normal: {
-          color: "#AEEAD6"
+          color: "#EFEFEF"
         },
       },
       emphasis: { // 鼠标经过时：
@@ -81,11 +81,12 @@ function getOption(xdata, ydata) {
           borderWidth: 0,
           color: "#333333",
           fontSize: 12,
+          fontWeight: 'bold',
           fontFamily: 'PingFang SC',
           formatter: params => params.value + "分钟"
         },
         itemStyle: {
-          color: '#12D58B'
+          color: '#52495B'
         }
       }
     }],
@@ -175,8 +176,7 @@ Page({
         endDate: util.formatTime1(new Date(next_day))
       })
     } else {
-      //周
-      //开始时间
+      //周   //开始时间   
       let sDate = new Date(this.data.startDate);
       let eDate = sDate.setDate(sDate.getDate() + 6);
       this.setData({
@@ -217,7 +217,9 @@ Page({
     }).then(res => {
       if (res.data.code == 1) {
         let s1 = res.data.data;
+        console.log(s1)
         s1.runtime = Math.ceil(s1.runtime / 60)
+        s1.runDistance = Number(s1.runDistance) / 1000
         that.setData({
           sportDesc: s1
         })
@@ -234,7 +236,6 @@ Page({
     var that = this
     let fristDate = new Date(that.data.startDate);
     let lastDate = that.data.startDate;
-    // let lastDate = new Date(that.)
     //console.log(fristDate,lastDate)
     let isWeek = that.data.isSelected == 0 ? true : false;
     if (isWeek) {
@@ -334,6 +335,7 @@ Page({
         let runDays = res.data.data;
         let dateList = runDays.map(item => util.format(item.createdate, 'MM.DD'))
         let myRunList = runDays.map(item => Number(Math.ceil(item.runtime / 60)))
+       
         this.setData({
           dateList,
           myRunList

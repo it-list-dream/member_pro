@@ -1,7 +1,9 @@
 {
   "usingComponents": {
     "tabbar":"/components/tabbar/tabbar",
-    "my-capsule":"/components/my-capsule/my-capsule"
+    "my-capsule":"/components/my-capsule/my-capsule",
+    "top-bar":"/components/top-bar/top-bar",
+    "nav":"/components/nav/nav"
   },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"

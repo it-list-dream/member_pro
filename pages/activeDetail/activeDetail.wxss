@@ -1,164 +1,133 @@
-.card {
-  background: #F0F2F5;
-  padding-bottom: 300rpx;
+page {
+  font-family: PingFang SC;
+  background-color: #FFFFFF;
+  padding-bottom: 360rpx;
+}
+
+.cardContainer {
+  background: #F9F9F9;
 }
 
 .vipImg {
-  width: 100%;
-  height: 296rpx;
-  vertical-align: middle;
+  width: 690rpx;
+  /* width: 100%;
+  height: 460rpx; */
+  border-radius: 10rpx;
+  vertical-align: bottom;
 }
 
-.vipMoney {
-  width: 100%;
-  height: auto;
+.card_desc {
+  padding: 30rpx 30rpx 40rpx;
+  background-color: #FFFFFF;
 }
 
-.price {
-  padding-left: 28rpx;
-}
-
-.monImg {
-  margin-top: -16rpx;
-  width: 36rpx;
-  height: 36rpx;
-  vertical-align: middle;
-}
-
-.fon-size {
-  font-size: 48rpx;
-  font-family: PingFang SC;
-  font-weight: 400;
-  color: #333333;
-}
-
-.titleTip {
-  margin-left: 28rpx;
-}
-
-.vipMoney .vipStr {
-  box-sizing: border-box;
-  height: 91rpx;
-  line-height: 90rpx;
-  border-bottom: 1rpx solid #EEEEEE;
-  background-color: #ffffff;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333
-}
-
-.eff_date {
-  overflow: hidden;
-  padding-left: 32rpx;
+.cardType {
   display: flex;
-  height: 100rpx;
-  line-height: 100rpx;
-  background-color: #ffffff;
-  border-bottom: 1px solid #EEEEEE;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+  margin: 60rpx 0 40rpx;
+  align-items: center;
+  position: relative;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #000000;
 }
 
-.eff {
-  white-space: nowrap;
+.cardType::before {
+  content: '';
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  border: 4rpx solid #12D58B;
+  border-radius: 50%;
 }
 
-.type {
-  padding-left: 32rpx;
+.cardType text {
+  padding-left: 10rpx;
 }
 
-.support {
+.cardPrice {
+  width: 200rpx;
+  height: 220rpx;
+  background: #FEFAEF;
+  border: 2rpx solid #9A6100;
+  border-radius: 10rpx;
+}
+
+.cardPrice view {
+  text-align: center;
+}
+
+.cardPrice>view:first-child {
+  padding-top: 40rpx;
+  font-size: 24rpx;
+  color: #010101;
+}
+
+.cardPrice>view:last-child {
+  padding-top: 30rpx;
+  font-size: 40rpx;
+  font-family: Alibaba PuHuiTi;
+  font-weight: bold;
+  color: #9A6100;
   overflow: hidden;
-  padding-left: 32rpx;
-  display: flex;
-  height: 100rpx;
-  line-height: 100rpx;
-  background-color: #ffff;
-  border-bottom: 1px solid #EEEEEE;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
 }
 
-.support>text:first-child {
-  white-space: nowrap;
-}
-
-.time_qun {
+.cardInfo {
+  margin-top: 20rpx;
+  background-color: #FFFFFF;
   overflow: hidden;
-  background-color: #ffffff;
-  border-bottom: 1px solid #EEEEEE;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+  padding: 0px 30rpx 220rpx;
 }
-
-.quantum {
-  padding-left: 32rpx;
-  height: 90rpx;
-  line-height: 90rpx;
+.card_content{
+  font-size: 26rpx;
+  color: #000000;
 }
-
-/*  */
-.introduce_box {
-  display: flex;
-  box-sizing: border-box;
-  padding: 32rpx;
-  background-color: #ffffff;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
-}
-
-
-.introduceTip {
-  text-indent: 1em;
+.introduce {
   word-break: break-all;
+  word-wrap: break-word;
+  line-height: 48rpx;
+  font-size: 26rpx;
+  /* white-space: nowrap; */
+  color: #000000;
+}
+/*  */
+.buy_list {
+  position: fixed;
+  width: 100%;
+  padding: 0 30rpx;
+  height: 360rpx;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 8rpx 0px rgba(4, 0, 0, 0.26);
+  bottom: 0;
+  left: 0;
 }
 
-/*  */
-.choose {
-  box-sizing: border-box;
-  padding: 0 30rpx;
+.memberBox {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 90rpx;
-  background-color: #ffffff;
+  height: 118rpx;
+  border-bottom: 1px solid #E5E5E5;
 }
 
-.choose_item {
+/* .chooseMember {
   display: flex;
-  font-size: 30rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+  align-items: center;
+} */
 
-}
-
-.choose_item>text {
-  margin-right: 20rpx;
-}
-
-.pick_name {
-  width: 202rpx;
-  height: 50rpx;
-  box-sizing: border-box;
-  border: 1px solid #333333;
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  color: #333333;
+.buy_list .tips {
+  padding-right: 28rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #000000;
 }
 
 picker {
-  width: 100%;
+  width: 160rpx;
   height: 50rpx;
+  box-sizing: border-box;
+  border: 0.5px solid #333333;
+  font-size: 24rpx;
 }
 
 .picker_wrapper {
@@ -166,7 +135,7 @@ picker {
   justify-content: space-between;
   align-items: center;
   height: 44rpx;
-  padding: 0 16rpx;
+  padding: 0 10rpx;
 }
 
 .picker_wrapper text {
@@ -176,79 +145,68 @@ picker {
   white-space: nowrap;
 }
 
-.pay {
-  width: 186rpx;
-  height: 40rpx;
-  border: 1px solid #333333;
-  line-height: 40rpx;
-  text-align: center;
-  font-size: 24rpx;
-  font-family: PingFang SC;
-  color: #333333;
-}
-
-/* 
-picker {
-  height: 40rpx;
-} */
-
-.choose image {
-  margin-left: 12rpx;
+.picker_wrapper image {
   width: 30rpx;
   height: 30rpx;
-  vertical-align: middle;
 }
 
-/*  */
-.buy_list {
-  position: fixed;
-  width: 100%;
-  height: 300rpx;
-  bottom: 0;
-  left: 0;
-  background-color: #ffffff;
-}
-
-.purchase {
-  width: 100%;
-  height: 70rpx;
-  line-height: 70rpx;
-  font-size: 30rpx;
-  color: #ffff;
+/* .pay {
+  display: inline-block;
+  width: 150rpx;
+  height: 50rpx;
+  border: 0.5px solid #333333;
+  line-height: 48rpx;
   text-align: center;
-  background: #52495B;
-}
+  font-size: 26rpx;
+  color: #000000;
+} */
 
-.total {
-  box-sizing: border-box;
+.wechatPay {
   display: flex;
-  height: 140rpx;
-  line-height: 140rpx;
-  padding: 0 32rpx;
-  justify-content: space-between;
+  height: 118rpx;
   align-items: center;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.total_item {
-  font-size: 36rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #333333;
+.wechatPay image {
+  width: 30rpx;
+  height: 30rpx;
 }
 
-.course_price {
+.wechatPay text {
+  padding-left: 18rpx;
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #000000;
+}
+
+.priceInfo1 {
+  display: flex;
+  height: 120rpx;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.unitPrice {
+  font-size: 50rpx;
+  font-family: Alibaba PuHuiTi;
+  font-weight: bold;
   color: #FD575C;
 }
 
-.purcl-tye {
-  width: 160rpx;
-  height: 60rpx;
-  background: #12D58B;
-  border-radius: 30rpx;
-  line-height: 60rpx;
+.buyCount {
+  padding-left: 10rpx;
+  font-size: 20rpx;
+  color: #999999;
+}
+
+.buyBtn {
+  width: 220rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   text-align: center;
-  font-size: 34rpx;
-  font-family: PingFang SC;
-  font-weight: bold;
+  background: #52495B;
+  border-radius: 40rpx;
+  font-size: 30rpx;
   color: #FFFFFF;
 }

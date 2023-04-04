@@ -2,37 +2,39 @@
 <view class="bodyInfo" style="margin-top:{{navHeight}}px">
   <view class="baseinfo">
     <view class="base_item">
-      <image src="{{userInfo?userInfo.avatarUrl:'./images/people.png'}}"></image>
+      <view class="avatarWrapper">
+        <image src="{{userInfo?userInfo.avatarUrl:'./images/people.png'}}"></image>
+      </view>
       <view>{{sbody.Createdate}}</view>
     </view>
     <view class="physical_info">
       <view class="physical_item">
-        <text>身体年龄</text>
         <view>{{sbody.BodyAge}} <text style="font-size:18rpx;">岁</text></view>
+        <text>身体年龄/岁</text>
       </view>
       <view class="line"></view>
       <view class="physical_item">
-        <text>健康评分</text>
         <view>{{sbody.Score}} <text style="font-size:18rpx;">分</text></view>
+        <text>健康评分/分</text>
       </view>
       <view class="line"></view>
       <view class="physical_item">
+        <view>{{sbody.Figure}}</view>
         <text>提醒判定</text>
-        <text>{{sbody.Figure}}</text>
       </view>
     </view>
   </view>
   <!-- 警示指标 -->
   <view class="norm-list">
-    <view class="norm_title">
+    <view class="norm_title" catchtap="hidenNorm">
       <view>警示指标</view>
       <view>
-        <image src="/static/big_arrow.png" catchtap="hidenNorm"></image>
+        <image src="/static/bottom_arrow.png"></image>
       </view>
     </view>
     <view class="norm_content" hidden="{{normShow}}">
-      <block wx:for="{{cautionList}}" wx:key="index">
-        <view class="norm_item">
+      <block wx:if="{{deviceType=='佑久'}}">
+        <view class="norm_item" wx:for="{{cautionList}}" wx:key="index">
           <view class="weight">{{item.body_key}}</view>
           <view class="body_status">
             <text>偏低</text>
@@ -58,20 +60,47 @@
           </view>
         </view>
       </block>
+      <block wx:else>
+        <view class="norm_item" wx:for="{{cautionList2}}" wx:key="key">
+          <view class="weight">{{item.key}}</view>
+          <view class="body_status" wx:if="{{item.min && item.max}}">
+            <text>偏低</text>
+            <text>正常</text>
+            <text>偏高</text>
+          </view>
+          <view class="norm_all" style="margin-top:{{!item.min && !item.max?'15rpx':'0px'}}">
+            <view class="norm_progress">
+              <progress percent="{{item.body_health=='偏低'?'20':(item.body_health =='正常'?'50':'90')}}" stroke-width="3"
+                border-radius="10" activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
+                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+                stroke-width="10" />
+            </view>
+            <view>{{item.value}}{{item.monad}}</view>
+          </view>
+          <view class="body_data">
+            <view>{{item.min}}</view>
+            <view>{{item.max}}</view>
+          </view>
+          <view class="need" wx:if="{{item.body_health.length}}">
+            <view style="background-color:{{item.health_color}};margin-left:auto;margin-top:10rpx;">{{item.body_health}}
+            </view>
+          </view>
+        </view>
+      </block>
     </view>
   </view>
 
   <!-- 身体成分分析 -->
   <view class="body_analyze">
-    <view class="analyze norm_title">
+    <view class="analyze norm_title" catchtap="hidenBody">
       <view>身体成分分析</view>
       <view>
-        <image src="/static/big_arrow.png" catchtap="hidenBody"></image>
+        <image src="/static/bottom_arrow.png"></image>
       </view>
     </view>
     <view class="analyze_content" hidden="{{bodyShow}}">
-      <block wx:for="{{bodyCompositionList}}" wx:key="body_key">
-        <view class="norm_item">
+      <block wx:if="{{deviceType=='佑久'}}">
+        <view class="norm_item" wx:for="{{bodyCompositionList}}" wx:key="body_key">
           <view class="weight">{{item.body_key}}</view>
           <view class="body_status">
             <text>偏低</text>
@@ -97,19 +126,51 @@
           </view>
         </view>
       </block>
+      <block wx:else>
+        <view class="norm_item" wx:for="{{compositionList}}" wx:key="key">
+          <view class="weight">{{item.key}}</view>
+          <view class="body_status" wx:if="{{item.min && item.max}}">
+            <text>偏低</text>
+            <text>正常</text>
+            <text>偏高</text>
+          </view>
+          <view class="norm_all" style="margin-top:{{!item.min && !item.max?'15rpx':'0px'}}">
+            <view class="norm_progress">
+              <progress wx:if="{{item.key!='脂肪肝风险系数'}}"
+                percent="{{item.body_health=='偏低'?'20':(item.body_health =='正常'?'50':'90')}}" stroke-width="3"
+                border-radius="10" activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
+                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+                stroke-width="10" />
+              <progress wx:else percent="{{item.value}}" stroke-width="3" border-radius="10"
+                activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
+                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+                stroke-width="10" />
+            </view>
+            <view>{{item.value}}{{item.monad}}</view>
+          </view>
+          <view class="body_data" wx:if="{{item.min && item.max}}">
+            <view>{{item.min}}</view>
+            <view>{{item.max}}</view>
+          </view>
+          <view class="need" wx:if="{{item.body_health.length}}">
+            <view style="background-color:{{item.health_color}};margin-left:auto;margin-top:10rpx;">{{item.body_health}}
+            </view>
+          </view>
+        </view>
+      </block>
     </view>
   </view>
   <!-- 肥胖分析 -->
   <view class="fat_analyze">
-    <view class="analyze norm_title">
+    <view class="analyze norm_title" catchtap="hidenFat">
       <view>肥胖分析</view>
       <view>
-        <image src="/static/big_arrow.png" catchtap="hidenFat"></image>
+        <image src="/static/bottom_arrow.png"></image>
       </view>
     </view>
     <view class="fat_content" hidden="{{fatShow}}">
-      <block wx:for="{{fatList}}" wx:key="body_key">
-        <view class="norm_item">
+      <block wx:if="{{deviceType=='佑久'}}">
+        <view class="norm_item" wx:for="{{fatList}}" wx:key="body_key">
           <view class="weight">{{item.body_key}}</view>
           <view class="body_status">
             <text>偏低</text>
@@ -137,6 +198,40 @@
           </block>
         </view>
       </block>
+      <block wx:for="{{fatList2}}" wx:key="key">
+        <view class="norm_item">
+          <view class="weight">{{item.key}}</view>
+          <view class="body_status" wx:if="{{item.min && item.max}}">
+            <text>偏低</text>
+            <text>正常</text>
+            <text>偏高</text>
+          </view>
+          <view class="norm_all" style="margin-top:{{!item.min && !item.max?'15rpx':'0px'}}">
+            <view class="norm_progress">
+              <progress wx:if="{{item.key!='脂肪肝风险系数'}}"
+                percent="{{item.body_health=='偏低'?'20':(item.body_health =='正常'?'50':'90')}}" stroke-width="3"
+                border-radius="10" activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
+                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+                stroke-width="10" />
+              <progress wx:else percent="{{item.value}}" stroke-width="3" border-radius="10"
+                activeColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" active
+                backgroundColor="linear-gradient(-90deg, #EC7B87, #F4C06D, #60CAB7)" border-radius="10"
+                stroke-width="10" />
+            </view>
+            <view>{{item.value}}{{item.monad}}</view>
+          </view>
+          <block wx:if="{{item.hasNeed}}">
+            <view class="body_data">
+              <view>{{item.min}}</view>
+              <view>{{item.max}}</view>
+            </view>
+            <view class="need" wx:if="{{item.body_health.length}}">
+              <view style="background-color:{{item.health_color}};margin-left:auto;margin-top:10rpx;">
+                {{item.body_health}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
     </view>
   </view>
   <!--  身体数据分析-->
@@ -148,51 +243,63 @@
     <view class="bodybgList">
       <view class="bodyLeft bg">
         <view>
-          <view>左上肢 {{segmental_muscle.la.value}}kg</view>
+          <view>左上肢 {{segmental_muscle.la.value || segmental_muscle2.LA_muscle}}kg</view>
           <!-- //1不足:@2一般:@3:充足 -->
-          <view>{{segmental_muscle.la.grade == 1?'不足':(segmental_muscle.la.grade == 2?'一般':'充足') }}</view>
+          <view wx:if="{{deviceType=='佑久'}}">{{segmental_muscle.la.grade == 1?'不足':(segmental_muscle.la.grade ==
+            2?'一般':'充足') }}</view>
         </view>
         <view>
-          <view>右上肢 {{segmental_muscle.ra.value}}kg</view>
-          <view>{{segmental_muscle.ra.grade == 1?'不足':(segmental_muscle.ra.grade == 2?'一般':'充足') }}</view>
+          <view>右上肢 {{segmental_muscle.ra.value || segmental_muscle2.RA_muscle}}kg</view>
+          <view wx:if="{{deviceType=='佑久'}}">{{segmental_muscle.ra.grade == 1?'不足':(segmental_muscle.ra.grade ==
+            2?'一般':'充足') }}</view>
         </view>
         <view>躯干</view>
         <view>
-          <view>左下肢 {{segmental_muscle.ll.value}}kg</view>
-          <view>{{segmental_muscle.ll.grade == 1?'不足':(segmental_muscle.ll.grade == 2?'一般':'充足') }}</view>
-        </view>
-        <view>
-          <view>右下肢 {{segmental_muscle.rl.value}}kg</view>
-          <view>{{segmental_muscle.rl.grade == 1?'不足':(segmental_muscle.rl.grade == 2?'一般':'充足') }}</view>
-        </view>
-        <view>
-          <view>躯干</view>
-          <view>{{segmental_muscle.tr.value}}kg {{segmental_muscle.tr.grade == 1?'不足':(segmental_muscle.tr.grade ==
+          <view>左下肢 {{segmental_muscle.ll.value || segmental_muscle2.LL_muscle}}kg</view>
+          <view wx:if="{{deviceType=='佑久'}}">{{segmental_muscle.ll.grade == 1?'不足':(segmental_muscle.ll.grade ==
             2?'一般':'充足') }}</view>
+        </view>
+        <view>
+          <view>右下肢 {{segmental_muscle.rl.value || segmental_muscle2.RL_muscle}}kg</view>
+          <view wx:if="{{deviceType=='佑久'}}">{{segmental_muscle.rl.grade == 1?'不足':(segmental_muscle.rl.grade ==
+            2?'一般':'充足') }}</view>
+        </view>
+        <view style="left:126rpx;">
+          <view>躯干</view>
+          <view>{{segmental_muscle.tr.value || segmental_muscle2.TR_muscle}}kg
+            <block wx:if="{{deviceType=='佑久'}}">
+              {{segmental_muscle.tr.grade == 1?'不足':(segmental_muscle.tr.grade ==
+              2?'一般':'充足') }}
+            </block>
+          </view>
         </view>
       </view>
       <view class="bodyRight bg">
         <view>
-          <view>左上肢 {{segmental_fat.la.value}}kg</view>
-          <view>{{segmental_fat.la.grade == 1?'偏低':(segmental_fat.la.grade == 2?'正常':'偏高') }}</view>
+          <view>左上肢 {{segmental_fat.la.value || segmental_fat2.LA_fat}}kg</view>
+          <view wx:if="{{deviceType=='佑久'}}">{{segmental_fat.la.grade == 1?'偏低':(segmental_fat.la.grade == 2?'正常':'偏高') }}</view>
         </view>
         <view>
-          <view>右上肢 {{segmental_fat.ra.value}}kg</view>
-          <view>{{segmental_fat.ra.grade == 1?'偏低':(segmental_fat.ra.grade == 2?'正常':'偏高') }}</view>
+          <view>右上肢 {{segmental_fat.ra.value || segmental_fat2.RA_fat}}kg</view>
+          <view wx:if="{{deviceType=='佑久'}}">{{segmental_fat.ra.grade == 1?'偏低':(segmental_fat.ra.grade == 2?'正常':'偏高') }}</view>
         </view>
         <view>躯干</view>
         <view>
-          <view>左下肢 {{segmental_fat.ll.value}}kg</view>
-          <view>{{segmental_fat.ll.grade == 1?'偏低':(segmental_fat.ll.grade == 2?'正常':'偏高') }}</view>
+          <view>左下肢 {{segmental_fat.ll.value || segmental_fat2.LL_fat}}kg</view>
+          <view wx:if="{{deviceType=='佑久'}}">{{segmental_fat.ll.grade == 1?'偏低':(segmental_fat.ll.grade == 2?'正常':'偏高') }}</view>
         </view>
         <view>
-          <view>右下肢 {{segmental_fat.rl.value}}kg</view>
-          <view>{{segmental_fat.rl.grade == 1?'偏低':(segmental_fat.rl.grade == 2?'正常':'偏高') }}</view>
+          <view>右下肢 {{segmental_fat.rl.value || segmental_fat2.RL_fat}}kg</view>
+          <view wx:if="{{deviceType=='佑久'}}">{{segmental_fat.rl.grade == 1?'偏低':(segmental_fat.rl.grade == 2?'正常':'偏高') }}</view>
         </view>
-        <view>
+        <view style="left:126rpx;">
           <view>躯干</view>
-          <view>{{segmental_fat.tr.value}}kg {{segmental_fat.tr.grade == 1?'偏低':(segmental_fat.tr.grade == 2?'正常':'偏高')
-            }}</view>
+          <view>{{segmental_fat.tr.value || segmental_fat2.TR_fat}}kg 
+          <block wx:if="{{deviceType=='佑久'}}">
+            {{segmental_fat.tr.grade == 1?'偏低':(segmental_fat.tr.grade == 2?'正常':'偏高')
+            }}
+          </block>
+          </view>
         </view>
       </view>
     </view>

@@ -1,63 +1,82 @@
 <wxs src="../../common/common.wxs" module="tools" />
 <nav-bar page-name="团课预约" class="topNav"></nav-bar>
 <!-- 内容 -->
-<view class="group_container" style="margin-top:{{navHeight}}px;margin-bottom:{{tclass.CTO_Price>0?'100rpx':'212rpx'}}">
+<view class="group_container" style="margin-top:{{navHeight}}px;">
   <view class="groupImage">
-    <image src="{{tclass.CTO_Log?tclass.CTO_Log:'/static/group.png'}}"  mode="scaleToFill"></image>
+    <view class="mask-bg"></view>
+    <image src="{{tclass.CTO_Log?tclass.CTO_Log:'/static/couse_default.jpg'}}" mode="heightFix"></image>
     <view class="attentNum">已参加 {{tclass.CTO_PeopleAttend+'/'+tclass.CTO_PeopleFull}}</view>
   </view>
-  <!-- 课程开始时间 -->
-  <view class="course_date">
-    <view class="left">
-      <image src="{{tclass.AI_Face?tclass.AI_Face:'/static/head.png'}}" alt=""></image>
-      <text class="coachName">{{tclass.AI_Name}}</text>
-      <image src="{{tclass.AI_Sex == '男' ? '/static/man.png':'/static/woman.png'}}"></image>
+  <view class="coach_detail">
+    <view class="left_box">
+      <image src="{{tclass.AI_Face?tclass.AI_Face:'/static/head.png'}}" class="head"></image>
+      <view class="coach_box">
+        <text>{{tclass.AI_Name}}</text>
+        <image src="{{tclass.AI_Sex == '男' ? '/static/man.png':'/static/woman.png'}}"></image>
+      </view>
     </view>
-    <view class="right" style="justify-content:{{!tclass.CTO_SignUpStart?'center;':' space-around'}}">
+    <!-- justify-content:{{!tclass.CTO_SignUpStart?'center;':' space-around'}} -->
+    <!--     align-self: flex-end; -->
+    <view class="right_box" style="align-self:{{!tclass.CTO_SignUpStart?'center':' flex-end'}};">
       <view wx:if="{{tclass.CTO_SignUpStart}}">报名开始：{{tclass.CTO_SignUpStart}}</view>
       <view>截止日期：{{tclass.CTO_SignUpEndDate}}</view>
     </view>
   </view>
-  <view class="course_name column">课程名：{{tclass.CTO_Name}}</view>
-  <view class="course_time column">时间：{{tclass.CTO_DateStart}}-{{tools.sub(tclass.CTO_DateEnd,tclass.CTO_DateEnd.length-8)}}
+  <view class="group_detail">
+    <view class="group_col">
+      <image src="/static/appointment/time.png" class="group_icon"></image>
+      <text>{{tclass.CTO_DateStart}}-{{tools.sub(tclass.CTO_DateEnd,tclass.CTO_DateEnd.length-5)}}</text>
+    </view>
+    <view class="group_col">
+      <image src="/static/appointment/category.png" class="group_icon"></image>
+      <text>{{tclass.CTO_Name}}</text>
+    </view>
+    <view class="group_col">
+      <image src="/static/appointment/location.png" class="group_icon"></image>
+      <text>{{tclass.CTO_Address}}</text>
+    </view>
   </view>
-  <!-- 动感单车房 -->
-  <view class="course_address column">地点： {{tclass.CTO_Address}}</view>
-  <view class="course_introduce column">
-    <view class="introduce">介绍：</view>
-    <view class="introduce_detail">
-      <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇 -->
+  <view class="gruop_introduce" style="padding-bottom:{{tclass.CTO_Price>0?'240rpx':'140rpx'}}">
+    <view class="introduce_title"><text>课程介绍</text></view>
+    <view class="introduce_content">
       {{tclass.CTO_Content}}
+      <!-- 如果运动的过程是快乐的，那么减肥成功就是必然的，通过互动、有趣、科学的方式快速减脂，突破减脂平台期！适合人群：需要瘦身，减肥遇到瓶颈的人群。 -->
     </view>
   </view>
-  <!-- 免费的团课 -->
-  <view class="order_list" wx:if="{{tclass.CTO_Price == 0}}">
-    <view class="order"
-      style="background:{{(tclass.cantappointment==1 && tclass.IsAppointment==0)?'#12D58B':tclass.IsAppointment==1?'#7B6F85':'#ada6ac'}}"
-      bindtap="handleSeat">{{tclass.IsAppointment==1?'已预约':'预约'}}{{tclass.IsPickNumChk == 1?'（选座）':''}}</view>
-  </view>
-  <!-- 收费的团课 -->
-  <view class="pay_course" wx:else>
-    <view class="pay_list">
-      <view class="pay">
-        <view class="pay_title">支付方式</view>
-        <view class="WeChatPay">
-          <text>微信支付</text>
-          <image src="/static/bottom_arrow.png"></image>
-        </view>
-      </view>
-      <view class="pay_total">
-        <view class="pay_number">
-          <text>合计：</text>
-          <view class="price">{{tclass.CTO_Price}}元</view>
-        </view>
-        <view class="pay_order">
-          <view class="order_title" bindtap="paygrounplesson"
-            style="background:{{tclass.cantappointment==1?'#FD4E54':'gray'}}">
-            {{tclass.IsAppointment==1?'已购买':'购买'}}</view>
-        </view>
-      </view>
+  <view class="group_bottom" wx:if="{{tclass.CTO_Price>0}}">
+    <!-- <view class="payMehods">
+        <text>支付方式</text>
+        <view class="pay">微信支付</view>
+     </view> -->
+    <view class="wechatPay">
+      <image src="/static/others/wechat.png"></image>
+      <text>微信支付</text>
     </view>
+    <view class="price_box">
+      <view class="price">￥{{tclass.CTO_Price}}</view>
+      <!-- <view class="appoinmentBtn" bindtap="paygrounplesson"
+        style="background:{{tclass.IsAppointment==1?'gray':'#FD4E54'}}">{{tclass.IsAppointment==1?'已购买':'购买'}}</view> -->
+      <button class="appoinmentBtn" bindtap="paygrounplesson"
+        style="background:{{tclass.IsAppointment==0 && !isDisabled?'#FD4E54':'#ada6ac'}}" disabled="{{isDisabled}}">
+        <block wx:if="{{isDisabled}}">尚未开始</block>
+        <block wx:else>
+          <block wx:if="{{countdown>0}}">倒计时：{{countdown}}s</block>
+          <block wx:else>{{tclass.IsAppointment==1?'已购买':'购买'}}</block>
+        </block>
+      </button>
+    </view>
+  </view>
+  <view class="free_group" wx:else>
+    <!-- <view class="appoinemnt" style="background:{{tclass.IsAppointment==0?'#12D58B':'#ada6ac'}}" bindtap="handleSeat">
+      {{tclass.IsAppointment==1?'已预约':'预约'}}{{tclass.IsPickNumChk == 1?'（选座）':''}}</view> -->
+    <button class="appoinemnt" style="background:{{  tclass.IsAppointment==0 && !isDisabled?'#12D58B':'#ada6ac'}}"
+      bindtap="handleSeat" disabled="{{isDisabled}}">
+      <block wx:if="{{isDisabled}}">尚未开始</block>
+      <block wx:else>
+        <block wx:if="{{countdown>0}}">倒计时：{{countdown}}s</block>
+        <block wx:else>{{tclass.IsAppointment==1?'已预约':'预约'}}{{tclass.IsPickNumChk == 1?'（选座）':''}}</block>
+      </block>
+    </button>
   </view>
   <!-- 选座 -->
   <view class="mask" hidden="{{!chooseSeat}}">

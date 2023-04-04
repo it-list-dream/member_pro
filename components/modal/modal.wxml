@@ -1,4 +1,4 @@
-<view class='mask' wx:if='{{show}}' bindtap='clickMask'>
+<view class='mask' wx:if='{{show}}' bindtap='clickMask' catchtouchmove='true'>
   <view class='modal-content' style='height:{{height}}'>
     <scroll-view scroll-y class='main-content'>
       <slot></slot>

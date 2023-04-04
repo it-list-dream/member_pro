@@ -33,3 +33,26 @@ page{
   vertical-align: middle;
   font-size: 28rpx;
 }
+/*  */
+@font-face {
+  font-family: "iconfont"; /* Project id 2775595 */
+  src: url('//at.alicdn.com/t/font_2775595_8rjk18hefx7.woff2?t=1630217780328') format('woff2'),
+       url('//at.alicdn.com/t/font_2775595_8rjk18hefx7.woff?t=1630217780328') format('woff'),
+       url('//at.alicdn.com/t/font_2775595_8rjk18hefx7.ttf?t=1630217780328') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sousuo:before {
+  content: "\e616";
+}
+
+.icon-cancel01:before {
+  content: "\e734";
+}

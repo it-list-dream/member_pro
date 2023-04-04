@@ -1,11 +1,140 @@
 /* pages/selectCourse/selectCourse.wxss */
+@import '/template/nothing/nothing.wxss';
+page{
+  padding-bottom: 120rpx;
+}
 .selectCourse {
   background-color: #F0F2F5;
-  padding-top: 20rpx;
-
+  padding-top: 30rpx;
+}
+.course_item {
+  display: flex;
+  align-items: center;
+  margin: 30rpx auto 0;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  width: 690rpx;
+  height: 240rpx;
+  border:4rpx solid transparent;
+  background: #FFFFFF;
+  overflow: hidden;
+  border-radius: 10rpx;
 }
 
-.selectCourse .course_list {
+.choseCourse{
+  border: 4rpx solid #12D58B;
+  outline: none;
+}
+.course_item image {
+  flex-shrink: 0;
+  width: 270rpx;
+  height: 180rpx;
+  border-radius: 12rpx;
+}
+
+.course_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180rpx;
+  margin-left: 28rpx;
+  font-family: PingFang SC;
+}
+
+.coach_info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* font-weight: 500; */
+  font-family: PingFang SC;
+}
+
+.coach_info text:first-child {
+  font-size: 34rpx;
+  color: #222222;
+}
+
+.coach_info text {
+  font-size: 26rpx;
+  color: #222222;
+}
+
+.coach_class {
+  font-size: 30rpx;
+  color: #666666;
+  overflow: hidden;
+}
+
+.expirationDate {
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.classCoachBox {
+  margin: 80rpx auto;
+  width: 690rpx;
+  height: 120rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  color: #000000;
+}
+.classCoachBox picker{
+  width: 100%;
+  height: 100%;
+}
+.classCoachBox .classCoachItem{
+  display: flex;
+  width: 100%;
+  height: 120rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coach_box text {
+  vertical-align: middle;
+  padding-right: 6rpx;
+}
+
+.coach_box image {
+  vertical-align: middle;
+}
+
+.confirm-box {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 120rpx;
+  padding: 0 30rpx 50rpx;
+  box-sizing: border-box;
+  background-color: #F0F2F5;
+}
+
+.confirm-box .confrimBtn {
+  padding: 0;
+  margin: 0;
+  width: 690rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  background: #12D58B;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #FFFFFF;
+}
+
+button::after {
+  border: none;
+}
+
+
+/*  */
+/* .selectCourse .course_list {
   position: relative;
   width: 690rpx;
   height: 240rpx;
@@ -30,10 +159,6 @@
   padding: 20rpx;
 }
 
-/* .orderCourse{
-  position: relative;
-  z-index: 10;
-} */
 
 .selectCourse .top {
   display: flex;
@@ -89,4 +214,4 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-}
+} */

@@ -2,27 +2,27 @@
 <view class="stored_container" style="margin-top:{{navHeight}}px">
   <view class="stored_list">
     <view class="stored_img">
-      <view class='stored_img_title'>可用储值</view>
-      <view class="recharge">支付充值：<text>{{reMoney}}</text></view>
-      <view class="give">赠送充值：<text>{{giveMoney}}</text> </view>
+      <image src="/static/others/stored.png"></image>
+      <view class="stored">
+        <view class='stored_title'>可用储值</view>
+        <view class="stored_value">
+          <view class="recharge">支付充值：<text>{{reMoney}}</text></view>
+          <view class="give">赠送充值：<text>{{giveMoney}}</text> </view>
+        </view>
+      </view>
     </view>
   </view>
-  <!--  -->
+  <!-- 内容 -->
   <view class="stored_con">
     <view class="stored_tab">
       <block wx:for="{{storedTab}}" wx:key="index">
         <view class="tab {{tabIndex == index?'active':''}}" catchtap="tabStored" data-idx="{{index}}">{{item}}</view>
       </block>
     </view>
-    <!-- <view class="stored_item" hidden="{{!tabIndex==1}}">
-       充值
-    </view> -->
-    <!-- 全部 -->
-    <view class="stored_item" wx:if="{{tabIndex==0}}">
-      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 456rpx)"
-        lower-threshold="100">
-        <block wx:for="{{userMoney}}" wx:key="index">
-          <!-- userMoney -->
+    <view class="stored_item">
+      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 460rpx)"
+        lower-threshold="100" bindscrolltolower="loadMore">
+        <block wx:for="{{storedList[currentType].list}}" wx:key="index">
           <view class="storedWrapper">
             <view class="stored_all">
               <view>{{item.MoneyType}}</view>
@@ -32,46 +32,8 @@
               {{item.MoneyType=='消费'?'':'+'}}{{item.UP_MoneyShould}}</view>
           </view>
         </block>
-        <block wx:if="{{userMoney.length == 0}}">
-          <view class="tip_message">暂无数据</view>
-        </block>
-      </scroll-view>
-
-    </view>
-    <!-- 充值 -->
-    <view class="stored_item" wx:elif="{{tabIndex==1}}">
-      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 456rpx)"
-        lower-threshold="100">
-        <block wx:for="{{rechangeMoney}}" wx:key="i" wx:for-index="i">
-          <view class="storedWrapper">
-            <view class="stored_all">
-              <view>{{item.MoneyType}}</view>
-              <view>{{item.Createdate}}</view>
-            </view>
-            <view style="color:#12D58B" class="inte">+{{item.UP_MoneyShould}}</view>
-          </view>
-        </block>
-        <block wx:if="{{rechangeMoney.length == 0}}">
-          <view class="tip_message">暂无数据</view>
-        </block>
-      </scroll-view>
-
-    </view>
-
-    <!-- 消费 -->
-    <view class="stored_item" wx:elif="{{tabIndex==2}}">
-      <scroll-view scroll-y class="stored_scroll" style="height:calc(100vh - {{navHeight}}px - 456rpx)"
-        lower-threshold="100">
-        <block wx:for="{{consumeMoney}}" wx:key="j" wx:for-index="j">
-          <view class="storedWrapper">
-            <view class="stored_all">
-              <view>{{item.MoneyType}}</view>
-              <view>{{item.Createdate}}</view>
-            </view>
-            <view style="color:#F4C08D" class="inte">{{item.UP_MoneyShould}}</view>
-          </view>
-        </block>
-        <block wx:if="{{consumeMoney.length == 0}}">
+        <view class="no_more" wx:if="{{storedList[currentType].list.length > 0}}">没有更多了</view>
+        <block wx:if="{{storedList[currentType].length == 0}}">
           <view class="tip_message">暂无数据</view>
         </block>
       </scroll-view>

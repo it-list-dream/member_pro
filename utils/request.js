@@ -12,7 +12,7 @@ var request = (options) => {
     let header = {
       'content-type': 'application/x-www-form-urlencoded'
     };
-    if (options.url == '/GymList') {
+    if (options.url == '/GymList' || options.url == "/CardTogetherAppointment") {
       ajaxTimes++;
       wx.showLoading({
         title: '加载中...',
@@ -28,18 +28,18 @@ var request = (options) => {
       header: options.header || header,
       timeout: 15000,
       success(res) {
-        resolve(res);
+          resolve(res);
       },
       fail(res) {
         wx.showToast({
-          title: '网络断开了',
+          title: '请求超时...',
           icon: 'error',
           duration: 2000
         })
         reject(res);
       },
       complete: function () {
-        if (options.url == '/GymList') {
+        if (options.url == '/GymList' || options.url == "/CardTogetherAppointment") {
           ajaxTimes--;
           if (ajaxTimes === 0) {
             //  关闭正在等待的图标
@@ -50,7 +50,6 @@ var request = (options) => {
     })
   })
 };
-
 //支付加载
 module.exports = {
   request: request

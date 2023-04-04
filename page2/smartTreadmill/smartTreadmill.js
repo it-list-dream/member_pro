@@ -39,7 +39,7 @@ Page({
     this.setData({
       firstDate: e.detail.value
     })
-    this.getRunRecord()
+    // this.getRunRecord()
     //console.log(e.detail.value)
   },
   bindDateChange1: function (e) {
@@ -47,7 +47,7 @@ Page({
     this.setData({
       lastDate: e.detail.value
     })
-    this.getRunRecord()
+    // this.getRunRecord()
     // console.log(e.detail.value)
   },
   getRunRecord() {
@@ -160,7 +160,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  }
+  // }
 })

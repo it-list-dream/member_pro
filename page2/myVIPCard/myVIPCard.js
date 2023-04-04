@@ -1,5 +1,4 @@
 // page2/myVIPCard/myVIPCard.js
-// const filter = require('../../utils/filter.js');
 const app = getApp()
 var api = require('../../utils/request.js')
 Page({
@@ -38,6 +37,7 @@ Page({
         user_token: wx.getStorageSync('token')
       }
     }).then(res => {
+      console.log(res)
       if (res.data.code == 1) {
         let cardList = res.data.data;
         let nowDate = new Date().getDate();
@@ -97,6 +97,6 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  }
+  // onShareAppMessage: function () {
+  // }
 })
