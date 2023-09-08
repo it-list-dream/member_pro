@@ -1,6 +1,6 @@
 // page2/login/login.js
-var api = require('../../utils/request')
-var app = getApp()
+var api = require('../../utils/request');
+var app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -13,7 +13,7 @@ Page({
     //门店logo
     GymLogo: null,
     //是否能连点击
-    disabled:false
+    disabled: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -79,7 +79,7 @@ Page({
         // wx.navigateBack({
         //   delta: 1,
         // })
-        that.modalCancel() 
+        that.modalCancel()
       }
     })
   },
@@ -87,7 +87,7 @@ Page({
   getPhoneNumber: function (e) {
     var that = this
     this.setData({
-      disabled:true
+      disabled: true
     })
     if (e.detail.errMsg == 'getPhoneNumber:ok') {
       //登录
@@ -140,17 +140,23 @@ Page({
                   })
                 }
                 that.setData({
-                  disabled:false
+                  disabled: false
                 })
               })
             }
           })
         }
       })
-    }else if(e.detail.errMsg == 'getPhoneNumber:fail user deny'){
+    } else if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
       //返回上一个页面
       that.modalCancel();
     }
+  },
+  agree(e){
+    // console.log("用户同意隐私授权, 接下来可以调用隐私协议中声明的隐私接口")
+  },
+  disagree(e){
+     wx.navigateBack();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

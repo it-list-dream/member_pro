@@ -37,7 +37,7 @@ Page({
         item.lifespan = util.format( currDate + parseInt(item.SP_Days) *24*60*60*1000,'yyyy-mm-dd')
       }
     });
-    console.log(priceList)
+    //console.log(priceList)
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,

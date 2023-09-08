@@ -76,9 +76,6 @@ Page({
             url: `/page2/contractDetail/contractDetail?signUrl=${result.tempFilePath}&signingState=1&fileId=${res.filesid}`,
           });
         });
-        // wx.redirectTo({
-        //   url: `/page2/contractDetail/contractDetail?signUrl=${result.tempFilePath}&signingState=1&fileId=257`,
-        // });
       },
       fail: function (res) {
         // console.log(res)

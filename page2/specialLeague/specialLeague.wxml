@@ -34,8 +34,12 @@
       <text>{{tclass.GroupAddr}}</text>
     </view>
     <view class="league-item">
-      <image src="/static/appointment/location.png" class="myicon"></image>
+      <image src="/static/appointment/time.png" class="myicon"></image>
       <text>{{tclass.ClassTime}}分钟</text>
+    </view>
+    <view class="league-item" wx:if="{{tclass.PeopleMin>0}}">
+      <image src="/static/appointment/peopleMain.png" class="myicon"></image>
+      <view class="leagueCount">成团{{ tclass.PeopleAttend+'/'+tclass.PeopleMin}}人 <text class="leagueTips">(如成团未成功,将自动取消预约课程)</text></view>
     </view>
   </view>
   <view class="league-desc">

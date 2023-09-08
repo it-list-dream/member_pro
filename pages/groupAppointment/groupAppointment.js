@@ -1,7 +1,6 @@
 const app = getApp()
-var api = require('../../utils/request.js')
+var api = require('../../utils/request.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -26,13 +25,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //console.log(9999,options.tclass)
+    //console.log(options.tclass)
     if (options.tclass && options.tclass !== '') {
       var tclass = JSON.parse(options.tclass)
-      console.log(tclass)
       this.setData({
         tclass: tclass
-      })
+      });
+      this.judgeIsStart(tclass.CTO_SignUpStart);
+      if (tclass.IsPickNumChk == 1) {
+        this.getCardTogetherIsPickNum()
+      }
     }
     this.setData({
       navHeight: app.globalData.navHeight,
@@ -61,17 +63,15 @@ Page({
               CTO_ID: options.CTO_ID
             }
           }).then(res => {
-            //  console.log(res)
             if (res.data.code == 1 && res.data.data.length > 0) {
               let tuanke = res.data.data[0];
               that.setData({
                 tclass: tuanke
               })
+              this.judgeIsStart(tuanke.CTO_SignUpStart);
               //判断当前的团课是否已经过期
-              //  let time1 = Date.parse(tuanke.CTO_SignUpEndDate);
               let time1 = new Date(tuanke.CTO_SignUpEndDate).getTime();
               let nowTime = new Date().getTime();
-              // console.log(tim1>nowTime)
               if (time1 > nowTime) {
                 that.setData({
                   'tclass.cantappointment': 1
@@ -92,14 +92,10 @@ Page({
           })
         }
       })
-    } else {
-      if (this.data.tclass.IsPickNumChk == 1) {
-        this.getCardTogetherIsPickNum()
-      }
     }
-    //倒计时
-    if (this.data.tclass.CTO_SignUpStart) {
-      //console.log('111')
+  },
+  judgeIsStart(signDate) {
+    if (signDate) {
       this.countTime();
     } else {
       this.setData({
@@ -107,14 +103,15 @@ Page({
       })
     }
   },
+  //倒计时
   countTime() {
     var that = this;
     var now = new Date().getTime();
-    console.log(new Date())
     var endDate = new Date(that.data.tclass.CTO_SignUpStart.replace(/-/g, '/')); //设置截止时间
     var end = endDate.getTime();
     var leftTime = end - now; //时间差      
     var s;
+    console.log('距离开始还剩多久', leftTime)
     if (leftTime >= 0) {
       s = Math.floor(leftTime / 1000);
       s = s < 10 ? "0" + s : s;
@@ -126,12 +123,10 @@ Page({
       }
       this.timer = setTimeout(that.countTime, 1000);
     } else {
-      // console.log('已开始')
       that.setData({
         isDisabled: false
       })
     }
-
   },
   handleSeat: function () {
     var that = this
@@ -185,7 +180,7 @@ Page({
                   'tclass.CTO_PeopleAttend': Number(that.data.tclass.CTO_PeopleAttend) + 1
                 })
                 wx.navigateTo({
-                  url: '/page2/suceess/suceess?CTO_ID=' + that.data.tclass.CTO_ID,
+                  url: `/page2/suceess/suceess?CTO_ID= ${that.data.tclass.CTO_ID}&isShow=0`,
                 })
               } else {
                 wx.showToast({
@@ -220,10 +215,6 @@ Page({
       that.setData({
         seatList: res.data.data
       })
-      // console.log(typeof res)
-      // if(res && typeof res == 'function'){
-      //   res();
-      // }
     })
   },
   judgeSeatExist1: function () {
@@ -252,12 +243,10 @@ Page({
       // that.getCardTogetherIsPickNum();
       // new Promise((resolve, reject) => {
       //   resolve()
-      // }).then(res => {
-
-      // })
+      // }).then(res => {// })
       that.payGroup();
     } else {
-      console.log('免费')
+      //console.log('免费')
       wx.showModal({
         title: '',
         content: '确定预约该课程',

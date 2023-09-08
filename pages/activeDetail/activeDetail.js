@@ -193,7 +193,7 @@ Page({
             that.ordersuccess(order)
             that.setData({
               'cardDetail.SaleCount': Number(that.data.cardDetail.SaleCount) + 1
-            })
+            });
           },
           'fail': function (res) {
             wx.hideLoading()
@@ -232,17 +232,60 @@ Page({
       }
     }).then(res => {
       if (res.data.code == 1) {
-        wx.hideLoading()
-        console.log('205:',res)
-        if (res.data.PayMoneyID) {
-          app.globalData.PayMoneyID = res.data.PayMoneyID;
-          util.handleNavigateTo('/page2/contractDetail/contractDetail')
+        wx.hideLoading();
+        //app.globalData.PayMoneyID = res.data.PayMoneyID;
+        console.log("res:", res)
+        // 0 隐藏 1 启用
+        if (res.data.IsMiniProgramSign == 1) {
+          var jsonStr = JSON.stringify({
+            sign: wx.getStorageSync('UrlBySign'),
+            gymid: wx.getStorageSync('GB_ID'),
+            AdminID: res.data.AdminID,
+            uuid: res.data.uuid,
+            up_id: res.data.PayMoneyID,
+            userId: res.data.userId,
+            eSignType: res.data.eSignType
+          })
+          wx.request({
+            url: 'https://user.360ruyu.cn/GymManage.asmx/eSginUserPayContract',
+            method: "POST",
+            data: {
+              json: jsonStr,
+              key: "D3069A3F7C5E262F83ACEE108C4F309D"
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+            },
+            success(res) {
+              if (res.data.code == 1) {
+                wx.navigateTo({
+                  url: '/page2/authorize/authorize?sign=' + res.data.data[0].signMd5+'&type=会籍卡',
+                });
+              }
+            }
+          })
         } else {
           wx.navigateTo({
             url: '/page2/suceess/suceess?isShow=3&sc_id=' + that.data.cardDetail.SC_ID,
-          })
+          });
         }
-
+        // api.request({
+        //   url: "/SearchContractByID",
+        //   data: {
+        //     GB_ID: wx.getStorageSync('GB_ID'),
+        //     user_token: wx.getStorageSync('token'),
+        //     PayMoneyID: res.data.PayMoneyID
+        //   }
+        // }).then(res => {
+        //  // console.log(res)
+        //   if (res.statusCode == 200 && res.data.data) {
+        //     // util.handleNavigateTo('/page2/contractDetail/contractDetail')
+        //   } else {
+        //     wx.navigateTo({
+        //       url: '/page2/suceess/suceess?isShow=3&sc_id=' + that.data.cardDetail.SC_ID,
+        //     });
+        //   }
+        // })
       } else {
         wx.hideLoading()
         wx.showToast({

@@ -1,0 +1,104 @@
+.all {
+  padding: 50rpx 30rpx;
+  background-color: #ffffff;
+}
+
+.strength-title {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+.sport-detail {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.sport-time {
+  margin-top: 30rpx;
+  width: 334rpx;
+  height: 160rpx;
+  background: #F0F2F5;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 36rpx 0px 30rpx 36rpx;
+}
+
+.sport-time>view {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.cricle {
+  position: relative;
+  margin-right: 8rpx;
+  width: 13rpx;
+  height: 13rpx;
+  background: #51DEA4;
+  border-radius: 50%;
+}
+
+.cricle1::after {
+  content: '';
+  position: absolute;
+  top: 12rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 50rpx;
+  background: linear-gradient(0deg, #EB4545 0%, #51DEA4 100%);
+}
+.cricle2{
+  background-color: #EB4545 !important;
+}
+ .sport-time>view:last-child {
+  margin-top: 26rpx;
+}
+
+.flex-item {
+  margin-top: 30rpx;
+  width: 334rpx;
+  height: 160rpx;
+  background: #F0F2F5;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 15px 14px 0px 20px;
+}
+
+.flex-item .unit {
+  margin-top: 4px;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #999999;
+
+}
+
+.flex-item-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #333333;
+}
+
+.flex-item-data image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.distribution {
+  margin-top: 34px;
+  width: 690rpx;
+  height: 426rpx;
+  background: #F0F2F5;
+  border-radius: 6rpx;
+}
+#mychart-dom-bar{
+  width: 100%;
+  height: 100%;
+}

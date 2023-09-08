@@ -12,6 +12,18 @@
         <text>智能跑步机</text>
     </view>
   </navigator>
+  <navigator url="/page2/strengthTraining/strengthTraining" class="instrument_item">
+    <image src="../images/power.png"></image>
+    <view class="instrument">
+        <text>力量训练</text>
+    </view>
+  </navigator>
+  <navigator url="/page2/aerobic/aerobic" class="instrument_item">
+    <image src="../images/aerobic.png"></image>
+    <view class="instrument">
+        <text>有氧训练</text>
+    </view>
+  </navigator>
   <!-- <view class="instument_item bracelet">
     <view class="instuTitle">心率穿戴设备</view>
     <view class="instu_img">

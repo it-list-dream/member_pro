@@ -1,0 +1,6 @@
+<nav-bar page-name="实名/签署"></nav-bar>
+<view class="all" style="padding-top: {{navHeight}}px;min-height: calc(100vh - {{navHeight}}px);">
+  <button bindtap="goIdentify" wx:if="{{!isRealname}}" type="primary">实名认证</button>
+  <button bindtap="handleEsign" wx:else class="esign" type="default">签署合同</button>
+  <!-- <button bindtap="goIdentify" type="primary">实名认证</button> -->
+</view>

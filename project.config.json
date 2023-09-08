@@ -93,6 +93,8 @@
   "appid": "wx31644a3c951aa4ac",
   "projectname": "member_pro",
   "simulatorType": "wechat",
+  "ignoreDevUnusedFiles": false,
+  "ignoreUploadUnusedFiles": false,
   "simulatorPluginLibVersion": {
     "wxext14566970e7e9f62": "2.27.3"
   },

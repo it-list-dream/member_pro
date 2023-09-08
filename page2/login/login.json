@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "nav-bar":"/components/navbar/navbar",
-    "modal":"/components/modal/modal"
+    "modal":"/components/modal/modal",
+    "privacy-popup":"/components/privacy-popup/index"
   }
 }

@@ -44,7 +44,7 @@ Page({
         GB_ID: wx.getStorageSync('GB_ID')
       }
     }).then(res => {
-      console.log(res)
+     // console.log(res)
       that.setData({
         coachList: res.data.data
       })

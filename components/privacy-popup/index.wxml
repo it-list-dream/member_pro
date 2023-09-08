@@ -1,0 +1,12 @@
+<!-- 隐私 -->
+<!-- <navigator class="privacy" url="/pages/agreement/agreement">《用户服务协议》和《用户隐私》</navigator> -->
+<view wx:if="{{innerShow}}">
+  <mp-dialog show="{{true}}" mask="true" mask-closable="{{false}}" ext-class="popup">
+    为更好地保障您的个人信息，请您阅读并同意
+    <text class="privacy" bindtap="openPrivacyContract">《用户服务协议》和《用户隐私》</text>
+    <view class="dialog_footer">
+      <button class="disagree" bindtap="handleDisagree">拒绝</button>
+      <button id="agree-btn" class="agree" open-type="agreePrivacyAuthorization" bindagreeprivacyauthorization="handleAgree">同意</button>
+    </view>
+  </mp-dialog>
+</view>

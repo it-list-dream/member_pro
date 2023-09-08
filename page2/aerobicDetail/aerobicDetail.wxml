@@ -1,0 +1,51 @@
+<nav-bar icon1="{{true}}" page-name="有氧详情"></nav-bar>
+<view class="all"  style="margin-top:calc(10px + {{navHeight}}px);min-height: calc(100vh - {{navHeight}}px - 10px);">
+  <view class="strength-title">{{aerobic.deviceName}}详细数据</view>
+  <view class="sport-detail">
+    <view class="sport-time">
+      <view>
+        <text class="cricle cricle1"></text>
+       {{aerobic.startTime}}
+      </view>
+      <view>
+        <text class="cricle cricle2"></text>
+       {{aerobic.endTime}}
+      </view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{aerobic.duration}}</text>
+        <image src="../images/time.png"></image>
+      </view>
+      <view class="unit">运动时长s</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{aerobic.calorie}}</text>
+        <image src="../images/kcal.png"></image>
+      </view>
+      <view class="unit">卡路里kcal</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{aerobic.distance}}</text>
+        <image src="../images/fitness.png"></image>
+      </view>
+      <view class="unit">运动总距离km</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{aerobic.maxSpeed}}</text>
+        <image src="../images/speed.png"></image>
+      </view>
+      <view class="unit">最快速度km/h</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{aerobic.avgSpeed}}</text>
+        <image src="../images/avage.png"></image>
+      </view>
+      <view class="unit">平均速度km/h</view>
+    </view>
+  </view>
+</view>

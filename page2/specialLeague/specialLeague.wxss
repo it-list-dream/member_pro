@@ -103,7 +103,14 @@ page {
   height: 106rpx;
   line-height: 106rpx;
 }
-
+.leagueCount{
+  display: inline-block;
+  text-indent: 0.8em;
+}
+.leagueTips{
+  font-size: 24rpx;
+  color: #999999;
+}
 
 .mode-pick {
   display: flex;
@@ -121,7 +128,7 @@ page {
   vertical-align: middle;
 }
 
-.league-item text {
+.league-item>text {
   display: inline-block;
   text-indent: 0.8em;
   font-size: 28rpx;

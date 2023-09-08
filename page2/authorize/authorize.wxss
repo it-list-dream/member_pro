@@ -1,0 +1,101 @@
+/* page2/authorize/authorize.wxss */
+.all{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.esign{
+  border: 1px solid #cccccc !important;
+  color: #333333 !important;
+}
+
+
+/**index.wxss**/
+.container {
+  padding-top: 20rpx !important;
+}
+.box1 {
+  border-bottom: 2rpx dashed #333;
+  margin-bottom: 50rpx;
+  padding-bottom: 60rpx;
+}
+.box2 {
+  border-top: 2rpx dashed #333;
+  border-bottom: 2rpx dashed #333;
+  margin-bottom: 50rpx;
+  padding-bottom: 2rpx;
+}
+.title {
+  margin-bottom: 20px;
+  text-align: left;
+  width: 100%;
+  font-weight: bold;
+}
+.demotitle {
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.weui-input {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 50rpx;
+}
+.btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.weui-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+.weui-radio__box {
+  display: flex;
+  width: 100%;
+}
+.weui-check__label {
+  display: flex;
+  margin: 0 50rpx 80rpx 0;
+}
+.picker-box {
+  display: flex;
+  width: 100%;
+  margin-bottom: 50rpx;
+  border: 1px solid #999;
+  border-radius: 8rpx;
+  padding: 10rpx;
+}
+.btn-box {
+  display: flex;
+  align-item: center;
+  justify-content: center;
+}
+.my-btn {
+  margin-top: 0 !important;
+}
+.my-btn:first-child {
+  margin-right: 10rpx;
+}

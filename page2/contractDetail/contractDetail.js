@@ -48,6 +48,7 @@ Page({
     this.getContract();
   },
   getContract() {
+    console.log('合同编号:',app.globalData.PayMoneyID)
     api.request({
       url: "/SearchContractByID",
       data: {
@@ -56,7 +57,7 @@ Page({
         PayMoneyID: app.globalData.PayMoneyID
       }
     }).then(res => {
-      console.log(typeof res.data.data.UP_EndDate,typeof res.data.data.UP_StartDate)
+      //console.log(typeof res.data.data.UP_EndDate,typeof res.data.data.UP_StartDate)
       this.setData({
         contract: res.data.data
       })
@@ -68,7 +69,7 @@ Page({
     // })
     wx.navigateTo({
       url: '/page2/signature/signature',
-    })
+    });
   },
   submitSign() {
     //会员签署合同JSON1:{"SC_ID":5,"PayMoneyID":4567,"UserSignId":5}
@@ -94,7 +95,7 @@ Page({
       setTimeout(() => {
         wx.navigateBack({
           delta: 2
-        })
+        });
       }, 1500)
     })
   },

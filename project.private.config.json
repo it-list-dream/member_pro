@@ -1,80 +1,68 @@
 {
   "setting": {
-    "compileHotReLoad": true
+    "compileHotReLoad": true,
+    "urlCheck": true
   },
   "condition": {
     "miniprogram": {
       "list": [
         {
-          "name": "合同列表",
-          "pathName": "page2/contractList/contractList",
+          "name": "实名认证",
+          "pathName": "page2/authorize/authorize",
           "query": "",
+          "launchMode": "default",
           "scene": null
         },
         {
-          "name": "合同详细",
-          "pathName": "page2/contractDetail/contractDetail",
+          "name": "力量训练详情",
+          "pathName": "page2/strengthTrainingDetail/strengthTrainingDetail",
           "query": "",
+          "launchMode": "default",
           "scene": null
         },
         {
-          "name": "signature",
-          "pathName": "page2/signature/signature",
+          "name": "力量训练",
+          "pathName": "page2/strengthTraining/strengthTraining",
           "query": "",
+          "launchMode": "default",
           "scene": null
         },
         {
-          "name": "团课介绍",
-          "pathName": "pages/leagueDetail/leagueDetail",
+          "name": "有氧详情",
+          "pathName": "page2/aerobicDetail/aerobicDetail",
           "query": "",
+          "launchMode": "default",
           "scene": null
         },
         {
-          "name": "我的课程",
-          "pathName": "page2/myCourse/myCourse",
+          "name": "登录",
+          "pathName": "page2/login/login",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户协议",
+          "pathName": "pages/agreement/agreement",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
-          "pathName": "pages/hello/hello",
-          "query": "sign=p18&0=&hotapp=1",
-          "launchMode": "default",
-          "scene": 1011
-        },
-        {
-          "name": "预约",
-          "pathName": "pages/appointment/appointment",
-          "query": "course=普拉提团课",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "我的",
-          "pathName": "pages/tabbar/my/my",
+          "pathName": "pages/tabbar/home/home",
           "query": "",
           "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "签字",
-          "pathName": "page2/signature/signature",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "会员码",
-          "pathName": "page2/memberCode/memberCode",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
+          "scene": null,
+          "partialCompile": {
+            "enabled": true,
+            "pages": []
+          }
         }
       ]
     }
   },
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "projectname": "member_pro",
-  "libVersion": "2.18.1"
+  "libVersion": "3.0.1"
 }

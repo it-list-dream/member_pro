@@ -1,0 +1,33 @@
+/* components/privacy-popup/index.wxss */
+.privacy {
+  display: inline-block;
+  color: #12D58B;
+}
+
+.weui-dialog__hd {
+  padding: 30rpx 0 !important;
+}
+
+.dialog_footer {
+  margin-top: 30rpx;
+  display: flex;
+}
+
+.dialog_footer button {
+  font-weight: normal !important;
+  border-radius: 20rpx;
+  width: 48%;
+  color: #333333;
+}
+
+.disagree {
+  background: transparent;
+  border: 1px solid #ececec;
+  box-sizing: border-box;
+}
+
+.agree {
+  background: #12D58B;
+  color: #ffffff !important;
+}
+

@@ -1,0 +1,47 @@
+<nav-bar icon1="{{true}}" page-name="力量详情"></nav-bar>
+<view class="all"  style="margin-top:calc(10px + {{navHeight}}px);min-height: calc(100vh - {{navHeight}}px - 10px);">
+  <view class="strength-title">{{power.deviceName}}详细数据</view>
+  <view class="sport-detail">
+    <view class="sport-time">
+      <view>
+        <text class="cricle cricle1"></text>
+       {{power.startTime}}
+      </view>
+      <view>
+        <text class="cricle cricle2"></text>
+        {{power.endTime}}
+      </view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{power.duration}}</text>
+        <image src="../images/time.png"></image>
+      </view>
+      <view class="unit">运动时长s</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{power.calorie}}</text>
+        <image src="../images/kcal.png"></image>
+      </view>
+      <view class="unit">卡路里kcal</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{power.totalKg}}</text>
+        <image src="../images/fitness.png"></image>
+      </view>
+      <view class="unit">总重量kg</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-data">
+        <text>{{power.work}}</text>
+        <image src="../images/w.png"></image>
+      </view>
+      <view class="unit">运动所做功J</view>
+    </view>
+  </view>
+  <view class="distribution">
+    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+  </view>
+</view>

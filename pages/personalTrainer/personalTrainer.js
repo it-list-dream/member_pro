@@ -73,24 +73,24 @@ Page({
     })
   },
   // 购买下单
-   // 购买下单
-   paysuccess() {
+  // 购买下单
+  paysuccess() {
     var that = this
     //判断是否买了会员卡 是否手登录
     let ui_id = Number(wx.getStorageSync('UI_ID'));
     let phone = wx.getStorageSync('phone')
     if (phone && phone !== '') {
-      if(!ui_id){
+      if (!ui_id) {
         wx.showToast({
-          icon:"none",
+          icon: "none",
           title: '你还未购买会员卡',
         })
-        return 
+        return
       }
       wx.showLoading({
         title: '支付中...',
         mask: true
-       })
+      })
       api.request({
         url: "/OrderCoachLesson",
         data: {
@@ -109,19 +109,19 @@ Page({
           wx.showToast({
             title: res.data.msg,
             icon: 'none'
-          })       
+          })
         }
 
       })
     } else {
       wx.navigateTo({
-        url:"/page2/login/login"
+        url: "/page2/login/login"
       })
     }
   },
   getpaydata(order, businessNo, money) {
     var that = this
-    console.log(order,businessNo,money)
+    console.log(order, businessNo, money)
     wx.request({
       url: "https://shop.360ruyu.cn/api/gym/gym.asmx/GetPayDataAppletV2",
       header: {
@@ -148,7 +148,7 @@ Page({
           'success': function (res) {
             that.ordersuccess(order)
             that.setData({
-              'personal.SaleCount':Number(that.data.personal.SaleCount )+ 1
+              'personal.SaleCount': Number(that.data.personal.SaleCount) + 1
             })
           },
           'fail': function (res) {
@@ -158,7 +158,7 @@ Page({
               icon: 'none'
             })
           },
-          'complete': function (res) { }
+          'complete': function (res) {}
         })
       },
       fail: function (res) {
@@ -181,15 +181,43 @@ Page({
         orderNo: orderNo
       }
     }).then(res => {
-       if (res.data.code.startsWith('1')) {
-        // wx.showToast({
-        //   title: '支付成功',
-        // })
+      if (res.data.code.startsWith('1')) {
         wx.hideLoading();
-        let teacherid = that.data.coachList[that.data.chooseNum].FK_AL_TeachCoach_ID;
-        wx.navigateTo({
-          url: '/page2/suceess/suceess?isShow=3&teacherid='+teacherid,
-        })
+        if (res.data.IsMiniProgramSign == 1) {
+          var jsonStr = JSON.stringify({
+            sign: wx.getStorageSync('UrlBySign'),
+            gymid: wx.getStorageSync('GB_ID'),
+            AdminID: res.data.AdminID,
+            uuid: res.data.uuid,
+            up_id: res.data.PayMoneyID,
+            userId: res.data.userId,
+            eSignType: res.data.eSignType
+          })
+          wx.request({
+            url: 'https://user.360ruyu.cn/GymManage.asmx/eSginUserPayContract',
+            method: "POST",
+            data: {
+              json: jsonStr,
+              key: "D3069A3F7C5E262F83ACEE108C4F309D"
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+            },
+            success(res) {
+              if (res.data.code == 1) {
+                wx.navigateTo({
+                  url: '/page2/authorize/authorize?sign=' + res.data.data[0].signMd5+'&type=私教',
+                });
+              }
+            }
+          })
+        } else {
+          let teacherid = that.data.coachList[that.data.chooseNum].FK_AL_TeachCoach_ID;
+          wx.navigateTo({
+            url: '/page2/suceess/suceess?isShow=3&teacherid=' + teacherid,
+          })
+        }
+
       } else {
         wx.hideLoading()
         wx.showToast({

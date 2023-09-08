@@ -3,11 +3,11 @@
   <view class="league-item" wx:for="{{list}}" wx:key="CTO_ID" bindtap="orderTogther" data-togther="{{item}}">
     <view class="mask-BG"></view>
     <image class="league-BG" wx:if="{{leagueType ==0}}" src="{{item.CTO_Log?item.CTO_Log:'/static/couse_default.jpg'}}" mode="heightFix"></image>
-    <image class="league-BG" wx:else src="{{item.leagueUrl?item.leagueUrl:'/static/home_pic/league.jpg'}}" mode="heightFix"/>
+    <image class="league-BG" wx:else src="{{item.leagueUrl?item.leagueUrl:'/static/home_pic/league.jpg'}}" mode="heightFix" />
     <view class="league-info">
-      <view class="attend-info">
-        <!-- leagueType==1?item. :  -->
-        已参加{{leagueType==1?item.PeopleAttend +'/'+item.PeopleFull:item.CTO_PeopleAttend+'/'+item.CTO_PeopleFull}}
+      <view class="attendinfo">
+         <text> 已参加{{leagueType==1?item.PeopleAttend +'/'+item.PeopleFull:item.CTO_PeopleAttend+'/'+item.CTO_PeopleFull}}</text>
+         <text wx:if="{{item.PeopleMin>0}}">已成团{{item.PeopleAttend+'/'+item.PeopleMin}}人</text>
       </view>
       <view class="league-name">{{leagueType==0?item.CTO_Name:item.ClassName}}</view>
       <view class="league-coach">{{leagueType==0? item.AI_Name:item.TeacherName}}</view>

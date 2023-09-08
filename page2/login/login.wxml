@@ -1,28 +1,30 @@
 <nav-bar page-name="登录"></nav-bar>
-<view class="loginContainer" style="margin-top:{{navHeight}}px;">
-  <view class="login-info">
+<view style="margin-top:{{navHeight}}px;">
+  <view class="login-container">
     <view class="login-logo">
       <image src="{{GymLogo?GymLogo:'/static/avtor.png'}}"></image>
     </view>
     <view class="store-name">{{GymName}}</view>
     <view class="store-info">申请获取你的公开信息（昵称、头像等）</view>
+    <!-- 登录 -->
+    <view class="login-btn">
+      <button class="authorization" type="primary" hover-class="none" bindtap="getUserProfile" wx:if="{{!hasUserInfo}}">授权登录</button>
+      <button class="authorization" open-type="getPhoneNumber" hover-class="none" bindgetphonenumber="getPhoneNumber" hover-stay-time="100" wx:else>绑定手机号</button>
+      <button class="cancel" type="default" hover-class="none" bindtap="onCancel">取消</button>
+    </view>
   </view>
-  <!-- 登录 -->
-  <view class="login-btn">
-    <button class="authorization" type="primary" hover-class="none" bindtap="getUserProfile"
-      wx:if="{{!hasUserInfo}}">微信授权</button>
-    <button class="authorization" open-type="getPhoneNumber" hover-class="none" bindgetphonenumber="getPhoneNumber" hover-stay-time="100"
-      wx:else>绑定手机号</button>
-    <button class="cancel" type="default" hover-class="none" bindtap="onCancel">取消</button>
+  <view class="agreement">
+    <text>登录代表您已经同意</text>
+    <navigator style="color: #000;" url="/pages/agreement/agreement">用户服务协议和用户隐私</navigator>
   </view>
-
   <modal show="{{showModal}}" height='490rpx' bindcancel="modalCancel" bindconfirm='modalConfirm' wx:if="{{showModal}}">
     <view class="succ-icon">
       <icon type="success" size="50"></icon>
     </view>
     <view class="modalTip">
-      <view>微信授权成功</view>
+      <view>授权成功</view>
       <view>授权绑定你的手机号</view>
     </view>
   </modal>
 </view>
+<privacy-popup bind:agree="agree" bind:disagree="disagree"></privacy-popup>

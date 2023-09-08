@@ -17,7 +17,8 @@
     "pages/activeDetail/activeDetail",
     "pages/activeList/activeList",
     "pages/leagueDetail/leagueDetail",
-    "pages/leagueList/leagueList"
+    "pages/leagueList/leagueList",
+    "pages/agreement/agreement"
   ],
   "subpackages": [
     {
@@ -46,7 +47,13 @@
         "contractList/contractList",
         "contractDetail/contractDetail",
         "signature/signature",
-        "specialLeague/specialLeague"
+        "specialLeague/specialLeague",
+        "authorize/authorize",
+        "previewContract/previewContract",
+        "aerobic/aerobic",
+        "aerobicDetail/aerobicDetail",
+        "strengthTraining/strengthTraining",
+        "strengthTrainingDetail/strengthTrainingDetail"
       ]
     }
   ],
@@ -57,6 +64,9 @@
         "page2"
       ]
     }
+  },
+  "useExtendedLib": {
+    "weui": true
   },
   "plugins": {},
   "tabBar": {
@@ -99,6 +109,10 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
   },
+  "usingComponents": {
+    "nav-bar":"/components/navbar/navbar"
+  },
+  "__usePrivacyCheck__": true,
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

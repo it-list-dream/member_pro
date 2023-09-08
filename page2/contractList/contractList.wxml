@@ -1,17 +1,42 @@
 <nav-bar page-name="合同列表"></nav-bar>
-<view class="contract-list" style="margin-top:{{navHeight}}px;">
-    <view class="contract-item" wx:for="{{contractList}}" bindtap="goContractDetail" wx:key="index" data-contract="{{item}}">
-        <view class="contract-serial">
-            <view class="contract-id">合同编码：{{item.ContractNo?item.ContractNo:''}}</view>
-            <view class="contract-status">{{item.SC_ID?'已签署':'未签署'}}</view>
-        </view>
-        <view class="contract-info">
-            <view class="cname">{{item.CardName}}</view>
-            <view class="company">{{item.GB_Name}}</view>
-            <view class="contract-price">¥{{item.UP_MoneyReal}}</view>
-            <!-- <view class="operator-info">
-                <view class="cprice">¥2900,00</view>
-            </view> -->
-       </view>
+<import src="/template/nothing/nothing"></import>
+<view class="contract-wrapper" style="margin-top:{{navHeight}}px;">
+  <view class="order_tabs">
+    <block wx:for="{{tabList}}" wx:key="index">
+      <text class="{{selected==index?'active_lice':''}}" bindtap="handleTabs" data-index="{{index}}">{{item}}</text>
+    </block>
+  </view>
+  <block wx:if="{{selected == 0}}">
+    <view class="contract-item" wx:for="{{memberCard}}" bindtap="previewContract" wx:key="index" data-type="会籍卡" data-contract="{{item}}">
+      <view class="contract-serial">
+        <view class="contract-id">合同编码：{{item.OrderNo}}</view>
+        <view class="contract-status">{{item.eSignStatus}}</view>
+      </view>
+      <view class="contract-info">
+        <view>{{item.GB_Name}}</view>
+        <view>卡名称: {{item.CardName}}</view>
+        <view class="contract-price">¥{{item.UP_MoneyReal}}</view>
+      </view>
     </view>
+  </block>
+  <block wx:else>
+    <view class="contract-item" wx:for="{{personalTrain}}" bindtap="previewContract" wx:key="index" data-contract="{{item}}" data-type="私教">
+      <view class="contract-serial">
+        <view class="contract-id">合同编码：{{item.OrderNo}}</view>
+        <view class="contract-status">{{item.eSignStatus}}</view>
+      </view>
+      <view class="contract-info">
+        <view class="contract-info">
+        <view>{{item.GB_Name}}</view>
+        <view>课程名: {{item.CP_Name}}</view>
+        <view>售价: {{item.CO_Price}}</view>
+        <view>课程数量: {{item.CO_Num}}节</view>
+        <view class="contract-price">¥{{item.MoneyReal}}</view>
+      </view>
+      </view>
+    </view>
+  </block>
+  <!-- <block wx:if="{{contractList.length == 0}}">
+    <template is="nothing" data="{{message:'暂无内容'}}"></template>
+  </block> -->
 </view>

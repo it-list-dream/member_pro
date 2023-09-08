@@ -28,6 +28,7 @@
               <view>{{item.CTO_Name}}</view>
               <view>教练：{{item.CoachName}}</view>
               <view>时间：{{item.ClassTime}}</view>
+              <view wx:if="{{item.PeopleMin>0}}">成团 {{item.CTO_PeopleAttend+'/'+item.PeopleMin}}人</view>
               <view wx:if="{{item.ClassType==1}}">地点：{{item.CTO_Address}}</view>
               <view wx:if="{{item.ClassType==1 && item.PickNum>0}}">座位：{{item.PickNum}}</view>
             </view>

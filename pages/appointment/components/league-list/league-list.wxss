@@ -44,15 +44,16 @@
   color: #FFFFFF;
 }
 
-.attend-info {
-  line-height: 3em;
+.attendinfo{
+  display: flex;
+  justify-content: space-between;
   font-size: 26rpx;
-  font-family: PingFang SC;
   color: #FFFFFF;
+  padding: 26rpx 0;
 }
 
 .league-name {
-  margin-top: 128rpx;
+  margin-top: 124rpx;
   font-size: 34rpx;
 }
 .league-coach{

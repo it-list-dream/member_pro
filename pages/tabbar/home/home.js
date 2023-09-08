@@ -93,7 +93,6 @@ Page({
           }
           reacentCheckIn = CheckInCards.sort(this.compare('timestamp'));
           if (expireTime && expireTime > reacentCheckIn[0].timestamp) {
-            console.log('切换门店了');
             currentStore = recentStore.filter(item => item.GB_ID == GB_ID)[0];
             wx.setStorageSync('UI_ID', currentStore.UI_ID);
           } else {

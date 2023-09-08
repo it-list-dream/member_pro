@@ -136,7 +136,7 @@ Page({
           wx.removeStorageSync('hasUserInfo');
           wx.removeStorageSync('tid');
           wx.removeStorageSync('co_id');
-          wx.setStorageSync('expireTime');
+          wx.removeStorageSync('expireTime');
           api.request({
             url: "/GetUrlBySign",
             data: {
@@ -145,9 +145,6 @@ Page({
           }).then(res => {
             if (res.data.code == 1) {
               wx.setStorageSync('token', res.data.user_token)
-              // // //保存门店名字
-              wx.setStorageSync('GymName', res.data.GymName);
-              console.log('退出')
               wx.navigateBack({
                 delta: 1,
               })

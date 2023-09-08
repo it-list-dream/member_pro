@@ -1,0 +1,46 @@
+<nav-bar icon1="{{true}}"  page-name="力量训练"></nav-bar>
+<view class="all" style="margin-top: {{navHeight}}px;">
+  <view class="pickerdate">
+    <view class="picker-list">
+      <picker class="picker-item" bindchange="startPickerChange" mode="date" value="{{startdate}}" start="2015-09-01" end="{{nowdate}}">
+        <view class="picker">
+          <view>
+            {{startdate}}
+          </view>
+          <image src="../images/arrow.png"></image>
+        </view>
+      </picker>
+      <view class="line">-</view>
+      <picker class="picker-item" bindchange="endPickerChange" mode="date" value="{{enddate}}" start="2015-09-01" end="{{nowdate}}">
+        <view class="picker">
+          <view>
+            {{enddate}}
+          </view>
+          <image src="../images/arrow.png"></image>
+        </view>
+      </picker>
+    </view>
+    <view class="tips">筛选</view>
+  </view>
+  <view class="power-list">
+    <view class="power-item" wx:for="{{powerList}}" bindtap="handleDetail" data-power="{{item}}">
+      <view class="logo">
+        <image src="../images/sport1.png"></image>
+      </view>
+      <view class="power-data">
+        <view class="power-data-item">
+          <text>{{item.totalKg}}</text>
+          <text>总重量kg</text>
+        </view>
+        <view class="power-data-item">
+          <text>{{item.calorie}}</text>
+          <text>卡路里kcal</text>
+        </view>
+        <view class="power-data-item">
+          <text>{{item.duration}}</text>
+          <text>运动时长s</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
