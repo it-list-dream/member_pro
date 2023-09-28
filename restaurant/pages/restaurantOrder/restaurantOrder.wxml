@@ -1,0 +1,56 @@
+<nav-bar page-name="订单列表"></nav-bar>
+<view class="all" style="margin-top:calc({{navHeight}}px + 10rpx);">
+  <view class="order-list">
+    <view class="goods" wx:for="{{list}}">
+      <view class="order-status">
+        <text>订单编号：1238363749227</text>
+        <text>完成</text>
+      </view>
+      <!--  -->
+      <view class="goods-info" wx:for="{{item.children}}" wx:for-item="goods" wx:for-index="index2">
+        <!--  -->
+        <view class="table-info" wx:if="{{index2 == 0}}">
+          <view class="table-number" wx:if="{{index2 == 0}}">
+            您订餐取号码：8号
+          </view>
+          <view class="goods-item first-goods">
+            <view class="goods-lf">
+              <image src="/static/menu.png" mode="" />
+            </view>
+            <view class="goods-rf">
+              <view class="flex-row">
+                <text>健身色拉</text>
+                <text>¥88.5</text>
+              </view>
+              <view class="flex-row">
+                <text class="remark">常规糖、辣味、多葱</text>
+                <text class="number">x2</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="goods-item" wx:else>
+          <view class="goods-lf">
+            <image src="/static/menu.png" mode="" />
+          </view>
+          <view class="goods-rf">
+            <view class="flex-row">
+              <text>健身色拉</text>
+              <text>¥88.5</text>
+            </view>
+            <view class="flex-row">
+              <text>常规糖、辣味、多葱</text>
+              <text>x2</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="order-amount">
+        <view>
+          ¥ <text class="total">177.5</text>
+        </view>
+        <view>共4件</view>
+    </view>
+    </view>
+  </view>
+</view>

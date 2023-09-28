@@ -47,4 +47,4 @@
       bindclose="onClose" bindconfirm="onConform"></integral-type>
   </view>
 </view>
-<tabbar selected="{{2}}"></tabbar>
+<tabbar selected="{{tabSelected}}"></tabbar>

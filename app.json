@@ -5,6 +5,7 @@
     "pages/tabbar/sport/sport",
     "pages/tabbar/integral/integral",
     "pages/tabbar/my/my",
+    "pages/tabbar/menu/menu",
     "pages/shop/shop",
     "pages/appointment/appointment",
     "pages/coachList/coachList",
@@ -17,8 +18,7 @@
     "pages/activeDetail/activeDetail",
     "pages/activeList/activeList",
     "pages/leagueDetail/leagueDetail",
-    "pages/leagueList/leagueList",
-    "pages/agreement/agreement"
+    "pages/leagueList/leagueList"
   ],
   "subpackages": [
     {
@@ -55,6 +55,15 @@
         "strengthTraining/strengthTraining",
         "strengthTrainingDetail/strengthTrainingDetail"
       ]
+    },
+    {
+      "root": "restaurant",
+      "pages": [
+         "pages/settlement/settlement",
+         "pages/menuDetail/menuDetail",
+         "pages/orderSuccess/orderSuccess",
+         "pages/restaurantOrder/restaurantOrder"
+      ]
     }
   ],
   "preloadRule": {
@@ -89,6 +98,12 @@
         "selectedIconPath": "static/tabbar/sport_active.png"
       },
       {
+        "pagePath": "pages/tabbar/menu/menu",
+        "text": "",
+        "iconPath": "static/tabbar/order.png",
+        "selectedIconPath": "static/tabbar/order.png"
+      },
+      {
         "pagePath": "pages/tabbar/integral/integral",
         "text": "积分",
         "iconPath": "static/tabbar/integral.png",
@@ -110,7 +125,7 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "nav-bar":"/components/navbar/navbar"
+    "nav-bar": "/components/navbar/navbar"
   },
   "__usePrivacyCheck__": true,
   "style": "v2",

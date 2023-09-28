@@ -1,0 +1,124 @@
+page {
+  font-family: PingFang SC;
+}
+
+.order-list {
+  overflow: hidden;
+}
+
+.goods {
+  background: #ffffff;
+}
+
+.order-list .goods:not(:first-child) {
+  margin-top: 10rpx;
+}
+
+.order-status {
+  display: flex;
+  justify-content: space-between;
+  height: 62rpx;
+  line-height: 62rpx;
+  font-size: 24rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  border-bottom: .5px solid #F1F1F1;
+}
+
+.order-status text:first-child {
+  color: #B7BDC1;
+}
+
+.order-status text:last-child {
+  color: #0888FF;
+}
+
+.table-info .first-goods {
+  height: unset;
+  margin-top: 24rpx;
+  padding-bottom: 40rpx;
+  align-items: flex-start;
+}
+
+.table-number {
+  padding-top: 20rpx;
+  font-size: 24rpx;
+  color: #000000;
+}
+
+.goods-info {
+  padding: 0 48rpx 0 40rpx;
+}
+
+.goods-item {
+  display: flex;
+  align-items: center;
+  height: 180rpx;
+  border-bottom: 1px solid #F1F1F1;
+}
+
+.goods-lf {
+  flex-shrink: 0;
+  margin-right: 28rpx;
+  width: 148rpx;
+  height: 100rpx;
+}
+
+.goods-lf>image {
+  width: 100%;
+  height: 100%;
+  vertical-align: bottom;
+}
+
+.goods-rf {
+  flex: auto;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.goods-rf>view:first-child {
+  font-size: 32rpx;
+  font-weight: normal;
+  color: #333333;
+}
+
+.goods-rf>view:last-child {
+  font-size: 26rpx;
+  color: #909090;
+}
+
+
+.remark {
+  font-weight: normal;
+}
+
+.number {
+  font-weight: 500;
+}
+
+.order-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 50rpx 40rpx 44rpx 0;
+}
+
+.order-amount>view:first-child {
+  font-size: 26rpx;
+  font-weight: normal;
+  color: #909090;
+}
+
+.total {
+  font-size: 40rpx;
+  color: #333333;
+}
+
+.order-amount>view:last-child {
+  font-size: 22rpx;
+  font-weight: normal;
+  color: #333333;
+}

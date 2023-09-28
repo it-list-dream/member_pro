@@ -1,0 +1,37 @@
+<nav-bar page-name="结算"></nav-bar>
+<view style="margin-top: calc({{navHeight}}px + 10rpx) ;">
+  <view class="goods-list">
+    <view class="goods-item" wx:for="{{3}}">
+      <image class="menu-image" src="/static/menu.png" mode="" />
+      <view class="goods-desc">
+        <view class="dish">健身色拉</view>
+        <view class="taste">常规糖、辣味、多葱</view>
+        <view class="amount">
+          <text class="price">¥88.50</text>
+          <text class="num">×2</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="payinfo">
+    <view class="flex-info line">
+      <view>订餐模式</view>
+      <view>自取</view>
+    </view>
+    <view class="flex-info">
+      <view>支付方式</view>
+      <picker bindchange="payMethods" value="{{payIndex}}" range="{{payList}}" range-key="name">
+        <view class="picker">
+          {{payList[payIndex].name}}
+        </view>
+        <image class="arrow_right" src="/static/next.png" mode="" />
+      </picker>
+    </view>
+  </view>
+  <view class="pay-cart">
+    <view class="pay-lf">
+      应付金额：<text class="red" decode="true">&nbsp;¥88.50</text>
+    </view>
+    <view class="pay-rg" bindtap="finalPay">付款</view>
+  </view>
+</view>

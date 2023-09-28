@@ -39,4 +39,15 @@
   <!-- <block wx:if="{{contractList.length == 0}}">
     <template is="nothing" data="{{message:'暂无内容'}}"></template>
   </block> -->
+  <!-- <view class="contract-item" wx:for="{{memberCard}}" bindtap="goContractDetail" wx:key="index" data-contract="{{item}}">
+    <view class="contract-serial">
+        <view class="contract-id">合同编码：{{item.OrderNo}}</view>
+        <view class="contract-status">{{item.Signurl.length?'已签署':'未签署'}}</view>
+      </view>
+      <view class="contract-info">
+        <view>{{item.GB_Name}}</view>
+        <view>卡名称: {{item.CardName}}</view>
+        <view class="contract-price">¥{{item.UP_MoneyReal}}</view>
+      </view>
+  </view> -->
 </view>

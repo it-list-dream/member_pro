@@ -25,6 +25,7 @@ Page({
       navTop: app.globalData.navTop,
       menuRight: app.globalData.menuRight
     });
+    console.log(app.globalData.selected)
   },
   changeDate(e) {
     let changebg = e.currentTarget.dataset.num

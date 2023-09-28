@@ -12,7 +12,7 @@
       性别: {{contract.UI_Sex}}
     </view>
     <view>
-       手机号码: {{contract.UI_Phone}}
+      手机号码: {{contract.UI_Phone}}
     </view>
     <view>
       会员卡名称: {{contract.Card_Name}}
@@ -46,10 +46,10 @@
     <view class="signing-date" wx:if="{{isSigning}}">签署日期：{{signDate}}</view>
   </view>
   <view class="signing" wx:if="{{!isSigning}}">
-      <view class="signBtn" bindtap="onlineSign" hidden="{{signingState !=0}}">在线签字</view>
-      <view class="multipleBtn" hidden="{{signingState !=1}}">
-         <button class="resigning" bindtap="onlineSign">重新签名</button>
-         <button class="submitsigning" bindtap="submitSign">提交签名</button>
-      </view>
+    <view class="signBtn" bindtap="onlineSign" hidden="{{signingState !=0}}">在线签字</view>
+    <view class="multipleBtn" hidden="{{signingState !=1}}">
+      <button class="resigning" bindtap="onlineSign">重新签名</button>
+      <button class="submitsigning" bindtap="submitSign">提交签名</button>
+    </view>
   </view>
 </view>

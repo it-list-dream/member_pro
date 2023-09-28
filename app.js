@@ -1,4 +1,6 @@
 var util = require('./utils/util.js');
+import EventBus from './utils/eventBus.js'
+// wx.$bus = new EventBus()
 App({
   onLaunch: function (options) {
     var that = this
@@ -148,7 +150,6 @@ App({
   },
   globalData: {
     isIphoneX: false,
-    userInfo: null,
     isChange: false,
     share: false,
     //门店信息
@@ -162,9 +163,7 @@ App({
     PayMoneyID: '',
     isSigning: '',
     navHeight: 0,
-    navTop: 0,
-    windowHeight: 0,
-    windowHeight: 0
+    navTop: 0
   },
   onShow: function (options) {
     // 判断是否由分享进入小程序

@@ -1,0 +1,46 @@
+.all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: PingFang SC;
+}
+
+.succss-icon {
+  margin-bottom: 114rpx;
+  font-size: 36rpx;
+  color: #FF8E16;
+  text-align: center;
+}
+
+.succss-icon>image {
+  width: 405rpx;
+  height: 405rpx;
+  vertical-align: middle;
+}
+
+.but-box:last-child {
+  margin-top: 30rpx;
+}
+
+.but-box button {
+  width: 630rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 45rpx;
+  text-align: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 36rpx;
+  font-weight: 800;
+}
+
+.but-box .orderNo {
+  background: linear-gradient(0deg, #FFA84A 0%, #FF8E13 100%);
+  color: #FFFFFF;
+}
+
+.but-box .success {
+  border: 3rpx solid #FF8F16;
+  color: #FF8E15;
+}

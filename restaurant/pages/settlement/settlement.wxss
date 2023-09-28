@@ -1,0 +1,138 @@
+page {
+  font-family: PingFang SC;
+}
+
+
+.goods-list {
+  background: #FFFFFF;
+  margin-bottom: 10rpx;
+}
+
+.goods-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 194rpx;
+  padding: 30rpx 0 30rpx 46rpx;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.menu-image {
+  width: 200rpx;
+  height: 134rpx;
+  background: #52495B;
+  border-radius: 6rpx;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+}
+
+.goods-desc {
+  height: 148rpx;
+  flex: auto;
+}
+
+.dish {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.taste{
+  font-size: 24rpx;
+  color: #9C9C9C;
+}
+
+.amount {
+  margin-top: 15rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.amount text{
+  align-self: flex-end;
+}
+.amount .price {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #FF3030;
+}
+
+.num {
+  font-size: 32rpx;
+  color: #666666;
+  margin-right: 30rpx;
+}
+
+/*  */
+.payinfo {
+  margin-top: 10rpx;
+  height: 208rpx;
+  background: #FFFFFF;
+  padding: 0 44rpx;
+}
+
+.flex-info {
+  position: relative;
+  display: flex;
+  height: 103rpx;
+  line-height: 103rpx;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.payinfo .line::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 660rpx;
+  height: 1px;
+  transform: scale(0.5);
+  transform: translateX(-50%);
+  background: #E9E9E9;
+}
+
+.picker {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12rpx;
+}
+
+.arrow_right {
+  width: 34rpx;
+  height: 28rpx;
+  vertical-align: middle;
+}
+
+.pay-cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding-left: 40rpx;
+  padding-right: 30rpx;
+  justify-content: space-between;
+  align-items: center;
+  height: 170rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 0rpx 9rpx 0rpx rgba(4, 39, 57, 0.12);
+  box-sizing: border-box;
+}
+
+.red {
+  color: #FF3030;
+}
+
+.pay-rg {
+  width: 276rpx;
+  height: 82rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 82rpx;
+  text-align: center;
+  background: #F22634;
+  border-radius: 41rpx;
+}

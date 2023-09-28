@@ -1,0 +1,112 @@
+/* restaurant/pages/menuDetail/menuDetail.wxss */
+page {
+  background: #fff !important;
+  font-family: PingFang SC;
+}
+
+.all {
+  background: #fff;
+}
+
+.food {
+  /* padding: 15rpx 30rpx 0; */
+  text-align: center;
+}
+
+.food image {
+  width: 690rpx;
+  vertical-align: bottom;
+  border-radius: 6rpx;
+}
+
+.food_detail {
+  position: relative;
+  display: flex;
+  padding: 50rpx 24rpx 48rpx 40rpx;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.food_detail::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 670rpx;
+  height: .5px;
+  background: #F3F3F3;
+}
+
+.food_detail .food_name {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #1F1B24;
+}
+
+.food_detail .food_price {
+  margin-top: 6rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #F22634;
+}
+
+.r_food_detail {
+  width: 214rpx;
+  height: 58rpx;
+  line-height: 58rpx;
+  text-align: center;
+  background: linear-gradient(0deg, #FFA84A 0%, #FF8E13 100%);
+  border-radius: 29rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.food_introduce {
+  padding: 48rpx 54rpx 60rpx 40rpx;
+  font-size: 26rpx;
+  color: #000000;
+  line-height: 48rpx;
+}
+
+.food_title::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 16rpx;
+  height: 16rpx;
+  border: 2px solid #1F1B24;
+  border-radius: 50%
+}
+
+.food_title {
+  position: relative;
+  font-size: 30rpx;
+  line-height: 1.8em;
+  font-weight: bold;
+  color: #1F1B24;
+  text-indent: 1.5em;
+}
+
+.food_introduce>view:last-child {
+  padding-left: 1.7em;
+}
+
+/*  */
+.cart-bar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #FFFFFF;
+  box-shadow: -25rpx 0rpx 30rpx 0rpx rgba(16, 13, 19, 0.15);
+}
+
+/*  */
+.weui-half-screen-dialog__ft{
+  padding-bottom:calc(constant(safe-area-inset-bottom) / 2) !important;
+  padding-bottom: calc(env(safe-area-inset-bottom) / 2) !important;
+}

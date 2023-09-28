@@ -1,0 +1,66 @@
+/* 结算 */
+.cart_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 108rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.cart_price {
+  display: flex;
+}
+
+.cart {
+  position: relative;
+  width: 62rpx;
+  height: 62rpx;
+  margin-right: 18rpx;
+}
+
+.dot {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  font-size: 18rpx;
+  color: #fff;
+  border-radius: 50%;
+  background: #F22634;
+}
+
+.cart>image {
+  width: 100%;
+  height: 100%;
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #000000;
+}
+
+.amount text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #F22634;
+}
+
+.settlement {
+  width: 220rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  background: #F22634;
+  border-radius: 35rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #fff;
+}
+

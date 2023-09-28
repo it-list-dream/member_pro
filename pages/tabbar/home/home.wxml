@@ -27,7 +27,7 @@
       <view class="store_address" bindtap="showMap">
         <image src="/static/icon/location.png"></image>
         <text class="margin-text">{{store.GB_Address}}</text>
-        <image src="/static/icon/left_arrow.png" class="arrow"></image>
+        <!-- <image src="/static/icon/left_arrow.png" class="arrow"></image> -->
       </view>
       <image src="{{GymLogo?GymLogo:'/static/avtor.png'}}" class="storeLogo" mode="heightFix"></image>
     </view>

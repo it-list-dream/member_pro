@@ -1,0 +1,24 @@
+<nav-bar page-name="订餐详情页"></nav-bar>
+<view class="all" style="margin-top: {{navHeight}}px;">
+  <view class="food">
+    <image mode="widthFix" src="./images/food.png" mode="" />
+  </view>
+  <view class="food_detail">
+    <div>
+      <view class="food_name">健身色拉</view>
+      <view class="food_price">￥88.50</view>
+    </div>
+    <div class="r_food_detail" bindtap="selectNorms">选规格</div>
+  </view>
+  <view class="food_introduce">
+    <view class="food_title">
+      详细介绍
+    </view>
+    <view>
+      凯撒沙拉是一款经典的沙拉，以新鲜的生菜、烤面包丁和奶酪粉等配料为特色。它的酱汁以酸橙汁、橄榄油、蒜泥和帕玛森奶酪为基础，为沙拉
+    </view>
+  </view>
+  <cart-details show="{{showCartDetails}}"></cart-details>
+  <food-dialog show-model="{{show}}" bind:onClose="closeModel"></food-dialog>
+  <submit-bar custom-class="cart-bar" bind:cartShow="showCartDialog"></submit-bar>
+</view>

@@ -85,4 +85,5 @@
   <!-- 弹出层 -->
   <popup isHideCoachPr="{{isHideCoachPre}}" isPopup="{{chooseCourse}}" bindclose="onClose"></popup>
 </view>
+{{selected}}
 <tabbar selected="{{1}}"></tabbar>

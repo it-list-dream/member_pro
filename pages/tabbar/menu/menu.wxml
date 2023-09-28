@@ -1,0 +1,47 @@
+<top-bar>订餐</top-bar>
+<view class="order_mode" style="margin-top: {{navHeight}}px;">订餐模式：自取/八号桌</view>
+<view class="classify">
+    <view class="left" style="height: calc({{windowHeight}}px - {{navHeight}}px - 184rpx - 66px );">
+        <scroll-view scroll-y scroll-with-animation="true" scroll-top="{{scrollTop}}" class="s_left">
+            <view style="background: #fff;">
+                <block wx:for="{{goodsList}}" wx:key="index">
+                    <view class="caname {{chosed_index==index ?'chosed':''}}" id="sidebar-item-{{item.MT_Id}}" data-id="{{item.MT_Id}}" data-index="{{index}}" catchtap="choseCate">
+                        {{item.FoodType}}
+                    </view>
+                </block>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="right" style="height: calc({{windowHeight}}px - {{navHeight}}px - 184rpx - 66px );">
+        <scroll-view scroll-y scroll-with-animation="true" scroll-into-view="{{toTitle}}" class="s_right" bindscroll="onScroll">
+            <view id="title-{{item.MT_Id}}" wx:for="{{goodsList}}" wx:key="index">
+                <view wx:if="{{item.FoodItems.length>0}}">
+                    <view class="goods-item" wx:for="{{item.FoodItems}}" wx:for-item="good" wx:for-index="index2" bindtap="orderFood" data-food="{{good}}">
+                        <image class="good_img" src="/static/menu.png" mode="" />
+                        <view class="good_introduce">
+                            <view class="munu_name">{{good.FoodName}}</view>
+                            <view class="munu_price">￥{{good.Price}}</view>
+                            <view wx:if="{{good.Additional.length>0}}" class="standards" data-index="{{index2}}" data-fl_id="{{good.FL_Id}}" data-mt_id="{{good.MT_Id}}" catchtap="choose">选规格</view>
+                            <view wx:else class="counter">
+                                <text class="symbol" bindtap="cartCountChange" data-operation="-">-</text>
+                                <button class="meal-number" disabled>1</button>
+                                <text class="symbol" bindtap="cartCountChange" data-operation="+">+</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view wx:else class="flex-column">
+                    <image src="./images/goods_none.png" class="goods_none"></image>
+                    <text class="no_tip">暂无商品哦~</text>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>
+<!--  -->
+<cart-details isTabbar="{{true}}" show="{{showCartDetails}}"></cart-details>
+<!--  -->
+<food-dialog bind:onClose="closeDialog" show-model="{{showDialog}}" food="{{good}}"></food-dialog>
+<!--  -->
+<submit-bar bind:cartShow="showCartDialog"></submit-bar>
+<tabbar selected="{{tabSelected}}"></tabbar>

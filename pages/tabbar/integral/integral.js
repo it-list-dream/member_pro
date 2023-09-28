@@ -1,6 +1,8 @@
 // pages/integral/integral.js
 const app = getApp();
 var api = require('../../../utils/request.js')
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../utils/store.js";
 Page({
   /**
    * 页面的初始数据
@@ -21,6 +23,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.storeBindings = createStoreBindings(this, {
+        store,
+        fields: ["tabSelected"],
+        actions: [],
+    });
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -193,6 +200,9 @@ Page({
     this.setData({
       isScreen:false
     })
+  },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
   /**
    * 页面上拉触底事件的处理函数

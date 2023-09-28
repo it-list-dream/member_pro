@@ -1,0 +1,14 @@
+<nav-bar page-name=""></nav-bar>
+<view class="all" style="height:calc(100vh - {{navHeight}}px);margin-top: {{navHeight}}px;">
+  <view class="succss-icon">
+     <image src="./images/none.png" mode=""/>
+     <view style="margin-top:14rpx;">订餐成功！</view>
+  </view>
+  <view class="but-box">
+    <button class="orderNo">您的订餐取号码：8号</button>
+  </view>
+  <view class="but-box">
+    <button class="success">完成</button>
+  </view>
+
+</view>

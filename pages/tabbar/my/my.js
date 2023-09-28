@@ -1,6 +1,8 @@
 // pages/my/my.js
 const app = getApp();
 var api = require('../../../utils/request.js')
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../utils/store";
 Page({
   /**
    * 页面的初始数据
@@ -42,6 +44,12 @@ Page({
         name: '电子合同',
         img: '/static/my/contract.png',
         serviceUrl: "/page2/contractList/contractList"
+      },
+      {
+        id: 4,
+        name: '订餐订单',
+        img: '/static/my/swt-icon.png',
+        serviceUrl: "/restaurant/pages/restaurantOrder/restaurantOrder"
       }
     ],
     //0 1 2 
@@ -64,6 +72,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.storeBindings = createStoreBindings(this, {
+        store,
+        fields: ["tabSelected"],
+        actions: [],
+    });
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -310,6 +323,9 @@ Page({
         })
       }
     })
+  },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
   /**
    * 生命周期函数--监听页面隐藏

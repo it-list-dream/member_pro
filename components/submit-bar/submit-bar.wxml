@@ -1,0 +1,14 @@
+<view class="cart_list custom-class">
+  <view class="cart_price">
+    <view class="cart" wx:if="{{showCart}}" catchtap="isShowCart">
+      <image src="/static/cart.png" mode="" />
+      <text class="dot">3</text>
+    </view>
+    <view class="amount">
+      合计 <text>￥28.00</text>
+    </view>
+  </view>
+  <view class="settlement" bindtap="payMoney">
+    <text decode="true">去结算 &nbsp;(5)</text>
+  </view>
+</view>

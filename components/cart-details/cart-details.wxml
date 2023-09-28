@@ -1,0 +1,24 @@
+<mp-half-screen-dialog extClass="cartWrapper" show="{{show}}" closabled="{{false}}">
+  <scroll-view scroll-y style="height:{{isTabbar?'calc(40vh - ' + safeArea + 'px - 128rpx - 48px)':'calc(40vh - ' + safeArea + 'px - 128rpx)'}}" slot="desc">
+    <view class="cart-item" wx:for="{{4}}">
+      <image class="meal-img" src="/static/menu.png" mode="" />
+      <view class="goods-cart">
+        <view class="meal-introduce">
+          <view>健身色拉</view>
+          <view>常规糖、辣味、多葱</view>
+        </view>
+        <view class="meal-count">
+          <view class="meal-price">￥44.5<text>/份</text></view>
+          <view class="counter">
+            <text class="symbol" bindtap="cartCountChange" data-operation="-">-</text>
+            <button class="meal-number" disabled>{{cartCounts}}</button>
+            <text class="symbol" bindtap="cartCountChange" data-operation="+">+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view slot="footer">
+    <submit-bar custom-class="total" showCart="{{false}}"></submit-bar>
+  </view>
+</mp-half-screen-dialog>

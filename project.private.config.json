@@ -1,6 +1,6 @@
 {
   "setting": {
-    "compileHotReLoad": true,
+    "compileHotReLoad": false,
     "urlCheck": true
   },
   "condition": {
@@ -49,15 +49,39 @@
           "scene": null
         },
         {
-          "name": "",
-          "pathName": "pages/tabbar/home/home",
+          "name": "合同详细",
+          "pathName": "page2/contractDetail/contractDetail",
           "query": "",
           "launchMode": "default",
-          "scene": null,
-          "partialCompile": {
-            "enabled": true,
-            "pages": []
-          }
+          "scene": null
+        },
+        {
+          "name": "点餐",
+          "pathName": "pages/tabbar/menu/menu",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "结算",
+          "pathName": "restaurant/pages/settlement/settlement",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "成功",
+          "pathName": "restaurant/pages/orderSuccess/orderSuccess",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "订餐订单",
+          "pathName": "restaurant/pages/restaurantOrder/restaurantOrder",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

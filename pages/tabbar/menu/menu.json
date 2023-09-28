@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "tabbar": "/components/tabbar/tabbar",
+    "top-bar": "/components/top-bar/top-bar",
+    "submit-bar": "/components/submit-bar/submit-bar",
+    "food-dialog": "/components/food-dialog/food-dialog",
+    "cart-details":"/components/cart-details/cart-details"
+  }
+}

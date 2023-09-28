@@ -1,6 +1,7 @@
 const app = getApp();
 const api = require('../../utils/request.js')
 const util = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -15,7 +16,7 @@ Page({
     fileId: "",
     signDate: '',
     //确定签署
-    isSigning: ''
+    isSigning: '',
   },
 
   /**
@@ -92,11 +93,12 @@ Page({
           icon: "none"
         });
       }
+
       setTimeout(() => {
         wx.navigateBack({
           delta: 2
         });
-      }, 1500)
+      }, 1500);
     })
   },
   /**
@@ -124,7 +126,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    //this.storeBindings.destroyStoreBindings();
   },
 
   /**

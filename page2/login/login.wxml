@@ -5,7 +5,7 @@
       <image src="{{GymLogo?GymLogo:'/static/avtor.png'}}"></image>
     </view>
     <view class="store-name">{{GymName}}</view>
-    <view class="store-info">申请获取你的公开信息（昵称、头像等）</view>
+    <!-- <view class="store-info">申请获取你的公开信息（昵称、头像等）</view> -->
     <!-- 登录 -->
     <view class="login-btn">
       <button class="authorization" type="primary" hover-class="none" bindtap="getUserProfile" wx:if="{{!hasUserInfo}}">授权登录</button>
@@ -13,10 +13,10 @@
       <button class="cancel" type="default" hover-class="none" bindtap="onCancel">取消</button>
     </view>
   </view>
-  <view class="agreement">
+  <!-- <view class="agreement">
     <text>登录代表您已经同意</text>
     <navigator style="color: #000;" url="/pages/agreement/agreement">用户服务协议和用户隐私</navigator>
-  </view>
+  </view> -->
   <modal show="{{showModal}}" height='490rpx' bindcancel="modalCancel" bindconfirm='modalConfirm' wx:if="{{showModal}}">
     <view class="succ-icon">
       <icon type="success" size="50"></icon>

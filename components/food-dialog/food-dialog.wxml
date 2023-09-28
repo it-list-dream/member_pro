@@ -1,0 +1,20 @@
+<root-portal class="popup"  wx:if="{{showModel}}">
+  <view class="popup-content">
+    <view class="popup-title">{{food.FoodName}}</view>
+    <scroll-view class="taste" scroll-y style="height:calc(60vh - {{dishPostion}}px - 124rpx)">
+      <view class="taste-item" wx:for="{{food.Additional}}">
+        <view class="taste-title">{{item.Additional}}</view>
+        <view class="taste-category">
+          <block wx:for="{{item.Attributes}}" wx:for-item="taste" wx:for-index="index2">
+            <text bindtap="selectItems" data-id="{{index}}" data-index="{{index2}}" class="category-item {{item.selectIndex == index2?'active':''}}">{{taste.Attribute}}</text> 
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+     <!-- <text class="category-item active" >常规</text> -->
+    <view class="addCart" bind:tap="handleAddToCart">加入购物车</view>
+  </view>
+  <view bindtap="close" class="close" style="top: calc({{closePositon}}px + 30px);">
+    <image class="close-icon" src="/static/close02.png" mode="" />
+  </view>
+</root-portal>

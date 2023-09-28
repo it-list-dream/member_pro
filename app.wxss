@@ -56,3 +56,21 @@ page{
 .icon-cancel01:before {
   content: "\e734";
 }
+
+/*  */
+.weui-half-screen-dialog {
+  height: 40vh !important;
+}
+
+.weui-half-screen-dialog__hd {
+  min-height: 20rpx !important;
+}
+
+.weui-half-screen-dialog__bd{
+  padding: 0 !important;
+}
+
+/* .weui-half-screen-dialog__ft{
+  padding-bottom:calc(constant(safe-area-inset-bottom) / 2 + 48px) !important;
+  padding-bottom: calc(env(safe-area-inset-bottom) / 2 + 48px) !important;
+} */
